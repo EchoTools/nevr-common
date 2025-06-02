@@ -1,0 +1,46 @@
+syntax = "proto3";
+
+package nevr.rtapi;
+
+option go_package = "github.com/echotools/nevr-common/rtapi";
+
+option java_multiple_files = true;
+option java_outer_classname = "NevrRealtime";
+option java_package = "com.echotools.nevr.rtapi";
+
+option csharp_namespace = "Nevr.Protobuf";
+
+// include the gameapi.rtapi file
+import "gameapi/gameapi.proto";
+import "google/protobuf/timestamp.proto";
+
+
+message Envelope {
+  string cid = 1;
+  oneof message {
+    SessionUpdateMessage channel = 2;
+	  ConnectivityStatisticsMessage connectivity = 3;
+  }
+}
+
+// SessionUpdateMessage is sent from the server to the game service.
+message SessionUpdateMessage {
+  string lobby_id = 1;
+	uint32 time_step_usecs = 2;
+	uint64 tick_count = 3;
+	uint64 entrant_count = 4;
+  google.protobuf.Timestamp timestamp = 5 [ json_name = "timestamp" ];
+  nevr.gameapi.SessionResponse session = 6 [ json_name = "session_data" ];
+  nevr.gameapi.UserBonesResponse user_bones = 7 [ json_name = "user_bones" ];
+}
+
+// ConnectivityStatsMessage is a structure normally only seen in the r14logs
+message ConnectivityStatisticsMessage { 
+	float packet_loss_ratio = 1;
+	uint64 prediction_offset = 2;
+	uint64 target = 3;
+	uint64 local_time = 4;
+	uint64 server_time = 5;
+	int64 pending_server_delta = 6;
+	float discarded_frame_pct = 7;
+}
