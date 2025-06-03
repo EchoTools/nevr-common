@@ -18,8 +18,8 @@ import "google/protobuf/timestamp.proto";
 message Envelope {
   string cid = 1;
   oneof message {
-    SessionUpdateMessage channel = 2;
-	  ConnectivityStatisticsMessage connectivity = 3;
+    SessionUpdateMessage sessionUpdate = 2;
+	  ConnectivityStatisticsMessage connectivityStatistics = 3;
   }
 }
 
