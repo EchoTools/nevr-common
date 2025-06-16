@@ -44,3 +44,16 @@ message ConnectivityStatisticsMessage {
 	int64 pending_server_delta = 6;
 	float discarded_frame_pct = 7;
 }
+
+
+// NEVRRegistrationRequestV1 is sent from the game service to register with the server.
+message GameServerRegistrationRequest {
+	string login_session_id = 1; // UUID format
+	uint64 server_id = 2;
+	string internal_ip = 3;
+	uint32 port = 4;
+	uint64 region_hash = 5;
+	uint64 version_lock = 6;
+	uint32 time_step_usecs = 7;
+	string version = 8;
+}
