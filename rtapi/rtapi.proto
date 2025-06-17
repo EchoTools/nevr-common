@@ -13,13 +13,15 @@ option csharp_namespace = "Nevr.Protobuf";
 // include the gameapi.rtapi file
 import "gameapi.proto";
 import "google/protobuf/timestamp.proto";
+import "google/protobuf/wrappers.proto";
 
 
 message Envelope {
   string cid = 1;
   oneof message {
     SessionUpdateMessage sessionUpdate = 2;
-	  ConnectivityStatisticsMessage connectivityStatistics = 3;
+	ConnectivityStatisticsMessage connectivityStatistics = 3;
+	GameServerRegistrationRequest gameServerRegistrationRequest = 4;
   }
 }
 
