@@ -19,15 +19,152 @@ import "google/protobuf/wrappers.proto";
 message Envelope {
   string cid = 1;
   oneof message {
-    SessionUpdateMessage sessionUpdate = 2;
-	ConnectivityStatisticsMessage connectivityStatistics = 3;
-	GameServerRegistrationRequest gameServerRegistrationRequest = 4;
+	Error error = 2;
+    SessionUpdateMessage sessionUpdate = 3;
+	ConnectivityStatisticsMessage connectivityStatistics = 4;
+	GameServerRegistrationMessage gameServerRegistrationRequest = 5;
+	GameServerRegistrationSuccess gameServerRegistrationSuccess = 6;
+	LobbySessionCreateMessage lobbySessionCreate = 7;
+	LobbySessionEventMessage lobbySessionEvent = 8;
+	LobbyEntrantsConnectedMessage lobbyEntrantConnected = 9;
+	LobbyEntrantsAcceptMessage lobbyEntrantsAccept = 10;
+	LobbyEntrantsRejectMessage lobbyEntrantsReject = 11;
+	LobbyEntrantRemovedMessage lobbyEntrantRemoved = 12;
+	
   }
+}
+
+
+// A logical error which may occur on the server.
+message Error {
+  // The selection of possible error codes.
+  enum Code {
+    // An unexpected result from the server.
+    RUNTIME_EXCEPTION = 0;
+    // The server received a message which is not recognised.
+    UNRECOGNIZED_PAYLOAD = 1;
+    // A message was expected but contains no content.
+    MISSING_PAYLOAD = 2;
+    // Fields in the message have an invalid format.
+    BAD_INPUT = 3;
+	// Game server registration failed
+	REGISTRATION_FAILED = 4;
+	// The lobby session was not found.
+    LOBBY_SESSION_NOT_FOUND = 5;
+  }
+  // The error code which should be one of "Error.Code" enums.
+  int32 code = 1;
+  // A message in English to help developers debug the response.
+  string message = 2;
+  // Additional error details which may be different for each response.
+  map<string, string> context = 3;
+}
+
+// LobbySessionEntrantJoinMessage is sent from the server to the service.
+message LobbySessionEventMessage {
+	// The selection of possible session event codes.
+	enum Code {
+		// Session started
+		STARTED = 0; 
+		// Session ended
+		ENDED = 1;
+	// Session locked
+		LOCKED = 2;
+		// Session unlocked
+		UNLOCKED = 3;
+	}
+	string lobby_session_id = 1;	
+	 int32 code = 2;
+}
+
+// Registration request sent from the server to the service.
+message GameServerRegistrationMessage {
+	string login_session_id = 1;
+	uint64 server_id = 2;
+	string internal_ip_address = 3;
+	uint32 port = 4;
+	uint64 region = 5;
+	uint64 version_lock = 6;
+	uint32 time_step_usecs = 7;
+	string version = 8;
+}
+
+// Registration success message is sent from the service to the server.
+message GameServerRegistrationSuccess {
+	uint64 server_id = 1; // The server ID assigned by the server
+	string external_ip_address = 2; // The external address of the server (ip)
+}
+
+
+// Entrant connect message is sent from the server to the service.
+message LobbyEntrantsConnectedMessage {
+ 	string lobby_session_id = 1;
+	repeated string entrant_ids = 2;
+}
+
+
+
+// Entrant accept message is sent from the service to the server.
+message LobbyEntrantsAcceptMessage {
+	repeated string entrant_ids = 1;
+}
+
+// Entrant rejection message is sent from the server to the service.
+message LobbyEntrantsRejectMessage {
+	enum Code {
+		INTERNAL = 0;  // Internal server error
+		BAD_REQUEST = 1;  // Bad request from the player
+		TIMEOUT = 2;  // Player connection timeout
+		DUPLICATE_USER_ID = 3;  // Duplicate player session
+		LOBBY_LOCKED = 4;  // Lobby is locked
+		LOBBY_FULL = 5;  // Lobby is full
+		LOBBY_ENDING = 6;  // Lobby is ending
+		KICKED = 7;  // Player was kicked from the server
+		DISCONNECTED = 8;  // Player was disconnected
+		INACTIVE = 9;  // Player is inactive
+	}
+	repeated string entrant_ids = 1;
+	int32 code = 2; // Optional reason for rejection
+}
+
+// Entrant rejection message is sent from the server to the service.
+message LobbyEntrantRemovedMessage {
+	enum Code {
+		INTERNAL = 0;  // Internal server error
+		BAD_REQUEST = 1;  // Bad request from the player
+		TIMEOUT = 2;  // Player connection timeout
+		DUPLICATE_USER_ID = 3;  // Duplicate player session
+		LOBBY_LOCKED = 4;  // Lobby is locked
+		LOBBY_FULL = 5;  // Lobby is full
+		LOBBY_ENDING = 6;  // Lobby is ending
+		KICKED = 7;  // Player was kicked from the server
+		DISCONNECTED = 8;  // Player was disconnected
+		INACTIVE = 9;  // Player is inactive
+	}
+	string lobby_session_id = 1;
+	string entrant_id = 2;
+	int32 code = 3; // Optional reason for rejection
+}
+
+message LobbySessionCreateMessage {
+	enum LobbyType {
+		// A public lobby which is visible to all players.
+		PUBLIC = 0;
+		// A private lobby which is only visible to invited players.
+		PRIVATE = 1;
+	}
+	string lobby_session_id = 1;
+	int32 lobby_type = 2;
+	string group_id = 3;
+	int32 max_entrants = 4;
+	string settings_json = 5;
+	repeated string features = 6;
+	uint32 time_step_usecs = 7;
 }
 
 // SessionUpdateMessage is sent from the server to the game service.
 message SessionUpdateMessage {
-  string lobby_id = 1;
+  string lobby_session_id = 1;
 	uint32 time_step_usecs = 2;
 	uint64 tick_count = 3;
 	uint64 entrant_count = 4;
@@ -45,17 +182,4 @@ message ConnectivityStatisticsMessage {
 	uint64 server_time = 5;
 	int64 pending_server_delta = 6;
 	float discarded_frame_pct = 7;
-}
-
-
-// NEVRRegistrationRequestV1 is sent from the game service to register with the server.
-message GameServerRegistrationRequest {
-	string login_session_id = 1; // UUID format
-	uint64 server_id = 2;
-	string internal_ip = 3;
-	uint32 port = 4;
-	uint64 region_hash = 5;
-	uint64 version_lock = 6;
-	uint32 time_step_usecs = 7;
-	string version = 8;
 }
