@@ -11,7 +11,7 @@ option java_package = "com.github.echotools.nevr.rtapi";
 option csharp_namespace = "Nevr.Protobuf";
 
 // include the gameapi.rtapi file
-import "gameapi.proto";
+import "nevr_gameapi.proto";
 import "google/protobuf/timestamp.proto";
 import "google/protobuf/wrappers.proto";
 

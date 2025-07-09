@@ -13,7 +13,7 @@ import "google/protobuf/wrappers.proto";
 option go_package = "github.com/echotools/nevr-common/api";
 
 option java_multiple_files = true;
-option java_outer_classname = "NeverApi";
+option java_outer_classname = "NevrApi";
 option java_package = "com.github.echotools.nevr.api";
 
 option csharp_namespace = "Nevr.Protobuf";
@@ -28,7 +28,7 @@ message PrepareMatchRequest {
 	// The level for the match (optional).
 	string level = 3;
 	// The size of each team in the match (optional).
-	int32 team_size = 4;
+	google.protobuf.Int32Value team_size = 4;
 	// The time the match is scheduled to start (optional)
 	google.protobuf.Timestamp expiry_time = 5;
 	// The user ID of the user who will own the match (optional).
