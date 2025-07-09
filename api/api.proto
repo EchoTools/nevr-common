@@ -1,0 +1,44 @@
+
+/**
+ * The NEVR service RPC protocol for the client, servers, and apps.
+ */
+
+syntax = "proto3";
+
+package nevr.api;
+
+import "google/protobuf/timestamp.proto";
+import "google/protobuf/wrappers.proto";
+
+option go_package = "github.com/echotools/nevr-common/api";
+
+option java_multiple_files = true;
+option java_outer_classname = "NeverApi";
+option java_package = "com.github.echotools.nevr.api";
+
+option csharp_namespace = "Nevr.Protobuf";
+
+
+// A request to prepare a match for users to join.
+message PrepareMatchRequest {
+	// The match mode.
+	string mode = 1;
+	// The region where the match will be prepared (optional).
+	string region = 2;
+	// The level for the match (optional).
+	string level = 3;
+	// The size of each team in the match (optional).
+	int32 team_size = 4;
+	// The time the match is scheduled to start (optional)
+	google.protobuf.Timestamp expiry_time = 5;
+	// The user ID of the user who will own the match (optional).
+	string owner_id = 6;
+	// The group ID of the guild where the match will be spawned (optional).
+	string group_id = 7;
+	// The features required for the match (optional).
+	repeated string required_features = 8;
+	// Mapping user IDs to blue or orange (optional)
+	map<string, string> team_alignments = 9;
+	// Tick Rate of the match in Hz (optional)
+	google.protobuf.Int32Value tick_rate = 10;
+}
