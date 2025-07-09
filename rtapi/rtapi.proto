@@ -6,7 +6,7 @@ option go_package = "github.com/echotools/nevr-common/rtapi";
 
 option java_multiple_files = true;
 option java_outer_classname = "NevrRealtime";
-option java_package = "com.echotools.nevr.rtapi";
+option java_package = "com.github.echotools.nevr.rtapi";
 
 option csharp_namespace = "Nevr.Protobuf";
 
@@ -183,3 +183,4 @@ message ConnectivityStatisticsMessage {
 	int64 pending_server_delta = 6;
 	float discarded_frame_pct = 7;
 }
+
