@@ -6,7 +6,7 @@ import (
 	"os"
 	"testing"
 
-	"github.com/echotools/nevr-common/rtapi"
+	"github.com/echotools/nevr-common/v3/rtapi"
 	"google.golang.org/protobuf/proto"
 )
 

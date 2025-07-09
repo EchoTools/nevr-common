@@ -19,7 +19,7 @@ Protocol Buffer files have already been generated and are included in the reposi
 * **Go**: Import the generated Go packages directly in your project. Example:
 
     ```go
-    import "github.com/echotools/nevr-common/api"
+    import "github.com/echotools/nevr-common/v3/api"
     ```
 
 * **Python**: Use the generated `.py` files in your Python project. Example:

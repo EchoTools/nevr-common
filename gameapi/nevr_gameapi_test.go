@@ -6,7 +6,7 @@ import (
 
 	"os"
 
-	"github.com/echotools/nevr-common/gameapi"
+	"github.com/echotools/nevr-common/v3/gameapi"
 	"github.com/google/go-cmp/cmp"
 	"google.golang.org/protobuf/encoding/protojson"
 )

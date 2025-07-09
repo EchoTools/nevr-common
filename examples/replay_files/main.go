@@ -5,8 +5,8 @@ import (
 	"errors"
 	"time"
 
-	"github.com/echotools/nevr-common/gameapi"
-	"github.com/echotools/nevr-common/rtapi"
+	"github.com/echotools/nevr-common/v3/gameapi"
+	"github.com/echotools/nevr-common/v3/rtapi"
 	"google.golang.org/protobuf/encoding/protojson"
 	timestamppb "google.golang.org/protobuf/types/known/timestamppb"
 )
