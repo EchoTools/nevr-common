@@ -15,7 +15,7 @@ import "gameapi/nevr_gameapi.proto";
 import "google/protobuf/timestamp.proto";
 
 // An envelope for EVR native messages
-message EnvelopeEVR {}
+message EnvelopeEVR {} // Empty envelope message
 
 message SymbolHash { fixed64 value = 1; }
 
@@ -25,9 +25,9 @@ message UserID {
   uint64 account_id = 2;
 }
 
-message STcpConnectionRequireEvent {}
+message STcpConnectionRequireEvent {} // Empty event message - StreamNull(1)
 
-message STcpConnectionUnrequireEvent {}
+message STcpConnectionUnrequireEvent {} // Empty event message - StreamNull(1)
 
 message SNSConfigRequestV2 {
   string request_json = 1; // StreamJson(&m, true, NoCompression)
@@ -48,7 +48,7 @@ message SNSReconcileIAP {
   UserID user_id = 2;   // StreamStruct(&r.XPID)
 }
 
-message SNSChannelInfoRequest {}
+message SNSChannelInfoRequest {} // Empty request message - EmptyMessage type
 
 message SNSChannelInfoResponse { 
   string channel_info = 1; // StreamJson(&m.ChannelInfo, false, ZlibCompression)
@@ -102,9 +102,17 @@ message SNSLobbyJoinSessionRequestv7 {
   string login_session_id = 4;       // StreamGUID(&m.LoginSessionID)
   uint64 flags = 5;                  // StreamNumber(binary.LittleEndian, &m.Flags)
 }
-message SNSLobbyMatchmakerStatus {}
-message SNSLobbyMatchmakerStatusRequest {}
-message SNSLobbyPendingSessionCancelv2 {}
+message SNSLobbyMatchmakerStatus {
+  uint32 status_code = 1;  // StreamNumber(binary.LittleEndian, &m.StatusCode)
+}
+message SNSLobbyMatchmakerStatusRequest {
+  uint32 unk0 = 1;  // StreamByte(&m.Unk0) promoted to uint32
+  uint32 unk1 = 2;  // StreamByte(&m.Unk1) promoted to uint32  
+  uint32 unk2 = 3;  // StreamByte(&m.Unk2) promoted to uint32
+}
+message SNSLobbyPendingSessionCancelv2 {
+  string session = 1;  // StreamGUID(&m.Session)
+}
 message SNSLobbyPingRequestv3 {
   uint32 unk0 = 1;                // StreamNumber(binary.BigEndian, &m.Unk0) - but as uint32 since uint16 gets promoted
   uint32 unk1 = 2;                // StreamNumber(binary.LittleEndian, &m.Unk1) - but as uint32 since uint16 gets promoted  
@@ -114,7 +122,13 @@ message SNSLobbyPingRequestv3 {
 message SNSLobbyPingResponse {
   repeated string results = 1;  // StreamStruct for each EndpointPingResult, represented as strings
 }
-message SNSLobbyPlayerSessionsRequestv5 {}
+message SNSLobbyPlayerSessionsRequestv5 {
+  string login_session_id = 1;  // StreamGUID(&m.LoginSessionID)
+  UserID user_id = 2;           // StreamStruct(&m.XPID)
+  string lobby_id = 3;          // StreamGUID(&m.LobbyID)
+  fixed64 platform = 4;         // StreamNumber(binary.LittleEndian, &m.Platform)
+  repeated UserID player_xpids = 5; // StreamStruct for each XPID
+}
 message SNSLobbySessionFailurev4 {
   uint32 error_code = 1;   // StreamNumber(binary.LittleEndian, &m.ErrorCode) 
   string message = 2;      // StreamNullTerminatedString(&m.Message)
@@ -159,12 +173,18 @@ message SNSLogInRequestv2 {
   UserID user_id = 2;              // XPID fields: StreamNumber for PlatformCode and AccountId  
   string payload = 3;              // StreamJson(&m.Payload, true, NoCompression)
 }
-message SNSLoginSettings {}
+message SNSLoginSettings {
+  string config_data = 1;  // StreamJson for game settings - JSON data as string
+}
 message SNSLogInSuccess {
   string session = 1;       // StreamGUID(&m.Session) - UUID as string
   UserID user_id = 2;       // XPID fields: StreamNumber for PlatformCode and AccountId
 }
-message SNSOtherUserProfileFailure {}
+message SNSOtherUserProfileFailure {
+  UserID user_id = 1;       // StreamStruct(&m.XPID)
+  uint64 status_code = 2;   // StreamNumber(binary.LittleEndian, &m.StatusCode)
+  string message = 3;       // StreamNullTerminatedString(&m.Message)
+}
 message SNSOtherUserProfileRequest {
   UserID user_id = 1;   // StreamStruct(&m.XPID)
   string data = 2;      // StreamJSONRawMessage(&m.Data, true, NoCompression) - raw JSON as string
