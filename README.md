@@ -10,8 +10,9 @@ The code is broken up into packages for different parts:
 
 * `api` - The request/response messages used with the GPRC and in some of the real-time API.
 * `rtapi`: The runtime API definitions, including the frame structure and connectivity statistics.
-* `gameapi`: The game-engine's HTTP API session data and user bones structures.
+* `gameapi`: The game-engine's HTTP API `/session` and `/user_bones` endpoints.
 * `common`: Shared utilities and types used across the codebase.
+
 
 ## Usage
 
