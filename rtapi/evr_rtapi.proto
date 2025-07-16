@@ -19,61 +19,192 @@ message EnvelopeEVR {}
 
 message SymbolHash { fixed64 value = 1; }
 
+// Common types
+message UserID {
+  uint64 platform_code = 1;
+  uint64 account_id = 2;
+}
+
 message STcpConnectionRequireEvent {}
 
 message STcpConnectionUnrequireEvent {}
 
 message SNSConfigRequestV2 {
-  int64 type = 1;
-  int64 id = 2;
+  string request_json = 1; // StreamJson(&m, true, NoCompression)
 }
 
 message SNSConfigSuccessV2 {
-  SymbolHash type = 1;
-  SymbolHash id = 2;
-  string resource = 3;
+  fixed64 type = 1;    // StreamNumber(binary.LittleEndian, &m.Type)
+  fixed64 id = 2;      // StreamNumber(binary.LittleEndian, &m.Id) 
+  string resource = 3; // StreamJson(&m.Resource, true, ZstdCompression)
 }
 
-message SNSConfigFailureV2 { string Error = 1; }
+message SNSConfigFailureV2 { 
+  string error = 1; 
+}
 
 message SNSReconcileIAP {
-  string session_id = 1;
-  string user_id = 2;
+  string session = 1;   // StreamGUID(&r.Session) - UUID as string
+  UserID user_id = 2;   // StreamStruct(&r.XPID)
 }
 
 message SNSChannelInfoRequest {}
 
-message SNSChannelInfoResponse { string resource = 1; }
-message SNSDocumentFailure {}
-message SNSDocumentRequestv2 {}
-message SNSDocumentSuccess {}
-message SNSFindServerRegionInfo {}
-message SNSLobbyCreateSessionRequestv9 {}
-message SNSLobbyFindSessionRequestv11 {}
-message SNSLobbyJoinSessionRequestv7 {}
+message SNSChannelInfoResponse { 
+  string channel_info = 1; // StreamJson(&m.ChannelInfo, false, ZlibCompression)
+}
+message SNSDocumentRequestv2 {
+  string language = 1;  // StreamNullTerminatedString(&m.Language)
+  string type = 2;      // StreamNullTerminatedString(&m.Type)
+}
+
+message SNSDocumentSuccess {
+  string document_json = 1;  // StreamJson for document data
+}
+
+message SNSDocumentFailure {
+  uint64 unk0 = 1;        // StreamNumber(binary.LittleEndian, &m.Unk0)
+  uint64 unk1 = 2;        // StreamNumber(binary.LittleEndian, &m.Unk1) 
+  string message = 3;     // StreamNullTerminatedString(&m.Message)
+}
+message SNSFindServerRegionInfo {
+  uint32 unk0 = 1;                      // StreamNumber for uint16, promoted to uint32
+  uint32 unk1 = 2;                      // StreamNumber for uint16, promoted to uint32  
+  uint32 unk2 = 3;                      // StreamNumber for uint16, promoted to uint32
+  string region_info = 4;               // StreamJson for RegionInfo map
+}
+message SNSLobbyCreateSessionRequestv9 {
+  fixed64 region = 1;             // StreamNumber(binary.LittleEndian, &m.Region)
+  fixed64 version_lock = 2;       // StreamNumber(binary.LittleEndian, &m.VersionLock)
+  fixed64 mode = 3;               // StreamNumber(binary.LittleEndian, &m.Mode)
+  fixed64 level = 4;              // StreamNumber(binary.LittleEndian, &m.Level)
+  fixed64 platform = 5;           // StreamNumber(binary.LittleEndian, &m.Platform)
+  string login_session_id = 6;    // StreamGUID(&m.LoginSessionID)
+  repeated UserID entrants = 7;   // StreamStruct for each entrant
+  string session_settings = 8;    // StreamJson for LobbySessionSettings
+}
+message SNSLobbyFindSessionRequestv11 {
+  fixed64 version_lock = 1;          // StreamNumber(binary.LittleEndian, &m.VersionLock)
+  fixed64 mode = 2;                  // StreamNumber(binary.LittleEndian, &m.Mode)
+  fixed64 level = 3;                 // StreamNumber(binary.LittleEndian, &m.Level)
+  fixed64 platform = 4;              // StreamNumber(binary.LittleEndian, &m.Platform)
+  string login_session_id = 5;       // StreamGUID(&m.LoginSessionID)
+  string current_lobby_id = 6;       // StreamGUID(&m.CurrentLobbyID)
+  string group_id = 7;               // StreamGUID(&m.GroupID)
+  string session_settings = 8;       // StreamJson for session settings
+  repeated UserID entrants = 9;      // StreamStruct for each entrant
+}
+
+message SNSLobbyJoinSessionRequestv7 {
+  string lobby_id = 1;               // StreamGUID(&m.LobbyID)
+  int64 version_lock = 2;            // StreamNumber(binary.LittleEndian, &m.VersionLock)
+  fixed64 platform = 3;              // StreamNumber(binary.LittleEndian, &m.Platform)
+  string login_session_id = 4;       // StreamGUID(&m.LoginSessionID)
+  uint64 flags = 5;                  // StreamNumber(binary.LittleEndian, &m.Flags)
+}
 message SNSLobbyMatchmakerStatus {}
 message SNSLobbyMatchmakerStatusRequest {}
 message SNSLobbyPendingSessionCancelv2 {}
-message SNSLobbyPingRequestv3 {}
-message SNSLobbyPingResponse {}
+message SNSLobbyPingRequestv3 {
+  uint32 unk0 = 1;                // StreamNumber(binary.BigEndian, &m.Unk0) - but as uint32 since uint16 gets promoted
+  uint32 unk1 = 2;                // StreamNumber(binary.LittleEndian, &m.Unk1) - but as uint32 since uint16 gets promoted  
+  uint32 rtt_max = 3;             // StreamNumber(binary.LittleEndian, &m.RTTMax)
+  repeated string endpoints = 4;   // StreamStruct for each endpoint, represented as strings
+}
+message SNSLobbyPingResponse {
+  repeated string results = 1;  // StreamStruct for each EndpointPingResult, represented as strings
+}
 message SNSLobbyPlayerSessionsRequestv5 {}
-message SNSLobbySessionFailurev4 {}
-message SNSLobbySessionSuccessv5 {}
-message SNSLoggedInUserProfileFailure {}
-message SNSLoggedInUserProfileRequest {}
-message SNSLoggedInUserProfileSuccess {}
-message SNSLogInFailure {}
-message SNSLogInRequestv2 {}
+message SNSLobbySessionFailurev4 {
+  uint32 error_code = 1;   // StreamNumber(binary.LittleEndian, &m.ErrorCode) 
+  string message = 2;      // StreamNullTerminatedString(&m.Message)
+}
+message SNSLobbySessionSuccessv5 {
+  fixed64 game_mode = 1;           // StreamNumber(binary.LittleEndian, &m.GameMode)
+  string lobby_id = 2;             // StreamGUID(&m.LobbyID)  
+  string group_id = 3;             // StreamGUID(&m.GroupID)
+  string endpoint = 4;             // StreamStruct(&m.Endpoint) - represented as string
+  int32 team_index = 5;            // StreamNumber(binary.LittleEndian, &m.TeamIndex) - int16 to int32
+  uint32 unk1 = 6;                 // StreamNumber(binary.LittleEndian, &m.Unk1)
+  int32 headset_type = 7;          // StreamNumber for int as int32
+  uint64 server_encoder_flags = 8; // StreamNumber(binary.LittleEndian, &m.ServerEncoderFlags)
+  uint64 client_encoder_flags = 9; // StreamNumber(binary.LittleEndian, &m.ClientEncoderFlags)
+  uint64 server_sequence_id = 10;  // StreamNumber(binary.LittleEndian, &m.ServerSequenceId)
+  bytes server_mac_key = 11;       // StreamBytes for key data
+  bytes server_enc_key = 12;       // StreamBytes for key data
+  bytes server_random_key = 13;    // StreamBytes for key data
+  uint64 client_sequence_id = 14;  // StreamNumber(binary.LittleEndian, &m.ClientSequenceId)
+}
+message SNSLoggedInUserProfileFailure {
+  UserID user_id = 1;       // StreamStruct(&m.XPID)
+  uint64 status_code = 2;   // StreamNumber(binary.LittleEndian, &m.StatusCode)
+  string error_message = 3; // StreamNullTerminatedString(&m.ErrorMessage)
+}
+message SNSLoggedInUserProfileRequest {
+  string session = 1;                 // StreamGUID(&m.Session) - UUID as string
+  UserID user_id = 2;                 // XPID fields: StreamNumber for PlatformCode and AccountId
+  string profile_request_data = 3;    // StreamJson(&m.ProfileRequestData, true, NoCompression)
+}
+message SNSLoggedInUserProfileSuccess {
+  UserID user_id = 1;   // StreamStruct(&m.UserId)
+  string payload = 2;   // StreamJson(&m.Payload, true, ZstdCompression)
+}
+message SNSLogInFailure {
+  UserID user_id = 1;         // XPID fields: StreamNumber for PlatformCode and AccountId  
+  uint64 status_code = 2;     // StreamNumber(binary.LittleEndian, &m.StatusCode)
+  string error_message = 3;   // StreamNullTerminatedString(&m.ErrorMessage)
+}
+message SNSLogInRequestv2 {
+  string previous_session_id = 1;  // StreamGUID(&m.PreviousSessionID) - UUID as string
+  UserID user_id = 2;              // XPID fields: StreamNumber for PlatformCode and AccountId  
+  string payload = 3;              // StreamJson(&m.Payload, true, NoCompression)
+}
 message SNSLoginSettings {}
-message SNSLogInSuccess {}
+message SNSLogInSuccess {
+  string session = 1;       // StreamGUID(&m.Session) - UUID as string
+  UserID user_id = 2;       // XPID fields: StreamNumber for PlatformCode and AccountId
+}
 message SNSOtherUserProfileFailure {}
-message SNSOtherUserProfileRequest {}
-message SNSOtherUserProfileSuccess {}
-message SNSReconcileIAP {}
-message SNSReconcileIAPResult {}
-message SNSRemoteLogSetv3 {}
-message SNSUpdateProfile {}
-message SNSUpdateProfileFailure {}
-message SNSUpdateProfileSuccess {}
-message SNSUserServerProfileUpdateRequest {}
-message SNSUserServerProfileUpdateSuccess {}
+message SNSOtherUserProfileRequest {
+  UserID user_id = 1;   // StreamStruct(&m.XPID)
+  string data = 2;      // StreamJSONRawMessage(&m.Data, true, NoCompression) - raw JSON as string
+}
+message SNSOtherUserProfileSuccess {
+  UserID user_id = 1;            // StreamStruct(&m.XPID)  
+  string server_profile_json = 2; // StreamJSONRawMessage(&m.ServerProfileJSON, ...) - raw JSON as string
+}
+
+message SNSReconcileIAPResult {
+  UserID user_id = 1;   // StreamStruct(&m.XPID)
+  string iap_data = 2;  // StreamJson(&m.IAPData, ...) - JSON data as string
+}
+message SNSRemoteLogSetv3 {
+  UserID user_id = 1;      // StreamStruct(&m.XPID)  
+  uint64 unk0 = 2;         // StreamNumber(binary.LittleEndian, &m.Unk0)
+  uint64 unk1 = 3;         // StreamNumber(binary.LittleEndian, &m.Unk1)
+  uint64 unk2 = 4;         // StreamNumber(binary.LittleEndian, &m.Unk2)
+  uint64 unk3 = 5;         // StreamNumber(binary.LittleEndian, &m.Unk3)
+  uint64 log_level = 6;    // StreamNumber(binary.LittleEndian, &m.LogLevel)
+  repeated string logs = 7; // StreamNullTerminatedString for each log
+}
+message SNSUpdateProfile {
+  string login_session_id = 1;   // StreamGUID(&m.LoginSessionID) - UUID as string
+  UserID user_id = 2;            // StreamStruct(&m.XPID)
+  string payload = 3;            // StreamJson(&m.Payload, true, NoCompression)
+}
+message SNSUpdateProfileSuccess {
+  UserID user_id = 1;  // StreamStruct(&m.XPID)
+}
+
+message SNSUpdateProfileFailure {
+  UserID user_id = 1;      // StreamNumber(binary.LittleEndian, &m.XPID) - but as struct
+  uint64 status_code = 2;  // StreamNumber(binary.LittleEndian, &m.statusCode)
+  string message = 3;      // StreamNullTerminatedString(&m.Message)
+}
+message SNSUserServerProfileUpdateRequest {
+  UserID user_id = 1;   // StreamNumber(binary.LittleEndian, &m.XPID) - but as struct
+  string payload = 2;   // StreamJSONRawMessage(&m.Payload, true, NoCompression) - raw JSON as string
+}
+message SNSUserServerProfileUpdateSuccess {
+  UserID user_id = 1;  // StreamStruct(&m.XPID)
+}
