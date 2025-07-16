@@ -14,217 +14,385 @@ option csharp_namespace = "Nevr.Protobuf";
 import "gameapi/nevr_gameapi.proto";
 import "google/protobuf/timestamp.proto";
 
-// An envelope for EVR native messages
-message EnvelopeEVR {} // Empty envelope message
-
-message SymbolHash { fixed64 value = 1; }
+// Symbol hash value
+message SymbolHash {
+  fixed64 value = 1;
+  Message
+}
 
 // Common types
-message UserID {
-  uint64 platform_code = 1;
-  uint64 account_id = 2;
+message XPlatformID {
+  // Platform code
+  string id = 1;
 }
 
-message STcpConnectionRequireEvent {} // Empty event message - StreamNull(1)
+// Envelope for all messages
+message EnvelopeMessage {
+  oneof message {
+    // Unknown message.
+    UnknownMessage unknown_message = 1;
+    // Indicate a TCP event is required.
+    STcpConnectionRequireEvent tcp_connection_require_event = 2;
+    // Indicate a TCP event is no longer required.
+    STcpConnectionUnrequireEvent tcp_connection_unrequire_event = 3;
+    // Legacy config failure.
+    SNSConfigFailure config_failure = 4;
+    // Request a specific configuration resource.
+    SNSConfigRequestV2Message config_request_v2 = 5;
+    // Indicate a config request succeeded.
+    SNSConfigSuccessV2Message config_success_v2 = 6;
+    // Indicate a config request failed.
+    SNSConfigFailureV2 config_failure_v2 = 7;
+    // In-app purchase related request.
+    SNSReconcileIAPMessage reconcile_iap = 8;
+    // Request information about in-game channels.
+    SNSChannelInfoRequest channel_info_request = 9;
+    // Provide in-game channel information.
+    SNSChannelInfoResponseMessage channel_info_response = 10;
+    // Request a document resource.
+    SNSDocumentRequestv2Message document_request_v2 = 11;
+    // Indicate a document request succeeded.
+    SNSDocumentSuccessMessage document_success = 12;
+    // Indicate a document request failed.
+    SNSDocumentFailureMessage document_failure = 13;
+    // Provide information on servers available in different regions.
 
-message STcpConnectionUnrequireEvent {} // Empty event message - StreamNull(1)
-
-message SNSConfigRequestV2 {
-  string request_json = 1; // StreamJson(&m, true, NoCompression)
-}
-
-message SNSConfigSuccessV2 {
-  fixed64 type = 1;    // StreamNumber(binary.LittleEndian, &m.Type)
-  fixed64 id = 2;      // StreamNumber(binary.LittleEndian, &m.Id) 
-  string resource = 3; // StreamJson(&m.Resource, true, ZstdCompression)
-}
-
-message SNSConfigFailureV2 { 
-  string error = 1; 
-}
-
-message SNSReconcileIAP {
-  string session = 1;   // StreamGUID(&r.Session) - UUID as string
-  UserID user_id = 2;   // StreamStruct(&r.XPID)
-}
-
-message SNSChannelInfoRequest {} // Empty request message - EmptyMessage type
-
-message SNSChannelInfoResponse { 
-  string channel_info = 1; // StreamJson(&m.ChannelInfo, false, ZlibCompression)
-}
-message SNSDocumentRequestv2 {
-  string language = 1;  // StreamNullTerminatedString(&m.Language)
-  string type = 2;      // StreamNullTerminatedString(&m.Type)
-}
-
-message SNSDocumentSuccess {
-  string document_json = 1;  // StreamJson for document data
-}
-
-message SNSDocumentFailure {
-  uint64 unk0 = 1;        // StreamNumber(binary.LittleEndian, &m.Unk0)
-  uint64 unk1 = 2;        // StreamNumber(binary.LittleEndian, &m.Unk1) 
-  string message = 3;     // StreamNullTerminatedString(&m.Message)
-}
-message SNSFindServerRegionInfo {
-  uint32 unk0 = 1;                      // StreamNumber for uint16, promoted to uint32
-  uint32 unk1 = 2;                      // StreamNumber for uint16, promoted to uint32  
-  uint32 unk2 = 3;                      // StreamNumber for uint16, promoted to uint32
-  string region_info = 4;               // StreamJson for RegionInfo map
-}
-message SNSLobbyCreateSessionRequestv9 {
-  fixed64 region = 1;             // StreamNumber(binary.LittleEndian, &m.Region)
-  fixed64 version_lock = 2;       // StreamNumber(binary.LittleEndian, &m.VersionLock)
-  fixed64 mode = 3;               // StreamNumber(binary.LittleEndian, &m.Mode)
-  fixed64 level = 4;              // StreamNumber(binary.LittleEndian, &m.Level)
-  fixed64 platform = 5;           // StreamNumber(binary.LittleEndian, &m.Platform)
-  string login_session_id = 6;    // StreamGUID(&m.LoginSessionID)
-  repeated UserID entrants = 7;   // StreamStruct for each entrant
-  string session_settings = 8;    // StreamJson for LobbySessionSettings
-}
-message SNSLobbyFindSessionRequestv11 {
-  fixed64 version_lock = 1;          // StreamNumber(binary.LittleEndian, &m.VersionLock)
-  fixed64 mode = 2;                  // StreamNumber(binary.LittleEndian, &m.Mode)
-  fixed64 level = 3;                 // StreamNumber(binary.LittleEndian, &m.Level)
-  fixed64 platform = 4;              // StreamNumber(binary.LittleEndian, &m.Platform)
-  string login_session_id = 5;       // StreamGUID(&m.LoginSessionID)
-  string current_lobby_id = 6;       // StreamGUID(&m.CurrentLobbyID)
-  string group_id = 7;               // StreamGUID(&m.GroupID)
-  string session_settings = 8;       // StreamJson for session settings
-  repeated UserID entrants = 9;      // StreamStruct for each entrant
-}
-
-message SNSLobbyJoinSessionRequestv7 {
-  string lobby_id = 1;               // StreamGUID(&m.LobbyID)
-  int64 version_lock = 2;            // StreamNumber(binary.LittleEndian, &m.VersionLock)
-  fixed64 platform = 3;              // StreamNumber(binary.LittleEndian, &m.Platform)
-  string login_session_id = 4;       // StreamGUID(&m.LoginSessionID)
-  uint64 flags = 5;                  // StreamNumber(binary.LittleEndian, &m.Flags)
-}
-message SNSLobbyMatchmakerStatus {
-  uint32 status_code = 1;  // StreamNumber(binary.LittleEndian, &m.StatusCode)
-}
-message SNSLobbyMatchmakerStatusRequest {
-  uint32 unk0 = 1;  // StreamByte(&m.Unk0) promoted to uint32
-  uint32 unk1 = 2;  // StreamByte(&m.Unk1) promoted to uint32  
-  uint32 unk2 = 3;  // StreamByte(&m.Unk2) promoted to uint32
-}
-message SNSLobbyPendingSessionCancelv2 {
-  string session = 1;  // StreamGUID(&m.Session)
-}
-message SNSLobbyPingRequestv3 {
-  uint32 unk0 = 1;                // StreamNumber(binary.BigEndian, &m.Unk0) - but as uint32 since uint16 gets promoted
-  uint32 unk1 = 2;                // StreamNumber(binary.LittleEndian, &m.Unk1) - but as uint32 since uint16 gets promoted  
-  uint32 rtt_max = 3;             // StreamNumber(binary.LittleEndian, &m.RTTMax)
-  repeated string endpoints = 4;   // StreamStruct for each endpoint, represented as strings
-}
-message SNSLobbyPingResponse {
-  repeated string results = 1;  // StreamStruct for each EndpointPingResult, represented as strings
-}
-message SNSLobbyPlayerSessionsRequestv5 {
-  string login_session_id = 1;  // StreamGUID(&m.LoginSessionID)
-  UserID user_id = 2;           // StreamStruct(&m.XPID)
-  string lobby_id = 3;          // StreamGUID(&m.LobbyID)
-  fixed64 platform = 4;         // StreamNumber(binary.LittleEndian, &m.Platform)
-  repeated UserID player_xpids = 5; // StreamStruct for each XPID
-}
-message SNSLobbySessionFailurev4 {
-  uint32 error_code = 1;   // StreamNumber(binary.LittleEndian, &m.ErrorCode) 
-  string message = 2;      // StreamNullTerminatedString(&m.Message)
-}
-message SNSLobbySessionSuccessv5 {
-  fixed64 game_mode = 1;           // StreamNumber(binary.LittleEndian, &m.GameMode)
-  string lobby_id = 2;             // StreamGUID(&m.LobbyID)  
-  string group_id = 3;             // StreamGUID(&m.GroupID)
-  string endpoint = 4;             // StreamStruct(&m.Endpoint) - represented as string
-  int32 team_index = 5;            // StreamNumber(binary.LittleEndian, &m.TeamIndex) - int16 to int32
-  uint32 unk1 = 6;                 // StreamNumber(binary.LittleEndian, &m.Unk1)
-  int32 headset_type = 7;          // StreamNumber for int as int32
-  uint64 server_encoder_flags = 8; // StreamNumber(binary.LittleEndian, &m.ServerEncoderFlags)
-  uint64 client_encoder_flags = 9; // StreamNumber(binary.LittleEndian, &m.ClientEncoderFlags)
-  uint64 server_sequence_id = 10;  // StreamNumber(binary.LittleEndian, &m.ServerSequenceId)
-  bytes server_mac_key = 11;       // StreamBytes for key data
-  bytes server_enc_key = 12;       // StreamBytes for key data
-  bytes server_random_key = 13;    // StreamBytes for key data
-  uint64 client_sequence_id = 14;  // StreamNumber(binary.LittleEndian, &m.ClientSequenceId)
-}
-message SNSLoggedInUserProfileFailure {
-  UserID user_id = 1;       // StreamStruct(&m.XPID)
-  uint64 status_code = 2;   // StreamNumber(binary.LittleEndian, &m.StatusCode)
-  string error_message = 3; // StreamNullTerminatedString(&m.ErrorMessage)
-}
-message SNSLoggedInUserProfileRequest {
-  string session = 1;                 // StreamGUID(&m.Session) - UUID as string
-  UserID user_id = 2;                 // XPID fields: StreamNumber for PlatformCode and AccountId
-  string profile_request_data = 3;    // StreamJson(&m.ProfileRequestData, true, NoCompression)
-}
-message SNSLoggedInUserProfileSuccess {
-  UserID user_id = 1;   // StreamStruct(&m.UserId)
-  string payload = 2;   // StreamJson(&m.Payload, true, ZstdCompression)
-}
-message SNSLogInFailure {
-  UserID user_id = 1;         // XPID fields: StreamNumber for PlatformCode and AccountId  
-  uint64 status_code = 2;     // StreamNumber(binary.LittleEndian, &m.StatusCode)
-  string error_message = 3;   // StreamNullTerminatedString(&m.ErrorMessage)
-}
-message SNSLogInRequestv2 {
-  string previous_session_id = 1;  // StreamGUID(&m.PreviousSessionID) - UUID as string
-  UserID user_id = 2;              // XPID fields: StreamNumber for PlatformCode and AccountId  
-  string payload = 3;              // StreamJson(&m.Payload, true, NoCompression)
-}
-message SNSLoginSettings {
-  string config_data = 1;  // StreamJson for game settings - JSON data as string
-}
-message SNSLogInSuccess {
-  string session = 1;       // StreamGUID(&m.Session) - UUID as string
-  UserID user_id = 2;       // XPID fields: StreamNumber for PlatformCode and AccountId
-}
-message SNSOtherUserProfileFailure {
-  UserID user_id = 1;       // StreamStruct(&m.XPID)
-  uint64 status_code = 2;   // StreamNumber(binary.LittleEndian, &m.StatusCode)
-  string message = 3;       // StreamNullTerminatedString(&m.Message)
-}
-message SNSOtherUserProfileRequest {
-  UserID user_id = 1;   // StreamStruct(&m.XPID)
-  string data = 2;      // StreamJSONRawMessage(&m.Data, true, NoCompression) - raw JSON as string
-}
-message SNSOtherUserProfileSuccess {
-  UserID user_id = 1;            // StreamStruct(&m.XPID)  
-  string server_profile_json = 2; // StreamJSONRawMessage(&m.ServerProfileJSON, ...) - raw JSON as string
+    SNSLobbyCreateSessionRequestv9Message lobby_create_session_request_v9 = 15;
+    // Request to find an existing game session.
+    SNSLobbyFindSessionRequestv11Message lobby_find_session_request_v11 = 16;
+    // Request to join a specified game session.
+    SNSLobbyJoinSessionRequestv7Message lobby_join_session_request_v7 = 17;
+    // Provide the status of a matchmaking operation.
+    SNSLobbyMatchmakerStatusMessage lobby_matchmaker_status = 18;
+    // Request the status of a pending matchmaking operation.
+    SNSLobbyMatchmakerStatusRequestMessage lobby_matchmaker_status_request = 19;
+    // Indicate intent to cancel pending matchmaker operations.
+    SNSLobbyPendingSessionCancelv2Message lobby_pending_session_cancel_v2 = 20;
+    // Request the client to ping endpoints for optimal server selection.
+    SNSLobbyPingRequestv3Message lobby_ping_request_v3 = 21;
+    // Provide results of a ping request.
+    SNSLobbyPingResponseMessage lobby_ping_response = 22;
+    // Request game server sessions for a list of user identifiers.
+    SNSLobbyPlayerSessionsRequestv5Message lobby_player_sessions_request_v5 =
+        23;
+    // Indicate a lobby session request failed.
+    SNSLobbySessionFailurev4Message lobby_session_failure_v4 = 24;
+    // Indicate a lobby session request succeeded.
+    SNSLobbySessionSuccessv5Message lobby_session_success_v5 = 25;
+    // Indicate a logged-in user profile request failed.
+    SNSLoggedInUserProfileFailureMessage logged_in_user_profile_failure = 26;
+    // Request the user profile for the logged-in account.
+    SNSLoggedInUserProfileRequestMessage logged_in_user_profile_request = 27;
+    // Indicate a logged-in user profile request succeeded.
+    SNSLoggedInUserProfileSuccessMessage logged_in_user_profile_success = 28;
+    // Indicate a login request failed.
+    SNSLogInFailureMessage log_in_failure = 29;
+    // Request user sign-in.
+    SNSLogInRequestv2Message log_in_request_v2 = 30;
+    // Provide settings for the user after login.
+    SNSLoginSettingsMessage login_settings = 31;
+    // Indicate a login request succeeded and provide a new session token.
+    SNSLogInSuccessMessage log_in_success = 32;
+    // Indicate an other user profile request failed.
+    SNSOtherUserProfileFailureMessage other_user_profile_failure = 33;
+    // Request the user profile for another user.
+    SNSOtherUserProfileRequestMessage other_user_profile_request = 34;
+    // Indicate an other user profile request succeeded.
+    SNSOtherUserProfileSuccessMessage other_user_profile_success = 35;
+    // In-app purchase related response.
+    SNSReconcileIAPResultMessage reconcile_iap_result = 36;
+    // Log client-side data.
+    SNSRemoteLogSetv3Message remote_log_set_v3 = 37;
+    // Request the server to update the user's client profile.
+    SNSUpdateProfileMessage update_profile = 38;
+    // Indicate an update profile request succeeded.
+    SNSUpdateProfileSuccessMessage update_profile_success = 39;
+    // Indicate an update profile request failed.
+    SNSUpdateProfileFailureMessage update_profile_failure = 40;
+    // Request the server to update the user's server profile.
+    SNSUserServerProfileUpdateRequestMessage
+        user_server_profile_update_request = 41;
+    // Indicate a user server profile update request succeeded.
+    SNSUserServerProfileUpdateSuccessMessage
+        user_server_profile_update_success = 42;
+  }
 }
 
-message SNSReconcileIAPResult {
-  UserID user_id = 1;   // StreamStruct(&m.XPID)
-  string iap_data = 2;  // StreamJson(&m.IAPData, ...) - JSON data as string
-}
-message SNSRemoteLogSetv3 {
-  UserID user_id = 1;      // StreamStruct(&m.XPID)  
-  uint64 unk0 = 2;         // StreamNumber(binary.LittleEndian, &m.Unk0)
-  uint64 unk1 = 3;         // StreamNumber(binary.LittleEndian, &m.Unk1)
-  uint64 unk2 = 4;         // StreamNumber(binary.LittleEndian, &m.Unk2)
-  uint64 unk3 = 5;         // StreamNumber(binary.LittleEndian, &m.Unk3)
-  uint64 log_level = 6;    // StreamNumber(binary.LittleEndian, &m.LogLevel)
-  repeated string logs = 7; // StreamNullTerminatedString for each log
-}
-message SNSUpdateProfile {
-  string login_session_id = 1;   // StreamGUID(&m.LoginSessionID) - UUID as string
-  UserID user_id = 2;            // StreamStruct(&m.XPID)
-  string payload = 3;            // StreamJson(&m.Payload, true, NoCompression)
-}
-message SNSUpdateProfileSuccess {
-  UserID user_id = 1;  // StreamStruct(&m.XPID)
+// A message originating from either party,
+// indicating a TCP event is required.
+message STcpConnectionRequireEvent {}
+
+// A message originating from either party,
+// indicating a TCP event is no longer required.
+message STcpConnectionUnrequireEvent {}
+
+// ConfigRequestv2: client to server requesting a specific
+// configuration resource.
+message SNSConfigRequestV2Message { string request_json = 1; }
+
+// ConfigSuccessv2: server to the client indicating a
+// ConfigRequestv2 succeeded. It contains information about the requested config
+// resource.
+message SNSConfigSuccessV2Message {
+  SymbolHash type = 1;
+  SymbolHash id = 2;
+  string data = 3;
 }
 
-message SNSUpdateProfileFailure {
-  UserID user_id = 1;      // StreamNumber(binary.LittleEndian, &m.XPID) - but as struct
-  uint64 status_code = 2;  // StreamNumber(binary.LittleEndian, &m.statusCode)
-  string message = 3;      // StreamNullTerminatedString(&m.Message)
+// ConfigFailurev2: server to client indicating a ConfigRequestv2
+// resulted in a failure.
+message SNSConfigFailureV2 { string error = 1; }
+
+// TODO: In-app purchase related request
+message SNSReconcileIAPMessage {
+  string session_id = 1;
+  XPlatformID user_id = 2;
 }
-message SNSUserServerProfileUpdateRequest {
-  UserID user_id = 1;   // StreamNumber(binary.LittleEndian, &m.XPID) - but as struct
-  string payload = 2;   // StreamJSONRawMessage(&m.Payload, true, NoCompression) - raw JSON as string
+
+// client to server, requesting information
+// about the various in-game channels.
+message SNSChannelInfoRequest {}
+
+// server to client, providing the in-game
+// channel information requested by a previous ChannelInfoRequest.
+message SNSChannelInfoResponseMessage { string channel_info = 1; }
+
+// DocumentRequestv2: client to server requesting a document
+// resource.
+message SNSDocumentRequestv2Message {
+  string language = 1;
+  string type = 2;
 }
-message SNSUserServerProfileUpdateSuccess {
-  UserID user_id = 1;  // StreamStruct(&m.XPID)
+
+// server to the client indicating a
+// DocumentRequestv2 succeeded. It contains information about the requested
+// document resource.
+message SNSDocumentSuccessMessage { string document_json = 1; }
+
+// server to client indicating a
+// DocumentRequestv2 failed.
+message SNSDocumentFailureMessage { string message = 3; }
+
+// LobbyCreateSessionRequestv9: client to server requesting the
+// creation of a new game session.
+message SNSLobbyCreateSessionRequestv9Message {
+  SymbolHash region = 1;
+  SymbolHash version_lock = 2;
+  SymbolHash mode = 3;
+  SymbolHash level = 4;
+  SymbolHash platform = 5;
+  string login_session_id = 6;
+  repeated XPlatformID entrants = 7;
+  string session_settings = 8;
 }
+
+// LobbyFindSessionRequestv11: client to server requesting
+// finding of an existing game session that matches the message's underlying
+// arguments.
+message SNSLobbyFindSessionRequestv11Message {
+  SymbolHash version_lock = 1;
+  SymbolHash mode = 2;
+  SymbolHash level = 3;
+  SymbolHash platform = 4;
+  string login_session_id = 5;
+  string current_lobby_id = 6;
+  string group_id = 7;
+  string session_settings = 8;
+  repeated XPlatformID entrants = 9;
+}
+
+// LobbyJoinSessionRequestv7: client to server requesting joining
+// of a specified game session that matches the message's underlying arguments.
+message SNSLobbyJoinSessionRequestv7Message {
+  string lobby_id = 1;
+  SymbolHash version_lock = 2;
+  SymbolHash platform = 3;
+  string login_session_id = 4;
+  uint64 flags = 5;
+}
+
+// server to the client, providing the
+// status of a previously sent LobbyMatchmakerStatusRequest.
+message SNSLobbyMatchmakerStatusMessage { uint32 status_code = 1; }
+
+// client to server, requesting the
+// status of a pending matchmaking operation.
+message SNSLobbyMatchmakerStatusRequestMessage {
+  uint32 unk0 = 1;
+  uint32 unk1 = 2;
+  uint32 unk2 = 3;
+}
+
+// client to the server, indicating
+// intent to cancel pending matchmaker operations.
+message SNSLobbyPendingSessionCancelv2Message { string session_id = 1; }
+
+// LobbyPingRequestv3: server to client, requesting the client
+// ping a set of endpoints to determine the optimal game server to connect to.
+message SNSLobbyPingRequestv3Message {
+  uint32 unk0 = 1;
+  uint32 unk1 = 2;
+  uint32 rtt_max = 3;
+  repeated string endpoints = 4;
+}
+
+// client to server, providing the results of
+// a ping request. This tells the server which game servers are optimal for the
+// client.
+message SNSLobbyPingResponseMessage { repeated string results = 1; }
+
+// LobbyPlayerSessionsRequestv5: client to server, asking it to
+// obtain game server sessions for a given list of user identifiers.
+message SNSLobbyPlayerSessionsRequestv5Message {
+  string login_session_id = 1;
+  XPlatformID user_id = 2;
+  string lobby_id = 3;
+  SymbolHash platform = 4;
+  repeated XPlatformID player_xpids = 5;
+}
+
+// LobbySessionFailurev4: server to client indicating a lobby
+// session request failed.
+message SNSLobbySessionFailurev4Message {
+  uint32 error_code = 1;
+  string message = 2;
+}
+
+// LobbySessionSuccessv5: server to client indicating that a
+// request to create/join/find a game server session succeeded.
+message SNSLobbySessionSuccessv5Message {
+  fixed64 game_mode = 1;
+  string lobby_id = 2;
+  string group_id = 3;
+  string endpoint = 4;
+  int32 team_index = 5;
+  uint32 unk1 = 6;
+  int32 headset_type = 7;
+  uint64 server_encoder_flags = 8;
+  uint64 client_encoder_flags = 9;
+  uint64 server_sequence_id = 10;
+  bytes server_mac_key = 11;
+  bytes server_enc_key = 12;
+  bytes server_random_key = 13;
+  uint64 client_sequence_id = 14;
+}
+
+// server to client indicating their
+// LoggedInUserProfileRequest failed.
+message SNSLoggedInUserProfileFailureMessage {
+  XPlatformID user_id = 1;
+  uint64 status_code = 2;
+  string error_message = 3;
+}
+
+// client to server requesting the
+// user profile for their logged-in account.
+message SNSLoggedInUserProfileRequestMessage {
+  string session_id = 1;
+  XPlatformID user_id = 2;
+  string profile_request_data = 3;
+}
+
+// server to the client indicating a
+// LoggedInUserProfileRequest succeeded. It contains profile information about
+// the logged-in user.
+message SNSLoggedInUserProfileSuccessMessage {
+  XPlatformID user_id = 1;
+  string payload = 2;
+}
+
+// server to client indicating their LoginRequest
+// failed.
+message SNSLogInFailureMessage {
+  XPlatformID user_id = 1;
+  uint64 status_code = 2;
+  string error_message = 3;
+}
+
+// client to server requesting for a user sign-in.
+message SNSLogInRequestv2Message {
+  string previous_session_id = 1;
+  XPlatformID user_id = 2;
+  string payload = 3;
+}
+
+// server to client, providing the settings for
+// the user after a LoginRequest.
+message SNSLoginSettingsMessage { string config_data = 1; }
+
+// server to client indicating their LoginRequest
+// succeeded, providing them a new session token.
+message SNSLogInSuccessMessage {
+  string session_id = 1;
+  XPlatformID user_id = 2;
+}
+
+// server to client indicating their
+// OtherUserProfileRequest failed.
+message SNSOtherUserProfileFailureMessage {
+  XPlatformID user_id = 1;
+  uint64 status_code = 2;
+  string message = 3;
+}
+
+// client to server requesting the user
+// profile for another user.
+message SNSOtherUserProfileRequestMessage {
+  XPlatformID user_id = 1;
+  string data = 2;
+}
+
+// server to the client indicating a
+// OtherUserProfileRequest succeeded. It contains profile information about the
+// requested user.
+message SNSOtherUserProfileSuccessMessage {
+  XPlatformID user_id = 1;
+  string profile = 2;
+}
+
+// TODO: In-app purchase related response
+message SNSReconcileIAPResultMessage {
+  XPlatformID user_id = 1;
+  string iap_data = 2;
+}
+
+// RemoteLogSetv3: client to the server logging client-side data,
+// as established by login profile data that tells the client how verbosely to
+// log. It contains arbitrary log data about informational state changes,
+// warnings, and errors.
+message SNSRemoteLogSetv3Message {
+  XPlatformID user_id = 1;
+  uint64 log_level = 6;
+  repeated string logs = 7;
+}
+
+// client to server requesting the server update
+// the user's client profile.
+message SNSUpdateProfileMessage {
+  string login_session_id = 1;
+  XPlatformID user_id = 2;
+  string payload = 3;
+}
+
+// server to client indicating their
+// UpdateProfile request succeeded.
+message SNSUpdateProfileSuccessMessage { XPlatformID user_id = 1; }
+
+// server to client indicating their
+// UpdateProfile request failed.
+message SNSUpdateProfileFailureMessage {
+  XPlatformID user_id = 1;
+  uint64 status_code = 2;
+  string message = 3;
+}
+
+// client to server requesting
+// the server update the user's client profile.
+message SNSUserServerProfileUpdateRequestMessage {
+  XPlatformID user_id = 1;
+  string payload = 2;
+}
+
+// server to client indicating
+// their UserServerProfileUpdateRequest request succeeded.
+message SNSUserServerProfileUpdateSuccessMessage { XPlatformID user_id = 1; }
