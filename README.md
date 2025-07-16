@@ -11,6 +11,7 @@ The code is broken up into packages for different parts:
 * `api` - The request/response messages used with the GPRC and in some of the real-time API.
 * `rtapi`: The runtime API definitions, including the frame structure and connectivity statistics.
 * `gameapi`: The game-engine's HTTP API session data and user bones structures.
+* `common`: Shared utilities and types used across the codebase.
 
 ## Usage
 
@@ -25,7 +26,7 @@ Protocol Buffer files have already been generated and are included in the reposi
 * **Python**: Use the generated `.py` files in your Python project. Example:
 
     ```python
-    from api import api_pb2
+    from api import api_pb
     ```
 
 * **CSharp**: Reference the generated `.cs` files in your C# project. Example:
@@ -51,23 +52,13 @@ To build the codebase and generate all sources use these steps.
    go install "google.golang.org/protobuf/cmd/protoc-gen-go"
    ```
 
-### Method A: Generate Using Make
+### Method A: `build.sh`
 
 To generate all source files with Make, run:
 
 ```shell
-make generate
+./build.sh
 ```
-
-This command executes the required protoc commands and plugins as specified in the [Makefile](./Makefile).
-
-To generate all source files using Make, run:
-
-```shell
-make generate
-```
-
-This command will invoke the necessary protoc commands and plugins as defined in the [Makefile](./Makefile).
 
 ## Method B: Generate Go stubs using the Go generate command
 

@@ -42,3 +42,17 @@ message PrepareMatchRequest {
 	// Tick Rate of the match in Hz (optional)
 	google.protobuf.Int32Value tick_rate = 10;
 }
+
+// AccountLookupRequest is a request to look up user accounts by various identifiers.
+message GetPlayersRequest {
+	// The Nakama username or Discord username.
+	repeated string usernames = 1;
+	// The Nakama user UUIDs.
+	repeated string user_ids = 2;
+	// The Discord IDs (snowflakes).
+	repeated string discord_ids = 3;
+	// The OVR-ORG-123412341234 XPIDs.
+	repeated string xp_ids = 4;
+	// The active display names (may be unreliable).
+	repeated string display_names = 5;
+}
