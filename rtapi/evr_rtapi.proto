@@ -1,0 +1,79 @@
+syntax = "proto3";
+
+package nevr.rtapi;
+
+option go_package = "github.com/echotools/nevr-common/v3/rtapi";
+
+option java_multiple_files = true;
+option java_outer_classname = "NevrRealtime";
+option java_package = "com.github.echotools.nevr.rtapi";
+
+option csharp_namespace = "Nevr.Protobuf";
+
+// include the gameapi.rtapi file
+import "gameapi/nevr_gameapi.proto";
+import "google/protobuf/timestamp.proto";
+
+// An envelope for EVR native messages
+message EnvelopeEVR {}
+
+message SymbolHash { fixed64 value = 1; }
+
+message STcpConnectionRequireEvent {}
+
+message STcpConnectionUnrequireEvent {}
+
+message SNSConfigRequestV2 {
+  int64 type = 1;
+  int64 id = 2;
+}
+
+message SNSConfigSuccessV2 {
+  SymbolHash type = 1;
+  SymbolHash id = 2;
+  string resource = 3;
+}
+
+message SNSConfigFailureV2 { string Error = 1; }
+
+message SNSReconcileIAP {
+  string session_id = 1;
+  string user_id = 2;
+}
+
+message SNSChannelInfoRequest {}
+
+message SNSChannelInfoResponse { string resource = 1; }
+message SNSDocumentFailure {}
+message SNSDocumentRequestv2 {}
+message SNSDocumentSuccess {}
+message SNSFindServerRegionInfo {}
+message SNSLobbyCreateSessionRequestv9 {}
+message SNSLobbyFindSessionRequestv11 {}
+message SNSLobbyJoinSessionRequestv7 {}
+message SNSLobbyMatchmakerStatus {}
+message SNSLobbyMatchmakerStatusRequest {}
+message SNSLobbyPendingSessionCancelv2 {}
+message SNSLobbyPingRequestv3 {}
+message SNSLobbyPingResponse {}
+message SNSLobbyPlayerSessionsRequestv5 {}
+message SNSLobbySessionFailurev4 {}
+message SNSLobbySessionSuccessv5 {}
+message SNSLoggedInUserProfileFailure {}
+message SNSLoggedInUserProfileRequest {}
+message SNSLoggedInUserProfileSuccess {}
+message SNSLogInFailure {}
+message SNSLogInRequestv2 {}
+message SNSLoginSettings {}
+message SNSLogInSuccess {}
+message SNSOtherUserProfileFailure {}
+message SNSOtherUserProfileRequest {}
+message SNSOtherUserProfileSuccess {}
+message SNSReconcileIAP {}
+message SNSReconcileIAPResult {}
+message SNSRemoteLogSetv3 {}
+message SNSUpdateProfile {}
+message SNSUpdateProfileFailure {}
+message SNSUpdateProfileSuccess {}
+message SNSUserServerProfileUpdateRequest {}
+message SNSUserServerProfileUpdateSuccess {}
