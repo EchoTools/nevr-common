@@ -56,3 +56,40 @@ message GetPlayersRequest {
   // The active display names (may be unreliable).
   repeated string display_names = 5;
 }
+
+// LobbySessionRedirect specifies how to redirect a player to a specific session in the lobby.
+message LobbySessionRedirect {
+  oneof target {
+    // Redirect to a user by NEVR user ID.
+    LobbySessionRedirectUserID user = 1;
+    // Redirect to a guild member by guild and Discord ID.
+    LobbySessionRedirectGuildMember guild_member = 2;
+    // Redirect to a Discord user by Discord ID.
+    LobbySessionRedirectDiscordUser discord_user = 3;
+    // Redirect to a match by match ID.
+    LobbySessionRedirectMatch match = 4;
+  }
+}
+
+// Redirect to a user by NEVR user ID.
+message LobbySessionRedirectUserID {
+  string user_id = 1;
+}
+
+// Redirect to a guild member by guild and Discord ID.
+message LobbySessionRedirectGuildMember {
+  string guild_id = 1;
+  string discord_id = 2;
+}
+
+// Redirect to a Discord user by Discord ID.
+message LobbySessionRedirectDiscordUser {
+  string discord_id = 1;
+}
+
+// Redirect to a match by match ID.
+message LobbySessionRedirectMatch {
+  string match_id = 1;
+}
+
+
