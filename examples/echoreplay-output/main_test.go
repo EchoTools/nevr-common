@@ -10,19 +10,7 @@ import (
 	"github.com/echotools/nevr-common/v3/gameapi"
 	"github.com/echotools/nevr-common/v3/rtapi"
 	"github.com/google/go-cmp/cmp"
-	"google.golang.org/protobuf/encoding/protojson"
 	"google.golang.org/protobuf/proto"
-)
-
-var (
-	protojsonMarshaler = &protojson.MarshalOptions{
-		UseProtoNames:   false,
-		UseEnumNumbers:  true,
-		EmitUnpopulated: false,
-	}
-	protojsonUnmarshaler = &protojson.UnmarshalOptions{
-		DiscardUnknown: false,
-	}
 )
 
 func TestGameAPISessionCompression(t *testing.T) {
