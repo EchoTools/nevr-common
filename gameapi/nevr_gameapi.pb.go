@@ -1133,46 +1133,83 @@ func (x *PlayerRoot) GetVrUp() []float64 {
 // Top-level message representing the entire JSON data.
 // Endpoint: /session
 type SessionResponse struct {
-	state                    protoimpl.MessageState `protogen:"open.v1"`
-	OrangeTeamRestartRequest int32                  `protobuf:"varint,1,opt,name=orange_team_restart_request,proto3" json:"orange_team_restart_request,omitempty"`
-	SessionID                string                 `protobuf:"bytes,2,opt,name=sessionID,json=sessionid,proto3" json:"sessionID,omitempty"`
-	GameClockDisplay         string                 `protobuf:"bytes,3,opt,name=game_clock_display,proto3" json:"game_clock_display,omitempty"`
-	GameStatus               string                 `protobuf:"bytes,4,opt,name=game_status,proto3" json:"game_status,omitempty"`
-	SessionIP                string                 `protobuf:"bytes,5,opt,name=sessionIP,json=sessionip,proto3" json:"sessionIP,omitempty"`
-	MatchType                string                 `protobuf:"bytes,6,opt,name=match_type,proto3" json:"match_type,omitempty"`
-	MapName                  string                 `protobuf:"bytes,7,opt,name=map_name,proto3" json:"map_name,omitempty"`
-	Disc                     *Disc                  `protobuf:"bytes,8,opt,name=disc,proto3" json:"disc,omitempty"`
-	BlueRoundScore           int32                  `protobuf:"varint,11,opt,name=blue_round_score,proto3" json:"blue_round_score,omitempty"`
-	OrangePoints             int32                  `protobuf:"varint,12,opt,name=orange_points,proto3" json:"orange_points,omitempty"`
-	PrivateMatch             bool                   `protobuf:"varint,14,opt,name=private_match,proto3" json:"private_match,omitempty"`
-	BlueTeamRestartRequest   int32                  `protobuf:"varint,15,opt,name=blue_team_restart_request,proto3" json:"blue_team_restart_request,omitempty"`
-	TournamentMatch          bool                   `protobuf:"varint,16,opt,name=tournament_match,proto3" json:"tournament_match,omitempty"`
-	OrangeRoundScore         int32                  `protobuf:"varint,17,opt,name=orange_round_score,proto3" json:"orange_round_score,omitempty"`
-	TotalRoundCount          int32                  `protobuf:"varint,18,opt,name=total_round_count,proto3" json:"total_round_count,omitempty"`
-	BluePoints               int32                  `protobuf:"varint,19,opt,name=blue_points,proto3" json:"blue_points,omitempty"`
-	LastThrow                *LastThrowInfo         `protobuf:"bytes,20,opt,name=last_throw,proto3" json:"last_throw,omitempty"`
-	Player                   *PlayerRoot            `protobuf:"bytes,21,opt,name=player,proto3" json:"player,omitempty"`
-	Pause                    *PauseState            `protobuf:"bytes,22,opt,name=pause,proto3" json:"pause,omitempty"`
-	Possession               []int32                `protobuf:"varint,23,rep,packed,name=possession,proto3" json:"possession,omitempty"`
-	LeftShoulderPressed      float64                `protobuf:"fixed64,24,opt,name=left_shoulder_pressed,proto3" json:"left_shoulder_pressed,omitempty"`
-	RightShoulderPressed     float64                `protobuf:"fixed64,25,opt,name=right_shoulder_pressed,proto3" json:"right_shoulder_pressed,omitempty"`
-	LeftShoulderPressed2     float64                `protobuf:"fixed64,26,opt,name=left_shoulder_pressed2,proto3" json:"left_shoulder_pressed2,omitempty"`
-	RightShoulderPressed2    float64                `protobuf:"fixed64,27,opt,name=right_shoulder_pressed2,proto3" json:"right_shoulder_pressed2,omitempty"`
-	RulesChangedBy           string                 `protobuf:"bytes,28,opt,name=rules_changed_by,proto3" json:"rules_changed_by,omitempty"`
-	RulesChangedAt           uint64                 `protobuf:"varint,29,opt,name=rules_changed_at,proto3" json:"rules_changed_at,omitempty"`
-	ClientName               string                 `protobuf:"bytes,30,opt,name=client_name,proto3" json:"client_name,omitempty"`
-	LastScore                *LastScore             `protobuf:"bytes,31,opt,name=last_score,proto3" json:"last_score,omitempty"`
-	Teams                    []*Team                `protobuf:"bytes,32,rep,name=teams,proto3" json:"teams,omitempty"`
-	Contested                bool                   `protobuf:"varint,33,opt,name=contested,proto3" json:"contested,omitempty"`
-	PayloadMultiplier        float64                `protobuf:"fixed64,34,opt,name=payload_multiplier,proto3" json:"payload_multiplier,omitempty"`
-	PayloadCheckpoint        int32                  `protobuf:"varint,35,opt,name=payload_checkpoint,proto3" json:"payload_checkpoint,omitempty"`
-	PayloadDistance          float64                `protobuf:"fixed64,36,opt,name=payload_distance,proto3" json:"payload_distance,omitempty"`
-	PayloadDefenders         int32                  `protobuf:"varint,37,opt,name=payload_defenders,proto3" json:"payload_defenders,omitempty"`
-	PayloadSpeed             float64                `protobuf:"fixed64,38,opt,name=payload_speed,proto3" json:"payload_speed,omitempty"`
-	GameClock                float64                `protobuf:"fixed64,39,opt,name=game_clock,proto3" json:"game_clock,omitempty"`
-	ErrCode                  int32                  `protobuf:"varint,40,opt,name=err_code,proto3" json:"err_code,omitempty"`
-	unknownFields            protoimpl.UnknownFields
-	sizeCache                protoimpl.SizeCache
+	state protoimpl.MessageState `protogen:"open.v1"`
+	// Number of restart requests from the orange team.
+	OrangeTeamRestartRequest int32 `protobuf:"varint,1,opt,name=orange_team_restart_request,proto3" json:"orange_team_restart_request,omitempty"`
+	// Unique session identifier.
+	SessionID string `protobuf:"bytes,2,opt,name=sessionID,json=sessionid,proto3" json:"sessionID,omitempty"`
+	// Display string for the game clock.
+	GameClockDisplay string `protobuf:"bytes,3,opt,name=game_clock_display,proto3" json:"game_clock_display,omitempty"`
+	// Current status of the game.
+	GameStatus string `protobuf:"bytes,4,opt,name=game_status,proto3" json:"game_status,omitempty"`
+	// IP address of the session.
+	SessionIP string `protobuf:"bytes,5,opt,name=sessionIP,json=sessionip,proto3" json:"sessionIP,omitempty"`
+	// Type of match being played.
+	MatchType string `protobuf:"bytes,6,opt,name=match_type,proto3" json:"match_type,omitempty"`
+	// Name of the map.
+	MapName string `protobuf:"bytes,7,opt,name=map_name,proto3" json:"map_name,omitempty"`
+	// Disc physics properties.
+	Disc *Disc `protobuf:"bytes,8,opt,name=disc,proto3" json:"disc,omitempty"`
+	// Blue team's round score.
+	BlueRoundScore int32 `protobuf:"varint,11,opt,name=blue_round_score,proto3" json:"blue_round_score,omitempty"`
+	// Orange team's total points.
+	OrangePoints int32 `protobuf:"varint,12,opt,name=orange_points,proto3" json:"orange_points,omitempty"`
+	// Indicates if the match is private.
+	PrivateMatch bool `protobuf:"varint,14,opt,name=private_match,proto3" json:"private_match,omitempty"`
+	// Number of restart requests from the blue team.
+	BlueTeamRestartRequest int32 `protobuf:"varint,15,opt,name=blue_team_restart_request,proto3" json:"blue_team_restart_request,omitempty"`
+	// Indicates if the match is a tournament match.
+	TournamentMatch bool `protobuf:"varint,16,opt,name=tournament_match,proto3" json:"tournament_match,omitempty"`
+	// Orange team's round score.
+	OrangeRoundScore int32 `protobuf:"varint,17,opt,name=orange_round_score,proto3" json:"orange_round_score,omitempty"`
+	// Total number of rounds in the match.
+	TotalRoundCount int32 `protobuf:"varint,18,opt,name=total_round_count,proto3" json:"total_round_count,omitempty"`
+	// Blue team's total points.
+	BluePoints int32 `protobuf:"varint,19,opt,name=blue_points,proto3" json:"blue_points,omitempty"`
+	// Information about the last throw event.
+	LastThrow *LastThrowInfo `protobuf:"bytes,20,opt,name=last_throw,proto3" json:"last_throw,omitempty"`
+	// Player root data.
+	Player *PlayerRoot `protobuf:"bytes,21,opt,name=player,proto3" json:"player,omitempty"`
+	// Pause state of the game.
+	Pause *PauseState `protobuf:"bytes,22,opt,name=pause,proto3" json:"pause,omitempty"`
+	// List of player possession states.
+	Possession []int32 `protobuf:"varint,23,rep,packed,name=possession,proto3" json:"possession,omitempty"`
+	// Value for left shoulder pressed.
+	LeftShoulderPressed float64 `protobuf:"fixed64,24,opt,name=left_shoulder_pressed,proto3" json:"left_shoulder_pressed,omitempty"`
+	// Value for right shoulder pressed.
+	RightShoulderPressed float64 `protobuf:"fixed64,25,opt,name=right_shoulder_pressed,proto3" json:"right_shoulder_pressed,omitempty"`
+	// Value for left shoulder pressed (alternate).
+	LeftShoulderPressed2 float64 `protobuf:"fixed64,26,opt,name=left_shoulder_pressed2,proto3" json:"left_shoulder_pressed2,omitempty"`
+	// Value for right shoulder pressed (alternate).
+	RightShoulderPressed2 float64 `protobuf:"fixed64,27,opt,name=right_shoulder_pressed2,proto3" json:"right_shoulder_pressed2,omitempty"`
+	// Name of the client that changed the rules.
+	RulesChangedBy string `protobuf:"bytes,28,opt,name=rules_changed_by,proto3" json:"rules_changed_by,omitempty"`
+	// Timestamp when the rules were changed.
+	RulesChangedAt uint64 `protobuf:"varint,29,opt,name=rules_changed_at,proto3" json:"rules_changed_at,omitempty"`
+	// Name of the client.
+	ClientName string `protobuf:"bytes,30,opt,name=client_name,proto3" json:"client_name,omitempty"`
+	// Information about the last score event.
+	LastScore *LastScore `protobuf:"bytes,31,opt,name=last_score,proto3" json:"last_score,omitempty"`
+	// List of teams in the session.
+	Teams []*Team `protobuf:"bytes,32,rep,name=teams,proto3" json:"teams,omitempty"`
+	// Indicates if the disc is contested.
+	Contested bool `protobuf:"varint,33,opt,name=contested,proto3" json:"contested,omitempty"`
+	// Payload multiplier value.
+	PayloadMultiplier float64 `protobuf:"fixed64,34,opt,name=payload_multiplier,proto3" json:"payload_multiplier,omitempty"`
+	// Current payload checkpoint.
+	PayloadCheckpoint int32 `protobuf:"varint,35,opt,name=payload_checkpoint,proto3" json:"payload_checkpoint,omitempty"`
+	// Distance traveled by the payload.
+	PayloadDistance float64 `protobuf:"fixed64,36,opt,name=payload_distance,proto3" json:"payload_distance,omitempty"`
+	// Number of payload defenders.
+	PayloadDefenders int32 `protobuf:"varint,37,opt,name=payload_defenders,proto3" json:"payload_defenders,omitempty"`
+	// Speed of the payload.
+	PayloadSpeed float64 `protobuf:"fixed64,38,opt,name=payload_speed,proto3" json:"payload_speed,omitempty"`
+	// Current value of the game clock.
+	GameClock float64 `protobuf:"fixed64,39,opt,name=game_clock,proto3" json:"game_clock,omitempty"`
+	// Error code for the response.
+	ErrCode       int32 `protobuf:"varint,40,opt,name=err_code,proto3" json:"err_code,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
 }
 
 func (x *SessionResponse) Reset() {

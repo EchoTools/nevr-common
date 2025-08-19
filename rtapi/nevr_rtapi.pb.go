@@ -345,7 +345,7 @@ type Envelope struct {
 	//	*Envelope_GameServerRegistrationSuccess
 	//	*Envelope_LobbySessionCreate
 	//	*Envelope_LobbySessionEvent
-	//	*Envelope_LobbyEntraConnected
+	//	*Envelope_LobbyEntrantConnected
 	//	*Envelope_LobbyEntrantAccept
 	//	*Envelope_LobbyEntrantReject
 	//	*Envelope_LobbyEntrantRemove
@@ -501,10 +501,10 @@ func (x *Envelope) GetLobbySessionEvent() *LobbySessionEventMessage {
 	return nil
 }
 
-func (x *Envelope) GetLobbyEntraConnected() *LobbyEntrantsConnectedMessage {
+func (x *Envelope) GetLobbyEntrantConnected() *LobbyEntrantsConnectedMessage {
 	if x != nil {
-		if x, ok := x.Message.(*Envelope_LobbyEntraConnected); ok {
-			return x.LobbyEntraConnected
+		if x, ok := x.Message.(*Envelope_LobbyEntrantConnected); ok {
+			return x.LobbyEntrantConnected
 		}
 	}
 	return nil
@@ -932,8 +932,8 @@ type Envelope_LobbySessionEvent struct {
 	LobbySessionEvent *LobbySessionEventMessage `protobuf:"bytes,8,opt,name=lobby_session_event,json=lobbySessionEvent,proto3,oneof"`
 }
 
-type Envelope_LobbyEntraConnected struct {
-	LobbyEntraConnected *LobbyEntrantsConnectedMessage `protobuf:"bytes,9,opt,name=lobby_entra_connected,json=lobbyEntraConnected,proto3,oneof"`
+type Envelope_LobbyEntrantConnected struct {
+	LobbyEntrantConnected *LobbyEntrantsConnectedMessage `protobuf:"bytes,9,opt,name=lobby_entrant_connected,json=lobbyEntrantConnected,proto3,oneof"`
 }
 
 type Envelope_LobbyEntrantAccept struct {
@@ -1162,7 +1162,7 @@ func (*Envelope_LobbySessionCreate) isEnvelope_Message() {}
 
 func (*Envelope_LobbySessionEvent) isEnvelope_Message() {}
 
-func (*Envelope_LobbyEntraConnected) isEnvelope_Message() {}
+func (*Envelope_LobbyEntrantConnected) isEnvelope_Message() {}
 
 func (*Envelope_LobbyEntrantAccept) isEnvelope_Message() {}
 
@@ -4546,7 +4546,7 @@ var File_nevr_rtapi_proto protoreflect.FileDescriptor
 const file_nevr_rtapi_proto_rawDesc = "" +
 	"\n" +
 	"\x10nevr_rtapi.proto\x12\n" +
-	"nevr.rtapi\x1a\x19telemetry/telemetry.proto\x1a\x1fgoogle/protobuf/timestamp.proto\"\xd9'\n" +
+	"nevr.rtapi\x1a\x19telemetry/telemetry.proto\x1a\x1fgoogle/protobuf/timestamp.proto\"\xdd'\n" +
 	"\bEnvelope\x12\x10\n" +
 	"\x03cid\x18\x01 \x01(\tR\x03cid\x12)\n" +
 	"\x05error\x18\x02 \x01(\v2\x11.nevr.rtapi.ErrorH\x00R\x05error\x12V\n" +
@@ -4555,8 +4555,8 @@ const file_nevr_rtapi_proto_rawDesc = "" +
 	"\x18game_server_registration\x18\x05 \x01(\v2).nevr.rtapi.GameServerRegistrationMessageH\x00R\x16gameServerRegistration\x12{\n" +
 	" game_server_registration_success\x18\x06 \x01(\v20.nevr.rtapi.GameServerRegistrationSuccessMessageH\x00R\x1dgameServerRegistrationSuccess\x12Y\n" +
 	"\x14lobby_session_create\x18\a \x01(\v2%.nevr.rtapi.LobbySessionCreateMessageH\x00R\x12lobbySessionCreate\x12V\n" +
-	"\x13lobby_session_event\x18\b \x01(\v2$.nevr.rtapi.LobbySessionEventMessageH\x00R\x11lobbySessionEvent\x12_\n" +
-	"\x15lobby_entra_connected\x18\t \x01(\v2).nevr.rtapi.LobbyEntrantsConnectedMessageH\x00R\x13lobbyEntraConnected\x12Z\n" +
+	"\x13lobby_session_event\x18\b \x01(\v2$.nevr.rtapi.LobbySessionEventMessageH\x00R\x11lobbySessionEvent\x12c\n" +
+	"\x17lobby_entrant_connected\x18\t \x01(\v2).nevr.rtapi.LobbyEntrantsConnectedMessageH\x00R\x15lobbyEntrantConnected\x12Z\n" +
 	"\x14lobby_entrant_accept\x18\n" +
 	" \x01(\v2&.nevr.rtapi.LobbyEntrantsAcceptMessageH\x00R\x12lobbyEntrantAccept\x12Z\n" +
 	"\x14lobby_entrant_reject\x18\v \x01(\v2&.nevr.rtapi.LobbyEntrantsRejectMessageH\x00R\x12lobbyEntrantReject\x12Z\n" +
@@ -4966,7 +4966,7 @@ var file_nevr_rtapi_proto_depIdxs = []int32{
 	9,  // 4: nevr.rtapi.Envelope.game_server_registration_success:type_name -> nevr.rtapi.GameServerRegistrationSuccessMessage
 	14, // 5: nevr.rtapi.Envelope.lobby_session_create:type_name -> nevr.rtapi.LobbySessionCreateMessage
 	7,  // 6: nevr.rtapi.Envelope.lobby_session_event:type_name -> nevr.rtapi.LobbySessionEventMessage
-	10, // 7: nevr.rtapi.Envelope.lobby_entra_connected:type_name -> nevr.rtapi.LobbyEntrantsConnectedMessage
+	10, // 7: nevr.rtapi.Envelope.lobby_entrant_connected:type_name -> nevr.rtapi.LobbyEntrantsConnectedMessage
 	11, // 8: nevr.rtapi.Envelope.lobby_entrant_accept:type_name -> nevr.rtapi.LobbyEntrantsAcceptMessage
 	12, // 9: nevr.rtapi.Envelope.lobby_entrant_reject:type_name -> nevr.rtapi.LobbyEntrantsRejectMessage
 	13, // 10: nevr.rtapi.Envelope.lobby_entrant_remove:type_name -> nevr.rtapi.LobbyEntrantRemovedMessage
@@ -5070,7 +5070,7 @@ func file_nevr_rtapi_proto_init() {
 		(*Envelope_GameServerRegistrationSuccess)(nil),
 		(*Envelope_LobbySessionCreate)(nil),
 		(*Envelope_LobbySessionEvent)(nil),
-		(*Envelope_LobbyEntraConnected)(nil),
+		(*Envelope_LobbyEntrantConnected)(nil),
 		(*Envelope_LobbyEntrantAccept)(nil),
 		(*Envelope_LobbyEntrantReject)(nil),
 		(*Envelope_LobbyEntrantRemove)(nil),
