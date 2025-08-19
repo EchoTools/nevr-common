@@ -7,7 +7,7 @@
 package rtapi
 
 import (
-	gameapi "github.com/echotools/nevr-common/v3/gameapi"
+	telemetry "github.com/echotools/nevr-common/v3/telemetry"
 	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
 	protoimpl "google.golang.org/protobuf/runtime/protoimpl"
 	timestamppb "google.golang.org/protobuf/types/known/timestamppb"
@@ -339,16 +339,56 @@ type Envelope struct {
 	// Types that are valid to be assigned to Message:
 	//
 	//	*Envelope_Error
-	//	*Envelope_SessionUpdate
+	//	*Envelope_LobbySessionState
 	//	*Envelope_ConnectivityStatistics
-	//	*Envelope_GameServerRegistrationRequest
+	//	*Envelope_GameServerRegistration
 	//	*Envelope_GameServerRegistrationSuccess
 	//	*Envelope_LobbySessionCreate
 	//	*Envelope_LobbySessionEvent
-	//	*Envelope_LobbyEntrantConnected
-	//	*Envelope_LobbyEntrantsAccept
-	//	*Envelope_LobbyEntrantsReject
-	//	*Envelope_LobbyEntrantRemoved
+	//	*Envelope_LobbyEntraConnected
+	//	*Envelope_LobbyEntrantAccept
+	//	*Envelope_LobbyEntrantReject
+	//	*Envelope_LobbyEntrantRemove
+	//	*Envelope_UnknownMessage
+	//	*Envelope_TcpConnectionRequireEvent
+	//	*Envelope_TcpConnectionUnrequireEvent
+	//	*Envelope_ConfigRequestV2
+	//	*Envelope_ConfigSuccessV2
+	//	*Envelope_ConfigFailureV2
+	//	*Envelope_ReconcileIap
+	//	*Envelope_ChannelInfoRequest
+	//	*Envelope_ChannelInfoResponse
+	//	*Envelope_DocumentRequestV2
+	//	*Envelope_DocumentSuccess
+	//	*Envelope_DocumentFailure
+	//	*Envelope_LobbyCreateSessionRequestV9
+	//	*Envelope_LobbyFindSessionRequestV11
+	//	*Envelope_LobbyJoinSessionRequestV7
+	//	*Envelope_LobbyMatchmakerStatus
+	//	*Envelope_LobbyMatchmakerStatusRequest
+	//	*Envelope_LobbyPendingSessionCancelV2
+	//	*Envelope_LobbyPingRequestV3
+	//	*Envelope_LobbyPingResponse
+	//	*Envelope_LobbyPlayerSessionsRequestV5
+	//	*Envelope_LobbySessionFailureV4
+	//	*Envelope_LobbySessionSuccessV5
+	//	*Envelope_LoggedInUserProfileFailure
+	//	*Envelope_LoggedInUserProfileRequest
+	//	*Envelope_LoggedInUserProfileSuccess
+	//	*Envelope_LogInFailure
+	//	*Envelope_LogInRequestV2
+	//	*Envelope_LoginSettings
+	//	*Envelope_LogInSuccess
+	//	*Envelope_OtherUserProfileFailure
+	//	*Envelope_OtherUserProfileRequest
+	//	*Envelope_OtherUserProfileSuccess
+	//	*Envelope_ReconcileIapResult
+	//	*Envelope_RemoteLogSetV3
+	//	*Envelope_UpdateProfile
+	//	*Envelope_UpdateProfileSuccess
+	//	*Envelope_UpdateProfileFailure
+	//	*Envelope_UserServerProfileUpdateRequest
+	//	*Envelope_UserServerProfileUpdateSuccess
 	Message       isEnvelope_Message `protobuf_oneof:"message"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
@@ -407,10 +447,10 @@ func (x *Envelope) GetError() *Error {
 	return nil
 }
 
-func (x *Envelope) GetSessionUpdate() *SessionUpdateMessage {
+func (x *Envelope) GetLobbySessionState() *LobbySessionStateMessage {
 	if x != nil {
-		if x, ok := x.Message.(*Envelope_SessionUpdate); ok {
-			return x.SessionUpdate
+		if x, ok := x.Message.(*Envelope_LobbySessionState); ok {
+			return x.LobbySessionState
 		}
 	}
 	return nil
@@ -425,16 +465,16 @@ func (x *Envelope) GetConnectivityStatistics() *ConnectivityStatisticsMessage {
 	return nil
 }
 
-func (x *Envelope) GetGameServerRegistrationRequest() *GameServerRegistrationMessage {
+func (x *Envelope) GetGameServerRegistration() *GameServerRegistrationMessage {
 	if x != nil {
-		if x, ok := x.Message.(*Envelope_GameServerRegistrationRequest); ok {
-			return x.GameServerRegistrationRequest
+		if x, ok := x.Message.(*Envelope_GameServerRegistration); ok {
+			return x.GameServerRegistration
 		}
 	}
 	return nil
 }
 
-func (x *Envelope) GetGameServerRegistrationSuccess() *GameServerRegistrationSuccess {
+func (x *Envelope) GetGameServerRegistrationSuccess() *GameServerRegistrationSuccessMessage {
 	if x != nil {
 		if x, ok := x.Message.(*Envelope_GameServerRegistrationSuccess); ok {
 			return x.GameServerRegistrationSuccess
@@ -461,37 +501,397 @@ func (x *Envelope) GetLobbySessionEvent() *LobbySessionEventMessage {
 	return nil
 }
 
-func (x *Envelope) GetLobbyEntrantConnected() *LobbyEntrantsConnectedMessage {
+func (x *Envelope) GetLobbyEntraConnected() *LobbyEntrantsConnectedMessage {
 	if x != nil {
-		if x, ok := x.Message.(*Envelope_LobbyEntrantConnected); ok {
-			return x.LobbyEntrantConnected
+		if x, ok := x.Message.(*Envelope_LobbyEntraConnected); ok {
+			return x.LobbyEntraConnected
 		}
 	}
 	return nil
 }
 
-func (x *Envelope) GetLobbyEntrantsAccept() *LobbyEntrantsAcceptMessage {
+func (x *Envelope) GetLobbyEntrantAccept() *LobbyEntrantsAcceptMessage {
 	if x != nil {
-		if x, ok := x.Message.(*Envelope_LobbyEntrantsAccept); ok {
-			return x.LobbyEntrantsAccept
+		if x, ok := x.Message.(*Envelope_LobbyEntrantAccept); ok {
+			return x.LobbyEntrantAccept
 		}
 	}
 	return nil
 }
 
-func (x *Envelope) GetLobbyEntrantsReject() *LobbyEntrantsRejectMessage {
+func (x *Envelope) GetLobbyEntrantReject() *LobbyEntrantsRejectMessage {
 	if x != nil {
-		if x, ok := x.Message.(*Envelope_LobbyEntrantsReject); ok {
-			return x.LobbyEntrantsReject
+		if x, ok := x.Message.(*Envelope_LobbyEntrantReject); ok {
+			return x.LobbyEntrantReject
 		}
 	}
 	return nil
 }
 
-func (x *Envelope) GetLobbyEntrantRemoved() *LobbyEntrantRemovedMessage {
+func (x *Envelope) GetLobbyEntrantRemove() *LobbyEntrantRemovedMessage {
 	if x != nil {
-		if x, ok := x.Message.(*Envelope_LobbyEntrantRemoved); ok {
-			return x.LobbyEntrantRemoved
+		if x, ok := x.Message.(*Envelope_LobbyEntrantRemove); ok {
+			return x.LobbyEntrantRemove
+		}
+	}
+	return nil
+}
+
+func (x *Envelope) GetUnknownMessage() *SNSUnknownMessage {
+	if x != nil {
+		if x, ok := x.Message.(*Envelope_UnknownMessage); ok {
+			return x.UnknownMessage
+		}
+	}
+	return nil
+}
+
+func (x *Envelope) GetTcpConnectionRequireEvent() *STCPConnectionRequireEvent {
+	if x != nil {
+		if x, ok := x.Message.(*Envelope_TcpConnectionRequireEvent); ok {
+			return x.TcpConnectionRequireEvent
+		}
+	}
+	return nil
+}
+
+func (x *Envelope) GetTcpConnectionUnrequireEvent() *STCPConnectionUnrequireEvent {
+	if x != nil {
+		if x, ok := x.Message.(*Envelope_TcpConnectionUnrequireEvent); ok {
+			return x.TcpConnectionUnrequireEvent
+		}
+	}
+	return nil
+}
+
+func (x *Envelope) GetConfigRequestV2() *SNSConfigRequestV2Message {
+	if x != nil {
+		if x, ok := x.Message.(*Envelope_ConfigRequestV2); ok {
+			return x.ConfigRequestV2
+		}
+	}
+	return nil
+}
+
+func (x *Envelope) GetConfigSuccessV2() *SNSConfigSuccessV2Message {
+	if x != nil {
+		if x, ok := x.Message.(*Envelope_ConfigSuccessV2); ok {
+			return x.ConfigSuccessV2
+		}
+	}
+	return nil
+}
+
+func (x *Envelope) GetConfigFailureV2() *SNSConfigFailureV2Message {
+	if x != nil {
+		if x, ok := x.Message.(*Envelope_ConfigFailureV2); ok {
+			return x.ConfigFailureV2
+		}
+	}
+	return nil
+}
+
+func (x *Envelope) GetReconcileIap() *SNSReconcileIAPMessage {
+	if x != nil {
+		if x, ok := x.Message.(*Envelope_ReconcileIap); ok {
+			return x.ReconcileIap
+		}
+	}
+	return nil
+}
+
+func (x *Envelope) GetChannelInfoRequest() *SNSChannelInfoRequestMessage {
+	if x != nil {
+		if x, ok := x.Message.(*Envelope_ChannelInfoRequest); ok {
+			return x.ChannelInfoRequest
+		}
+	}
+	return nil
+}
+
+func (x *Envelope) GetChannelInfoResponse() *SNSChannelInfoResponseMessage {
+	if x != nil {
+		if x, ok := x.Message.(*Envelope_ChannelInfoResponse); ok {
+			return x.ChannelInfoResponse
+		}
+	}
+	return nil
+}
+
+func (x *Envelope) GetDocumentRequestV2() *SNSDocumentRequestV2Message {
+	if x != nil {
+		if x, ok := x.Message.(*Envelope_DocumentRequestV2); ok {
+			return x.DocumentRequestV2
+		}
+	}
+	return nil
+}
+
+func (x *Envelope) GetDocumentSuccess() *SNSDocumentSuccessMessage {
+	if x != nil {
+		if x, ok := x.Message.(*Envelope_DocumentSuccess); ok {
+			return x.DocumentSuccess
+		}
+	}
+	return nil
+}
+
+func (x *Envelope) GetDocumentFailure() *SNSDocumentFailureMessage {
+	if x != nil {
+		if x, ok := x.Message.(*Envelope_DocumentFailure); ok {
+			return x.DocumentFailure
+		}
+	}
+	return nil
+}
+
+func (x *Envelope) GetLobbyCreateSessionRequestV9() *SNSLobbyCreateSessionRequestV9Message {
+	if x != nil {
+		if x, ok := x.Message.(*Envelope_LobbyCreateSessionRequestV9); ok {
+			return x.LobbyCreateSessionRequestV9
+		}
+	}
+	return nil
+}
+
+func (x *Envelope) GetLobbyFindSessionRequestV11() *SNSLobbyFindSessionRequestv11Message {
+	if x != nil {
+		if x, ok := x.Message.(*Envelope_LobbyFindSessionRequestV11); ok {
+			return x.LobbyFindSessionRequestV11
+		}
+	}
+	return nil
+}
+
+func (x *Envelope) GetLobbyJoinSessionRequestV7() *SNSLobbyJoinSessionRequestV7Message {
+	if x != nil {
+		if x, ok := x.Message.(*Envelope_LobbyJoinSessionRequestV7); ok {
+			return x.LobbyJoinSessionRequestV7
+		}
+	}
+	return nil
+}
+
+func (x *Envelope) GetLobbyMatchmakerStatus() *SNSLobbyMatchmakerStatusMessage {
+	if x != nil {
+		if x, ok := x.Message.(*Envelope_LobbyMatchmakerStatus); ok {
+			return x.LobbyMatchmakerStatus
+		}
+	}
+	return nil
+}
+
+func (x *Envelope) GetLobbyMatchmakerStatusRequest() *SNSLobbyMatchmakerStatusRequestMessage {
+	if x != nil {
+		if x, ok := x.Message.(*Envelope_LobbyMatchmakerStatusRequest); ok {
+			return x.LobbyMatchmakerStatusRequest
+		}
+	}
+	return nil
+}
+
+func (x *Envelope) GetLobbyPendingSessionCancelV2() *SNSLobbyPendingSessionCancelV2Message {
+	if x != nil {
+		if x, ok := x.Message.(*Envelope_LobbyPendingSessionCancelV2); ok {
+			return x.LobbyPendingSessionCancelV2
+		}
+	}
+	return nil
+}
+
+func (x *Envelope) GetLobbyPingRequestV3() *SNSLobbyPingRequestV3Message {
+	if x != nil {
+		if x, ok := x.Message.(*Envelope_LobbyPingRequestV3); ok {
+			return x.LobbyPingRequestV3
+		}
+	}
+	return nil
+}
+
+func (x *Envelope) GetLobbyPingResponse() *SNSLobbyPingResponseMessage {
+	if x != nil {
+		if x, ok := x.Message.(*Envelope_LobbyPingResponse); ok {
+			return x.LobbyPingResponse
+		}
+	}
+	return nil
+}
+
+func (x *Envelope) GetLobbyPlayerSessionsRequestV5() *SNSLobbyPlayerSessionsRequestV5Message {
+	if x != nil {
+		if x, ok := x.Message.(*Envelope_LobbyPlayerSessionsRequestV5); ok {
+			return x.LobbyPlayerSessionsRequestV5
+		}
+	}
+	return nil
+}
+
+func (x *Envelope) GetLobbySessionFailureV4() *SNSLobbySessionFailureV4Message {
+	if x != nil {
+		if x, ok := x.Message.(*Envelope_LobbySessionFailureV4); ok {
+			return x.LobbySessionFailureV4
+		}
+	}
+	return nil
+}
+
+func (x *Envelope) GetLobbySessionSuccessV5() *SNSLobbySessionSuccessV5Message {
+	if x != nil {
+		if x, ok := x.Message.(*Envelope_LobbySessionSuccessV5); ok {
+			return x.LobbySessionSuccessV5
+		}
+	}
+	return nil
+}
+
+func (x *Envelope) GetLoggedInUserProfileFailure() *SNSLoggedInUserProfileFailureMessage {
+	if x != nil {
+		if x, ok := x.Message.(*Envelope_LoggedInUserProfileFailure); ok {
+			return x.LoggedInUserProfileFailure
+		}
+	}
+	return nil
+}
+
+func (x *Envelope) GetLoggedInUserProfileRequest() *SNSLoggedInUserProfileRequestMessage {
+	if x != nil {
+		if x, ok := x.Message.(*Envelope_LoggedInUserProfileRequest); ok {
+			return x.LoggedInUserProfileRequest
+		}
+	}
+	return nil
+}
+
+func (x *Envelope) GetLoggedInUserProfileSuccess() *SNSLoggedInUserProfileSuccessMessage {
+	if x != nil {
+		if x, ok := x.Message.(*Envelope_LoggedInUserProfileSuccess); ok {
+			return x.LoggedInUserProfileSuccess
+		}
+	}
+	return nil
+}
+
+func (x *Envelope) GetLogInFailure() *SNSLogInFailureMessage {
+	if x != nil {
+		if x, ok := x.Message.(*Envelope_LogInFailure); ok {
+			return x.LogInFailure
+		}
+	}
+	return nil
+}
+
+func (x *Envelope) GetLogInRequestV2() *SNSLogInRequestV2Message {
+	if x != nil {
+		if x, ok := x.Message.(*Envelope_LogInRequestV2); ok {
+			return x.LogInRequestV2
+		}
+	}
+	return nil
+}
+
+func (x *Envelope) GetLoginSettings() *SNSLoginSettingsMessage {
+	if x != nil {
+		if x, ok := x.Message.(*Envelope_LoginSettings); ok {
+			return x.LoginSettings
+		}
+	}
+	return nil
+}
+
+func (x *Envelope) GetLogInSuccess() *SNSLogInSuccessMessage {
+	if x != nil {
+		if x, ok := x.Message.(*Envelope_LogInSuccess); ok {
+			return x.LogInSuccess
+		}
+	}
+	return nil
+}
+
+func (x *Envelope) GetOtherUserProfileFailure() *SNSOtherUserProfileFailureMessage {
+	if x != nil {
+		if x, ok := x.Message.(*Envelope_OtherUserProfileFailure); ok {
+			return x.OtherUserProfileFailure
+		}
+	}
+	return nil
+}
+
+func (x *Envelope) GetOtherUserProfileRequest() *SNSOtherUserProfileRequestMessage {
+	if x != nil {
+		if x, ok := x.Message.(*Envelope_OtherUserProfileRequest); ok {
+			return x.OtherUserProfileRequest
+		}
+	}
+	return nil
+}
+
+func (x *Envelope) GetOtherUserProfileSuccess() *SNSOtherUserProfileSuccessMessage {
+	if x != nil {
+		if x, ok := x.Message.(*Envelope_OtherUserProfileSuccess); ok {
+			return x.OtherUserProfileSuccess
+		}
+	}
+	return nil
+}
+
+func (x *Envelope) GetReconcileIapResult() *SNSReconcileIAPResultMessage {
+	if x != nil {
+		if x, ok := x.Message.(*Envelope_ReconcileIapResult); ok {
+			return x.ReconcileIapResult
+		}
+	}
+	return nil
+}
+
+func (x *Envelope) GetRemoteLogSetV3() *SNSRemoteLogSetV3Message {
+	if x != nil {
+		if x, ok := x.Message.(*Envelope_RemoteLogSetV3); ok {
+			return x.RemoteLogSetV3
+		}
+	}
+	return nil
+}
+
+func (x *Envelope) GetUpdateProfile() *SNSUpdateProfileMessage {
+	if x != nil {
+		if x, ok := x.Message.(*Envelope_UpdateProfile); ok {
+			return x.UpdateProfile
+		}
+	}
+	return nil
+}
+
+func (x *Envelope) GetUpdateProfileSuccess() *SNSUpdateProfileSuccessMessage {
+	if x != nil {
+		if x, ok := x.Message.(*Envelope_UpdateProfileSuccess); ok {
+			return x.UpdateProfileSuccess
+		}
+	}
+	return nil
+}
+
+func (x *Envelope) GetUpdateProfileFailure() *SNSUpdateProfileFailureMessage {
+	if x != nil {
+		if x, ok := x.Message.(*Envelope_UpdateProfileFailure); ok {
+			return x.UpdateProfileFailure
+		}
+	}
+	return nil
+}
+
+func (x *Envelope) GetUserServerProfileUpdateRequest() *SNSUserServerProfileUpdateRequestMessage {
+	if x != nil {
+		if x, ok := x.Message.(*Envelope_UserServerProfileUpdateRequest); ok {
+			return x.UserServerProfileUpdateRequest
+		}
+	}
+	return nil
+}
+
+func (x *Envelope) GetUserServerProfileUpdateSuccess() *SNSUserServerProfileUpdateSuccessMessage {
+	if x != nil {
+		if x, ok := x.Message.(*Envelope_UserServerProfileUpdateSuccess); ok {
+			return x.UserServerProfileUpdateSuccess
 		}
 	}
 	return nil
@@ -502,56 +902,259 @@ type isEnvelope_Message interface {
 }
 
 type Envelope_Error struct {
+	// The message is an error.
 	Error *Error `protobuf:"bytes,2,opt,name=error,proto3,oneof"`
 }
 
-type Envelope_SessionUpdate struct {
-	SessionUpdate *SessionUpdateMessage `protobuf:"bytes,3,opt,name=sessionUpdate,proto3,oneof"`
+type Envelope_LobbySessionState struct {
+	// A snapshot of the state of a lobby session
+	LobbySessionState *LobbySessionStateMessage `protobuf:"bytes,3,opt,name=lobby_session_state,json=lobbySessionState,proto3,oneof"`
 }
 
 type Envelope_ConnectivityStatistics struct {
-	ConnectivityStatistics *ConnectivityStatisticsMessage `protobuf:"bytes,4,opt,name=connectivityStatistics,proto3,oneof"`
+	// A connectivity statistics message.
+	ConnectivityStatistics *ConnectivityStatisticsMessage `protobuf:"bytes,4,opt,name=connectivity_statistics,json=connectivityStatistics,proto3,oneof"`
 }
 
-type Envelope_GameServerRegistrationRequest struct {
-	GameServerRegistrationRequest *GameServerRegistrationMessage `protobuf:"bytes,5,opt,name=gameServerRegistrationRequest,proto3,oneof"`
+type Envelope_GameServerRegistration struct {
+	GameServerRegistration *GameServerRegistrationMessage `protobuf:"bytes,5,opt,name=game_server_registration,json=gameServerRegistration,proto3,oneof"`
 }
 
 type Envelope_GameServerRegistrationSuccess struct {
-	GameServerRegistrationSuccess *GameServerRegistrationSuccess `protobuf:"bytes,6,opt,name=gameServerRegistrationSuccess,proto3,oneof"`
+	GameServerRegistrationSuccess *GameServerRegistrationSuccessMessage `protobuf:"bytes,6,opt,name=game_server_registration_success,json=gameServerRegistrationSuccess,proto3,oneof"`
 }
 
 type Envelope_LobbySessionCreate struct {
-	LobbySessionCreate *LobbySessionCreateMessage `protobuf:"bytes,7,opt,name=lobbySessionCreate,proto3,oneof"`
+	LobbySessionCreate *LobbySessionCreateMessage `protobuf:"bytes,7,opt,name=lobby_session_create,json=lobbySessionCreate,proto3,oneof"`
 }
 
 type Envelope_LobbySessionEvent struct {
-	LobbySessionEvent *LobbySessionEventMessage `protobuf:"bytes,8,opt,name=lobbySessionEvent,proto3,oneof"`
+	LobbySessionEvent *LobbySessionEventMessage `protobuf:"bytes,8,opt,name=lobby_session_event,json=lobbySessionEvent,proto3,oneof"`
 }
 
-type Envelope_LobbyEntrantConnected struct {
-	LobbyEntrantConnected *LobbyEntrantsConnectedMessage `protobuf:"bytes,9,opt,name=lobbyEntrantConnected,proto3,oneof"`
+type Envelope_LobbyEntraConnected struct {
+	LobbyEntraConnected *LobbyEntrantsConnectedMessage `protobuf:"bytes,9,opt,name=lobby_entra_connected,json=lobbyEntraConnected,proto3,oneof"`
 }
 
-type Envelope_LobbyEntrantsAccept struct {
-	LobbyEntrantsAccept *LobbyEntrantsAcceptMessage `protobuf:"bytes,10,opt,name=lobbyEntrantsAccept,proto3,oneof"`
+type Envelope_LobbyEntrantAccept struct {
+	LobbyEntrantAccept *LobbyEntrantsAcceptMessage `protobuf:"bytes,10,opt,name=lobby_entrant_accept,json=lobbyEntrantAccept,proto3,oneof"`
 }
 
-type Envelope_LobbyEntrantsReject struct {
-	LobbyEntrantsReject *LobbyEntrantsRejectMessage `protobuf:"bytes,11,opt,name=lobbyEntrantsReject,proto3,oneof"`
+type Envelope_LobbyEntrantReject struct {
+	LobbyEntrantReject *LobbyEntrantsRejectMessage `protobuf:"bytes,11,opt,name=lobby_entrant_reject,json=lobbyEntrantReject,proto3,oneof"`
 }
 
-type Envelope_LobbyEntrantRemoved struct {
-	LobbyEntrantRemoved *LobbyEntrantRemovedMessage `protobuf:"bytes,12,opt,name=lobbyEntrantRemoved,proto3,oneof"`
+type Envelope_LobbyEntrantRemove struct {
+	LobbyEntrantRemove *LobbyEntrantRemovedMessage `protobuf:"bytes,12,opt,name=lobby_entrant_remove,json=lobbyEntrantRemove,proto3,oneof"`
+}
+
+type Envelope_UnknownMessage struct {
+	// Unknown message.
+	UnknownMessage *SNSUnknownMessage `protobuf:"bytes,13,opt,name=unknown_message,json=unknownMessage,proto3,oneof"`
+}
+
+type Envelope_TcpConnectionRequireEvent struct {
+	// Indicate a TCP event is required.
+	TcpConnectionRequireEvent *STCPConnectionRequireEvent `protobuf:"bytes,14,opt,name=tcp_connection_require_event,json=tcpConnectionRequireEvent,proto3,oneof"`
+}
+
+type Envelope_TcpConnectionUnrequireEvent struct {
+	// Indicate a TCP event is no longer required.
+	TcpConnectionUnrequireEvent *STCPConnectionUnrequireEvent `protobuf:"bytes,15,opt,name=tcp_connection_unrequire_event,json=tcpConnectionUnrequireEvent,proto3,oneof"`
+}
+
+type Envelope_ConfigRequestV2 struct {
+	// Request a specific configuration resource.
+	ConfigRequestV2 *SNSConfigRequestV2Message `protobuf:"bytes,16,opt,name=config_request_v2,json=configRequestV2,proto3,oneof"`
+}
+
+type Envelope_ConfigSuccessV2 struct {
+	// Indicate a config request succeeded.
+	ConfigSuccessV2 *SNSConfigSuccessV2Message `protobuf:"bytes,17,opt,name=config_success_v2,json=configSuccessV2,proto3,oneof"`
+}
+
+type Envelope_ConfigFailureV2 struct {
+	// Indicate a config request failed.
+	ConfigFailureV2 *SNSConfigFailureV2Message `protobuf:"bytes,18,opt,name=config_failure_v2,json=configFailureV2,proto3,oneof"`
+}
+
+type Envelope_ReconcileIap struct {
+	// In-app purchase related request.
+	ReconcileIap *SNSReconcileIAPMessage `protobuf:"bytes,19,opt,name=reconcile_iap,json=reconcileIap,proto3,oneof"`
+}
+
+type Envelope_ChannelInfoRequest struct {
+	// Request information about in-game channels.
+	ChannelInfoRequest *SNSChannelInfoRequestMessage `protobuf:"bytes,20,opt,name=channel_info_request,json=channelInfoRequest,proto3,oneof"`
+}
+
+type Envelope_ChannelInfoResponse struct {
+	// Provide in-game channel information.
+	ChannelInfoResponse *SNSChannelInfoResponseMessage `protobuf:"bytes,21,opt,name=channel_info_response,json=channelInfoResponse,proto3,oneof"`
+}
+
+type Envelope_DocumentRequestV2 struct {
+	// Request a document resource.
+	DocumentRequestV2 *SNSDocumentRequestV2Message `protobuf:"bytes,22,opt,name=document_request_v2,json=documentRequestV2,proto3,oneof"`
+}
+
+type Envelope_DocumentSuccess struct {
+	// Indicate a document request succeeded.
+	DocumentSuccess *SNSDocumentSuccessMessage `protobuf:"bytes,23,opt,name=document_success,json=documentSuccess,proto3,oneof"`
+}
+
+type Envelope_DocumentFailure struct {
+	// Indicate a document request failed.
+	DocumentFailure *SNSDocumentFailureMessage `protobuf:"bytes,24,opt,name=document_failure,json=documentFailure,proto3,oneof"`
+}
+
+type Envelope_LobbyCreateSessionRequestV9 struct {
+	// Provide information on servers available in different regions.
+	LobbyCreateSessionRequestV9 *SNSLobbyCreateSessionRequestV9Message `protobuf:"bytes,25,opt,name=lobby_create_session_request_v9,json=lobbyCreateSessionRequestV9,proto3,oneof"`
+}
+
+type Envelope_LobbyFindSessionRequestV11 struct {
+	// Request to find an existing game session.
+	LobbyFindSessionRequestV11 *SNSLobbyFindSessionRequestv11Message `protobuf:"bytes,26,opt,name=lobby_find_session_request_v11,json=lobbyFindSessionRequestV11,proto3,oneof"`
+}
+
+type Envelope_LobbyJoinSessionRequestV7 struct {
+	// Request to join a specified game session.
+	LobbyJoinSessionRequestV7 *SNSLobbyJoinSessionRequestV7Message `protobuf:"bytes,27,opt,name=lobby_join_session_request_v7,json=lobbyJoinSessionRequestV7,proto3,oneof"`
+}
+
+type Envelope_LobbyMatchmakerStatus struct {
+	// Provide the status of a matchmaking operation.
+	LobbyMatchmakerStatus *SNSLobbyMatchmakerStatusMessage `protobuf:"bytes,28,opt,name=lobby_matchmaker_status,json=lobbyMatchmakerStatus,proto3,oneof"`
+}
+
+type Envelope_LobbyMatchmakerStatusRequest struct {
+	// Request the status of a pending matchmaking operation.
+	LobbyMatchmakerStatusRequest *SNSLobbyMatchmakerStatusRequestMessage `protobuf:"bytes,29,opt,name=lobby_matchmaker_status_request,json=lobbyMatchmakerStatusRequest,proto3,oneof"`
+}
+
+type Envelope_LobbyPendingSessionCancelV2 struct {
+	// Indicate intent to cancel pending matchmaker operations.
+	LobbyPendingSessionCancelV2 *SNSLobbyPendingSessionCancelV2Message `protobuf:"bytes,30,opt,name=lobby_pending_session_cancel_v2,json=lobbyPendingSessionCancelV2,proto3,oneof"`
+}
+
+type Envelope_LobbyPingRequestV3 struct {
+	// Request the client to ping endpoints for optimal server selection.
+	LobbyPingRequestV3 *SNSLobbyPingRequestV3Message `protobuf:"bytes,31,opt,name=lobby_ping_request_v3,json=lobbyPingRequestV3,proto3,oneof"`
+}
+
+type Envelope_LobbyPingResponse struct {
+	// Provide results of a ping request.
+	LobbyPingResponse *SNSLobbyPingResponseMessage `protobuf:"bytes,32,opt,name=lobby_ping_response,json=lobbyPingResponse,proto3,oneof"`
+}
+
+type Envelope_LobbyPlayerSessionsRequestV5 struct {
+	// Request game server sessions for a list of user identifiers.
+	LobbyPlayerSessionsRequestV5 *SNSLobbyPlayerSessionsRequestV5Message `protobuf:"bytes,33,opt,name=lobby_player_sessions_request_v5,json=lobbyPlayerSessionsRequestV5,proto3,oneof"`
+}
+
+type Envelope_LobbySessionFailureV4 struct {
+	// Indicate a lobby session request failed.
+	LobbySessionFailureV4 *SNSLobbySessionFailureV4Message `protobuf:"bytes,34,opt,name=lobby_session_failure_v4,json=lobbySessionFailureV4,proto3,oneof"`
+}
+
+type Envelope_LobbySessionSuccessV5 struct {
+	// Indicate a lobby session request succeeded.
+	LobbySessionSuccessV5 *SNSLobbySessionSuccessV5Message `protobuf:"bytes,35,opt,name=lobby_session_success_v5,json=lobbySessionSuccessV5,proto3,oneof"`
+}
+
+type Envelope_LoggedInUserProfileFailure struct {
+	// Indicate a logged-in user profile request failed.
+	LoggedInUserProfileFailure *SNSLoggedInUserProfileFailureMessage `protobuf:"bytes,36,opt,name=logged_in_user_profile_failure,json=loggedInUserProfileFailure,proto3,oneof"`
+}
+
+type Envelope_LoggedInUserProfileRequest struct {
+	// Request the user profile for the logged-in account.
+	LoggedInUserProfileRequest *SNSLoggedInUserProfileRequestMessage `protobuf:"bytes,37,opt,name=logged_in_user_profile_request,json=loggedInUserProfileRequest,proto3,oneof"`
+}
+
+type Envelope_LoggedInUserProfileSuccess struct {
+	// Indicate a logged-in user profile request succeeded.
+	LoggedInUserProfileSuccess *SNSLoggedInUserProfileSuccessMessage `protobuf:"bytes,38,opt,name=logged_in_user_profile_success,json=loggedInUserProfileSuccess,proto3,oneof"`
+}
+
+type Envelope_LogInFailure struct {
+	// Indicate a login request failed.
+	LogInFailure *SNSLogInFailureMessage `protobuf:"bytes,39,opt,name=log_in_failure,json=logInFailure,proto3,oneof"`
+}
+
+type Envelope_LogInRequestV2 struct {
+	// Request user sign-in.
+	LogInRequestV2 *SNSLogInRequestV2Message `protobuf:"bytes,40,opt,name=log_in_request_v2,json=logInRequestV2,proto3,oneof"`
+}
+
+type Envelope_LoginSettings struct {
+	// Provide settings for the user after login.
+	LoginSettings *SNSLoginSettingsMessage `protobuf:"bytes,41,opt,name=login_settings,json=loginSettings,proto3,oneof"`
+}
+
+type Envelope_LogInSuccess struct {
+	// Indicate a login request succeeded and provide a new session token.
+	LogInSuccess *SNSLogInSuccessMessage `protobuf:"bytes,42,opt,name=log_in_success,json=logInSuccess,proto3,oneof"`
+}
+
+type Envelope_OtherUserProfileFailure struct {
+	// Indicate an other user profile request failed.
+	OtherUserProfileFailure *SNSOtherUserProfileFailureMessage `protobuf:"bytes,43,opt,name=other_user_profile_failure,json=otherUserProfileFailure,proto3,oneof"`
+}
+
+type Envelope_OtherUserProfileRequest struct {
+	// Request the user profile for another user.
+	OtherUserProfileRequest *SNSOtherUserProfileRequestMessage `protobuf:"bytes,44,opt,name=other_user_profile_request,json=otherUserProfileRequest,proto3,oneof"`
+}
+
+type Envelope_OtherUserProfileSuccess struct {
+	// Indicate an other user profile request succeeded.
+	OtherUserProfileSuccess *SNSOtherUserProfileSuccessMessage `protobuf:"bytes,45,opt,name=other_user_profile_success,json=otherUserProfileSuccess,proto3,oneof"`
+}
+
+type Envelope_ReconcileIapResult struct {
+	// In-app purchase related response.
+	ReconcileIapResult *SNSReconcileIAPResultMessage `protobuf:"bytes,46,opt,name=reconcile_iap_result,json=reconcileIapResult,proto3,oneof"`
+}
+
+type Envelope_RemoteLogSetV3 struct {
+	// Log client-side data.
+	RemoteLogSetV3 *SNSRemoteLogSetV3Message `protobuf:"bytes,47,opt,name=remote_log_set_v3,json=remoteLogSetV3,proto3,oneof"`
+}
+
+type Envelope_UpdateProfile struct {
+	// Request the server to update the user's client profile.
+	UpdateProfile *SNSUpdateProfileMessage `protobuf:"bytes,48,opt,name=update_profile,json=updateProfile,proto3,oneof"`
+}
+
+type Envelope_UpdateProfileSuccess struct {
+	// Indicate an update profile request succeeded.
+	UpdateProfileSuccess *SNSUpdateProfileSuccessMessage `protobuf:"bytes,49,opt,name=update_profile_success,json=updateProfileSuccess,proto3,oneof"`
+}
+
+type Envelope_UpdateProfileFailure struct {
+	// Indicate an update profile request failed.
+	UpdateProfileFailure *SNSUpdateProfileFailureMessage `protobuf:"bytes,50,opt,name=update_profile_failure,json=updateProfileFailure,proto3,oneof"`
+}
+
+type Envelope_UserServerProfileUpdateRequest struct {
+	// Request the server to update the user's server profile.
+	UserServerProfileUpdateRequest *SNSUserServerProfileUpdateRequestMessage `protobuf:"bytes,51,opt,name=user_server_profile_update_request,json=userServerProfileUpdateRequest,proto3,oneof"`
+}
+
+type Envelope_UserServerProfileUpdateSuccess struct {
+	// Indicate a user server profile update request succeeded.
+	UserServerProfileUpdateSuccess *SNSUserServerProfileUpdateSuccessMessage `protobuf:"bytes,52,opt,name=user_server_profile_update_success,json=userServerProfileUpdateSuccess,proto3,oneof"`
 }
 
 func (*Envelope_Error) isEnvelope_Message() {}
 
-func (*Envelope_SessionUpdate) isEnvelope_Message() {}
+func (*Envelope_LobbySessionState) isEnvelope_Message() {}
 
 func (*Envelope_ConnectivityStatistics) isEnvelope_Message() {}
 
-func (*Envelope_GameServerRegistrationRequest) isEnvelope_Message() {}
+func (*Envelope_GameServerRegistration) isEnvelope_Message() {}
 
 func (*Envelope_GameServerRegistrationSuccess) isEnvelope_Message() {}
 
@@ -559,13 +1162,93 @@ func (*Envelope_LobbySessionCreate) isEnvelope_Message() {}
 
 func (*Envelope_LobbySessionEvent) isEnvelope_Message() {}
 
-func (*Envelope_LobbyEntrantConnected) isEnvelope_Message() {}
+func (*Envelope_LobbyEntraConnected) isEnvelope_Message() {}
 
-func (*Envelope_LobbyEntrantsAccept) isEnvelope_Message() {}
+func (*Envelope_LobbyEntrantAccept) isEnvelope_Message() {}
 
-func (*Envelope_LobbyEntrantsReject) isEnvelope_Message() {}
+func (*Envelope_LobbyEntrantReject) isEnvelope_Message() {}
 
-func (*Envelope_LobbyEntrantRemoved) isEnvelope_Message() {}
+func (*Envelope_LobbyEntrantRemove) isEnvelope_Message() {}
+
+func (*Envelope_UnknownMessage) isEnvelope_Message() {}
+
+func (*Envelope_TcpConnectionRequireEvent) isEnvelope_Message() {}
+
+func (*Envelope_TcpConnectionUnrequireEvent) isEnvelope_Message() {}
+
+func (*Envelope_ConfigRequestV2) isEnvelope_Message() {}
+
+func (*Envelope_ConfigSuccessV2) isEnvelope_Message() {}
+
+func (*Envelope_ConfigFailureV2) isEnvelope_Message() {}
+
+func (*Envelope_ReconcileIap) isEnvelope_Message() {}
+
+func (*Envelope_ChannelInfoRequest) isEnvelope_Message() {}
+
+func (*Envelope_ChannelInfoResponse) isEnvelope_Message() {}
+
+func (*Envelope_DocumentRequestV2) isEnvelope_Message() {}
+
+func (*Envelope_DocumentSuccess) isEnvelope_Message() {}
+
+func (*Envelope_DocumentFailure) isEnvelope_Message() {}
+
+func (*Envelope_LobbyCreateSessionRequestV9) isEnvelope_Message() {}
+
+func (*Envelope_LobbyFindSessionRequestV11) isEnvelope_Message() {}
+
+func (*Envelope_LobbyJoinSessionRequestV7) isEnvelope_Message() {}
+
+func (*Envelope_LobbyMatchmakerStatus) isEnvelope_Message() {}
+
+func (*Envelope_LobbyMatchmakerStatusRequest) isEnvelope_Message() {}
+
+func (*Envelope_LobbyPendingSessionCancelV2) isEnvelope_Message() {}
+
+func (*Envelope_LobbyPingRequestV3) isEnvelope_Message() {}
+
+func (*Envelope_LobbyPingResponse) isEnvelope_Message() {}
+
+func (*Envelope_LobbyPlayerSessionsRequestV5) isEnvelope_Message() {}
+
+func (*Envelope_LobbySessionFailureV4) isEnvelope_Message() {}
+
+func (*Envelope_LobbySessionSuccessV5) isEnvelope_Message() {}
+
+func (*Envelope_LoggedInUserProfileFailure) isEnvelope_Message() {}
+
+func (*Envelope_LoggedInUserProfileRequest) isEnvelope_Message() {}
+
+func (*Envelope_LoggedInUserProfileSuccess) isEnvelope_Message() {}
+
+func (*Envelope_LogInFailure) isEnvelope_Message() {}
+
+func (*Envelope_LogInRequestV2) isEnvelope_Message() {}
+
+func (*Envelope_LoginSettings) isEnvelope_Message() {}
+
+func (*Envelope_LogInSuccess) isEnvelope_Message() {}
+
+func (*Envelope_OtherUserProfileFailure) isEnvelope_Message() {}
+
+func (*Envelope_OtherUserProfileRequest) isEnvelope_Message() {}
+
+func (*Envelope_OtherUserProfileSuccess) isEnvelope_Message() {}
+
+func (*Envelope_ReconcileIapResult) isEnvelope_Message() {}
+
+func (*Envelope_RemoteLogSetV3) isEnvelope_Message() {}
+
+func (*Envelope_UpdateProfile) isEnvelope_Message() {}
+
+func (*Envelope_UpdateProfileSuccess) isEnvelope_Message() {}
+
+func (*Envelope_UpdateProfileFailure) isEnvelope_Message() {}
+
+func (*Envelope_UserServerProfileUpdateRequest) isEnvelope_Message() {}
+
+func (*Envelope_UserServerProfileUpdateSuccess) isEnvelope_Message() {}
 
 // A logical error which may occur on the server.
 type Error struct {
@@ -786,7 +1469,7 @@ func (x *GameServerRegistrationMessage) GetVersion() string {
 }
 
 // Registration success message is sent from the service to the server.
-type GameServerRegistrationSuccess struct {
+type GameServerRegistrationSuccessMessage struct {
 	state             protoimpl.MessageState `protogen:"open.v1"`
 	ServerId          uint64                 `protobuf:"varint,1,opt,name=server_id,json=serverId,proto3" json:"server_id,omitempty"`                             // The server ID assigned by the server
 	ExternalIpAddress string                 `protobuf:"bytes,2,opt,name=external_ip_address,json=externalIpAddress,proto3" json:"external_ip_address,omitempty"` // The external address of the server (ip)
@@ -794,20 +1477,20 @@ type GameServerRegistrationSuccess struct {
 	sizeCache         protoimpl.SizeCache
 }
 
-func (x *GameServerRegistrationSuccess) Reset() {
-	*x = GameServerRegistrationSuccess{}
+func (x *GameServerRegistrationSuccessMessage) Reset() {
+	*x = GameServerRegistrationSuccessMessage{}
 	mi := &file_nevr_rtapi_proto_msgTypes[4]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
 
-func (x *GameServerRegistrationSuccess) String() string {
+func (x *GameServerRegistrationSuccessMessage) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*GameServerRegistrationSuccess) ProtoMessage() {}
+func (*GameServerRegistrationSuccessMessage) ProtoMessage() {}
 
-func (x *GameServerRegistrationSuccess) ProtoReflect() protoreflect.Message {
+func (x *GameServerRegistrationSuccessMessage) ProtoReflect() protoreflect.Message {
 	mi := &file_nevr_rtapi_proto_msgTypes[4]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -819,19 +1502,19 @@ func (x *GameServerRegistrationSuccess) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use GameServerRegistrationSuccess.ProtoReflect.Descriptor instead.
-func (*GameServerRegistrationSuccess) Descriptor() ([]byte, []int) {
+// Deprecated: Use GameServerRegistrationSuccessMessage.ProtoReflect.Descriptor instead.
+func (*GameServerRegistrationSuccessMessage) Descriptor() ([]byte, []int) {
 	return file_nevr_rtapi_proto_rawDescGZIP(), []int{4}
 }
 
-func (x *GameServerRegistrationSuccess) GetServerId() uint64 {
+func (x *GameServerRegistrationSuccessMessage) GetServerId() uint64 {
 	if x != nil {
 		return x.ServerId
 	}
 	return 0
 }
 
-func (x *GameServerRegistrationSuccess) GetExternalIpAddress() string {
+func (x *GameServerRegistrationSuccessMessage) GetExternalIpAddress() string {
 	if x != nil {
 		return x.ExternalIpAddress
 	}
@@ -1142,34 +1825,33 @@ func (x *LobbySessionCreateMessage) GetTimeStepUsecs() uint32 {
 	return 0
 }
 
-// SessionUpdateMessage is sent from the server to the game service.
-type SessionUpdateMessage struct {
-	state          protoimpl.MessageState     `protogen:"open.v1"`
-	LobbySessionId string                     `protobuf:"bytes,1,opt,name=lobby_session_id,json=lobbySessionId,proto3" json:"lobby_session_id,omitempty"`
-	TimeStepUsecs  uint32                     `protobuf:"varint,2,opt,name=time_step_usecs,json=timeStepUsecs,proto3" json:"time_step_usecs,omitempty"`
-	TickCount      uint64                     `protobuf:"varint,3,opt,name=tick_count,json=tickCount,proto3" json:"tick_count,omitempty"`
-	EntrantCount   uint64                     `protobuf:"varint,4,opt,name=entrant_count,json=entrantCount,proto3" json:"entrant_count,omitempty"`
-	Timestamp      *timestamppb.Timestamp     `protobuf:"bytes,5,opt,name=timestamp,proto3" json:"timestamp,omitempty"`
-	Session        *gameapi.SessionResponse   `protobuf:"bytes,6,opt,name=session,json=session_data,proto3" json:"session,omitempty"`
-	UserBones      *gameapi.UserBonesResponse `protobuf:"bytes,7,opt,name=user_bones,proto3" json:"user_bones,omitempty"`
-	unknownFields  protoimpl.UnknownFields
-	sizeCache      protoimpl.SizeCache
+type LobbySessionStateMessage struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	TimeStepUsecs uint32                 `protobuf:"varint,1,opt,name=time_step_usecs,json=timeStepUsecs,proto3" json:"time_step_usecs,omitempty"`
+	TickCount     uint64                 `protobuf:"varint,2,opt,name=tick_count,json=tickCount,proto3" json:"tick_count,omitempty"`
+	// Types that are valid to be assigned to State:
+	//
+	//	*LobbySessionStateMessage_SessionStateRaw
+	//	*LobbySessionStateMessage_SessionState
+	State         isLobbySessionStateMessage_State `protobuf_oneof:"state"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
 }
 
-func (x *SessionUpdateMessage) Reset() {
-	*x = SessionUpdateMessage{}
+func (x *LobbySessionStateMessage) Reset() {
+	*x = LobbySessionStateMessage{}
 	mi := &file_nevr_rtapi_proto_msgTypes[10]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
 
-func (x *SessionUpdateMessage) String() string {
+func (x *LobbySessionStateMessage) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*SessionUpdateMessage) ProtoMessage() {}
+func (*LobbySessionStateMessage) ProtoMessage() {}
 
-func (x *SessionUpdateMessage) ProtoReflect() protoreflect.Message {
+func (x *LobbySessionStateMessage) ProtoReflect() protoreflect.Message {
 	mi := &file_nevr_rtapi_proto_msgTypes[10]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -1181,56 +1863,123 @@ func (x *SessionUpdateMessage) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use SessionUpdateMessage.ProtoReflect.Descriptor instead.
-func (*SessionUpdateMessage) Descriptor() ([]byte, []int) {
+// Deprecated: Use LobbySessionStateMessage.ProtoReflect.Descriptor instead.
+func (*LobbySessionStateMessage) Descriptor() ([]byte, []int) {
 	return file_nevr_rtapi_proto_rawDescGZIP(), []int{10}
 }
 
-func (x *SessionUpdateMessage) GetLobbySessionId() string {
-	if x != nil {
-		return x.LobbySessionId
-	}
-	return ""
-}
-
-func (x *SessionUpdateMessage) GetTimeStepUsecs() uint32 {
+func (x *LobbySessionStateMessage) GetTimeStepUsecs() uint32 {
 	if x != nil {
 		return x.TimeStepUsecs
 	}
 	return 0
 }
 
-func (x *SessionUpdateMessage) GetTickCount() uint64 {
+func (x *LobbySessionStateMessage) GetTickCount() uint64 {
 	if x != nil {
 		return x.TickCount
 	}
 	return 0
 }
 
-func (x *SessionUpdateMessage) GetEntrantCount() uint64 {
+func (x *LobbySessionStateMessage) GetState() isLobbySessionStateMessage_State {
 	if x != nil {
-		return x.EntrantCount
+		return x.State
 	}
-	return 0
+	return nil
 }
 
-func (x *SessionUpdateMessage) GetTimestamp() *timestamppb.Timestamp {
+func (x *LobbySessionStateMessage) GetSessionStateRaw() *LobbySessionStateRawMessage {
+	if x != nil {
+		if x, ok := x.State.(*LobbySessionStateMessage_SessionStateRaw); ok {
+			return x.SessionStateRaw
+		}
+	}
+	return nil
+}
+
+func (x *LobbySessionStateMessage) GetSessionState() *telemetry.LobbySessionStateFrame {
+	if x != nil {
+		if x, ok := x.State.(*LobbySessionStateMessage_SessionState); ok {
+			return x.SessionState
+		}
+	}
+	return nil
+}
+
+type isLobbySessionStateMessage_State interface {
+	isLobbySessionStateMessage_State()
+}
+
+type LobbySessionStateMessage_SessionStateRaw struct {
+	SessionStateRaw *LobbySessionStateRawMessage `protobuf:"bytes,3,opt,name=session_state_raw,json=sessionStateRaw,proto3,oneof"`
+}
+
+type LobbySessionStateMessage_SessionState struct {
+	SessionState *telemetry.LobbySessionStateFrame `protobuf:"bytes,4,opt,name=session_state,json=sessionState,proto3,oneof"`
+}
+
+func (*LobbySessionStateMessage_SessionStateRaw) isLobbySessionStateMessage_State() {}
+
+func (*LobbySessionStateMessage_SessionState) isLobbySessionStateMessage_State() {}
+
+// SessionUpdateMessage is sent from the server to the game service.
+type LobbySessionStateRawMessage struct {
+	state            protoimpl.MessageState `protogen:"open.v1"`
+	Timestamp        *timestamppb.Timestamp `protobuf:"bytes,1,opt,name=timestamp,proto3" json:"timestamp,omitempty"`
+	SessionPayload   []byte                 `protobuf:"bytes,2,opt,name=session_payload,json=sessionPayload,proto3" json:"session_payload,omitempty"`
+	UserBonesPayload []byte                 `protobuf:"bytes,3,opt,name=user_bones_payload,json=userBonesPayload,proto3" json:"user_bones_payload,omitempty"`
+	unknownFields    protoimpl.UnknownFields
+	sizeCache        protoimpl.SizeCache
+}
+
+func (x *LobbySessionStateRawMessage) Reset() {
+	*x = LobbySessionStateRawMessage{}
+	mi := &file_nevr_rtapi_proto_msgTypes[11]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *LobbySessionStateRawMessage) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*LobbySessionStateRawMessage) ProtoMessage() {}
+
+func (x *LobbySessionStateRawMessage) ProtoReflect() protoreflect.Message {
+	mi := &file_nevr_rtapi_proto_msgTypes[11]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use LobbySessionStateRawMessage.ProtoReflect.Descriptor instead.
+func (*LobbySessionStateRawMessage) Descriptor() ([]byte, []int) {
+	return file_nevr_rtapi_proto_rawDescGZIP(), []int{11}
+}
+
+func (x *LobbySessionStateRawMessage) GetTimestamp() *timestamppb.Timestamp {
 	if x != nil {
 		return x.Timestamp
 	}
 	return nil
 }
 
-func (x *SessionUpdateMessage) GetSession() *gameapi.SessionResponse {
+func (x *LobbySessionStateRawMessage) GetSessionPayload() []byte {
 	if x != nil {
-		return x.Session
+		return x.SessionPayload
 	}
 	return nil
 }
 
-func (x *SessionUpdateMessage) GetUserBones() *gameapi.UserBonesResponse {
+func (x *LobbySessionStateRawMessage) GetUserBonesPayload() []byte {
 	if x != nil {
-		return x.UserBones
+		return x.UserBonesPayload
 	}
 	return nil
 }
@@ -1251,7 +2000,7 @@ type ConnectivityStatisticsMessage struct {
 
 func (x *ConnectivityStatisticsMessage) Reset() {
 	*x = ConnectivityStatisticsMessage{}
-	mi := &file_nevr_rtapi_proto_msgTypes[11]
+	mi := &file_nevr_rtapi_proto_msgTypes[12]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1263,7 +2012,7 @@ func (x *ConnectivityStatisticsMessage) String() string {
 func (*ConnectivityStatisticsMessage) ProtoMessage() {}
 
 func (x *ConnectivityStatisticsMessage) ProtoReflect() protoreflect.Message {
-	mi := &file_nevr_rtapi_proto_msgTypes[11]
+	mi := &file_nevr_rtapi_proto_msgTypes[12]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1276,7 +2025,7 @@ func (x *ConnectivityStatisticsMessage) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ConnectivityStatisticsMessage.ProtoReflect.Descriptor instead.
 func (*ConnectivityStatisticsMessage) Descriptor() ([]byte, []int) {
-	return file_nevr_rtapi_proto_rawDescGZIP(), []int{11}
+	return file_nevr_rtapi_proto_rawDescGZIP(), []int{12}
 }
 
 func (x *ConnectivityStatisticsMessage) GetPacketLossRatio() float32 {
@@ -1328,26 +2077,2530 @@ func (x *ConnectivityStatisticsMessage) GetDiscardedFramePct() float32 {
 	return 0
 }
 
+// Symbol hash value
+type SymbolHash struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Value         uint64                 `protobuf:"fixed64,1,opt,name=value,proto3" json:"value,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *SymbolHash) Reset() {
+	*x = SymbolHash{}
+	mi := &file_nevr_rtapi_proto_msgTypes[13]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *SymbolHash) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*SymbolHash) ProtoMessage() {}
+
+func (x *SymbolHash) ProtoReflect() protoreflect.Message {
+	mi := &file_nevr_rtapi_proto_msgTypes[13]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use SymbolHash.ProtoReflect.Descriptor instead.
+func (*SymbolHash) Descriptor() ([]byte, []int) {
+	return file_nevr_rtapi_proto_rawDescGZIP(), []int{13}
+}
+
+func (x *SymbolHash) GetValue() uint64 {
+	if x != nil {
+		return x.Value
+	}
+	return 0
+}
+
+// Common types
+type XPlatformID struct {
+	state protoimpl.MessageState `protogen:"open.v1"`
+	// Platform code
+	Id            string `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *XPlatformID) Reset() {
+	*x = XPlatformID{}
+	mi := &file_nevr_rtapi_proto_msgTypes[14]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *XPlatformID) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*XPlatformID) ProtoMessage() {}
+
+func (x *XPlatformID) ProtoReflect() protoreflect.Message {
+	mi := &file_nevr_rtapi_proto_msgTypes[14]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use XPlatformID.ProtoReflect.Descriptor instead.
+func (*XPlatformID) Descriptor() ([]byte, []int) {
+	return file_nevr_rtapi_proto_rawDescGZIP(), []int{14}
+}
+
+func (x *XPlatformID) GetId() string {
+	if x != nil {
+		return x.Id
+	}
+	return ""
+}
+
+// An unknown message, containing raw bytes.
+type SNSUnknownMessage struct {
+	state protoimpl.MessageState `protogen:"open.v1"`
+	// The raw bytes of the unknown message.
+	Type          *SymbolHash `protobuf:"bytes,1,opt,name=type,proto3" json:"type,omitempty"`
+	Data          []byte      `protobuf:"bytes,2,opt,name=data,proto3" json:"data,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *SNSUnknownMessage) Reset() {
+	*x = SNSUnknownMessage{}
+	mi := &file_nevr_rtapi_proto_msgTypes[15]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *SNSUnknownMessage) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*SNSUnknownMessage) ProtoMessage() {}
+
+func (x *SNSUnknownMessage) ProtoReflect() protoreflect.Message {
+	mi := &file_nevr_rtapi_proto_msgTypes[15]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use SNSUnknownMessage.ProtoReflect.Descriptor instead.
+func (*SNSUnknownMessage) Descriptor() ([]byte, []int) {
+	return file_nevr_rtapi_proto_rawDescGZIP(), []int{15}
+}
+
+func (x *SNSUnknownMessage) GetType() *SymbolHash {
+	if x != nil {
+		return x.Type
+	}
+	return nil
+}
+
+func (x *SNSUnknownMessage) GetData() []byte {
+	if x != nil {
+		return x.Data
+	}
+	return nil
+}
+
+// A message originating from either party,
+// indicating a TCP event is required.
+type STCPConnectionRequireEvent struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *STCPConnectionRequireEvent) Reset() {
+	*x = STCPConnectionRequireEvent{}
+	mi := &file_nevr_rtapi_proto_msgTypes[16]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *STCPConnectionRequireEvent) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*STCPConnectionRequireEvent) ProtoMessage() {}
+
+func (x *STCPConnectionRequireEvent) ProtoReflect() protoreflect.Message {
+	mi := &file_nevr_rtapi_proto_msgTypes[16]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use STCPConnectionRequireEvent.ProtoReflect.Descriptor instead.
+func (*STCPConnectionRequireEvent) Descriptor() ([]byte, []int) {
+	return file_nevr_rtapi_proto_rawDescGZIP(), []int{16}
+}
+
+// A message originating from either party,
+// indicating a TCP event is no longer required.
+type STCPConnectionUnrequireEvent struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *STCPConnectionUnrequireEvent) Reset() {
+	*x = STCPConnectionUnrequireEvent{}
+	mi := &file_nevr_rtapi_proto_msgTypes[17]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *STCPConnectionUnrequireEvent) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*STCPConnectionUnrequireEvent) ProtoMessage() {}
+
+func (x *STCPConnectionUnrequireEvent) ProtoReflect() protoreflect.Message {
+	mi := &file_nevr_rtapi_proto_msgTypes[17]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use STCPConnectionUnrequireEvent.ProtoReflect.Descriptor instead.
+func (*STCPConnectionUnrequireEvent) Descriptor() ([]byte, []int) {
+	return file_nevr_rtapi_proto_rawDescGZIP(), []int{17}
+}
+
+// ConfigRequestv2: client to server requesting a specific
+// configuration resource.
+type SNSConfigRequestV2Message struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	RequestJson   string                 `protobuf:"bytes,1,opt,name=request_json,json=requestJson,proto3" json:"request_json,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *SNSConfigRequestV2Message) Reset() {
+	*x = SNSConfigRequestV2Message{}
+	mi := &file_nevr_rtapi_proto_msgTypes[18]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *SNSConfigRequestV2Message) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*SNSConfigRequestV2Message) ProtoMessage() {}
+
+func (x *SNSConfigRequestV2Message) ProtoReflect() protoreflect.Message {
+	mi := &file_nevr_rtapi_proto_msgTypes[18]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use SNSConfigRequestV2Message.ProtoReflect.Descriptor instead.
+func (*SNSConfigRequestV2Message) Descriptor() ([]byte, []int) {
+	return file_nevr_rtapi_proto_rawDescGZIP(), []int{18}
+}
+
+func (x *SNSConfigRequestV2Message) GetRequestJson() string {
+	if x != nil {
+		return x.RequestJson
+	}
+	return ""
+}
+
+// ConfigSuccessv2: server to the client indicating a
+// ConfigRequestv2 succeeded. It contains information about the requested config
+// resource.
+type SNSConfigSuccessV2Message struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Type          *SymbolHash            `protobuf:"bytes,1,opt,name=type,proto3" json:"type,omitempty"`
+	Id            *SymbolHash            `protobuf:"bytes,2,opt,name=id,proto3" json:"id,omitempty"`
+	Data          string                 `protobuf:"bytes,3,opt,name=data,proto3" json:"data,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *SNSConfigSuccessV2Message) Reset() {
+	*x = SNSConfigSuccessV2Message{}
+	mi := &file_nevr_rtapi_proto_msgTypes[19]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *SNSConfigSuccessV2Message) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*SNSConfigSuccessV2Message) ProtoMessage() {}
+
+func (x *SNSConfigSuccessV2Message) ProtoReflect() protoreflect.Message {
+	mi := &file_nevr_rtapi_proto_msgTypes[19]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use SNSConfigSuccessV2Message.ProtoReflect.Descriptor instead.
+func (*SNSConfigSuccessV2Message) Descriptor() ([]byte, []int) {
+	return file_nevr_rtapi_proto_rawDescGZIP(), []int{19}
+}
+
+func (x *SNSConfigSuccessV2Message) GetType() *SymbolHash {
+	if x != nil {
+		return x.Type
+	}
+	return nil
+}
+
+func (x *SNSConfigSuccessV2Message) GetId() *SymbolHash {
+	if x != nil {
+		return x.Id
+	}
+	return nil
+}
+
+func (x *SNSConfigSuccessV2Message) GetData() string {
+	if x != nil {
+		return x.Data
+	}
+	return ""
+}
+
+// ConfigFailurev2: server to client indicating a ConfigRequestv2
+// resulted in a failure.
+type SNSConfigFailureV2Message struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Error         string                 `protobuf:"bytes,1,opt,name=error,proto3" json:"error,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *SNSConfigFailureV2Message) Reset() {
+	*x = SNSConfigFailureV2Message{}
+	mi := &file_nevr_rtapi_proto_msgTypes[20]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *SNSConfigFailureV2Message) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*SNSConfigFailureV2Message) ProtoMessage() {}
+
+func (x *SNSConfigFailureV2Message) ProtoReflect() protoreflect.Message {
+	mi := &file_nevr_rtapi_proto_msgTypes[20]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use SNSConfigFailureV2Message.ProtoReflect.Descriptor instead.
+func (*SNSConfigFailureV2Message) Descriptor() ([]byte, []int) {
+	return file_nevr_rtapi_proto_rawDescGZIP(), []int{20}
+}
+
+func (x *SNSConfigFailureV2Message) GetError() string {
+	if x != nil {
+		return x.Error
+	}
+	return ""
+}
+
+// TODO: In-app purchase related request
+type SNSReconcileIAPMessage struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	SessionId     string                 `protobuf:"bytes,1,opt,name=session_id,json=sessionId,proto3" json:"session_id,omitempty"`
+	UserId        *XPlatformID           `protobuf:"bytes,2,opt,name=user_id,json=userId,proto3" json:"user_id,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *SNSReconcileIAPMessage) Reset() {
+	*x = SNSReconcileIAPMessage{}
+	mi := &file_nevr_rtapi_proto_msgTypes[21]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *SNSReconcileIAPMessage) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*SNSReconcileIAPMessage) ProtoMessage() {}
+
+func (x *SNSReconcileIAPMessage) ProtoReflect() protoreflect.Message {
+	mi := &file_nevr_rtapi_proto_msgTypes[21]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use SNSReconcileIAPMessage.ProtoReflect.Descriptor instead.
+func (*SNSReconcileIAPMessage) Descriptor() ([]byte, []int) {
+	return file_nevr_rtapi_proto_rawDescGZIP(), []int{21}
+}
+
+func (x *SNSReconcileIAPMessage) GetSessionId() string {
+	if x != nil {
+		return x.SessionId
+	}
+	return ""
+}
+
+func (x *SNSReconcileIAPMessage) GetUserId() *XPlatformID {
+	if x != nil {
+		return x.UserId
+	}
+	return nil
+}
+
+// client to server, requesting information
+// about the various in-game channels.
+type SNSChannelInfoRequestMessage struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *SNSChannelInfoRequestMessage) Reset() {
+	*x = SNSChannelInfoRequestMessage{}
+	mi := &file_nevr_rtapi_proto_msgTypes[22]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *SNSChannelInfoRequestMessage) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*SNSChannelInfoRequestMessage) ProtoMessage() {}
+
+func (x *SNSChannelInfoRequestMessage) ProtoReflect() protoreflect.Message {
+	mi := &file_nevr_rtapi_proto_msgTypes[22]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use SNSChannelInfoRequestMessage.ProtoReflect.Descriptor instead.
+func (*SNSChannelInfoRequestMessage) Descriptor() ([]byte, []int) {
+	return file_nevr_rtapi_proto_rawDescGZIP(), []int{22}
+}
+
+// server to client, providing the in-game
+// channel information requested by a previous ChannelInfoRequest.
+type SNSChannelInfoResponseMessage struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	ChannelInfo   string                 `protobuf:"bytes,1,opt,name=channel_info,json=channelInfo,proto3" json:"channel_info,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *SNSChannelInfoResponseMessage) Reset() {
+	*x = SNSChannelInfoResponseMessage{}
+	mi := &file_nevr_rtapi_proto_msgTypes[23]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *SNSChannelInfoResponseMessage) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*SNSChannelInfoResponseMessage) ProtoMessage() {}
+
+func (x *SNSChannelInfoResponseMessage) ProtoReflect() protoreflect.Message {
+	mi := &file_nevr_rtapi_proto_msgTypes[23]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use SNSChannelInfoResponseMessage.ProtoReflect.Descriptor instead.
+func (*SNSChannelInfoResponseMessage) Descriptor() ([]byte, []int) {
+	return file_nevr_rtapi_proto_rawDescGZIP(), []int{23}
+}
+
+func (x *SNSChannelInfoResponseMessage) GetChannelInfo() string {
+	if x != nil {
+		return x.ChannelInfo
+	}
+	return ""
+}
+
+// DocumentRequestv2: client to server requesting a document
+// resource.
+type SNSDocumentRequestV2Message struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Language      string                 `protobuf:"bytes,1,opt,name=language,proto3" json:"language,omitempty"`
+	Type          string                 `protobuf:"bytes,2,opt,name=type,proto3" json:"type,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *SNSDocumentRequestV2Message) Reset() {
+	*x = SNSDocumentRequestV2Message{}
+	mi := &file_nevr_rtapi_proto_msgTypes[24]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *SNSDocumentRequestV2Message) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*SNSDocumentRequestV2Message) ProtoMessage() {}
+
+func (x *SNSDocumentRequestV2Message) ProtoReflect() protoreflect.Message {
+	mi := &file_nevr_rtapi_proto_msgTypes[24]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use SNSDocumentRequestV2Message.ProtoReflect.Descriptor instead.
+func (*SNSDocumentRequestV2Message) Descriptor() ([]byte, []int) {
+	return file_nevr_rtapi_proto_rawDescGZIP(), []int{24}
+}
+
+func (x *SNSDocumentRequestV2Message) GetLanguage() string {
+	if x != nil {
+		return x.Language
+	}
+	return ""
+}
+
+func (x *SNSDocumentRequestV2Message) GetType() string {
+	if x != nil {
+		return x.Type
+	}
+	return ""
+}
+
+// server to the client indicating a
+// DocumentRequestv2 succeeded. It contains information about the requested
+// document resource.
+type SNSDocumentSuccessMessage struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	DocumentJson  string                 `protobuf:"bytes,1,opt,name=document_json,json=documentJson,proto3" json:"document_json,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *SNSDocumentSuccessMessage) Reset() {
+	*x = SNSDocumentSuccessMessage{}
+	mi := &file_nevr_rtapi_proto_msgTypes[25]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *SNSDocumentSuccessMessage) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*SNSDocumentSuccessMessage) ProtoMessage() {}
+
+func (x *SNSDocumentSuccessMessage) ProtoReflect() protoreflect.Message {
+	mi := &file_nevr_rtapi_proto_msgTypes[25]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use SNSDocumentSuccessMessage.ProtoReflect.Descriptor instead.
+func (*SNSDocumentSuccessMessage) Descriptor() ([]byte, []int) {
+	return file_nevr_rtapi_proto_rawDescGZIP(), []int{25}
+}
+
+func (x *SNSDocumentSuccessMessage) GetDocumentJson() string {
+	if x != nil {
+		return x.DocumentJson
+	}
+	return ""
+}
+
+// server to client indicating a
+// DocumentRequestv2 failed.
+type SNSDocumentFailureMessage struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Message       string                 `protobuf:"bytes,3,opt,name=message,proto3" json:"message,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *SNSDocumentFailureMessage) Reset() {
+	*x = SNSDocumentFailureMessage{}
+	mi := &file_nevr_rtapi_proto_msgTypes[26]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *SNSDocumentFailureMessage) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*SNSDocumentFailureMessage) ProtoMessage() {}
+
+func (x *SNSDocumentFailureMessage) ProtoReflect() protoreflect.Message {
+	mi := &file_nevr_rtapi_proto_msgTypes[26]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use SNSDocumentFailureMessage.ProtoReflect.Descriptor instead.
+func (*SNSDocumentFailureMessage) Descriptor() ([]byte, []int) {
+	return file_nevr_rtapi_proto_rawDescGZIP(), []int{26}
+}
+
+func (x *SNSDocumentFailureMessage) GetMessage() string {
+	if x != nil {
+		return x.Message
+	}
+	return ""
+}
+
+// LobbyCreateSessionRequestv9: client to server requesting the
+// creation of a new game session.
+type SNSLobbyCreateSessionRequestV9Message struct {
+	state           protoimpl.MessageState `protogen:"open.v1"`
+	Region          *SymbolHash            `protobuf:"bytes,1,opt,name=region,proto3" json:"region,omitempty"`
+	VersionLock     *SymbolHash            `protobuf:"bytes,2,opt,name=version_lock,json=versionLock,proto3" json:"version_lock,omitempty"`
+	Mode            *SymbolHash            `protobuf:"bytes,3,opt,name=mode,proto3" json:"mode,omitempty"`
+	Level           *SymbolHash            `protobuf:"bytes,4,opt,name=level,proto3" json:"level,omitempty"`
+	Platform        *SymbolHash            `protobuf:"bytes,5,opt,name=platform,proto3" json:"platform,omitempty"`
+	LoginSessionId  string                 `protobuf:"bytes,6,opt,name=login_session_id,json=loginSessionId,proto3" json:"login_session_id,omitempty"`
+	Entrants        []*XPlatformID         `protobuf:"bytes,7,rep,name=entrants,proto3" json:"entrants,omitempty"`
+	SessionSettings string                 `protobuf:"bytes,8,opt,name=session_settings,json=sessionSettings,proto3" json:"session_settings,omitempty"`
+	unknownFields   protoimpl.UnknownFields
+	sizeCache       protoimpl.SizeCache
+}
+
+func (x *SNSLobbyCreateSessionRequestV9Message) Reset() {
+	*x = SNSLobbyCreateSessionRequestV9Message{}
+	mi := &file_nevr_rtapi_proto_msgTypes[27]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *SNSLobbyCreateSessionRequestV9Message) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*SNSLobbyCreateSessionRequestV9Message) ProtoMessage() {}
+
+func (x *SNSLobbyCreateSessionRequestV9Message) ProtoReflect() protoreflect.Message {
+	mi := &file_nevr_rtapi_proto_msgTypes[27]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use SNSLobbyCreateSessionRequestV9Message.ProtoReflect.Descriptor instead.
+func (*SNSLobbyCreateSessionRequestV9Message) Descriptor() ([]byte, []int) {
+	return file_nevr_rtapi_proto_rawDescGZIP(), []int{27}
+}
+
+func (x *SNSLobbyCreateSessionRequestV9Message) GetRegion() *SymbolHash {
+	if x != nil {
+		return x.Region
+	}
+	return nil
+}
+
+func (x *SNSLobbyCreateSessionRequestV9Message) GetVersionLock() *SymbolHash {
+	if x != nil {
+		return x.VersionLock
+	}
+	return nil
+}
+
+func (x *SNSLobbyCreateSessionRequestV9Message) GetMode() *SymbolHash {
+	if x != nil {
+		return x.Mode
+	}
+	return nil
+}
+
+func (x *SNSLobbyCreateSessionRequestV9Message) GetLevel() *SymbolHash {
+	if x != nil {
+		return x.Level
+	}
+	return nil
+}
+
+func (x *SNSLobbyCreateSessionRequestV9Message) GetPlatform() *SymbolHash {
+	if x != nil {
+		return x.Platform
+	}
+	return nil
+}
+
+func (x *SNSLobbyCreateSessionRequestV9Message) GetLoginSessionId() string {
+	if x != nil {
+		return x.LoginSessionId
+	}
+	return ""
+}
+
+func (x *SNSLobbyCreateSessionRequestV9Message) GetEntrants() []*XPlatformID {
+	if x != nil {
+		return x.Entrants
+	}
+	return nil
+}
+
+func (x *SNSLobbyCreateSessionRequestV9Message) GetSessionSettings() string {
+	if x != nil {
+		return x.SessionSettings
+	}
+	return ""
+}
+
+// LobbyFindSessionRequestv11: client to server requesting
+// finding of an existing game session that matches the message's underlying
+// arguments.
+type SNSLobbyFindSessionRequestv11Message struct {
+	state           protoimpl.MessageState `protogen:"open.v1"`
+	VersionLock     *SymbolHash            `protobuf:"bytes,1,opt,name=version_lock,json=versionLock,proto3" json:"version_lock,omitempty"`
+	Mode            *SymbolHash            `protobuf:"bytes,2,opt,name=mode,proto3" json:"mode,omitempty"`
+	Level           *SymbolHash            `protobuf:"bytes,3,opt,name=level,proto3" json:"level,omitempty"`
+	Platform        *SymbolHash            `protobuf:"bytes,4,opt,name=platform,proto3" json:"platform,omitempty"`
+	LoginSessionId  string                 `protobuf:"bytes,5,opt,name=login_session_id,json=loginSessionId,proto3" json:"login_session_id,omitempty"`
+	CurrentLobbyId  string                 `protobuf:"bytes,6,opt,name=current_lobby_id,json=currentLobbyId,proto3" json:"current_lobby_id,omitempty"`
+	GroupId         string                 `protobuf:"bytes,7,opt,name=group_id,json=groupId,proto3" json:"group_id,omitempty"`
+	SessionSettings string                 `protobuf:"bytes,8,opt,name=session_settings,json=sessionSettings,proto3" json:"session_settings,omitempty"`
+	Entrants        []*XPlatformID         `protobuf:"bytes,9,rep,name=entrants,proto3" json:"entrants,omitempty"`
+	unknownFields   protoimpl.UnknownFields
+	sizeCache       protoimpl.SizeCache
+}
+
+func (x *SNSLobbyFindSessionRequestv11Message) Reset() {
+	*x = SNSLobbyFindSessionRequestv11Message{}
+	mi := &file_nevr_rtapi_proto_msgTypes[28]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *SNSLobbyFindSessionRequestv11Message) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*SNSLobbyFindSessionRequestv11Message) ProtoMessage() {}
+
+func (x *SNSLobbyFindSessionRequestv11Message) ProtoReflect() protoreflect.Message {
+	mi := &file_nevr_rtapi_proto_msgTypes[28]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use SNSLobbyFindSessionRequestv11Message.ProtoReflect.Descriptor instead.
+func (*SNSLobbyFindSessionRequestv11Message) Descriptor() ([]byte, []int) {
+	return file_nevr_rtapi_proto_rawDescGZIP(), []int{28}
+}
+
+func (x *SNSLobbyFindSessionRequestv11Message) GetVersionLock() *SymbolHash {
+	if x != nil {
+		return x.VersionLock
+	}
+	return nil
+}
+
+func (x *SNSLobbyFindSessionRequestv11Message) GetMode() *SymbolHash {
+	if x != nil {
+		return x.Mode
+	}
+	return nil
+}
+
+func (x *SNSLobbyFindSessionRequestv11Message) GetLevel() *SymbolHash {
+	if x != nil {
+		return x.Level
+	}
+	return nil
+}
+
+func (x *SNSLobbyFindSessionRequestv11Message) GetPlatform() *SymbolHash {
+	if x != nil {
+		return x.Platform
+	}
+	return nil
+}
+
+func (x *SNSLobbyFindSessionRequestv11Message) GetLoginSessionId() string {
+	if x != nil {
+		return x.LoginSessionId
+	}
+	return ""
+}
+
+func (x *SNSLobbyFindSessionRequestv11Message) GetCurrentLobbyId() string {
+	if x != nil {
+		return x.CurrentLobbyId
+	}
+	return ""
+}
+
+func (x *SNSLobbyFindSessionRequestv11Message) GetGroupId() string {
+	if x != nil {
+		return x.GroupId
+	}
+	return ""
+}
+
+func (x *SNSLobbyFindSessionRequestv11Message) GetSessionSettings() string {
+	if x != nil {
+		return x.SessionSettings
+	}
+	return ""
+}
+
+func (x *SNSLobbyFindSessionRequestv11Message) GetEntrants() []*XPlatformID {
+	if x != nil {
+		return x.Entrants
+	}
+	return nil
+}
+
+// LobbyJoinSessionRequestv7: client to server requesting joining
+// of a specified game session that matches the message's underlying arguments.
+type SNSLobbyJoinSessionRequestV7Message struct {
+	state          protoimpl.MessageState `protogen:"open.v1"`
+	LobbyId        string                 `protobuf:"bytes,1,opt,name=lobby_id,json=lobbyId,proto3" json:"lobby_id,omitempty"`
+	VersionLock    *SymbolHash            `protobuf:"bytes,2,opt,name=version_lock,json=versionLock,proto3" json:"version_lock,omitempty"`
+	Platform       *SymbolHash            `protobuf:"bytes,3,opt,name=platform,proto3" json:"platform,omitempty"`
+	LoginSessionId string                 `protobuf:"bytes,4,opt,name=login_session_id,json=loginSessionId,proto3" json:"login_session_id,omitempty"`
+	Flags          uint64                 `protobuf:"varint,5,opt,name=flags,proto3" json:"flags,omitempty"`
+	unknownFields  protoimpl.UnknownFields
+	sizeCache      protoimpl.SizeCache
+}
+
+func (x *SNSLobbyJoinSessionRequestV7Message) Reset() {
+	*x = SNSLobbyJoinSessionRequestV7Message{}
+	mi := &file_nevr_rtapi_proto_msgTypes[29]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *SNSLobbyJoinSessionRequestV7Message) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*SNSLobbyJoinSessionRequestV7Message) ProtoMessage() {}
+
+func (x *SNSLobbyJoinSessionRequestV7Message) ProtoReflect() protoreflect.Message {
+	mi := &file_nevr_rtapi_proto_msgTypes[29]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use SNSLobbyJoinSessionRequestV7Message.ProtoReflect.Descriptor instead.
+func (*SNSLobbyJoinSessionRequestV7Message) Descriptor() ([]byte, []int) {
+	return file_nevr_rtapi_proto_rawDescGZIP(), []int{29}
+}
+
+func (x *SNSLobbyJoinSessionRequestV7Message) GetLobbyId() string {
+	if x != nil {
+		return x.LobbyId
+	}
+	return ""
+}
+
+func (x *SNSLobbyJoinSessionRequestV7Message) GetVersionLock() *SymbolHash {
+	if x != nil {
+		return x.VersionLock
+	}
+	return nil
+}
+
+func (x *SNSLobbyJoinSessionRequestV7Message) GetPlatform() *SymbolHash {
+	if x != nil {
+		return x.Platform
+	}
+	return nil
+}
+
+func (x *SNSLobbyJoinSessionRequestV7Message) GetLoginSessionId() string {
+	if x != nil {
+		return x.LoginSessionId
+	}
+	return ""
+}
+
+func (x *SNSLobbyJoinSessionRequestV7Message) GetFlags() uint64 {
+	if x != nil {
+		return x.Flags
+	}
+	return 0
+}
+
+// server to the client, providing the
+// status of a previously sent LobbyMatchmakerStatusRequest.
+type SNSLobbyMatchmakerStatusMessage struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	StatusCode    uint32                 `protobuf:"varint,1,opt,name=status_code,json=statusCode,proto3" json:"status_code,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *SNSLobbyMatchmakerStatusMessage) Reset() {
+	*x = SNSLobbyMatchmakerStatusMessage{}
+	mi := &file_nevr_rtapi_proto_msgTypes[30]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *SNSLobbyMatchmakerStatusMessage) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*SNSLobbyMatchmakerStatusMessage) ProtoMessage() {}
+
+func (x *SNSLobbyMatchmakerStatusMessage) ProtoReflect() protoreflect.Message {
+	mi := &file_nevr_rtapi_proto_msgTypes[30]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use SNSLobbyMatchmakerStatusMessage.ProtoReflect.Descriptor instead.
+func (*SNSLobbyMatchmakerStatusMessage) Descriptor() ([]byte, []int) {
+	return file_nevr_rtapi_proto_rawDescGZIP(), []int{30}
+}
+
+func (x *SNSLobbyMatchmakerStatusMessage) GetStatusCode() uint32 {
+	if x != nil {
+		return x.StatusCode
+	}
+	return 0
+}
+
+// client to server, requesting the
+// status of a pending matchmaking operation.
+type SNSLobbyMatchmakerStatusRequestMessage struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Unk0          uint32                 `protobuf:"varint,1,opt,name=unk0,proto3" json:"unk0,omitempty"`
+	Unk1          uint32                 `protobuf:"varint,2,opt,name=unk1,proto3" json:"unk1,omitempty"`
+	Unk2          uint32                 `protobuf:"varint,3,opt,name=unk2,proto3" json:"unk2,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *SNSLobbyMatchmakerStatusRequestMessage) Reset() {
+	*x = SNSLobbyMatchmakerStatusRequestMessage{}
+	mi := &file_nevr_rtapi_proto_msgTypes[31]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *SNSLobbyMatchmakerStatusRequestMessage) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*SNSLobbyMatchmakerStatusRequestMessage) ProtoMessage() {}
+
+func (x *SNSLobbyMatchmakerStatusRequestMessage) ProtoReflect() protoreflect.Message {
+	mi := &file_nevr_rtapi_proto_msgTypes[31]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use SNSLobbyMatchmakerStatusRequestMessage.ProtoReflect.Descriptor instead.
+func (*SNSLobbyMatchmakerStatusRequestMessage) Descriptor() ([]byte, []int) {
+	return file_nevr_rtapi_proto_rawDescGZIP(), []int{31}
+}
+
+func (x *SNSLobbyMatchmakerStatusRequestMessage) GetUnk0() uint32 {
+	if x != nil {
+		return x.Unk0
+	}
+	return 0
+}
+
+func (x *SNSLobbyMatchmakerStatusRequestMessage) GetUnk1() uint32 {
+	if x != nil {
+		return x.Unk1
+	}
+	return 0
+}
+
+func (x *SNSLobbyMatchmakerStatusRequestMessage) GetUnk2() uint32 {
+	if x != nil {
+		return x.Unk2
+	}
+	return 0
+}
+
+// client to the server, indicating
+// intent to cancel pending matchmaker operations.
+type SNSLobbyPendingSessionCancelV2Message struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	SessionId     string                 `protobuf:"bytes,1,opt,name=session_id,json=sessionId,proto3" json:"session_id,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *SNSLobbyPendingSessionCancelV2Message) Reset() {
+	*x = SNSLobbyPendingSessionCancelV2Message{}
+	mi := &file_nevr_rtapi_proto_msgTypes[32]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *SNSLobbyPendingSessionCancelV2Message) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*SNSLobbyPendingSessionCancelV2Message) ProtoMessage() {}
+
+func (x *SNSLobbyPendingSessionCancelV2Message) ProtoReflect() protoreflect.Message {
+	mi := &file_nevr_rtapi_proto_msgTypes[32]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use SNSLobbyPendingSessionCancelV2Message.ProtoReflect.Descriptor instead.
+func (*SNSLobbyPendingSessionCancelV2Message) Descriptor() ([]byte, []int) {
+	return file_nevr_rtapi_proto_rawDescGZIP(), []int{32}
+}
+
+func (x *SNSLobbyPendingSessionCancelV2Message) GetSessionId() string {
+	if x != nil {
+		return x.SessionId
+	}
+	return ""
+}
+
+// LobbyPingRequestv3: server to client, requesting the client
+// ping a set of endpoints to determine the optimal game server to connect to.
+type SNSLobbyPingRequestV3Message struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Unk0          uint32                 `protobuf:"varint,1,opt,name=unk0,proto3" json:"unk0,omitempty"`
+	Unk1          uint32                 `protobuf:"varint,2,opt,name=unk1,proto3" json:"unk1,omitempty"`
+	RttMax        uint32                 `protobuf:"varint,3,opt,name=rtt_max,json=rttMax,proto3" json:"rtt_max,omitempty"`
+	Endpoints     []string               `protobuf:"bytes,4,rep,name=endpoints,proto3" json:"endpoints,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *SNSLobbyPingRequestV3Message) Reset() {
+	*x = SNSLobbyPingRequestV3Message{}
+	mi := &file_nevr_rtapi_proto_msgTypes[33]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *SNSLobbyPingRequestV3Message) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*SNSLobbyPingRequestV3Message) ProtoMessage() {}
+
+func (x *SNSLobbyPingRequestV3Message) ProtoReflect() protoreflect.Message {
+	mi := &file_nevr_rtapi_proto_msgTypes[33]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use SNSLobbyPingRequestV3Message.ProtoReflect.Descriptor instead.
+func (*SNSLobbyPingRequestV3Message) Descriptor() ([]byte, []int) {
+	return file_nevr_rtapi_proto_rawDescGZIP(), []int{33}
+}
+
+func (x *SNSLobbyPingRequestV3Message) GetUnk0() uint32 {
+	if x != nil {
+		return x.Unk0
+	}
+	return 0
+}
+
+func (x *SNSLobbyPingRequestV3Message) GetUnk1() uint32 {
+	if x != nil {
+		return x.Unk1
+	}
+	return 0
+}
+
+func (x *SNSLobbyPingRequestV3Message) GetRttMax() uint32 {
+	if x != nil {
+		return x.RttMax
+	}
+	return 0
+}
+
+func (x *SNSLobbyPingRequestV3Message) GetEndpoints() []string {
+	if x != nil {
+		return x.Endpoints
+	}
+	return nil
+}
+
+// client to server, providing the results of
+// a ping request. This tells the server which game servers are optimal for the
+// client.
+type SNSLobbyPingResponseMessage struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Results       []string               `protobuf:"bytes,1,rep,name=results,proto3" json:"results,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *SNSLobbyPingResponseMessage) Reset() {
+	*x = SNSLobbyPingResponseMessage{}
+	mi := &file_nevr_rtapi_proto_msgTypes[34]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *SNSLobbyPingResponseMessage) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*SNSLobbyPingResponseMessage) ProtoMessage() {}
+
+func (x *SNSLobbyPingResponseMessage) ProtoReflect() protoreflect.Message {
+	mi := &file_nevr_rtapi_proto_msgTypes[34]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use SNSLobbyPingResponseMessage.ProtoReflect.Descriptor instead.
+func (*SNSLobbyPingResponseMessage) Descriptor() ([]byte, []int) {
+	return file_nevr_rtapi_proto_rawDescGZIP(), []int{34}
+}
+
+func (x *SNSLobbyPingResponseMessage) GetResults() []string {
+	if x != nil {
+		return x.Results
+	}
+	return nil
+}
+
+// LobbyPlayerSessionsRequestv5: client to server, asking it to
+// obtain game server sessions for a given list of user identifiers.
+type SNSLobbyPlayerSessionsRequestV5Message struct {
+	state          protoimpl.MessageState `protogen:"open.v1"`
+	LoginSessionId string                 `protobuf:"bytes,1,opt,name=login_session_id,json=loginSessionId,proto3" json:"login_session_id,omitempty"`
+	UserId         *XPlatformID           `protobuf:"bytes,2,opt,name=user_id,json=userId,proto3" json:"user_id,omitempty"`
+	LobbyId        string                 `protobuf:"bytes,3,opt,name=lobby_id,json=lobbyId,proto3" json:"lobby_id,omitempty"`
+	Platform       *SymbolHash            `protobuf:"bytes,4,opt,name=platform,proto3" json:"platform,omitempty"`
+	PlayerXpids    []*XPlatformID         `protobuf:"bytes,5,rep,name=player_xpids,json=playerXpids,proto3" json:"player_xpids,omitempty"`
+	unknownFields  protoimpl.UnknownFields
+	sizeCache      protoimpl.SizeCache
+}
+
+func (x *SNSLobbyPlayerSessionsRequestV5Message) Reset() {
+	*x = SNSLobbyPlayerSessionsRequestV5Message{}
+	mi := &file_nevr_rtapi_proto_msgTypes[35]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *SNSLobbyPlayerSessionsRequestV5Message) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*SNSLobbyPlayerSessionsRequestV5Message) ProtoMessage() {}
+
+func (x *SNSLobbyPlayerSessionsRequestV5Message) ProtoReflect() protoreflect.Message {
+	mi := &file_nevr_rtapi_proto_msgTypes[35]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use SNSLobbyPlayerSessionsRequestV5Message.ProtoReflect.Descriptor instead.
+func (*SNSLobbyPlayerSessionsRequestV5Message) Descriptor() ([]byte, []int) {
+	return file_nevr_rtapi_proto_rawDescGZIP(), []int{35}
+}
+
+func (x *SNSLobbyPlayerSessionsRequestV5Message) GetLoginSessionId() string {
+	if x != nil {
+		return x.LoginSessionId
+	}
+	return ""
+}
+
+func (x *SNSLobbyPlayerSessionsRequestV5Message) GetUserId() *XPlatformID {
+	if x != nil {
+		return x.UserId
+	}
+	return nil
+}
+
+func (x *SNSLobbyPlayerSessionsRequestV5Message) GetLobbyId() string {
+	if x != nil {
+		return x.LobbyId
+	}
+	return ""
+}
+
+func (x *SNSLobbyPlayerSessionsRequestV5Message) GetPlatform() *SymbolHash {
+	if x != nil {
+		return x.Platform
+	}
+	return nil
+}
+
+func (x *SNSLobbyPlayerSessionsRequestV5Message) GetPlayerXpids() []*XPlatformID {
+	if x != nil {
+		return x.PlayerXpids
+	}
+	return nil
+}
+
+// LobbySessionFailurev4: server to client indicating a lobby
+// session request failed.
+type SNSLobbySessionFailureV4Message struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	ErrorCode     uint32                 `protobuf:"varint,1,opt,name=error_code,json=errorCode,proto3" json:"error_code,omitempty"`
+	Message       string                 `protobuf:"bytes,2,opt,name=message,proto3" json:"message,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *SNSLobbySessionFailureV4Message) Reset() {
+	*x = SNSLobbySessionFailureV4Message{}
+	mi := &file_nevr_rtapi_proto_msgTypes[36]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *SNSLobbySessionFailureV4Message) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*SNSLobbySessionFailureV4Message) ProtoMessage() {}
+
+func (x *SNSLobbySessionFailureV4Message) ProtoReflect() protoreflect.Message {
+	mi := &file_nevr_rtapi_proto_msgTypes[36]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use SNSLobbySessionFailureV4Message.ProtoReflect.Descriptor instead.
+func (*SNSLobbySessionFailureV4Message) Descriptor() ([]byte, []int) {
+	return file_nevr_rtapi_proto_rawDescGZIP(), []int{36}
+}
+
+func (x *SNSLobbySessionFailureV4Message) GetErrorCode() uint32 {
+	if x != nil {
+		return x.ErrorCode
+	}
+	return 0
+}
+
+func (x *SNSLobbySessionFailureV4Message) GetMessage() string {
+	if x != nil {
+		return x.Message
+	}
+	return ""
+}
+
+// LobbySessionSuccessv5: server to client indicating that a
+// request to create/join/find a game server session succeeded.
+type SNSLobbySessionSuccessV5Message struct {
+	state              protoimpl.MessageState `protogen:"open.v1"`
+	GameMode           uint64                 `protobuf:"fixed64,1,opt,name=game_mode,json=gameMode,proto3" json:"game_mode,omitempty"`
+	LobbyId            string                 `protobuf:"bytes,2,opt,name=lobby_id,json=lobbyId,proto3" json:"lobby_id,omitempty"`
+	GroupId            string                 `protobuf:"bytes,3,opt,name=group_id,json=groupId,proto3" json:"group_id,omitempty"`
+	Endpoint           string                 `protobuf:"bytes,4,opt,name=endpoint,proto3" json:"endpoint,omitempty"`
+	TeamIndex          int32                  `protobuf:"varint,5,opt,name=team_index,json=teamIndex,proto3" json:"team_index,omitempty"`
+	Unk1               uint32                 `protobuf:"varint,6,opt,name=unk1,proto3" json:"unk1,omitempty"`
+	HeadsetType        int32                  `protobuf:"varint,7,opt,name=headset_type,json=headsetType,proto3" json:"headset_type,omitempty"`
+	ServerEncoderFlags uint64                 `protobuf:"varint,8,opt,name=server_encoder_flags,json=serverEncoderFlags,proto3" json:"server_encoder_flags,omitempty"`
+	ClientEncoderFlags uint64                 `protobuf:"varint,9,opt,name=client_encoder_flags,json=clientEncoderFlags,proto3" json:"client_encoder_flags,omitempty"`
+	ServerSequenceId   uint64                 `protobuf:"varint,10,opt,name=server_sequence_id,json=serverSequenceId,proto3" json:"server_sequence_id,omitempty"`
+	ServerMacKey       []byte                 `protobuf:"bytes,11,opt,name=server_mac_key,json=serverMacKey,proto3" json:"server_mac_key,omitempty"`
+	ServerEncKey       []byte                 `protobuf:"bytes,12,opt,name=server_enc_key,json=serverEncKey,proto3" json:"server_enc_key,omitempty"`
+	ServerRandomKey    []byte                 `protobuf:"bytes,13,opt,name=server_random_key,json=serverRandomKey,proto3" json:"server_random_key,omitempty"`
+	ClientSequenceId   uint64                 `protobuf:"varint,14,opt,name=client_sequence_id,json=clientSequenceId,proto3" json:"client_sequence_id,omitempty"`
+	unknownFields      protoimpl.UnknownFields
+	sizeCache          protoimpl.SizeCache
+}
+
+func (x *SNSLobbySessionSuccessV5Message) Reset() {
+	*x = SNSLobbySessionSuccessV5Message{}
+	mi := &file_nevr_rtapi_proto_msgTypes[37]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *SNSLobbySessionSuccessV5Message) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*SNSLobbySessionSuccessV5Message) ProtoMessage() {}
+
+func (x *SNSLobbySessionSuccessV5Message) ProtoReflect() protoreflect.Message {
+	mi := &file_nevr_rtapi_proto_msgTypes[37]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use SNSLobbySessionSuccessV5Message.ProtoReflect.Descriptor instead.
+func (*SNSLobbySessionSuccessV5Message) Descriptor() ([]byte, []int) {
+	return file_nevr_rtapi_proto_rawDescGZIP(), []int{37}
+}
+
+func (x *SNSLobbySessionSuccessV5Message) GetGameMode() uint64 {
+	if x != nil {
+		return x.GameMode
+	}
+	return 0
+}
+
+func (x *SNSLobbySessionSuccessV5Message) GetLobbyId() string {
+	if x != nil {
+		return x.LobbyId
+	}
+	return ""
+}
+
+func (x *SNSLobbySessionSuccessV5Message) GetGroupId() string {
+	if x != nil {
+		return x.GroupId
+	}
+	return ""
+}
+
+func (x *SNSLobbySessionSuccessV5Message) GetEndpoint() string {
+	if x != nil {
+		return x.Endpoint
+	}
+	return ""
+}
+
+func (x *SNSLobbySessionSuccessV5Message) GetTeamIndex() int32 {
+	if x != nil {
+		return x.TeamIndex
+	}
+	return 0
+}
+
+func (x *SNSLobbySessionSuccessV5Message) GetUnk1() uint32 {
+	if x != nil {
+		return x.Unk1
+	}
+	return 0
+}
+
+func (x *SNSLobbySessionSuccessV5Message) GetHeadsetType() int32 {
+	if x != nil {
+		return x.HeadsetType
+	}
+	return 0
+}
+
+func (x *SNSLobbySessionSuccessV5Message) GetServerEncoderFlags() uint64 {
+	if x != nil {
+		return x.ServerEncoderFlags
+	}
+	return 0
+}
+
+func (x *SNSLobbySessionSuccessV5Message) GetClientEncoderFlags() uint64 {
+	if x != nil {
+		return x.ClientEncoderFlags
+	}
+	return 0
+}
+
+func (x *SNSLobbySessionSuccessV5Message) GetServerSequenceId() uint64 {
+	if x != nil {
+		return x.ServerSequenceId
+	}
+	return 0
+}
+
+func (x *SNSLobbySessionSuccessV5Message) GetServerMacKey() []byte {
+	if x != nil {
+		return x.ServerMacKey
+	}
+	return nil
+}
+
+func (x *SNSLobbySessionSuccessV5Message) GetServerEncKey() []byte {
+	if x != nil {
+		return x.ServerEncKey
+	}
+	return nil
+}
+
+func (x *SNSLobbySessionSuccessV5Message) GetServerRandomKey() []byte {
+	if x != nil {
+		return x.ServerRandomKey
+	}
+	return nil
+}
+
+func (x *SNSLobbySessionSuccessV5Message) GetClientSequenceId() uint64 {
+	if x != nil {
+		return x.ClientSequenceId
+	}
+	return 0
+}
+
+// server to client indicating their
+// LoggedInUserProfileRequest failed.
+type SNSLoggedInUserProfileFailureMessage struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	UserId        *XPlatformID           `protobuf:"bytes,1,opt,name=user_id,json=userId,proto3" json:"user_id,omitempty"`
+	StatusCode    uint64                 `protobuf:"varint,2,opt,name=status_code,json=statusCode,proto3" json:"status_code,omitempty"`
+	ErrorMessage  string                 `protobuf:"bytes,3,opt,name=error_message,json=errorMessage,proto3" json:"error_message,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *SNSLoggedInUserProfileFailureMessage) Reset() {
+	*x = SNSLoggedInUserProfileFailureMessage{}
+	mi := &file_nevr_rtapi_proto_msgTypes[38]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *SNSLoggedInUserProfileFailureMessage) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*SNSLoggedInUserProfileFailureMessage) ProtoMessage() {}
+
+func (x *SNSLoggedInUserProfileFailureMessage) ProtoReflect() protoreflect.Message {
+	mi := &file_nevr_rtapi_proto_msgTypes[38]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use SNSLoggedInUserProfileFailureMessage.ProtoReflect.Descriptor instead.
+func (*SNSLoggedInUserProfileFailureMessage) Descriptor() ([]byte, []int) {
+	return file_nevr_rtapi_proto_rawDescGZIP(), []int{38}
+}
+
+func (x *SNSLoggedInUserProfileFailureMessage) GetUserId() *XPlatformID {
+	if x != nil {
+		return x.UserId
+	}
+	return nil
+}
+
+func (x *SNSLoggedInUserProfileFailureMessage) GetStatusCode() uint64 {
+	if x != nil {
+		return x.StatusCode
+	}
+	return 0
+}
+
+func (x *SNSLoggedInUserProfileFailureMessage) GetErrorMessage() string {
+	if x != nil {
+		return x.ErrorMessage
+	}
+	return ""
+}
+
+// client to server requesting the
+// user profile for their logged-in account.
+type SNSLoggedInUserProfileRequestMessage struct {
+	state              protoimpl.MessageState `protogen:"open.v1"`
+	SessionId          string                 `protobuf:"bytes,1,opt,name=session_id,json=sessionId,proto3" json:"session_id,omitempty"`
+	UserId             *XPlatformID           `protobuf:"bytes,2,opt,name=user_id,json=userId,proto3" json:"user_id,omitempty"`
+	ProfileRequestData string                 `protobuf:"bytes,3,opt,name=profile_request_data,json=profileRequestData,proto3" json:"profile_request_data,omitempty"`
+	unknownFields      protoimpl.UnknownFields
+	sizeCache          protoimpl.SizeCache
+}
+
+func (x *SNSLoggedInUserProfileRequestMessage) Reset() {
+	*x = SNSLoggedInUserProfileRequestMessage{}
+	mi := &file_nevr_rtapi_proto_msgTypes[39]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *SNSLoggedInUserProfileRequestMessage) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*SNSLoggedInUserProfileRequestMessage) ProtoMessage() {}
+
+func (x *SNSLoggedInUserProfileRequestMessage) ProtoReflect() protoreflect.Message {
+	mi := &file_nevr_rtapi_proto_msgTypes[39]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use SNSLoggedInUserProfileRequestMessage.ProtoReflect.Descriptor instead.
+func (*SNSLoggedInUserProfileRequestMessage) Descriptor() ([]byte, []int) {
+	return file_nevr_rtapi_proto_rawDescGZIP(), []int{39}
+}
+
+func (x *SNSLoggedInUserProfileRequestMessage) GetSessionId() string {
+	if x != nil {
+		return x.SessionId
+	}
+	return ""
+}
+
+func (x *SNSLoggedInUserProfileRequestMessage) GetUserId() *XPlatformID {
+	if x != nil {
+		return x.UserId
+	}
+	return nil
+}
+
+func (x *SNSLoggedInUserProfileRequestMessage) GetProfileRequestData() string {
+	if x != nil {
+		return x.ProfileRequestData
+	}
+	return ""
+}
+
+// server to the client indicating a
+// LoggedInUserProfileRequest succeeded. It contains profile information about
+// the logged-in user.
+type SNSLoggedInUserProfileSuccessMessage struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	UserId        *XPlatformID           `protobuf:"bytes,1,opt,name=user_id,json=userId,proto3" json:"user_id,omitempty"`
+	Payload       string                 `protobuf:"bytes,2,opt,name=payload,proto3" json:"payload,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *SNSLoggedInUserProfileSuccessMessage) Reset() {
+	*x = SNSLoggedInUserProfileSuccessMessage{}
+	mi := &file_nevr_rtapi_proto_msgTypes[40]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *SNSLoggedInUserProfileSuccessMessage) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*SNSLoggedInUserProfileSuccessMessage) ProtoMessage() {}
+
+func (x *SNSLoggedInUserProfileSuccessMessage) ProtoReflect() protoreflect.Message {
+	mi := &file_nevr_rtapi_proto_msgTypes[40]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use SNSLoggedInUserProfileSuccessMessage.ProtoReflect.Descriptor instead.
+func (*SNSLoggedInUserProfileSuccessMessage) Descriptor() ([]byte, []int) {
+	return file_nevr_rtapi_proto_rawDescGZIP(), []int{40}
+}
+
+func (x *SNSLoggedInUserProfileSuccessMessage) GetUserId() *XPlatformID {
+	if x != nil {
+		return x.UserId
+	}
+	return nil
+}
+
+func (x *SNSLoggedInUserProfileSuccessMessage) GetPayload() string {
+	if x != nil {
+		return x.Payload
+	}
+	return ""
+}
+
+// server to client indicating their LoginRequest
+// failed.
+type SNSLogInFailureMessage struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	UserId        *XPlatformID           `protobuf:"bytes,1,opt,name=user_id,json=userId,proto3" json:"user_id,omitempty"`
+	StatusCode    uint64                 `protobuf:"varint,2,opt,name=status_code,json=statusCode,proto3" json:"status_code,omitempty"`
+	ErrorMessage  string                 `protobuf:"bytes,3,opt,name=error_message,json=errorMessage,proto3" json:"error_message,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *SNSLogInFailureMessage) Reset() {
+	*x = SNSLogInFailureMessage{}
+	mi := &file_nevr_rtapi_proto_msgTypes[41]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *SNSLogInFailureMessage) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*SNSLogInFailureMessage) ProtoMessage() {}
+
+func (x *SNSLogInFailureMessage) ProtoReflect() protoreflect.Message {
+	mi := &file_nevr_rtapi_proto_msgTypes[41]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use SNSLogInFailureMessage.ProtoReflect.Descriptor instead.
+func (*SNSLogInFailureMessage) Descriptor() ([]byte, []int) {
+	return file_nevr_rtapi_proto_rawDescGZIP(), []int{41}
+}
+
+func (x *SNSLogInFailureMessage) GetUserId() *XPlatformID {
+	if x != nil {
+		return x.UserId
+	}
+	return nil
+}
+
+func (x *SNSLogInFailureMessage) GetStatusCode() uint64 {
+	if x != nil {
+		return x.StatusCode
+	}
+	return 0
+}
+
+func (x *SNSLogInFailureMessage) GetErrorMessage() string {
+	if x != nil {
+		return x.ErrorMessage
+	}
+	return ""
+}
+
+// client to server requesting for a user sign-in.
+type SNSLogInRequestV2Message struct {
+	state             protoimpl.MessageState `protogen:"open.v1"`
+	PreviousSessionId string                 `protobuf:"bytes,1,opt,name=previous_session_id,json=previousSessionId,proto3" json:"previous_session_id,omitempty"`
+	UserId            *XPlatformID           `protobuf:"bytes,2,opt,name=user_id,json=userId,proto3" json:"user_id,omitempty"`
+	Payload           string                 `protobuf:"bytes,3,opt,name=payload,proto3" json:"payload,omitempty"`
+	unknownFields     protoimpl.UnknownFields
+	sizeCache         protoimpl.SizeCache
+}
+
+func (x *SNSLogInRequestV2Message) Reset() {
+	*x = SNSLogInRequestV2Message{}
+	mi := &file_nevr_rtapi_proto_msgTypes[42]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *SNSLogInRequestV2Message) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*SNSLogInRequestV2Message) ProtoMessage() {}
+
+func (x *SNSLogInRequestV2Message) ProtoReflect() protoreflect.Message {
+	mi := &file_nevr_rtapi_proto_msgTypes[42]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use SNSLogInRequestV2Message.ProtoReflect.Descriptor instead.
+func (*SNSLogInRequestV2Message) Descriptor() ([]byte, []int) {
+	return file_nevr_rtapi_proto_rawDescGZIP(), []int{42}
+}
+
+func (x *SNSLogInRequestV2Message) GetPreviousSessionId() string {
+	if x != nil {
+		return x.PreviousSessionId
+	}
+	return ""
+}
+
+func (x *SNSLogInRequestV2Message) GetUserId() *XPlatformID {
+	if x != nil {
+		return x.UserId
+	}
+	return nil
+}
+
+func (x *SNSLogInRequestV2Message) GetPayload() string {
+	if x != nil {
+		return x.Payload
+	}
+	return ""
+}
+
+// server to client, providing the settings for
+// the user after a LoginRequest.
+type SNSLoginSettingsMessage struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	ConfigData    string                 `protobuf:"bytes,1,opt,name=config_data,json=configData,proto3" json:"config_data,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *SNSLoginSettingsMessage) Reset() {
+	*x = SNSLoginSettingsMessage{}
+	mi := &file_nevr_rtapi_proto_msgTypes[43]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *SNSLoginSettingsMessage) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*SNSLoginSettingsMessage) ProtoMessage() {}
+
+func (x *SNSLoginSettingsMessage) ProtoReflect() protoreflect.Message {
+	mi := &file_nevr_rtapi_proto_msgTypes[43]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use SNSLoginSettingsMessage.ProtoReflect.Descriptor instead.
+func (*SNSLoginSettingsMessage) Descriptor() ([]byte, []int) {
+	return file_nevr_rtapi_proto_rawDescGZIP(), []int{43}
+}
+
+func (x *SNSLoginSettingsMessage) GetConfigData() string {
+	if x != nil {
+		return x.ConfigData
+	}
+	return ""
+}
+
+// server to client indicating their LoginRequest
+// succeeded, providing them a new session token.
+type SNSLogInSuccessMessage struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	SessionId     string                 `protobuf:"bytes,1,opt,name=session_id,json=sessionId,proto3" json:"session_id,omitempty"`
+	UserId        *XPlatformID           `protobuf:"bytes,2,opt,name=user_id,json=userId,proto3" json:"user_id,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *SNSLogInSuccessMessage) Reset() {
+	*x = SNSLogInSuccessMessage{}
+	mi := &file_nevr_rtapi_proto_msgTypes[44]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *SNSLogInSuccessMessage) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*SNSLogInSuccessMessage) ProtoMessage() {}
+
+func (x *SNSLogInSuccessMessage) ProtoReflect() protoreflect.Message {
+	mi := &file_nevr_rtapi_proto_msgTypes[44]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use SNSLogInSuccessMessage.ProtoReflect.Descriptor instead.
+func (*SNSLogInSuccessMessage) Descriptor() ([]byte, []int) {
+	return file_nevr_rtapi_proto_rawDescGZIP(), []int{44}
+}
+
+func (x *SNSLogInSuccessMessage) GetSessionId() string {
+	if x != nil {
+		return x.SessionId
+	}
+	return ""
+}
+
+func (x *SNSLogInSuccessMessage) GetUserId() *XPlatformID {
+	if x != nil {
+		return x.UserId
+	}
+	return nil
+}
+
+// server to client indicating their
+// OtherUserProfileRequest failed.
+type SNSOtherUserProfileFailureMessage struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	UserId        *XPlatformID           `protobuf:"bytes,1,opt,name=user_id,json=userId,proto3" json:"user_id,omitempty"`
+	StatusCode    uint64                 `protobuf:"varint,2,opt,name=status_code,json=statusCode,proto3" json:"status_code,omitempty"`
+	Message       string                 `protobuf:"bytes,3,opt,name=message,proto3" json:"message,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *SNSOtherUserProfileFailureMessage) Reset() {
+	*x = SNSOtherUserProfileFailureMessage{}
+	mi := &file_nevr_rtapi_proto_msgTypes[45]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *SNSOtherUserProfileFailureMessage) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*SNSOtherUserProfileFailureMessage) ProtoMessage() {}
+
+func (x *SNSOtherUserProfileFailureMessage) ProtoReflect() protoreflect.Message {
+	mi := &file_nevr_rtapi_proto_msgTypes[45]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use SNSOtherUserProfileFailureMessage.ProtoReflect.Descriptor instead.
+func (*SNSOtherUserProfileFailureMessage) Descriptor() ([]byte, []int) {
+	return file_nevr_rtapi_proto_rawDescGZIP(), []int{45}
+}
+
+func (x *SNSOtherUserProfileFailureMessage) GetUserId() *XPlatformID {
+	if x != nil {
+		return x.UserId
+	}
+	return nil
+}
+
+func (x *SNSOtherUserProfileFailureMessage) GetStatusCode() uint64 {
+	if x != nil {
+		return x.StatusCode
+	}
+	return 0
+}
+
+func (x *SNSOtherUserProfileFailureMessage) GetMessage() string {
+	if x != nil {
+		return x.Message
+	}
+	return ""
+}
+
+// client to server requesting the user
+// profile for another user.
+type SNSOtherUserProfileRequestMessage struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	UserId        *XPlatformID           `protobuf:"bytes,1,opt,name=user_id,json=userId,proto3" json:"user_id,omitempty"`
+	Data          string                 `protobuf:"bytes,2,opt,name=data,proto3" json:"data,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *SNSOtherUserProfileRequestMessage) Reset() {
+	*x = SNSOtherUserProfileRequestMessage{}
+	mi := &file_nevr_rtapi_proto_msgTypes[46]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *SNSOtherUserProfileRequestMessage) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*SNSOtherUserProfileRequestMessage) ProtoMessage() {}
+
+func (x *SNSOtherUserProfileRequestMessage) ProtoReflect() protoreflect.Message {
+	mi := &file_nevr_rtapi_proto_msgTypes[46]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use SNSOtherUserProfileRequestMessage.ProtoReflect.Descriptor instead.
+func (*SNSOtherUserProfileRequestMessage) Descriptor() ([]byte, []int) {
+	return file_nevr_rtapi_proto_rawDescGZIP(), []int{46}
+}
+
+func (x *SNSOtherUserProfileRequestMessage) GetUserId() *XPlatformID {
+	if x != nil {
+		return x.UserId
+	}
+	return nil
+}
+
+func (x *SNSOtherUserProfileRequestMessage) GetData() string {
+	if x != nil {
+		return x.Data
+	}
+	return ""
+}
+
+// server to the client indicating a
+// OtherUserProfileRequest succeeded. It contains profile information about the
+// requested user.
+type SNSOtherUserProfileSuccessMessage struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	UserId        *XPlatformID           `protobuf:"bytes,1,opt,name=user_id,json=userId,proto3" json:"user_id,omitempty"`
+	Profile       string                 `protobuf:"bytes,2,opt,name=profile,proto3" json:"profile,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *SNSOtherUserProfileSuccessMessage) Reset() {
+	*x = SNSOtherUserProfileSuccessMessage{}
+	mi := &file_nevr_rtapi_proto_msgTypes[47]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *SNSOtherUserProfileSuccessMessage) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*SNSOtherUserProfileSuccessMessage) ProtoMessage() {}
+
+func (x *SNSOtherUserProfileSuccessMessage) ProtoReflect() protoreflect.Message {
+	mi := &file_nevr_rtapi_proto_msgTypes[47]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use SNSOtherUserProfileSuccessMessage.ProtoReflect.Descriptor instead.
+func (*SNSOtherUserProfileSuccessMessage) Descriptor() ([]byte, []int) {
+	return file_nevr_rtapi_proto_rawDescGZIP(), []int{47}
+}
+
+func (x *SNSOtherUserProfileSuccessMessage) GetUserId() *XPlatformID {
+	if x != nil {
+		return x.UserId
+	}
+	return nil
+}
+
+func (x *SNSOtherUserProfileSuccessMessage) GetProfile() string {
+	if x != nil {
+		return x.Profile
+	}
+	return ""
+}
+
+// TODO: In-app purchase related response
+type SNSReconcileIAPResultMessage struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	UserId        *XPlatformID           `protobuf:"bytes,1,opt,name=user_id,json=userId,proto3" json:"user_id,omitempty"`
+	IapData       string                 `protobuf:"bytes,2,opt,name=iap_data,json=iapData,proto3" json:"iap_data,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *SNSReconcileIAPResultMessage) Reset() {
+	*x = SNSReconcileIAPResultMessage{}
+	mi := &file_nevr_rtapi_proto_msgTypes[48]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *SNSReconcileIAPResultMessage) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*SNSReconcileIAPResultMessage) ProtoMessage() {}
+
+func (x *SNSReconcileIAPResultMessage) ProtoReflect() protoreflect.Message {
+	mi := &file_nevr_rtapi_proto_msgTypes[48]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use SNSReconcileIAPResultMessage.ProtoReflect.Descriptor instead.
+func (*SNSReconcileIAPResultMessage) Descriptor() ([]byte, []int) {
+	return file_nevr_rtapi_proto_rawDescGZIP(), []int{48}
+}
+
+func (x *SNSReconcileIAPResultMessage) GetUserId() *XPlatformID {
+	if x != nil {
+		return x.UserId
+	}
+	return nil
+}
+
+func (x *SNSReconcileIAPResultMessage) GetIapData() string {
+	if x != nil {
+		return x.IapData
+	}
+	return ""
+}
+
+// RemoteLogSetv3: client to the server logging client-side data,
+// as established by login profile data that tells the client how verbosely to
+// log. It contains arbitrary log data about informational state changes,
+// warnings, and errors.
+type SNSRemoteLogSetV3Message struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	UserId        *XPlatformID           `protobuf:"bytes,1,opt,name=user_id,json=userId,proto3" json:"user_id,omitempty"`
+	LogLevel      uint64                 `protobuf:"varint,6,opt,name=log_level,json=logLevel,proto3" json:"log_level,omitempty"`
+	Logs          []string               `protobuf:"bytes,7,rep,name=logs,proto3" json:"logs,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *SNSRemoteLogSetV3Message) Reset() {
+	*x = SNSRemoteLogSetV3Message{}
+	mi := &file_nevr_rtapi_proto_msgTypes[49]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *SNSRemoteLogSetV3Message) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*SNSRemoteLogSetV3Message) ProtoMessage() {}
+
+func (x *SNSRemoteLogSetV3Message) ProtoReflect() protoreflect.Message {
+	mi := &file_nevr_rtapi_proto_msgTypes[49]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use SNSRemoteLogSetV3Message.ProtoReflect.Descriptor instead.
+func (*SNSRemoteLogSetV3Message) Descriptor() ([]byte, []int) {
+	return file_nevr_rtapi_proto_rawDescGZIP(), []int{49}
+}
+
+func (x *SNSRemoteLogSetV3Message) GetUserId() *XPlatformID {
+	if x != nil {
+		return x.UserId
+	}
+	return nil
+}
+
+func (x *SNSRemoteLogSetV3Message) GetLogLevel() uint64 {
+	if x != nil {
+		return x.LogLevel
+	}
+	return 0
+}
+
+func (x *SNSRemoteLogSetV3Message) GetLogs() []string {
+	if x != nil {
+		return x.Logs
+	}
+	return nil
+}
+
+// client to server requesting the server update
+// the user's client profile.
+type SNSUpdateProfileMessage struct {
+	state          protoimpl.MessageState `protogen:"open.v1"`
+	LoginSessionId string                 `protobuf:"bytes,1,opt,name=login_session_id,json=loginSessionId,proto3" json:"login_session_id,omitempty"`
+	UserId         *XPlatformID           `protobuf:"bytes,2,opt,name=user_id,json=userId,proto3" json:"user_id,omitempty"`
+	Payload        string                 `protobuf:"bytes,3,opt,name=payload,proto3" json:"payload,omitempty"`
+	unknownFields  protoimpl.UnknownFields
+	sizeCache      protoimpl.SizeCache
+}
+
+func (x *SNSUpdateProfileMessage) Reset() {
+	*x = SNSUpdateProfileMessage{}
+	mi := &file_nevr_rtapi_proto_msgTypes[50]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *SNSUpdateProfileMessage) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*SNSUpdateProfileMessage) ProtoMessage() {}
+
+func (x *SNSUpdateProfileMessage) ProtoReflect() protoreflect.Message {
+	mi := &file_nevr_rtapi_proto_msgTypes[50]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use SNSUpdateProfileMessage.ProtoReflect.Descriptor instead.
+func (*SNSUpdateProfileMessage) Descriptor() ([]byte, []int) {
+	return file_nevr_rtapi_proto_rawDescGZIP(), []int{50}
+}
+
+func (x *SNSUpdateProfileMessage) GetLoginSessionId() string {
+	if x != nil {
+		return x.LoginSessionId
+	}
+	return ""
+}
+
+func (x *SNSUpdateProfileMessage) GetUserId() *XPlatformID {
+	if x != nil {
+		return x.UserId
+	}
+	return nil
+}
+
+func (x *SNSUpdateProfileMessage) GetPayload() string {
+	if x != nil {
+		return x.Payload
+	}
+	return ""
+}
+
+// server to client indicating their
+// UpdateProfile request succeeded.
+type SNSUpdateProfileSuccessMessage struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	UserId        *XPlatformID           `protobuf:"bytes,1,opt,name=user_id,json=userId,proto3" json:"user_id,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *SNSUpdateProfileSuccessMessage) Reset() {
+	*x = SNSUpdateProfileSuccessMessage{}
+	mi := &file_nevr_rtapi_proto_msgTypes[51]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *SNSUpdateProfileSuccessMessage) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*SNSUpdateProfileSuccessMessage) ProtoMessage() {}
+
+func (x *SNSUpdateProfileSuccessMessage) ProtoReflect() protoreflect.Message {
+	mi := &file_nevr_rtapi_proto_msgTypes[51]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use SNSUpdateProfileSuccessMessage.ProtoReflect.Descriptor instead.
+func (*SNSUpdateProfileSuccessMessage) Descriptor() ([]byte, []int) {
+	return file_nevr_rtapi_proto_rawDescGZIP(), []int{51}
+}
+
+func (x *SNSUpdateProfileSuccessMessage) GetUserId() *XPlatformID {
+	if x != nil {
+		return x.UserId
+	}
+	return nil
+}
+
+// server to client indicating their
+// UpdateProfile request failed.
+type SNSUpdateProfileFailureMessage struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	UserId        *XPlatformID           `protobuf:"bytes,1,opt,name=user_id,json=userId,proto3" json:"user_id,omitempty"`
+	StatusCode    uint64                 `protobuf:"varint,2,opt,name=status_code,json=statusCode,proto3" json:"status_code,omitempty"`
+	Message       string                 `protobuf:"bytes,3,opt,name=message,proto3" json:"message,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *SNSUpdateProfileFailureMessage) Reset() {
+	*x = SNSUpdateProfileFailureMessage{}
+	mi := &file_nevr_rtapi_proto_msgTypes[52]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *SNSUpdateProfileFailureMessage) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*SNSUpdateProfileFailureMessage) ProtoMessage() {}
+
+func (x *SNSUpdateProfileFailureMessage) ProtoReflect() protoreflect.Message {
+	mi := &file_nevr_rtapi_proto_msgTypes[52]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use SNSUpdateProfileFailureMessage.ProtoReflect.Descriptor instead.
+func (*SNSUpdateProfileFailureMessage) Descriptor() ([]byte, []int) {
+	return file_nevr_rtapi_proto_rawDescGZIP(), []int{52}
+}
+
+func (x *SNSUpdateProfileFailureMessage) GetUserId() *XPlatformID {
+	if x != nil {
+		return x.UserId
+	}
+	return nil
+}
+
+func (x *SNSUpdateProfileFailureMessage) GetStatusCode() uint64 {
+	if x != nil {
+		return x.StatusCode
+	}
+	return 0
+}
+
+func (x *SNSUpdateProfileFailureMessage) GetMessage() string {
+	if x != nil {
+		return x.Message
+	}
+	return ""
+}
+
+// client to server requesting
+// the server update the user's client profile.
+type SNSUserServerProfileUpdateRequestMessage struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	UserId        *XPlatformID           `protobuf:"bytes,1,opt,name=user_id,json=userId,proto3" json:"user_id,omitempty"`
+	Payload       string                 `protobuf:"bytes,2,opt,name=payload,proto3" json:"payload,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *SNSUserServerProfileUpdateRequestMessage) Reset() {
+	*x = SNSUserServerProfileUpdateRequestMessage{}
+	mi := &file_nevr_rtapi_proto_msgTypes[53]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *SNSUserServerProfileUpdateRequestMessage) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*SNSUserServerProfileUpdateRequestMessage) ProtoMessage() {}
+
+func (x *SNSUserServerProfileUpdateRequestMessage) ProtoReflect() protoreflect.Message {
+	mi := &file_nevr_rtapi_proto_msgTypes[53]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use SNSUserServerProfileUpdateRequestMessage.ProtoReflect.Descriptor instead.
+func (*SNSUserServerProfileUpdateRequestMessage) Descriptor() ([]byte, []int) {
+	return file_nevr_rtapi_proto_rawDescGZIP(), []int{53}
+}
+
+func (x *SNSUserServerProfileUpdateRequestMessage) GetUserId() *XPlatformID {
+	if x != nil {
+		return x.UserId
+	}
+	return nil
+}
+
+func (x *SNSUserServerProfileUpdateRequestMessage) GetPayload() string {
+	if x != nil {
+		return x.Payload
+	}
+	return ""
+}
+
+// server to client indicating
+// their UserServerProfileUpdateRequest request succeeded.
+type SNSUserServerProfileUpdateSuccessMessage struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	UserId        *XPlatformID           `protobuf:"bytes,1,opt,name=user_id,json=userId,proto3" json:"user_id,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *SNSUserServerProfileUpdateSuccessMessage) Reset() {
+	*x = SNSUserServerProfileUpdateSuccessMessage{}
+	mi := &file_nevr_rtapi_proto_msgTypes[54]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *SNSUserServerProfileUpdateSuccessMessage) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*SNSUserServerProfileUpdateSuccessMessage) ProtoMessage() {}
+
+func (x *SNSUserServerProfileUpdateSuccessMessage) ProtoReflect() protoreflect.Message {
+	mi := &file_nevr_rtapi_proto_msgTypes[54]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use SNSUserServerProfileUpdateSuccessMessage.ProtoReflect.Descriptor instead.
+func (*SNSUserServerProfileUpdateSuccessMessage) Descriptor() ([]byte, []int) {
+	return file_nevr_rtapi_proto_rawDescGZIP(), []int{54}
+}
+
+func (x *SNSUserServerProfileUpdateSuccessMessage) GetUserId() *XPlatformID {
+	if x != nil {
+		return x.UserId
+	}
+	return nil
+}
+
 var File_nevr_rtapi_proto protoreflect.FileDescriptor
 
 const file_nevr_rtapi_proto_rawDesc = "" +
 	"\n" +
 	"\x10nevr_rtapi.proto\x12\n" +
-	"nevr.rtapi\x1a\x1agameapi/nevr_gameapi.proto\x1a\x1fgoogle/protobuf/timestamp.proto\"\x8d\b\n" +
+	"nevr.rtapi\x1a\x19telemetry/telemetry.proto\x1a\x1fgoogle/protobuf/timestamp.proto\"\xd9'\n" +
 	"\bEnvelope\x12\x10\n" +
 	"\x03cid\x18\x01 \x01(\tR\x03cid\x12)\n" +
-	"\x05error\x18\x02 \x01(\v2\x11.nevr.rtapi.ErrorH\x00R\x05error\x12H\n" +
-	"\rsessionUpdate\x18\x03 \x01(\v2 .nevr.rtapi.SessionUpdateMessageH\x00R\rsessionUpdate\x12c\n" +
-	"\x16connectivityStatistics\x18\x04 \x01(\v2).nevr.rtapi.ConnectivityStatisticsMessageH\x00R\x16connectivityStatistics\x12q\n" +
-	"\x1dgameServerRegistrationRequest\x18\x05 \x01(\v2).nevr.rtapi.GameServerRegistrationMessageH\x00R\x1dgameServerRegistrationRequest\x12q\n" +
-	"\x1dgameServerRegistrationSuccess\x18\x06 \x01(\v2).nevr.rtapi.GameServerRegistrationSuccessH\x00R\x1dgameServerRegistrationSuccess\x12W\n" +
-	"\x12lobbySessionCreate\x18\a \x01(\v2%.nevr.rtapi.LobbySessionCreateMessageH\x00R\x12lobbySessionCreate\x12T\n" +
-	"\x11lobbySessionEvent\x18\b \x01(\v2$.nevr.rtapi.LobbySessionEventMessageH\x00R\x11lobbySessionEvent\x12a\n" +
-	"\x15lobbyEntrantConnected\x18\t \x01(\v2).nevr.rtapi.LobbyEntrantsConnectedMessageH\x00R\x15lobbyEntrantConnected\x12Z\n" +
-	"\x13lobbyEntrantsAccept\x18\n" +
-	" \x01(\v2&.nevr.rtapi.LobbyEntrantsAcceptMessageH\x00R\x13lobbyEntrantsAccept\x12Z\n" +
-	"\x13lobbyEntrantsReject\x18\v \x01(\v2&.nevr.rtapi.LobbyEntrantsRejectMessageH\x00R\x13lobbyEntrantsReject\x12Z\n" +
-	"\x13lobbyEntrantRemoved\x18\f \x01(\v2&.nevr.rtapi.LobbyEntrantRemovedMessageH\x00R\x13lobbyEntrantRemovedB\t\n" +
+	"\x05error\x18\x02 \x01(\v2\x11.nevr.rtapi.ErrorH\x00R\x05error\x12V\n" +
+	"\x13lobby_session_state\x18\x03 \x01(\v2$.nevr.rtapi.LobbySessionStateMessageH\x00R\x11lobbySessionState\x12d\n" +
+	"\x17connectivity_statistics\x18\x04 \x01(\v2).nevr.rtapi.ConnectivityStatisticsMessageH\x00R\x16connectivityStatistics\x12e\n" +
+	"\x18game_server_registration\x18\x05 \x01(\v2).nevr.rtapi.GameServerRegistrationMessageH\x00R\x16gameServerRegistration\x12{\n" +
+	" game_server_registration_success\x18\x06 \x01(\v20.nevr.rtapi.GameServerRegistrationSuccessMessageH\x00R\x1dgameServerRegistrationSuccess\x12Y\n" +
+	"\x14lobby_session_create\x18\a \x01(\v2%.nevr.rtapi.LobbySessionCreateMessageH\x00R\x12lobbySessionCreate\x12V\n" +
+	"\x13lobby_session_event\x18\b \x01(\v2$.nevr.rtapi.LobbySessionEventMessageH\x00R\x11lobbySessionEvent\x12_\n" +
+	"\x15lobby_entra_connected\x18\t \x01(\v2).nevr.rtapi.LobbyEntrantsConnectedMessageH\x00R\x13lobbyEntraConnected\x12Z\n" +
+	"\x14lobby_entrant_accept\x18\n" +
+	" \x01(\v2&.nevr.rtapi.LobbyEntrantsAcceptMessageH\x00R\x12lobbyEntrantAccept\x12Z\n" +
+	"\x14lobby_entrant_reject\x18\v \x01(\v2&.nevr.rtapi.LobbyEntrantsRejectMessageH\x00R\x12lobbyEntrantReject\x12Z\n" +
+	"\x14lobby_entrant_remove\x18\f \x01(\v2&.nevr.rtapi.LobbyEntrantRemovedMessageH\x00R\x12lobbyEntrantRemove\x12H\n" +
+	"\x0funknown_message\x18\r \x01(\v2\x1d.nevr.rtapi.SNSUnknownMessageH\x00R\x0eunknownMessage\x12i\n" +
+	"\x1ctcp_connection_require_event\x18\x0e \x01(\v2&.nevr.rtapi.STCPConnectionRequireEventH\x00R\x19tcpConnectionRequireEvent\x12o\n" +
+	"\x1etcp_connection_unrequire_event\x18\x0f \x01(\v2(.nevr.rtapi.STCPConnectionUnrequireEventH\x00R\x1btcpConnectionUnrequireEvent\x12S\n" +
+	"\x11config_request_v2\x18\x10 \x01(\v2%.nevr.rtapi.SNSConfigRequestV2MessageH\x00R\x0fconfigRequestV2\x12S\n" +
+	"\x11config_success_v2\x18\x11 \x01(\v2%.nevr.rtapi.SNSConfigSuccessV2MessageH\x00R\x0fconfigSuccessV2\x12S\n" +
+	"\x11config_failure_v2\x18\x12 \x01(\v2%.nevr.rtapi.SNSConfigFailureV2MessageH\x00R\x0fconfigFailureV2\x12I\n" +
+	"\rreconcile_iap\x18\x13 \x01(\v2\".nevr.rtapi.SNSReconcileIAPMessageH\x00R\freconcileIap\x12\\\n" +
+	"\x14channel_info_request\x18\x14 \x01(\v2(.nevr.rtapi.SNSChannelInfoRequestMessageH\x00R\x12channelInfoRequest\x12_\n" +
+	"\x15channel_info_response\x18\x15 \x01(\v2).nevr.rtapi.SNSChannelInfoResponseMessageH\x00R\x13channelInfoResponse\x12Y\n" +
+	"\x13document_request_v2\x18\x16 \x01(\v2'.nevr.rtapi.SNSDocumentRequestV2MessageH\x00R\x11documentRequestV2\x12R\n" +
+	"\x10document_success\x18\x17 \x01(\v2%.nevr.rtapi.SNSDocumentSuccessMessageH\x00R\x0fdocumentSuccess\x12R\n" +
+	"\x10document_failure\x18\x18 \x01(\v2%.nevr.rtapi.SNSDocumentFailureMessageH\x00R\x0fdocumentFailure\x12y\n" +
+	"\x1flobby_create_session_request_v9\x18\x19 \x01(\v21.nevr.rtapi.SNSLobbyCreateSessionRequestV9MessageH\x00R\x1blobbyCreateSessionRequestV9\x12v\n" +
+	"\x1elobby_find_session_request_v11\x18\x1a \x01(\v20.nevr.rtapi.SNSLobbyFindSessionRequestv11MessageH\x00R\x1alobbyFindSessionRequestV11\x12s\n" +
+	"\x1dlobby_join_session_request_v7\x18\x1b \x01(\v2/.nevr.rtapi.SNSLobbyJoinSessionRequestV7MessageH\x00R\x19lobbyJoinSessionRequestV7\x12e\n" +
+	"\x17lobby_matchmaker_status\x18\x1c \x01(\v2+.nevr.rtapi.SNSLobbyMatchmakerStatusMessageH\x00R\x15lobbyMatchmakerStatus\x12{\n" +
+	"\x1flobby_matchmaker_status_request\x18\x1d \x01(\v22.nevr.rtapi.SNSLobbyMatchmakerStatusRequestMessageH\x00R\x1clobbyMatchmakerStatusRequest\x12y\n" +
+	"\x1flobby_pending_session_cancel_v2\x18\x1e \x01(\v21.nevr.rtapi.SNSLobbyPendingSessionCancelV2MessageH\x00R\x1blobbyPendingSessionCancelV2\x12]\n" +
+	"\x15lobby_ping_request_v3\x18\x1f \x01(\v2(.nevr.rtapi.SNSLobbyPingRequestV3MessageH\x00R\x12lobbyPingRequestV3\x12Y\n" +
+	"\x13lobby_ping_response\x18  \x01(\v2'.nevr.rtapi.SNSLobbyPingResponseMessageH\x00R\x11lobbyPingResponse\x12|\n" +
+	" lobby_player_sessions_request_v5\x18! \x01(\v22.nevr.rtapi.SNSLobbyPlayerSessionsRequestV5MessageH\x00R\x1clobbyPlayerSessionsRequestV5\x12f\n" +
+	"\x18lobby_session_failure_v4\x18\" \x01(\v2+.nevr.rtapi.SNSLobbySessionFailureV4MessageH\x00R\x15lobbySessionFailureV4\x12f\n" +
+	"\x18lobby_session_success_v5\x18# \x01(\v2+.nevr.rtapi.SNSLobbySessionSuccessV5MessageH\x00R\x15lobbySessionSuccessV5\x12v\n" +
+	"\x1elogged_in_user_profile_failure\x18$ \x01(\v20.nevr.rtapi.SNSLoggedInUserProfileFailureMessageH\x00R\x1aloggedInUserProfileFailure\x12v\n" +
+	"\x1elogged_in_user_profile_request\x18% \x01(\v20.nevr.rtapi.SNSLoggedInUserProfileRequestMessageH\x00R\x1aloggedInUserProfileRequest\x12v\n" +
+	"\x1elogged_in_user_profile_success\x18& \x01(\v20.nevr.rtapi.SNSLoggedInUserProfileSuccessMessageH\x00R\x1aloggedInUserProfileSuccess\x12J\n" +
+	"\x0elog_in_failure\x18' \x01(\v2\".nevr.rtapi.SNSLogInFailureMessageH\x00R\flogInFailure\x12Q\n" +
+	"\x11log_in_request_v2\x18( \x01(\v2$.nevr.rtapi.SNSLogInRequestV2MessageH\x00R\x0elogInRequestV2\x12L\n" +
+	"\x0elogin_settings\x18) \x01(\v2#.nevr.rtapi.SNSLoginSettingsMessageH\x00R\rloginSettings\x12J\n" +
+	"\x0elog_in_success\x18* \x01(\v2\".nevr.rtapi.SNSLogInSuccessMessageH\x00R\flogInSuccess\x12l\n" +
+	"\x1aother_user_profile_failure\x18+ \x01(\v2-.nevr.rtapi.SNSOtherUserProfileFailureMessageH\x00R\x17otherUserProfileFailure\x12l\n" +
+	"\x1aother_user_profile_request\x18, \x01(\v2-.nevr.rtapi.SNSOtherUserProfileRequestMessageH\x00R\x17otherUserProfileRequest\x12l\n" +
+	"\x1aother_user_profile_success\x18- \x01(\v2-.nevr.rtapi.SNSOtherUserProfileSuccessMessageH\x00R\x17otherUserProfileSuccess\x12\\\n" +
+	"\x14reconcile_iap_result\x18. \x01(\v2(.nevr.rtapi.SNSReconcileIAPResultMessageH\x00R\x12reconcileIapResult\x12Q\n" +
+	"\x11remote_log_set_v3\x18/ \x01(\v2$.nevr.rtapi.SNSRemoteLogSetV3MessageH\x00R\x0eremoteLogSetV3\x12L\n" +
+	"\x0eupdate_profile\x180 \x01(\v2#.nevr.rtapi.SNSUpdateProfileMessageH\x00R\rupdateProfile\x12b\n" +
+	"\x16update_profile_success\x181 \x01(\v2*.nevr.rtapi.SNSUpdateProfileSuccessMessageH\x00R\x14updateProfileSuccess\x12b\n" +
+	"\x16update_profile_failure\x182 \x01(\v2*.nevr.rtapi.SNSUpdateProfileFailureMessageH\x00R\x14updateProfileFailure\x12\x82\x01\n" +
+	"\"user_server_profile_update_request\x183 \x01(\v24.nevr.rtapi.SNSUserServerProfileUpdateRequestMessageH\x00R\x1euserServerProfileUpdateRequest\x12\x82\x01\n" +
+	"\"user_server_profile_update_success\x184 \x01(\v24.nevr.rtapi.SNSUserServerProfileUpdateSuccessMessageH\x00R\x1euserServerProfileUpdateSuccessB\t\n" +
 	"\amessage\"\xbf\x02\n" +
 	"\x05Error\x12\x12\n" +
 	"\x04code\x18\x01 \x01(\x05R\x04code\x12\x18\n" +
@@ -1380,8 +4633,8 @@ const file_nevr_rtapi_proto_rawDesc = "" +
 	"\x06region\x18\x05 \x01(\x04R\x06region\x12!\n" +
 	"\fversion_lock\x18\x06 \x01(\x04R\vversionLock\x12&\n" +
 	"\x0ftime_step_usecs\x18\a \x01(\rR\rtimeStepUsecs\x12\x18\n" +
-	"\aversion\x18\b \x01(\tR\aversion\"l\n" +
-	"\x1dGameServerRegistrationSuccess\x12\x1b\n" +
+	"\aversion\x18\b \x01(\tR\aversion\"s\n" +
+	"$GameServerRegistrationSuccessMessage\x12\x1b\n" +
 	"\tserver_id\x18\x01 \x01(\x04R\bserverId\x12.\n" +
 	"\x13external_ip_address\x18\x02 \x01(\tR\x11externalIpAddress\"j\n" +
 	"\x1dLobbyEntrantsConnectedMessage\x12(\n" +
@@ -1438,18 +4691,18 @@ const file_nevr_rtapi_proto_rawDesc = "" +
 	"\tLobbyType\x12\n" +
 	"\n" +
 	"\x06PUBLIC\x10\x00\x12\v\n" +
-	"\aPRIVATE\x10\x01\"\xe5\x02\n" +
-	"\x14SessionUpdateMessage\x12(\n" +
-	"\x10lobby_session_id\x18\x01 \x01(\tR\x0elobbySessionId\x12&\n" +
-	"\x0ftime_step_usecs\x18\x02 \x01(\rR\rtimeStepUsecs\x12\x1d\n" +
+	"\aPRIVATE\x10\x01\"\x90\x02\n" +
+	"\x18LobbySessionStateMessage\x12&\n" +
+	"\x0ftime_step_usecs\x18\x01 \x01(\rR\rtimeStepUsecs\x12\x1d\n" +
 	"\n" +
-	"tick_count\x18\x03 \x01(\x04R\ttickCount\x12#\n" +
-	"\rentrant_count\x18\x04 \x01(\x04R\fentrantCount\x128\n" +
-	"\ttimestamp\x18\x05 \x01(\v2\x1a.google.protobuf.TimestampR\ttimestamp\x12<\n" +
-	"\asession\x18\x06 \x01(\v2\x1d.nevr.gameapi.SessionResponseR\fsession_data\x12?\n" +
-	"\n" +
-	"user_bones\x18\a \x01(\v2\x1f.nevr.gameapi.UserBonesResponseR\n" +
-	"user_bones\"\xb2\x02\n" +
+	"tick_count\x18\x02 \x01(\x04R\ttickCount\x12U\n" +
+	"\x11session_state_raw\x18\x03 \x01(\v2'.nevr.rtapi.LobbySessionStateRawMessageH\x00R\x0fsessionStateRaw\x12M\n" +
+	"\rsession_state\x18\x04 \x01(\v2&.nevr.telemetry.LobbySessionStateFrameH\x00R\fsessionStateB\a\n" +
+	"\x05state\"\xae\x01\n" +
+	"\x1bLobbySessionStateRawMessage\x128\n" +
+	"\ttimestamp\x18\x01 \x01(\v2\x1a.google.protobuf.TimestampR\ttimestamp\x12'\n" +
+	"\x0fsession_payload\x18\x02 \x01(\fR\x0esessionPayload\x12,\n" +
+	"\x12user_bones_payload\x18\x03 \x01(\fR\x10userBonesPayload\"\xb2\x02\n" +
 	"\x1dConnectivityStatisticsMessage\x12*\n" +
 	"\x11packet_loss_ratio\x18\x01 \x01(\x02R\x0fpacketLossRatio\x12+\n" +
 	"\x11prediction_offset\x18\x02 \x01(\x04R\x10predictionOffset\x12\x16\n" +
@@ -1459,7 +4712,171 @@ const file_nevr_rtapi_proto_rawDesc = "" +
 	"\vserver_time\x18\x05 \x01(\x04R\n" +
 	"serverTime\x120\n" +
 	"\x14pending_server_delta\x18\x06 \x01(\x03R\x12pendingServerDelta\x12.\n" +
-	"\x13discarded_frame_pct\x18\a \x01(\x02R\x11discardedFramePctBl\n" +
+	"\x13discarded_frame_pct\x18\a \x01(\x02R\x11discardedFramePct\"\"\n" +
+	"\n" +
+	"SymbolHash\x12\x14\n" +
+	"\x05value\x18\x01 \x01(\x06R\x05value\"\x1d\n" +
+	"\vXPlatformID\x12\x0e\n" +
+	"\x02id\x18\x01 \x01(\tR\x02id\"S\n" +
+	"\x11SNSUnknownMessage\x12*\n" +
+	"\x04type\x18\x01 \x01(\v2\x16.nevr.rtapi.SymbolHashR\x04type\x12\x12\n" +
+	"\x04data\x18\x02 \x01(\fR\x04data\"\x1c\n" +
+	"\x1aSTCPConnectionRequireEvent\"\x1e\n" +
+	"\x1cSTCPConnectionUnrequireEvent\">\n" +
+	"\x19SNSConfigRequestV2Message\x12!\n" +
+	"\frequest_json\x18\x01 \x01(\tR\vrequestJson\"\x83\x01\n" +
+	"\x19SNSConfigSuccessV2Message\x12*\n" +
+	"\x04type\x18\x01 \x01(\v2\x16.nevr.rtapi.SymbolHashR\x04type\x12&\n" +
+	"\x02id\x18\x02 \x01(\v2\x16.nevr.rtapi.SymbolHashR\x02id\x12\x12\n" +
+	"\x04data\x18\x03 \x01(\tR\x04data\"1\n" +
+	"\x19SNSConfigFailureV2Message\x12\x14\n" +
+	"\x05error\x18\x01 \x01(\tR\x05error\"i\n" +
+	"\x16SNSReconcileIAPMessage\x12\x1d\n" +
+	"\n" +
+	"session_id\x18\x01 \x01(\tR\tsessionId\x120\n" +
+	"\auser_id\x18\x02 \x01(\v2\x17.nevr.rtapi.XPlatformIDR\x06userId\"\x1e\n" +
+	"\x1cSNSChannelInfoRequestMessage\"B\n" +
+	"\x1dSNSChannelInfoResponseMessage\x12!\n" +
+	"\fchannel_info\x18\x01 \x01(\tR\vchannelInfo\"M\n" +
+	"\x1bSNSDocumentRequestV2Message\x12\x1a\n" +
+	"\blanguage\x18\x01 \x01(\tR\blanguage\x12\x12\n" +
+	"\x04type\x18\x02 \x01(\tR\x04type\"@\n" +
+	"\x19SNSDocumentSuccessMessage\x12#\n" +
+	"\rdocument_json\x18\x01 \x01(\tR\fdocumentJson\"5\n" +
+	"\x19SNSDocumentFailureMessage\x12\x18\n" +
+	"\amessage\x18\x03 \x01(\tR\amessage\"\xaa\x03\n" +
+	"%SNSLobbyCreateSessionRequestV9Message\x12.\n" +
+	"\x06region\x18\x01 \x01(\v2\x16.nevr.rtapi.SymbolHashR\x06region\x129\n" +
+	"\fversion_lock\x18\x02 \x01(\v2\x16.nevr.rtapi.SymbolHashR\vversionLock\x12*\n" +
+	"\x04mode\x18\x03 \x01(\v2\x16.nevr.rtapi.SymbolHashR\x04mode\x12,\n" +
+	"\x05level\x18\x04 \x01(\v2\x16.nevr.rtapi.SymbolHashR\x05level\x122\n" +
+	"\bplatform\x18\x05 \x01(\v2\x16.nevr.rtapi.SymbolHashR\bplatform\x12(\n" +
+	"\x10login_session_id\x18\x06 \x01(\tR\x0eloginSessionId\x123\n" +
+	"\bentrants\x18\a \x03(\v2\x17.nevr.rtapi.XPlatformIDR\bentrants\x12)\n" +
+	"\x10session_settings\x18\b \x01(\tR\x0fsessionSettings\"\xbe\x03\n" +
+	"$SNSLobbyFindSessionRequestv11Message\x129\n" +
+	"\fversion_lock\x18\x01 \x01(\v2\x16.nevr.rtapi.SymbolHashR\vversionLock\x12*\n" +
+	"\x04mode\x18\x02 \x01(\v2\x16.nevr.rtapi.SymbolHashR\x04mode\x12,\n" +
+	"\x05level\x18\x03 \x01(\v2\x16.nevr.rtapi.SymbolHashR\x05level\x122\n" +
+	"\bplatform\x18\x04 \x01(\v2\x16.nevr.rtapi.SymbolHashR\bplatform\x12(\n" +
+	"\x10login_session_id\x18\x05 \x01(\tR\x0eloginSessionId\x12(\n" +
+	"\x10current_lobby_id\x18\x06 \x01(\tR\x0ecurrentLobbyId\x12\x19\n" +
+	"\bgroup_id\x18\a \x01(\tR\agroupId\x12)\n" +
+	"\x10session_settings\x18\b \x01(\tR\x0fsessionSettings\x123\n" +
+	"\bentrants\x18\t \x03(\v2\x17.nevr.rtapi.XPlatformIDR\bentrants\"\xef\x01\n" +
+	"#SNSLobbyJoinSessionRequestV7Message\x12\x19\n" +
+	"\blobby_id\x18\x01 \x01(\tR\alobbyId\x129\n" +
+	"\fversion_lock\x18\x02 \x01(\v2\x16.nevr.rtapi.SymbolHashR\vversionLock\x122\n" +
+	"\bplatform\x18\x03 \x01(\v2\x16.nevr.rtapi.SymbolHashR\bplatform\x12(\n" +
+	"\x10login_session_id\x18\x04 \x01(\tR\x0eloginSessionId\x12\x14\n" +
+	"\x05flags\x18\x05 \x01(\x04R\x05flags\"B\n" +
+	"\x1fSNSLobbyMatchmakerStatusMessage\x12\x1f\n" +
+	"\vstatus_code\x18\x01 \x01(\rR\n" +
+	"statusCode\"d\n" +
+	"&SNSLobbyMatchmakerStatusRequestMessage\x12\x12\n" +
+	"\x04unk0\x18\x01 \x01(\rR\x04unk0\x12\x12\n" +
+	"\x04unk1\x18\x02 \x01(\rR\x04unk1\x12\x12\n" +
+	"\x04unk2\x18\x03 \x01(\rR\x04unk2\"F\n" +
+	"%SNSLobbyPendingSessionCancelV2Message\x12\x1d\n" +
+	"\n" +
+	"session_id\x18\x01 \x01(\tR\tsessionId\"}\n" +
+	"\x1cSNSLobbyPingRequestV3Message\x12\x12\n" +
+	"\x04unk0\x18\x01 \x01(\rR\x04unk0\x12\x12\n" +
+	"\x04unk1\x18\x02 \x01(\rR\x04unk1\x12\x17\n" +
+	"\artt_max\x18\x03 \x01(\rR\x06rttMax\x12\x1c\n" +
+	"\tendpoints\x18\x04 \x03(\tR\tendpoints\"7\n" +
+	"\x1bSNSLobbyPingResponseMessage\x12\x18\n" +
+	"\aresults\x18\x01 \x03(\tR\aresults\"\x8f\x02\n" +
+	"&SNSLobbyPlayerSessionsRequestV5Message\x12(\n" +
+	"\x10login_session_id\x18\x01 \x01(\tR\x0eloginSessionId\x120\n" +
+	"\auser_id\x18\x02 \x01(\v2\x17.nevr.rtapi.XPlatformIDR\x06userId\x12\x19\n" +
+	"\blobby_id\x18\x03 \x01(\tR\alobbyId\x122\n" +
+	"\bplatform\x18\x04 \x01(\v2\x16.nevr.rtapi.SymbolHashR\bplatform\x12:\n" +
+	"\fplayer_xpids\x18\x05 \x03(\v2\x17.nevr.rtapi.XPlatformIDR\vplayerXpids\"Z\n" +
+	"\x1fSNSLobbySessionFailureV4Message\x12\x1d\n" +
+	"\n" +
+	"error_code\x18\x01 \x01(\rR\terrorCode\x12\x18\n" +
+	"\amessage\x18\x02 \x01(\tR\amessage\"\x9e\x04\n" +
+	"\x1fSNSLobbySessionSuccessV5Message\x12\x1b\n" +
+	"\tgame_mode\x18\x01 \x01(\x06R\bgameMode\x12\x19\n" +
+	"\blobby_id\x18\x02 \x01(\tR\alobbyId\x12\x19\n" +
+	"\bgroup_id\x18\x03 \x01(\tR\agroupId\x12\x1a\n" +
+	"\bendpoint\x18\x04 \x01(\tR\bendpoint\x12\x1d\n" +
+	"\n" +
+	"team_index\x18\x05 \x01(\x05R\tteamIndex\x12\x12\n" +
+	"\x04unk1\x18\x06 \x01(\rR\x04unk1\x12!\n" +
+	"\fheadset_type\x18\a \x01(\x05R\vheadsetType\x120\n" +
+	"\x14server_encoder_flags\x18\b \x01(\x04R\x12serverEncoderFlags\x120\n" +
+	"\x14client_encoder_flags\x18\t \x01(\x04R\x12clientEncoderFlags\x12,\n" +
+	"\x12server_sequence_id\x18\n" +
+	" \x01(\x04R\x10serverSequenceId\x12$\n" +
+	"\x0eserver_mac_key\x18\v \x01(\fR\fserverMacKey\x12$\n" +
+	"\x0eserver_enc_key\x18\f \x01(\fR\fserverEncKey\x12*\n" +
+	"\x11server_random_key\x18\r \x01(\fR\x0fserverRandomKey\x12,\n" +
+	"\x12client_sequence_id\x18\x0e \x01(\x04R\x10clientSequenceId\"\x9e\x01\n" +
+	"$SNSLoggedInUserProfileFailureMessage\x120\n" +
+	"\auser_id\x18\x01 \x01(\v2\x17.nevr.rtapi.XPlatformIDR\x06userId\x12\x1f\n" +
+	"\vstatus_code\x18\x02 \x01(\x04R\n" +
+	"statusCode\x12#\n" +
+	"\rerror_message\x18\x03 \x01(\tR\ferrorMessage\"\xa9\x01\n" +
+	"$SNSLoggedInUserProfileRequestMessage\x12\x1d\n" +
+	"\n" +
+	"session_id\x18\x01 \x01(\tR\tsessionId\x120\n" +
+	"\auser_id\x18\x02 \x01(\v2\x17.nevr.rtapi.XPlatformIDR\x06userId\x120\n" +
+	"\x14profile_request_data\x18\x03 \x01(\tR\x12profileRequestData\"r\n" +
+	"$SNSLoggedInUserProfileSuccessMessage\x120\n" +
+	"\auser_id\x18\x01 \x01(\v2\x17.nevr.rtapi.XPlatformIDR\x06userId\x12\x18\n" +
+	"\apayload\x18\x02 \x01(\tR\apayload\"\x90\x01\n" +
+	"\x16SNSLogInFailureMessage\x120\n" +
+	"\auser_id\x18\x01 \x01(\v2\x17.nevr.rtapi.XPlatformIDR\x06userId\x12\x1f\n" +
+	"\vstatus_code\x18\x02 \x01(\x04R\n" +
+	"statusCode\x12#\n" +
+	"\rerror_message\x18\x03 \x01(\tR\ferrorMessage\"\x96\x01\n" +
+	"\x18SNSLogInRequestV2Message\x12.\n" +
+	"\x13previous_session_id\x18\x01 \x01(\tR\x11previousSessionId\x120\n" +
+	"\auser_id\x18\x02 \x01(\v2\x17.nevr.rtapi.XPlatformIDR\x06userId\x12\x18\n" +
+	"\apayload\x18\x03 \x01(\tR\apayload\":\n" +
+	"\x17SNSLoginSettingsMessage\x12\x1f\n" +
+	"\vconfig_data\x18\x01 \x01(\tR\n" +
+	"configData\"i\n" +
+	"\x16SNSLogInSuccessMessage\x12\x1d\n" +
+	"\n" +
+	"session_id\x18\x01 \x01(\tR\tsessionId\x120\n" +
+	"\auser_id\x18\x02 \x01(\v2\x17.nevr.rtapi.XPlatformIDR\x06userId\"\x90\x01\n" +
+	"!SNSOtherUserProfileFailureMessage\x120\n" +
+	"\auser_id\x18\x01 \x01(\v2\x17.nevr.rtapi.XPlatformIDR\x06userId\x12\x1f\n" +
+	"\vstatus_code\x18\x02 \x01(\x04R\n" +
+	"statusCode\x12\x18\n" +
+	"\amessage\x18\x03 \x01(\tR\amessage\"i\n" +
+	"!SNSOtherUserProfileRequestMessage\x120\n" +
+	"\auser_id\x18\x01 \x01(\v2\x17.nevr.rtapi.XPlatformIDR\x06userId\x12\x12\n" +
+	"\x04data\x18\x02 \x01(\tR\x04data\"o\n" +
+	"!SNSOtherUserProfileSuccessMessage\x120\n" +
+	"\auser_id\x18\x01 \x01(\v2\x17.nevr.rtapi.XPlatformIDR\x06userId\x12\x18\n" +
+	"\aprofile\x18\x02 \x01(\tR\aprofile\"k\n" +
+	"\x1cSNSReconcileIAPResultMessage\x120\n" +
+	"\auser_id\x18\x01 \x01(\v2\x17.nevr.rtapi.XPlatformIDR\x06userId\x12\x19\n" +
+	"\biap_data\x18\x02 \x01(\tR\aiapData\"}\n" +
+	"\x18SNSRemoteLogSetV3Message\x120\n" +
+	"\auser_id\x18\x01 \x01(\v2\x17.nevr.rtapi.XPlatformIDR\x06userId\x12\x1b\n" +
+	"\tlog_level\x18\x06 \x01(\x04R\blogLevel\x12\x12\n" +
+	"\x04logs\x18\a \x03(\tR\x04logs\"\x8f\x01\n" +
+	"\x17SNSUpdateProfileMessage\x12(\n" +
+	"\x10login_session_id\x18\x01 \x01(\tR\x0eloginSessionId\x120\n" +
+	"\auser_id\x18\x02 \x01(\v2\x17.nevr.rtapi.XPlatformIDR\x06userId\x12\x18\n" +
+	"\apayload\x18\x03 \x01(\tR\apayload\"R\n" +
+	"\x1eSNSUpdateProfileSuccessMessage\x120\n" +
+	"\auser_id\x18\x01 \x01(\v2\x17.nevr.rtapi.XPlatformIDR\x06userId\"\x8d\x01\n" +
+	"\x1eSNSUpdateProfileFailureMessage\x120\n" +
+	"\auser_id\x18\x01 \x01(\v2\x17.nevr.rtapi.XPlatformIDR\x06userId\x12\x1f\n" +
+	"\vstatus_code\x18\x02 \x01(\x04R\n" +
+	"statusCode\x12\x18\n" +
+	"\amessage\x18\x03 \x01(\tR\amessage\"v\n" +
+	"(SNSUserServerProfileUpdateRequestMessage\x120\n" +
+	"\auser_id\x18\x01 \x01(\v2\x17.nevr.rtapi.XPlatformIDR\x06userId\x12\x18\n" +
+	"\apayload\x18\x02 \x01(\tR\apayload\"\\\n" +
+	"(SNSUserServerProfileUpdateSuccessMessage\x120\n" +
+	"\auser_id\x18\x01 \x01(\v2\x17.nevr.rtapi.XPlatformIDR\x06userIdBl\n" +
 	"\x1fcom.github.echotools.nevr.rtapiB\fNevrRealtimeP\x01Z)github.com/echotools/nevr-common/v3/rtapi\xaa\x02\rNevr.Protobufb\x06proto3"
 
 var (
@@ -1475,51 +4892,169 @@ func file_nevr_rtapi_proto_rawDescGZIP() []byte {
 }
 
 var file_nevr_rtapi_proto_enumTypes = make([]protoimpl.EnumInfo, 5)
-var file_nevr_rtapi_proto_msgTypes = make([]protoimpl.MessageInfo, 13)
+var file_nevr_rtapi_proto_msgTypes = make([]protoimpl.MessageInfo, 56)
 var file_nevr_rtapi_proto_goTypes = []any{
-	(Error_Code)(0),                          // 0: nevr.rtapi.Error.Code
-	(LobbySessionEventMessage_Code)(0),       // 1: nevr.rtapi.LobbySessionEventMessage.Code
-	(LobbyEntrantsRejectMessage_Code)(0),     // 2: nevr.rtapi.LobbyEntrantsRejectMessage.Code
-	(LobbyEntrantRemovedMessage_Code)(0),     // 3: nevr.rtapi.LobbyEntrantRemovedMessage.Code
-	(LobbySessionCreateMessage_LobbyType)(0), // 4: nevr.rtapi.LobbySessionCreateMessage.LobbyType
-	(*Envelope)(nil),                         // 5: nevr.rtapi.Envelope
-	(*Error)(nil),                            // 6: nevr.rtapi.Error
-	(*LobbySessionEventMessage)(nil),         // 7: nevr.rtapi.LobbySessionEventMessage
-	(*GameServerRegistrationMessage)(nil),    // 8: nevr.rtapi.GameServerRegistrationMessage
-	(*GameServerRegistrationSuccess)(nil),    // 9: nevr.rtapi.GameServerRegistrationSuccess
-	(*LobbyEntrantsConnectedMessage)(nil),    // 10: nevr.rtapi.LobbyEntrantsConnectedMessage
-	(*LobbyEntrantsAcceptMessage)(nil),       // 11: nevr.rtapi.LobbyEntrantsAcceptMessage
-	(*LobbyEntrantsRejectMessage)(nil),       // 12: nevr.rtapi.LobbyEntrantsRejectMessage
-	(*LobbyEntrantRemovedMessage)(nil),       // 13: nevr.rtapi.LobbyEntrantRemovedMessage
-	(*LobbySessionCreateMessage)(nil),        // 14: nevr.rtapi.LobbySessionCreateMessage
-	(*SessionUpdateMessage)(nil),             // 15: nevr.rtapi.SessionUpdateMessage
-	(*ConnectivityStatisticsMessage)(nil),    // 16: nevr.rtapi.ConnectivityStatisticsMessage
-	nil,                                      // 17: nevr.rtapi.Error.ContextEntry
-	(*timestamppb.Timestamp)(nil),            // 18: google.protobuf.Timestamp
-	(*gameapi.SessionResponse)(nil),          // 19: nevr.gameapi.SessionResponse
-	(*gameapi.UserBonesResponse)(nil),        // 20: nevr.gameapi.UserBonesResponse
+	(Error_Code)(0),                                  // 0: nevr.rtapi.Error.Code
+	(LobbySessionEventMessage_Code)(0),               // 1: nevr.rtapi.LobbySessionEventMessage.Code
+	(LobbyEntrantsRejectMessage_Code)(0),             // 2: nevr.rtapi.LobbyEntrantsRejectMessage.Code
+	(LobbyEntrantRemovedMessage_Code)(0),             // 3: nevr.rtapi.LobbyEntrantRemovedMessage.Code
+	(LobbySessionCreateMessage_LobbyType)(0),         // 4: nevr.rtapi.LobbySessionCreateMessage.LobbyType
+	(*Envelope)(nil),                                 // 5: nevr.rtapi.Envelope
+	(*Error)(nil),                                    // 6: nevr.rtapi.Error
+	(*LobbySessionEventMessage)(nil),                 // 7: nevr.rtapi.LobbySessionEventMessage
+	(*GameServerRegistrationMessage)(nil),            // 8: nevr.rtapi.GameServerRegistrationMessage
+	(*GameServerRegistrationSuccessMessage)(nil),     // 9: nevr.rtapi.GameServerRegistrationSuccessMessage
+	(*LobbyEntrantsConnectedMessage)(nil),            // 10: nevr.rtapi.LobbyEntrantsConnectedMessage
+	(*LobbyEntrantsAcceptMessage)(nil),               // 11: nevr.rtapi.LobbyEntrantsAcceptMessage
+	(*LobbyEntrantsRejectMessage)(nil),               // 12: nevr.rtapi.LobbyEntrantsRejectMessage
+	(*LobbyEntrantRemovedMessage)(nil),               // 13: nevr.rtapi.LobbyEntrantRemovedMessage
+	(*LobbySessionCreateMessage)(nil),                // 14: nevr.rtapi.LobbySessionCreateMessage
+	(*LobbySessionStateMessage)(nil),                 // 15: nevr.rtapi.LobbySessionStateMessage
+	(*LobbySessionStateRawMessage)(nil),              // 16: nevr.rtapi.LobbySessionStateRawMessage
+	(*ConnectivityStatisticsMessage)(nil),            // 17: nevr.rtapi.ConnectivityStatisticsMessage
+	(*SymbolHash)(nil),                               // 18: nevr.rtapi.SymbolHash
+	(*XPlatformID)(nil),                              // 19: nevr.rtapi.XPlatformID
+	(*SNSUnknownMessage)(nil),                        // 20: nevr.rtapi.SNSUnknownMessage
+	(*STCPConnectionRequireEvent)(nil),               // 21: nevr.rtapi.STCPConnectionRequireEvent
+	(*STCPConnectionUnrequireEvent)(nil),             // 22: nevr.rtapi.STCPConnectionUnrequireEvent
+	(*SNSConfigRequestV2Message)(nil),                // 23: nevr.rtapi.SNSConfigRequestV2Message
+	(*SNSConfigSuccessV2Message)(nil),                // 24: nevr.rtapi.SNSConfigSuccessV2Message
+	(*SNSConfigFailureV2Message)(nil),                // 25: nevr.rtapi.SNSConfigFailureV2Message
+	(*SNSReconcileIAPMessage)(nil),                   // 26: nevr.rtapi.SNSReconcileIAPMessage
+	(*SNSChannelInfoRequestMessage)(nil),             // 27: nevr.rtapi.SNSChannelInfoRequestMessage
+	(*SNSChannelInfoResponseMessage)(nil),            // 28: nevr.rtapi.SNSChannelInfoResponseMessage
+	(*SNSDocumentRequestV2Message)(nil),              // 29: nevr.rtapi.SNSDocumentRequestV2Message
+	(*SNSDocumentSuccessMessage)(nil),                // 30: nevr.rtapi.SNSDocumentSuccessMessage
+	(*SNSDocumentFailureMessage)(nil),                // 31: nevr.rtapi.SNSDocumentFailureMessage
+	(*SNSLobbyCreateSessionRequestV9Message)(nil),    // 32: nevr.rtapi.SNSLobbyCreateSessionRequestV9Message
+	(*SNSLobbyFindSessionRequestv11Message)(nil),     // 33: nevr.rtapi.SNSLobbyFindSessionRequestv11Message
+	(*SNSLobbyJoinSessionRequestV7Message)(nil),      // 34: nevr.rtapi.SNSLobbyJoinSessionRequestV7Message
+	(*SNSLobbyMatchmakerStatusMessage)(nil),          // 35: nevr.rtapi.SNSLobbyMatchmakerStatusMessage
+	(*SNSLobbyMatchmakerStatusRequestMessage)(nil),   // 36: nevr.rtapi.SNSLobbyMatchmakerStatusRequestMessage
+	(*SNSLobbyPendingSessionCancelV2Message)(nil),    // 37: nevr.rtapi.SNSLobbyPendingSessionCancelV2Message
+	(*SNSLobbyPingRequestV3Message)(nil),             // 38: nevr.rtapi.SNSLobbyPingRequestV3Message
+	(*SNSLobbyPingResponseMessage)(nil),              // 39: nevr.rtapi.SNSLobbyPingResponseMessage
+	(*SNSLobbyPlayerSessionsRequestV5Message)(nil),   // 40: nevr.rtapi.SNSLobbyPlayerSessionsRequestV5Message
+	(*SNSLobbySessionFailureV4Message)(nil),          // 41: nevr.rtapi.SNSLobbySessionFailureV4Message
+	(*SNSLobbySessionSuccessV5Message)(nil),          // 42: nevr.rtapi.SNSLobbySessionSuccessV5Message
+	(*SNSLoggedInUserProfileFailureMessage)(nil),     // 43: nevr.rtapi.SNSLoggedInUserProfileFailureMessage
+	(*SNSLoggedInUserProfileRequestMessage)(nil),     // 44: nevr.rtapi.SNSLoggedInUserProfileRequestMessage
+	(*SNSLoggedInUserProfileSuccessMessage)(nil),     // 45: nevr.rtapi.SNSLoggedInUserProfileSuccessMessage
+	(*SNSLogInFailureMessage)(nil),                   // 46: nevr.rtapi.SNSLogInFailureMessage
+	(*SNSLogInRequestV2Message)(nil),                 // 47: nevr.rtapi.SNSLogInRequestV2Message
+	(*SNSLoginSettingsMessage)(nil),                  // 48: nevr.rtapi.SNSLoginSettingsMessage
+	(*SNSLogInSuccessMessage)(nil),                   // 49: nevr.rtapi.SNSLogInSuccessMessage
+	(*SNSOtherUserProfileFailureMessage)(nil),        // 50: nevr.rtapi.SNSOtherUserProfileFailureMessage
+	(*SNSOtherUserProfileRequestMessage)(nil),        // 51: nevr.rtapi.SNSOtherUserProfileRequestMessage
+	(*SNSOtherUserProfileSuccessMessage)(nil),        // 52: nevr.rtapi.SNSOtherUserProfileSuccessMessage
+	(*SNSReconcileIAPResultMessage)(nil),             // 53: nevr.rtapi.SNSReconcileIAPResultMessage
+	(*SNSRemoteLogSetV3Message)(nil),                 // 54: nevr.rtapi.SNSRemoteLogSetV3Message
+	(*SNSUpdateProfileMessage)(nil),                  // 55: nevr.rtapi.SNSUpdateProfileMessage
+	(*SNSUpdateProfileSuccessMessage)(nil),           // 56: nevr.rtapi.SNSUpdateProfileSuccessMessage
+	(*SNSUpdateProfileFailureMessage)(nil),           // 57: nevr.rtapi.SNSUpdateProfileFailureMessage
+	(*SNSUserServerProfileUpdateRequestMessage)(nil), // 58: nevr.rtapi.SNSUserServerProfileUpdateRequestMessage
+	(*SNSUserServerProfileUpdateSuccessMessage)(nil), // 59: nevr.rtapi.SNSUserServerProfileUpdateSuccessMessage
+	nil,                                      // 60: nevr.rtapi.Error.ContextEntry
+	(*telemetry.LobbySessionStateFrame)(nil), // 61: nevr.telemetry.LobbySessionStateFrame
+	(*timestamppb.Timestamp)(nil),            // 62: google.protobuf.Timestamp
 }
 var file_nevr_rtapi_proto_depIdxs = []int32{
 	6,  // 0: nevr.rtapi.Envelope.error:type_name -> nevr.rtapi.Error
-	15, // 1: nevr.rtapi.Envelope.sessionUpdate:type_name -> nevr.rtapi.SessionUpdateMessage
-	16, // 2: nevr.rtapi.Envelope.connectivityStatistics:type_name -> nevr.rtapi.ConnectivityStatisticsMessage
-	8,  // 3: nevr.rtapi.Envelope.gameServerRegistrationRequest:type_name -> nevr.rtapi.GameServerRegistrationMessage
-	9,  // 4: nevr.rtapi.Envelope.gameServerRegistrationSuccess:type_name -> nevr.rtapi.GameServerRegistrationSuccess
-	14, // 5: nevr.rtapi.Envelope.lobbySessionCreate:type_name -> nevr.rtapi.LobbySessionCreateMessage
-	7,  // 6: nevr.rtapi.Envelope.lobbySessionEvent:type_name -> nevr.rtapi.LobbySessionEventMessage
-	10, // 7: nevr.rtapi.Envelope.lobbyEntrantConnected:type_name -> nevr.rtapi.LobbyEntrantsConnectedMessage
-	11, // 8: nevr.rtapi.Envelope.lobbyEntrantsAccept:type_name -> nevr.rtapi.LobbyEntrantsAcceptMessage
-	12, // 9: nevr.rtapi.Envelope.lobbyEntrantsReject:type_name -> nevr.rtapi.LobbyEntrantsRejectMessage
-	13, // 10: nevr.rtapi.Envelope.lobbyEntrantRemoved:type_name -> nevr.rtapi.LobbyEntrantRemovedMessage
-	17, // 11: nevr.rtapi.Error.context:type_name -> nevr.rtapi.Error.ContextEntry
-	18, // 12: nevr.rtapi.SessionUpdateMessage.timestamp:type_name -> google.protobuf.Timestamp
-	19, // 13: nevr.rtapi.SessionUpdateMessage.session:type_name -> nevr.gameapi.SessionResponse
-	20, // 14: nevr.rtapi.SessionUpdateMessage.user_bones:type_name -> nevr.gameapi.UserBonesResponse
-	15, // [15:15] is the sub-list for method output_type
-	15, // [15:15] is the sub-list for method input_type
-	15, // [15:15] is the sub-list for extension type_name
-	15, // [15:15] is the sub-list for extension extendee
-	0,  // [0:15] is the sub-list for field type_name
+	15, // 1: nevr.rtapi.Envelope.lobby_session_state:type_name -> nevr.rtapi.LobbySessionStateMessage
+	17, // 2: nevr.rtapi.Envelope.connectivity_statistics:type_name -> nevr.rtapi.ConnectivityStatisticsMessage
+	8,  // 3: nevr.rtapi.Envelope.game_server_registration:type_name -> nevr.rtapi.GameServerRegistrationMessage
+	9,  // 4: nevr.rtapi.Envelope.game_server_registration_success:type_name -> nevr.rtapi.GameServerRegistrationSuccessMessage
+	14, // 5: nevr.rtapi.Envelope.lobby_session_create:type_name -> nevr.rtapi.LobbySessionCreateMessage
+	7,  // 6: nevr.rtapi.Envelope.lobby_session_event:type_name -> nevr.rtapi.LobbySessionEventMessage
+	10, // 7: nevr.rtapi.Envelope.lobby_entra_connected:type_name -> nevr.rtapi.LobbyEntrantsConnectedMessage
+	11, // 8: nevr.rtapi.Envelope.lobby_entrant_accept:type_name -> nevr.rtapi.LobbyEntrantsAcceptMessage
+	12, // 9: nevr.rtapi.Envelope.lobby_entrant_reject:type_name -> nevr.rtapi.LobbyEntrantsRejectMessage
+	13, // 10: nevr.rtapi.Envelope.lobby_entrant_remove:type_name -> nevr.rtapi.LobbyEntrantRemovedMessage
+	20, // 11: nevr.rtapi.Envelope.unknown_message:type_name -> nevr.rtapi.SNSUnknownMessage
+	21, // 12: nevr.rtapi.Envelope.tcp_connection_require_event:type_name -> nevr.rtapi.STCPConnectionRequireEvent
+	22, // 13: nevr.rtapi.Envelope.tcp_connection_unrequire_event:type_name -> nevr.rtapi.STCPConnectionUnrequireEvent
+	23, // 14: nevr.rtapi.Envelope.config_request_v2:type_name -> nevr.rtapi.SNSConfigRequestV2Message
+	24, // 15: nevr.rtapi.Envelope.config_success_v2:type_name -> nevr.rtapi.SNSConfigSuccessV2Message
+	25, // 16: nevr.rtapi.Envelope.config_failure_v2:type_name -> nevr.rtapi.SNSConfigFailureV2Message
+	26, // 17: nevr.rtapi.Envelope.reconcile_iap:type_name -> nevr.rtapi.SNSReconcileIAPMessage
+	27, // 18: nevr.rtapi.Envelope.channel_info_request:type_name -> nevr.rtapi.SNSChannelInfoRequestMessage
+	28, // 19: nevr.rtapi.Envelope.channel_info_response:type_name -> nevr.rtapi.SNSChannelInfoResponseMessage
+	29, // 20: nevr.rtapi.Envelope.document_request_v2:type_name -> nevr.rtapi.SNSDocumentRequestV2Message
+	30, // 21: nevr.rtapi.Envelope.document_success:type_name -> nevr.rtapi.SNSDocumentSuccessMessage
+	31, // 22: nevr.rtapi.Envelope.document_failure:type_name -> nevr.rtapi.SNSDocumentFailureMessage
+	32, // 23: nevr.rtapi.Envelope.lobby_create_session_request_v9:type_name -> nevr.rtapi.SNSLobbyCreateSessionRequestV9Message
+	33, // 24: nevr.rtapi.Envelope.lobby_find_session_request_v11:type_name -> nevr.rtapi.SNSLobbyFindSessionRequestv11Message
+	34, // 25: nevr.rtapi.Envelope.lobby_join_session_request_v7:type_name -> nevr.rtapi.SNSLobbyJoinSessionRequestV7Message
+	35, // 26: nevr.rtapi.Envelope.lobby_matchmaker_status:type_name -> nevr.rtapi.SNSLobbyMatchmakerStatusMessage
+	36, // 27: nevr.rtapi.Envelope.lobby_matchmaker_status_request:type_name -> nevr.rtapi.SNSLobbyMatchmakerStatusRequestMessage
+	37, // 28: nevr.rtapi.Envelope.lobby_pending_session_cancel_v2:type_name -> nevr.rtapi.SNSLobbyPendingSessionCancelV2Message
+	38, // 29: nevr.rtapi.Envelope.lobby_ping_request_v3:type_name -> nevr.rtapi.SNSLobbyPingRequestV3Message
+	39, // 30: nevr.rtapi.Envelope.lobby_ping_response:type_name -> nevr.rtapi.SNSLobbyPingResponseMessage
+	40, // 31: nevr.rtapi.Envelope.lobby_player_sessions_request_v5:type_name -> nevr.rtapi.SNSLobbyPlayerSessionsRequestV5Message
+	41, // 32: nevr.rtapi.Envelope.lobby_session_failure_v4:type_name -> nevr.rtapi.SNSLobbySessionFailureV4Message
+	42, // 33: nevr.rtapi.Envelope.lobby_session_success_v5:type_name -> nevr.rtapi.SNSLobbySessionSuccessV5Message
+	43, // 34: nevr.rtapi.Envelope.logged_in_user_profile_failure:type_name -> nevr.rtapi.SNSLoggedInUserProfileFailureMessage
+	44, // 35: nevr.rtapi.Envelope.logged_in_user_profile_request:type_name -> nevr.rtapi.SNSLoggedInUserProfileRequestMessage
+	45, // 36: nevr.rtapi.Envelope.logged_in_user_profile_success:type_name -> nevr.rtapi.SNSLoggedInUserProfileSuccessMessage
+	46, // 37: nevr.rtapi.Envelope.log_in_failure:type_name -> nevr.rtapi.SNSLogInFailureMessage
+	47, // 38: nevr.rtapi.Envelope.log_in_request_v2:type_name -> nevr.rtapi.SNSLogInRequestV2Message
+	48, // 39: nevr.rtapi.Envelope.login_settings:type_name -> nevr.rtapi.SNSLoginSettingsMessage
+	49, // 40: nevr.rtapi.Envelope.log_in_success:type_name -> nevr.rtapi.SNSLogInSuccessMessage
+	50, // 41: nevr.rtapi.Envelope.other_user_profile_failure:type_name -> nevr.rtapi.SNSOtherUserProfileFailureMessage
+	51, // 42: nevr.rtapi.Envelope.other_user_profile_request:type_name -> nevr.rtapi.SNSOtherUserProfileRequestMessage
+	52, // 43: nevr.rtapi.Envelope.other_user_profile_success:type_name -> nevr.rtapi.SNSOtherUserProfileSuccessMessage
+	53, // 44: nevr.rtapi.Envelope.reconcile_iap_result:type_name -> nevr.rtapi.SNSReconcileIAPResultMessage
+	54, // 45: nevr.rtapi.Envelope.remote_log_set_v3:type_name -> nevr.rtapi.SNSRemoteLogSetV3Message
+	55, // 46: nevr.rtapi.Envelope.update_profile:type_name -> nevr.rtapi.SNSUpdateProfileMessage
+	56, // 47: nevr.rtapi.Envelope.update_profile_success:type_name -> nevr.rtapi.SNSUpdateProfileSuccessMessage
+	57, // 48: nevr.rtapi.Envelope.update_profile_failure:type_name -> nevr.rtapi.SNSUpdateProfileFailureMessage
+	58, // 49: nevr.rtapi.Envelope.user_server_profile_update_request:type_name -> nevr.rtapi.SNSUserServerProfileUpdateRequestMessage
+	59, // 50: nevr.rtapi.Envelope.user_server_profile_update_success:type_name -> nevr.rtapi.SNSUserServerProfileUpdateSuccessMessage
+	60, // 51: nevr.rtapi.Error.context:type_name -> nevr.rtapi.Error.ContextEntry
+	16, // 52: nevr.rtapi.LobbySessionStateMessage.session_state_raw:type_name -> nevr.rtapi.LobbySessionStateRawMessage
+	61, // 53: nevr.rtapi.LobbySessionStateMessage.session_state:type_name -> nevr.telemetry.LobbySessionStateFrame
+	62, // 54: nevr.rtapi.LobbySessionStateRawMessage.timestamp:type_name -> google.protobuf.Timestamp
+	18, // 55: nevr.rtapi.SNSUnknownMessage.type:type_name -> nevr.rtapi.SymbolHash
+	18, // 56: nevr.rtapi.SNSConfigSuccessV2Message.type:type_name -> nevr.rtapi.SymbolHash
+	18, // 57: nevr.rtapi.SNSConfigSuccessV2Message.id:type_name -> nevr.rtapi.SymbolHash
+	19, // 58: nevr.rtapi.SNSReconcileIAPMessage.user_id:type_name -> nevr.rtapi.XPlatformID
+	18, // 59: nevr.rtapi.SNSLobbyCreateSessionRequestV9Message.region:type_name -> nevr.rtapi.SymbolHash
+	18, // 60: nevr.rtapi.SNSLobbyCreateSessionRequestV9Message.version_lock:type_name -> nevr.rtapi.SymbolHash
+	18, // 61: nevr.rtapi.SNSLobbyCreateSessionRequestV9Message.mode:type_name -> nevr.rtapi.SymbolHash
+	18, // 62: nevr.rtapi.SNSLobbyCreateSessionRequestV9Message.level:type_name -> nevr.rtapi.SymbolHash
+	18, // 63: nevr.rtapi.SNSLobbyCreateSessionRequestV9Message.platform:type_name -> nevr.rtapi.SymbolHash
+	19, // 64: nevr.rtapi.SNSLobbyCreateSessionRequestV9Message.entrants:type_name -> nevr.rtapi.XPlatformID
+	18, // 65: nevr.rtapi.SNSLobbyFindSessionRequestv11Message.version_lock:type_name -> nevr.rtapi.SymbolHash
+	18, // 66: nevr.rtapi.SNSLobbyFindSessionRequestv11Message.mode:type_name -> nevr.rtapi.SymbolHash
+	18, // 67: nevr.rtapi.SNSLobbyFindSessionRequestv11Message.level:type_name -> nevr.rtapi.SymbolHash
+	18, // 68: nevr.rtapi.SNSLobbyFindSessionRequestv11Message.platform:type_name -> nevr.rtapi.SymbolHash
+	19, // 69: nevr.rtapi.SNSLobbyFindSessionRequestv11Message.entrants:type_name -> nevr.rtapi.XPlatformID
+	18, // 70: nevr.rtapi.SNSLobbyJoinSessionRequestV7Message.version_lock:type_name -> nevr.rtapi.SymbolHash
+	18, // 71: nevr.rtapi.SNSLobbyJoinSessionRequestV7Message.platform:type_name -> nevr.rtapi.SymbolHash
+	19, // 72: nevr.rtapi.SNSLobbyPlayerSessionsRequestV5Message.user_id:type_name -> nevr.rtapi.XPlatformID
+	18, // 73: nevr.rtapi.SNSLobbyPlayerSessionsRequestV5Message.platform:type_name -> nevr.rtapi.SymbolHash
+	19, // 74: nevr.rtapi.SNSLobbyPlayerSessionsRequestV5Message.player_xpids:type_name -> nevr.rtapi.XPlatformID
+	19, // 75: nevr.rtapi.SNSLoggedInUserProfileFailureMessage.user_id:type_name -> nevr.rtapi.XPlatformID
+	19, // 76: nevr.rtapi.SNSLoggedInUserProfileRequestMessage.user_id:type_name -> nevr.rtapi.XPlatformID
+	19, // 77: nevr.rtapi.SNSLoggedInUserProfileSuccessMessage.user_id:type_name -> nevr.rtapi.XPlatformID
+	19, // 78: nevr.rtapi.SNSLogInFailureMessage.user_id:type_name -> nevr.rtapi.XPlatformID
+	19, // 79: nevr.rtapi.SNSLogInRequestV2Message.user_id:type_name -> nevr.rtapi.XPlatformID
+	19, // 80: nevr.rtapi.SNSLogInSuccessMessage.user_id:type_name -> nevr.rtapi.XPlatformID
+	19, // 81: nevr.rtapi.SNSOtherUserProfileFailureMessage.user_id:type_name -> nevr.rtapi.XPlatformID
+	19, // 82: nevr.rtapi.SNSOtherUserProfileRequestMessage.user_id:type_name -> nevr.rtapi.XPlatformID
+	19, // 83: nevr.rtapi.SNSOtherUserProfileSuccessMessage.user_id:type_name -> nevr.rtapi.XPlatformID
+	19, // 84: nevr.rtapi.SNSReconcileIAPResultMessage.user_id:type_name -> nevr.rtapi.XPlatformID
+	19, // 85: nevr.rtapi.SNSRemoteLogSetV3Message.user_id:type_name -> nevr.rtapi.XPlatformID
+	19, // 86: nevr.rtapi.SNSUpdateProfileMessage.user_id:type_name -> nevr.rtapi.XPlatformID
+	19, // 87: nevr.rtapi.SNSUpdateProfileSuccessMessage.user_id:type_name -> nevr.rtapi.XPlatformID
+	19, // 88: nevr.rtapi.SNSUpdateProfileFailureMessage.user_id:type_name -> nevr.rtapi.XPlatformID
+	19, // 89: nevr.rtapi.SNSUserServerProfileUpdateRequestMessage.user_id:type_name -> nevr.rtapi.XPlatformID
+	19, // 90: nevr.rtapi.SNSUserServerProfileUpdateSuccessMessage.user_id:type_name -> nevr.rtapi.XPlatformID
+	91, // [91:91] is the sub-list for method output_type
+	91, // [91:91] is the sub-list for method input_type
+	91, // [91:91] is the sub-list for extension type_name
+	91, // [91:91] is the sub-list for extension extendee
+	0,  // [0:91] is the sub-list for field type_name
 }
 
 func init() { file_nevr_rtapi_proto_init() }
@@ -1529,16 +5064,60 @@ func file_nevr_rtapi_proto_init() {
 	}
 	file_nevr_rtapi_proto_msgTypes[0].OneofWrappers = []any{
 		(*Envelope_Error)(nil),
-		(*Envelope_SessionUpdate)(nil),
+		(*Envelope_LobbySessionState)(nil),
 		(*Envelope_ConnectivityStatistics)(nil),
-		(*Envelope_GameServerRegistrationRequest)(nil),
+		(*Envelope_GameServerRegistration)(nil),
 		(*Envelope_GameServerRegistrationSuccess)(nil),
 		(*Envelope_LobbySessionCreate)(nil),
 		(*Envelope_LobbySessionEvent)(nil),
-		(*Envelope_LobbyEntrantConnected)(nil),
-		(*Envelope_LobbyEntrantsAccept)(nil),
-		(*Envelope_LobbyEntrantsReject)(nil),
-		(*Envelope_LobbyEntrantRemoved)(nil),
+		(*Envelope_LobbyEntraConnected)(nil),
+		(*Envelope_LobbyEntrantAccept)(nil),
+		(*Envelope_LobbyEntrantReject)(nil),
+		(*Envelope_LobbyEntrantRemove)(nil),
+		(*Envelope_UnknownMessage)(nil),
+		(*Envelope_TcpConnectionRequireEvent)(nil),
+		(*Envelope_TcpConnectionUnrequireEvent)(nil),
+		(*Envelope_ConfigRequestV2)(nil),
+		(*Envelope_ConfigSuccessV2)(nil),
+		(*Envelope_ConfigFailureV2)(nil),
+		(*Envelope_ReconcileIap)(nil),
+		(*Envelope_ChannelInfoRequest)(nil),
+		(*Envelope_ChannelInfoResponse)(nil),
+		(*Envelope_DocumentRequestV2)(nil),
+		(*Envelope_DocumentSuccess)(nil),
+		(*Envelope_DocumentFailure)(nil),
+		(*Envelope_LobbyCreateSessionRequestV9)(nil),
+		(*Envelope_LobbyFindSessionRequestV11)(nil),
+		(*Envelope_LobbyJoinSessionRequestV7)(nil),
+		(*Envelope_LobbyMatchmakerStatus)(nil),
+		(*Envelope_LobbyMatchmakerStatusRequest)(nil),
+		(*Envelope_LobbyPendingSessionCancelV2)(nil),
+		(*Envelope_LobbyPingRequestV3)(nil),
+		(*Envelope_LobbyPingResponse)(nil),
+		(*Envelope_LobbyPlayerSessionsRequestV5)(nil),
+		(*Envelope_LobbySessionFailureV4)(nil),
+		(*Envelope_LobbySessionSuccessV5)(nil),
+		(*Envelope_LoggedInUserProfileFailure)(nil),
+		(*Envelope_LoggedInUserProfileRequest)(nil),
+		(*Envelope_LoggedInUserProfileSuccess)(nil),
+		(*Envelope_LogInFailure)(nil),
+		(*Envelope_LogInRequestV2)(nil),
+		(*Envelope_LoginSettings)(nil),
+		(*Envelope_LogInSuccess)(nil),
+		(*Envelope_OtherUserProfileFailure)(nil),
+		(*Envelope_OtherUserProfileRequest)(nil),
+		(*Envelope_OtherUserProfileSuccess)(nil),
+		(*Envelope_ReconcileIapResult)(nil),
+		(*Envelope_RemoteLogSetV3)(nil),
+		(*Envelope_UpdateProfile)(nil),
+		(*Envelope_UpdateProfileSuccess)(nil),
+		(*Envelope_UpdateProfileFailure)(nil),
+		(*Envelope_UserServerProfileUpdateRequest)(nil),
+		(*Envelope_UserServerProfileUpdateSuccess)(nil),
+	}
+	file_nevr_rtapi_proto_msgTypes[10].OneofWrappers = []any{
+		(*LobbySessionStateMessage_SessionStateRaw)(nil),
+		(*LobbySessionStateMessage_SessionState)(nil),
 	}
 	type x struct{}
 	out := protoimpl.TypeBuilder{
@@ -1546,7 +5125,7 @@ func file_nevr_rtapi_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_nevr_rtapi_proto_rawDesc), len(file_nevr_rtapi_proto_rawDesc)),
 			NumEnums:      5,
-			NumMessages:   13,
+			NumMessages:   56,
 			NumExtensions: 0,
 			NumServices:   0,
 		},
