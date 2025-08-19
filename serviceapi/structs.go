@@ -31,7 +31,7 @@ type Chunk struct {
 		RemoteLogSet                       *RemoteLogSet                      `struct-case:"0x244b47685187eae1" json:",omitempty"`
 		LobbyJoinSessionRequest            *LobbyJoinSessionRequest           `struct-case:"0x2f03468f77ffb211" json:",omitempty"`
 		LobbyFindSessionRequest            *LobbyFindSessionRequest           `struct-case:"0x312c2a01819aa3f5" json:",omitempty"`
-		STcpConnectionUnrequireEvent       *TCPConnectionUnrequireEvent       `struct-case:"0x43e6963ac76beee4" json:",omitempty"`
+		STCPConnectionUnrequireEvent       *TCPConnectionUnrequireEvent       `struct-case:"0x43e6963ac76beee4" json:",omitempty"`
 		LobbySessionFailurev1              *LobbySessionFailurev1             `struct-case:"0xb99f11d6ea5cb1f1" json:",omitempty"`
 		LobbySessionFailurev2              *LobbySessionFailurev2             `struct-case:"0x4ae8365ebc45f96a" json:",omitempty"`
 		LobbySessionFailurev3              *LobbySessionFailurev3             `struct-case:"0x4ae8365ebc45f96b" json:",omitempty"`
