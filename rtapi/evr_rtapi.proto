@@ -17,7 +17,6 @@ import "google/protobuf/timestamp.proto";
 // Symbol hash value
 message SymbolHash {
   fixed64 value = 1;
-  Message
 }
 
 // Common types
@@ -35,50 +34,47 @@ message EnvelopeMessage {
     STcpConnectionRequireEvent tcp_connection_require_event = 2;
     // Indicate a TCP event is no longer required.
     STcpConnectionUnrequireEvent tcp_connection_unrequire_event = 3;
-    // Legacy config failure.
-    SNSConfigFailure config_failure = 4;
     // Request a specific configuration resource.
     SNSConfigRequestV2Message config_request_v2 = 5;
     // Indicate a config request succeeded.
     SNSConfigSuccessV2Message config_success_v2 = 6;
     // Indicate a config request failed.
-    SNSConfigFailureV2 config_failure_v2 = 7;
+    SNSConfigFailureV2Message config_failure_v2 = 7;
     // In-app purchase related request.
     SNSReconcileIAPMessage reconcile_iap = 8;
     // Request information about in-game channels.
-    SNSChannelInfoRequest channel_info_request = 9;
+    SNSChannelInfoRequestMessage channel_info_request = 9;
     // Provide in-game channel information.
     SNSChannelInfoResponseMessage channel_info_response = 10;
     // Request a document resource.
-    SNSDocumentRequestv2Message document_request_v2 = 11;
+    SNSDocumentRequestV2Message document_request_v2 = 11;
     // Indicate a document request succeeded.
     SNSDocumentSuccessMessage document_success = 12;
     // Indicate a document request failed.
     SNSDocumentFailureMessage document_failure = 13;
     // Provide information on servers available in different regions.
 
-    SNSLobbyCreateSessionRequestv9Message lobby_create_session_request_v9 = 15;
+    SNSLobbyCreateSessionRequestV9Message lobby_create_session_request_v9 = 15;
     // Request to find an existing game session.
     SNSLobbyFindSessionRequestv11Message lobby_find_session_request_v11 = 16;
     // Request to join a specified game session.
-    SNSLobbyJoinSessionRequestv7Message lobby_join_session_request_v7 = 17;
+    SNSLobbyJoinSessionRequestV7Message lobby_join_session_request_v7 = 17;
     // Provide the status of a matchmaking operation.
     SNSLobbyMatchmakerStatusMessage lobby_matchmaker_status = 18;
     // Request the status of a pending matchmaking operation.
     SNSLobbyMatchmakerStatusRequestMessage lobby_matchmaker_status_request = 19;
     // Indicate intent to cancel pending matchmaker operations.
-    SNSLobbyPendingSessionCancelv2Message lobby_pending_session_cancel_v2 = 20;
+    SNSLobbyPendingSessionCancelV2Message lobby_pending_session_cancel_v2 = 20;
     // Request the client to ping endpoints for optimal server selection.
-    SNSLobbyPingRequestv3Message lobby_ping_request_v3 = 21;
+    SNSLobbyPingRequestV3Message lobby_ping_request_v3 = 21;
     // Provide results of a ping request.
     SNSLobbyPingResponseMessage lobby_ping_response = 22;
     // Request game server sessions for a list of user identifiers.
-    SNSLobbyPlayerSessionsRequestv5Message lobby_player_sessions_request_v5 =
-        23;
+    SNSLobbyPlayerSessionsRequestV5Message lobby_player_sessions_request_v5 = 23;
     // Indicate a lobby session request failed.
-    SNSLobbySessionFailurev4Message lobby_session_failure_v4 = 24;
+    SNSLobbySessionFailureV4Message lobby_session_failure_v4 = 24;
     // Indicate a lobby session request succeeded.
-    SNSLobbySessionSuccessv5Message lobby_session_success_v5 = 25;
+    SNSLobbySessionSuccessV5Message lobby_session_success_v5 = 25;
     // Indicate a logged-in user profile request failed.
     SNSLoggedInUserProfileFailureMessage logged_in_user_profile_failure = 26;
     // Request the user profile for the logged-in account.
@@ -88,7 +84,7 @@ message EnvelopeMessage {
     // Indicate a login request failed.
     SNSLogInFailureMessage log_in_failure = 29;
     // Request user sign-in.
-    SNSLogInRequestv2Message log_in_request_v2 = 30;
+    SNSLogInRequestV2Message log_in_request_v2 = 30;
     // Provide settings for the user after login.
     SNSLoginSettingsMessage login_settings = 31;
     // Indicate a login request succeeded and provide a new session token.
@@ -102,7 +98,7 @@ message EnvelopeMessage {
     // In-app purchase related response.
     SNSReconcileIAPResultMessage reconcile_iap_result = 36;
     // Log client-side data.
-    SNSRemoteLogSetv3Message remote_log_set_v3 = 37;
+    SNSRemoteLogSetV3Message remote_log_set_v3 = 37;
     // Request the server to update the user's client profile.
     SNSUpdateProfileMessage update_profile = 38;
     // Indicate an update profile request succeeded.
@@ -116,6 +112,11 @@ message EnvelopeMessage {
     SNSUserServerProfileUpdateSuccessMessage
         user_server_profile_update_success = 42;
   }
+}
+
+message UnknownMessage {
+  // The raw bytes of the unknown message.
+  bytes data = 1;
 }
 
 // A message originating from either party,
@@ -141,7 +142,7 @@ message SNSConfigSuccessV2Message {
 
 // ConfigFailurev2: server to client indicating a ConfigRequestv2
 // resulted in a failure.
-message SNSConfigFailureV2 { string error = 1; }
+message SNSConfigFailureV2Message { string error = 1; }
 
 // TODO: In-app purchase related request
 message SNSReconcileIAPMessage {
@@ -151,7 +152,7 @@ message SNSReconcileIAPMessage {
 
 // client to server, requesting information
 // about the various in-game channels.
-message SNSChannelInfoRequest {}
+message SNSChannelInfoRequestMessage {}
 
 // server to client, providing the in-game
 // channel information requested by a previous ChannelInfoRequest.
@@ -159,7 +160,7 @@ message SNSChannelInfoResponseMessage { string channel_info = 1; }
 
 // DocumentRequestv2: client to server requesting a document
 // resource.
-message SNSDocumentRequestv2Message {
+message SNSDocumentRequestV2Message {
   string language = 1;
   string type = 2;
 }
@@ -175,7 +176,7 @@ message SNSDocumentFailureMessage { string message = 3; }
 
 // LobbyCreateSessionRequestv9: client to server requesting the
 // creation of a new game session.
-message SNSLobbyCreateSessionRequestv9Message {
+message SNSLobbyCreateSessionRequestV9Message {
   SymbolHash region = 1;
   SymbolHash version_lock = 2;
   SymbolHash mode = 3;
@@ -203,7 +204,7 @@ message SNSLobbyFindSessionRequestv11Message {
 
 // LobbyJoinSessionRequestv7: client to server requesting joining
 // of a specified game session that matches the message's underlying arguments.
-message SNSLobbyJoinSessionRequestv7Message {
+message SNSLobbyJoinSessionRequestV7Message {
   string lobby_id = 1;
   SymbolHash version_lock = 2;
   SymbolHash platform = 3;
@@ -225,11 +226,11 @@ message SNSLobbyMatchmakerStatusRequestMessage {
 
 // client to the server, indicating
 // intent to cancel pending matchmaker operations.
-message SNSLobbyPendingSessionCancelv2Message { string session_id = 1; }
+message SNSLobbyPendingSessionCancelV2Message { string session_id = 1; }
 
 // LobbyPingRequestv3: server to client, requesting the client
 // ping a set of endpoints to determine the optimal game server to connect to.
-message SNSLobbyPingRequestv3Message {
+message SNSLobbyPingRequestV3Message {
   uint32 unk0 = 1;
   uint32 unk1 = 2;
   uint32 rtt_max = 3;
@@ -243,7 +244,7 @@ message SNSLobbyPingResponseMessage { repeated string results = 1; }
 
 // LobbyPlayerSessionsRequestv5: client to server, asking it to
 // obtain game server sessions for a given list of user identifiers.
-message SNSLobbyPlayerSessionsRequestv5Message {
+message SNSLobbyPlayerSessionsRequestV5Message {
   string login_session_id = 1;
   XPlatformID user_id = 2;
   string lobby_id = 3;
@@ -253,14 +254,14 @@ message SNSLobbyPlayerSessionsRequestv5Message {
 
 // LobbySessionFailurev4: server to client indicating a lobby
 // session request failed.
-message SNSLobbySessionFailurev4Message {
+message SNSLobbySessionFailureV4Message {
   uint32 error_code = 1;
   string message = 2;
 }
 
 // LobbySessionSuccessv5: server to client indicating that a
 // request to create/join/find a game server session succeeded.
-message SNSLobbySessionSuccessv5Message {
+message SNSLobbySessionSuccessV5Message {
   fixed64 game_mode = 1;
   string lobby_id = 2;
   string group_id = 3;
@@ -310,7 +311,7 @@ message SNSLogInFailureMessage {
 }
 
 // client to server requesting for a user sign-in.
-message SNSLogInRequestv2Message {
+message SNSLogInRequestV2Message {
   string previous_session_id = 1;
   XPlatformID user_id = 2;
   string payload = 3;
@@ -360,7 +361,7 @@ message SNSReconcileIAPResultMessage {
 // as established by login profile data that tells the client how verbosely to
 // log. It contains arbitrary log data about informational state changes,
 // warnings, and errors.
-message SNSRemoteLogSetv3Message {
+message SNSRemoteLogSetV3Message {
   XPlatformID user_id = 1;
   uint64 log_level = 6;
   repeated string logs = 7;
