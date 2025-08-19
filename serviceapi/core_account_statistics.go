@@ -7,9 +7,6 @@ import (
 	"reflect"
 	"strings"
 	"time"
-
-	"github.com/intinig/go-openskill/rating"
-	"github.com/intinig/go-openskill/types"
 )
 
 type ResetSchedule string
@@ -413,14 +410,11 @@ func (s *ArenaStatistics) CalculateFields() {
 		}
 
 		if s.SkillRatingMu != nil && s.SkillRatingSigma != nil {
-			r := types.Rating{
-				Sigma: s.SkillRatingSigma.GetValue(),
-				Mu:    s.SkillRatingMu.GetValue(),
-				Z:     3,
-			}
-
+			sigma := s.SkillRatingSigma.GetValue()
+			mu := s.SkillRatingMu.GetValue()
+			Z := 3.0
 			s.SkillRatingOrdinal = &StatisticValue{
-				Value: rating.Ordinal(r),
+				Value: mu - Z*sigma,
 				Count: 1,
 			}
 		}
@@ -499,14 +493,11 @@ func (s *CombatStatistics) CalculateFields() {
 	}
 
 	if s.SkillRatingMu != nil && s.SkillRatingSigma != nil {
-		r := types.Rating{
-			Sigma: s.SkillRatingSigma.GetValue(),
-			Mu:    s.SkillRatingMu.GetValue(),
-			Z:     3,
-		}
-
+		sigma := s.SkillRatingSigma.GetValue()
+		mu := s.SkillRatingMu.GetValue()
+		Z := 3.0
 		s.SkillRatingOrdinal = &StatisticValue{
-			Value: rating.Ordinal(r),
+			Value: mu - Z*sigma,
 			Count: 1,
 		}
 	}
