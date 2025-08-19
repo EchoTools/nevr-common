@@ -9,7 +9,4 @@ require (
 	google.golang.org/protobuf v1.36.7
 )
 
-require (
-	github.com/klauspost/compress v1.18.0 // indirect
-	nhooyr.io/websocket v1.8.17 // indirect
-)
+require github.com/klauspost/compress v1.18.0 // indirect

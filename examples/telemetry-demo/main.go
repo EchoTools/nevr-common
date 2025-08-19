@@ -3,6 +3,7 @@ package main
 import (
 	"encoding/json"
 	"fmt"
+	"io/ioutil"
 	"log"
 	"os"
 	"path/filepath"
@@ -76,10 +77,17 @@ func demonstrateFrameProcessing() {
 func demonstrateFileConversion() {
 	fmt.Println("\n📁 File Format Conversion Demo")
 	
-	// Create test files
-	echoReplayFile := "/tmp/demo.echoreplay"
-	nevrcapFile := "/tmp/demo.nevrcap"
-	convertedFile := "/tmp/demo_converted.echoreplay"
+	// Create temporary directory for test files
+	tmpDir, err := ioutil.TempDir("", "nevr-demo-")
+	if err != nil {
+		log.Fatalf("Failed to create temp directory: %v", err)
+	}
+	defer os.RemoveAll(tmpDir) // Clean up
+	
+	// Create test files in the secure temp directory
+	echoReplayFile := filepath.Join(tmpDir, "demo.echoreplay")
+	nevrcapFile := filepath.Join(tmpDir, "demo.nevrcap")
+	convertedFile := filepath.Join(tmpDir, "demo_converted.echoreplay")
 	
 	// Create sample .echoreplay file
 	fmt.Printf("📝 Creating sample .echoreplay file...\n")
