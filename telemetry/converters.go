@@ -112,7 +112,7 @@ func ConvertNevrcapToEchoReplay(nevrcapPath, echoReplayPath string) error {
 	for {
 		frame, err := nevrcapReader.ReadFrame()
 		if err != nil {
-			if err.Error() == "EOF" {
+			if errors.Is(err, io.EOF) {
 				break // End of file
 			}
 			return fmt.Errorf("failed to read frame: %w", err)
