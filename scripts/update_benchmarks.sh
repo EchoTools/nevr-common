@@ -85,7 +85,7 @@ check_600hz_target() {
     local ops_per_sec=$(grep "operations_per_second" "$TEMP_FILE" | tail -1 | awk '{print $5}')
     
     if [ -n "$ops_per_sec" ] && [ "$ops_per_sec" != "0" ]; then
-        if (( $(echo "$ops_per_sec >= 600" | bc -l 2>/dev/null || echo "1") )); then
+        if (( $(echo "$ops_per_sec >= 600" | bc -l 2>/dev/null) )); then
             echo "✅ PASS (${ops_per_sec} Hz)"
         else
             echo "❌ FAIL (${ops_per_sec} Hz - below 600 Hz target)"
