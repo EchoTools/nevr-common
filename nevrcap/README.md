@@ -1,6 +1,6 @@
 # Telemetry Package
 
-High-performance telemetry processing and streaming for NEVR lobby session data.
+High-performance nevrcap processing and streaming for NEVR lobby session data.
 
 ## Overview
 
@@ -25,10 +25,10 @@ This package provides optimized processing of game session frames with support f
 ### Frame Processing
 
 ```go
-import "github.com/echotools/nevr-common/v3/telemetry"
+import "github.com/echotools/nevr-common/v3/nevrcap"
 
 // Create processor
-processor := telemetry.NewFrameProcessor()
+processor := nevrcap.NewFrameProcessor()
 
 // Process raw game data
 frame, err := processor.ProcessFrame(sessionData, userBonesData, timestamp)
@@ -46,10 +46,10 @@ fmt.Printf("Detected %d events in frame %d\n", len(frame.Events), frame.FrameInd
 
 ```go
 // Writing
-writer, err := telemetry.NewZstdCodecWriter("capture.nevrcap")
+writer, err := nevrcap.NewZstdCodecWriter("capture.nevrcap")
 defer writer.Close()
 
-header := &telemetry.TelemetryHeader{
+header := &nevrcap.TelemetryHeader{
     CaptureId: "session-123",
     CreatedAt: timestamppb.Now(),
 }
@@ -57,7 +57,7 @@ writer.WriteHeader(header)
 writer.WriteFrame(frame)
 
 // Reading
-reader, err := telemetry.NewZstdCodecReader("capture.nevrcap")
+reader, err := nevrcap.NewZstdCodecReader("capture.nevrcap")
 defer reader.Close()
 
 header, err := reader.ReadHeader()
@@ -68,13 +68,13 @@ frame, err := reader.ReadFrame()
 
 ```go
 // Writing
-writer, err := telemetry.NewEchoReplayCodecWriter("replay.echoreplay")
+writer, err := nevrcap.NewEchoReplayCodecWriter("replay.echoreplay")
 defer writer.Close()
 
 writer.WriteFrame(frame)
 
 // Reading
-reader, err := telemetry.NewEchoReplayCodecReader("replay.echoreplay")
+reader, err := nevrcap.NewEchoReplayCodecReader("replay.echoreplay")
 defer reader.Close()
 
 frames, err := reader.ReadFrames()
@@ -84,14 +84,14 @@ frames, err := reader.ReadFrames()
 
 ```go
 // Configure streaming options
-options := telemetry.WebSocketCodecOptions{
+options := nevrcap.WebSocketCodecOptions{
     SendSessionData: true,
     SendUserBones:   true,
     SendEvents:      true,
     ProcessFrames:   true,
 }
 
-codec, err := telemetry.NewWebSocketCodec("ws://localhost:8080", options)
+codec, err := nevrcap.NewWebSocketCodec("ws://localhost:8080", options)
 defer codec.Close()
 
 // Stream processed frame
@@ -105,10 +105,10 @@ codec.StreamRawData(sessionData, userBonesData, timestamp)
 
 ```go
 // Convert .echoreplay to .nevrcap
-err := telemetry.ConvertEchoReplayToNevrcap("input.echoreplay", "output.nevrcap")
+err := nevrcap.ConvertEchoReplayToNevrcap("input.echoreplay", "output.nevrcap")
 
 // Convert .nevrcap to .echoreplay  
-err := telemetry.ConvertNevrcapToEchoReplay("input.nevrcap", "output.echoreplay")
+err := nevrcap.ConvertNevrcapToEchoReplay("input.nevrcap", "output.echoreplay")
 ```
 
 ## Event Detection
@@ -156,7 +156,7 @@ The system automatically detects various game events:
 
 Run benchmarks:
 ```bash
-go test -bench=. -benchmem ./telemetry
+go test -bench=. -benchmem ./nevrcap
 ```
 
 Update benchmark documentation:
@@ -170,7 +170,7 @@ See [BENCHMARKS.md](../BENCHMARKS.md) for detailed performance metrics.
 
 Run the interactive demo:
 ```bash
-cd examples/telemetry-demo
+cd examples/nevrcap-demo
 go run main.go
 ```
 
@@ -213,8 +213,8 @@ go run main.go
 ## Contributing
 
 When adding new event types:
-1. Update `telemetry.proto` with new event message
-2. Regenerate protobuf code: `go generate ./telemetry`
+1. Update `nevrcap.proto` with new event message
+2. Regenerate protobuf code: `go generate ./nevrcap`
 3. Add detection logic in `events.go`
 4. Add tests in `*_test.go`
 5. Update benchmarks if needed
