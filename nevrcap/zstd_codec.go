@@ -1,20 +1,21 @@
-package telemetry
+package nevrcap
 
 import (
 	"io"
 	"os"
 
+	"github.com/echotools/nevr-common/v3/telemetry"
 	"github.com/klauspost/compress/zstd"
 	"google.golang.org/protobuf/proto"
 )
 
 // ZstdCodec handles streaming to/from Zstd-compressed .nevrcap files
 type ZstdCodec struct {
-	file     *os.File
-	encoder  *zstd.Encoder
-	decoder  *zstd.Decoder
-	writer   io.Writer
-	reader   io.Reader
+	file    *os.File
+	encoder *zstd.Encoder
+	decoder *zstd.Decoder
+	writer  io.Writer
+	reader  io.Reader
 }
 
 // NewZstdCodecWriter creates a new Zstd codec for writing .nevrcap files
@@ -57,8 +58,8 @@ func NewZstdCodecReader(filename string) (*ZstdCodec, error) {
 	}, nil
 }
 
-// WriteHeader writes the telemetry header to the file
-func (z *ZstdCodec) WriteHeader(header *TelemetryHeader) error {
+// WriteHeader writes the nevrcap header to the file
+func (z *ZstdCodec) WriteHeader(header *telemetry.TelemetryHeader) error {
 	data, err := proto.Marshal(header)
 	if err != nil {
 		return err
@@ -69,7 +70,7 @@ func (z *ZstdCodec) WriteHeader(header *TelemetryHeader) error {
 }
 
 // WriteFrame writes a frame to the file
-func (z *ZstdCodec) WriteFrame(frame *LobbySessionStateFrame) error {
+func (z *ZstdCodec) WriteFrame(frame *telemetry.LobbySessionStateFrame) error {
 	data, err := proto.Marshal(frame)
 	if err != nil {
 		return err
@@ -79,14 +80,14 @@ func (z *ZstdCodec) WriteFrame(frame *LobbySessionStateFrame) error {
 	return z.writeDelimitedMessage(data)
 }
 
-// ReadHeader reads the telemetry header from the file
-func (z *ZstdCodec) ReadHeader() (*TelemetryHeader, error) {
+// ReadHeader reads the nevrcap header from the file
+func (z *ZstdCodec) ReadHeader() (*telemetry.TelemetryHeader, error) {
 	data, err := z.readDelimitedMessage()
 	if err != nil {
 		return nil, err
 	}
 
-	header := &TelemetryHeader{}
+	header := &telemetry.TelemetryHeader{}
 	err = proto.Unmarshal(data, header)
 	if err != nil {
 		return nil, err
@@ -96,13 +97,13 @@ func (z *ZstdCodec) ReadHeader() (*TelemetryHeader, error) {
 }
 
 // ReadFrame reads a frame from the file
-func (z *ZstdCodec) ReadFrame() (*LobbySessionStateFrame, error) {
+func (z *ZstdCodec) ReadFrame() (*telemetry.LobbySessionStateFrame, error) {
 	data, err := z.readDelimitedMessage()
 	if err != nil {
 		return nil, err
 	}
 
-	frame := &LobbySessionStateFrame{}
+	frame := &telemetry.LobbySessionStateFrame{}
 	err = proto.Unmarshal(data, frame)
 	if err != nil {
 		return nil, err
@@ -113,15 +114,20 @@ func (z *ZstdCodec) ReadFrame() (*LobbySessionStateFrame, error) {
 
 // writeDelimitedMessage writes a length-delimited protobuf message
 func (z *ZstdCodec) writeDelimitedMessage(data []byte) error {
-	// Write varint length
+	// Buffer for varint encoding (max 10 bytes for uint64)
+	var buf [10]byte
 	length := uint64(len(data))
+	i := 0
 	for length >= 0x80 {
-		if _, err := z.writer.Write([]byte{byte(length) | 0x80}); err != nil {
-			return err
-		}
+		buf[i] = byte(length) | 0x80
 		length >>= 7
+		i++
 	}
-	if _, err := z.writer.Write([]byte{byte(length)}); err != nil {
+	buf[i] = byte(length)
+	i++
+
+	// Write varint length in a single call
+	if _, err := z.writer.Write(buf[:i]); err != nil {
 		return err
 	}
 
@@ -135,12 +141,12 @@ func (z *ZstdCodec) readDelimitedMessage() ([]byte, error) {
 	// Read varint length
 	var length uint64
 	var shift uint
+	var b [1]byte // reuse the same byte array
 	for {
-		b := make([]byte, 1)
-		if _, err := z.reader.Read(b); err != nil {
+		if _, err := z.reader.Read(b[:]); err != nil {
 			return nil, err
 		}
-		
+
 		length |= uint64(b[0]&0x7F) << shift
 		if b[0]&0x80 == 0 {
 			break
@@ -160,20 +166,20 @@ func (z *ZstdCodec) readDelimitedMessage() ([]byte, error) {
 // Close closes the codec and underlying file
 func (z *ZstdCodec) Close() error {
 	var err error
-	
+
 	if z.encoder != nil {
 		err = z.encoder.Close()
 	}
-	
+
 	if z.decoder != nil {
 		z.decoder.Close()
 	}
-	
+
 	if z.file != nil {
 		if closeErr := z.file.Close(); closeErr != nil && err == nil {
 			err = closeErr
 		}
 	}
-	
+
 	return err
 }

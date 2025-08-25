@@ -1,4 +1,4 @@
-package telemetry
+package nevrcap
 
 import (
 	"archive/zip"
@@ -11,6 +11,7 @@ import (
 	"time"
 
 	"github.com/echotools/nevr-common/v3/gameapi"
+	"github.com/echotools/nevr-common/v3/telemetry"
 	"google.golang.org/protobuf/encoding/protojson"
 	"google.golang.org/protobuf/types/known/timestamppb"
 )
@@ -26,9 +27,9 @@ type EchoReplayCodec struct {
 
 // EchoReplayFrame represents a frame in the .echoreplay format
 type EchoReplayFrame struct {
-	Timestamp   string                       `json:"timestamp"`
-	Session     *gameapi.SessionResponse     `json:"session"`
-	UserBones   *gameapi.UserBonesResponse   `json:"user_bones,omitempty"`
+	Timestamp string                     `json:"timestamp"`
+	Session   *gameapi.SessionResponse   `json:"session"`
+	UserBones *gameapi.UserBonesResponse `json:"user_bones,omitempty"`
 }
 
 // NewEchoReplayCodecWriter creates a new EchoReplay codec for writing
@@ -39,7 +40,7 @@ func NewEchoReplayCodecWriter(filename string) (*EchoReplayCodec, error) {
 	}
 
 	zipWriter := zip.NewWriter(file)
-	
+
 	return &EchoReplayCodec{
 		filename:    filename,
 		file:        file,
@@ -62,7 +63,7 @@ func NewEchoReplayCodecReader(filename string) (*EchoReplayCodec, error) {
 }
 
 // WriteFrame writes a frame to the .echoreplay file
-func (e *EchoReplayCodec) WriteFrame(frame *LobbySessionStateFrame) error {
+func (e *EchoReplayCodec) WriteFrame(frame *telemetry.LobbySessionStateFrame) error {
 	// Write in the legacy format: timestamp + session JSON (no wrapper)
 	return e.WriteLegacyFrame(frame.Timestamp.AsTime(), frame.Session)
 }
@@ -75,7 +76,7 @@ func (e *EchoReplayCodec) WriteLegacyFrame(timestamp time.Time, session *gameapi
 		UseEnumNumbers:  true,
 		EmitUnpopulated: false,
 	}
-	
+
 	sessionData, err := marshaler.Marshal(session)
 	if err != nil {
 		return err
@@ -127,7 +128,7 @@ func (e *EchoReplayCodec) Finalize() error {
 }
 
 // ReadFrames reads all frames from the .echoreplay file
-func (e *EchoReplayCodec) ReadFrames() ([]*LobbySessionStateFrame, error) {
+func (e *EchoReplayCodec) ReadFrames() ([]*telemetry.LobbySessionStateFrame, error) {
 	if e.zipReader == nil {
 		return nil, fmt.Errorf("codec not configured for reading")
 	}
@@ -159,9 +160,9 @@ func (e *EchoReplayCodec) ReadFrames() ([]*LobbySessionStateFrame, error) {
 }
 
 // parseFrameData parses the frame data from the replay file
-func (e *EchoReplayCodec) parseFrameData(data []byte) ([]*LobbySessionStateFrame, error) {
+func (e *EchoReplayCodec) parseFrameData(data []byte) ([]*telemetry.LobbySessionStateFrame, error) {
 	lines := bytes.Split(data, []byte("\n"))
-	var frames []*LobbySessionStateFrame
+	var frames []*telemetry.LobbySessionStateFrame
 
 	unmarshaler := &protojson.UnmarshalOptions{
 		DiscardUnknown: false,
@@ -191,7 +192,7 @@ func (e *EchoReplayCodec) parseFrameData(data []byte) ([]*LobbySessionStateFrame
 		}
 
 		// Create frame
-		frame := &LobbySessionStateFrame{
+		frame := &telemetry.LobbySessionStateFrame{
 			FrameIndex: uint32(len(frames)),
 			Timestamp:  timestamppb.New(timestamp),
 			Session:    sessionResponse,

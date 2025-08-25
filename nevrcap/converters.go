@@ -1,9 +1,12 @@
-package telemetry
+package nevrcap
 
 import (
+	"errors"
 	"fmt"
+	"io"
 	"time"
 
+	"github.com/echotools/nevr-common/v3/telemetry"
 	"google.golang.org/protobuf/encoding/protojson"
 	"google.golang.org/protobuf/types/known/timestamppb"
 )
@@ -30,7 +33,7 @@ func ConvertEchoReplayToNevrcap(echoReplayPath, nevrcapPath string) error {
 	defer nevrcapWriter.Close()
 
 	// Write header
-	header := &TelemetryHeader{
+	header := &telemetry.TelemetryHeader{
 		CaptureId: fmt.Sprintf("converted-%d", time.Now().Unix()),
 		CreatedAt: timestamppb.Now(),
 		Metadata: map[string]string{
@@ -55,7 +58,7 @@ func ConvertEchoReplayToNevrcap(echoReplayPath, nevrcapPath string) error {
 				UseEnumNumbers:  true,
 				EmitUnpopulated: false,
 			}
-			
+
 			sessionData, err := marshaler.Marshal(frame.Session)
 			if err != nil {
 				return fmt.Errorf("failed to marshal session data for frame %d: %w", i, err)

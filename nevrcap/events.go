@@ -1,7 +1,8 @@
-package telemetry
+package nevrcap
 
 import (
 	"github.com/echotools/nevr-common/v3/gameapi"
+	"github.com/echotools/nevr-common/v3/telemetry"
 )
 
 // EventDetector efficiently detects events between consecutive frames
@@ -14,11 +15,11 @@ type EventDetector struct {
 
 // ScoreboardState represents the scoring state
 type ScoreboardState struct {
-	BluePoints      int32
-	OrangePoints    int32
-	BlueRoundScore  int32
+	BluePoints       int32
+	OrangePoints     int32
+	BlueRoundScore   int32
 	OrangeRoundScore int32
-	GameClock       string
+	GameClock        string
 }
 
 // DiscState represents disc possession state
@@ -35,54 +36,54 @@ func NewEventDetector() *EventDetector {
 }
 
 // DetectEvents analyzes two consecutive frames and returns detected events
-func (ed *EventDetector) DetectEvents(prevFrame, currentFrame *LobbySessionStateFrame) []*LobbySessionEvent {
-	var events []*LobbySessionEvent
-	
+func (ed *EventDetector) DetectEvents(prevFrame, currentFrame *telemetry.LobbySessionStateFrame) []*telemetry.LobbySessionEvent {
+	var events []*telemetry.LobbySessionEvent
+
 	// Update player tracking
 	currentPlayersBySlot := ed.buildPlayerSlotMap(currentFrame)
-	
+
 	// Detect player events
 	events = append(events, ed.detectPlayerEvents(currentPlayersBySlot)...)
-	
+
 	// Detect scoreboard events
 	events = append(events, ed.detectScoreboardEvents(prevFrame.Session, currentFrame.Session)...)
-	
+
 	// Detect disc events
 	events = append(events, ed.detectDiscEvents(prevFrame.Session, currentFrame.Session)...)
-	
+
 	// Detect stat-based events
 	events = append(events, ed.detectStatEvents(currentPlayersBySlot)...)
-	
+
 	// Update cached state for next comparison
 	ed.prevPlayersBySlot = currentPlayersBySlot
 	ed.updateCachedState(currentFrame)
-	
+
 	return events
 }
 
 // buildPlayerSlotMap creates a map of player slot to player for efficient lookup
-func (ed *EventDetector) buildPlayerSlotMap(frame *LobbySessionStateFrame) map[int32]*gameapi.TeamMember {
+func (ed *EventDetector) buildPlayerSlotMap(frame *telemetry.LobbySessionStateFrame) map[int32]*gameapi.TeamMember {
 	playersBySlot := make(map[int32]*gameapi.TeamMember)
-	
+
 	for _, team := range frame.Session.Teams {
 		for _, player := range team.Players {
 			playersBySlot[player.SlotNumber] = player
 		}
 	}
-	
+
 	return playersBySlot
 }
 
 // detectPlayerEvents detects player join/leave/team switch events
-func (ed *EventDetector) detectPlayerEvents(currentPlayers map[int32]*gameapi.TeamMember) []*LobbySessionEvent {
-	var events []*LobbySessionEvent
-	
+func (ed *EventDetector) detectPlayerEvents(currentPlayers map[int32]*gameapi.TeamMember) []*telemetry.LobbySessionEvent {
+	var events []*telemetry.LobbySessionEvent
+
 	// Detect new players (joined)
 	for slot, player := range currentPlayers {
 		if _, exists := ed.prevPlayersBySlot[slot]; !exists {
-			events = append(events, &LobbySessionEvent{
-				Payload: &LobbySessionEvent_PlayerJoined{
-					PlayerJoined: &PlayerJoined{
+			events = append(events, &telemetry.LobbySessionEvent{
+				Payload: &telemetry.LobbySessionEvent_PlayerJoined{
+					PlayerJoined: &telemetry.PlayerJoined{
 						Player: player,
 						Role:   ed.determinePlayerRole(player),
 					},
@@ -90,13 +91,13 @@ func (ed *EventDetector) detectPlayerEvents(currentPlayers map[int32]*gameapi.Te
 			})
 		}
 	}
-	
+
 	// Detect missing players (left)
 	for slot, prevPlayer := range ed.prevPlayersBySlot {
 		if _, exists := currentPlayers[slot]; !exists {
-			events = append(events, &LobbySessionEvent{
-				Payload: &LobbySessionEvent_PlayerLeft{
-					PlayerLeft: &PlayerLeft{
+			events = append(events, &telemetry.LobbySessionEvent{
+				Payload: &telemetry.LobbySessionEvent_PlayerLeft{
+					PlayerLeft: &telemetry.PlayerLeft{
 						PlayerSlot:  slot,
 						DisplayName: prevPlayer.DisplayName,
 					},
@@ -104,14 +105,14 @@ func (ed *EventDetector) detectPlayerEvents(currentPlayers map[int32]*gameapi.Te
 			})
 		}
 	}
-	
+
 	return events
 }
 
 // detectScoreboardEvents detects scoring and round changes
-func (ed *EventDetector) detectScoreboardEvents(prevSession, currentSession *gameapi.SessionResponse) []*LobbySessionEvent {
-	var events []*LobbySessionEvent
-	
+func (ed *EventDetector) detectScoreboardEvents(prevSession, currentSession *gameapi.SessionResponse) []*telemetry.LobbySessionEvent {
+	var events []*telemetry.LobbySessionEvent
+
 	currentScoreboard := &ScoreboardState{
 		BluePoints:       currentSession.BluePoints,
 		OrangePoints:     currentSession.OrangePoints,
@@ -119,17 +120,17 @@ func (ed *EventDetector) detectScoreboardEvents(prevSession, currentSession *gam
 		OrangeRoundScore: currentSession.OrangeRoundScore,
 		GameClock:        currentSession.GameClockDisplay,
 	}
-	
+
 	if ed.prevScoreboard != nil {
 		// Check for score changes
 		if currentScoreboard.BluePoints != ed.prevScoreboard.BluePoints ||
 			currentScoreboard.OrangePoints != ed.prevScoreboard.OrangePoints ||
 			currentScoreboard.BlueRoundScore != ed.prevScoreboard.BlueRoundScore ||
 			currentScoreboard.OrangeRoundScore != ed.prevScoreboard.OrangeRoundScore {
-			
-			events = append(events, &LobbySessionEvent{
-				Payload: &LobbySessionEvent_ScoreboardUpdated{
-					ScoreboardUpdated: &ScoreboardUpdated{
+
+			events = append(events, &telemetry.LobbySessionEvent{
+				Payload: &telemetry.LobbySessionEvent_ScoreboardUpdated{
+					ScoreboardUpdated: &telemetry.ScoreboardUpdated{
 						BluePoints:       currentScoreboard.BluePoints,
 						OrangePoints:     currentScoreboard.OrangePoints,
 						BlueRoundScore:   currentScoreboard.BlueRoundScore,
@@ -139,36 +140,36 @@ func (ed *EventDetector) detectScoreboardEvents(prevSession, currentSession *gam
 				},
 			})
 		}
-		
+
 		// Check for goal scored
 		if currentSession.LastScore != nil {
 			// This is a simple heuristic - in practice, you might want more sophisticated detection
-			events = append(events, &LobbySessionEvent{
-				Payload: &LobbySessionEvent_GoalScored{
-					GoalScored: &GoalScored{
+			events = append(events, &telemetry.LobbySessionEvent{
+				Payload: &telemetry.LobbySessionEvent_GoalScored{
+					GoalScored: &telemetry.GoalScored{
 						ScoreDetails: currentSession.LastScore,
 					},
 				},
 			})
 		}
 	}
-	
+
 	return events
 }
 
 // detectDiscEvents detects disc possession changes and throws
-func (ed *EventDetector) detectDiscEvents(prevSession, currentSession *gameapi.SessionResponse) []*LobbySessionEvent {
-	var events []*LobbySessionEvent
-	
+func (ed *EventDetector) detectDiscEvents(prevSession, currentSession *gameapi.SessionResponse) []*telemetry.LobbySessionEvent {
+	var events []*telemetry.LobbySessionEvent
+
 	// Find current disc possession
 	currentDiscState := ed.getDiscState(currentSession)
-	
+
 	if ed.prevDiscState != nil {
 		// Check for possession change
 		if currentDiscState.PlayerSlot != ed.prevDiscState.PlayerSlot {
-			events = append(events, &LobbySessionEvent{
-				Payload: &LobbySessionEvent_DiscPossessionChanged{
-					DiscPossessionChanged: &DiscPossessionChanged{
+			events = append(events, &telemetry.LobbySessionEvent{
+				Payload: &telemetry.LobbySessionEvent_DiscPossessionChanged{
+					DiscPossessionChanged: &telemetry.DiscPossessionChanged{
 						PlayerSlot:   currentDiscState.PlayerSlot,
 						PreviousSlot: ed.prevDiscState.PlayerSlot,
 					},
@@ -176,16 +177,16 @@ func (ed *EventDetector) detectDiscEvents(prevSession, currentSession *gameapi.S
 			})
 		}
 	}
-	
+
 	// Check for disc thrown (if last throw info is present)
 	if currentSession.LastThrow != nil {
 		// Find the player who threw
 		for _, team := range currentSession.Teams {
 			for _, player := range team.Players {
 				if player.HasPossession {
-					events = append(events, &LobbySessionEvent{
-						Payload: &LobbySessionEvent_DiscThrown{
-							DiscThrown: &DiscThrown{
+					events = append(events, &telemetry.LobbySessionEvent{
+						Payload: &telemetry.LobbySessionEvent_DiscThrown{
+							DiscThrown: &telemetry.DiscThrown{
 								PlayerSlot:   player.SlotNumber,
 								ThrowDetails: currentSession.LastThrow,
 							},
@@ -196,98 +197,98 @@ func (ed *EventDetector) detectDiscEvents(prevSession, currentSession *gameapi.S
 			}
 		}
 	}
-	
+
 	return events
 }
 
 // detectStatEvents detects changes in player statistics
-func (ed *EventDetector) detectStatEvents(currentPlayers map[int32]*gameapi.TeamMember) []*LobbySessionEvent {
-	var events []*LobbySessionEvent
-	
+func (ed *EventDetector) detectStatEvents(currentPlayers map[int32]*gameapi.TeamMember) []*telemetry.LobbySessionEvent {
+	var events []*telemetry.LobbySessionEvent
+
 	for slot, player := range currentPlayers {
 		if prevPlayer, exists := ed.prevPlayersBySlot[slot]; exists {
 			// Check each stat type for increments
 			if player.Stats.Saves > prevPlayer.Stats.Saves {
-				events = append(events, &LobbySessionEvent{
-					Payload: &LobbySessionEvent_PlayerSave{
-						PlayerSave: &PlayerSave{
+				events = append(events, &telemetry.LobbySessionEvent{
+					Payload: &telemetry.LobbySessionEvent_PlayerSave{
+						PlayerSave: &telemetry.PlayerSave{
 							PlayerSlot: slot,
 							TotalSaves: player.Stats.Saves,
 						},
 					},
 				})
 			}
-			
+
 			if player.Stats.Stuns > prevPlayer.Stats.Stuns {
-				events = append(events, &LobbySessionEvent{
-					Payload: &LobbySessionEvent_PlayerStun{
-						PlayerStun: &PlayerStun{
+				events = append(events, &telemetry.LobbySessionEvent{
+					Payload: &telemetry.LobbySessionEvent_PlayerStun{
+						PlayerStun: &telemetry.PlayerStun{
 							PlayerSlot: slot,
 							TotalStuns: player.Stats.Stuns,
 						},
 					},
 				})
 			}
-			
+
 			if player.Stats.Passes > prevPlayer.Stats.Passes {
-				events = append(events, &LobbySessionEvent{
-					Payload: &LobbySessionEvent_PlayerPass{
-						PlayerPass: &PlayerPass{
+				events = append(events, &telemetry.LobbySessionEvent{
+					Payload: &telemetry.LobbySessionEvent_PlayerPass{
+						PlayerPass: &telemetry.PlayerPass{
 							PlayerSlot:  slot,
 							TotalPasses: player.Stats.Passes,
 						},
 					},
 				})
 			}
-			
+
 			if player.Stats.Steals > prevPlayer.Stats.Steals {
-				events = append(events, &LobbySessionEvent{
-					Payload: &LobbySessionEvent_PlayerSteal{
-						PlayerSteal: &PlayerSteal{
+				events = append(events, &telemetry.LobbySessionEvent{
+					Payload: &telemetry.LobbySessionEvent_PlayerSteal{
+						PlayerSteal: &telemetry.PlayerSteal{
 							PlayerSlot:  slot,
 							TotalSteals: player.Stats.Steals,
 						},
 					},
 				})
 			}
-			
+
 			if player.Stats.Blocks > prevPlayer.Stats.Blocks {
-				events = append(events, &LobbySessionEvent{
-					Payload: &LobbySessionEvent_PlayerBlock{
-						PlayerBlock: &PlayerBlock{
+				events = append(events, &telemetry.LobbySessionEvent{
+					Payload: &telemetry.LobbySessionEvent_PlayerBlock{
+						PlayerBlock: &telemetry.PlayerBlock{
 							PlayerSlot:  slot,
 							TotalBlocks: player.Stats.Blocks,
 						},
 					},
 				})
 			}
-			
+
 			if player.Stats.Interceptions > prevPlayer.Stats.Interceptions {
-				events = append(events, &LobbySessionEvent{
-					Payload: &LobbySessionEvent_PlayerInterception{
-						PlayerInterception: &PlayerInterception{
+				events = append(events, &telemetry.LobbySessionEvent{
+					Payload: &telemetry.LobbySessionEvent_PlayerInterception{
+						PlayerInterception: &telemetry.PlayerInterception{
 							PlayerSlot:         slot,
 							TotalInterceptions: player.Stats.Interceptions,
 						},
 					},
 				})
 			}
-			
+
 			if player.Stats.Assists > prevPlayer.Stats.Assists {
-				events = append(events, &LobbySessionEvent{
-					Payload: &LobbySessionEvent_PlayerAssist{
-						PlayerAssist: &PlayerAssist{
+				events = append(events, &telemetry.LobbySessionEvent{
+					Payload: &telemetry.LobbySessionEvent_PlayerAssist{
+						PlayerAssist: &telemetry.PlayerAssist{
 							PlayerSlot:   slot,
 							TotalAssists: player.Stats.Assists,
 						},
 					},
 				})
 			}
-			
+
 			if player.Stats.ShotsTaken > prevPlayer.Stats.ShotsTaken {
-				events = append(events, &LobbySessionEvent{
-					Payload: &LobbySessionEvent_PlayerShotTaken{
-						PlayerShotTaken: &PlayerShotTaken{
+				events = append(events, &telemetry.LobbySessionEvent{
+					Payload: &telemetry.LobbySessionEvent_PlayerShotTaken{
+						PlayerShotTaken: &telemetry.PlayerShotTaken{
 							PlayerSlot: slot,
 							TotalShots: player.Stats.ShotsTaken,
 						},
@@ -296,7 +297,7 @@ func (ed *EventDetector) detectStatEvents(currentPlayers map[int32]*gameapi.Team
 			}
 		}
 	}
-	
+
 	return events
 }
 
@@ -319,22 +320,22 @@ func (ed *EventDetector) getDiscState(session *gameapi.SessionResponse) *DiscSta
 }
 
 // determinePlayerRole maps a player to their role
-func (ed *EventDetector) determinePlayerRole(player *gameapi.TeamMember) Role {
+func (ed *EventDetector) determinePlayerRole(player *gameapi.TeamMember) telemetry.Role {
 	// This is a simplified mapping - you might need more sophisticated logic
 	switch player.JerseyNumber {
 	case -1:
-		return Role_SPECTATOR
+		return telemetry.Role_SPECTATOR
 	default:
 		// Determine team based on some logic (this is simplified)
 		if player.SlotNumber%2 == 0 {
-			return Role_BLUE_TEAM
+			return telemetry.Role_BLUE_TEAM
 		}
-		return Role_ORANGE_TEAM
+		return telemetry.Role_ORANGE_TEAM
 	}
 }
 
 // updateCachedState updates the cached state for next comparison
-func (ed *EventDetector) updateCachedState(frame *LobbySessionStateFrame) {
+func (ed *EventDetector) updateCachedState(frame *telemetry.LobbySessionStateFrame) {
 	ed.prevScoreboard = &ScoreboardState{
 		BluePoints:       frame.Session.BluePoints,
 		OrangePoints:     frame.Session.OrangePoints,
@@ -342,7 +343,7 @@ func (ed *EventDetector) updateCachedState(frame *LobbySessionStateFrame) {
 		OrangeRoundScore: frame.Session.OrangeRoundScore,
 		GameClock:        frame.Session.GameClockDisplay,
 	}
-	
+
 	ed.prevDiscState = ed.getDiscState(frame.Session)
 }
 

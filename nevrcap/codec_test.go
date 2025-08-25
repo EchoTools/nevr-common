@@ -1,4 +1,4 @@
-package telemetry
+package nevrcap
 
 import (
 	"encoding/json"
@@ -7,6 +7,7 @@ import (
 	"time"
 
 	"github.com/echotools/nevr-common/v3/gameapi"
+	"github.com/echotools/nevr-common/v3/telemetry"
 	"google.golang.org/protobuf/types/known/timestamppb"
 )
 
@@ -62,7 +63,7 @@ func TestZstdCodec(t *testing.T) {
 	}
 
 	// Write header
-	header := &TelemetryHeader{
+	header := &telemetry.TelemetryHeader{
 		CaptureId: "test-capture",
 		CreatedAt: timestamppb.Now(),
 		Metadata: map[string]string{
@@ -159,7 +160,7 @@ func TestFileConversion(t *testing.T) {
 	echoReplayFile := "/tmp/test_convert.echoreplay"
 	nevrcapFile := "/tmp/test_convert.nevrcap"
 	backToEchoFile := "/tmp/test_back.echoreplay"
-	
+
 	defer func() {
 		os.Remove(echoReplayFile)
 		os.Remove(nevrcapFile)
@@ -218,7 +219,7 @@ func createTestSessionData(t *testing.T) []byte {
 		OrangePoints:     0,
 		BlueRoundScore:   0,
 		OrangeRoundScore: 0,
-		Teams:           []*gameapi.Team{},
+		Teams:            []*gameapi.Team{},
 	}
 
 	data, err := json.Marshal(session)
@@ -236,7 +237,7 @@ func createModifiedSessionData(t *testing.T) []byte {
 		OrangePoints:     0,
 		BlueRoundScore:   1, // Changed score
 		OrangeRoundScore: 0,
-		Teams:           []*gameapi.Team{},
+		Teams:            []*gameapi.Team{},
 	}
 
 	data, err := json.Marshal(session)
@@ -259,7 +260,7 @@ func createTestUserBonesData(t *testing.T) []byte {
 	return data
 }
 
-func createTestFrame(t *testing.T) *LobbySessionStateFrame {
+func createTestFrame(t *testing.T) *telemetry.LobbySessionStateFrame {
 	session := &gameapi.SessionResponse{
 		SessionID:        "test-session",
 		GameStatus:       "running",
@@ -267,7 +268,7 @@ func createTestFrame(t *testing.T) *LobbySessionStateFrame {
 		OrangePoints:     0,
 		BlueRoundScore:   0,
 		OrangeRoundScore: 0,
-		Teams:           []*gameapi.Team{},
+		Teams:            []*gameapi.Team{},
 	}
 
 	userBones := &gameapi.UserBonesResponse{
@@ -275,10 +276,10 @@ func createTestFrame(t *testing.T) *LobbySessionStateFrame {
 		ErrCode:   0,
 	}
 
-	return &LobbySessionStateFrame{
+	return &telemetry.LobbySessionStateFrame{
 		FrameIndex: 0,
 		Timestamp:  timestamppb.Now(),
-		Events:     []*LobbySessionEvent{},
+		Events:     []*telemetry.LobbySessionEvent{},
 		Session:    session,
 		UserBones:  userBones,
 	}

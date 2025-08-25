@@ -1,4 +1,4 @@
-package telemetry
+package nevrcap
 
 import (
 	"encoding/json"
@@ -8,6 +8,7 @@ import (
 	"time"
 
 	"github.com/echotools/nevr-common/v3/gameapi"
+	"github.com/echotools/nevr-common/v3/telemetry"
 )
 
 // BenchmarkFrameProcessing benchmarks the high-performance frame processing
@@ -33,7 +34,7 @@ func BenchmarkEventDetection(b *testing.B) {
 	detector := NewEventDetector()
 	frame1 := createBenchFrame(b, 0)
 	frame2 := createBenchFrame(b, 1)
-	
+
 	// Modify frame2 to trigger events
 	frame2.Session.BluePoints = 1
 	frame2.Session.BlueRoundScore = 1
@@ -51,7 +52,7 @@ func BenchmarkEventDetection(b *testing.B) {
 func BenchmarkZstdWrite(b *testing.B) {
 	tempFile := "/tmp/benchmark_zstd.nevrcap"
 	defer os.Remove(tempFile)
-	
+
 	frame := createBenchFrame(b, 0)
 
 	b.ResetTimer()
@@ -77,7 +78,7 @@ func BenchmarkEchoReplayToNevrcap(b *testing.B) {
 	// Create a test .echoreplay file with multiple frames
 	echoReplayFile := "/tmp/benchmark_input.echoreplay"
 	nevrcapFile := "/tmp/benchmark_output.nevrcap"
-	
+
 	defer func() {
 		os.Remove(echoReplayFile)
 		os.Remove(nevrcapFile)
@@ -115,14 +116,14 @@ func BenchmarkEchoReplayToNevrcap(b *testing.B) {
 func BenchmarkFileSize(b *testing.B) {
 	echoReplayFile := "/tmp/filesize_test.echoreplay"
 	nevrcapFile := "/tmp/filesize_test.nevrcap"
-	
+
 	defer func() {
 		os.Remove(echoReplayFile)
 		os.Remove(nevrcapFile)
 	}()
 
 	// Create test files with the same data
-	frames := make([]*LobbySessionStateFrame, 1000)
+	frames := make([]*telemetry.LobbySessionStateFrame, 1000)
 	for i := 0; i < 1000; i++ {
 		frames[i] = createBenchFrame(b, uint32(i))
 	}
@@ -146,7 +147,7 @@ func BenchmarkFileSize(b *testing.B) {
 		b.Fatalf("Failed to create nevrcap writer: %v", err)
 	}
 
-	header := &TelemetryHeader{
+	header := &telemetry.TelemetryHeader{
 		CaptureId: "benchmark-test",
 		Metadata:  map[string]string{"test": "true"},
 	}
@@ -172,7 +173,7 @@ func BenchmarkFileSize(b *testing.B) {
 
 	echoSize := echoStat.Size()
 	nevrcapSize := nevrcapStat.Size()
-	
+
 	compressionRatio := float64(nevrcapSize) / float64(echoSize) * 100
 
 	b.ReportMetric(float64(echoSize), "echoreplay_bytes")
@@ -190,11 +191,11 @@ func BenchmarkHighFrequency(b *testing.B) {
 	processor := NewFrameProcessor()
 	sessionData := createBenchSessionData(b)
 	userBonesData := createBenchUserBonesData(b)
-	
+
 	// Calculate operations per second
 	start := time.Now()
 	iterations := 6000 // Simulate 10 seconds at 600 Hz
-	
+
 	b.ResetTimer()
 	b.ReportAllocs()
 
@@ -208,9 +209,9 @@ func BenchmarkHighFrequency(b *testing.B) {
 
 	elapsed := time.Since(start)
 	hz := float64(iterations) / elapsed.Seconds()
-	
+
 	b.ReportMetric(hz, "operations_per_second")
-	
+
 	if hz < 600 {
 		b.Logf("WARNING: Processing rate %.2f Hz is below target 600 Hz", hz)
 	} else {
@@ -279,7 +280,7 @@ func createBenchSessionData(b *testing.B) []byte {
 		BlueRoundScore:   0,
 		OrangeRoundScore: 1,
 		TotalRoundCount:  3,
-		Teams:           teams,
+		Teams:            teams,
 		Disc: &gameapi.Disc{
 			Position:    []float64{0.0, 10.0, 0.0},
 			Velocity:    []float64{5.0, 0.0, 2.0},
@@ -302,8 +303,8 @@ func createBenchUserBonesData(b *testing.B) []byte {
 			XPID: int32(1000 + i),
 			BoneT: &gameapi.BoneTranslation{
 				V: []float64{
-					float64(i), float64(i*2), float64(i*3), // Head
-					float64(i+1), float64(i*2+1), float64(i*3+1), // Body
+					float64(i), float64(i * 2), float64(i * 3), // Head
+					float64(i + 1), float64(i*2 + 1), float64(i*3 + 1), // Body
 				},
 			},
 			BoneO: &gameapi.BoneOrientation{
@@ -327,16 +328,16 @@ func createBenchUserBonesData(b *testing.B) []byte {
 	return data
 }
 
-func createBenchFrame(b *testing.B, frameIndex uint32) *LobbySessionStateFrame {
+func createBenchFrame(b *testing.B, frameIndex uint32) *telemetry.LobbySessionStateFrame {
 	sessionData := createBenchSessionData(b)
 	userBonesData := createBenchUserBonesData(b)
-	
+
 	processor := NewFrameProcessor()
 	frame, err := processor.ProcessFrame(sessionData, userBonesData, time.Now())
 	if err != nil {
 		b.Fatalf("Failed to create bench frame: %v", err)
 	}
-	
+
 	frame.FrameIndex = frameIndex
 	return frame
 }
