@@ -25,7 +25,7 @@ This package provides optimized processing of game session frames with support f
 ### Frame Processing
 
 ```go
-import "github.com/echotools/nevr-common/v3/nevrcap"
+import "github.com/echotools/nevr-common/nevrcap"
 
 // Create processor
 processor := nevrcap.NewFrameProcessor()

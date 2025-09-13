@@ -14,7 +14,7 @@
 package telemetry
 
 import (
-	apigame "github.com/echotools/nevr-common/v3/apigame"
+	apigame "github.com/echotools/nevr-common/apigame"
 	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
 	protoimpl "google.golang.org/protobuf/runtime/protoimpl"
 	timestamppb "google.golang.org/protobuf/types/known/timestamppb"
@@ -835,7 +835,7 @@ func (x *RoundUnpaused) GetPauseState() *apigame.PauseState {
 type RoundEnded struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	RoundNumber   int32                  `protobuf:"varint,1,opt,name=round_number,json=roundNumber,proto3" json:"round_number,omitempty"`
-	WinningTeam   Role                   `protobuf:"varint,2,opt,name=winning_team,json=winningTeam,proto3,enum=nevr.telemetry.Role" json:"winning_team,omitempty"`
+	WinningTeam   Role                   `protobuf:"varint,2,opt,name=winning_team,json=winningTeam,proto3,enum=telemetry.Role" json:"winning_team,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -887,7 +887,7 @@ func (x *RoundEnded) GetWinningTeam() Role {
 // Fired when the match is over.
 type MatchEnded struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	WinningTeam   Role                   `protobuf:"varint,1,opt,name=winning_team,json=winningTeam,proto3,enum=nevr.telemetry.Role" json:"winning_team,omitempty"`
+	WinningTeam   Role                   `protobuf:"varint,1,opt,name=winning_team,json=winningTeam,proto3,enum=telemetry.Role" json:"winning_team,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -1011,7 +1011,7 @@ type PlayerJoined struct {
 	state protoimpl.MessageState `protogen:"open.v1"`
 	// Contains the full initial state of the player.
 	Player        *apigame.TeamMember `protobuf:"bytes,1,opt,name=player,proto3" json:"player,omitempty"`
-	Role          Role                `protobuf:"varint,2,opt,name=role,proto3,enum=nevr.telemetry.Role" json:"role,omitempty"`
+	Role          Role                `protobuf:"varint,2,opt,name=role,proto3,enum=telemetry.Role" json:"role,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -1117,8 +1117,8 @@ func (x *PlayerLeft) GetDisplayName() string {
 type PlayerSwitchedTeam struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	PlayerSlot    int32                  `protobuf:"varint,1,opt,name=player_slot,json=playerSlot,proto3" json:"player_slot,omitempty"`
-	NewRole       Role                   `protobuf:"varint,2,opt,name=new_role,json=newRole,proto3,enum=nevr.telemetry.Role" json:"new_role,omitempty"`
-	PrevRole      Role                   `protobuf:"varint,3,opt,name=prev_role,json=prevRole,proto3,enum=nevr.telemetry.Role" json:"prev_role,omitempty"`
+	NewRole       Role                   `protobuf:"varint,2,opt,name=new_role,json=newRole,proto3,enum=telemetry.Role" json:"new_role,omitempty"`
+	PrevRole      Role                   `protobuf:"varint,3,opt,name=prev_role,json=prevRole,proto3,enum=telemetry.Role" json:"prev_role,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -1846,93 +1846,93 @@ var File_telemetry_telemetry_proto protoreflect.FileDescriptor
 
 const file_telemetry_telemetry_proto_rawDesc = "" +
 	"\n" +
-	"\x19telemetry/telemetry.proto\x12\x0enevr.telemetry\x1a\x1fgoogle/protobuf/timestamp.proto\x1a\x15apigame/apigame.proto\"\xf3\x01\n" +
+	"\x19telemetry/telemetry.proto\x12\ttelemetry\x1a\x15apigame/apigame.proto\x1a\x1fgoogle/protobuf/timestamp.proto\"\xee\x01\n" +
 	"\x0fTelemetryHeader\x12\x1d\n" +
 	"\n" +
 	"capture_id\x18\x01 \x01(\tR\tcaptureId\x129\n" +
 	"\n" +
-	"created_at\x18\x02 \x01(\v2\x1a.google.protobuf.TimestampR\tcreatedAt\x12I\n" +
-	"\bmetadata\x18\x03 \x03(\v2-.nevr.telemetry.TelemetryHeader.MetadataEntryR\bmetadata\x1a;\n" +
+	"created_at\x18\x02 \x01(\v2\x1a.google.protobuf.TimestampR\tcreatedAt\x12D\n" +
+	"\bmetadata\x18\x03 \x03(\v2(.telemetry.TelemetryHeader.MetadataEntryR\bmetadata\x1a;\n" +
 	"\rMetadataEntry\x12\x10\n" +
 	"\x03key\x18\x01 \x01(\tR\x03key\x12\x14\n" +
-	"\x05value\x18\x02 \x01(\tR\x05value:\x028\x01\"\xa7\x02\n" +
+	"\x05value\x18\x02 \x01(\tR\x05value:\x028\x01\"\x98\x02\n" +
 	"\x16LobbySessionStateFrame\x12\x1f\n" +
 	"\vframe_index\x18\x01 \x01(\rR\n" +
 	"frameIndex\x128\n" +
-	"\ttimestamp\x18\x02 \x01(\v2\x1a.google.protobuf.TimestampR\ttimestamp\x129\n" +
-	"\x06events\x18\x03 \x03(\v2!.nevr.telemetry.LobbySessionEventR\x06events\x127\n" +
-	"\asession\x18\x04 \x01(\v2\x1d.nevr.apigame.SessionResponseR\asession\x12>\n" +
+	"\ttimestamp\x18\x02 \x01(\v2\x1a.google.protobuf.TimestampR\ttimestamp\x124\n" +
+	"\x06events\x18\x03 \x03(\v2\x1c.telemetry.LobbySessionEventR\x06events\x122\n" +
+	"\asession\x18\x04 \x01(\v2\x18.apigame.SessionResponseR\asession\x129\n" +
 	"\n" +
-	"user_bones\x18\x05 \x01(\v2\x1f.nevr.apigame.UserBonesResponseR\tuserBones\"\xa7\f\n" +
-	"\x11LobbySessionEvent\x12C\n" +
+	"user_bones\x18\x05 \x01(\v2\x1a.apigame.UserBonesResponseR\tuserBones\"\xb9\v\n" +
+	"\x11LobbySessionEvent\x12>\n" +
 	"\rround_started\x18\n" +
-	" \x01(\v2\x1c.nevr.telemetry.RoundStartedH\x00R\froundStarted\x12@\n" +
-	"\fround_paused\x18\v \x01(\v2\x1b.nevr.telemetry.RoundPausedH\x00R\vroundPaused\x12F\n" +
-	"\x0eround_unpaused\x18\f \x01(\v2\x1d.nevr.telemetry.RoundUnpausedH\x00R\rroundUnpaused\x12=\n" +
-	"\vround_ended\x18\r \x01(\v2\x1a.nevr.telemetry.RoundEndedH\x00R\n" +
-	"roundEnded\x12=\n" +
-	"\vmatch_ended\x18\x0e \x01(\v2\x1a.nevr.telemetry.MatchEndedH\x00R\n" +
-	"matchEnded\x12R\n" +
-	"\x12scoreboard_updated\x18\x0f \x01(\v2!.nevr.telemetry.ScoreboardUpdatedH\x00R\x11scoreboardUpdated\x12C\n" +
-	"\rplayer_joined\x18\x14 \x01(\v2\x1c.nevr.telemetry.PlayerJoinedH\x00R\fplayerJoined\x12=\n" +
-	"\vplayer_left\x18\x15 \x01(\v2\x1a.nevr.telemetry.PlayerLeftH\x00R\n" +
-	"playerLeft\x12V\n" +
-	"\x14player_switched_team\x18\x16 \x01(\v2\".nevr.telemetry.PlayerSwitchedTeamH\x00R\x12playerSwitchedTeam\x12@\n" +
-	"\femote_played\x18\x17 \x01(\v2\x1b.nevr.telemetry.EmotePlayedH\x00R\vemotePlayed\x12_\n" +
-	"\x17disc_possession_changed\x18\x1e \x01(\v2%.nevr.telemetry.DiscPossessionChangedH\x00R\x15discPossessionChanged\x12=\n" +
-	"\vdisc_thrown\x18\x1f \x01(\v2\x1a.nevr.telemetry.DiscThrownH\x00R\n" +
-	"discThrown\x12=\n" +
-	"\vdisc_caught\x18  \x01(\v2\x1a.nevr.telemetry.DiscCaughtH\x00R\n" +
-	"discCaught\x12=\n" +
-	"\vgoal_scored\x18( \x01(\v2\x1a.nevr.telemetry.GoalScoredH\x00R\n" +
-	"goalScored\x12=\n" +
-	"\vplayer_save\x182 \x01(\v2\x1a.nevr.telemetry.PlayerSaveH\x00R\n" +
-	"playerSave\x12=\n" +
-	"\vplayer_stun\x183 \x01(\v2\x1a.nevr.telemetry.PlayerStunH\x00R\n" +
-	"playerStun\x12=\n" +
-	"\vplayer_pass\x184 \x01(\v2\x1a.nevr.telemetry.PlayerPassH\x00R\n" +
-	"playerPass\x12@\n" +
-	"\fplayer_steal\x185 \x01(\v2\x1b.nevr.telemetry.PlayerStealH\x00R\vplayerSteal\x12@\n" +
-	"\fplayer_block\x186 \x01(\v2\x1b.nevr.telemetry.PlayerBlockH\x00R\vplayerBlock\x12U\n" +
-	"\x13player_interception\x187 \x01(\v2\".nevr.telemetry.PlayerInterceptionH\x00R\x12playerInterception\x12C\n" +
-	"\rplayer_assist\x188 \x01(\v2\x1c.nevr.telemetry.PlayerAssistH\x00R\fplayerAssist\x12M\n" +
-	"\x11player_shot_taken\x189 \x01(\v2\x1f.nevr.telemetry.PlayerShotTakenH\x00R\x0fplayerShotTakenB\t\n" +
+	" \x01(\v2\x17.telemetry.RoundStartedH\x00R\froundStarted\x12;\n" +
+	"\fround_paused\x18\v \x01(\v2\x16.telemetry.RoundPausedH\x00R\vroundPaused\x12A\n" +
+	"\x0eround_unpaused\x18\f \x01(\v2\x18.telemetry.RoundUnpausedH\x00R\rroundUnpaused\x128\n" +
+	"\vround_ended\x18\r \x01(\v2\x15.telemetry.RoundEndedH\x00R\n" +
+	"roundEnded\x128\n" +
+	"\vmatch_ended\x18\x0e \x01(\v2\x15.telemetry.MatchEndedH\x00R\n" +
+	"matchEnded\x12M\n" +
+	"\x12scoreboard_updated\x18\x0f \x01(\v2\x1c.telemetry.ScoreboardUpdatedH\x00R\x11scoreboardUpdated\x12>\n" +
+	"\rplayer_joined\x18\x14 \x01(\v2\x17.telemetry.PlayerJoinedH\x00R\fplayerJoined\x128\n" +
+	"\vplayer_left\x18\x15 \x01(\v2\x15.telemetry.PlayerLeftH\x00R\n" +
+	"playerLeft\x12Q\n" +
+	"\x14player_switched_team\x18\x16 \x01(\v2\x1d.telemetry.PlayerSwitchedTeamH\x00R\x12playerSwitchedTeam\x12;\n" +
+	"\femote_played\x18\x17 \x01(\v2\x16.telemetry.EmotePlayedH\x00R\vemotePlayed\x12Z\n" +
+	"\x17disc_possession_changed\x18\x1e \x01(\v2 .telemetry.DiscPossessionChangedH\x00R\x15discPossessionChanged\x128\n" +
+	"\vdisc_thrown\x18\x1f \x01(\v2\x15.telemetry.DiscThrownH\x00R\n" +
+	"discThrown\x128\n" +
+	"\vdisc_caught\x18  \x01(\v2\x15.telemetry.DiscCaughtH\x00R\n" +
+	"discCaught\x128\n" +
+	"\vgoal_scored\x18( \x01(\v2\x15.telemetry.GoalScoredH\x00R\n" +
+	"goalScored\x128\n" +
+	"\vplayer_save\x182 \x01(\v2\x15.telemetry.PlayerSaveH\x00R\n" +
+	"playerSave\x128\n" +
+	"\vplayer_stun\x183 \x01(\v2\x15.telemetry.PlayerStunH\x00R\n" +
+	"playerStun\x128\n" +
+	"\vplayer_pass\x184 \x01(\v2\x15.telemetry.PlayerPassH\x00R\n" +
+	"playerPass\x12;\n" +
+	"\fplayer_steal\x185 \x01(\v2\x16.telemetry.PlayerStealH\x00R\vplayerSteal\x12;\n" +
+	"\fplayer_block\x186 \x01(\v2\x16.telemetry.PlayerBlockH\x00R\vplayerBlock\x12P\n" +
+	"\x13player_interception\x187 \x01(\v2\x1d.telemetry.PlayerInterceptionH\x00R\x12playerInterception\x12>\n" +
+	"\rplayer_assist\x188 \x01(\v2\x17.telemetry.PlayerAssistH\x00R\fplayerAssist\x12H\n" +
+	"\x11player_shot_taken\x189 \x01(\v2\x1a.telemetry.PlayerShotTakenH\x00R\x0fplayerShotTakenB\t\n" +
 	"\apayload\"1\n" +
 	"\fRoundStarted\x12!\n" +
-	"\fround_number\x18\x01 \x01(\x05R\vroundNumber\"H\n" +
-	"\vRoundPaused\x129\n" +
-	"\vpause_state\x18\x01 \x01(\v2\x18.nevr.apigame.PauseStateR\n" +
-	"pauseState\"J\n" +
-	"\rRoundUnpaused\x129\n" +
-	"\vpause_state\x18\x01 \x01(\v2\x18.nevr.apigame.PauseStateR\n" +
-	"pauseState\"h\n" +
+	"\fround_number\x18\x01 \x01(\x05R\vroundNumber\"C\n" +
+	"\vRoundPaused\x124\n" +
+	"\vpause_state\x18\x01 \x01(\v2\x13.apigame.PauseStateR\n" +
+	"pauseState\"E\n" +
+	"\rRoundUnpaused\x124\n" +
+	"\vpause_state\x18\x01 \x01(\v2\x13.apigame.PauseStateR\n" +
+	"pauseState\"c\n" +
 	"\n" +
 	"RoundEnded\x12!\n" +
-	"\fround_number\x18\x01 \x01(\x05R\vroundNumber\x127\n" +
-	"\fwinning_team\x18\x02 \x01(\x0e2\x14.nevr.telemetry.RoleR\vwinningTeam\"E\n" +
+	"\fround_number\x18\x01 \x01(\x05R\vroundNumber\x122\n" +
+	"\fwinning_team\x18\x02 \x01(\x0e2\x0f.telemetry.RoleR\vwinningTeam\"@\n" +
 	"\n" +
-	"MatchEnded\x127\n" +
-	"\fwinning_team\x18\x01 \x01(\x0e2\x14.nevr.telemetry.RoleR\vwinningTeam\"\xdf\x01\n" +
+	"MatchEnded\x122\n" +
+	"\fwinning_team\x18\x01 \x01(\x0e2\x0f.telemetry.RoleR\vwinningTeam\"\xdf\x01\n" +
 	"\x11ScoreboardUpdated\x12\x1f\n" +
 	"\vblue_points\x18\x01 \x01(\x05R\n" +
 	"bluePoints\x12#\n" +
 	"\rorange_points\x18\x02 \x01(\x05R\forangePoints\x12(\n" +
 	"\x10blue_round_score\x18\x03 \x01(\x05R\x0eblueRoundScore\x12,\n" +
 	"\x12orange_round_score\x18\x04 \x01(\x05R\x10orangeRoundScore\x12,\n" +
-	"\x12game_clock_display\x18\x05 \x01(\tR\x10gameClockDisplay\"j\n" +
-	"\fPlayerJoined\x120\n" +
-	"\x06player\x18\x01 \x01(\v2\x18.nevr.apigame.TeamMemberR\x06player\x12(\n" +
-	"\x04role\x18\x02 \x01(\x0e2\x14.nevr.telemetry.RoleR\x04role\"P\n" +
+	"\x12game_clock_display\x18\x05 \x01(\tR\x10gameClockDisplay\"`\n" +
+	"\fPlayerJoined\x12+\n" +
+	"\x06player\x18\x01 \x01(\v2\x13.apigame.TeamMemberR\x06player\x12#\n" +
+	"\x04role\x18\x02 \x01(\x0e2\x0f.telemetry.RoleR\x04role\"P\n" +
 	"\n" +
 	"PlayerLeft\x12\x1f\n" +
 	"\vplayer_slot\x18\x01 \x01(\x05R\n" +
 	"playerSlot\x12!\n" +
-	"\fdisplay_name\x18\x02 \x01(\tR\vdisplayName\"\x99\x01\n" +
+	"\fdisplay_name\x18\x02 \x01(\tR\vdisplayName\"\x8f\x01\n" +
 	"\x12PlayerSwitchedTeam\x12\x1f\n" +
 	"\vplayer_slot\x18\x01 \x01(\x05R\n" +
-	"playerSlot\x12/\n" +
-	"\bnew_role\x18\x02 \x01(\x0e2\x14.nevr.telemetry.RoleR\anewRole\x121\n" +
-	"\tprev_role\x18\x03 \x01(\x0e2\x14.nevr.telemetry.RoleR\bprevRole\"W\n" +
+	"playerSlot\x12*\n" +
+	"\bnew_role\x18\x02 \x01(\x0e2\x0f.telemetry.RoleR\anewRole\x12,\n" +
+	"\tprev_role\x18\x03 \x01(\x0e2\x0f.telemetry.RoleR\bprevRole\"W\n" +
 	"\vEmotePlayed\x12\x1f\n" +
 	"\vplayer_slot\x18\x01 \x01(\x05R\n" +
 	"playerSlot\"'\n" +
@@ -1942,19 +1942,19 @@ const file_telemetry_telemetry_proto_rawDesc = "" +
 	"\x15DiscPossessionChanged\x12\x1f\n" +
 	"\vplayer_slot\x18\x01 \x01(\x05R\n" +
 	"playerSlot\x12#\n" +
-	"\rprevious_slot\x18\x02 \x01(\x05R\fpreviousSlot\"o\n" +
+	"\rprevious_slot\x18\x02 \x01(\x05R\fpreviousSlot\"j\n" +
 	"\n" +
 	"DiscThrown\x12\x1f\n" +
 	"\vplayer_slot\x18\x01 \x01(\x05R\n" +
-	"playerSlot\x12@\n" +
-	"\rthrow_details\x18\x02 \x01(\v2\x1b.nevr.apigame.LastThrowInfoR\fthrowDetails\"-\n" +
+	"playerSlot\x12;\n" +
+	"\rthrow_details\x18\x02 \x01(\v2\x16.apigame.LastThrowInfoR\fthrowDetails\"-\n" +
 	"\n" +
 	"DiscCaught\x12\x1f\n" +
 	"\vplayer_slot\x18\x01 \x01(\x05R\n" +
-	"playerSlot\"J\n" +
+	"playerSlot\"E\n" +
 	"\n" +
-	"GoalScored\x12<\n" +
-	"\rscore_details\x18\x01 \x01(\v2\x17.nevr.apigame.LastScoreR\fscoreDetails\"N\n" +
+	"GoalScored\x127\n" +
+	"\rscore_details\x18\x01 \x01(\v2\x12.apigame.LastScoreR\fscoreDetails\"N\n" +
 	"\n" +
 	"PlayerSave\x12\x1f\n" +
 	"\vplayer_slot\x18\x01 \x01(\x05R\n" +
@@ -1999,8 +1999,8 @@ const file_telemetry_telemetry_proto_rawDesc = "" +
 	"\vORANGE_TEAM\x10\x02\x12\r\n" +
 	"\tSPECTATOR\x10\x03\x12\x16\n" +
 	"\x12SOCIAL_PARTICIPANT\x10\x04\x12\r\n" +
-	"\tMODERATOR\x10\x05Bx\n" +
-	"\x1ccom.echotools.nevr.telemetryB\rNEVRTelemetryP\x01Z-github.com/echotools/nevr-common/v3/telemetry\xaa\x02\x17Nevr.Telemetry.Protobufb\x06proto3"
+	"\tMODERATOR\x10\x05Bu\n" +
+	"\x1ccom.echotools.nevr.telemetryB\rNevrTelemetryP\x01Z*github.com/echotools/nevr-common/telemetry\xaa\x02\x17Nevr.Telemetry.Protobufb\x06proto3"
 
 var (
 	file_telemetry_telemetry_proto_rawDescOnce sync.Once
@@ -2017,81 +2017,81 @@ func file_telemetry_telemetry_proto_rawDescGZIP() []byte {
 var file_telemetry_telemetry_proto_enumTypes = make([]protoimpl.EnumInfo, 2)
 var file_telemetry_telemetry_proto_msgTypes = make([]protoimpl.MessageInfo, 26)
 var file_telemetry_telemetry_proto_goTypes = []any{
-	(Role)(0),                         // 0: nevr.telemetry.Role
-	(EmotePlayed_EmoteType)(0),        // 1: nevr.telemetry.EmotePlayed.EmoteType
-	(*TelemetryHeader)(nil),           // 2: nevr.telemetry.TelemetryHeader
-	(*LobbySessionStateFrame)(nil),    // 3: nevr.telemetry.LobbySessionStateFrame
-	(*LobbySessionEvent)(nil),         // 4: nevr.telemetry.LobbySessionEvent
-	(*RoundStarted)(nil),              // 5: nevr.telemetry.RoundStarted
-	(*RoundPaused)(nil),               // 6: nevr.telemetry.RoundPaused
-	(*RoundUnpaused)(nil),             // 7: nevr.telemetry.RoundUnpaused
-	(*RoundEnded)(nil),                // 8: nevr.telemetry.RoundEnded
-	(*MatchEnded)(nil),                // 9: nevr.telemetry.MatchEnded
-	(*ScoreboardUpdated)(nil),         // 10: nevr.telemetry.ScoreboardUpdated
-	(*PlayerJoined)(nil),              // 11: nevr.telemetry.PlayerJoined
-	(*PlayerLeft)(nil),                // 12: nevr.telemetry.PlayerLeft
-	(*PlayerSwitchedTeam)(nil),        // 13: nevr.telemetry.PlayerSwitchedTeam
-	(*EmotePlayed)(nil),               // 14: nevr.telemetry.EmotePlayed
-	(*DiscPossessionChanged)(nil),     // 15: nevr.telemetry.DiscPossessionChanged
-	(*DiscThrown)(nil),                // 16: nevr.telemetry.DiscThrown
-	(*DiscCaught)(nil),                // 17: nevr.telemetry.DiscCaught
-	(*GoalScored)(nil),                // 18: nevr.telemetry.GoalScored
-	(*PlayerSave)(nil),                // 19: nevr.telemetry.PlayerSave
-	(*PlayerStun)(nil),                // 20: nevr.telemetry.PlayerStun
-	(*PlayerPass)(nil),                // 21: nevr.telemetry.PlayerPass
-	(*PlayerSteal)(nil),               // 22: nevr.telemetry.PlayerSteal
-	(*PlayerBlock)(nil),               // 23: nevr.telemetry.PlayerBlock
-	(*PlayerInterception)(nil),        // 24: nevr.telemetry.PlayerInterception
-	(*PlayerAssist)(nil),              // 25: nevr.telemetry.PlayerAssist
-	(*PlayerShotTaken)(nil),           // 26: nevr.telemetry.PlayerShotTaken
-	nil,                               // 27: nevr.telemetry.TelemetryHeader.MetadataEntry
+	(Role)(0),                         // 0: telemetry.Role
+	(EmotePlayed_EmoteType)(0),        // 1: telemetry.EmotePlayed.EmoteType
+	(*TelemetryHeader)(nil),           // 2: telemetry.TelemetryHeader
+	(*LobbySessionStateFrame)(nil),    // 3: telemetry.LobbySessionStateFrame
+	(*LobbySessionEvent)(nil),         // 4: telemetry.LobbySessionEvent
+	(*RoundStarted)(nil),              // 5: telemetry.RoundStarted
+	(*RoundPaused)(nil),               // 6: telemetry.RoundPaused
+	(*RoundUnpaused)(nil),             // 7: telemetry.RoundUnpaused
+	(*RoundEnded)(nil),                // 8: telemetry.RoundEnded
+	(*MatchEnded)(nil),                // 9: telemetry.MatchEnded
+	(*ScoreboardUpdated)(nil),         // 10: telemetry.ScoreboardUpdated
+	(*PlayerJoined)(nil),              // 11: telemetry.PlayerJoined
+	(*PlayerLeft)(nil),                // 12: telemetry.PlayerLeft
+	(*PlayerSwitchedTeam)(nil),        // 13: telemetry.PlayerSwitchedTeam
+	(*EmotePlayed)(nil),               // 14: telemetry.EmotePlayed
+	(*DiscPossessionChanged)(nil),     // 15: telemetry.DiscPossessionChanged
+	(*DiscThrown)(nil),                // 16: telemetry.DiscThrown
+	(*DiscCaught)(nil),                // 17: telemetry.DiscCaught
+	(*GoalScored)(nil),                // 18: telemetry.GoalScored
+	(*PlayerSave)(nil),                // 19: telemetry.PlayerSave
+	(*PlayerStun)(nil),                // 20: telemetry.PlayerStun
+	(*PlayerPass)(nil),                // 21: telemetry.PlayerPass
+	(*PlayerSteal)(nil),               // 22: telemetry.PlayerSteal
+	(*PlayerBlock)(nil),               // 23: telemetry.PlayerBlock
+	(*PlayerInterception)(nil),        // 24: telemetry.PlayerInterception
+	(*PlayerAssist)(nil),              // 25: telemetry.PlayerAssist
+	(*PlayerShotTaken)(nil),           // 26: telemetry.PlayerShotTaken
+	nil,                               // 27: telemetry.TelemetryHeader.MetadataEntry
 	(*timestamppb.Timestamp)(nil),     // 28: google.protobuf.Timestamp
-	(*apigame.SessionResponse)(nil),   // 29: nevr.apigame.SessionResponse
-	(*apigame.UserBonesResponse)(nil), // 30: nevr.apigame.UserBonesResponse
-	(*apigame.PauseState)(nil),        // 31: nevr.apigame.PauseState
-	(*apigame.TeamMember)(nil),        // 32: nevr.apigame.TeamMember
-	(*apigame.LastThrowInfo)(nil),     // 33: nevr.apigame.LastThrowInfo
-	(*apigame.LastScore)(nil),         // 34: nevr.apigame.LastScore
+	(*apigame.SessionResponse)(nil),   // 29: apigame.SessionResponse
+	(*apigame.UserBonesResponse)(nil), // 30: apigame.UserBonesResponse
+	(*apigame.PauseState)(nil),        // 31: apigame.PauseState
+	(*apigame.TeamMember)(nil),        // 32: apigame.TeamMember
+	(*apigame.LastThrowInfo)(nil),     // 33: apigame.LastThrowInfo
+	(*apigame.LastScore)(nil),         // 34: apigame.LastScore
 }
 var file_telemetry_telemetry_proto_depIdxs = []int32{
-	28, // 0: nevr.telemetry.TelemetryHeader.created_at:type_name -> google.protobuf.Timestamp
-	27, // 1: nevr.telemetry.TelemetryHeader.metadata:type_name -> nevr.telemetry.TelemetryHeader.MetadataEntry
-	28, // 2: nevr.telemetry.LobbySessionStateFrame.timestamp:type_name -> google.protobuf.Timestamp
-	4,  // 3: nevr.telemetry.LobbySessionStateFrame.events:type_name -> nevr.telemetry.LobbySessionEvent
-	29, // 4: nevr.telemetry.LobbySessionStateFrame.session:type_name -> nevr.apigame.SessionResponse
-	30, // 5: nevr.telemetry.LobbySessionStateFrame.user_bones:type_name -> nevr.apigame.UserBonesResponse
-	5,  // 6: nevr.telemetry.LobbySessionEvent.round_started:type_name -> nevr.telemetry.RoundStarted
-	6,  // 7: nevr.telemetry.LobbySessionEvent.round_paused:type_name -> nevr.telemetry.RoundPaused
-	7,  // 8: nevr.telemetry.LobbySessionEvent.round_unpaused:type_name -> nevr.telemetry.RoundUnpaused
-	8,  // 9: nevr.telemetry.LobbySessionEvent.round_ended:type_name -> nevr.telemetry.RoundEnded
-	9,  // 10: nevr.telemetry.LobbySessionEvent.match_ended:type_name -> nevr.telemetry.MatchEnded
-	10, // 11: nevr.telemetry.LobbySessionEvent.scoreboard_updated:type_name -> nevr.telemetry.ScoreboardUpdated
-	11, // 12: nevr.telemetry.LobbySessionEvent.player_joined:type_name -> nevr.telemetry.PlayerJoined
-	12, // 13: nevr.telemetry.LobbySessionEvent.player_left:type_name -> nevr.telemetry.PlayerLeft
-	13, // 14: nevr.telemetry.LobbySessionEvent.player_switched_team:type_name -> nevr.telemetry.PlayerSwitchedTeam
-	14, // 15: nevr.telemetry.LobbySessionEvent.emote_played:type_name -> nevr.telemetry.EmotePlayed
-	15, // 16: nevr.telemetry.LobbySessionEvent.disc_possession_changed:type_name -> nevr.telemetry.DiscPossessionChanged
-	16, // 17: nevr.telemetry.LobbySessionEvent.disc_thrown:type_name -> nevr.telemetry.DiscThrown
-	17, // 18: nevr.telemetry.LobbySessionEvent.disc_caught:type_name -> nevr.telemetry.DiscCaught
-	18, // 19: nevr.telemetry.LobbySessionEvent.goal_scored:type_name -> nevr.telemetry.GoalScored
-	19, // 20: nevr.telemetry.LobbySessionEvent.player_save:type_name -> nevr.telemetry.PlayerSave
-	20, // 21: nevr.telemetry.LobbySessionEvent.player_stun:type_name -> nevr.telemetry.PlayerStun
-	21, // 22: nevr.telemetry.LobbySessionEvent.player_pass:type_name -> nevr.telemetry.PlayerPass
-	22, // 23: nevr.telemetry.LobbySessionEvent.player_steal:type_name -> nevr.telemetry.PlayerSteal
-	23, // 24: nevr.telemetry.LobbySessionEvent.player_block:type_name -> nevr.telemetry.PlayerBlock
-	24, // 25: nevr.telemetry.LobbySessionEvent.player_interception:type_name -> nevr.telemetry.PlayerInterception
-	25, // 26: nevr.telemetry.LobbySessionEvent.player_assist:type_name -> nevr.telemetry.PlayerAssist
-	26, // 27: nevr.telemetry.LobbySessionEvent.player_shot_taken:type_name -> nevr.telemetry.PlayerShotTaken
-	31, // 28: nevr.telemetry.RoundPaused.pause_state:type_name -> nevr.apigame.PauseState
-	31, // 29: nevr.telemetry.RoundUnpaused.pause_state:type_name -> nevr.apigame.PauseState
-	0,  // 30: nevr.telemetry.RoundEnded.winning_team:type_name -> nevr.telemetry.Role
-	0,  // 31: nevr.telemetry.MatchEnded.winning_team:type_name -> nevr.telemetry.Role
-	32, // 32: nevr.telemetry.PlayerJoined.player:type_name -> nevr.apigame.TeamMember
-	0,  // 33: nevr.telemetry.PlayerJoined.role:type_name -> nevr.telemetry.Role
-	0,  // 34: nevr.telemetry.PlayerSwitchedTeam.new_role:type_name -> nevr.telemetry.Role
-	0,  // 35: nevr.telemetry.PlayerSwitchedTeam.prev_role:type_name -> nevr.telemetry.Role
-	33, // 36: nevr.telemetry.DiscThrown.throw_details:type_name -> nevr.apigame.LastThrowInfo
-	34, // 37: nevr.telemetry.GoalScored.score_details:type_name -> nevr.apigame.LastScore
+	28, // 0: telemetry.TelemetryHeader.created_at:type_name -> google.protobuf.Timestamp
+	27, // 1: telemetry.TelemetryHeader.metadata:type_name -> telemetry.TelemetryHeader.MetadataEntry
+	28, // 2: telemetry.LobbySessionStateFrame.timestamp:type_name -> google.protobuf.Timestamp
+	4,  // 3: telemetry.LobbySessionStateFrame.events:type_name -> telemetry.LobbySessionEvent
+	29, // 4: telemetry.LobbySessionStateFrame.session:type_name -> apigame.SessionResponse
+	30, // 5: telemetry.LobbySessionStateFrame.user_bones:type_name -> apigame.UserBonesResponse
+	5,  // 6: telemetry.LobbySessionEvent.round_started:type_name -> telemetry.RoundStarted
+	6,  // 7: telemetry.LobbySessionEvent.round_paused:type_name -> telemetry.RoundPaused
+	7,  // 8: telemetry.LobbySessionEvent.round_unpaused:type_name -> telemetry.RoundUnpaused
+	8,  // 9: telemetry.LobbySessionEvent.round_ended:type_name -> telemetry.RoundEnded
+	9,  // 10: telemetry.LobbySessionEvent.match_ended:type_name -> telemetry.MatchEnded
+	10, // 11: telemetry.LobbySessionEvent.scoreboard_updated:type_name -> telemetry.ScoreboardUpdated
+	11, // 12: telemetry.LobbySessionEvent.player_joined:type_name -> telemetry.PlayerJoined
+	12, // 13: telemetry.LobbySessionEvent.player_left:type_name -> telemetry.PlayerLeft
+	13, // 14: telemetry.LobbySessionEvent.player_switched_team:type_name -> telemetry.PlayerSwitchedTeam
+	14, // 15: telemetry.LobbySessionEvent.emote_played:type_name -> telemetry.EmotePlayed
+	15, // 16: telemetry.LobbySessionEvent.disc_possession_changed:type_name -> telemetry.DiscPossessionChanged
+	16, // 17: telemetry.LobbySessionEvent.disc_thrown:type_name -> telemetry.DiscThrown
+	17, // 18: telemetry.LobbySessionEvent.disc_caught:type_name -> telemetry.DiscCaught
+	18, // 19: telemetry.LobbySessionEvent.goal_scored:type_name -> telemetry.GoalScored
+	19, // 20: telemetry.LobbySessionEvent.player_save:type_name -> telemetry.PlayerSave
+	20, // 21: telemetry.LobbySessionEvent.player_stun:type_name -> telemetry.PlayerStun
+	21, // 22: telemetry.LobbySessionEvent.player_pass:type_name -> telemetry.PlayerPass
+	22, // 23: telemetry.LobbySessionEvent.player_steal:type_name -> telemetry.PlayerSteal
+	23, // 24: telemetry.LobbySessionEvent.player_block:type_name -> telemetry.PlayerBlock
+	24, // 25: telemetry.LobbySessionEvent.player_interception:type_name -> telemetry.PlayerInterception
+	25, // 26: telemetry.LobbySessionEvent.player_assist:type_name -> telemetry.PlayerAssist
+	26, // 27: telemetry.LobbySessionEvent.player_shot_taken:type_name -> telemetry.PlayerShotTaken
+	31, // 28: telemetry.RoundPaused.pause_state:type_name -> apigame.PauseState
+	31, // 29: telemetry.RoundUnpaused.pause_state:type_name -> apigame.PauseState
+	0,  // 30: telemetry.RoundEnded.winning_team:type_name -> telemetry.Role
+	0,  // 31: telemetry.MatchEnded.winning_team:type_name -> telemetry.Role
+	32, // 32: telemetry.PlayerJoined.player:type_name -> apigame.TeamMember
+	0,  // 33: telemetry.PlayerJoined.role:type_name -> telemetry.Role
+	0,  // 34: telemetry.PlayerSwitchedTeam.new_role:type_name -> telemetry.Role
+	0,  // 35: telemetry.PlayerSwitchedTeam.prev_role:type_name -> telemetry.Role
+	33, // 36: telemetry.DiscThrown.throw_details:type_name -> apigame.LastThrowInfo
+	34, // 37: telemetry.GoalScored.score_details:type_name -> apigame.LastScore
 	38, // [38:38] is the sub-list for method output_type
 	38, // [38:38] is the sub-list for method input_type
 	38, // [38:38] is the sub-list for extension type_name

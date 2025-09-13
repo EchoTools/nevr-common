@@ -1,8 +1,8 @@
 package nevrcap
 
 import (
-	"github.com/echotools/nevr-common/v3/apigame"
-	"github.com/echotools/nevr-common/v3/telemetry"
+	"github.com/echotools/nevr-common/apigame"
+	"github.com/echotools/nevr-common/telemetry"
 )
 
 // EventDetector efficiently detects events between consecutive frames
