@@ -6,7 +6,7 @@ import (
 	"testing"
 	"time"
 
-	"github.com/echotools/nevr-common/v3/gameapi"
+	"github.com/echotools/nevr-common/v3/apigame"
 	"github.com/echotools/nevr-common/v3/telemetry"
 	"google.golang.org/protobuf/types/known/timestamppb"
 )
@@ -212,14 +212,14 @@ func TestFileConversion(t *testing.T) {
 // Helper functions for creating test data
 
 func createTestSessionData(t *testing.T) []byte {
-	session := &gameapi.SessionResponse{
+	session := &apigame.SessionResponse{
 		SessionID:        "test-session",
 		GameStatus:       "running",
 		BluePoints:       0,
 		OrangePoints:     0,
 		BlueRoundScore:   0,
 		OrangeRoundScore: 0,
-		Teams:            []*gameapi.Team{},
+		Teams:            []*apigame.Team{},
 	}
 
 	data, err := json.Marshal(session)
@@ -230,14 +230,14 @@ func createTestSessionData(t *testing.T) []byte {
 }
 
 func createModifiedSessionData(t *testing.T) []byte {
-	session := &gameapi.SessionResponse{
+	session := &apigame.SessionResponse{
 		SessionID:        "test-session",
 		GameStatus:       "running",
 		BluePoints:       1, // Changed score
 		OrangePoints:     0,
 		BlueRoundScore:   1, // Changed score
 		OrangeRoundScore: 0,
-		Teams:            []*gameapi.Team{},
+		Teams:            []*apigame.Team{},
 	}
 
 	data, err := json.Marshal(session)
@@ -248,8 +248,8 @@ func createModifiedSessionData(t *testing.T) []byte {
 }
 
 func createTestUserBonesData(t *testing.T) []byte {
-	userBones := &gameapi.UserBonesResponse{
-		UserBones: []*gameapi.PlayerBones{},
+	userBones := &apigame.UserBonesResponse{
+		UserBones: []*apigame.PlayerBones{},
 		ErrCode:   0,
 	}
 
@@ -261,18 +261,18 @@ func createTestUserBonesData(t *testing.T) []byte {
 }
 
 func createTestFrame(t *testing.T) *telemetry.LobbySessionStateFrame {
-	session := &gameapi.SessionResponse{
+	session := &apigame.SessionResponse{
 		SessionID:        "test-session",
 		GameStatus:       "running",
 		BluePoints:       0,
 		OrangePoints:     0,
 		BlueRoundScore:   0,
 		OrangeRoundScore: 0,
-		Teams:            []*gameapi.Team{},
+		Teams:            []*apigame.Team{},
 	}
 
-	userBones := &gameapi.UserBonesResponse{
-		UserBones: []*gameapi.PlayerBones{},
+	userBones := &apigame.UserBonesResponse{
+		UserBones: []*apigame.PlayerBones{},
 		ErrCode:   0,
 	}
 

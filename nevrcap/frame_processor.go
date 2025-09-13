@@ -4,7 +4,7 @@ import (
 	"encoding/json"
 	"time"
 
-	"github.com/echotools/nevr-common/v3/gameapi"
+	"github.com/echotools/nevr-common/v3/apigame"
 	"github.com/echotools/nevr-common/v3/telemetry"
 	"google.golang.org/protobuf/types/known/timestamppb"
 )
@@ -17,8 +17,8 @@ type FrameProcessor struct {
 	eventDetector *EventDetector
 
 	// Pre-allocated structs to avoid memory allocations
-	sessionResponse   gameapi.SessionResponse
-	userBonesResponse gameapi.UserBonesResponse
+	sessionResponse   apigame.SessionResponse
+	userBonesResponse apigame.UserBonesResponse
 }
 
 // NewFrameProcessor creates a new optimized frame processor
