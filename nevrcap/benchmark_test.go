@@ -7,7 +7,7 @@ import (
 	"testing"
 	"time"
 
-	"github.com/echotools/nevr-common/v3/gameapi"
+	"github.com/echotools/nevr-common/v3/apigame"
 	"github.com/echotools/nevr-common/v3/telemetry"
 )
 
@@ -223,16 +223,16 @@ func BenchmarkHighFrequency(b *testing.B) {
 
 func createBenchSessionData(b *testing.B) []byte {
 	// Create a realistic session with multiple players and teams
-	players := make([]*gameapi.TeamMember, 8)
+	players := make([]*apigame.TeamMember, 8)
 	for i := 0; i < 8; i++ {
-		players[i] = &gameapi.TeamMember{
+		players[i] = &apigame.TeamMember{
 			AccountNumber: uint64(1000 + i),
 			DisplayName:   fmt.Sprintf("Player%d", i),
 			SlotNumber:    int32(i),
 			JerseyNumber:  int32(i),
 			Level:         50,
 			Ping:          25,
-			Stats: &gameapi.PlayerStats{
+			Stats: &apigame.PlayerStats{
 				Points:        int32(i * 10),
 				Goals:         int32(i),
 				Saves:         int32(i * 2),
@@ -248,12 +248,12 @@ func createBenchSessionData(b *testing.B) []byte {
 		}
 	}
 
-	teams := []*gameapi.Team{
+	teams := []*apigame.Team{
 		{
 			TeamName:      "Blue Team",
 			Players:       players[:4],
 			HasPossession: false,
-			Stats: &gameapi.TeamStats{
+			Stats: &apigame.TeamStats{
 				Points: 0,
 				Goals:  0,
 			},
@@ -262,14 +262,14 @@ func createBenchSessionData(b *testing.B) []byte {
 			TeamName:      "Orange Team",
 			Players:       players[4:],
 			HasPossession: true,
-			Stats: &gameapi.TeamStats{
+			Stats: &apigame.TeamStats{
 				Points: 1,
 				Goals:  1,
 			},
 		},
 	}
 
-	session := &gameapi.SessionResponse{
+	session := &apigame.SessionResponse{
 		SessionID:        "benchmark-session-12345",
 		GameStatus:       "running",
 		GameClockDisplay: "10:00",
@@ -281,7 +281,7 @@ func createBenchSessionData(b *testing.B) []byte {
 		OrangeRoundScore: 1,
 		TotalRoundCount:  3,
 		Teams:            teams,
-		Disc: &gameapi.Disc{
+		Disc: &apigame.Disc{
 			Position:    []float64{0.0, 10.0, 0.0},
 			Velocity:    []float64{5.0, 0.0, 2.0},
 			BounceCount: 2,
@@ -297,17 +297,17 @@ func createBenchSessionData(b *testing.B) []byte {
 }
 
 func createBenchUserBonesData(b *testing.B) []byte {
-	bones := make([]*gameapi.PlayerBones, 8)
+	bones := make([]*apigame.PlayerBones, 8)
 	for i := 0; i < 8; i++ {
-		bones[i] = &gameapi.PlayerBones{
+		bones[i] = &apigame.PlayerBones{
 			XPID: int32(1000 + i),
-			BoneT: &gameapi.BoneTranslation{
+			BoneT: &apigame.BoneTranslation{
 				V: []float64{
 					float64(i), float64(i * 2), float64(i * 3), // Head
 					float64(i + 1), float64(i*2 + 1), float64(i*3 + 1), // Body
 				},
 			},
-			BoneO: &gameapi.BoneOrientation{
+			BoneO: &apigame.BoneOrientation{
 				V: []float64{
 					0.0, 0.0, 0.0, 1.0, // Head quaternion
 					0.0, 0.0, 0.0, 1.0, // Body quaternion
@@ -316,7 +316,7 @@ func createBenchUserBonesData(b *testing.B) []byte {
 		}
 	}
 
-	userBones := &gameapi.UserBonesResponse{
+	userBones := &apigame.UserBonesResponse{
 		UserBones: bones,
 		ErrCode:   0,
 	}

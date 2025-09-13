@@ -10,7 +10,7 @@ syntax = "proto3";
 package nevr.telemetry;
 
 import "google/protobuf/timestamp.proto";
-import "gameapi/nevr_gameapi.proto";
+import "apigame/apigame.proto";
 
 // --- Language-specific options ---
 option go_package           = "github.com/echotools/nevr-common/v3/telemetry";
@@ -50,10 +50,10 @@ message LobbySessionStateFrame {
   repeated LobbySessionEvent events = 3;
 
   // The session data for this frame, including player locations.
-  nevr.gameapi.SessionResponse session = 4;
+  nevr.apigame.SessionResponse session = 4;
 
   // The user bones data for this frame.
-  nevr.gameapi.UserBonesResponse user_bones = 5;
+  nevr.apigame.UserBonesResponse user_bones = 5;
 }
 
 // Defines the possible roles or teams a player can be assigned to.
@@ -115,12 +115,12 @@ message RoundStarted {
 
 // Fired when the game is paused.
 message RoundPaused {
-  nevr.gameapi.PauseState pause_state = 1;
+  nevr.apigame.PauseState pause_state = 1;
 }
 
 // Fired when the game is unpaused.
 message RoundUnpaused {
-  nevr.gameapi.PauseState pause_state = 1;
+  nevr.apigame.PauseState pause_state = 1;
 }
 
 // Fired when a round finishes.
@@ -150,7 +150,7 @@ message ScoreboardUpdated {
 // Fired when a new player is detected in the session.
 message PlayerJoined {
   // Contains the full initial state of the player.
-  nevr.gameapi.TeamMember player = 1;
+  nevr.apigame.TeamMember player = 1;
   Role                    role   = 2;
 }
 
@@ -191,7 +191,7 @@ message DiscPossessionChanged {
 message DiscThrown {
   int32 player_slot = 1;
   // Contains the detailed physics of the throw.
-  nevr.gameapi.LastThrowInfo throw_details = 2;
+  nevr.apigame.LastThrowInfo throw_details = 2;
 }
 
 // Fired when a player catches the disc.
@@ -206,7 +206,7 @@ message DiscCaught {
 // Fired when a goal is scored.
 message GoalScored {
   // Contains all details about the score.
-  nevr.gameapi.LastScore score_details = 1;
+  nevr.apigame.LastScore score_details = 1;
 }
 
 // ------------------------------------------------------------------

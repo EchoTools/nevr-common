@@ -1,14 +1,14 @@
 package nevrcap
 
 import (
-	"github.com/echotools/nevr-common/v3/gameapi"
+	"github.com/echotools/nevr-common/v3/apigame"
 	"github.com/echotools/nevr-common/v3/telemetry"
 )
 
 // EventDetector efficiently detects events between consecutive frames
 type EventDetector struct {
 	// Cache for player states to avoid repeated lookups
-	prevPlayersBySlot map[int32]*gameapi.TeamMember
+	prevPlayersBySlot map[int32]*apigame.TeamMember
 	prevScoreboard    *ScoreboardState
 	prevDiscState     *DiscState
 }
@@ -31,7 +31,7 @@ type DiscState struct {
 // NewEventDetector creates a new event detector
 func NewEventDetector() *EventDetector {
 	return &EventDetector{
-		prevPlayersBySlot: make(map[int32]*gameapi.TeamMember),
+		prevPlayersBySlot: make(map[int32]*apigame.TeamMember),
 	}
 }
 
@@ -62,8 +62,8 @@ func (ed *EventDetector) DetectEvents(prevFrame, currentFrame *telemetry.LobbySe
 }
 
 // buildPlayerSlotMap creates a map of player slot to player for efficient lookup
-func (ed *EventDetector) buildPlayerSlotMap(frame *telemetry.LobbySessionStateFrame) map[int32]*gameapi.TeamMember {
-	playersBySlot := make(map[int32]*gameapi.TeamMember)
+func (ed *EventDetector) buildPlayerSlotMap(frame *telemetry.LobbySessionStateFrame) map[int32]*apigame.TeamMember {
+	playersBySlot := make(map[int32]*apigame.TeamMember)
 
 	for _, team := range frame.Session.Teams {
 		for _, player := range team.Players {
@@ -75,7 +75,7 @@ func (ed *EventDetector) buildPlayerSlotMap(frame *telemetry.LobbySessionStateFr
 }
 
 // detectPlayerEvents detects player join/leave/team switch events
-func (ed *EventDetector) detectPlayerEvents(currentPlayers map[int32]*gameapi.TeamMember) []*telemetry.LobbySessionEvent {
+func (ed *EventDetector) detectPlayerEvents(currentPlayers map[int32]*apigame.TeamMember) []*telemetry.LobbySessionEvent {
 	var events []*telemetry.LobbySessionEvent
 
 	// Detect new players (joined)
@@ -110,7 +110,7 @@ func (ed *EventDetector) detectPlayerEvents(currentPlayers map[int32]*gameapi.Te
 }
 
 // detectScoreboardEvents detects scoring and round changes
-func (ed *EventDetector) detectScoreboardEvents(prevSession, currentSession *gameapi.SessionResponse) []*telemetry.LobbySessionEvent {
+func (ed *EventDetector) detectScoreboardEvents(prevSession, currentSession *apigame.SessionResponse) []*telemetry.LobbySessionEvent {
 	var events []*telemetry.LobbySessionEvent
 
 	currentScoreboard := &ScoreboardState{
@@ -158,7 +158,7 @@ func (ed *EventDetector) detectScoreboardEvents(prevSession, currentSession *gam
 }
 
 // detectDiscEvents detects disc possession changes and throws
-func (ed *EventDetector) detectDiscEvents(prevSession, currentSession *gameapi.SessionResponse) []*telemetry.LobbySessionEvent {
+func (ed *EventDetector) detectDiscEvents(prevSession, currentSession *apigame.SessionResponse) []*telemetry.LobbySessionEvent {
 	var events []*telemetry.LobbySessionEvent
 
 	// Find current disc possession
@@ -202,7 +202,7 @@ func (ed *EventDetector) detectDiscEvents(prevSession, currentSession *gameapi.S
 }
 
 // detectStatEvents detects changes in player statistics
-func (ed *EventDetector) detectStatEvents(currentPlayers map[int32]*gameapi.TeamMember) []*telemetry.LobbySessionEvent {
+func (ed *EventDetector) detectStatEvents(currentPlayers map[int32]*apigame.TeamMember) []*telemetry.LobbySessionEvent {
 	var events []*telemetry.LobbySessionEvent
 
 	for slot, player := range currentPlayers {
@@ -302,7 +302,7 @@ func (ed *EventDetector) detectStatEvents(currentPlayers map[int32]*gameapi.Team
 }
 
 // getDiscState determines current disc possession state
-func (ed *EventDetector) getDiscState(session *gameapi.SessionResponse) *DiscState {
+func (ed *EventDetector) getDiscState(session *apigame.SessionResponse) *DiscState {
 	for _, team := range session.Teams {
 		for _, player := range team.Players {
 			if player.HasPossession {
@@ -320,7 +320,7 @@ func (ed *EventDetector) getDiscState(session *gameapi.SessionResponse) *DiscSta
 }
 
 // determinePlayerRole maps a player to their role
-func (ed *EventDetector) determinePlayerRole(player *gameapi.TeamMember) telemetry.Role {
+func (ed *EventDetector) determinePlayerRole(player *apigame.TeamMember) telemetry.Role {
 	// This is a simplified mapping - you might need more sophisticated logic
 	switch player.JerseyNumber {
 	case -1:
@@ -349,7 +349,7 @@ func (ed *EventDetector) updateCachedState(frame *telemetry.LobbySessionStateFra
 
 // Reset clears the event detector state
 func (ed *EventDetector) Reset() {
-	ed.prevPlayersBySlot = make(map[int32]*gameapi.TeamMember)
+	ed.prevPlayersBySlot = make(map[int32]*apigame.TeamMember)
 	ed.prevScoreboard = nil
 	ed.prevDiscState = nil
 }

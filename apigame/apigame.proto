@@ -3,15 +3,15 @@
  */
 syntax = "proto3";
 
-package nevr.gameapi;
+package nevr.apigame;
 
-option go_package = "github.com/echotools/nevr-common/v3/gameapi";
+option go_package = "github.com/echotools/nevr-common/v3/apigame";
 
 option java_multiple_files  = true;
 option java_outer_classname = "GameApiProto";
-option java_package         = "com.echotools.nevr.gameapi";
+option java_package         = "com.github.echotools.nevr.apigame";
 
-option csharp_namespace = "Nevr.Protobuf";
+option csharp_namespace = "Nevr.GameProtobuf";
 
 // Represents the disc's physics properties.
 message Disc {

@@ -10,7 +10,7 @@ import (
 	"path/filepath"
 	"time"
 
-	"github.com/echotools/nevr-common/v3/gameapi"
+	"github.com/echotools/nevr-common/v3/apigame"
 	"github.com/echotools/nevr-common/v3/telemetry"
 	"google.golang.org/protobuf/encoding/protojson"
 	"google.golang.org/protobuf/types/known/timestamppb"
@@ -28,8 +28,8 @@ type EchoReplayCodec struct {
 // EchoReplayFrame represents a frame in the .echoreplay format
 type EchoReplayFrame struct {
 	Timestamp string                     `json:"timestamp"`
-	Session   *gameapi.SessionResponse   `json:"session"`
-	UserBones *gameapi.UserBonesResponse `json:"user_bones,omitempty"`
+	Session   *apigame.SessionResponse   `json:"session"`
+	UserBones *apigame.UserBonesResponse `json:"user_bones,omitempty"`
 }
 
 // NewEchoReplayCodecWriter creates a new EchoReplay codec for writing
@@ -69,7 +69,7 @@ func (e *EchoReplayCodec) WriteFrame(frame *telemetry.LobbySessionStateFrame) er
 }
 
 // WriteLegacyFrame writes a frame in the legacy .echoreplay format (timestamp + JSON)
-func (e *EchoReplayCodec) WriteLegacyFrame(timestamp time.Time, session *gameapi.SessionResponse) error {
+func (e *EchoReplayCodec) WriteLegacyFrame(timestamp time.Time, session *apigame.SessionResponse) error {
 	// Convert session to JSON using protojson
 	marshaler := &protojson.MarshalOptions{
 		UseProtoNames:   false,
@@ -186,7 +186,7 @@ func (e *EchoReplayCodec) parseFrameData(data []byte) ([]*telemetry.LobbySession
 		}
 
 		// Parse session data
-		sessionResponse := &gameapi.SessionResponse{}
+		sessionResponse := &apigame.SessionResponse{}
 		if err := unmarshaler.Unmarshal(parts[1], sessionResponse); err != nil {
 			return nil, fmt.Errorf("failed to unmarshal session data: %w", err)
 		}
@@ -200,7 +200,7 @@ func (e *EchoReplayCodec) parseFrameData(data []byte) ([]*telemetry.LobbySession
 
 		// Parse user bones if present (parts[2])
 		if len(parts) > 2 && len(parts[2]) > 0 {
-			userBones := &gameapi.UserBonesResponse{}
+			userBones := &apigame.UserBonesResponse{}
 			if err := unmarshaler.Unmarshal(parts[2], userBones); err == nil {
 				frame.UserBones = userBones
 			}
