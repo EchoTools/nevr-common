@@ -4,8 +4,8 @@ import (
 	"encoding/json"
 	"time"
 
-	"github.com/echotools/nevr-common/v3/apigame"
-	"github.com/echotools/nevr-common/v3/telemetry"
+	"github.com/echotools/nevr-common/apigame"
+	"github.com/echotools/nevr-common/telemetry"
 	"google.golang.org/protobuf/types/known/timestamppb"
 )
 

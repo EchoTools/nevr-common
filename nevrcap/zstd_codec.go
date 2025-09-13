@@ -4,7 +4,7 @@ import (
 	"io"
 	"os"
 
-	"github.com/echotools/nevr-common/v3/telemetry"
+	"github.com/echotools/nevr-common/telemetry"
 	"github.com/klauspost/compress/zstd"
 	"google.golang.org/protobuf/proto"
 )

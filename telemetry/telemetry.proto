@@ -7,17 +7,17 @@
  */
 syntax = "proto3";
 
-package nevr.telemetry;
+package telemetry;
 
-import "google/protobuf/timestamp.proto";
 import "apigame/apigame.proto";
+import "google/protobuf/timestamp.proto";
 
+option csharp_namespace = "Nevr.Telemetry.Protobuf";
 // --- Language-specific options ---
-option go_package           = "github.com/echotools/nevr-common/v3/telemetry";
-option java_multiple_files  = true;
-option java_outer_classname = "NEVRTelemetry";
-option java_package         = "com.echotools.nevr.telemetry";
-option csharp_namespace     = "Nevr.Telemetry.Protobuf";
+option go_package = "github.com/echotools/nevr-common/telemetry";
+option java_multiple_files = true;
+option java_outer_classname = "NevrTelemetry";
+option java_package = "com.echotools.nevr.telemetry";
 
 /**
  * Header contains the metadata for the entire session capture.
@@ -50,20 +50,20 @@ message LobbySessionStateFrame {
   repeated LobbySessionEvent events = 3;
 
   // The session data for this frame, including player locations.
-  nevr.apigame.SessionResponse session = 4;
+  apigame.SessionResponse session = 4;
 
   // The user bones data for this frame.
-  nevr.apigame.UserBonesResponse user_bones = 5;
+  apigame.UserBonesResponse user_bones = 5;
 }
 
 // Defines the possible roles or teams a player can be assigned to.
 enum Role {
-  ROLE_UNSPECIFIED   = 0;
-  BLUE_TEAM          = 1;
-  ORANGE_TEAM        = 2;
-  SPECTATOR          = 3;
+  ROLE_UNSPECIFIED = 0;
+  BLUE_TEAM = 1;
+  ORANGE_TEAM = 2;
+  SPECTATOR = 3;
   SOCIAL_PARTICIPANT = 4;
-  MODERATOR          = 5;
+  MODERATOR = 5;
 }
 
 // A wrapper for any event that can occur during a session.
@@ -71,36 +71,36 @@ message LobbySessionEvent {
   // The specific event payload.
   oneof payload {
     // Game State Events
-    RoundStarted      round_started      = 10;
-    RoundPaused       round_paused       = 11;
-    RoundUnpaused     round_unpaused     = 12;
-    RoundEnded        round_ended        = 13;
-    MatchEnded        match_ended        = 14;
+    RoundStarted round_started = 10;
+    RoundPaused round_paused = 11;
+    RoundUnpaused round_unpaused = 12;
+    RoundEnded round_ended = 13;
+    MatchEnded match_ended = 14;
     ScoreboardUpdated scoreboard_updated = 15;
 
     // Player Events
-    PlayerJoined       player_joined        = 20;
-    PlayerLeft         player_left          = 21;
+    PlayerJoined player_joined = 20;
+    PlayerLeft player_left = 21;
     PlayerSwitchedTeam player_switched_team = 22;
-    EmotePlayed        emote_played         = 23;
+    EmotePlayed emote_played = 23;
 
     // Disc Events
     DiscPossessionChanged disc_possession_changed = 30;
-    DiscThrown            disc_thrown             = 31;
-    DiscCaught            disc_caught             = 32;
+    DiscThrown disc_thrown = 31;
+    DiscCaught disc_caught = 32;
 
     // Scoring Events
     GoalScored goal_scored = 40;
 
     // Stat-based Events
-    PlayerSave         player_save         = 50;
-    PlayerStun         player_stun         = 51;
-    PlayerPass         player_pass         = 52;
-    PlayerSteal        player_steal        = 53;
-    PlayerBlock        player_block        = 54;
+    PlayerSave player_save = 50;
+    PlayerStun player_stun = 51;
+    PlayerPass player_pass = 52;
+    PlayerSteal player_steal = 53;
+    PlayerBlock player_block = 54;
     PlayerInterception player_interception = 55;
-    PlayerAssist       player_assist       = 56;
-    PlayerShotTaken    player_shot_taken   = 57;
+    PlayerAssist player_assist = 56;
+    PlayerShotTaken player_shot_taken = 57;
   }
 }
 
@@ -115,18 +115,18 @@ message RoundStarted {
 
 // Fired when the game is paused.
 message RoundPaused {
-  nevr.apigame.PauseState pause_state = 1;
+  apigame.PauseState pause_state = 1;
 }
 
 // Fired when the game is unpaused.
 message RoundUnpaused {
-  nevr.apigame.PauseState pause_state = 1;
+  apigame.PauseState pause_state = 1;
 }
 
 // Fired when a round finishes.
 message RoundEnded {
   int32 round_number = 1;
-  Role  winning_team = 2;
+  Role winning_team = 2;
 }
 
 // Fired when the match is over.
@@ -136,10 +136,10 @@ message MatchEnded {
 
 // Fired on any change to score or round count.
 message ScoreboardUpdated {
-  int32  blue_points        = 1;
-  int32  orange_points      = 2;
-  int32  blue_round_score   = 3;
-  int32  orange_round_score = 4;
+  int32 blue_points = 1;
+  int32 orange_points = 2;
+  int32 blue_round_score = 3;
+  int32 orange_round_score = 4;
   string game_clock_display = 5;
 }
 
@@ -150,27 +150,27 @@ message ScoreboardUpdated {
 // Fired when a new player is detected in the session.
 message PlayerJoined {
   // Contains the full initial state of the player.
-  nevr.apigame.TeamMember player = 1;
-  Role                    role   = 2;
+  apigame.TeamMember player = 1;
+  Role role = 2;
 }
 
 // Fired when a player is no longer detected in the session.
 message PlayerLeft {
-  int32  player_slot  = 1;
+  int32 player_slot = 1;
   string display_name = 2;
 }
 
 // Fired when a player changes teams or roles.
 message PlayerSwitchedTeam {
   int32 player_slot = 1;
-  Role  new_role    = 2;
-  Role  prev_role   = 3;
+  Role new_role = 2;
+  Role prev_role = 3;
 }
 
 // Fired when a player starts playing an emote.
 message EmotePlayed {
   enum EmoteType {
-    PRIMARY   = 0;
+    PRIMARY = 0;
     SECONDARY = 1;
   }
   int32 player_slot = 1;
@@ -183,15 +183,15 @@ message EmotePlayed {
 // Fired when possession of the disc changes.
 message DiscPossessionChanged {
   // The account number of the player who now has possession.
-  int32 player_slot   = 1;  // This will be -1 if the disc is free.
-  int32 previous_slot = 2;  // This will be -1 if the disc was previously free.
+  int32 player_slot = 1; // This will be -1 if the disc is free.
+  int32 previous_slot = 2; // This will be -1 if the disc was previously free.
 }
 
 // Fired when a player throws the disc.
 message DiscThrown {
   int32 player_slot = 1;
   // Contains the detailed physics of the throw.
-  nevr.apigame.LastThrowInfo throw_details = 2;
+  apigame.LastThrowInfo throw_details = 2;
 }
 
 // Fired when a player catches the disc.
@@ -206,7 +206,7 @@ message DiscCaught {
 // Fired when a goal is scored.
 message GoalScored {
   // Contains all details about the score.
-  nevr.apigame.LastScore score_details = 1;
+  apigame.LastScore score_details = 1;
 }
 
 // ------------------------------------------------------------------
@@ -227,31 +227,31 @@ message PlayerStun {
 
 // Fired when a player's 'passes' stat increments.
 message PlayerPass {
-  int32 player_slot  = 1;
+  int32 player_slot = 1;
   int32 total_passes = 2;
 }
 
 // Fired when a player's 'steals' stat increments.
 message PlayerSteal {
-  int32 player_slot  = 1;
+  int32 player_slot = 1;
   int32 total_steals = 2;
 }
 
 // Fired when a player's 'blocks' stat increments.
 message PlayerBlock {
-  int32 player_slot  = 1;
+  int32 player_slot = 1;
   int32 total_blocks = 2;
 }
 
 // Fired when a player's 'interceptions' stat increments.
 message PlayerInterception {
-  int32 player_slot         = 1;
+  int32 player_slot = 1;
   int32 total_interceptions = 2;
 }
 
 // Fired when a player's 'assists' stat increments.
 message PlayerAssist {
-  int32 player_slot   = 1;
+  int32 player_slot = 1;
   int32 total_assists = 2;
 }
 

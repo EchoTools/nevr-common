@@ -9,47 +9,48 @@ import (
 	"path/filepath"
 	"time"
 
-	"github.com/echotools/nevr-common/v3/gameapi"
-	"github.com/echotools/nevr-common/v3/telemetry"
+	"github.com/echotools/nevr-common/apigame"
+	"github.com/echotools/nevr-common/nevrcap"
+	"github.com/echotools/nevr-common/telemetry"
 	"google.golang.org/protobuf/types/known/timestamppb"
 )
 
 func main() {
 	fmt.Println("=== NEVR Telemetry Processing Demo ===")
-	
+
 	// Demonstrate high-performance frame processing
 	demonstrateFrameProcessing()
-	
+
 	// Demonstrate file format conversion
 	demonstrateFileConversion()
-	
+
 	// Demonstrate streaming codecs
 	demonstrateStreamingCodecs()
-	
+
 	fmt.Println("\n=== Demo Complete ===")
 }
 
 func demonstrateFrameProcessing() {
 	fmt.Println("\n🚀 High-Performance Frame Processing Demo")
-	
-	processor := telemetry.NewFrameProcessor()
-	
+
+	processor := nevrcap.NewFrameProcessor()
+
 	// Create sample game data
 	sessionData := createSampleSessionData()
 	userBonesData := createSampleUserBonesData()
-	
+
 	fmt.Printf("📊 Processing frames at high frequency...\n")
-	
+
 	start := time.Now()
 	frameCount := 1000
-	
+
 	for i := 0; i < frameCount; i++ {
 		timestamp := time.Now()
 		frame, err := processor.ProcessFrame(sessionData, userBonesData, timestamp)
 		if err != nil {
 			log.Fatalf("Frame processing failed: %v", err)
 		}
-		
+
 		// Modify data occasionally to trigger events
 		if i%100 == 99 {
 			modifiedData := modifySessionData(sessionData, i/100)
@@ -62,13 +63,13 @@ func demonstrateFrameProcessing() {
 			}
 		}
 	}
-	
+
 	elapsed := time.Since(start)
 	hz := float64(frameCount) / elapsed.Seconds()
-	
+
 	fmt.Printf("✅ Processed %d frames in %v\n", frameCount, elapsed)
 	fmt.Printf("🎯 Processing rate: %.2f Hz (target: 600 Hz)\n", hz)
-	
+
 	if hz >= 600 {
 		fmt.Printf("🏆 SUCCESS: Exceeds 600 Hz target by %.1fx!\n", hz/600)
 	}
@@ -76,26 +77,26 @@ func demonstrateFrameProcessing() {
 
 func demonstrateFileConversion() {
 	fmt.Println("\n📁 File Format Conversion Demo")
-	
+
 	// Create temporary directory for test files
 	tmpDir, err := ioutil.TempDir("", "nevr-demo-")
 	if err != nil {
 		log.Fatalf("Failed to create temp directory: %v", err)
 	}
 	defer os.RemoveAll(tmpDir) // Clean up
-	
+
 	// Create test files in the secure temp directory
 	echoReplayFile := filepath.Join(tmpDir, "demo.echoreplay")
 	nevrcapFile := filepath.Join(tmpDir, "demo.nevrcap")
 	convertedFile := filepath.Join(tmpDir, "demo_converted.echoreplay")
-	
+
 	// Create sample .echoreplay file
 	fmt.Printf("📝 Creating sample .echoreplay file...\n")
-	writer, err := telemetry.NewEchoReplayCodecWriter(echoReplayFile)
+	writer, err := nevrcap.NewEchoReplayCodecWriter(echoReplayFile)
 	if err != nil {
 		log.Fatalf("Failed to create echoreplay writer: %v", err)
 	}
-	
+
 	// Write sample frames
 	for i := 0; i < 50; i++ {
 		frame := createSampleFrame(uint32(i))
@@ -104,44 +105,44 @@ func demonstrateFileConversion() {
 		}
 	}
 	writer.Close()
-	
+
 	// Convert to .nevrcap
 	fmt.Printf("🔄 Converting .echoreplay → .nevrcap...\n")
 	start := time.Now()
-	err = telemetry.ConvertEchoReplayToNevrcap(echoReplayFile, nevrcapFile)
+	err = nevrcap.ConvertEchoReplayToNevrcap(echoReplayFile, nevrcapFile)
 	if err != nil {
 		log.Fatalf("Conversion failed: %v", err)
 	}
 	conversionTime := time.Since(start)
-	
+
 	// Convert back to .echoreplay
 	fmt.Printf("🔄 Converting .nevrcap → .echoreplay...\n")
-	err = telemetry.ConvertNevrcapToEchoReplay(nevrcapFile, convertedFile)
+	err = nevrcap.ConvertNevrcapToEchoReplay(nevrcapFile, convertedFile)
 	if err != nil {
 		log.Fatalf("Back conversion failed: %v", err)
 	}
-	
+
 	// Compare file sizes
 	showFileStats(echoReplayFile, nevrcapFile, convertedFile)
-	
+
 	fmt.Printf("⚡ Conversion completed in %v\n", conversionTime)
-	
+
 	// Cleanup
 	cleanupFiles(echoReplayFile, nevrcapFile, convertedFile)
 }
 
 func demonstrateStreamingCodecs() {
 	fmt.Println("\n🌊 Streaming Codecs Demo")
-	
+
 	// Demonstrate Zstd codec
 	fmt.Printf("📦 Testing Zstd codec (.nevrcap format)...\n")
 	nevrcapFile := "/tmp/streaming_demo.nevrcap"
-	
-	writer, err := telemetry.NewZstdCodecWriter(nevrcapFile)
+
+	writer, err := nevrcap.NewZstdCodecWriter(nevrcapFile)
 	if err != nil {
 		log.Fatalf("Failed to create Zstd writer: %v", err)
 	}
-	
+
 	// Write header
 	header := &telemetry.TelemetryHeader{
 		CaptureId: "demo-stream-12345",
@@ -152,11 +153,11 @@ func demonstrateStreamingCodecs() {
 			"format":  "nevrcap",
 		},
 	}
-	
+
 	if err := writer.WriteHeader(header); err != nil {
 		log.Fatalf("Failed to write header: %v", err)
 	}
-	
+
 	// Stream frames
 	start := time.Now()
 	for i := 0; i < 100; i++ {
@@ -167,24 +168,24 @@ func demonstrateStreamingCodecs() {
 	}
 	writer.Close()
 	streamingTime := time.Since(start)
-	
+
 	fmt.Printf("✅ Streamed 100 frames in %v\n", streamingTime)
-	
+
 	// Read back and verify
-	reader, err := telemetry.NewZstdCodecReader(nevrcapFile)
+	reader, err := nevrcap.NewZstdCodecReader(nevrcapFile)
 	if err != nil {
 		log.Fatalf("Failed to create reader: %v", err)
 	}
 	defer reader.Close()
-	
+
 	readHeader, err := reader.ReadHeader()
 	if err != nil {
 		log.Fatalf("Failed to read header: %v", err)
 	}
-	
-	fmt.Printf("📋 Read header: %s (created %v)\n", 
+
+	fmt.Printf("📋 Read header: %s (created %v)\n",
 		readHeader.CaptureId, readHeader.CreatedAt.AsTime().Format("2006-01-02 15:04:05"))
-	
+
 	frameCount := 0
 	for {
 		_, err := reader.ReadFrame()
@@ -193,16 +194,16 @@ func demonstrateStreamingCodecs() {
 		}
 		frameCount++
 	}
-	
+
 	fmt.Printf("📖 Successfully read %d frames back\n", frameCount)
-	
+
 	cleanupFiles(nevrcapFile)
 }
 
 // Helper functions
 
 func createSampleSessionData() []byte {
-	session := &gameapi.SessionResponse{
+	session := &apigame.SessionResponse{
 		SessionID:        "demo-session-12345",
 		GameStatus:       "running",
 		GameClockDisplay: "10:00",
@@ -213,19 +214,19 @@ func createSampleSessionData() []byte {
 		BlueRoundScore:   0,
 		OrangeRoundScore: 0,
 		TotalRoundCount:  3,
-		Teams: []*gameapi.Team{
+		Teams: []*apigame.Team{
 			{
 				TeamName:      "Blue Team",
 				HasPossession: false,
-				Stats:         &gameapi.TeamStats{Points: 0},
+				Stats:         &apigame.TeamStats{Points: 0},
 			},
 			{
-				TeamName:      "Orange Team", 
+				TeamName:      "Orange Team",
 				HasPossession: false,
-				Stats:         &gameapi.TeamStats{Points: 0},
+				Stats:         &apigame.TeamStats{Points: 0},
 			},
 		},
-		Disc: &gameapi.Disc{
+		Disc: &apigame.Disc{
 			Position:    []float64{0.0, 10.0, 0.0},
 			Velocity:    []float64{5.0, 0.0, 2.0},
 			BounceCount: 0,
@@ -238,8 +239,8 @@ func createSampleSessionData() []byte {
 }
 
 func createSampleUserBonesData() []byte {
-	userBones := &gameapi.UserBonesResponse{
-		UserBones: []*gameapi.PlayerBones{},
+	userBones := &apigame.UserBonesResponse{
+		UserBones: []*apigame.PlayerBones{},
 		ErrCode:   0,
 	}
 
@@ -248,13 +249,13 @@ func createSampleUserBonesData() []byte {
 }
 
 func modifySessionData(originalData []byte, iteration int) []byte {
-	var session gameapi.SessionResponse
+	var session apigame.SessionResponse
 	json.Unmarshal(originalData, &session)
-	
+
 	// Modify to trigger events
 	session.BluePoints = int32(iteration)
 	session.GameClock = session.GameClock - float64(iteration)
-	
+
 	data, _ := json.Marshal(session)
 	return data
 }
@@ -262,11 +263,11 @@ func modifySessionData(originalData []byte, iteration int) []byte {
 func createSampleFrame(frameIndex uint32) *telemetry.LobbySessionStateFrame {
 	sessionData := createSampleSessionData()
 	userBonesData := createSampleUserBonesData()
-	
-	processor := telemetry.NewFrameProcessor()
+
+	processor := nevrcap.NewFrameProcessor()
 	frame, _ := processor.ProcessFrame(sessionData, userBonesData, time.Now())
 	frame.FrameIndex = frameIndex
-	
+
 	return frame
 }
 

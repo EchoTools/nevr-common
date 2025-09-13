@@ -7,8 +7,8 @@ import (
 	"testing"
 	"time"
 
-	"github.com/echotools/nevr-common/v3/apigame"
-	"github.com/echotools/nevr-common/v3/telemetry"
+	"github.com/echotools/nevr-common/apigame"
+	"github.com/echotools/nevr-common/telemetry"
 )
 
 // BenchmarkFrameProcessing benchmarks the high-performance frame processing
