@@ -1831,6 +1831,7 @@ type LobbySessionStateMessage struct {
 	// Types that are valid to be assigned to State:
 	//
 	//	*LobbySessionStateMessage_SessionStateRaw
+	//	*LobbySessionStateMessage_SessionState
 	State         isLobbySessionStateMessage_State `protobuf_oneof:"state"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
@@ -1896,15 +1897,30 @@ func (x *LobbySessionStateMessage) GetSessionStateRaw() *LobbySessionStateRawMes
 	return nil
 }
 
+func (x *LobbySessionStateMessage) GetSessionState() *LobbySessionStateFrame {
+	if x != nil {
+		if x, ok := x.State.(*LobbySessionStateMessage_SessionState); ok {
+			return x.SessionState
+		}
+	}
+	return nil
+}
+
 type isLobbySessionStateMessage_State interface {
 	isLobbySessionStateMessage_State()
 }
 
 type LobbySessionStateMessage_SessionStateRaw struct {
-	SessionStateRaw *LobbySessionStateRawMessage `protobuf:"bytes,3,opt,name=session_state_raw,json=sessionStateRaw,proto3,oneof"` //nevr.rtapi.LobbySessionStateFrame session_state = 4;
+	SessionStateRaw *LobbySessionStateRawMessage `protobuf:"bytes,3,opt,name=session_state_raw,json=sessionStateRaw,proto3,oneof"`
+}
+
+type LobbySessionStateMessage_SessionState struct {
+	SessionState *LobbySessionStateFrame `protobuf:"bytes,4,opt,name=session_state,json=sessionState,proto3,oneof"`
 }
 
 func (*LobbySessionStateMessage_SessionStateRaw) isLobbySessionStateMessage_State() {}
+
+func (*LobbySessionStateMessage_SessionState) isLobbySessionStateMessage_State() {}
 
 // SessionUpdateMessage is sent from the server to the game service.
 type LobbySessionStateRawMessage struct {
@@ -4528,17 +4544,17 @@ var File_rtapi_realtime_v1_proto protoreflect.FileDescriptor
 
 const file_rtapi_realtime_v1_proto_rawDesc = "" +
 	"\n" +
-	"\x17rtapi/realtime_v1.proto\x12\x10nevr.realtime.v1\x1a\x1fgoogle/protobuf/timestamp.proto\"\x8e*\n" +
+	"\x17rtapi/realtime_v1.proto\x12\x10nevr.realtime.v1\x1a\x1fgoogle/protobuf/timestamp.proto\x1a\x18rtapi/telemetry_v1.proto\"\x92*\n" +
 	"\bEnvelope\x12\x10\n" +
-	"\x03cid\x18\x01 \x01(\tR\x03cid\x12)\n" +
-	"\x05error\x18\x02 \x01(\v2\x11.nevr.rtapi.ErrorH\x00R\x05error\x12V\n" +
-	"\x13lobby_session_state\x18\x03 \x01(\v2$.nevr.rtapi.LobbySessionStateMessageH\x00R\x11lobbySessionState\x12d\n" +
-	"\x17connectivity_statistics\x18\x04 \x01(\v2).nevr.rtapi.ConnectivityStatisticsMessageH\x00R\x16connectivityStatistics\x12e\n" +
-	"\x18game_server_registration\x18\x05 \x01(\v2).nevr.rtapi.GameServerRegistrationMessageH\x00R\x16gameServerRegistration\x12{\n" +
-	" game_server_registration_success\x18\x06 \x01(\v20.nevr.rtapi.GameServerRegistrationSuccessMessageH\x00R\x1dgameServerRegistrationSuccess\x12Y\n" +
-	"\x14lobby_session_create\x18\a \x01(\v2%.nevr.rtapi.LobbySessionCreateMessageH\x00R\x12lobbySessionCreate\x12V\n" +
-	"\x13lobby_session_event\x18\b \x01(\v2$.nevr.rtapi.LobbySessionEventMessageH\x00R\x11lobbySessionEvent\x12c\n" +
-	"\x17lobby_entrant_connected\x18\t \x01(\v2).nevr.rtapi.LobbyEntrantsConnectedMessageH\x00R\x15lobbyEntrantConnected\x12Z\n" +
+	"\x03cid\x18\x01 \x01(\tR\x03cid\x12/\n" +
+	"\x05error\x18\x02 \x01(\v2\x17.nevr.realtime.v1.ErrorH\x00R\x05error\x12\\\n" +
+	"\x13lobby_session_state\x18\x03 \x01(\v2*.nevr.realtime.v1.LobbySessionStateMessageH\x00R\x11lobbySessionState\x12j\n" +
+	"\x17connectivity_statistics\x18\x04 \x01(\v2/.nevr.realtime.v1.ConnectivityStatisticsMessageH\x00R\x16connectivityStatistics\x12k\n" +
+	"\x18game_server_registration\x18\x05 \x01(\v2/.nevr.realtime.v1.GameServerRegistrationMessageH\x00R\x16gameServerRegistration\x12\x81\x01\n" +
+	" game_server_registration_success\x18\x06 \x01(\v26.nevr.realtime.v1.GameServerRegistrationSuccessMessageH\x00R\x1dgameServerRegistrationSuccess\x12_\n" +
+	"\x14lobby_session_create\x18\a \x01(\v2+.nevr.realtime.v1.LobbySessionCreateMessageH\x00R\x12lobbySessionCreate\x12\\\n" +
+	"\x13lobby_session_event\x18\b \x01(\v2*.nevr.realtime.v1.LobbySessionEventMessageH\x00R\x11lobbySessionEvent\x12i\n" +
+	"\x17lobby_entrant_connected\x18\t \x01(\v2/.nevr.realtime.v1.LobbyEntrantsConnectedMessageH\x00R\x15lobbyEntrantConnected\x12`\n" +
 	"\x14lobby_entrant_accept\x18\n" +
 	" \x01(\v2,.nevr.realtime.v1.LobbyEntrantsAcceptMessageH\x00R\x12lobbyEntrantAccept\x12`\n" +
 	"\x14lobby_entrant_reject\x18\v \x01(\v2,.nevr.realtime.v1.LobbyEntrantsRejectMessageH\x00R\x12lobbyEntrantReject\x12`\n" +
@@ -4673,12 +4689,13 @@ const file_rtapi_realtime_v1_proto_rawDesc = "" +
 	"\tLobbyType\x12\n" +
 	"\n" +
 	"\x06PUBLIC\x10\x00\x12\v\n" +
-	"\aPRIVATE\x10\x01\"\xc7\x01\n" +
+	"\aPRIVATE\x10\x01\"\x99\x02\n" +
 	"\x18LobbySessionStateMessage\x12&\n" +
 	"\x0ftime_step_usecs\x18\x01 \x01(\rR\rtimeStepUsecs\x12\x1d\n" +
 	"\n" +
 	"tick_count\x18\x02 \x01(\x04R\ttickCount\x12[\n" +
-	"\x11session_state_raw\x18\x03 \x01(\v2-.nevr.realtime.v1.LobbySessionStateRawMessageH\x00R\x0fsessionStateRawB\a\n" +
+	"\x11session_state_raw\x18\x03 \x01(\v2-.nevr.realtime.v1.LobbySessionStateRawMessageH\x00R\x0fsessionStateRaw\x12P\n" +
+	"\rsession_state\x18\x04 \x01(\v2).nevr.telemetry.v1.LobbySessionStateFrameH\x00R\fsessionStateB\a\n" +
 	"\x05state\"\xae\x01\n" +
 	"\x1bLobbySessionStateRawMessage\x128\n" +
 	"\ttimestamp\x18\x01 \x01(\v2\x1a.google.protobuf.TimestampR\ttimestamp\x12'\n" +
@@ -4935,101 +4952,102 @@ var file_rtapi_realtime_v1_proto_goTypes = []any{
 	(*SNSUpdateProfileFailureMessage)(nil),           // 57: nevr.realtime.v1.SNSUpdateProfileFailureMessage
 	(*SNSUserServerProfileUpdateRequestMessage)(nil), // 58: nevr.realtime.v1.SNSUserServerProfileUpdateRequestMessage
 	(*SNSUserServerProfileUpdateSuccessMessage)(nil), // 59: nevr.realtime.v1.SNSUserServerProfileUpdateSuccessMessage
-	nil,                           // 60: nevr.realtime.v1.Error.ContextEntry
-	(*timestamppb.Timestamp)(nil), // 61: google.protobuf.Timestamp
+	nil,                            // 60: nevr.realtime.v1.Error.ContextEntry
+	(*LobbySessionStateFrame)(nil), // 61: nevr.telemetry.v1.LobbySessionStateFrame
+	(*timestamppb.Timestamp)(nil),  // 62: google.protobuf.Timestamp
 }
-var file_rtapi_nevr_rtapi_proto_depIdxs = []int32{
-	6,  // 0: nevr.rtapi.Envelope.error:type_name -> nevr.rtapi.Error
-	15, // 1: nevr.rtapi.Envelope.lobby_session_state:type_name -> nevr.rtapi.LobbySessionStateMessage
-	17, // 2: nevr.rtapi.Envelope.connectivity_statistics:type_name -> nevr.rtapi.ConnectivityStatisticsMessage
-	8,  // 3: nevr.rtapi.Envelope.game_server_registration:type_name -> nevr.rtapi.GameServerRegistrationMessage
-	9,  // 4: nevr.rtapi.Envelope.game_server_registration_success:type_name -> nevr.rtapi.GameServerRegistrationSuccessMessage
-	14, // 5: nevr.rtapi.Envelope.lobby_session_create:type_name -> nevr.rtapi.LobbySessionCreateMessage
-	7,  // 6: nevr.rtapi.Envelope.lobby_session_event:type_name -> nevr.rtapi.LobbySessionEventMessage
-	10, // 7: nevr.rtapi.Envelope.lobby_entrant_connected:type_name -> nevr.rtapi.LobbyEntrantsConnectedMessage
-	11, // 8: nevr.rtapi.Envelope.lobby_entrant_accept:type_name -> nevr.rtapi.LobbyEntrantsAcceptMessage
-	12, // 9: nevr.rtapi.Envelope.lobby_entrant_reject:type_name -> nevr.rtapi.LobbyEntrantsRejectMessage
-	13, // 10: nevr.rtapi.Envelope.lobby_entrant_remove:type_name -> nevr.rtapi.LobbyEntrantRemovedMessage
-	20, // 11: nevr.rtapi.Envelope.unknown_message:type_name -> nevr.rtapi.SNSUnknownMessage
-	21, // 12: nevr.rtapi.Envelope.tcp_connection_require_event:type_name -> nevr.rtapi.STCPConnectionRequireEvent
-	22, // 13: nevr.rtapi.Envelope.tcp_connection_unrequire_event:type_name -> nevr.rtapi.STCPConnectionUnrequireEvent
-	23, // 14: nevr.rtapi.Envelope.config_request_v2:type_name -> nevr.rtapi.SNSConfigRequestV2Message
-	24, // 15: nevr.rtapi.Envelope.config_success_v2:type_name -> nevr.rtapi.SNSConfigSuccessV2Message
-	25, // 16: nevr.rtapi.Envelope.config_failure_v2:type_name -> nevr.rtapi.SNSConfigFailureV2Message
-	26, // 17: nevr.rtapi.Envelope.reconcile_iap:type_name -> nevr.rtapi.SNSReconcileIAPMessage
-	27, // 18: nevr.rtapi.Envelope.channel_info_request:type_name -> nevr.rtapi.SNSChannelInfoRequestMessage
-	28, // 19: nevr.rtapi.Envelope.channel_info_response:type_name -> nevr.rtapi.SNSChannelInfoResponseMessage
-	29, // 20: nevr.rtapi.Envelope.document_request_v2:type_name -> nevr.rtapi.SNSDocumentRequestV2Message
-	30, // 21: nevr.rtapi.Envelope.document_success:type_name -> nevr.rtapi.SNSDocumentSuccessMessage
-	31, // 22: nevr.rtapi.Envelope.document_failure:type_name -> nevr.rtapi.SNSDocumentFailureMessage
-	32, // 23: nevr.rtapi.Envelope.lobby_create_session_request_v9:type_name -> nevr.rtapi.SNSLobbyCreateSessionRequestV9Message
-	33, // 24: nevr.rtapi.Envelope.lobby_find_session_request_v11:type_name -> nevr.rtapi.SNSLobbyFindSessionRequestv11Message
-	34, // 25: nevr.rtapi.Envelope.lobby_join_session_request_v7:type_name -> nevr.rtapi.SNSLobbyJoinSessionRequestV7Message
-	35, // 26: nevr.rtapi.Envelope.lobby_matchmaker_status:type_name -> nevr.rtapi.SNSLobbyMatchmakerStatusMessage
-	36, // 27: nevr.rtapi.Envelope.lobby_matchmaker_status_request:type_name -> nevr.rtapi.SNSLobbyMatchmakerStatusRequestMessage
-	37, // 28: nevr.rtapi.Envelope.lobby_pending_session_cancel_v2:type_name -> nevr.rtapi.SNSLobbyPendingSessionCancelV2Message
-	38, // 29: nevr.rtapi.Envelope.lobby_ping_request_v3:type_name -> nevr.rtapi.SNSLobbyPingRequestV3Message
-	39, // 30: nevr.rtapi.Envelope.lobby_ping_response:type_name -> nevr.rtapi.SNSLobbyPingResponseMessage
-	40, // 31: nevr.rtapi.Envelope.lobby_player_sessions_request_v5:type_name -> nevr.rtapi.SNSLobbyPlayerSessionsRequestV5Message
-	41, // 32: nevr.rtapi.Envelope.lobby_session_failure_v4:type_name -> nevr.rtapi.SNSLobbySessionFailureV4Message
-	42, // 33: nevr.rtapi.Envelope.lobby_session_success_v5:type_name -> nevr.rtapi.SNSLobbySessionSuccessV5Message
-	43, // 34: nevr.rtapi.Envelope.logged_in_user_profile_failure:type_name -> nevr.rtapi.SNSLoggedInUserProfileFailureMessage
-	44, // 35: nevr.rtapi.Envelope.logged_in_user_profile_request:type_name -> nevr.rtapi.SNSLoggedInUserProfileRequestMessage
-	45, // 36: nevr.rtapi.Envelope.logged_in_user_profile_success:type_name -> nevr.rtapi.SNSLoggedInUserProfileSuccessMessage
-	46, // 37: nevr.rtapi.Envelope.log_in_failure:type_name -> nevr.rtapi.SNSLogInFailureMessage
-	47, // 38: nevr.rtapi.Envelope.log_in_request_v2:type_name -> nevr.rtapi.SNSLogInRequestV2Message
-	48, // 39: nevr.rtapi.Envelope.login_settings:type_name -> nevr.rtapi.SNSLoginSettingsMessage
-	49, // 40: nevr.rtapi.Envelope.log_in_success:type_name -> nevr.rtapi.SNSLogInSuccessMessage
-	50, // 41: nevr.rtapi.Envelope.other_user_profile_failure:type_name -> nevr.rtapi.SNSOtherUserProfileFailureMessage
-	51, // 42: nevr.rtapi.Envelope.other_user_profile_request:type_name -> nevr.rtapi.SNSOtherUserProfileRequestMessage
-	52, // 43: nevr.rtapi.Envelope.other_user_profile_success:type_name -> nevr.rtapi.SNSOtherUserProfileSuccessMessage
-	53, // 44: nevr.rtapi.Envelope.reconcile_iap_result:type_name -> nevr.rtapi.SNSReconcileIAPResultMessage
-	54, // 45: nevr.rtapi.Envelope.remote_log_set_v3:type_name -> nevr.rtapi.SNSRemoteLogSetV3Message
-	55, // 46: nevr.rtapi.Envelope.update_profile:type_name -> nevr.rtapi.SNSUpdateProfileMessage
-	56, // 47: nevr.rtapi.Envelope.update_profile_success:type_name -> nevr.rtapi.SNSUpdateProfileSuccessMessage
-	57, // 48: nevr.rtapi.Envelope.update_profile_failure:type_name -> nevr.rtapi.SNSUpdateProfileFailureMessage
-	58, // 49: nevr.rtapi.Envelope.user_server_profile_update_request:type_name -> nevr.rtapi.SNSUserServerProfileUpdateRequestMessage
-	59, // 50: nevr.rtapi.Envelope.user_server_profile_update_success:type_name -> nevr.rtapi.SNSUserServerProfileUpdateSuccessMessage
-	60, // 51: nevr.rtapi.Error.context:type_name -> nevr.rtapi.Error.ContextEntry
-	16, // 52: nevr.rtapi.LobbySessionStateMessage.session_state_raw:type_name -> nevr.rtapi.LobbySessionStateRawMessage
-	61, // 53: nevr.rtapi.LobbySessionStateMessage.session_state:type_name -> nevr.telemetry.LobbySessionStateFrame
-	62, // 54: nevr.rtapi.LobbySessionStateRawMessage.timestamp:type_name -> google.protobuf.Timestamp
-	18, // 55: nevr.rtapi.SNSUnknownMessage.type:type_name -> nevr.rtapi.SymbolHash
-	18, // 56: nevr.rtapi.SNSConfigSuccessV2Message.type:type_name -> nevr.rtapi.SymbolHash
-	18, // 57: nevr.rtapi.SNSConfigSuccessV2Message.id:type_name -> nevr.rtapi.SymbolHash
-	19, // 58: nevr.rtapi.SNSReconcileIAPMessage.user_id:type_name -> nevr.rtapi.XPlatformID
-	18, // 59: nevr.rtapi.SNSLobbyCreateSessionRequestV9Message.region:type_name -> nevr.rtapi.SymbolHash
-	18, // 60: nevr.rtapi.SNSLobbyCreateSessionRequestV9Message.version_lock:type_name -> nevr.rtapi.SymbolHash
-	18, // 61: nevr.rtapi.SNSLobbyCreateSessionRequestV9Message.mode:type_name -> nevr.rtapi.SymbolHash
-	18, // 62: nevr.rtapi.SNSLobbyCreateSessionRequestV9Message.level:type_name -> nevr.rtapi.SymbolHash
-	18, // 63: nevr.rtapi.SNSLobbyCreateSessionRequestV9Message.platform:type_name -> nevr.rtapi.SymbolHash
-	19, // 64: nevr.rtapi.SNSLobbyCreateSessionRequestV9Message.entrants:type_name -> nevr.rtapi.XPlatformID
-	18, // 65: nevr.rtapi.SNSLobbyFindSessionRequestv11Message.version_lock:type_name -> nevr.rtapi.SymbolHash
-	18, // 66: nevr.rtapi.SNSLobbyFindSessionRequestv11Message.mode:type_name -> nevr.rtapi.SymbolHash
-	18, // 67: nevr.rtapi.SNSLobbyFindSessionRequestv11Message.level:type_name -> nevr.rtapi.SymbolHash
-	18, // 68: nevr.rtapi.SNSLobbyFindSessionRequestv11Message.platform:type_name -> nevr.rtapi.SymbolHash
-	19, // 69: nevr.rtapi.SNSLobbyFindSessionRequestv11Message.entrants:type_name -> nevr.rtapi.XPlatformID
-	18, // 70: nevr.rtapi.SNSLobbyJoinSessionRequestV7Message.version_lock:type_name -> nevr.rtapi.SymbolHash
-	18, // 71: nevr.rtapi.SNSLobbyJoinSessionRequestV7Message.platform:type_name -> nevr.rtapi.SymbolHash
-	19, // 72: nevr.rtapi.SNSLobbyPlayerSessionsRequestV5Message.user_id:type_name -> nevr.rtapi.XPlatformID
-	18, // 73: nevr.rtapi.SNSLobbyPlayerSessionsRequestV5Message.platform:type_name -> nevr.rtapi.SymbolHash
-	19, // 74: nevr.rtapi.SNSLobbyPlayerSessionsRequestV5Message.player_xpids:type_name -> nevr.rtapi.XPlatformID
-	19, // 75: nevr.rtapi.SNSLoggedInUserProfileFailureMessage.user_id:type_name -> nevr.rtapi.XPlatformID
-	19, // 76: nevr.rtapi.SNSLoggedInUserProfileRequestMessage.user_id:type_name -> nevr.rtapi.XPlatformID
-	19, // 77: nevr.rtapi.SNSLoggedInUserProfileSuccessMessage.user_id:type_name -> nevr.rtapi.XPlatformID
-	19, // 78: nevr.rtapi.SNSLogInFailureMessage.user_id:type_name -> nevr.rtapi.XPlatformID
-	19, // 79: nevr.rtapi.SNSLogInRequestV2Message.user_id:type_name -> nevr.rtapi.XPlatformID
-	19, // 80: nevr.rtapi.SNSLogInSuccessMessage.user_id:type_name -> nevr.rtapi.XPlatformID
-	19, // 81: nevr.rtapi.SNSOtherUserProfileFailureMessage.user_id:type_name -> nevr.rtapi.XPlatformID
-	19, // 82: nevr.rtapi.SNSOtherUserProfileRequestMessage.user_id:type_name -> nevr.rtapi.XPlatformID
-	19, // 83: nevr.rtapi.SNSOtherUserProfileSuccessMessage.user_id:type_name -> nevr.rtapi.XPlatformID
-	19, // 84: nevr.rtapi.SNSReconcileIAPResultMessage.user_id:type_name -> nevr.rtapi.XPlatformID
-	19, // 85: nevr.rtapi.SNSRemoteLogSetV3Message.user_id:type_name -> nevr.rtapi.XPlatformID
-	19, // 86: nevr.rtapi.SNSUpdateProfileMessage.user_id:type_name -> nevr.rtapi.XPlatformID
-	19, // 87: nevr.rtapi.SNSUpdateProfileSuccessMessage.user_id:type_name -> nevr.rtapi.XPlatformID
-	19, // 88: nevr.rtapi.SNSUpdateProfileFailureMessage.user_id:type_name -> nevr.rtapi.XPlatformID
-	19, // 89: nevr.rtapi.SNSUserServerProfileUpdateRequestMessage.user_id:type_name -> nevr.rtapi.XPlatformID
-	19, // 90: nevr.rtapi.SNSUserServerProfileUpdateSuccessMessage.user_id:type_name -> nevr.rtapi.XPlatformID
+var file_rtapi_realtime_v1_proto_depIdxs = []int32{
+	6,  // 0: nevr.realtime.v1.Envelope.error:type_name -> nevr.realtime.v1.Error
+	15, // 1: nevr.realtime.v1.Envelope.lobby_session_state:type_name -> nevr.realtime.v1.LobbySessionStateMessage
+	17, // 2: nevr.realtime.v1.Envelope.connectivity_statistics:type_name -> nevr.realtime.v1.ConnectivityStatisticsMessage
+	8,  // 3: nevr.realtime.v1.Envelope.game_server_registration:type_name -> nevr.realtime.v1.GameServerRegistrationMessage
+	9,  // 4: nevr.realtime.v1.Envelope.game_server_registration_success:type_name -> nevr.realtime.v1.GameServerRegistrationSuccessMessage
+	14, // 5: nevr.realtime.v1.Envelope.lobby_session_create:type_name -> nevr.realtime.v1.LobbySessionCreateMessage
+	7,  // 6: nevr.realtime.v1.Envelope.lobby_session_event:type_name -> nevr.realtime.v1.LobbySessionEventMessage
+	10, // 7: nevr.realtime.v1.Envelope.lobby_entrant_connected:type_name -> nevr.realtime.v1.LobbyEntrantsConnectedMessage
+	11, // 8: nevr.realtime.v1.Envelope.lobby_entrant_accept:type_name -> nevr.realtime.v1.LobbyEntrantsAcceptMessage
+	12, // 9: nevr.realtime.v1.Envelope.lobby_entrant_reject:type_name -> nevr.realtime.v1.LobbyEntrantsRejectMessage
+	13, // 10: nevr.realtime.v1.Envelope.lobby_entrant_remove:type_name -> nevr.realtime.v1.LobbyEntrantRemovedMessage
+	20, // 11: nevr.realtime.v1.Envelope.unknown_message:type_name -> nevr.realtime.v1.SNSUnknownMessage
+	21, // 12: nevr.realtime.v1.Envelope.tcp_connection_require_event:type_name -> nevr.realtime.v1.STCPConnectionRequireEvent
+	22, // 13: nevr.realtime.v1.Envelope.tcp_connection_unrequire_event:type_name -> nevr.realtime.v1.STCPConnectionUnrequireEvent
+	23, // 14: nevr.realtime.v1.Envelope.config_request_v2:type_name -> nevr.realtime.v1.SNSConfigRequestV2Message
+	24, // 15: nevr.realtime.v1.Envelope.config_success_v2:type_name -> nevr.realtime.v1.SNSConfigSuccessV2Message
+	25, // 16: nevr.realtime.v1.Envelope.config_failure_v2:type_name -> nevr.realtime.v1.SNSConfigFailureV2Message
+	26, // 17: nevr.realtime.v1.Envelope.reconcile_iap:type_name -> nevr.realtime.v1.SNSReconcileIAPMessage
+	27, // 18: nevr.realtime.v1.Envelope.channel_info_request:type_name -> nevr.realtime.v1.SNSChannelInfoRequestMessage
+	28, // 19: nevr.realtime.v1.Envelope.channel_info_response:type_name -> nevr.realtime.v1.SNSChannelInfoResponseMessage
+	29, // 20: nevr.realtime.v1.Envelope.document_request_v2:type_name -> nevr.realtime.v1.SNSDocumentRequestV2Message
+	30, // 21: nevr.realtime.v1.Envelope.document_success:type_name -> nevr.realtime.v1.SNSDocumentSuccessMessage
+	31, // 22: nevr.realtime.v1.Envelope.document_failure:type_name -> nevr.realtime.v1.SNSDocumentFailureMessage
+	32, // 23: nevr.realtime.v1.Envelope.lobby_create_session_request_v9:type_name -> nevr.realtime.v1.SNSLobbyCreateSessionRequestV9Message
+	33, // 24: nevr.realtime.v1.Envelope.lobby_find_session_request_v11:type_name -> nevr.realtime.v1.SNSLobbyFindSessionRequestv11Message
+	34, // 25: nevr.realtime.v1.Envelope.lobby_join_session_request_v7:type_name -> nevr.realtime.v1.SNSLobbyJoinSessionRequestV7Message
+	35, // 26: nevr.realtime.v1.Envelope.lobby_matchmaker_status:type_name -> nevr.realtime.v1.SNSLobbyMatchmakerStatusMessage
+	36, // 27: nevr.realtime.v1.Envelope.lobby_matchmaker_status_request:type_name -> nevr.realtime.v1.SNSLobbyMatchmakerStatusRequestMessage
+	37, // 28: nevr.realtime.v1.Envelope.lobby_pending_session_cancel_v2:type_name -> nevr.realtime.v1.SNSLobbyPendingSessionCancelV2Message
+	38, // 29: nevr.realtime.v1.Envelope.lobby_ping_request_v3:type_name -> nevr.realtime.v1.SNSLobbyPingRequestV3Message
+	39, // 30: nevr.realtime.v1.Envelope.lobby_ping_response:type_name -> nevr.realtime.v1.SNSLobbyPingResponseMessage
+	40, // 31: nevr.realtime.v1.Envelope.lobby_player_sessions_request_v5:type_name -> nevr.realtime.v1.SNSLobbyPlayerSessionsRequestV5Message
+	41, // 32: nevr.realtime.v1.Envelope.lobby_session_failure_v4:type_name -> nevr.realtime.v1.SNSLobbySessionFailureV4Message
+	42, // 33: nevr.realtime.v1.Envelope.lobby_session_success_v5:type_name -> nevr.realtime.v1.SNSLobbySessionSuccessV5Message
+	43, // 34: nevr.realtime.v1.Envelope.logged_in_user_profile_failure:type_name -> nevr.realtime.v1.SNSLoggedInUserProfileFailureMessage
+	44, // 35: nevr.realtime.v1.Envelope.logged_in_user_profile_request:type_name -> nevr.realtime.v1.SNSLoggedInUserProfileRequestMessage
+	45, // 36: nevr.realtime.v1.Envelope.logged_in_user_profile_success:type_name -> nevr.realtime.v1.SNSLoggedInUserProfileSuccessMessage
+	46, // 37: nevr.realtime.v1.Envelope.log_in_failure:type_name -> nevr.realtime.v1.SNSLogInFailureMessage
+	47, // 38: nevr.realtime.v1.Envelope.log_in_request_v2:type_name -> nevr.realtime.v1.SNSLogInRequestV2Message
+	48, // 39: nevr.realtime.v1.Envelope.login_settings:type_name -> nevr.realtime.v1.SNSLoginSettingsMessage
+	49, // 40: nevr.realtime.v1.Envelope.log_in_success:type_name -> nevr.realtime.v1.SNSLogInSuccessMessage
+	50, // 41: nevr.realtime.v1.Envelope.other_user_profile_failure:type_name -> nevr.realtime.v1.SNSOtherUserProfileFailureMessage
+	51, // 42: nevr.realtime.v1.Envelope.other_user_profile_request:type_name -> nevr.realtime.v1.SNSOtherUserProfileRequestMessage
+	52, // 43: nevr.realtime.v1.Envelope.other_user_profile_success:type_name -> nevr.realtime.v1.SNSOtherUserProfileSuccessMessage
+	53, // 44: nevr.realtime.v1.Envelope.reconcile_iap_result:type_name -> nevr.realtime.v1.SNSReconcileIAPResultMessage
+	54, // 45: nevr.realtime.v1.Envelope.remote_log_set_v3:type_name -> nevr.realtime.v1.SNSRemoteLogSetV3Message
+	55, // 46: nevr.realtime.v1.Envelope.update_profile:type_name -> nevr.realtime.v1.SNSUpdateProfileMessage
+	56, // 47: nevr.realtime.v1.Envelope.update_profile_success:type_name -> nevr.realtime.v1.SNSUpdateProfileSuccessMessage
+	57, // 48: nevr.realtime.v1.Envelope.update_profile_failure:type_name -> nevr.realtime.v1.SNSUpdateProfileFailureMessage
+	58, // 49: nevr.realtime.v1.Envelope.user_server_profile_update_request:type_name -> nevr.realtime.v1.SNSUserServerProfileUpdateRequestMessage
+	59, // 50: nevr.realtime.v1.Envelope.user_server_profile_update_success:type_name -> nevr.realtime.v1.SNSUserServerProfileUpdateSuccessMessage
+	60, // 51: nevr.realtime.v1.Error.context:type_name -> nevr.realtime.v1.Error.ContextEntry
+	16, // 52: nevr.realtime.v1.LobbySessionStateMessage.session_state_raw:type_name -> nevr.realtime.v1.LobbySessionStateRawMessage
+	61, // 53: nevr.realtime.v1.LobbySessionStateMessage.session_state:type_name -> nevr.telemetry.v1.LobbySessionStateFrame
+	62, // 54: nevr.realtime.v1.LobbySessionStateRawMessage.timestamp:type_name -> google.protobuf.Timestamp
+	18, // 55: nevr.realtime.v1.SNSUnknownMessage.type:type_name -> nevr.realtime.v1.SymbolHash
+	18, // 56: nevr.realtime.v1.SNSConfigSuccessV2Message.type:type_name -> nevr.realtime.v1.SymbolHash
+	18, // 57: nevr.realtime.v1.SNSConfigSuccessV2Message.id:type_name -> nevr.realtime.v1.SymbolHash
+	19, // 58: nevr.realtime.v1.SNSReconcileIAPMessage.user_id:type_name -> nevr.realtime.v1.XPlatformID
+	18, // 59: nevr.realtime.v1.SNSLobbyCreateSessionRequestV9Message.region:type_name -> nevr.realtime.v1.SymbolHash
+	18, // 60: nevr.realtime.v1.SNSLobbyCreateSessionRequestV9Message.version_lock:type_name -> nevr.realtime.v1.SymbolHash
+	18, // 61: nevr.realtime.v1.SNSLobbyCreateSessionRequestV9Message.mode:type_name -> nevr.realtime.v1.SymbolHash
+	18, // 62: nevr.realtime.v1.SNSLobbyCreateSessionRequestV9Message.level:type_name -> nevr.realtime.v1.SymbolHash
+	18, // 63: nevr.realtime.v1.SNSLobbyCreateSessionRequestV9Message.platform:type_name -> nevr.realtime.v1.SymbolHash
+	19, // 64: nevr.realtime.v1.SNSLobbyCreateSessionRequestV9Message.entrants:type_name -> nevr.realtime.v1.XPlatformID
+	18, // 65: nevr.realtime.v1.SNSLobbyFindSessionRequestv11Message.version_lock:type_name -> nevr.realtime.v1.SymbolHash
+	18, // 66: nevr.realtime.v1.SNSLobbyFindSessionRequestv11Message.mode:type_name -> nevr.realtime.v1.SymbolHash
+	18, // 67: nevr.realtime.v1.SNSLobbyFindSessionRequestv11Message.level:type_name -> nevr.realtime.v1.SymbolHash
+	18, // 68: nevr.realtime.v1.SNSLobbyFindSessionRequestv11Message.platform:type_name -> nevr.realtime.v1.SymbolHash
+	19, // 69: nevr.realtime.v1.SNSLobbyFindSessionRequestv11Message.entrants:type_name -> nevr.realtime.v1.XPlatformID
+	18, // 70: nevr.realtime.v1.SNSLobbyJoinSessionRequestV7Message.version_lock:type_name -> nevr.realtime.v1.SymbolHash
+	18, // 71: nevr.realtime.v1.SNSLobbyJoinSessionRequestV7Message.platform:type_name -> nevr.realtime.v1.SymbolHash
+	19, // 72: nevr.realtime.v1.SNSLobbyPlayerSessionsRequestV5Message.user_id:type_name -> nevr.realtime.v1.XPlatformID
+	18, // 73: nevr.realtime.v1.SNSLobbyPlayerSessionsRequestV5Message.platform:type_name -> nevr.realtime.v1.SymbolHash
+	19, // 74: nevr.realtime.v1.SNSLobbyPlayerSessionsRequestV5Message.player_xpids:type_name -> nevr.realtime.v1.XPlatformID
+	19, // 75: nevr.realtime.v1.SNSLoggedInUserProfileFailureMessage.user_id:type_name -> nevr.realtime.v1.XPlatformID
+	19, // 76: nevr.realtime.v1.SNSLoggedInUserProfileRequestMessage.user_id:type_name -> nevr.realtime.v1.XPlatformID
+	19, // 77: nevr.realtime.v1.SNSLoggedInUserProfileSuccessMessage.user_id:type_name -> nevr.realtime.v1.XPlatformID
+	19, // 78: nevr.realtime.v1.SNSLogInFailureMessage.user_id:type_name -> nevr.realtime.v1.XPlatformID
+	19, // 79: nevr.realtime.v1.SNSLogInRequestV2Message.user_id:type_name -> nevr.realtime.v1.XPlatformID
+	19, // 80: nevr.realtime.v1.SNSLogInSuccessMessage.user_id:type_name -> nevr.realtime.v1.XPlatformID
+	19, // 81: nevr.realtime.v1.SNSOtherUserProfileFailureMessage.user_id:type_name -> nevr.realtime.v1.XPlatformID
+	19, // 82: nevr.realtime.v1.SNSOtherUserProfileRequestMessage.user_id:type_name -> nevr.realtime.v1.XPlatformID
+	19, // 83: nevr.realtime.v1.SNSOtherUserProfileSuccessMessage.user_id:type_name -> nevr.realtime.v1.XPlatformID
+	19, // 84: nevr.realtime.v1.SNSReconcileIAPResultMessage.user_id:type_name -> nevr.realtime.v1.XPlatformID
+	19, // 85: nevr.realtime.v1.SNSRemoteLogSetV3Message.user_id:type_name -> nevr.realtime.v1.XPlatformID
+	19, // 86: nevr.realtime.v1.SNSUpdateProfileMessage.user_id:type_name -> nevr.realtime.v1.XPlatformID
+	19, // 87: nevr.realtime.v1.SNSUpdateProfileSuccessMessage.user_id:type_name -> nevr.realtime.v1.XPlatformID
+	19, // 88: nevr.realtime.v1.SNSUpdateProfileFailureMessage.user_id:type_name -> nevr.realtime.v1.XPlatformID
+	19, // 89: nevr.realtime.v1.SNSUserServerProfileUpdateRequestMessage.user_id:type_name -> nevr.realtime.v1.XPlatformID
+	19, // 90: nevr.realtime.v1.SNSUserServerProfileUpdateSuccessMessage.user_id:type_name -> nevr.realtime.v1.XPlatformID
 	91, // [91:91] is the sub-list for method output_type
 	91, // [91:91] is the sub-list for method input_type
 	91, // [91:91] is the sub-list for extension type_name
@@ -5042,6 +5060,7 @@ func file_rtapi_realtime_v1_proto_init() {
 	if File_rtapi_realtime_v1_proto != nil {
 		return
 	}
+	file_rtapi_telemetry_v1_proto_init()
 	file_rtapi_realtime_v1_proto_msgTypes[0].OneofWrappers = []any{
 		(*Envelope_Error)(nil),
 		(*Envelope_LobbySessionState)(nil),
@@ -5097,6 +5116,7 @@ func file_rtapi_realtime_v1_proto_init() {
 	}
 	file_rtapi_realtime_v1_proto_msgTypes[10].OneofWrappers = []any{
 		(*LobbySessionStateMessage_SessionStateRaw)(nil),
+		(*LobbySessionStateMessage_SessionState)(nil),
 	}
 	type x struct{}
 	out := protoimpl.TypeBuilder{

@@ -36,6 +36,7 @@
 #include "google/protobuf/generated_enum_reflection.h"
 #include "google/protobuf/unknown_field_set.h"
 #include "google/protobuf/timestamp.pb.h"
+#include "rtapi/telemetry_v1.pb.h"
 // @@protoc_insertion_point(includes)
 
 // Must be included last.
@@ -12460,6 +12461,7 @@ class LobbySessionStateMessage final : public ::google::protobuf::Message
   }
   enum StateCase {
     kSessionStateRaw = 3,
+    kSessionState = 4,
     STATE_NOT_SET = 0,
   };
   static constexpr int kIndexInFileMessages = 11;
@@ -12553,6 +12555,7 @@ class LobbySessionStateMessage final : public ::google::protobuf::Message
     kTickCountFieldNumber = 2,
     kTimeStepUsecsFieldNumber = 1,
     kSessionStateRawFieldNumber = 3,
+    kSessionStateFieldNumber = 4,
   };
   // uint64 tick_count = 2 [json_name = "tickCount"];
   void clear_tick_count() ;
@@ -12593,17 +12596,37 @@ class LobbySessionStateMessage final : public ::google::protobuf::Message
   ::nevr::realtime::v1::LobbySessionStateRawMessage* PROTOBUF_NONNULL _internal_mutable_session_state_raw();
 
   public:
+  // .nevr.telemetry.v1.LobbySessionStateFrame session_state = 4 [json_name = "sessionState"];
+  bool has_session_state() const;
+  private:
+  bool _internal_has_session_state() const;
+
+  public:
+  void clear_session_state() ;
+  const ::nevr::telemetry::v1::LobbySessionStateFrame& session_state() const;
+  [[nodiscard]] ::nevr::telemetry::v1::LobbySessionStateFrame* PROTOBUF_NULLABLE release_session_state();
+  ::nevr::telemetry::v1::LobbySessionStateFrame* PROTOBUF_NONNULL mutable_session_state();
+  void set_allocated_session_state(::nevr::telemetry::v1::LobbySessionStateFrame* PROTOBUF_NULLABLE value);
+  void unsafe_arena_set_allocated_session_state(::nevr::telemetry::v1::LobbySessionStateFrame* PROTOBUF_NULLABLE value);
+  ::nevr::telemetry::v1::LobbySessionStateFrame* PROTOBUF_NULLABLE unsafe_arena_release_session_state();
+
+  private:
+  const ::nevr::telemetry::v1::LobbySessionStateFrame& _internal_session_state() const;
+  ::nevr::telemetry::v1::LobbySessionStateFrame* PROTOBUF_NONNULL _internal_mutable_session_state();
+
+  public:
   void clear_state();
   StateCase state_case() const;
   // @@protoc_insertion_point(class_scope:nevr.realtime.v1.LobbySessionStateMessage)
  private:
   class _Internal;
   void set_has_session_state_raw();
+  void set_has_session_state();
   inline bool has_state() const;
   inline void clear_has_state();
   friend class ::google::protobuf::internal::TcParser;
-  static const ::google::protobuf::internal::TcParseTable<1, 3,
-                                   1, 0,
+  static const ::google::protobuf::internal::TcParseTable<1, 4,
+                                   2, 0,
                                    2>
       _table_;
 
@@ -12630,6 +12653,7 @@ class LobbySessionStateMessage final : public ::google::protobuf::Message
       constexpr StateUnion() : _constinit_{} {}
       ::google::protobuf::internal::ConstantInitialized _constinit_;
       ::nevr::realtime::v1::LobbySessionStateRawMessage* PROTOBUF_NULLABLE session_state_raw_;
+      ::nevr::telemetry::v1::LobbySessionStateFrame* PROTOBUF_NULLABLE session_state_;
     } state_;
     ::uint32_t _oneof_case_[1];
     PROTOBUF_TSAN_DECLARE_MEMBER
@@ -12704,7 +12728,7 @@ class Envelope final : public ::google::protobuf::Message
     kGameServerRegistrationSuccess = 6,
     kLobbySessionCreate = 7,
     kLobbySessionEvent = 8,
-    kLobbyEntraConnected = 9,
+    kLobbyEntrantConnected = 9,
     kLobbyEntrantAccept = 10,
     kLobbyEntrantReject = 11,
     kLobbyEntrantRemove = 12,
@@ -12846,7 +12870,7 @@ class Envelope final : public ::google::protobuf::Message
     kGameServerRegistrationSuccessFieldNumber = 6,
     kLobbySessionCreateFieldNumber = 7,
     kLobbySessionEventFieldNumber = 8,
-    kLobbyEntraConnectedFieldNumber = 9,
+    kLobbyEntrantConnectedFieldNumber = 9,
     kLobbyEntrantAcceptFieldNumber = 10,
     kLobbyEntrantRejectFieldNumber = 11,
     kLobbyEntrantRemoveFieldNumber = 12,
@@ -13039,23 +13063,23 @@ class Envelope final : public ::google::protobuf::Message
   ::nevr::realtime::v1::LobbySessionEventMessage* PROTOBUF_NONNULL _internal_mutable_lobby_session_event();
 
   public:
-  // .nevr.realtime.v1.LobbyEntrantsConnectedMessage lobby_entra_connected = 9 [json_name = "lobbyEntraConnected"];
-  bool has_lobby_entra_connected() const;
+  // .nevr.realtime.v1.LobbyEntrantsConnectedMessage lobby_entrant_connected = 9 [json_name = "lobbyEntrantConnected"];
+  bool has_lobby_entrant_connected() const;
   private:
-  bool _internal_has_lobby_entra_connected() const;
+  bool _internal_has_lobby_entrant_connected() const;
 
   public:
-  void clear_lobby_entra_connected() ;
-  const ::nevr::realtime::v1::LobbyEntrantsConnectedMessage& lobby_entra_connected() const;
-  [[nodiscard]] ::nevr::realtime::v1::LobbyEntrantsConnectedMessage* PROTOBUF_NULLABLE release_lobby_entra_connected();
-  ::nevr::realtime::v1::LobbyEntrantsConnectedMessage* PROTOBUF_NONNULL mutable_lobby_entra_connected();
-  void set_allocated_lobby_entra_connected(::nevr::realtime::v1::LobbyEntrantsConnectedMessage* PROTOBUF_NULLABLE value);
-  void unsafe_arena_set_allocated_lobby_entra_connected(::nevr::realtime::v1::LobbyEntrantsConnectedMessage* PROTOBUF_NULLABLE value);
-  ::nevr::realtime::v1::LobbyEntrantsConnectedMessage* PROTOBUF_NULLABLE unsafe_arena_release_lobby_entra_connected();
+  void clear_lobby_entrant_connected() ;
+  const ::nevr::realtime::v1::LobbyEntrantsConnectedMessage& lobby_entrant_connected() const;
+  [[nodiscard]] ::nevr::realtime::v1::LobbyEntrantsConnectedMessage* PROTOBUF_NULLABLE release_lobby_entrant_connected();
+  ::nevr::realtime::v1::LobbyEntrantsConnectedMessage* PROTOBUF_NONNULL mutable_lobby_entrant_connected();
+  void set_allocated_lobby_entrant_connected(::nevr::realtime::v1::LobbyEntrantsConnectedMessage* PROTOBUF_NULLABLE value);
+  void unsafe_arena_set_allocated_lobby_entrant_connected(::nevr::realtime::v1::LobbyEntrantsConnectedMessage* PROTOBUF_NULLABLE value);
+  ::nevr::realtime::v1::LobbyEntrantsConnectedMessage* PROTOBUF_NULLABLE unsafe_arena_release_lobby_entrant_connected();
 
   private:
-  const ::nevr::realtime::v1::LobbyEntrantsConnectedMessage& _internal_lobby_entra_connected() const;
-  ::nevr::realtime::v1::LobbyEntrantsConnectedMessage* PROTOBUF_NONNULL _internal_mutable_lobby_entra_connected();
+  const ::nevr::realtime::v1::LobbyEntrantsConnectedMessage& _internal_lobby_entrant_connected() const;
+  ::nevr::realtime::v1::LobbyEntrantsConnectedMessage* PROTOBUF_NONNULL _internal_mutable_lobby_entrant_connected();
 
   public:
   // .nevr.realtime.v1.LobbyEntrantsAcceptMessage lobby_entrant_accept = 10 [json_name = "lobbyEntrantAccept"];
@@ -13887,7 +13911,7 @@ class Envelope final : public ::google::protobuf::Message
   void set_has_game_server_registration_success();
   void set_has_lobby_session_create();
   void set_has_lobby_session_event();
-  void set_has_lobby_entra_connected();
+  void set_has_lobby_entrant_connected();
   void set_has_lobby_entrant_accept();
   void set_has_lobby_entrant_reject();
   void set_has_lobby_entrant_remove();
@@ -13967,7 +13991,7 @@ class Envelope final : public ::google::protobuf::Message
       ::google::protobuf::Message* PROTOBUF_NULLABLE game_server_registration_success_;
       ::google::protobuf::Message* PROTOBUF_NULLABLE lobby_session_create_;
       ::google::protobuf::Message* PROTOBUF_NULLABLE lobby_session_event_;
-      ::google::protobuf::Message* PROTOBUF_NULLABLE lobby_entra_connected_;
+      ::google::protobuf::Message* PROTOBUF_NULLABLE lobby_entrant_connected_;
       ::google::protobuf::Message* PROTOBUF_NULLABLE lobby_entrant_accept_;
       ::google::protobuf::Message* PROTOBUF_NULLABLE lobby_entrant_reject_;
       ::google::protobuf::Message* PROTOBUF_NULLABLE lobby_entrant_remove_;
@@ -14669,84 +14693,84 @@ inline ::nevr::realtime::v1::LobbySessionEventMessage* PROTOBUF_NONNULL Envelope
   return _msg;
 }
 
-// .nevr.realtime.v1.LobbyEntrantsConnectedMessage lobby_entra_connected = 9 [json_name = "lobbyEntraConnected"];
-inline bool Envelope::has_lobby_entra_connected() const {
-  return message_case() == kLobbyEntraConnected;
+// .nevr.realtime.v1.LobbyEntrantsConnectedMessage lobby_entrant_connected = 9 [json_name = "lobbyEntrantConnected"];
+inline bool Envelope::has_lobby_entrant_connected() const {
+  return message_case() == kLobbyEntrantConnected;
 }
-inline bool Envelope::_internal_has_lobby_entra_connected() const {
-  return message_case() == kLobbyEntraConnected;
+inline bool Envelope::_internal_has_lobby_entrant_connected() const {
+  return message_case() == kLobbyEntrantConnected;
 }
-inline void Envelope::set_has_lobby_entra_connected() {
-  _impl_._oneof_case_[0] = kLobbyEntraConnected;
+inline void Envelope::set_has_lobby_entrant_connected() {
+  _impl_._oneof_case_[0] = kLobbyEntrantConnected;
 }
-inline void Envelope::clear_lobby_entra_connected() {
+inline void Envelope::clear_lobby_entrant_connected() {
   ::google::protobuf::internal::TSanWrite(&_impl_);
-  if (message_case() == kLobbyEntraConnected) {
+  if (message_case() == kLobbyEntrantConnected) {
     if (GetArena() == nullptr) {
-      delete _impl_.message_.lobby_entra_connected_;
+      delete _impl_.message_.lobby_entrant_connected_;
     } else if (::google::protobuf::internal::DebugHardenClearOneofMessageOnArena()) {
-      ::google::protobuf::internal::MaybePoisonAfterClear(_impl_.message_.lobby_entra_connected_);
+      ::google::protobuf::internal::MaybePoisonAfterClear(_impl_.message_.lobby_entrant_connected_);
     }
     clear_has_message();
   }
 }
-inline ::nevr::realtime::v1::LobbyEntrantsConnectedMessage* PROTOBUF_NULLABLE Envelope::release_lobby_entra_connected() {
-  // @@protoc_insertion_point(field_release:nevr.realtime.v1.Envelope.lobby_entra_connected)
-  if (message_case() == kLobbyEntraConnected) {
+inline ::nevr::realtime::v1::LobbyEntrantsConnectedMessage* PROTOBUF_NULLABLE Envelope::release_lobby_entrant_connected() {
+  // @@protoc_insertion_point(field_release:nevr.realtime.v1.Envelope.lobby_entrant_connected)
+  if (message_case() == kLobbyEntrantConnected) {
     clear_has_message();
-    auto* temp = reinterpret_cast<::nevr::realtime::v1::LobbyEntrantsConnectedMessage*>(_impl_.message_.lobby_entra_connected_);
+    auto* temp = reinterpret_cast<::nevr::realtime::v1::LobbyEntrantsConnectedMessage*>(_impl_.message_.lobby_entrant_connected_);
     if (GetArena() != nullptr) {
       temp = ::google::protobuf::internal::DuplicateIfNonNull(temp);
     }
-    _impl_.message_.lobby_entra_connected_ = nullptr;
+    _impl_.message_.lobby_entrant_connected_ = nullptr;
     return temp;
   } else {
     return nullptr;
   }
 }
-inline const ::nevr::realtime::v1::LobbyEntrantsConnectedMessage& Envelope::_internal_lobby_entra_connected() const {
-  return message_case() == kLobbyEntraConnected ? *reinterpret_cast<::nevr::realtime::v1::LobbyEntrantsConnectedMessage*>(_impl_.message_.lobby_entra_connected_) : reinterpret_cast<::nevr::realtime::v1::LobbyEntrantsConnectedMessage&>(::nevr::realtime::v1::_LobbyEntrantsConnectedMessage_default_instance_);
+inline const ::nevr::realtime::v1::LobbyEntrantsConnectedMessage& Envelope::_internal_lobby_entrant_connected() const {
+  return message_case() == kLobbyEntrantConnected ? *reinterpret_cast<::nevr::realtime::v1::LobbyEntrantsConnectedMessage*>(_impl_.message_.lobby_entrant_connected_) : reinterpret_cast<::nevr::realtime::v1::LobbyEntrantsConnectedMessage&>(::nevr::realtime::v1::_LobbyEntrantsConnectedMessage_default_instance_);
 }
-inline const ::nevr::realtime::v1::LobbyEntrantsConnectedMessage& Envelope::lobby_entra_connected() const ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  // @@protoc_insertion_point(field_get:nevr.realtime.v1.Envelope.lobby_entra_connected)
-  return _internal_lobby_entra_connected();
+inline const ::nevr::realtime::v1::LobbyEntrantsConnectedMessage& Envelope::lobby_entrant_connected() const ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_get:nevr.realtime.v1.Envelope.lobby_entrant_connected)
+  return _internal_lobby_entrant_connected();
 }
-inline ::nevr::realtime::v1::LobbyEntrantsConnectedMessage* PROTOBUF_NULLABLE Envelope::unsafe_arena_release_lobby_entra_connected() {
-  // @@protoc_insertion_point(field_unsafe_arena_release:nevr.realtime.v1.Envelope.lobby_entra_connected)
-  if (message_case() == kLobbyEntraConnected) {
+inline ::nevr::realtime::v1::LobbyEntrantsConnectedMessage* PROTOBUF_NULLABLE Envelope::unsafe_arena_release_lobby_entrant_connected() {
+  // @@protoc_insertion_point(field_unsafe_arena_release:nevr.realtime.v1.Envelope.lobby_entrant_connected)
+  if (message_case() == kLobbyEntrantConnected) {
     clear_has_message();
-    auto* temp = reinterpret_cast<::nevr::realtime::v1::LobbyEntrantsConnectedMessage*>(_impl_.message_.lobby_entra_connected_);
-    _impl_.message_.lobby_entra_connected_ = nullptr;
+    auto* temp = reinterpret_cast<::nevr::realtime::v1::LobbyEntrantsConnectedMessage*>(_impl_.message_.lobby_entrant_connected_);
+    _impl_.message_.lobby_entrant_connected_ = nullptr;
     return temp;
   } else {
     return nullptr;
   }
 }
-inline void Envelope::unsafe_arena_set_allocated_lobby_entra_connected(
+inline void Envelope::unsafe_arena_set_allocated_lobby_entrant_connected(
     ::nevr::realtime::v1::LobbyEntrantsConnectedMessage* PROTOBUF_NULLABLE value) {
   // We rely on the oneof clear method to free the earlier contents
   // of this oneof. We can directly use the pointer we're given to
   // set the new value.
   clear_message();
   if (value) {
-    set_has_lobby_entra_connected();
-    _impl_.message_.lobby_entra_connected_ = reinterpret_cast<::google::protobuf::Message*>(value);
+    set_has_lobby_entrant_connected();
+    _impl_.message_.lobby_entrant_connected_ = reinterpret_cast<::google::protobuf::Message*>(value);
   }
-  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:nevr.realtime.v1.Envelope.lobby_entra_connected)
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:nevr.realtime.v1.Envelope.lobby_entrant_connected)
 }
-inline ::nevr::realtime::v1::LobbyEntrantsConnectedMessage* PROTOBUF_NONNULL Envelope::_internal_mutable_lobby_entra_connected() {
-  if (message_case() != kLobbyEntraConnected) {
+inline ::nevr::realtime::v1::LobbyEntrantsConnectedMessage* PROTOBUF_NONNULL Envelope::_internal_mutable_lobby_entrant_connected() {
+  if (message_case() != kLobbyEntrantConnected) {
     clear_message();
-    set_has_lobby_entra_connected();
-    _impl_.message_.lobby_entra_connected_ = reinterpret_cast<::google::protobuf::Message*>(
+    set_has_lobby_entrant_connected();
+    _impl_.message_.lobby_entrant_connected_ = reinterpret_cast<::google::protobuf::Message*>(
         ::google::protobuf::Message::DefaultConstruct<::nevr::realtime::v1::LobbyEntrantsConnectedMessage>(GetArena()));
   }
-  return reinterpret_cast<::nevr::realtime::v1::LobbyEntrantsConnectedMessage*>(_impl_.message_.lobby_entra_connected_);
+  return reinterpret_cast<::nevr::realtime::v1::LobbyEntrantsConnectedMessage*>(_impl_.message_.lobby_entrant_connected_);
 }
-inline ::nevr::realtime::v1::LobbyEntrantsConnectedMessage* PROTOBUF_NONNULL Envelope::mutable_lobby_entra_connected()
+inline ::nevr::realtime::v1::LobbyEntrantsConnectedMessage* PROTOBUF_NONNULL Envelope::mutable_lobby_entrant_connected()
     ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  ::nevr::realtime::v1::LobbyEntrantsConnectedMessage* _msg = _internal_mutable_lobby_entra_connected();
-  // @@protoc_insertion_point(field_mutable:nevr.realtime.v1.Envelope.lobby_entra_connected)
+  ::nevr::realtime::v1::LobbyEntrantsConnectedMessage* _msg = _internal_mutable_lobby_entrant_connected();
+  // @@protoc_insertion_point(field_mutable:nevr.realtime.v1.Envelope.lobby_entrant_connected)
   return _msg;
 }
 
@@ -19787,6 +19811,76 @@ inline ::nevr::realtime::v1::LobbySessionStateRawMessage* PROTOBUF_NONNULL Lobby
     ABSL_ATTRIBUTE_LIFETIME_BOUND {
   ::nevr::realtime::v1::LobbySessionStateRawMessage* _msg = _internal_mutable_session_state_raw();
   // @@protoc_insertion_point(field_mutable:nevr.realtime.v1.LobbySessionStateMessage.session_state_raw)
+  return _msg;
+}
+
+// .nevr.telemetry.v1.LobbySessionStateFrame session_state = 4 [json_name = "sessionState"];
+inline bool LobbySessionStateMessage::has_session_state() const {
+  return state_case() == kSessionState;
+}
+inline bool LobbySessionStateMessage::_internal_has_session_state() const {
+  return state_case() == kSessionState;
+}
+inline void LobbySessionStateMessage::set_has_session_state() {
+  _impl_._oneof_case_[0] = kSessionState;
+}
+inline ::nevr::telemetry::v1::LobbySessionStateFrame* PROTOBUF_NULLABLE LobbySessionStateMessage::release_session_state() {
+  // @@protoc_insertion_point(field_release:nevr.realtime.v1.LobbySessionStateMessage.session_state)
+  if (state_case() == kSessionState) {
+    clear_has_state();
+    auto* temp = _impl_.state_.session_state_;
+    if (GetArena() != nullptr) {
+      temp = ::google::protobuf::internal::DuplicateIfNonNull(temp);
+    }
+    _impl_.state_.session_state_ = nullptr;
+    return temp;
+  } else {
+    return nullptr;
+  }
+}
+inline const ::nevr::telemetry::v1::LobbySessionStateFrame& LobbySessionStateMessage::_internal_session_state() const {
+  return state_case() == kSessionState ? *_impl_.state_.session_state_ : reinterpret_cast<::nevr::telemetry::v1::LobbySessionStateFrame&>(::nevr::telemetry::v1::_LobbySessionStateFrame_default_instance_);
+}
+inline const ::nevr::telemetry::v1::LobbySessionStateFrame& LobbySessionStateMessage::session_state() const ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_get:nevr.realtime.v1.LobbySessionStateMessage.session_state)
+  return _internal_session_state();
+}
+inline ::nevr::telemetry::v1::LobbySessionStateFrame* PROTOBUF_NULLABLE LobbySessionStateMessage::unsafe_arena_release_session_state() {
+  // @@protoc_insertion_point(field_unsafe_arena_release:nevr.realtime.v1.LobbySessionStateMessage.session_state)
+  if (state_case() == kSessionState) {
+    clear_has_state();
+    auto* temp = _impl_.state_.session_state_;
+    _impl_.state_.session_state_ = nullptr;
+    return temp;
+  } else {
+    return nullptr;
+  }
+}
+inline void LobbySessionStateMessage::unsafe_arena_set_allocated_session_state(
+    ::nevr::telemetry::v1::LobbySessionStateFrame* PROTOBUF_NULLABLE value) {
+  // We rely on the oneof clear method to free the earlier contents
+  // of this oneof. We can directly use the pointer we're given to
+  // set the new value.
+  clear_state();
+  if (value) {
+    set_has_session_state();
+    _impl_.state_.session_state_ = value;
+  }
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:nevr.realtime.v1.LobbySessionStateMessage.session_state)
+}
+inline ::nevr::telemetry::v1::LobbySessionStateFrame* PROTOBUF_NONNULL LobbySessionStateMessage::_internal_mutable_session_state() {
+  if (state_case() != kSessionState) {
+    clear_state();
+    set_has_session_state();
+    _impl_.state_.session_state_ = 
+        ::google::protobuf::Message::DefaultConstruct<::nevr::telemetry::v1::LobbySessionStateFrame>(GetArena());
+  }
+  return _impl_.state_.session_state_;
+}
+inline ::nevr::telemetry::v1::LobbySessionStateFrame* PROTOBUF_NONNULL LobbySessionStateMessage::mutable_session_state()
+    ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  ::nevr::telemetry::v1::LobbySessionStateFrame* _msg = _internal_mutable_session_state();
+  // @@protoc_insertion_point(field_mutable:nevr.realtime.v1.LobbySessionStateMessage.session_state)
   return _msg;
 }
 

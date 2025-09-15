@@ -3,8 +3,7 @@ syntax = "proto3";
 package nevr.realtime.v1;
 
 import "google/protobuf/timestamp.proto";
-// include the gameapi.rtapi file
-//import "nevr/api/http/v1/service.proto";
+import "rtapi/telemetry_v1.proto";
 
 option csharp_namespace = "Nevr.Protobuf";
 option go_package = "github.com/echotools/nevr-common/gen/go/rtapi";
@@ -23,12 +22,12 @@ message Envelope {
     ConnectivityStatisticsMessage connectivity_statistics = 4;
     GameServerRegistrationMessage game_server_registration = 5;
     GameServerRegistrationSuccessMessage game_server_registration_success = 6;
-    LobbySessionCreateMessage            lobby_session_create             = 7;
-    LobbySessionEventMessage             lobby_session_event              = 8;
-    LobbyEntrantsConnectedMessage        lobby_entrant_connected          = 9;
-    LobbyEntrantsAcceptMessage           lobby_entrant_accept             = 10;
-    LobbyEntrantsRejectMessage           lobby_entrant_reject             = 11;
-    LobbyEntrantRemovedMessage           lobby_entrant_remove             = 12;
+    LobbySessionCreateMessage lobby_session_create = 7;
+    LobbySessionEventMessage lobby_session_event = 8;
+    LobbyEntrantsConnectedMessage lobby_entrant_connected = 9;
+    LobbyEntrantsAcceptMessage lobby_entrant_accept = 10;
+    LobbyEntrantsRejectMessage lobby_entrant_reject = 11;
+    LobbyEntrantRemovedMessage lobby_entrant_remove = 12;
 
     // Unknown message.
     SNSUnknownMessage unknown_message = 13;
@@ -242,7 +241,7 @@ message LobbySessionStateMessage {
   uint64 tick_count = 2;
   oneof state {
     LobbySessionStateRawMessage session_state_raw = 3;
-    //nevr.rtapi.LobbySessionStateFrame session_state = 4;
+    nevr.telemetry.v1.LobbySessionStateFrame session_state = 4;
   }
 }
 

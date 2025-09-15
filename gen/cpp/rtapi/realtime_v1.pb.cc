@@ -1837,13 +1837,15 @@ const ::uint32_t
         0x085, // bitmap
         PROTOBUF_FIELD_OFFSET(::nevr::realtime::v1::LobbySessionStateMessage, _impl_._has_bits_),
         PROTOBUF_FIELD_OFFSET(::nevr::realtime::v1::LobbySessionStateMessage, _impl_._oneof_case_[0]),
-        8, // hasbit index offset
+        9, // hasbit index offset
         PROTOBUF_FIELD_OFFSET(::nevr::realtime::v1::LobbySessionStateMessage, _impl_.time_step_usecs_),
         PROTOBUF_FIELD_OFFSET(::nevr::realtime::v1::LobbySessionStateMessage, _impl_.tick_count_),
         PROTOBUF_FIELD_OFFSET(::nevr::realtime::v1::LobbySessionStateMessage, _impl_.state_),
         PROTOBUF_FIELD_OFFSET(::nevr::realtime::v1::LobbySessionStateMessage, _impl_.state_),
+        PROTOBUF_FIELD_OFFSET(::nevr::realtime::v1::LobbySessionStateMessage, _impl_.state_),
         1,
         0,
+        ~0u,
         ~0u,
         0x081, // bitmap
         PROTOBUF_FIELD_OFFSET(::nevr::realtime::v1::LobbySessionStateRawMessage, _impl_._has_bits_),
@@ -2220,50 +2222,50 @@ static const ::_pbi::MigrationSchema
         {174, sizeof(::nevr::realtime::v1::LobbyEntrantRemovedMessage)},
         {183, sizeof(::nevr::realtime::v1::LobbySessionCreateMessage)},
         {200, sizeof(::nevr::realtime::v1::LobbySessionStateMessage)},
-        {211, sizeof(::nevr::realtime::v1::LobbySessionStateRawMessage)},
-        {220, sizeof(::nevr::realtime::v1::ConnectivityStatisticsMessage)},
-        {237, sizeof(::nevr::realtime::v1::SymbolHash)},
-        {242, sizeof(::nevr::realtime::v1::XPlatformID)},
-        {247, sizeof(::nevr::realtime::v1::SNSUnknownMessage)},
-        {254, sizeof(::nevr::realtime::v1::STCPConnectionRequireEvent)},
-        {255, sizeof(::nevr::realtime::v1::STCPConnectionUnrequireEvent)},
-        {256, sizeof(::nevr::realtime::v1::SNSConfigRequestV2Message)},
-        {261, sizeof(::nevr::realtime::v1::SNSConfigSuccessV2Message)},
-        {270, sizeof(::nevr::realtime::v1::SNSConfigFailureV2Message)},
-        {275, sizeof(::nevr::realtime::v1::SNSReconcileIAPMessage)},
-        {282, sizeof(::nevr::realtime::v1::SNSChannelInfoRequestMessage)},
-        {283, sizeof(::nevr::realtime::v1::SNSChannelInfoResponseMessage)},
-        {288, sizeof(::nevr::realtime::v1::SNSDocumentRequestV2Message)},
-        {295, sizeof(::nevr::realtime::v1::SNSDocumentSuccessMessage)},
-        {300, sizeof(::nevr::realtime::v1::SNSDocumentFailureMessage)},
-        {305, sizeof(::nevr::realtime::v1::SNSLobbyCreateSessionRequestV9Message)},
-        {324, sizeof(::nevr::realtime::v1::SNSLobbyFindSessionRequestv11Message)},
-        {345, sizeof(::nevr::realtime::v1::SNSLobbyJoinSessionRequestV7Message)},
-        {358, sizeof(::nevr::realtime::v1::SNSLobbyMatchmakerStatusMessage)},
-        {363, sizeof(::nevr::realtime::v1::SNSLobbyMatchmakerStatusRequestMessage)},
-        {372, sizeof(::nevr::realtime::v1::SNSLobbyPendingSessionCancelV2Message)},
-        {377, sizeof(::nevr::realtime::v1::SNSLobbyPingRequestV3Message)},
-        {388, sizeof(::nevr::realtime::v1::SNSLobbyPingResponseMessage)},
-        {390, sizeof(::nevr::realtime::v1::SNSLobbyPlayerSessionsRequestV5Message)},
-        {403, sizeof(::nevr::realtime::v1::SNSLobbySessionFailureV4Message)},
-        {410, sizeof(::nevr::realtime::v1::SNSLobbySessionSuccessV5Message)},
-        {441, sizeof(::nevr::realtime::v1::SNSLoggedInUserProfileFailureMessage)},
-        {450, sizeof(::nevr::realtime::v1::SNSLoggedInUserProfileRequestMessage)},
-        {459, sizeof(::nevr::realtime::v1::SNSLoggedInUserProfileSuccessMessage)},
-        {466, sizeof(::nevr::realtime::v1::SNSLogInFailureMessage)},
-        {475, sizeof(::nevr::realtime::v1::SNSLogInRequestV2Message)},
-        {484, sizeof(::nevr::realtime::v1::SNSLoginSettingsMessage)},
-        {489, sizeof(::nevr::realtime::v1::SNSLogInSuccessMessage)},
-        {496, sizeof(::nevr::realtime::v1::SNSOtherUserProfileFailureMessage)},
-        {505, sizeof(::nevr::realtime::v1::SNSOtherUserProfileRequestMessage)},
-        {512, sizeof(::nevr::realtime::v1::SNSOtherUserProfileSuccessMessage)},
-        {519, sizeof(::nevr::realtime::v1::SNSReconcileIAPResultMessage)},
-        {526, sizeof(::nevr::realtime::v1::SNSRemoteLogSetV3Message)},
-        {535, sizeof(::nevr::realtime::v1::SNSUpdateProfileMessage)},
-        {544, sizeof(::nevr::realtime::v1::SNSUpdateProfileSuccessMessage)},
-        {549, sizeof(::nevr::realtime::v1::SNSUpdateProfileFailureMessage)},
-        {558, sizeof(::nevr::realtime::v1::SNSUserServerProfileUpdateRequestMessage)},
-        {565, sizeof(::nevr::realtime::v1::SNSUserServerProfileUpdateSuccessMessage)},
+        {213, sizeof(::nevr::realtime::v1::LobbySessionStateRawMessage)},
+        {222, sizeof(::nevr::realtime::v1::ConnectivityStatisticsMessage)},
+        {239, sizeof(::nevr::realtime::v1::SymbolHash)},
+        {244, sizeof(::nevr::realtime::v1::XPlatformID)},
+        {249, sizeof(::nevr::realtime::v1::SNSUnknownMessage)},
+        {256, sizeof(::nevr::realtime::v1::STCPConnectionRequireEvent)},
+        {257, sizeof(::nevr::realtime::v1::STCPConnectionUnrequireEvent)},
+        {258, sizeof(::nevr::realtime::v1::SNSConfigRequestV2Message)},
+        {263, sizeof(::nevr::realtime::v1::SNSConfigSuccessV2Message)},
+        {272, sizeof(::nevr::realtime::v1::SNSConfigFailureV2Message)},
+        {277, sizeof(::nevr::realtime::v1::SNSReconcileIAPMessage)},
+        {284, sizeof(::nevr::realtime::v1::SNSChannelInfoRequestMessage)},
+        {285, sizeof(::nevr::realtime::v1::SNSChannelInfoResponseMessage)},
+        {290, sizeof(::nevr::realtime::v1::SNSDocumentRequestV2Message)},
+        {297, sizeof(::nevr::realtime::v1::SNSDocumentSuccessMessage)},
+        {302, sizeof(::nevr::realtime::v1::SNSDocumentFailureMessage)},
+        {307, sizeof(::nevr::realtime::v1::SNSLobbyCreateSessionRequestV9Message)},
+        {326, sizeof(::nevr::realtime::v1::SNSLobbyFindSessionRequestv11Message)},
+        {347, sizeof(::nevr::realtime::v1::SNSLobbyJoinSessionRequestV7Message)},
+        {360, sizeof(::nevr::realtime::v1::SNSLobbyMatchmakerStatusMessage)},
+        {365, sizeof(::nevr::realtime::v1::SNSLobbyMatchmakerStatusRequestMessage)},
+        {374, sizeof(::nevr::realtime::v1::SNSLobbyPendingSessionCancelV2Message)},
+        {379, sizeof(::nevr::realtime::v1::SNSLobbyPingRequestV3Message)},
+        {390, sizeof(::nevr::realtime::v1::SNSLobbyPingResponseMessage)},
+        {392, sizeof(::nevr::realtime::v1::SNSLobbyPlayerSessionsRequestV5Message)},
+        {405, sizeof(::nevr::realtime::v1::SNSLobbySessionFailureV4Message)},
+        {412, sizeof(::nevr::realtime::v1::SNSLobbySessionSuccessV5Message)},
+        {443, sizeof(::nevr::realtime::v1::SNSLoggedInUserProfileFailureMessage)},
+        {452, sizeof(::nevr::realtime::v1::SNSLoggedInUserProfileRequestMessage)},
+        {461, sizeof(::nevr::realtime::v1::SNSLoggedInUserProfileSuccessMessage)},
+        {468, sizeof(::nevr::realtime::v1::SNSLogInFailureMessage)},
+        {477, sizeof(::nevr::realtime::v1::SNSLogInRequestV2Message)},
+        {486, sizeof(::nevr::realtime::v1::SNSLoginSettingsMessage)},
+        {491, sizeof(::nevr::realtime::v1::SNSLogInSuccessMessage)},
+        {498, sizeof(::nevr::realtime::v1::SNSOtherUserProfileFailureMessage)},
+        {507, sizeof(::nevr::realtime::v1::SNSOtherUserProfileRequestMessage)},
+        {514, sizeof(::nevr::realtime::v1::SNSOtherUserProfileSuccessMessage)},
+        {521, sizeof(::nevr::realtime::v1::SNSReconcileIAPResultMessage)},
+        {528, sizeof(::nevr::realtime::v1::SNSRemoteLogSetV3Message)},
+        {537, sizeof(::nevr::realtime::v1::SNSUpdateProfileMessage)},
+        {546, sizeof(::nevr::realtime::v1::SNSUpdateProfileSuccessMessage)},
+        {551, sizeof(::nevr::realtime::v1::SNSUpdateProfileFailureMessage)},
+        {560, sizeof(::nevr::realtime::v1::SNSUserServerProfileUpdateRequestMessage)},
+        {567, sizeof(::nevr::realtime::v1::SNSUserServerProfileUpdateSuccessMessage)},
 };
 static const ::_pb::Message* PROTOBUF_NONNULL const file_default_instances[] = {
     &::nevr::realtime::v1::_Envelope_default_instance_._instance,
@@ -2326,367 +2328,371 @@ static const ::_pb::Message* PROTOBUF_NONNULL const file_default_instances[] = {
 const char descriptor_table_protodef_rtapi_2frealtime_5fv1_2eproto[] ABSL_ATTRIBUTE_SECTION_VARIABLE(
     protodesc_cold) = {
     "\n\027rtapi/realtime_v1.proto\022\020nevr.realtime"
-    ".v1\032\037google/protobuf/timestamp.proto\"\216*\n"
-    "\010Envelope\022\020\n\003cid\030\001 \001(\tR\003cid\022/\n\005error\030\002 \001"
-    "(\0132\027.nevr.realtime.v1.ErrorH\000R\005error\022\\\n\023"
-    "lobby_session_state\030\003 \001(\0132*.nevr.realtim"
-    "e.v1.LobbySessionStateMessageH\000R\021lobbySe"
-    "ssionState\022j\n\027connectivity_statistics\030\004 "
-    "\001(\0132/.nevr.realtime.v1.ConnectivityStati"
-    "sticsMessageH\000R\026connectivityStatistics\022k"
-    "\n\030game_server_registration\030\005 \001(\0132/.nevr."
-    "realtime.v1.GameServerRegistrationMessag"
-    "eH\000R\026gameServerRegistration\022\201\001\n game_ser"
-    "ver_registration_success\030\006 \001(\01326.nevr.re"
-    "altime.v1.GameServerRegistrationSuccessM"
-    "essageH\000R\035gameServerRegistrationSuccess\022"
-    "_\n\024lobby_session_create\030\007 \001(\0132+.nevr.rea"
-    "ltime.v1.LobbySessionCreateMessageH\000R\022lo"
-    "bbySessionCreate\022\\\n\023lobby_session_event\030"
-    "\010 \001(\0132*.nevr.realtime.v1.LobbySessionEve"
-    "ntMessageH\000R\021lobbySessionEvent\022e\n\025lobby_"
-    "entra_connected\030\t \001(\0132/.nevr.realtime.v1"
-    ".LobbyEntrantsConnectedMessageH\000R\023lobbyE"
-    "ntraConnected\022`\n\024lobby_entrant_accept\030\n "
-    "\001(\0132,.nevr.realtime.v1.LobbyEntrantsAcce"
-    "ptMessageH\000R\022lobbyEntrantAccept\022`\n\024lobby"
-    "_entrant_reject\030\013 \001(\0132,.nevr.realtime.v1"
-    ".LobbyEntrantsRejectMessageH\000R\022lobbyEntr"
-    "antReject\022`\n\024lobby_entrant_remove\030\014 \001(\0132"
-    ",.nevr.realtime.v1.LobbyEntrantRemovedMe"
-    "ssageH\000R\022lobbyEntrantRemove\022N\n\017unknown_m"
-    "essage\030\r \001(\0132#.nevr.realtime.v1.SNSUnkno"
-    "wnMessageH\000R\016unknownMessage\022o\n\034tcp_conne"
-    "ction_require_event\030\016 \001(\0132,.nevr.realtim"
-    "e.v1.STCPConnectionRequireEventH\000R\031tcpCo"
-    "nnectionRequireEvent\022u\n\036tcp_connection_u"
-    "nrequire_event\030\017 \001(\0132..nevr.realtime.v1."
-    "STCPConnectionUnrequireEventH\000R\033tcpConne"
-    "ctionUnrequireEvent\022Y\n\021config_request_v2"
-    "\030\020 \001(\0132+.nevr.realtime.v1.SNSConfigReque"
-    "stV2MessageH\000R\017configRequestV2\022Y\n\021config"
-    "_success_v2\030\021 \001(\0132+.nevr.realtime.v1.SNS"
-    "ConfigSuccessV2MessageH\000R\017configSuccessV"
-    "2\022Y\n\021config_failure_v2\030\022 \001(\0132+.nevr.real"
-    "time.v1.SNSConfigFailureV2MessageH\000R\017con"
-    "figFailureV2\022O\n\rreconcile_iap\030\023 \001(\0132(.ne"
-    "vr.realtime.v1.SNSReconcileIAPMessageH\000R"
-    "\014reconcileIap\022b\n\024channel_info_request\030\024 "
-    "\001(\0132..nevr.realtime.v1.SNSChannelInfoReq"
-    "uestMessageH\000R\022channelInfoRequest\022e\n\025cha"
-    "nnel_info_response\030\025 \001(\0132/.nevr.realtime"
-    ".v1.SNSChannelInfoResponseMessageH\000R\023cha"
-    "nnelInfoResponse\022_\n\023document_request_v2\030"
-    "\026 \001(\0132-.nevr.realtime.v1.SNSDocumentRequ"
-    "estV2MessageH\000R\021documentRequestV2\022X\n\020doc"
-    "ument_success\030\027 \001(\0132+.nevr.realtime.v1.S"
-    "NSDocumentSuccessMessageH\000R\017documentSucc"
-    "ess\022X\n\020document_failure\030\030 \001(\0132+.nevr.rea"
-    "ltime.v1.SNSDocumentFailureMessageH\000R\017do"
-    "cumentFailure\022\177\n\037lobby_create_session_re"
-    "quest_v9\030\031 \001(\01327.nevr.realtime.v1.SNSLob"
-    "byCreateSessionRequestV9MessageH\000R\033lobby"
-    "CreateSessionRequestV9\022|\n\036lobby_find_ses"
-    "sion_request_v11\030\032 \001(\01326.nevr.realtime.v"
-    "1.SNSLobbyFindSessionRequestv11MessageH\000"
-    "R\032lobbyFindSessionRequestV11\022y\n\035lobby_jo"
-    "in_session_request_v7\030\033 \001(\01325.nevr.realt"
-    "ime.v1.SNSLobbyJoinSessionRequestV7Messa"
-    "geH\000R\031lobbyJoinSessionRequestV7\022k\n\027lobby"
-    "_matchmaker_status\030\034 \001(\01321.nevr.realtime"
-    ".v1.SNSLobbyMatchmakerStatusMessageH\000R\025l"
-    "obbyMatchmakerStatus\022\201\001\n\037lobby_matchmake"
-    "r_status_request\030\035 \001(\01328.nevr.realtime.v"
-    "1.SNSLobbyMatchmakerStatusRequestMessage"
-    "H\000R\034lobbyMatchmakerStatusRequest\022\177\n\037lobb"
-    "y_pending_session_cancel_v2\030\036 \001(\01327.nevr"
-    ".realtime.v1.SNSLobbyPendingSessionCance"
-    "lV2MessageH\000R\033lobbyPendingSessionCancelV"
-    "2\022c\n\025lobby_ping_request_v3\030\037 \001(\0132..nevr."
-    "realtime.v1.SNSLobbyPingRequestV3Message"
-    "H\000R\022lobbyPingRequestV3\022_\n\023lobby_ping_res"
-    "ponse\030  \001(\0132-.nevr.realtime.v1.SNSLobbyP"
-    "ingResponseMessageH\000R\021lobbyPingResponse\022"
-    "\202\001\n lobby_player_sessions_request_v5\030! \001"
-    "(\01328.nevr.realtime.v1.SNSLobbyPlayerSess"
-    "ionsRequestV5MessageH\000R\034lobbyPlayerSessi"
-    "onsRequestV5\022l\n\030lobby_session_failure_v4"
-    "\030\" \001(\01321.nevr.realtime.v1.SNSLobbySessio"
-    "nFailureV4MessageH\000R\025lobbySessionFailure"
-    "V4\022l\n\030lobby_session_success_v5\030# \001(\01321.n"
-    "evr.realtime.v1.SNSLobbySessionSuccessV5"
-    "MessageH\000R\025lobbySessionSuccessV5\022|\n\036logg"
-    "ed_in_user_profile_failure\030$ \001(\01326.nevr."
-    "realtime.v1.SNSLoggedInUserProfileFailur"
-    "eMessageH\000R\032loggedInUserProfileFailure\022|"
-    "\n\036logged_in_user_profile_request\030% \001(\01326"
-    ".nevr.realtime.v1.SNSLoggedInUserProfile"
-    "RequestMessageH\000R\032loggedInUserProfileReq"
-    "uest\022|\n\036logged_in_user_profile_success\030&"
-    " \001(\01326.nevr.realtime.v1.SNSLoggedInUserP"
-    "rofileSuccessMessageH\000R\032loggedInUserProf"
-    "ileSuccess\022P\n\016log_in_failure\030\' \001(\0132(.nev"
-    "r.realtime.v1.SNSLogInFailureMessageH\000R\014"
-    "logInFailure\022W\n\021log_in_request_v2\030( \001(\0132"
-    "*.nevr.realtime.v1.SNSLogInRequestV2Mess"
-    "ageH\000R\016logInRequestV2\022R\n\016login_settings\030"
-    ") \001(\0132).nevr.realtime.v1.SNSLoginSetting"
-    "sMessageH\000R\rloginSettings\022P\n\016log_in_succ"
-    "ess\030* \001(\0132(.nevr.realtime.v1.SNSLogInSuc"
-    "cessMessageH\000R\014logInSuccess\022r\n\032other_use"
-    "r_profile_failure\030+ \001(\01323.nevr.realtime."
-    "v1.SNSOtherUserProfileFailureMessageH\000R\027"
-    "otherUserProfileFailure\022r\n\032other_user_pr"
-    "ofile_request\030, \001(\01323.nevr.realtime.v1.S"
-    "NSOtherUserProfileRequestMessageH\000R\027othe"
-    "rUserProfileRequest\022r\n\032other_user_profil"
-    "e_success\030- \001(\01323.nevr.realtime.v1.SNSOt"
-    "herUserProfileSuccessMessageH\000R\027otherUse"
-    "rProfileSuccess\022b\n\024reconcile_iap_result\030"
-    ". \001(\0132..nevr.realtime.v1.SNSReconcileIAP"
-    "ResultMessageH\000R\022reconcileIapResult\022W\n\021r"
-    "emote_log_set_v3\030/ \001(\0132*.nevr.realtime.v"
-    "1.SNSRemoteLogSetV3MessageH\000R\016remoteLogS"
-    "etV3\022R\n\016update_profile\0300 \001(\0132).nevr.real"
-    "time.v1.SNSUpdateProfileMessageH\000R\rupdat"
-    "eProfile\022h\n\026update_profile_success\0301 \001(\013"
-    "20.nevr.realtime.v1.SNSUpdateProfileSucc"
-    "essMessageH\000R\024updateProfileSuccess\022h\n\026up"
-    "date_profile_failure\0302 \001(\01320.nevr.realti"
-    "me.v1.SNSUpdateProfileFailureMessageH\000R\024"
-    "updateProfileFailure\022\210\001\n\"user_server_pro"
-    "file_update_request\0303 \001(\0132:.nevr.realtim"
-    "e.v1.SNSUserServerProfileUpdateRequestMe"
-    "ssageH\000R\036userServerProfileUpdateRequest\022"
-    "\210\001\n\"user_server_profile_update_success\0304"
-    " \001(\0132:.nevr.realtime.v1.SNSUserServerPro"
-    "fileUpdateSuccessMessageH\000R\036userServerPr"
-    "ofileUpdateSuccessB\t\n\007message\"\305\002\n\005Error\022"
-    "\022\n\004code\030\001 \001(\005R\004code\022\030\n\007message\030\002 \001(\tR\007me"
-    "ssage\022>\n\007context\030\003 \003(\0132$.nevr.realtime.v"
-    "1.Error.ContextEntryR\007context\032:\n\014Context"
-    "Entry\022\020\n\003key\030\001 \001(\tR\003key\022\024\n\005value\030\002 \001(\tR\005"
-    "value:\0028\001\"\221\001\n\004Code\022\025\n\021RUNTIME_EXCEPTION\020"
-    "\000\022\030\n\024UNRECOGNIZED_PAYLOAD\020\001\022\023\n\017MISSING_P"
-    "AYLOAD\020\002\022\r\n\tBAD_INPUT\020\003\022\027\n\023REGISTRATION_"
-    "FAILED\020\004\022\033\n\027LOBBY_SESSION_NOT_FOUND\020\005\"\222\001"
-    "\n\030LobbySessionEventMessage\022(\n\020lobby_sess"
-    "ion_id\030\001 \001(\tR\016lobbySessionId\022\022\n\004code\030\002 \001"
-    "(\005R\004code\"8\n\004Code\022\013\n\007STARTED\020\000\022\t\n\005ENDED\020\001"
-    "\022\n\n\006LOCKED\020\002\022\014\n\010UNLOCKED\020\003\"\247\002\n\035GameServe"
-    "rRegistrationMessage\022(\n\020login_session_id"
-    "\030\001 \001(\tR\016loginSessionId\022\033\n\tserver_id\030\002 \001("
-    "\004R\010serverId\022.\n\023internal_ip_address\030\003 \001(\t"
-    "R\021internalIpAddress\022\022\n\004port\030\004 \001(\rR\004port\022"
-    "\026\n\006region\030\005 \001(\004R\006region\022!\n\014version_lock\030"
-    "\006 \001(\004R\013versionLock\022&\n\017time_step_usecs\030\007 "
-    "\001(\rR\rtimeStepUsecs\022\030\n\007version\030\010 \001(\tR\007ver"
-    "sion\"s\n$GameServerRegistrationSuccessMes"
-    "sage\022\033\n\tserver_id\030\001 \001(\004R\010serverId\022.\n\023ext"
-    "ernal_ip_address\030\002 \001(\tR\021externalIpAddres"
-    "s\"j\n\035LobbyEntrantsConnectedMessage\022(\n\020lo"
-    "bby_session_id\030\001 \001(\tR\016lobbySessionId\022\037\n\013"
-    "entrant_ids\030\002 \003(\tR\nentrantIds\"=\n\032LobbyEn"
-    "trantsAcceptMessage\022\037\n\013entrant_ids\030\001 \003(\t"
-    "R\nentrantIds\"\375\001\n\032LobbyEntrantsRejectMess"
-    "age\022\037\n\013entrant_ids\030\001 \003(\tR\nentrantIds\022\022\n\004"
-    "code\030\002 \001(\005R\004code\"\251\001\n\004Code\022\014\n\010INTERNAL\020\000\022"
-    "\017\n\013BAD_REQUEST\020\001\022\013\n\007TIMEOUT\020\002\022\025\n\021DUPLICA"
-    "TE_USER_ID\020\003\022\020\n\014LOBBY_LOCKED\020\004\022\016\n\nLOBBY_"
-    "FULL\020\005\022\020\n\014LOBBY_ENDING\020\006\022\n\n\006KICKED\020\007\022\020\n\014"
-    "DISCONNECTED\020\010\022\014\n\010INACTIVE\020\t\"\245\002\n\032LobbyEn"
-    "trantRemovedMessage\022(\n\020lobby_session_id\030"
-    "\001 \001(\tR\016lobbySessionId\022\035\n\nentrant_id\030\002 \001("
-    "\tR\tentrantId\022\022\n\004code\030\003 \001(\005R\004code\"\251\001\n\004Cod"
-    "e\022\014\n\010INTERNAL\020\000\022\017\n\013BAD_REQUEST\020\001\022\013\n\007TIME"
-    "OUT\020\002\022\025\n\021DUPLICATE_USER_ID\020\003\022\020\n\014LOBBY_LO"
-    "CKED\020\004\022\016\n\nLOBBY_FULL\020\005\022\020\n\014LOBBY_ENDING\020\006"
-    "\022\n\n\006KICKED\020\007\022\020\n\014DISCONNECTED\020\010\022\014\n\010INACTI"
-    "VE\020\t\"\261\002\n\031LobbySessionCreateMessage\022(\n\020lo"
-    "bby_session_id\030\001 \001(\tR\016lobbySessionId\022\035\n\n"
-    "lobby_type\030\002 \001(\005R\tlobbyType\022\031\n\010group_id\030"
-    "\003 \001(\tR\007groupId\022!\n\014max_entrants\030\004 \001(\005R\013ma"
-    "xEntrants\022#\n\rsettings_json\030\005 \001(\tR\014settin"
-    "gsJson\022\032\n\010features\030\006 \003(\tR\010features\022&\n\017ti"
-    "me_step_usecs\030\007 \001(\rR\rtimeStepUsecs\"$\n\tLo"
-    "bbyType\022\n\n\006PUBLIC\020\000\022\013\n\007PRIVATE\020\001\"\307\001\n\030Lob"
-    "bySessionStateMessage\022&\n\017time_step_usecs"
-    "\030\001 \001(\rR\rtimeStepUsecs\022\035\n\ntick_count\030\002 \001("
-    "\004R\ttickCount\022[\n\021session_state_raw\030\003 \001(\0132"
-    "-.nevr.realtime.v1.LobbySessionStateRawM"
-    "essageH\000R\017sessionStateRawB\007\n\005state\"\256\001\n\033L"
-    "obbySessionStateRawMessage\0228\n\ttimestamp\030"
-    "\001 \001(\0132\032.google.protobuf.TimestampR\ttimes"
-    "tamp\022\'\n\017session_payload\030\002 \001(\014R\016sessionPa"
-    "yload\022,\n\022user_bones_payload\030\003 \001(\014R\020userB"
-    "onesPayload\"\262\002\n\035ConnectivityStatisticsMe"
-    "ssage\022*\n\021packet_loss_ratio\030\001 \001(\002R\017packet"
-    "LossRatio\022+\n\021prediction_offset\030\002 \001(\004R\020pr"
-    "edictionOffset\022\026\n\006target\030\003 \001(\004R\006target\022\035"
-    "\n\nlocal_time\030\004 \001(\004R\tlocalTime\022\037\n\013server_"
-    "time\030\005 \001(\004R\nserverTime\0220\n\024pending_server"
-    "_delta\030\006 \001(\003R\022pendingServerDelta\022.\n\023disc"
-    "arded_frame_pct\030\007 \001(\002R\021discardedFramePct"
-    "\"\"\n\nSymbolHash\022\024\n\005value\030\001 \001(\006R\005value\"\035\n\013"
-    "XPlatformID\022\016\n\002id\030\001 \001(\tR\002id\"Y\n\021SNSUnknow"
-    "nMessage\0220\n\004type\030\001 \001(\0132\034.nevr.realtime.v"
-    "1.SymbolHashR\004type\022\022\n\004data\030\002 \001(\014R\004data\"\034"
-    "\n\032STCPConnectionRequireEvent\"\036\n\034STCPConn"
-    "ectionUnrequireEvent\">\n\031SNSConfigRequest"
-    "V2Message\022!\n\014request_json\030\001 \001(\tR\013request"
-    "Json\"\217\001\n\031SNSConfigSuccessV2Message\0220\n\004ty"
-    "pe\030\001 \001(\0132\034.nevr.realtime.v1.SymbolHashR\004"
-    "type\022,\n\002id\030\002 \001(\0132\034.nevr.realtime.v1.Symb"
-    "olHashR\002id\022\022\n\004data\030\003 \001(\tR\004data\"1\n\031SNSCon"
-    "figFailureV2Message\022\024\n\005error\030\001 \001(\tR\005erro"
-    "r\"o\n\026SNSReconcileIAPMessage\022\035\n\nsession_i"
-    "d\030\001 \001(\tR\tsessionId\0226\n\007user_id\030\002 \001(\0132\035.ne"
-    "vr.realtime.v1.XPlatformIDR\006userId\"\036\n\034SN"
-    "SChannelInfoRequestMessage\"B\n\035SNSChannel"
-    "InfoResponseMessage\022!\n\014channel_info\030\001 \001("
-    "\tR\013channelInfo\"M\n\033SNSDocumentRequestV2Me"
-    "ssage\022\032\n\010language\030\001 \001(\tR\010language\022\022\n\004typ"
-    "e\030\002 \001(\tR\004type\"@\n\031SNSDocumentSuccessMessa"
-    "ge\022#\n\rdocument_json\030\001 \001(\tR\014documentJson\""
-    "5\n\031SNSDocumentFailureMessage\022\030\n\007message\030"
-    "\003 \001(\tR\007message\"\316\003\n%SNSLobbyCreateSession"
-    "RequestV9Message\0224\n\006region\030\001 \001(\0132\034.nevr."
-    "realtime.v1.SymbolHashR\006region\022\?\n\014versio"
-    "n_lock\030\002 \001(\0132\034.nevr.realtime.v1.SymbolHa"
-    "shR\013versionLock\0220\n\004mode\030\003 \001(\0132\034.nevr.rea"
-    "ltime.v1.SymbolHashR\004mode\0222\n\005level\030\004 \001(\013"
-    "2\034.nevr.realtime.v1.SymbolHashR\005level\0228\n"
-    "\010platform\030\005 \001(\0132\034.nevr.realtime.v1.Symbo"
-    "lHashR\010platform\022(\n\020login_session_id\030\006 \001("
-    "\tR\016loginSessionId\0229\n\010entrants\030\007 \003(\0132\035.ne"
-    "vr.realtime.v1.XPlatformIDR\010entrants\022)\n\020"
-    "session_settings\030\010 \001(\tR\017sessionSettings\""
-    "\334\003\n$SNSLobbyFindSessionRequestv11Message"
-    "\022\?\n\014version_lock\030\001 \001(\0132\034.nevr.realtime.v"
-    "1.SymbolHashR\013versionLock\0220\n\004mode\030\002 \001(\0132"
-    "\034.nevr.realtime.v1.SymbolHashR\004mode\0222\n\005l"
-    "evel\030\003 \001(\0132\034.nevr.realtime.v1.SymbolHash"
-    "R\005level\0228\n\010platform\030\004 \001(\0132\034.nevr.realtim"
-    "e.v1.SymbolHashR\010platform\022(\n\020login_sessi"
-    "on_id\030\005 \001(\tR\016loginSessionId\022(\n\020current_l"
-    "obby_id\030\006 \001(\tR\016currentLobbyId\022\031\n\010group_i"
-    "d\030\007 \001(\tR\007groupId\022)\n\020session_settings\030\010 \001"
-    "(\tR\017sessionSettings\0229\n\010entrants\030\t \003(\0132\035."
-    "nevr.realtime.v1.XPlatformIDR\010entrants\"\373"
-    "\001\n#SNSLobbyJoinSessionRequestV7Message\022\031"
-    "\n\010lobby_id\030\001 \001(\tR\007lobbyId\022\?\n\014version_loc"
-    "k\030\002 \001(\0132\034.nevr.realtime.v1.SymbolHashR\013v"
-    "ersionLock\0228\n\010platform\030\003 \001(\0132\034.nevr.real"
-    "time.v1.SymbolHashR\010platform\022(\n\020login_se"
-    "ssion_id\030\004 \001(\tR\016loginSessionId\022\024\n\005flags\030"
-    "\005 \001(\004R\005flags\"B\n\037SNSLobbyMatchmakerStatus"
-    "Message\022\037\n\013status_code\030\001 \001(\rR\nstatusCode"
-    "\"d\n&SNSLobbyMatchmakerStatusRequestMessa"
-    "ge\022\022\n\004unk0\030\001 \001(\rR\004unk0\022\022\n\004unk1\030\002 \001(\rR\004un"
-    "k1\022\022\n\004unk2\030\003 \001(\rR\004unk2\"F\n%SNSLobbyPendin"
-    "gSessionCancelV2Message\022\035\n\nsession_id\030\001 "
-    "\001(\tR\tsessionId\"}\n\034SNSLobbyPingRequestV3M"
-    "essage\022\022\n\004unk0\030\001 \001(\rR\004unk0\022\022\n\004unk1\030\002 \001(\r"
-    "R\004unk1\022\027\n\007rtt_max\030\003 \001(\rR\006rttMax\022\034\n\tendpo"
-    "ints\030\004 \003(\tR\tendpoints\"7\n\033SNSLobbyPingRes"
-    "ponseMessage\022\030\n\007results\030\001 \003(\tR\007results\"\241"
-    "\002\n&SNSLobbyPlayerSessionsRequestV5Messag"
-    "e\022(\n\020login_session_id\030\001 \001(\tR\016loginSessio"
-    "nId\0226\n\007user_id\030\002 \001(\0132\035.nevr.realtime.v1."
-    "XPlatformIDR\006userId\022\031\n\010lobby_id\030\003 \001(\tR\007l"
-    "obbyId\0228\n\010platform\030\004 \001(\0132\034.nevr.realtime"
-    ".v1.SymbolHashR\010platform\022@\n\014player_xpids"
-    "\030\005 \003(\0132\035.nevr.realtime.v1.XPlatformIDR\013p"
-    "layerXpids\"Z\n\037SNSLobbySessionFailureV4Me"
-    "ssage\022\035\n\nerror_code\030\001 \001(\rR\terrorCode\022\030\n\007"
-    "message\030\002 \001(\tR\007message\"\236\004\n\037SNSLobbySessi"
-    "onSuccessV5Message\022\033\n\tgame_mode\030\001 \001(\006R\010g"
-    "ameMode\022\031\n\010lobby_id\030\002 \001(\tR\007lobbyId\022\031\n\010gr"
-    "oup_id\030\003 \001(\tR\007groupId\022\032\n\010endpoint\030\004 \001(\tR"
-    "\010endpoint\022\035\n\nteam_index\030\005 \001(\005R\tteamIndex"
-    "\022\022\n\004unk1\030\006 \001(\rR\004unk1\022!\n\014headset_type\030\007 \001"
-    "(\005R\013headsetType\0220\n\024server_encoder_flags\030"
-    "\010 \001(\004R\022serverEncoderFlags\0220\n\024client_enco"
-    "der_flags\030\t \001(\004R\022clientEncoderFlags\022,\n\022s"
-    "erver_sequence_id\030\n \001(\004R\020serverSequenceI"
-    "d\022$\n\016server_mac_key\030\013 \001(\014R\014serverMacKey\022"
-    "$\n\016server_enc_key\030\014 \001(\014R\014serverEncKey\022*\n"
-    "\021server_random_key\030\r \001(\014R\017serverRandomKe"
-    "y\022,\n\022client_sequence_id\030\016 \001(\004R\020clientSeq"
-    "uenceId\"\244\001\n$SNSLoggedInUserProfileFailur"
-    "eMessage\0226\n\007user_id\030\001 \001(\0132\035.nevr.realtim"
-    "e.v1.XPlatformIDR\006userId\022\037\n\013status_code\030"
-    "\002 \001(\004R\nstatusCode\022#\n\rerror_message\030\003 \001(\t"
-    "R\014errorMessage\"\257\001\n$SNSLoggedInUserProfil"
-    "eRequestMessage\022\035\n\nsession_id\030\001 \001(\tR\tses"
-    "sionId\0226\n\007user_id\030\002 \001(\0132\035.nevr.realtime."
-    "v1.XPlatformIDR\006userId\0220\n\024profile_reques"
-    "t_data\030\003 \001(\tR\022profileRequestData\"x\n$SNSL"
-    "oggedInUserProfileSuccessMessage\0226\n\007user"
-    "_id\030\001 \001(\0132\035.nevr.realtime.v1.XPlatformID"
-    "R\006userId\022\030\n\007payload\030\002 \001(\tR\007payload\"\226\001\n\026S"
-    "NSLogInFailureMessage\0226\n\007user_id\030\001 \001(\0132\035"
-    ".nevr.realtime.v1.XPlatformIDR\006userId\022\037\n"
-    "\013status_code\030\002 \001(\004R\nstatusCode\022#\n\rerror_"
-    "message\030\003 \001(\tR\014errorMessage\"\234\001\n\030SNSLogIn"
-    "RequestV2Message\022.\n\023previous_session_id\030"
-    "\001 \001(\tR\021previousSessionId\0226\n\007user_id\030\002 \001("
+    ".v1\032\037google/protobuf/timestamp.proto\032\030rt"
+    "api/telemetry_v1.proto\"\222*\n\010Envelope\022\020\n\003c"
+    "id\030\001 \001(\tR\003cid\022/\n\005error\030\002 \001(\0132\027.nevr.real"
+    "time.v1.ErrorH\000R\005error\022\\\n\023lobby_session_"
+    "state\030\003 \001(\0132*.nevr.realtime.v1.LobbySess"
+    "ionStateMessageH\000R\021lobbySessionState\022j\n\027"
+    "connectivity_statistics\030\004 \001(\0132/.nevr.rea"
+    "ltime.v1.ConnectivityStatisticsMessageH\000"
+    "R\026connectivityStatistics\022k\n\030game_server_"
+    "registration\030\005 \001(\0132/.nevr.realtime.v1.Ga"
+    "meServerRegistrationMessageH\000R\026gameServe"
+    "rRegistration\022\201\001\n game_server_registrati"
+    "on_success\030\006 \001(\01326.nevr.realtime.v1.Game"
+    "ServerRegistrationSuccessMessageH\000R\035game"
+    "ServerRegistrationSuccess\022_\n\024lobby_sessi"
+    "on_create\030\007 \001(\0132+.nevr.realtime.v1.Lobby"
+    "SessionCreateMessageH\000R\022lobbySessionCrea"
+    "te\022\\\n\023lobby_session_event\030\010 \001(\0132*.nevr.r"
+    "ealtime.v1.LobbySessionEventMessageH\000R\021l"
+    "obbySessionEvent\022i\n\027lobby_entrant_connec"
+    "ted\030\t \001(\0132/.nevr.realtime.v1.LobbyEntran"
+    "tsConnectedMessageH\000R\025lobbyEntrantConnec"
+    "ted\022`\n\024lobby_entrant_accept\030\n \001(\0132,.nevr"
+    ".realtime.v1.LobbyEntrantsAcceptMessageH"
+    "\000R\022lobbyEntrantAccept\022`\n\024lobby_entrant_r"
+    "eject\030\013 \001(\0132,.nevr.realtime.v1.LobbyEntr"
+    "antsRejectMessageH\000R\022lobbyEntrantReject\022"
+    "`\n\024lobby_entrant_remove\030\014 \001(\0132,.nevr.rea"
+    "ltime.v1.LobbyEntrantRemovedMessageH\000R\022l"
+    "obbyEntrantRemove\022N\n\017unknown_message\030\r \001"
+    "(\0132#.nevr.realtime.v1.SNSUnknownMessageH"
+    "\000R\016unknownMessage\022o\n\034tcp_connection_requ"
+    "ire_event\030\016 \001(\0132,.nevr.realtime.v1.STCPC"
+    "onnectionRequireEventH\000R\031tcpConnectionRe"
+    "quireEvent\022u\n\036tcp_connection_unrequire_e"
+    "vent\030\017 \001(\0132..nevr.realtime.v1.STCPConnec"
+    "tionUnrequireEventH\000R\033tcpConnectionUnreq"
+    "uireEvent\022Y\n\021config_request_v2\030\020 \001(\0132+.n"
+    "evr.realtime.v1.SNSConfigRequestV2Messag"
+    "eH\000R\017configRequestV2\022Y\n\021config_success_v"
+    "2\030\021 \001(\0132+.nevr.realtime.v1.SNSConfigSucc"
+    "essV2MessageH\000R\017configSuccessV2\022Y\n\021confi"
+    "g_failure_v2\030\022 \001(\0132+.nevr.realtime.v1.SN"
+    "SConfigFailureV2MessageH\000R\017configFailure"
+    "V2\022O\n\rreconcile_iap\030\023 \001(\0132(.nevr.realtim"
+    "e.v1.SNSReconcileIAPMessageH\000R\014reconcile"
+    "Iap\022b\n\024channel_info_request\030\024 \001(\0132..nevr"
+    ".realtime.v1.SNSChannelInfoRequestMessag"
+    "eH\000R\022channelInfoRequest\022e\n\025channel_info_"
+    "response\030\025 \001(\0132/.nevr.realtime.v1.SNSCha"
+    "nnelInfoResponseMessageH\000R\023channelInfoRe"
+    "sponse\022_\n\023document_request_v2\030\026 \001(\0132-.ne"
+    "vr.realtime.v1.SNSDocumentRequestV2Messa"
+    "geH\000R\021documentRequestV2\022X\n\020document_succ"
+    "ess\030\027 \001(\0132+.nevr.realtime.v1.SNSDocument"
+    "SuccessMessageH\000R\017documentSuccess\022X\n\020doc"
+    "ument_failure\030\030 \001(\0132+.nevr.realtime.v1.S"
+    "NSDocumentFailureMessageH\000R\017documentFail"
+    "ure\022\177\n\037lobby_create_session_request_v9\030\031"
+    " \001(\01327.nevr.realtime.v1.SNSLobbyCreateSe"
+    "ssionRequestV9MessageH\000R\033lobbyCreateSess"
+    "ionRequestV9\022|\n\036lobby_find_session_reque"
+    "st_v11\030\032 \001(\01326.nevr.realtime.v1.SNSLobby"
+    "FindSessionRequestv11MessageH\000R\032lobbyFin"
+    "dSessionRequestV11\022y\n\035lobby_join_session"
+    "_request_v7\030\033 \001(\01325.nevr.realtime.v1.SNS"
+    "LobbyJoinSessionRequestV7MessageH\000R\031lobb"
+    "yJoinSessionRequestV7\022k\n\027lobby_matchmake"
+    "r_status\030\034 \001(\01321.nevr.realtime.v1.SNSLob"
+    "byMatchmakerStatusMessageH\000R\025lobbyMatchm"
+    "akerStatus\022\201\001\n\037lobby_matchmaker_status_r"
+    "equest\030\035 \001(\01328.nevr.realtime.v1.SNSLobby"
+    "MatchmakerStatusRequestMessageH\000R\034lobbyM"
+    "atchmakerStatusRequest\022\177\n\037lobby_pending_"
+    "session_cancel_v2\030\036 \001(\01327.nevr.realtime."
+    "v1.SNSLobbyPendingSessionCancelV2Message"
+    "H\000R\033lobbyPendingSessionCancelV2\022c\n\025lobby"
+    "_ping_request_v3\030\037 \001(\0132..nevr.realtime.v"
+    "1.SNSLobbyPingRequestV3MessageH\000R\022lobbyP"
+    "ingRequestV3\022_\n\023lobby_ping_response\030  \001("
+    "\0132-.nevr.realtime.v1.SNSLobbyPingRespons"
+    "eMessageH\000R\021lobbyPingResponse\022\202\001\n lobby_"
+    "player_sessions_request_v5\030! \001(\01328.nevr."
+    "realtime.v1.SNSLobbyPlayerSessionsReques"
+    "tV5MessageH\000R\034lobbyPlayerSessionsRequest"
+    "V5\022l\n\030lobby_session_failure_v4\030\" \001(\01321.n"
+    "evr.realtime.v1.SNSLobbySessionFailureV4"
+    "MessageH\000R\025lobbySessionFailureV4\022l\n\030lobb"
+    "y_session_success_v5\030# \001(\01321.nevr.realti"
+    "me.v1.SNSLobbySessionSuccessV5MessageH\000R"
+    "\025lobbySessionSuccessV5\022|\n\036logged_in_user"
+    "_profile_failure\030$ \001(\01326.nevr.realtime.v"
+    "1.SNSLoggedInUserProfileFailureMessageH\000"
+    "R\032loggedInUserProfileFailure\022|\n\036logged_i"
+    "n_user_profile_request\030% \001(\01326.nevr.real"
+    "time.v1.SNSLoggedInUserProfileRequestMes"
+    "sageH\000R\032loggedInUserProfileRequest\022|\n\036lo"
+    "gged_in_user_profile_success\030& \001(\01326.nev"
+    "r.realtime.v1.SNSLoggedInUserProfileSucc"
+    "essMessageH\000R\032loggedInUserProfileSuccess"
+    "\022P\n\016log_in_failure\030\' \001(\0132(.nevr.realtime"
+    ".v1.SNSLogInFailureMessageH\000R\014logInFailu"
+    "re\022W\n\021log_in_request_v2\030( \001(\0132*.nevr.rea"
+    "ltime.v1.SNSLogInRequestV2MessageH\000R\016log"
+    "InRequestV2\022R\n\016login_settings\030) \001(\0132).ne"
+    "vr.realtime.v1.SNSLoginSettingsMessageH\000"
+    "R\rloginSettings\022P\n\016log_in_success\030* \001(\0132"
+    "(.nevr.realtime.v1.SNSLogInSuccessMessag"
+    "eH\000R\014logInSuccess\022r\n\032other_user_profile_"
+    "failure\030+ \001(\01323.nevr.realtime.v1.SNSOthe"
+    "rUserProfileFailureMessageH\000R\027otherUserP"
+    "rofileFailure\022r\n\032other_user_profile_requ"
+    "est\030, \001(\01323.nevr.realtime.v1.SNSOtherUse"
+    "rProfileRequestMessageH\000R\027otherUserProfi"
+    "leRequest\022r\n\032other_user_profile_success\030"
+    "- \001(\01323.nevr.realtime.v1.SNSOtherUserPro"
+    "fileSuccessMessageH\000R\027otherUserProfileSu"
+    "ccess\022b\n\024reconcile_iap_result\030. \001(\0132..ne"
+    "vr.realtime.v1.SNSReconcileIAPResultMess"
+    "ageH\000R\022reconcileIapResult\022W\n\021remote_log_"
+    "set_v3\030/ \001(\0132*.nevr.realtime.v1.SNSRemot"
+    "eLogSetV3MessageH\000R\016remoteLogSetV3\022R\n\016up"
+    "date_profile\0300 \001(\0132).nevr.realtime.v1.SN"
+    "SUpdateProfileMessageH\000R\rupdateProfile\022h"
+    "\n\026update_profile_success\0301 \001(\01320.nevr.re"
+    "altime.v1.SNSUpdateProfileSuccessMessage"
+    "H\000R\024updateProfileSuccess\022h\n\026update_profi"
+    "le_failure\0302 \001(\01320.nevr.realtime.v1.SNSU"
+    "pdateProfileFailureMessageH\000R\024updateProf"
+    "ileFailure\022\210\001\n\"user_server_profile_updat"
+    "e_request\0303 \001(\0132:.nevr.realtime.v1.SNSUs"
+    "erServerProfileUpdateRequestMessageH\000R\036u"
+    "serServerProfileUpdateRequest\022\210\001\n\"user_s"
+    "erver_profile_update_success\0304 \001(\0132:.nev"
+    "r.realtime.v1.SNSUserServerProfileUpdate"
+    "SuccessMessageH\000R\036userServerProfileUpdat"
+    "eSuccessB\t\n\007message\"\305\002\n\005Error\022\022\n\004code\030\001 "
+    "\001(\005R\004code\022\030\n\007message\030\002 \001(\tR\007message\022>\n\007c"
+    "ontext\030\003 \003(\0132$.nevr.realtime.v1.Error.Co"
+    "ntextEntryR\007context\032:\n\014ContextEntry\022\020\n\003k"
+    "ey\030\001 \001(\tR\003key\022\024\n\005value\030\002 \001(\tR\005value:\0028\001\""
+    "\221\001\n\004Code\022\025\n\021RUNTIME_EXCEPTION\020\000\022\030\n\024UNREC"
+    "OGNIZED_PAYLOAD\020\001\022\023\n\017MISSING_PAYLOAD\020\002\022\r"
+    "\n\tBAD_INPUT\020\003\022\027\n\023REGISTRATION_FAILED\020\004\022\033"
+    "\n\027LOBBY_SESSION_NOT_FOUND\020\005\"\222\001\n\030LobbySes"
+    "sionEventMessage\022(\n\020lobby_session_id\030\001 \001"
+    "(\tR\016lobbySessionId\022\022\n\004code\030\002 \001(\005R\004code\"8"
+    "\n\004Code\022\013\n\007STARTED\020\000\022\t\n\005ENDED\020\001\022\n\n\006LOCKED"
+    "\020\002\022\014\n\010UNLOCKED\020\003\"\247\002\n\035GameServerRegistrat"
+    "ionMessage\022(\n\020login_session_id\030\001 \001(\tR\016lo"
+    "ginSessionId\022\033\n\tserver_id\030\002 \001(\004R\010serverI"
+    "d\022.\n\023internal_ip_address\030\003 \001(\tR\021internal"
+    "IpAddress\022\022\n\004port\030\004 \001(\rR\004port\022\026\n\006region\030"
+    "\005 \001(\004R\006region\022!\n\014version_lock\030\006 \001(\004R\013ver"
+    "sionLock\022&\n\017time_step_usecs\030\007 \001(\rR\rtimeS"
+    "tepUsecs\022\030\n\007version\030\010 \001(\tR\007version\"s\n$Ga"
+    "meServerRegistrationSuccessMessage\022\033\n\tse"
+    "rver_id\030\001 \001(\004R\010serverId\022.\n\023external_ip_a"
+    "ddress\030\002 \001(\tR\021externalIpAddress\"j\n\035Lobby"
+    "EntrantsConnectedMessage\022(\n\020lobby_sessio"
+    "n_id\030\001 \001(\tR\016lobbySessionId\022\037\n\013entrant_id"
+    "s\030\002 \003(\tR\nentrantIds\"=\n\032LobbyEntrantsAcce"
+    "ptMessage\022\037\n\013entrant_ids\030\001 \003(\tR\nentrantI"
+    "ds\"\375\001\n\032LobbyEntrantsRejectMessage\022\037\n\013ent"
+    "rant_ids\030\001 \003(\tR\nentrantIds\022\022\n\004code\030\002 \001(\005"
+    "R\004code\"\251\001\n\004Code\022\014\n\010INTERNAL\020\000\022\017\n\013BAD_REQ"
+    "UEST\020\001\022\013\n\007TIMEOUT\020\002\022\025\n\021DUPLICATE_USER_ID"
+    "\020\003\022\020\n\014LOBBY_LOCKED\020\004\022\016\n\nLOBBY_FULL\020\005\022\020\n\014"
+    "LOBBY_ENDING\020\006\022\n\n\006KICKED\020\007\022\020\n\014DISCONNECT"
+    "ED\020\010\022\014\n\010INACTIVE\020\t\"\245\002\n\032LobbyEntrantRemov"
+    "edMessage\022(\n\020lobby_session_id\030\001 \001(\tR\016lob"
+    "bySessionId\022\035\n\nentrant_id\030\002 \001(\tR\tentrant"
+    "Id\022\022\n\004code\030\003 \001(\005R\004code\"\251\001\n\004Code\022\014\n\010INTER"
+    "NAL\020\000\022\017\n\013BAD_REQUEST\020\001\022\013\n\007TIMEOUT\020\002\022\025\n\021D"
+    "UPLICATE_USER_ID\020\003\022\020\n\014LOBBY_LOCKED\020\004\022\016\n\n"
+    "LOBBY_FULL\020\005\022\020\n\014LOBBY_ENDING\020\006\022\n\n\006KICKED"
+    "\020\007\022\020\n\014DISCONNECTED\020\010\022\014\n\010INACTIVE\020\t\"\261\002\n\031L"
+    "obbySessionCreateMessage\022(\n\020lobby_sessio"
+    "n_id\030\001 \001(\tR\016lobbySessionId\022\035\n\nlobby_type"
+    "\030\002 \001(\005R\tlobbyType\022\031\n\010group_id\030\003 \001(\tR\007gro"
+    "upId\022!\n\014max_entrants\030\004 \001(\005R\013maxEntrants\022"
+    "#\n\rsettings_json\030\005 \001(\tR\014settingsJson\022\032\n\010"
+    "features\030\006 \003(\tR\010features\022&\n\017time_step_us"
+    "ecs\030\007 \001(\rR\rtimeStepUsecs\"$\n\tLobbyType\022\n\n"
+    "\006PUBLIC\020\000\022\013\n\007PRIVATE\020\001\"\231\002\n\030LobbySessionS"
+    "tateMessage\022&\n\017time_step_usecs\030\001 \001(\rR\rti"
+    "meStepUsecs\022\035\n\ntick_count\030\002 \001(\004R\ttickCou"
+    "nt\022[\n\021session_state_raw\030\003 \001(\0132-.nevr.rea"
+    "ltime.v1.LobbySessionStateRawMessageH\000R\017"
+    "sessionStateRaw\022P\n\rsession_state\030\004 \001(\0132)"
+    ".nevr.telemetry.v1.LobbySessionStateFram"
+    "eH\000R\014sessionStateB\007\n\005state\"\256\001\n\033LobbySess"
+    "ionStateRawMessage\0228\n\ttimestamp\030\001 \001(\0132\032."
+    "google.protobuf.TimestampR\ttimestamp\022\'\n\017"
+    "session_payload\030\002 \001(\014R\016sessionPayload\022,\n"
+    "\022user_bones_payload\030\003 \001(\014R\020userBonesPayl"
+    "oad\"\262\002\n\035ConnectivityStatisticsMessage\022*\n"
+    "\021packet_loss_ratio\030\001 \001(\002R\017packetLossRati"
+    "o\022+\n\021prediction_offset\030\002 \001(\004R\020prediction"
+    "Offset\022\026\n\006target\030\003 \001(\004R\006target\022\035\n\nlocal_"
+    "time\030\004 \001(\004R\tlocalTime\022\037\n\013server_time\030\005 \001"
+    "(\004R\nserverTime\0220\n\024pending_server_delta\030\006"
+    " \001(\003R\022pendingServerDelta\022.\n\023discarded_fr"
+    "ame_pct\030\007 \001(\002R\021discardedFramePct\"\"\n\nSymb"
+    "olHash\022\024\n\005value\030\001 \001(\006R\005value\"\035\n\013XPlatfor"
+    "mID\022\016\n\002id\030\001 \001(\tR\002id\"Y\n\021SNSUnknownMessage"
+    "\0220\n\004type\030\001 \001(\0132\034.nevr.realtime.v1.Symbol"
+    "HashR\004type\022\022\n\004data\030\002 \001(\014R\004data\"\034\n\032STCPCo"
+    "nnectionRequireEvent\"\036\n\034STCPConnectionUn"
+    "requireEvent\">\n\031SNSConfigRequestV2Messag"
+    "e\022!\n\014request_json\030\001 \001(\tR\013requestJson\"\217\001\n"
+    "\031SNSConfigSuccessV2Message\0220\n\004type\030\001 \001(\013"
+    "2\034.nevr.realtime.v1.SymbolHashR\004type\022,\n\002"
+    "id\030\002 \001(\0132\034.nevr.realtime.v1.SymbolHashR\002"
+    "id\022\022\n\004data\030\003 \001(\tR\004data\"1\n\031SNSConfigFailu"
+    "reV2Message\022\024\n\005error\030\001 \001(\tR\005error\"o\n\026SNS"
+    "ReconcileIAPMessage\022\035\n\nsession_id\030\001 \001(\tR"
+    "\tsessionId\0226\n\007user_id\030\002 \001(\0132\035.nevr.realt"
+    "ime.v1.XPlatformIDR\006userId\"\036\n\034SNSChannel"
+    "InfoRequestMessage\"B\n\035SNSChannelInfoResp"
+    "onseMessage\022!\n\014channel_info\030\001 \001(\tR\013chann"
+    "elInfo\"M\n\033SNSDocumentRequestV2Message\022\032\n"
+    "\010language\030\001 \001(\tR\010language\022\022\n\004type\030\002 \001(\tR"
+    "\004type\"@\n\031SNSDocumentSuccessMessage\022#\n\rdo"
+    "cument_json\030\001 \001(\tR\014documentJson\"5\n\031SNSDo"
+    "cumentFailureMessage\022\030\n\007message\030\003 \001(\tR\007m"
+    "essage\"\316\003\n%SNSLobbyCreateSessionRequestV"
+    "9Message\0224\n\006region\030\001 \001(\0132\034.nevr.realtime"
+    ".v1.SymbolHashR\006region\022\?\n\014version_lock\030\002"
+    " \001(\0132\034.nevr.realtime.v1.SymbolHashR\013vers"
+    "ionLock\0220\n\004mode\030\003 \001(\0132\034.nevr.realtime.v1"
+    ".SymbolHashR\004mode\0222\n\005level\030\004 \001(\0132\034.nevr."
+    "realtime.v1.SymbolHashR\005level\0228\n\010platfor"
+    "m\030\005 \001(\0132\034.nevr.realtime.v1.SymbolHashR\010p"
+    "latform\022(\n\020login_session_id\030\006 \001(\tR\016login"
+    "SessionId\0229\n\010entrants\030\007 \003(\0132\035.nevr.realt"
+    "ime.v1.XPlatformIDR\010entrants\022)\n\020session_"
+    "settings\030\010 \001(\tR\017sessionSettings\"\334\003\n$SNSL"
+    "obbyFindSessionRequestv11Message\022\?\n\014vers"
+    "ion_lock\030\001 \001(\0132\034.nevr.realtime.v1.Symbol"
+    "HashR\013versionLock\0220\n\004mode\030\002 \001(\0132\034.nevr.r"
+    "ealtime.v1.SymbolHashR\004mode\0222\n\005level\030\003 \001"
+    "(\0132\034.nevr.realtime.v1.SymbolHashR\005level\022"
+    "8\n\010platform\030\004 \001(\0132\034.nevr.realtime.v1.Sym"
+    "bolHashR\010platform\022(\n\020login_session_id\030\005 "
+    "\001(\tR\016loginSessionId\022(\n\020current_lobby_id\030"
+    "\006 \001(\tR\016currentLobbyId\022\031\n\010group_id\030\007 \001(\tR"
+    "\007groupId\022)\n\020session_settings\030\010 \001(\tR\017sess"
+    "ionSettings\0229\n\010entrants\030\t \003(\0132\035.nevr.rea"
+    "ltime.v1.XPlatformIDR\010entrants\"\373\001\n#SNSLo"
+    "bbyJoinSessionRequestV7Message\022\031\n\010lobby_"
+    "id\030\001 \001(\tR\007lobbyId\022\?\n\014version_lock\030\002 \001(\0132"
+    "\034.nevr.realtime.v1.SymbolHashR\013versionLo"
+    "ck\0228\n\010platform\030\003 \001(\0132\034.nevr.realtime.v1."
+    "SymbolHashR\010platform\022(\n\020login_session_id"
+    "\030\004 \001(\tR\016loginSessionId\022\024\n\005flags\030\005 \001(\004R\005f"
+    "lags\"B\n\037SNSLobbyMatchmakerStatusMessage\022"
+    "\037\n\013status_code\030\001 \001(\rR\nstatusCode\"d\n&SNSL"
+    "obbyMatchmakerStatusRequestMessage\022\022\n\004un"
+    "k0\030\001 \001(\rR\004unk0\022\022\n\004unk1\030\002 \001(\rR\004unk1\022\022\n\004un"
+    "k2\030\003 \001(\rR\004unk2\"F\n%SNSLobbyPendingSession"
+    "CancelV2Message\022\035\n\nsession_id\030\001 \001(\tR\tses"
+    "sionId\"}\n\034SNSLobbyPingRequestV3Message\022\022"
+    "\n\004unk0\030\001 \001(\rR\004unk0\022\022\n\004unk1\030\002 \001(\rR\004unk1\022\027"
+    "\n\007rtt_max\030\003 \001(\rR\006rttMax\022\034\n\tendpoints\030\004 \003"
+    "(\tR\tendpoints\"7\n\033SNSLobbyPingResponseMes"
+    "sage\022\030\n\007results\030\001 \003(\tR\007results\"\241\002\n&SNSLo"
+    "bbyPlayerSessionsRequestV5Message\022(\n\020log"
+    "in_session_id\030\001 \001(\tR\016loginSessionId\0226\n\007u"
+    "ser_id\030\002 \001(\0132\035.nevr.realtime.v1.XPlatfor"
+    "mIDR\006userId\022\031\n\010lobby_id\030\003 \001(\tR\007lobbyId\0228"
+    "\n\010platform\030\004 \001(\0132\034.nevr.realtime.v1.Symb"
+    "olHashR\010platform\022@\n\014player_xpids\030\005 \003(\0132\035"
+    ".nevr.realtime.v1.XPlatformIDR\013playerXpi"
+    "ds\"Z\n\037SNSLobbySessionFailureV4Message\022\035\n"
+    "\nerror_code\030\001 \001(\rR\terrorCode\022\030\n\007message\030"
+    "\002 \001(\tR\007message\"\236\004\n\037SNSLobbySessionSucces"
+    "sV5Message\022\033\n\tgame_mode\030\001 \001(\006R\010gameMode\022"
+    "\031\n\010lobby_id\030\002 \001(\tR\007lobbyId\022\031\n\010group_id\030\003"
+    " \001(\tR\007groupId\022\032\n\010endpoint\030\004 \001(\tR\010endpoin"
+    "t\022\035\n\nteam_index\030\005 \001(\005R\tteamIndex\022\022\n\004unk1"
+    "\030\006 \001(\rR\004unk1\022!\n\014headset_type\030\007 \001(\005R\013head"
+    "setType\0220\n\024server_encoder_flags\030\010 \001(\004R\022s"
+    "erverEncoderFlags\0220\n\024client_encoder_flag"
+    "s\030\t \001(\004R\022clientEncoderFlags\022,\n\022server_se"
+    "quence_id\030\n \001(\004R\020serverSequenceId\022$\n\016ser"
+    "ver_mac_key\030\013 \001(\014R\014serverMacKey\022$\n\016serve"
+    "r_enc_key\030\014 \001(\014R\014serverEncKey\022*\n\021server_"
+    "random_key\030\r \001(\014R\017serverRandomKey\022,\n\022cli"
+    "ent_sequence_id\030\016 \001(\004R\020clientSequenceId\""
+    "\244\001\n$SNSLoggedInUserProfileFailureMessage"
+    "\0226\n\007user_id\030\001 \001(\0132\035.nevr.realtime.v1.XPl"
+    "atformIDR\006userId\022\037\n\013status_code\030\002 \001(\004R\ns"
+    "tatusCode\022#\n\rerror_message\030\003 \001(\tR\014errorM"
+    "essage\"\257\001\n$SNSLoggedInUserProfileRequest"
+    "Message\022\035\n\nsession_id\030\001 \001(\tR\tsessionId\0226"
+    "\n\007user_id\030\002 \001(\0132\035.nevr.realtime.v1.XPlat"
+    "formIDR\006userId\0220\n\024profile_request_data\030\003"
+    " \001(\tR\022profileRequestData\"x\n$SNSLoggedInU"
+    "serProfileSuccessMessage\0226\n\007user_id\030\001 \001("
     "\0132\035.nevr.realtime.v1.XPlatformIDR\006userId"
-    "\022\030\n\007payload\030\003 \001(\tR\007payload\":\n\027SNSLoginSe"
-    "ttingsMessage\022\037\n\013config_data\030\001 \001(\tR\nconf"
-    "igData\"o\n\026SNSLogInSuccessMessage\022\035\n\nsess"
-    "ion_id\030\001 \001(\tR\tsessionId\0226\n\007user_id\030\002 \001(\013"
-    "2\035.nevr.realtime.v1.XPlatformIDR\006userId\""
-    "\226\001\n!SNSOtherUserProfileFailureMessage\0226\n"
-    "\007user_id\030\001 \001(\0132\035.nevr.realtime.v1.XPlatf"
-    "ormIDR\006userId\022\037\n\013status_code\030\002 \001(\004R\nstat"
-    "usCode\022\030\n\007message\030\003 \001(\tR\007message\"o\n!SNSO"
-    "therUserProfileRequestMessage\0226\n\007user_id"
+    "\022\030\n\007payload\030\002 \001(\tR\007payload\"\226\001\n\026SNSLogInF"
+    "ailureMessage\0226\n\007user_id\030\001 \001(\0132\035.nevr.re"
+    "altime.v1.XPlatformIDR\006userId\022\037\n\013status_"
+    "code\030\002 \001(\004R\nstatusCode\022#\n\rerror_message\030"
+    "\003 \001(\tR\014errorMessage\"\234\001\n\030SNSLogInRequestV"
+    "2Message\022.\n\023previous_session_id\030\001 \001(\tR\021p"
+    "reviousSessionId\0226\n\007user_id\030\002 \001(\0132\035.nevr"
+    ".realtime.v1.XPlatformIDR\006userId\022\030\n\007payl"
+    "oad\030\003 \001(\tR\007payload\":\n\027SNSLoginSettingsMe"
+    "ssage\022\037\n\013config_data\030\001 \001(\tR\nconfigData\"o"
+    "\n\026SNSLogInSuccessMessage\022\035\n\nsession_id\030\001"
+    " \001(\tR\tsessionId\0226\n\007user_id\030\002 \001(\0132\035.nevr."
+    "realtime.v1.XPlatformIDR\006userId\"\226\001\n!SNSO"
+    "therUserProfileFailureMessage\0226\n\007user_id"
     "\030\001 \001(\0132\035.nevr.realtime.v1.XPlatformIDR\006u"
-    "serId\022\022\n\004data\030\002 \001(\tR\004data\"u\n!SNSOtherUse"
-    "rProfileSuccessMessage\0226\n\007user_id\030\001 \001(\0132"
-    "\035.nevr.realtime.v1.XPlatformIDR\006userId\022\030"
-    "\n\007profile\030\002 \001(\tR\007profile\"q\n\034SNSReconcile"
-    "IAPResultMessage\0226\n\007user_id\030\001 \001(\0132\035.nevr"
-    ".realtime.v1.XPlatformIDR\006userId\022\031\n\010iap_"
-    "data\030\002 \001(\tR\007iapData\"\203\001\n\030SNSRemoteLogSetV"
-    "3Message\0226\n\007user_id\030\001 \001(\0132\035.nevr.realtim"
-    "e.v1.XPlatformIDR\006userId\022\033\n\tlog_level\030\006 "
-    "\001(\004R\010logLevel\022\022\n\004logs\030\007 \003(\tR\004logs\"\225\001\n\027SN"
-    "SUpdateProfileMessage\022(\n\020login_session_i"
-    "d\030\001 \001(\tR\016loginSessionId\0226\n\007user_id\030\002 \001(\013"
-    "2\035.nevr.realtime.v1.XPlatformIDR\006userId\022"
-    "\030\n\007payload\030\003 \001(\tR\007payload\"X\n\036SNSUpdatePr"
-    "ofileSuccessMessage\0226\n\007user_id\030\001 \001(\0132\035.n"
-    "evr.realtime.v1.XPlatformIDR\006userId\"\223\001\n\036"
-    "SNSUpdateProfileFailureMessage\0226\n\007user_i"
-    "d\030\001 \001(\0132\035.nevr.realtime.v1.XPlatformIDR\006"
-    "userId\022\037\n\013status_code\030\002 \001(\004R\nstatusCode\022"
-    "\030\n\007message\030\003 \001(\tR\007message\"|\n(SNSUserServ"
-    "erProfileUpdateRequestMessage\0226\n\007user_id"
-    "\030\001 \001(\0132\035.nevr.realtime.v1.XPlatformIDR\006u"
-    "serId\022\030\n\007payload\030\002 \001(\tR\007payload\"b\n(SNSUs"
-    "erServerProfileUpdateSuccessMessage\0226\n\007u"
-    "ser_id\030\001 \001(\0132\035.nevr.realtime.v1.XPlatfor"
-    "mIDR\006userIdBp\n\037com.github.echotools.nevr"
-    ".rtapiB\014NevrRealtimeP\001Z-github.com/echot"
-    "ools/nevr-common/gen/go/rtapi\252\002\rNevr.Pro"
-    "tobufb\006proto3"
+    "serId\022\037\n\013status_code\030\002 \001(\004R\nstatusCode\022\030"
+    "\n\007message\030\003 \001(\tR\007message\"o\n!SNSOtherUser"
+    "ProfileRequestMessage\0226\n\007user_id\030\001 \001(\0132\035"
+    ".nevr.realtime.v1.XPlatformIDR\006userId\022\022\n"
+    "\004data\030\002 \001(\tR\004data\"u\n!SNSOtherUserProfile"
+    "SuccessMessage\0226\n\007user_id\030\001 \001(\0132\035.nevr.r"
+    "ealtime.v1.XPlatformIDR\006userId\022\030\n\007profil"
+    "e\030\002 \001(\tR\007profile\"q\n\034SNSReconcileIAPResul"
+    "tMessage\0226\n\007user_id\030\001 \001(\0132\035.nevr.realtim"
+    "e.v1.XPlatformIDR\006userId\022\031\n\010iap_data\030\002 \001"
+    "(\tR\007iapData\"\203\001\n\030SNSRemoteLogSetV3Message"
+    "\0226\n\007user_id\030\001 \001(\0132\035.nevr.realtime.v1.XPl"
+    "atformIDR\006userId\022\033\n\tlog_level\030\006 \001(\004R\010log"
+    "Level\022\022\n\004logs\030\007 \003(\tR\004logs\"\225\001\n\027SNSUpdateP"
+    "rofileMessage\022(\n\020login_session_id\030\001 \001(\tR"
+    "\016loginSessionId\0226\n\007user_id\030\002 \001(\0132\035.nevr."
+    "realtime.v1.XPlatformIDR\006userId\022\030\n\007paylo"
+    "ad\030\003 \001(\tR\007payload\"X\n\036SNSUpdateProfileSuc"
+    "cessMessage\0226\n\007user_id\030\001 \001(\0132\035.nevr.real"
+    "time.v1.XPlatformIDR\006userId\"\223\001\n\036SNSUpdat"
+    "eProfileFailureMessage\0226\n\007user_id\030\001 \001(\0132"
+    "\035.nevr.realtime.v1.XPlatformIDR\006userId\022\037"
+    "\n\013status_code\030\002 \001(\004R\nstatusCode\022\030\n\007messa"
+    "ge\030\003 \001(\tR\007message\"|\n(SNSUserServerProfil"
+    "eUpdateRequestMessage\0226\n\007user_id\030\001 \001(\0132\035"
+    ".nevr.realtime.v1.XPlatformIDR\006userId\022\030\n"
+    "\007payload\030\002 \001(\tR\007payload\"b\n(SNSUserServer"
+    "ProfileUpdateSuccessMessage\0226\n\007user_id\030\001"
+    " \001(\0132\035.nevr.realtime.v1.XPlatformIDR\006use"
+    "rIdBp\n\037com.github.echotools.nevr.rtapiB\014"
+    "NevrRealtimeP\001Z-github.com/echotools/nev"
+    "r-common/gen/go/rtapi\252\002\rNevr.Protobufb\006p"
+    "roto3"
 };
 static const ::_pbi::DescriptorTable* PROTOBUF_NONNULL const
-    descriptor_table_rtapi_2frealtime_5fv1_2eproto_deps[1] = {
+    descriptor_table_rtapi_2frealtime_5fv1_2eproto_deps[2] = {
         &::descriptor_table_google_2fprotobuf_2ftimestamp_2eproto,
+        &::descriptor_table_rtapi_2ftelemetry_5fv1_2eproto,
 };
 static ::absl::once_flag descriptor_table_rtapi_2frealtime_5fv1_2eproto_once;
 PROTOBUF_CONSTINIT const ::_pbi::DescriptorTable descriptor_table_rtapi_2frealtime_5fv1_2eproto = {
     false,
     false,
-    13853,
+    13965,
     descriptor_table_protodef_rtapi_2frealtime_5fv1_2eproto,
     "rtapi/realtime_v1.proto",
     &descriptor_table_rtapi_2frealtime_5fv1_2eproto_once,
     descriptor_table_rtapi_2frealtime_5fv1_2eproto_deps,
-    1,
+    2,
     56,
     schemas,
     file_default_instances,
@@ -2830,18 +2836,18 @@ void Envelope::set_allocated_lobby_session_event(::nevr::realtime::v1::LobbySess
   }
   // @@protoc_insertion_point(field_set_allocated:nevr.realtime.v1.Envelope.lobby_session_event)
 }
-void Envelope::set_allocated_lobby_entra_connected(::nevr::realtime::v1::LobbyEntrantsConnectedMessage* PROTOBUF_NULLABLE lobby_entra_connected) {
+void Envelope::set_allocated_lobby_entrant_connected(::nevr::realtime::v1::LobbyEntrantsConnectedMessage* PROTOBUF_NULLABLE lobby_entrant_connected) {
   ::google::protobuf::Arena* message_arena = GetArena();
   clear_message();
-  if (lobby_entra_connected) {
-    ::google::protobuf::Arena* submessage_arena = lobby_entra_connected->GetArena();
+  if (lobby_entrant_connected) {
+    ::google::protobuf::Arena* submessage_arena = lobby_entrant_connected->GetArena();
     if (message_arena != submessage_arena) {
-      lobby_entra_connected = ::google::protobuf::internal::GetOwnedMessage(message_arena, lobby_entra_connected, submessage_arena);
+      lobby_entrant_connected = ::google::protobuf::internal::GetOwnedMessage(message_arena, lobby_entrant_connected, submessage_arena);
     }
-    set_has_lobby_entra_connected();
-    _impl_.message_.lobby_entra_connected_ = lobby_entra_connected;
+    set_has_lobby_entrant_connected();
+    _impl_.message_.lobby_entrant_connected_ = lobby_entrant_connected;
   }
-  // @@protoc_insertion_point(field_set_allocated:nevr.realtime.v1.Envelope.lobby_entra_connected)
+  // @@protoc_insertion_point(field_set_allocated:nevr.realtime.v1.Envelope.lobby_entrant_connected)
 }
 void Envelope::set_allocated_lobby_entrant_accept(::nevr::realtime::v1::LobbyEntrantsAcceptMessage* PROTOBUF_NULLABLE lobby_entrant_accept) {
   ::google::protobuf::Arena* message_arena = GetArena();
@@ -3458,8 +3464,8 @@ Envelope::Envelope(
       case kLobbySessionEvent:
         _impl_.message_.lobby_session_event_ = ::google::protobuf::Message::CopyConstruct(arena, *from._impl_.message_.lobby_session_event_);
         break;
-      case kLobbyEntraConnected:
-        _impl_.message_.lobby_entra_connected_ = ::google::protobuf::Message::CopyConstruct(arena, *from._impl_.message_.lobby_entra_connected_);
+      case kLobbyEntrantConnected:
+        _impl_.message_.lobby_entrant_connected_ = ::google::protobuf::Message::CopyConstruct(arena, *from._impl_.message_.lobby_entrant_connected_);
         break;
       case kLobbyEntrantAccept:
         _impl_.message_.lobby_entrant_accept_ = ::google::protobuf::Message::CopyConstruct(arena, *from._impl_.message_.lobby_entrant_accept_);
@@ -3683,11 +3689,11 @@ void Envelope::clear_message() {
       }
       break;
     }
-    case kLobbyEntraConnected: {
+    case kLobbyEntrantConnected: {
       if (GetArena() == nullptr) {
-        delete _impl_.message_.lobby_entra_connected_;
+        delete _impl_.message_.lobby_entrant_connected_;
       } else if (::google::protobuf::internal::DebugHardenClearOneofMessageOnArena()) {
-        ::google::protobuf::internal::MaybePoisonAfterClear(_impl_.message_.lobby_entra_connected_);
+        ::google::protobuf::internal::MaybePoisonAfterClear(_impl_.message_.lobby_entrant_connected_);
       }
       break;
     }
@@ -4130,8 +4136,8 @@ Envelope::_table_ = {
     {PROTOBUF_FIELD_OFFSET(Envelope, _impl_.message_.lobby_session_create_), _Internal::kOneofCaseOffset + 0, 5, (0 | ::_fl::kFcOneof | ::_fl::kMessage | ::_fl::kTvTable)},
     // .nevr.realtime.v1.LobbySessionEventMessage lobby_session_event = 8 [json_name = "lobbySessionEvent"];
     {PROTOBUF_FIELD_OFFSET(Envelope, _impl_.message_.lobby_session_event_), _Internal::kOneofCaseOffset + 0, 6, (0 | ::_fl::kFcOneof | ::_fl::kMessage | ::_fl::kTvTable)},
-    // .nevr.realtime.v1.LobbyEntrantsConnectedMessage lobby_entra_connected = 9 [json_name = "lobbyEntraConnected"];
-    {PROTOBUF_FIELD_OFFSET(Envelope, _impl_.message_.lobby_entra_connected_), _Internal::kOneofCaseOffset + 0, 7, (0 | ::_fl::kFcOneof | ::_fl::kMessage | ::_fl::kTvTable)},
+    // .nevr.realtime.v1.LobbyEntrantsConnectedMessage lobby_entrant_connected = 9 [json_name = "lobbyEntrantConnected"];
+    {PROTOBUF_FIELD_OFFSET(Envelope, _impl_.message_.lobby_entrant_connected_), _Internal::kOneofCaseOffset + 0, 7, (0 | ::_fl::kFcOneof | ::_fl::kMessage | ::_fl::kTvTable)},
     // .nevr.realtime.v1.LobbyEntrantsAcceptMessage lobby_entrant_accept = 10 [json_name = "lobbyEntrantAccept"];
     {PROTOBUF_FIELD_OFFSET(Envelope, _impl_.message_.lobby_entrant_accept_), _Internal::kOneofCaseOffset + 0, 8, (0 | ::_fl::kFcOneof | ::_fl::kMessage | ::_fl::kTvTable)},
     // .nevr.realtime.v1.LobbyEntrantsRejectMessage lobby_entrant_reject = 11 [json_name = "lobbyEntrantReject"];
@@ -4365,9 +4371,9 @@ PROTOBUF_NOINLINE void Envelope::Clear() {
           stream);
       break;
     }
-    case kLobbyEntraConnected: {
+    case kLobbyEntrantConnected: {
       target = ::google::protobuf::internal::WireFormatLite::InternalWriteMessage(
-          9, *this_._impl_.message_.lobby_entra_connected_, this_._impl_.message_.lobby_entra_connected_->GetCachedSize(), target,
+          9, *this_._impl_.message_.lobby_entrant_connected_, this_._impl_.message_.lobby_entrant_connected_->GetCachedSize(), target,
           stream);
       break;
     }
@@ -4708,10 +4714,10 @@ PROTOBUF_NOINLINE void Envelope::Clear() {
                     ::google::protobuf::internal::WireFormatLite::MessageSize(*this_._impl_.message_.lobby_session_event_);
       break;
     }
-    // .nevr.realtime.v1.LobbyEntrantsConnectedMessage lobby_entra_connected = 9 [json_name = "lobbyEntraConnected"];
-    case kLobbyEntraConnected: {
+    // .nevr.realtime.v1.LobbyEntrantsConnectedMessage lobby_entrant_connected = 9 [json_name = "lobbyEntrantConnected"];
+    case kLobbyEntrantConnected: {
       total_size += 1 +
-                    ::google::protobuf::internal::WireFormatLite::MessageSize(*this_._impl_.message_.lobby_entra_connected_);
+                    ::google::protobuf::internal::WireFormatLite::MessageSize(*this_._impl_.message_.lobby_entrant_connected_);
       break;
     }
     // .nevr.realtime.v1.LobbyEntrantsAcceptMessage lobby_entrant_accept = 10 [json_name = "lobbyEntrantAccept"];
@@ -5070,11 +5076,11 @@ void Envelope::MergeImpl(::google::protobuf::MessageLite& to_msg, const ::google
         }
         break;
       }
-      case kLobbyEntraConnected: {
+      case kLobbyEntrantConnected: {
         if (oneof_needs_init) {
-          _this->_impl_.message_.lobby_entra_connected_ = ::google::protobuf::Message::CopyConstruct(arena, *from._impl_.message_.lobby_entra_connected_);
+          _this->_impl_.message_.lobby_entrant_connected_ = ::google::protobuf::Message::CopyConstruct(arena, *from._impl_.message_.lobby_entrant_connected_);
         } else {
-          _this->_impl_.message_.lobby_entra_connected_->MergeFrom(*from._impl_.message_.lobby_entra_connected_);
+          _this->_impl_.message_.lobby_entrant_connected_->MergeFrom(*from._impl_.message_.lobby_entrant_connected_);
         }
         break;
       }
@@ -8777,6 +8783,30 @@ void LobbySessionStateMessage::set_allocated_session_state_raw(::nevr::realtime:
   }
   // @@protoc_insertion_point(field_set_allocated:nevr.realtime.v1.LobbySessionStateMessage.session_state_raw)
 }
+void LobbySessionStateMessage::set_allocated_session_state(::nevr::telemetry::v1::LobbySessionStateFrame* PROTOBUF_NULLABLE session_state) {
+  ::google::protobuf::Arena* message_arena = GetArena();
+  clear_state();
+  if (session_state) {
+    ::google::protobuf::Arena* submessage_arena = reinterpret_cast<::google::protobuf::Message*>(session_state)->GetArena();
+    if (message_arena != submessage_arena) {
+      session_state = ::google::protobuf::internal::GetOwnedMessage(message_arena, session_state, submessage_arena);
+    }
+    set_has_session_state();
+    _impl_.state_.session_state_ = session_state;
+  }
+  // @@protoc_insertion_point(field_set_allocated:nevr.realtime.v1.LobbySessionStateMessage.session_state)
+}
+void LobbySessionStateMessage::clear_session_state() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  if (state_case() == kSessionState) {
+    if (GetArena() == nullptr) {
+      delete _impl_.state_.session_state_;
+    } else if (::google::protobuf::internal::DebugHardenClearOneofMessageOnArena()) {
+      ::google::protobuf::internal::MaybePoisonAfterClear(_impl_.state_.session_state_);
+    }
+    clear_has_state();
+  }
+}
 LobbySessionStateMessage::LobbySessionStateMessage(::google::protobuf::Arena* PROTOBUF_NULLABLE arena)
 #if defined(PROTOBUF_CUSTOM_VTABLE)
     : ::google::protobuf::Message(arena, LobbySessionStateMessage_class_data_.base()) {
@@ -8820,6 +8850,9 @@ LobbySessionStateMessage::LobbySessionStateMessage(
       break;
       case kSessionStateRaw:
         _impl_.state_.session_state_raw_ = ::google::protobuf::Message::CopyConstruct(arena, *from._impl_.state_.session_state_raw_);
+        break;
+      case kSessionState:
+        _impl_.state_.session_state_ = ::google::protobuf::Message::CopyConstruct(arena, *from._impl_.state_.session_state_);
         break;
   }
 
@@ -8867,6 +8900,14 @@ void LobbySessionStateMessage::clear_state() {
         delete _impl_.state_.session_state_raw_;
       } else if (::google::protobuf::internal::DebugHardenClearOneofMessageOnArena()) {
         ::google::protobuf::internal::MaybePoisonAfterClear(_impl_.state_.session_state_raw_);
+      }
+      break;
+    }
+    case kSessionState: {
+      if (GetArena() == nullptr) {
+        delete _impl_.state_.session_state_;
+      } else if (::google::protobuf::internal::DebugHardenClearOneofMessageOnArena()) {
+        ::google::protobuf::internal::MaybePoisonAfterClear(_impl_.state_.session_state_);
       }
       break;
     }
@@ -8921,17 +8962,17 @@ LobbySessionStateMessage::GetClassData() const {
   return LobbySessionStateMessage_class_data_.base();
 }
 PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
-const ::_pbi::TcParseTable<1, 3, 1, 0, 2>
+const ::_pbi::TcParseTable<1, 4, 2, 0, 2>
 LobbySessionStateMessage::_table_ = {
   {
     PROTOBUF_FIELD_OFFSET(LobbySessionStateMessage, _impl_._has_bits_),
     0, // no _extensions_
-    3, 8,  // max_field_number, fast_idx_mask
+    4, 8,  // max_field_number, fast_idx_mask
     offsetof(decltype(_table_), field_lookup_table),
-    4294967288,  // skipmap
+    4294967280,  // skipmap
     offsetof(decltype(_table_), field_entries),
-    3,  // num_field_entries
-    1,  // num_aux_entries
+    4,  // num_field_entries
+    2,  // num_aux_entries
     offsetof(decltype(_table_), aux_entries),
     LobbySessionStateMessage_class_data_.base(),
     nullptr,  // post_loop_handler
@@ -8955,9 +8996,12 @@ LobbySessionStateMessage::_table_ = {
     {PROTOBUF_FIELD_OFFSET(LobbySessionStateMessage, _impl_.tick_count_), _Internal::kHasBitsOffset + 0, 0, (0 | ::_fl::kFcOptional | ::_fl::kUInt64)},
     // .nevr.realtime.v1.LobbySessionStateRawMessage session_state_raw = 3 [json_name = "sessionStateRaw"];
     {PROTOBUF_FIELD_OFFSET(LobbySessionStateMessage, _impl_.state_.session_state_raw_), _Internal::kOneofCaseOffset + 0, 0, (0 | ::_fl::kFcOneof | ::_fl::kMessage | ::_fl::kTvTable)},
+    // .nevr.telemetry.v1.LobbySessionStateFrame session_state = 4 [json_name = "sessionState"];
+    {PROTOBUF_FIELD_OFFSET(LobbySessionStateMessage, _impl_.state_.session_state_), _Internal::kOneofCaseOffset + 0, 1, (0 | ::_fl::kFcOneof | ::_fl::kMessage | ::_fl::kTvTable)},
   }},
   {{
       {::_pbi::TcParser::GetTable<::nevr::realtime::v1::LobbySessionStateRawMessage>()},
+      {::_pbi::TcParser::GetTable<::nevr::telemetry::v1::LobbySessionStateFrame>()},
   }},
   {{
   }},
@@ -9016,13 +9060,22 @@ PROTOBUF_NOINLINE void LobbySessionStateMessage::Clear() {
     }
   }
 
-  // .nevr.realtime.v1.LobbySessionStateRawMessage session_state_raw = 3 [json_name = "sessionStateRaw"];
-  if (this_.state_case() == kSessionStateRaw) {
-    target = ::google::protobuf::internal::WireFormatLite::InternalWriteMessage(
-        3, *this_._impl_.state_.session_state_raw_, this_._impl_.state_.session_state_raw_->GetCachedSize(), target,
-        stream);
+  switch (this_.state_case()) {
+    case kSessionStateRaw: {
+      target = ::google::protobuf::internal::WireFormatLite::InternalWriteMessage(
+          3, *this_._impl_.state_.session_state_raw_, this_._impl_.state_.session_state_raw_->GetCachedSize(), target,
+          stream);
+      break;
+    }
+    case kSessionState: {
+      target = ::google::protobuf::internal::WireFormatLite::InternalWriteMessage(
+          4, *this_._impl_.state_.session_state_, this_._impl_.state_.session_state_->GetCachedSize(), target,
+          stream);
+      break;
+    }
+    default:
+      break;
   }
-
   if (ABSL_PREDICT_FALSE(this_._internal_metadata_.have_unknown_fields())) {
     target =
         ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
@@ -9069,6 +9122,12 @@ PROTOBUF_NOINLINE void LobbySessionStateMessage::Clear() {
     case kSessionStateRaw: {
       total_size += 1 +
                     ::google::protobuf::internal::WireFormatLite::MessageSize(*this_._impl_.state_.session_state_raw_);
+      break;
+    }
+    // .nevr.telemetry.v1.LobbySessionStateFrame session_state = 4 [json_name = "sessionState"];
+    case kSessionState: {
+      total_size += 1 +
+                    ::google::protobuf::internal::WireFormatLite::MessageSize(*this_._impl_.state_.session_state_);
       break;
     }
     case STATE_NOT_SET: {
@@ -9121,6 +9180,14 @@ void LobbySessionStateMessage::MergeImpl(::google::protobuf::MessageLite& to_msg
           _this->_impl_.state_.session_state_raw_ = ::google::protobuf::Message::CopyConstruct(arena, *from._impl_.state_.session_state_raw_);
         } else {
           _this->_impl_.state_.session_state_raw_->MergeFrom(*from._impl_.state_.session_state_raw_);
+        }
+        break;
+      }
+      case kSessionState: {
+        if (oneof_needs_init) {
+          _this->_impl_.state_.session_state_ = ::google::protobuf::Message::CopyConstruct(arena, *from._impl_.state_.session_state_);
+        } else {
+          _this->_impl_.state_.session_state_->MergeFrom(*from._impl_.state_.session_state_);
         }
         break;
       }
