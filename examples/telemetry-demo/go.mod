@@ -1,4 +1,4 @@
-module telemetry-demo
+module rtapi-demo
 
 go 1.24.3
 

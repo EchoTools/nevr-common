@@ -11,7 +11,7 @@ import (
 
 	"github.com/echotools/nevr-common/apigame"
 	"github.com/echotools/nevr-common/nevrcap"
-	"github.com/echotools/nevr-common/telemetry"
+	"github.com/echotools/nevr-common/rtapi"
 	"google.golang.org/protobuf/types/known/timestamppb"
 )
 
@@ -144,7 +144,7 @@ func demonstrateStreamingCodecs() {
 	}
 
 	// Write header
-	header := &telemetry.TelemetryHeader{
+	header := &rtapi.TelemetryHeader{
 		CaptureId: "demo-stream-12345",
 		CreatedAt: timestamppb.Now(),
 		Metadata: map[string]string{
@@ -260,7 +260,7 @@ func modifySessionData(originalData []byte, iteration int) []byte {
 	return data
 }
 
-func createSampleFrame(frameIndex uint32) *telemetry.LobbySessionStateFrame {
+func createSampleFrame(frameIndex uint32) *rtapi.LobbySessionStateFrame {
 	sessionData := createSampleSessionData()
 	userBonesData := createSampleUserBonesData()
 

@@ -6,7 +6,7 @@ import (
 	"io"
 	"time"
 
-	"github.com/echotools/nevr-common/telemetry"
+	"github.com/echotools/nevr-common/gen/go/rtapi"
 	"google.golang.org/protobuf/encoding/protojson"
 	"google.golang.org/protobuf/types/known/timestamppb"
 )
@@ -33,7 +33,7 @@ func ConvertEchoReplayToNevrcap(echoReplayPath, nevrcapPath string) error {
 	defer nevrcapWriter.Close()
 
 	// Write header
-	header := &telemetry.TelemetryHeader{
+	header := &rtapi.TelemetryHeader{
 		CaptureId: fmt.Sprintf("converted-%d", time.Now().Unix()),
 		CreatedAt: timestamppb.Now(),
 		Metadata: map[string]string{

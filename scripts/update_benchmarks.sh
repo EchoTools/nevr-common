@@ -10,7 +10,7 @@ PROJECT_ROOT="$(dirname "$SCRIPT_DIR")"
 BENCHMARKS_FILE="$PROJECT_ROOT/BENCHMARKS.md"
 TEMP_FILE="/tmp/benchmark_results.txt"
 
-echo "Running telemetry benchmarks and updating BENCHMARKS.md..."
+echo "Running rtapi benchmarks and updating BENCHMARKS.md..."
 echo "Project root: $PROJECT_ROOT"
 
 # Change to project directory
@@ -18,7 +18,7 @@ cd "$PROJECT_ROOT"
 
 # Run benchmarks and capture output
 echo "Running benchmarks..."
-go test -bench=. -benchmem ./telemetry > "$TEMP_FILE" 2>&1
+go test -bench=. -benchmem ./rtapi > "$TEMP_FILE" 2>&1
 
 # Extract system information
 GO_VERSION=$(go version | awk '{print $3}' | sed 's/go//')
@@ -99,7 +99,7 @@ check_600hz_target() {
 cat > "$BENCHMARKS_FILE" << EOF
 # Telemetry Processing Benchmarks
 
-This document contains the latest benchmark results for the high-performance telemetry processing system.
+This document contains the latest benchmark results for the high-performance rtapi processing system.
 
 ## System Information
 
@@ -174,13 +174,13 @@ The system is designed to handle up to 600 frames per second with minimal memory
 To run all benchmarks:
 
 \`\`\`bash
-go test -bench=. -benchmem ./telemetry
+go test -bench=. -benchmem ./rtapi
 \`\`\`
 
 To run specific benchmark:
 
 \`\`\`bash
-go test -bench=BenchmarkFrameProcessing -benchmem ./telemetry
+go test -bench=BenchmarkFrameProcessing -benchmem ./rtapi
 \`\`\`
 
 To update this file:
