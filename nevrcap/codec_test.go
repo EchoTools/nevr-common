@@ -6,8 +6,8 @@ import (
 	"testing"
 	"time"
 
-	"github.com/echotools/nevr-common/apigame"
-	"github.com/echotools/nevr-common/telemetry"
+	"github.com/echotools/nevr-common/gen/go/apigame"
+	"github.com/echotools/nevr-common/gen/go/rtapi"
 	"google.golang.org/protobuf/types/known/timestamppb"
 )
 
@@ -63,7 +63,7 @@ func TestZstdCodec(t *testing.T) {
 	}
 
 	// Write header
-	header := &telemetry.TelemetryHeader{
+	header := &rtapi.TelemetryHeader{
 		CaptureId: "test-capture",
 		CreatedAt: timestamppb.Now(),
 		Metadata: map[string]string{
@@ -260,7 +260,7 @@ func createTestUserBonesData(t *testing.T) []byte {
 	return data
 }
 
-func createTestFrame(t *testing.T) *telemetry.LobbySessionStateFrame {
+func createTestFrame(t *testing.T) *rtapi.LobbySessionStateFrame {
 	session := &apigame.SessionResponse{
 		SessionID:        "test-session",
 		GameStatus:       "running",
@@ -276,10 +276,10 @@ func createTestFrame(t *testing.T) *telemetry.LobbySessionStateFrame {
 		ErrCode:   0,
 	}
 
-	return &telemetry.LobbySessionStateFrame{
+	return &rtapi.LobbySessionStateFrame{
 		FrameIndex: 0,
 		Timestamp:  timestamppb.Now(),
-		Events:     []*telemetry.LobbySessionEvent{},
+		Events:     []*rtapi.LobbySessionEvent{},
 		Session:    session,
 		UserBones:  userBones,
 	}

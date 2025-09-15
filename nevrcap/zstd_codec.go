@@ -4,7 +4,7 @@ import (
 	"io"
 	"os"
 
-	"github.com/echotools/nevr-common/telemetry"
+	"github.com/echotools/nevr-common/gen/go/rtapi"
 	"github.com/klauspost/compress/zstd"
 	"google.golang.org/protobuf/proto"
 )
@@ -59,7 +59,7 @@ func NewZstdCodecReader(filename string) (*ZstdCodec, error) {
 }
 
 // WriteHeader writes the nevrcap header to the file
-func (z *ZstdCodec) WriteHeader(header *telemetry.TelemetryHeader) error {
+func (z *ZstdCodec) WriteHeader(header *rtapi.TelemetryHeader) error {
 	data, err := proto.Marshal(header)
 	if err != nil {
 		return err
@@ -70,7 +70,7 @@ func (z *ZstdCodec) WriteHeader(header *telemetry.TelemetryHeader) error {
 }
 
 // WriteFrame writes a frame to the file
-func (z *ZstdCodec) WriteFrame(frame *telemetry.LobbySessionStateFrame) error {
+func (z *ZstdCodec) WriteFrame(frame *rtapi.LobbySessionStateFrame) error {
 	data, err := proto.Marshal(frame)
 	if err != nil {
 		return err
@@ -81,13 +81,13 @@ func (z *ZstdCodec) WriteFrame(frame *telemetry.LobbySessionStateFrame) error {
 }
 
 // ReadHeader reads the nevrcap header from the file
-func (z *ZstdCodec) ReadHeader() (*telemetry.TelemetryHeader, error) {
+func (z *ZstdCodec) ReadHeader() (*rtapi.TelemetryHeader, error) {
 	data, err := z.readDelimitedMessage()
 	if err != nil {
 		return nil, err
 	}
 
-	header := &telemetry.TelemetryHeader{}
+	header := &rtapi.TelemetryHeader{}
 	err = proto.Unmarshal(data, header)
 	if err != nil {
 		return nil, err
@@ -97,13 +97,13 @@ func (z *ZstdCodec) ReadHeader() (*telemetry.TelemetryHeader, error) {
 }
 
 // ReadFrame reads a frame from the file
-func (z *ZstdCodec) ReadFrame() (*telemetry.LobbySessionStateFrame, error) {
+func (z *ZstdCodec) ReadFrame() (*rtapi.LobbySessionStateFrame, error) {
 	data, err := z.readDelimitedMessage()
 	if err != nil {
 		return nil, err
 	}
 
-	frame := &telemetry.LobbySessionStateFrame{}
+	frame := &rtapi.LobbySessionStateFrame{}
 	err = proto.Unmarshal(data, frame)
 	if err != nil {
 		return nil, err

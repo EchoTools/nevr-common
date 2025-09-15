@@ -7,8 +7,8 @@ import (
 	"os"
 	"testing"
 
-	"github.com/echotools/nevr-common/v3/gameapi"
-	"github.com/echotools/nevr-common/v3/rtapi"
+	"github.com/echotools/nevr-common/gameapi"
+	"github.com/echotools/nevr-common/rtapi"
 	"github.com/google/go-cmp/cmp"
 	"google.golang.org/protobuf/proto"
 )

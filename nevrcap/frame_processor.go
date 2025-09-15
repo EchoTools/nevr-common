@@ -4,8 +4,8 @@ import (
 	"encoding/json"
 	"time"
 
-	"github.com/echotools/nevr-common/apigame"
-	"github.com/echotools/nevr-common/telemetry"
+	"github.com/echotools/nevr-common/gen/go/apigame"
+	"github.com/echotools/nevr-common/gen/go/rtapi"
 	"google.golang.org/protobuf/types/known/timestamppb"
 )
 
@@ -13,7 +13,7 @@ import (
 // optimized for up to 600 Hz operation
 type FrameProcessor struct {
 	frameIndex    uint32
-	previousFrame *telemetry.LobbySessionStateFrame
+	previousFrame *rtapi.LobbySessionStateFrame
 	eventDetector *EventDetector
 
 	// Pre-allocated structs to avoid memory allocations
@@ -29,9 +29,9 @@ func NewFrameProcessor() *FrameProcessor {
 	}
 }
 
-// ProcessFrame takes raw session and user bones data and processes it into a telemetry.LobbySessionStateFrame
+// ProcessFrame takes raw session and user bones data and processes it into a rtapi.LobbySessionStateFrame
 // This is optimized for high-frequency invocation (up to 600 Hz)
-func (fp *FrameProcessor) ProcessFrame(sessionResponseData, userBonesData []byte, timestamp time.Time) (*telemetry.LobbySessionStateFrame, error) {
+func (fp *FrameProcessor) ProcessFrame(sessionResponseData, userBonesData []byte, timestamp time.Time) (*rtapi.LobbySessionStateFrame, error) {
 	// Reset the pre-allocated structs to avoid allocations
 	fp.sessionResponse.Reset()
 	fp.userBonesResponse.Reset()
@@ -49,7 +49,7 @@ func (fp *FrameProcessor) ProcessFrame(sessionResponseData, userBonesData []byte
 	}
 
 	// Create the frame
-	frame := &telemetry.LobbySessionStateFrame{
+	frame := &rtapi.LobbySessionStateFrame{
 		FrameIndex: fp.frameIndex,
 		Timestamp:  timestamppb.New(timestamp),
 		Session:    &fp.sessionResponse,

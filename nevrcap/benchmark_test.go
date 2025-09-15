@@ -7,8 +7,8 @@ import (
 	"testing"
 	"time"
 
-	"github.com/echotools/nevr-common/apigame"
-	"github.com/echotools/nevr-common/telemetry"
+	"github.com/echotools/nevr-common/gen/go/apigame"
+	"github.com/echotools/nevr-common/gen/go/rtapi"
 )
 
 // BenchmarkFrameProcessing benchmarks the high-performance frame processing
@@ -123,7 +123,7 @@ func BenchmarkFileSize(b *testing.B) {
 	}()
 
 	// Create test files with the same data
-	frames := make([]*telemetry.LobbySessionStateFrame, 1000)
+	frames := make([]*rtapi.LobbySessionStateFrame, 1000)
 	for i := 0; i < 1000; i++ {
 		frames[i] = createBenchFrame(b, uint32(i))
 	}
@@ -147,7 +147,7 @@ func BenchmarkFileSize(b *testing.B) {
 		b.Fatalf("Failed to create nevrcap writer: %v", err)
 	}
 
-	header := &telemetry.TelemetryHeader{
+	header := &rtapi.TelemetryHeader{
 		CaptureId: "benchmark-test",
 		Metadata:  map[string]string{"test": "true"},
 	}
@@ -328,7 +328,7 @@ func createBenchUserBonesData(b *testing.B) []byte {
 	return data
 }
 
-func createBenchFrame(b *testing.B, frameIndex uint32) *telemetry.LobbySessionStateFrame {
+func createBenchFrame(b *testing.B, frameIndex uint32) *rtapi.LobbySessionStateFrame {
 	sessionData := createBenchSessionData(b)
 	userBonesData := createBenchUserBonesData(b)
 

@@ -10,8 +10,8 @@ import (
 	"path/filepath"
 	"time"
 
-	"github.com/echotools/nevr-common/apigame"
-	"github.com/echotools/nevr-common/telemetry"
+	"github.com/echotools/nevr-common/gen/go/apigame"
+	"github.com/echotools/nevr-common/gen/go/rtapi"
 	"google.golang.org/protobuf/encoding/protojson"
 	"google.golang.org/protobuf/types/known/timestamppb"
 )
@@ -63,7 +63,7 @@ func NewEchoReplayCodecReader(filename string) (*EchoReplayCodec, error) {
 }
 
 // WriteFrame writes a frame to the .echoreplay file
-func (e *EchoReplayCodec) WriteFrame(frame *telemetry.LobbySessionStateFrame) error {
+func (e *EchoReplayCodec) WriteFrame(frame *rtapi.LobbySessionStateFrame) error {
 	// Write in the legacy format: timestamp + session JSON (no wrapper)
 	return e.WriteLegacyFrame(frame.Timestamp.AsTime(), frame.Session)
 }
@@ -128,7 +128,7 @@ func (e *EchoReplayCodec) Finalize() error {
 }
 
 // ReadFrames reads all frames from the .echoreplay file
-func (e *EchoReplayCodec) ReadFrames() ([]*telemetry.LobbySessionStateFrame, error) {
+func (e *EchoReplayCodec) ReadFrames() ([]*rtapi.LobbySessionStateFrame, error) {
 	if e.zipReader == nil {
 		return nil, fmt.Errorf("codec not configured for reading")
 	}
@@ -160,9 +160,9 @@ func (e *EchoReplayCodec) ReadFrames() ([]*telemetry.LobbySessionStateFrame, err
 }
 
 // parseFrameData parses the frame data from the replay file
-func (e *EchoReplayCodec) parseFrameData(data []byte) ([]*telemetry.LobbySessionStateFrame, error) {
+func (e *EchoReplayCodec) parseFrameData(data []byte) ([]*rtapi.LobbySessionStateFrame, error) {
 	lines := bytes.Split(data, []byte("\n"))
-	var frames []*telemetry.LobbySessionStateFrame
+	var frames []*rtapi.LobbySessionStateFrame
 
 	unmarshaler := &protojson.UnmarshalOptions{
 		DiscardUnknown: false,
@@ -192,7 +192,7 @@ func (e *EchoReplayCodec) parseFrameData(data []byte) ([]*telemetry.LobbySession
 		}
 
 		// Create frame
-		frame := &telemetry.LobbySessionStateFrame{
+		frame := &rtapi.LobbySessionStateFrame{
 			FrameIndex: uint32(len(frames)),
 			Timestamp:  timestamppb.New(timestamp),
 			Session:    sessionResponse,

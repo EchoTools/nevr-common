@@ -1,6 +1,6 @@
 # Telemetry Processing Benchmarks
 
-This document contains the latest benchmark results for the high-performance telemetry processing system.
+This document contains the latest benchmark results for the high-performance rtapi processing system.
 
 ## System Information
 
@@ -76,13 +76,13 @@ The system is designed to handle up to 600 frames per second with minimal memory
 To run all benchmarks:
 
 ```bash
-go test -bench=. -benchmem ./telemetry
+go test -bench=. -benchmem ./rtapi
 ```
 
 To run specific benchmark:
 
 ```bash
-go test -bench=BenchmarkFrameProcessing -benchmem ./telemetry
+go test -bench=BenchmarkFrameProcessing -benchmem ./rtapi
 ```
 
 To update this file:
