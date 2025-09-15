@@ -8,9 +8,8 @@ It is tightly integrated with components of [Nakama](https://github.com/heroicla
 
 The code is broken up into packages for different parts:
 
-* `api` - The request/response messages used with the GPRC and in some of the real-time API.
-* `rtapi`: The runtime API definitions, including the frame structure and connectivity statistics.
-* `gameapi`: The game-engine's HTTP API `/session` and `/user_bones` endpoints.
+* `proto` - protobuf definitions for GRPC, HTTP, and Realtime protocols.
+* `gen`   - generated source code for various languages.
 * `common`: Shared utilities and types used across the codebase.
 
 
@@ -21,7 +20,7 @@ Protocol Buffer files have already been generated and are included in the reposi
 * **Go**: Import the generated Go packages directly in your project. Example:
 
     ```go
-    import "github.com/echotools/nevr-common/v3/api"
+    import "github.com/echotools/nevr-common/rtapi"
     ```
 
 * **Python**: Use the generated `.py` files in your Python project. Example:
@@ -41,16 +40,8 @@ No additional code generation is required unless you modify the `.proto` files.
 
 ## Generating Protocol Buffer Sources
 
-The codebase uses Protocol Buffers. The protoc toolchain is used to generate source files which are committed to the repository to simplify builds for contributors.
-
-To build the codebase and generate all sources use these steps.
-
-1. Install the Go toolchain and protoc toolchain.
-
-2. Install the protoc-gen-go plugin to generate Go code.
-
    ```shell
-   go install "google.golang.org/protobuf/cmd/protoc-gen-go"
+   buf generate
    ```
 
 ### Method A: `build.sh`
