@@ -82,6 +82,40 @@ struct GameServer_MetadataEntry_DoNotUseDefaultTypeInternal {
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
     PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 GameServer_MetadataEntry_DoNotUseDefaultTypeInternal _GameServer_MetadataEntry_DoNotUse_default_instance_;
 
+inline constexpr Match::Impl_::Impl_(
+    ::_pbi::ConstantInitialized) noexcept
+      : _cached_size_{0},
+        match_id_(
+            &::google::protobuf::internal::fixed_address_empty_string,
+            ::_pbi::ConstantInitialized()),
+        handler_name_(
+            &::google::protobuf::internal::fixed_address_empty_string,
+            ::_pbi::ConstantInitialized()),
+        label_{nullptr},
+        authoritative_{false},
+        size_{0},
+        tick_rate_{0} {}
+
+template <typename>
+PROTOBUF_CONSTEXPR Match::Match(::_pbi::ConstantInitialized)
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+    : ::google::protobuf::Message(Match_class_data_.base()),
+#else   // PROTOBUF_CUSTOM_VTABLE
+    : ::google::protobuf::Message(),
+#endif  // PROTOBUF_CUSTOM_VTABLE
+      _impl_(::_pbi::ConstantInitialized()) {
+}
+struct MatchDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR MatchDefaultTypeInternal() : _instance(::_pbi::ConstantInitialized{}) {}
+  ~MatchDefaultTypeInternal() {}
+  union {
+    Match _instance;
+  };
+};
+
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
+    PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 MatchDefaultTypeInternal _Match_default_instance_;
+
 inline constexpr LobbyEntrant::Impl_::Impl_(
     ::_pbi::ConstantInitialized) noexcept
       : _cached_size_{0},
@@ -460,6 +494,21 @@ const ::uint32_t
         4,
         5,
         ~0u,
+        0x081, // bitmap
+        PROTOBUF_FIELD_OFFSET(::nevr::http::v1::Match, _impl_._has_bits_),
+        9, // hasbit index offset
+        PROTOBUF_FIELD_OFFSET(::nevr::http::v1::Match, _impl_.match_id_),
+        PROTOBUF_FIELD_OFFSET(::nevr::http::v1::Match, _impl_.authoritative_),
+        PROTOBUF_FIELD_OFFSET(::nevr::http::v1::Match, _impl_.label_),
+        PROTOBUF_FIELD_OFFSET(::nevr::http::v1::Match, _impl_.size_),
+        PROTOBUF_FIELD_OFFSET(::nevr::http::v1::Match, _impl_.tick_rate_),
+        PROTOBUF_FIELD_OFFSET(::nevr::http::v1::Match, _impl_.handler_name_),
+        0,
+        3,
+        2,
+        4,
+        5,
+        1,
 };
 
 static const ::_pbi::MigrationSchema
@@ -475,6 +524,7 @@ static const ::_pbi::MigrationSchema
         {72, sizeof(::nevr::http::v1::LobbySessionCreateRequest)},
         {93, sizeof(::nevr::http::v1::LobbyEntrant_MetadataEntry_DoNotUse)},
         {100, sizeof(::nevr::http::v1::LobbyEntrant)},
+        {117, sizeof(::nevr::http::v1::Match)},
 };
 static const ::_pb::Message* PROTOBUF_NONNULL const file_default_instances[] = {
     &::nevr::http::v1::_ListServersRequest_default_instance_._instance,
@@ -488,6 +538,7 @@ static const ::_pb::Message* PROTOBUF_NONNULL const file_default_instances[] = {
     &::nevr::http::v1::_LobbySessionCreateRequest_default_instance_._instance,
     &::nevr::http::v1::_LobbyEntrant_MetadataEntry_DoNotUse_default_instance_._instance,
     &::nevr::http::v1::_LobbyEntrant_default_instance_._instance,
+    &::nevr::http::v1::_Match_default_instance_._instance,
 };
 const char descriptor_table_protodef_api_2fhttp_5fv1_2eproto[] ABSL_ATTRIBUTE_SECTION_VARIABLE(
     protodesc_cold) = {
@@ -550,10 +601,16 @@ const char descriptor_table_protodef_api_2fhttp_5fv1_2eproto[] ABSL_ATTRIBUTE_SE
     "nment\030\023 \001(\005R\rroleAlignment\022D\n\010metadata\030\027"
     " \003(\0132(.nevr.http.v1.LobbyEntrant.Metadat"
     "aEntryR\010metadata\032;\n\rMetadataEntry\022\020\n\003key"
-    "\030\001 \001(\tR\003key\022\024\n\005value\030\002 \001(\tR\005value:\0028\001Bg\n"
-    "\035com.github.echotools.nevr.apiB\007NevrApiP"
-    "\001Z+github.com/echotools/nevr-common/gen/"
-    "go/api\252\002\rNevr.Protobufb\006proto3"
+    "\030\001 \001(\tR\003key\022\024\n\005value\030\002 \001(\tR\005value:\0028\001\"\320\001"
+    "\n\005Match\022\031\n\010match_id\030\001 \001(\tR\007matchId\022$\n\rau"
+    "thoritative\030\002 \001(\010R\rauthoritative\0222\n\005labe"
+    "l\030\003 \001(\0132\034.google.protobuf.StringValueR\005l"
+    "abel\022\022\n\004size\030\004 \001(\005R\004size\022\033\n\ttick_rate\030\005 "
+    "\001(\005R\010tickRate\022!\n\014handler_name\030\006 \001(\tR\013han"
+    "dlerNameBg\n\035com.github.echotools.nevr.ap"
+    "iB\007NevrApiP\001Z+github.com/echotools/nevr-"
+    "common/gen/go/api\252\002\rNevr.Protobufb\006proto"
+    "3"
 };
 static const ::_pbi::DescriptorTable* PROTOBUF_NONNULL const
     descriptor_table_api_2fhttp_5fv1_2eproto_deps[2] = {
@@ -564,13 +621,13 @@ static ::absl::once_flag descriptor_table_api_2fhttp_5fv1_2eproto_once;
 PROTOBUF_CONSTINIT const ::_pbi::DescriptorTable descriptor_table_api_2fhttp_5fv1_2eproto = {
     false,
     false,
-    2510,
+    2721,
     descriptor_table_protodef_api_2fhttp_5fv1_2eproto,
     "api/http_v1.proto",
     &descriptor_table_api_2fhttp_5fv1_2eproto_once,
     descriptor_table_api_2fhttp_5fv1_2eproto_deps,
     2,
-    11,
+    12,
     schemas,
     file_default_instances,
     TableStruct_api_2fhttp_5fv1_2eproto::offsets,
@@ -4299,6 +4356,466 @@ void LobbyEntrant::InternalSwap(LobbyEntrant* PROTOBUF_RESTRICT PROTOBUF_NONNULL
 }
 
 ::google::protobuf::Metadata LobbyEntrant::GetMetadata() const {
+  return ::google::protobuf::Message::GetMetadataImpl(GetClassData()->full());
+}
+// ===================================================================
+
+class Match::_Internal {
+ public:
+  using HasBits =
+      decltype(::std::declval<Match>()._impl_._has_bits_);
+  static constexpr ::int32_t kHasBitsOffset =
+      8 * PROTOBUF_FIELD_OFFSET(Match, _impl_._has_bits_);
+};
+
+void Match::clear_label() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  if (_impl_.label_ != nullptr) _impl_.label_->Clear();
+  _impl_._has_bits_[0] &= ~0x00000004U;
+}
+Match::Match(::google::protobuf::Arena* PROTOBUF_NULLABLE arena)
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+    : ::google::protobuf::Message(arena, Match_class_data_.base()) {
+#else   // PROTOBUF_CUSTOM_VTABLE
+    : ::google::protobuf::Message(arena) {
+#endif  // PROTOBUF_CUSTOM_VTABLE
+  SharedCtor(arena);
+  // @@protoc_insertion_point(arena_constructor:nevr.http.v1.Match)
+}
+PROTOBUF_NDEBUG_INLINE Match::Impl_::Impl_(
+    [[maybe_unused]] ::google::protobuf::internal::InternalVisibility visibility,
+    [[maybe_unused]] ::google::protobuf::Arena* PROTOBUF_NULLABLE arena, const Impl_& from,
+    [[maybe_unused]] const ::nevr::http::v1::Match& from_msg)
+      : _has_bits_{from._has_bits_},
+        _cached_size_{0},
+        match_id_(arena, from.match_id_),
+        handler_name_(arena, from.handler_name_) {}
+
+Match::Match(
+    ::google::protobuf::Arena* PROTOBUF_NULLABLE arena,
+    const Match& from)
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+    : ::google::protobuf::Message(arena, Match_class_data_.base()) {
+#else   // PROTOBUF_CUSTOM_VTABLE
+    : ::google::protobuf::Message(arena) {
+#endif  // PROTOBUF_CUSTOM_VTABLE
+  Match* const _this = this;
+  (void)_this;
+  _internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(
+      from._internal_metadata_);
+  new (&_impl_) Impl_(internal_visibility(), arena, from._impl_, from);
+  ::uint32_t cached_has_bits = _impl_._has_bits_[0];
+  _impl_.label_ = ((cached_has_bits & 0x00000004U) != 0)
+                ? ::google::protobuf::Message::CopyConstruct(arena, *from._impl_.label_)
+                : nullptr;
+  ::memcpy(reinterpret_cast<char *>(&_impl_) +
+               offsetof(Impl_, authoritative_),
+           reinterpret_cast<const char *>(&from._impl_) +
+               offsetof(Impl_, authoritative_),
+           offsetof(Impl_, tick_rate_) -
+               offsetof(Impl_, authoritative_) +
+               sizeof(Impl_::tick_rate_));
+
+  // @@protoc_insertion_point(copy_constructor:nevr.http.v1.Match)
+}
+PROTOBUF_NDEBUG_INLINE Match::Impl_::Impl_(
+    [[maybe_unused]] ::google::protobuf::internal::InternalVisibility visibility,
+    [[maybe_unused]] ::google::protobuf::Arena* PROTOBUF_NULLABLE arena)
+      : _cached_size_{0},
+        match_id_(arena),
+        handler_name_(arena) {}
+
+inline void Match::SharedCtor(::_pb::Arena* PROTOBUF_NULLABLE arena) {
+  new (&_impl_) Impl_(internal_visibility(), arena);
+  ::memset(reinterpret_cast<char *>(&_impl_) +
+               offsetof(Impl_, label_),
+           0,
+           offsetof(Impl_, tick_rate_) -
+               offsetof(Impl_, label_) +
+               sizeof(Impl_::tick_rate_));
+}
+Match::~Match() {
+  // @@protoc_insertion_point(destructor:nevr.http.v1.Match)
+  SharedDtor(*this);
+}
+inline void Match::SharedDtor(MessageLite& self) {
+  Match& this_ = static_cast<Match&>(self);
+  if constexpr (::_pbi::DebugHardenVerifyHasBitConsistency()) {
+    this_.VerifyHasBitConsistency();
+  }
+  this_._internal_metadata_.Delete<::google::protobuf::UnknownFieldSet>();
+  ABSL_DCHECK(this_.GetArena() == nullptr);
+  this_._impl_.match_id_.Destroy();
+  this_._impl_.handler_name_.Destroy();
+  delete this_._impl_.label_;
+  this_._impl_.~Impl_();
+}
+
+inline void* PROTOBUF_NONNULL Match::PlacementNew_(
+    const void* PROTOBUF_NONNULL, void* PROTOBUF_NONNULL mem,
+    ::google::protobuf::Arena* PROTOBUF_NULLABLE arena) {
+  return ::new (mem) Match(arena);
+}
+constexpr auto Match::InternalNewImpl_() {
+  return ::google::protobuf::internal::MessageCreator::CopyInit(sizeof(Match),
+                                            alignof(Match));
+}
+constexpr auto Match::InternalGenerateClassData_() {
+  return ::google::protobuf::internal::ClassDataFull{
+      ::google::protobuf::internal::ClassData{
+          &_Match_default_instance_._instance,
+          &_table_.header,
+          nullptr,  // OnDemandRegisterArenaDtor
+          nullptr,  // IsInitialized
+          &Match::MergeImpl,
+          ::google::protobuf::Message::GetNewImpl<Match>(),
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+          &Match::SharedDtor,
+          ::google::protobuf::Message::GetClearImpl<Match>(), &Match::ByteSizeLong,
+              &Match::_InternalSerialize,
+#endif  // PROTOBUF_CUSTOM_VTABLE
+          PROTOBUF_FIELD_OFFSET(Match, _impl_._cached_size_),
+          false,
+      },
+      &Match::kDescriptorMethods,
+      &descriptor_table_api_2fhttp_5fv1_2eproto,
+      nullptr,  // tracker
+  };
+}
+
+PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 const
+    ::google::protobuf::internal::ClassDataFull Match_class_data_ =
+        Match::InternalGenerateClassData_();
+
+PROTOBUF_ATTRIBUTE_WEAK const ::google::protobuf::internal::ClassData* PROTOBUF_NONNULL
+Match::GetClassData() const {
+  ::google::protobuf::internal::PrefetchToLocalCache(&Match_class_data_);
+  ::google::protobuf::internal::PrefetchToLocalCache(Match_class_data_.tc_table);
+  return Match_class_data_.base();
+}
+PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
+const ::_pbi::TcParseTable<3, 6, 1, 47, 2>
+Match::_table_ = {
+  {
+    PROTOBUF_FIELD_OFFSET(Match, _impl_._has_bits_),
+    0, // no _extensions_
+    6, 56,  // max_field_number, fast_idx_mask
+    offsetof(decltype(_table_), field_lookup_table),
+    4294967232,  // skipmap
+    offsetof(decltype(_table_), field_entries),
+    6,  // num_field_entries
+    1,  // num_aux_entries
+    offsetof(decltype(_table_), aux_entries),
+    Match_class_data_.base(),
+    nullptr,  // post_loop_handler
+    ::_pbi::TcParser::GenericFallback,  // fallback
+    #ifdef PROTOBUF_PREFETCH_PARSE_TABLE
+    ::_pbi::TcParser::GetTable<::nevr::http::v1::Match>(),  // to_prefetch
+    #endif  // PROTOBUF_PREFETCH_PARSE_TABLE
+  }, {{
+    {::_pbi::TcParser::MiniParse, {}},
+    // string match_id = 1 [json_name = "matchId"];
+    {::_pbi::TcParser::FastUS1,
+     {10, 0, 0, PROTOBUF_FIELD_OFFSET(Match, _impl_.match_id_)}},
+    // bool authoritative = 2 [json_name = "authoritative"];
+    {::_pbi::TcParser::SingularVarintNoZag1<bool, offsetof(Match, _impl_.authoritative_), 3>(),
+     {16, 3, 0, PROTOBUF_FIELD_OFFSET(Match, _impl_.authoritative_)}},
+    // .google.protobuf.StringValue label = 3 [json_name = "label"];
+    {::_pbi::TcParser::FastMtS1,
+     {26, 2, 0, PROTOBUF_FIELD_OFFSET(Match, _impl_.label_)}},
+    // int32 size = 4 [json_name = "size"];
+    {::_pbi::TcParser::SingularVarintNoZag1<::uint32_t, offsetof(Match, _impl_.size_), 4>(),
+     {32, 4, 0, PROTOBUF_FIELD_OFFSET(Match, _impl_.size_)}},
+    // int32 tick_rate = 5 [json_name = "tickRate"];
+    {::_pbi::TcParser::SingularVarintNoZag1<::uint32_t, offsetof(Match, _impl_.tick_rate_), 5>(),
+     {40, 5, 0, PROTOBUF_FIELD_OFFSET(Match, _impl_.tick_rate_)}},
+    // string handler_name = 6 [json_name = "handlerName"];
+    {::_pbi::TcParser::FastUS1,
+     {50, 1, 0, PROTOBUF_FIELD_OFFSET(Match, _impl_.handler_name_)}},
+    {::_pbi::TcParser::MiniParse, {}},
+  }}, {{
+    65535, 65535
+  }}, {{
+    // string match_id = 1 [json_name = "matchId"];
+    {PROTOBUF_FIELD_OFFSET(Match, _impl_.match_id_), _Internal::kHasBitsOffset + 0, 0, (0 | ::_fl::kFcOptional | ::_fl::kUtf8String | ::_fl::kRepAString)},
+    // bool authoritative = 2 [json_name = "authoritative"];
+    {PROTOBUF_FIELD_OFFSET(Match, _impl_.authoritative_), _Internal::kHasBitsOffset + 3, 0, (0 | ::_fl::kFcOptional | ::_fl::kBool)},
+    // .google.protobuf.StringValue label = 3 [json_name = "label"];
+    {PROTOBUF_FIELD_OFFSET(Match, _impl_.label_), _Internal::kHasBitsOffset + 2, 0, (0 | ::_fl::kFcOptional | ::_fl::kMessage | ::_fl::kTvTable)},
+    // int32 size = 4 [json_name = "size"];
+    {PROTOBUF_FIELD_OFFSET(Match, _impl_.size_), _Internal::kHasBitsOffset + 4, 0, (0 | ::_fl::kFcOptional | ::_fl::kInt32)},
+    // int32 tick_rate = 5 [json_name = "tickRate"];
+    {PROTOBUF_FIELD_OFFSET(Match, _impl_.tick_rate_), _Internal::kHasBitsOffset + 5, 0, (0 | ::_fl::kFcOptional | ::_fl::kInt32)},
+    // string handler_name = 6 [json_name = "handlerName"];
+    {PROTOBUF_FIELD_OFFSET(Match, _impl_.handler_name_), _Internal::kHasBitsOffset + 1, 0, (0 | ::_fl::kFcOptional | ::_fl::kUtf8String | ::_fl::kRepAString)},
+  }},
+  {{
+      {::_pbi::TcParser::GetTable<::google::protobuf::StringValue>()},
+  }},
+  {{
+    "\22\10\0\0\0\0\14\0"
+    "nevr.http.v1.Match"
+    "match_id"
+    "handler_name"
+  }},
+};
+PROTOBUF_NOINLINE void Match::Clear() {
+// @@protoc_insertion_point(message_clear_start:nevr.http.v1.Match)
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  ::uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  cached_has_bits = _impl_._has_bits_[0];
+  if ((cached_has_bits & 0x00000007U) != 0) {
+    if ((cached_has_bits & 0x00000001U) != 0) {
+      _impl_.match_id_.ClearNonDefaultToEmpty();
+    }
+    if ((cached_has_bits & 0x00000002U) != 0) {
+      _impl_.handler_name_.ClearNonDefaultToEmpty();
+    }
+    if ((cached_has_bits & 0x00000004U) != 0) {
+      ABSL_DCHECK(_impl_.label_ != nullptr);
+      _impl_.label_->Clear();
+    }
+  }
+  if ((cached_has_bits & 0x00000038U) != 0) {
+    ::memset(&_impl_.authoritative_, 0, static_cast<::size_t>(
+        reinterpret_cast<char*>(&_impl_.tick_rate_) -
+        reinterpret_cast<char*>(&_impl_.authoritative_)) + sizeof(_impl_.tick_rate_));
+  }
+  _impl_._has_bits_.Clear();
+  _internal_metadata_.Clear<::google::protobuf::UnknownFieldSet>();
+}
+
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+::uint8_t* PROTOBUF_NONNULL Match::_InternalSerialize(
+    const ::google::protobuf::MessageLite& base, ::uint8_t* PROTOBUF_NONNULL target,
+    ::google::protobuf::io::EpsCopyOutputStream* PROTOBUF_NONNULL stream) {
+  const Match& this_ = static_cast<const Match&>(base);
+#else   // PROTOBUF_CUSTOM_VTABLE
+::uint8_t* PROTOBUF_NONNULL Match::_InternalSerialize(
+    ::uint8_t* PROTOBUF_NONNULL target,
+    ::google::protobuf::io::EpsCopyOutputStream* PROTOBUF_NONNULL stream) const {
+  const Match& this_ = *this;
+#endif  // PROTOBUF_CUSTOM_VTABLE
+  if constexpr (::_pbi::DebugHardenVerifyHasBitConsistency()) {
+    this_.VerifyHasBitConsistency();
+  }
+  // @@protoc_insertion_point(serialize_to_array_start:nevr.http.v1.Match)
+  ::uint32_t cached_has_bits = 0;
+  (void)cached_has_bits;
+
+  // string match_id = 1 [json_name = "matchId"];
+  if ((this_._impl_._has_bits_[0] & 0x00000001U) != 0) {
+    if (!this_._internal_match_id().empty()) {
+      const ::std::string& _s = this_._internal_match_id();
+      ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
+          _s.data(), static_cast<int>(_s.length()), ::google::protobuf::internal::WireFormatLite::SERIALIZE, "nevr.http.v1.Match.match_id");
+      target = stream->WriteStringMaybeAliased(1, _s, target);
+    }
+  }
+
+  // bool authoritative = 2 [json_name = "authoritative"];
+  if ((this_._impl_._has_bits_[0] & 0x00000008U) != 0) {
+    if (this_._internal_authoritative() != 0) {
+      target = stream->EnsureSpace(target);
+      target = ::_pbi::WireFormatLite::WriteBoolToArray(
+          2, this_._internal_authoritative(), target);
+    }
+  }
+
+  cached_has_bits = this_._impl_._has_bits_[0];
+  // .google.protobuf.StringValue label = 3 [json_name = "label"];
+  if ((cached_has_bits & 0x00000004U) != 0) {
+    target = ::google::protobuf::internal::WireFormatLite::InternalWriteMessage(
+        3, *this_._impl_.label_, this_._impl_.label_->GetCachedSize(), target,
+        stream);
+  }
+
+  // int32 size = 4 [json_name = "size"];
+  if ((cached_has_bits & 0x00000010U) != 0) {
+    if (this_._internal_size() != 0) {
+      target =
+          ::google::protobuf::internal::WireFormatLite::WriteInt32ToArrayWithField<4>(
+              stream, this_._internal_size(), target);
+    }
+  }
+
+  // int32 tick_rate = 5 [json_name = "tickRate"];
+  if ((cached_has_bits & 0x00000020U) != 0) {
+    if (this_._internal_tick_rate() != 0) {
+      target =
+          ::google::protobuf::internal::WireFormatLite::WriteInt32ToArrayWithField<5>(
+              stream, this_._internal_tick_rate(), target);
+    }
+  }
+
+  // string handler_name = 6 [json_name = "handlerName"];
+  if ((cached_has_bits & 0x00000002U) != 0) {
+    if (!this_._internal_handler_name().empty()) {
+      const ::std::string& _s = this_._internal_handler_name();
+      ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
+          _s.data(), static_cast<int>(_s.length()), ::google::protobuf::internal::WireFormatLite::SERIALIZE, "nevr.http.v1.Match.handler_name");
+      target = stream->WriteStringMaybeAliased(6, _s, target);
+    }
+  }
+
+  if (ABSL_PREDICT_FALSE(this_._internal_metadata_.have_unknown_fields())) {
+    target =
+        ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
+            this_._internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance), target, stream);
+  }
+  // @@protoc_insertion_point(serialize_to_array_end:nevr.http.v1.Match)
+  return target;
+}
+
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+::size_t Match::ByteSizeLong(const MessageLite& base) {
+  const Match& this_ = static_cast<const Match&>(base);
+#else   // PROTOBUF_CUSTOM_VTABLE
+::size_t Match::ByteSizeLong() const {
+  const Match& this_ = *this;
+#endif  // PROTOBUF_CUSTOM_VTABLE
+  // @@protoc_insertion_point(message_byte_size_start:nevr.http.v1.Match)
+  ::size_t total_size = 0;
+
+  ::uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void)cached_has_bits;
+
+  ::_pbi::Prefetch5LinesFrom7Lines(&this_);
+  cached_has_bits = this_._impl_._has_bits_[0];
+  if ((cached_has_bits & 0x0000003fU) != 0) {
+    // string match_id = 1 [json_name = "matchId"];
+    if ((cached_has_bits & 0x00000001U) != 0) {
+      if (!this_._internal_match_id().empty()) {
+        total_size += 1 + ::google::protobuf::internal::WireFormatLite::StringSize(
+                                        this_._internal_match_id());
+      }
+    }
+    // string handler_name = 6 [json_name = "handlerName"];
+    if ((cached_has_bits & 0x00000002U) != 0) {
+      if (!this_._internal_handler_name().empty()) {
+        total_size += 1 + ::google::protobuf::internal::WireFormatLite::StringSize(
+                                        this_._internal_handler_name());
+      }
+    }
+    // .google.protobuf.StringValue label = 3 [json_name = "label"];
+    if ((cached_has_bits & 0x00000004U) != 0) {
+      total_size += 1 +
+                    ::google::protobuf::internal::WireFormatLite::MessageSize(*this_._impl_.label_);
+    }
+    // bool authoritative = 2 [json_name = "authoritative"];
+    if ((cached_has_bits & 0x00000008U) != 0) {
+      if (this_._internal_authoritative() != 0) {
+        total_size += 2;
+      }
+    }
+    // int32 size = 4 [json_name = "size"];
+    if ((cached_has_bits & 0x00000010U) != 0) {
+      if (this_._internal_size() != 0) {
+        total_size += ::_pbi::WireFormatLite::Int32SizePlusOne(
+            this_._internal_size());
+      }
+    }
+    // int32 tick_rate = 5 [json_name = "tickRate"];
+    if ((cached_has_bits & 0x00000020U) != 0) {
+      if (this_._internal_tick_rate() != 0) {
+        total_size += ::_pbi::WireFormatLite::Int32SizePlusOne(
+            this_._internal_tick_rate());
+      }
+    }
+  }
+  return this_.MaybeComputeUnknownFieldsSize(total_size,
+                                             &this_._impl_._cached_size_);
+}
+
+void Match::MergeImpl(::google::protobuf::MessageLite& to_msg, const ::google::protobuf::MessageLite& from_msg) {
+  auto* const _this = static_cast<Match*>(&to_msg);
+  auto& from = static_cast<const Match&>(from_msg);
+  if constexpr (::_pbi::DebugHardenVerifyHasBitConsistency()) {
+    from.VerifyHasBitConsistency();
+  }
+  ::google::protobuf::Arena* arena = _this->GetArena();
+  // @@protoc_insertion_point(class_specific_merge_from_start:nevr.http.v1.Match)
+  ABSL_DCHECK_NE(&from, _this);
+  ::uint32_t cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  cached_has_bits = from._impl_._has_bits_[0];
+  if ((cached_has_bits & 0x0000003fU) != 0) {
+    if ((cached_has_bits & 0x00000001U) != 0) {
+      if (!from._internal_match_id().empty()) {
+        _this->_internal_set_match_id(from._internal_match_id());
+      } else {
+        if (_this->_impl_.match_id_.IsDefault()) {
+          _this->_internal_set_match_id("");
+        }
+      }
+    }
+    if ((cached_has_bits & 0x00000002U) != 0) {
+      if (!from._internal_handler_name().empty()) {
+        _this->_internal_set_handler_name(from._internal_handler_name());
+      } else {
+        if (_this->_impl_.handler_name_.IsDefault()) {
+          _this->_internal_set_handler_name("");
+        }
+      }
+    }
+    if ((cached_has_bits & 0x00000004U) != 0) {
+      ABSL_DCHECK(from._impl_.label_ != nullptr);
+      if (_this->_impl_.label_ == nullptr) {
+        _this->_impl_.label_ = ::google::protobuf::Message::CopyConstruct(arena, *from._impl_.label_);
+      } else {
+        _this->_impl_.label_->MergeFrom(*from._impl_.label_);
+      }
+    }
+    if ((cached_has_bits & 0x00000008U) != 0) {
+      if (from._internal_authoritative() != 0) {
+        _this->_impl_.authoritative_ = from._impl_.authoritative_;
+      }
+    }
+    if ((cached_has_bits & 0x00000010U) != 0) {
+      if (from._internal_size() != 0) {
+        _this->_impl_.size_ = from._impl_.size_;
+      }
+    }
+    if ((cached_has_bits & 0x00000020U) != 0) {
+      if (from._internal_tick_rate() != 0) {
+        _this->_impl_.tick_rate_ = from._impl_.tick_rate_;
+      }
+    }
+  }
+  _this->_impl_._has_bits_[0] |= cached_has_bits;
+  _this->_internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(from._internal_metadata_);
+}
+
+void Match::CopyFrom(const Match& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:nevr.http.v1.Match)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+
+void Match::InternalSwap(Match* PROTOBUF_RESTRICT PROTOBUF_NONNULL other) {
+  using ::std::swap;
+  auto* arena = GetArena();
+  ABSL_DCHECK_EQ(arena, other->GetArena());
+  _internal_metadata_.InternalSwap(&other->_internal_metadata_);
+  swap(_impl_._has_bits_[0], other->_impl_._has_bits_[0]);
+  ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.match_id_, &other->_impl_.match_id_, arena);
+  ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.handler_name_, &other->_impl_.handler_name_, arena);
+  ::google::protobuf::internal::memswap<
+      PROTOBUF_FIELD_OFFSET(Match, _impl_.tick_rate_)
+      + sizeof(Match::_impl_.tick_rate_)
+      - PROTOBUF_FIELD_OFFSET(Match, _impl_.label_)>(
+          reinterpret_cast<char*>(&_impl_.label_),
+          reinterpret_cast<char*>(&other->_impl_.label_));
+}
+
+::google::protobuf::Metadata Match::GetMetadata() const {
   return ::google::protobuf::Message::GetMetadataImpl(GetClassData()->full());
 }
 // @@protoc_insertion_point(namespace_scope)

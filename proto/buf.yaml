@@ -6,6 +6,7 @@ modules:
 deps:
   - buf.build/googleapis/googleapis
   - buf.build/grpc-ecosystem/grpc-gateway
+  - buf.build/heroiclabs/nakama-common
 
 
 lint:
@@ -13,7 +14,8 @@ lint:
     - STANDARD
   ignore_only:
     PACKAGE_DIRECTORY_MATCH:
-    - .
+      - "*"
+      
 breaking:
   use:
     - PACKAGE

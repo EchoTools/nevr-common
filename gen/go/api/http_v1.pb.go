@@ -637,6 +637,97 @@ func (x *LobbyEntrant) GetMetadata() map[string]string {
 	return nil
 }
 
+// Represents a realtime match.
+type Match struct {
+	state protoimpl.MessageState `protogen:"open.v1"`
+	// The ID of the match, can be used to join.
+	MatchId string `protobuf:"bytes,1,opt,name=match_id,json=matchId,proto3" json:"match_id,omitempty"`
+	// True if it's an server-managed authoritative match, false otherwise.
+	Authoritative bool `protobuf:"varint,2,opt,name=authoritative,proto3" json:"authoritative,omitempty"`
+	// Match label, if any.
+	Label *wrapperspb.StringValue `protobuf:"bytes,3,opt,name=label,proto3" json:"label,omitempty"`
+	// Current number of users in the match.
+	Size int32 `protobuf:"varint,4,opt,name=size,proto3" json:"size,omitempty"`
+	// Tick Rate
+	TickRate int32 `protobuf:"varint,5,opt,name=tick_rate,json=tickRate,proto3" json:"tick_rate,omitempty"`
+	// Handler name
+	HandlerName   string `protobuf:"bytes,6,opt,name=handler_name,json=handlerName,proto3" json:"handler_name,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *Match) Reset() {
+	*x = Match{}
+	mi := &file_api_http_v1_proto_msgTypes[6]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *Match) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*Match) ProtoMessage() {}
+
+func (x *Match) ProtoReflect() protoreflect.Message {
+	mi := &file_api_http_v1_proto_msgTypes[6]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use Match.ProtoReflect.Descriptor instead.
+func (*Match) Descriptor() ([]byte, []int) {
+	return file_api_http_v1_proto_rawDescGZIP(), []int{6}
+}
+
+func (x *Match) GetMatchId() string {
+	if x != nil {
+		return x.MatchId
+	}
+	return ""
+}
+
+func (x *Match) GetAuthoritative() bool {
+	if x != nil {
+		return x.Authoritative
+	}
+	return false
+}
+
+func (x *Match) GetLabel() *wrapperspb.StringValue {
+	if x != nil {
+		return x.Label
+	}
+	return nil
+}
+
+func (x *Match) GetSize() int32 {
+	if x != nil {
+		return x.Size
+	}
+	return 0
+}
+
+func (x *Match) GetTickRate() int32 {
+	if x != nil {
+		return x.TickRate
+	}
+	return 0
+}
+
+func (x *Match) GetHandlerName() string {
+	if x != nil {
+		return x.HandlerName
+	}
+	return ""
+}
+
 // A single server-state pair.
 type GuildGameServerList_GuildGameServer struct {
 	state protoimpl.MessageState `protogen:"open.v1"`
@@ -650,7 +741,7 @@ type GuildGameServerList_GuildGameServer struct {
 
 func (x *GuildGameServerList_GuildGameServer) Reset() {
 	*x = GuildGameServerList_GuildGameServer{}
-	mi := &file_api_http_v1_proto_msgTypes[6]
+	mi := &file_api_http_v1_proto_msgTypes[7]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -662,7 +753,7 @@ func (x *GuildGameServerList_GuildGameServer) String() string {
 func (*GuildGameServerList_GuildGameServer) ProtoMessage() {}
 
 func (x *GuildGameServerList_GuildGameServer) ProtoReflect() protoreflect.Message {
-	mi := &file_api_http_v1_proto_msgTypes[6]
+	mi := &file_api_http_v1_proto_msgTypes[7]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -706,7 +797,7 @@ type LobbySessionCreateRequest_EntrantReservation struct {
 
 func (x *LobbySessionCreateRequest_EntrantReservation) Reset() {
 	*x = LobbySessionCreateRequest_EntrantReservation{}
-	mi := &file_api_http_v1_proto_msgTypes[8]
+	mi := &file_api_http_v1_proto_msgTypes[9]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -718,7 +809,7 @@ func (x *LobbySessionCreateRequest_EntrantReservation) String() string {
 func (*LobbySessionCreateRequest_EntrantReservation) ProtoMessage() {}
 
 func (x *LobbySessionCreateRequest_EntrantReservation) ProtoReflect() protoreflect.Message {
-	mi := &file_api_http_v1_proto_msgTypes[8]
+	mi := &file_api_http_v1_proto_msgTypes[9]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -830,7 +921,14 @@ const file_api_http_v1_proto_rawDesc = "" +
 	"\bmetadata\x18\x17 \x03(\v2(.nevr.http.v1.LobbyEntrant.MetadataEntryR\bmetadata\x1a;\n" +
 	"\rMetadataEntry\x12\x10\n" +
 	"\x03key\x18\x01 \x01(\tR\x03key\x12\x14\n" +
-	"\x05value\x18\x02 \x01(\tR\x05value:\x028\x01Bg\n" +
+	"\x05value\x18\x02 \x01(\tR\x05value:\x028\x01\"\xd0\x01\n" +
+	"\x05Match\x12\x19\n" +
+	"\bmatch_id\x18\x01 \x01(\tR\amatchId\x12$\n" +
+	"\rauthoritative\x18\x02 \x01(\bR\rauthoritative\x122\n" +
+	"\x05label\x18\x03 \x01(\v2\x1c.google.protobuf.StringValueR\x05label\x12\x12\n" +
+	"\x04size\x18\x04 \x01(\x05R\x04size\x12\x1b\n" +
+	"\ttick_rate\x18\x05 \x01(\x05R\btickRate\x12!\n" +
+	"\fhandler_name\x18\x06 \x01(\tR\vhandlerNameBg\n" +
 	"\x1dcom.github.echotools.nevr.apiB\aNevrApiP\x01Z+github.com/echotools/nevr-common/gen/go/api\xaa\x02\rNevr.Protobufb\x06proto3"
 
 var (
@@ -846,7 +944,7 @@ func file_api_http_v1_proto_rawDescGZIP() []byte {
 }
 
 var file_api_http_v1_proto_enumTypes = make([]protoimpl.EnumInfo, 2)
-var file_api_http_v1_proto_msgTypes = make([]protoimpl.MessageInfo, 11)
+var file_api_http_v1_proto_msgTypes = make([]protoimpl.MessageInfo, 12)
 var file_api_http_v1_proto_goTypes = []any{
 	(GuildGameServerList_GuildGameServer_State)(0),                  // 0: nevr.http.v1.GuildGameServerList.GuildGameServer.State
 	(LobbySessionCreateRequest_EntrantReservation_RoleAlignment)(0), // 1: nevr.http.v1.LobbySessionCreateRequest.EntrantReservation.RoleAlignment
@@ -856,41 +954,43 @@ var file_api_http_v1_proto_goTypes = []any{
 	(*GameServer)(nil),                                              // 5: nevr.http.v1.GameServer
 	(*LobbySessionCreateRequest)(nil),                               // 6: nevr.http.v1.LobbySessionCreateRequest
 	(*LobbyEntrant)(nil),                                            // 7: nevr.http.v1.LobbyEntrant
-	(*GuildGameServerList_GuildGameServer)(nil),                     // 8: nevr.http.v1.GuildGameServerList.GuildGameServer
-	nil, // 9: nevr.http.v1.GameServer.MetadataEntry
-	(*LobbySessionCreateRequest_EntrantReservation)(nil), // 10: nevr.http.v1.LobbySessionCreateRequest.EntrantReservation
-	nil,                            // 11: nevr.http.v1.LobbySessionCreateRequest.MetadataEntry
-	nil,                            // 12: nevr.http.v1.LobbyEntrant.MetadataEntry
-	(*wrapperspb.Int32Value)(nil),  // 13: google.protobuf.Int32Value
-	(*wrapperspb.StringValue)(nil), // 14: google.protobuf.StringValue
-	(*wrapperspb.UInt64Value)(nil), // 15: google.protobuf.UInt64Value
-	(*timestamppb.Timestamp)(nil),  // 16: google.protobuf.Timestamp
+	(*Match)(nil),                                                   // 8: nevr.http.v1.Match
+	(*GuildGameServerList_GuildGameServer)(nil),                     // 9: nevr.http.v1.GuildGameServerList.GuildGameServer
+	nil, // 10: nevr.http.v1.GameServer.MetadataEntry
+	(*LobbySessionCreateRequest_EntrantReservation)(nil), // 11: nevr.http.v1.LobbySessionCreateRequest.EntrantReservation
+	nil,                            // 12: nevr.http.v1.LobbySessionCreateRequest.MetadataEntry
+	nil,                            // 13: nevr.http.v1.LobbyEntrant.MetadataEntry
+	(*wrapperspb.Int32Value)(nil),  // 14: google.protobuf.Int32Value
+	(*wrapperspb.StringValue)(nil), // 15: google.protobuf.StringValue
+	(*wrapperspb.UInt64Value)(nil), // 16: google.protobuf.UInt64Value
+	(*timestamppb.Timestamp)(nil),  // 17: google.protobuf.Timestamp
 }
 var file_api_http_v1_proto_depIdxs = []int32{
-	13, // 0: nevr.http.v1.ListServersRequest.limit:type_name -> google.protobuf.Int32Value
-	14, // 1: nevr.http.v1.ListServersRequest.query:type_name -> google.protobuf.StringValue
-	13, // 2: nevr.http.v1.ListGuildGameServersRequest.limit:type_name -> google.protobuf.Int32Value
-	13, // 3: nevr.http.v1.ListGuildGameServersRequest.state:type_name -> google.protobuf.Int32Value
-	14, // 4: nevr.http.v1.ListGuildGameServersRequest.query:type_name -> google.protobuf.StringValue
-	8,  // 5: nevr.http.v1.GuildGameServerList.guild_servers:type_name -> nevr.http.v1.GuildGameServerList.GuildGameServer
-	15, // 6: nevr.http.v1.GameServer.server_id:type_name -> google.protobuf.UInt64Value
-	14, // 7: nevr.http.v1.GameServer.operator_id:type_name -> google.protobuf.StringValue
-	14, // 8: nevr.http.v1.GameServer.endpoint:type_name -> google.protobuf.StringValue
-	9,  // 9: nevr.http.v1.GameServer.metadata:type_name -> nevr.http.v1.GameServer.MetadataEntry
+	14, // 0: nevr.http.v1.ListServersRequest.limit:type_name -> google.protobuf.Int32Value
+	15, // 1: nevr.http.v1.ListServersRequest.query:type_name -> google.protobuf.StringValue
+	14, // 2: nevr.http.v1.ListGuildGameServersRequest.limit:type_name -> google.protobuf.Int32Value
+	14, // 3: nevr.http.v1.ListGuildGameServersRequest.state:type_name -> google.protobuf.Int32Value
+	15, // 4: nevr.http.v1.ListGuildGameServersRequest.query:type_name -> google.protobuf.StringValue
+	9,  // 5: nevr.http.v1.GuildGameServerList.guild_servers:type_name -> nevr.http.v1.GuildGameServerList.GuildGameServer
+	16, // 6: nevr.http.v1.GameServer.server_id:type_name -> google.protobuf.UInt64Value
+	15, // 7: nevr.http.v1.GameServer.operator_id:type_name -> google.protobuf.StringValue
+	15, // 8: nevr.http.v1.GameServer.endpoint:type_name -> google.protobuf.StringValue
+	10, // 9: nevr.http.v1.GameServer.metadata:type_name -> nevr.http.v1.GameServer.MetadataEntry
 	7,  // 10: nevr.http.v1.LobbySessionCreateRequest.reservations:type_name -> nevr.http.v1.LobbyEntrant
-	16, // 11: nevr.http.v1.LobbySessionCreateRequest.match_expiry:type_name -> google.protobuf.Timestamp
-	11, // 12: nevr.http.v1.LobbySessionCreateRequest.metadata:type_name -> nevr.http.v1.LobbySessionCreateRequest.MetadataEntry
-	12, // 13: nevr.http.v1.LobbyEntrant.metadata:type_name -> nevr.http.v1.LobbyEntrant.MetadataEntry
-	5,  // 14: nevr.http.v1.GuildGameServerList.GuildGameServer.game_server:type_name -> nevr.http.v1.GameServer
-	13, // 15: nevr.http.v1.GuildGameServerList.GuildGameServer.state:type_name -> google.protobuf.Int32Value
-	7,  // 16: nevr.http.v1.LobbySessionCreateRequest.EntrantReservation.entrant:type_name -> nevr.http.v1.LobbyEntrant
-	13, // 17: nevr.http.v1.LobbySessionCreateRequest.EntrantReservation.role_alignment:type_name -> google.protobuf.Int32Value
-	16, // 18: nevr.http.v1.LobbySessionCreateRequest.EntrantReservation.expiry:type_name -> google.protobuf.Timestamp
-	19, // [19:19] is the sub-list for method output_type
-	19, // [19:19] is the sub-list for method input_type
-	19, // [19:19] is the sub-list for extension type_name
-	19, // [19:19] is the sub-list for extension extendee
-	0,  // [0:19] is the sub-list for field type_name
+	17, // 11: nevr.http.v1.LobbySessionCreateRequest.match_expiry:type_name -> google.protobuf.Timestamp
+	12, // 12: nevr.http.v1.LobbySessionCreateRequest.metadata:type_name -> nevr.http.v1.LobbySessionCreateRequest.MetadataEntry
+	13, // 13: nevr.http.v1.LobbyEntrant.metadata:type_name -> nevr.http.v1.LobbyEntrant.MetadataEntry
+	15, // 14: nevr.http.v1.Match.label:type_name -> google.protobuf.StringValue
+	5,  // 15: nevr.http.v1.GuildGameServerList.GuildGameServer.game_server:type_name -> nevr.http.v1.GameServer
+	14, // 16: nevr.http.v1.GuildGameServerList.GuildGameServer.state:type_name -> google.protobuf.Int32Value
+	7,  // 17: nevr.http.v1.LobbySessionCreateRequest.EntrantReservation.entrant:type_name -> nevr.http.v1.LobbyEntrant
+	14, // 18: nevr.http.v1.LobbySessionCreateRequest.EntrantReservation.role_alignment:type_name -> google.protobuf.Int32Value
+	17, // 19: nevr.http.v1.LobbySessionCreateRequest.EntrantReservation.expiry:type_name -> google.protobuf.Timestamp
+	20, // [20:20] is the sub-list for method output_type
+	20, // [20:20] is the sub-list for method input_type
+	20, // [20:20] is the sub-list for extension type_name
+	20, // [20:20] is the sub-list for extension extendee
+	0,  // [0:20] is the sub-list for field type_name
 }
 
 func init() { file_api_http_v1_proto_init() }
@@ -904,7 +1004,7 @@ func file_api_http_v1_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_api_http_v1_proto_rawDesc), len(file_api_http_v1_proto_rawDesc)),
 			NumEnums:      2,
-			NumMessages:   11,
+			NumMessages:   12,
 			NumExtensions: 0,
 			NumServices:   0,
 		},

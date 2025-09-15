@@ -77,9 +77,14 @@ namespace Nevr.Protobuf {
             "BVINcm9sZUFsaWdubWVudBJECghtZXRhZGF0YRgXIAMoCzIoLm5ldnIuaHR0",
             "cC52MS5Mb2JieUVudHJhbnQuTWV0YWRhdGFFbnRyeVIIbWV0YWRhdGEaOwoN",
             "TWV0YWRhdGFFbnRyeRIQCgNrZXkYASABKAlSA2tleRIUCgV2YWx1ZRgCIAEo",
-            "CVIFdmFsdWU6AjgBQmcKHWNvbS5naXRodWIuZWNob3Rvb2xzLm5ldnIuYXBp",
-            "QgdOZXZyQXBpUAFaK2dpdGh1Yi5jb20vZWNob3Rvb2xzL25ldnItY29tbW9u",
-            "L2dlbi9nby9hcGmqAg1OZXZyLlByb3RvYnVmYgZwcm90bzM="));
+            "CVIFdmFsdWU6AjgBItABCgVNYXRjaBIZCghtYXRjaF9pZBgBIAEoCVIHbWF0",
+            "Y2hJZBIkCg1hdXRob3JpdGF0aXZlGAIgASgIUg1hdXRob3JpdGF0aXZlEjIK",
+            "BWxhYmVsGAMgASgLMhwuZ29vZ2xlLnByb3RvYnVmLlN0cmluZ1ZhbHVlUgVs",
+            "YWJlbBISCgRzaXplGAQgASgFUgRzaXplEhsKCXRpY2tfcmF0ZRgFIAEoBVII",
+            "dGlja1JhdGUSIQoMaGFuZGxlcl9uYW1lGAYgASgJUgtoYW5kbGVyTmFtZUJn",
+            "Ch1jb20uZ2l0aHViLmVjaG90b29scy5uZXZyLmFwaUIHTmV2ckFwaVABWitn",
+            "aXRodWIuY29tL2VjaG90b29scy9uZXZyLWNvbW1vbi9nZW4vZ28vYXBpqgIN",
+            "TmV2ci5Qcm90b2J1ZmIGcHJvdG8z"));
       descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
           new pbr::FileDescriptor[] { global::Google.Protobuf.WellKnownTypes.TimestampReflection.Descriptor, global::Google.Protobuf.WellKnownTypes.WrappersReflection.Descriptor, },
           new pbr::GeneratedClrTypeInfo(null, null, new pbr::GeneratedClrTypeInfo[] {
@@ -89,7 +94,8 @@ namespace Nevr.Protobuf {
             new pbr::GeneratedClrTypeInfo(typeof(global::Nevr.Protobuf.GameServer), global::Nevr.Protobuf.GameServer.Parser, new[]{ "ServerId", "OperatorId", "Endpoint", "SupportedFeatures", "TimestepNanos", "Metadata" }, null, null, null, new pbr::GeneratedClrTypeInfo[] { null, }),
             new pbr::GeneratedClrTypeInfo(typeof(global::Nevr.Protobuf.LobbySessionCreateRequest), global::Nevr.Protobuf.LobbySessionCreateRequest.Parser, new[]{ "Mode", "Level", "TeamSize", "GuildGroupId", "OwnerId", "RequiredFeatures", "Reservations", "MatchExpiry", "Metadata" }, null, null, null, new pbr::GeneratedClrTypeInfo[] { new pbr::GeneratedClrTypeInfo(typeof(global::Nevr.Protobuf.LobbySessionCreateRequest.Types.EntrantReservation), global::Nevr.Protobuf.LobbySessionCreateRequest.Types.EntrantReservation.Parser, new[]{ "Entrant", "RoleAlignment", "Expiry" }, null, new[]{ typeof(global::Nevr.Protobuf.LobbySessionCreateRequest.Types.EntrantReservation.Types.RoleAlignment) }, null, null),
             null, }),
-            new pbr::GeneratedClrTypeInfo(typeof(global::Nevr.Protobuf.LobbyEntrant), global::Nevr.Protobuf.LobbyEntrant.Parser, new[]{ "Id", "SessionId", "UserId", "Xpid", "DisplayName", "RoleAlignment", "Metadata" }, null, null, null, new pbr::GeneratedClrTypeInfo[] { null, })
+            new pbr::GeneratedClrTypeInfo(typeof(global::Nevr.Protobuf.LobbyEntrant), global::Nevr.Protobuf.LobbyEntrant.Parser, new[]{ "Id", "SessionId", "UserId", "Xpid", "DisplayName", "RoleAlignment", "Metadata" }, null, null, null, new pbr::GeneratedClrTypeInfo[] { null, }),
+            new pbr::GeneratedClrTypeInfo(typeof(global::Nevr.Protobuf.Match), global::Nevr.Protobuf.Match.Parser, new[]{ "MatchId", "Authoritative", "Label", "Size", "TickRate", "HandlerName" }, null, null, null, null)
           }));
     }
     #endregion
@@ -2931,6 +2937,418 @@ namespace Nevr.Protobuf {
           }
           case 186: {
             metadata_.AddEntriesFrom(ref input, _map_metadata_codec);
+            break;
+          }
+        }
+      }
+    }
+    #endif
+
+  }
+
+  /// <summary>
+  /// Represents a realtime match.
+  /// </summary>
+  [global::System.Diagnostics.DebuggerDisplayAttribute("{ToString(),nq}")]
+  public sealed partial class Match : pb::IMessage<Match>
+  #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+      , pb::IBufferMessage
+  #endif
+  {
+    private static readonly pb::MessageParser<Match> _parser = new pb::MessageParser<Match>(() => new Match());
+    private pb::UnknownFieldSet _unknownFields;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public static pb::MessageParser<Match> Parser { get { return _parser; } }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public static pbr::MessageDescriptor Descriptor {
+      get { return global::Nevr.Protobuf.HttpV1Reflection.Descriptor.MessageTypes[6]; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    pbr::MessageDescriptor pb::IMessage.Descriptor {
+      get { return Descriptor; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public Match() {
+      OnConstruction();
+    }
+
+    partial void OnConstruction();
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public Match(Match other) : this() {
+      matchId_ = other.matchId_;
+      authoritative_ = other.authoritative_;
+      Label = other.Label;
+      size_ = other.size_;
+      tickRate_ = other.tickRate_;
+      handlerName_ = other.handlerName_;
+      _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public Match Clone() {
+      return new Match(this);
+    }
+
+    /// <summary>Field number for the "match_id" field.</summary>
+    public const int MatchIdFieldNumber = 1;
+    private string matchId_ = "";
+    /// <summary>
+    /// The ID of the match, can be used to join.
+    /// </summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public string MatchId {
+      get { return matchId_; }
+      set {
+        matchId_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
+      }
+    }
+
+    /// <summary>Field number for the "authoritative" field.</summary>
+    public const int AuthoritativeFieldNumber = 2;
+    private bool authoritative_;
+    /// <summary>
+    /// True if it's an server-managed authoritative match, false otherwise.
+    /// </summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public bool Authoritative {
+      get { return authoritative_; }
+      set {
+        authoritative_ = value;
+      }
+    }
+
+    /// <summary>Field number for the "label" field.</summary>
+    public const int LabelFieldNumber = 3;
+    private static readonly pb::FieldCodec<string> _single_label_codec = pb::FieldCodec.ForClassWrapper<string>(26);
+    private string label_;
+    /// <summary>
+    /// Match label, if any.
+    /// </summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public string Label {
+      get { return label_; }
+      set {
+        label_ = value;
+      }
+    }
+
+
+    /// <summary>Field number for the "size" field.</summary>
+    public const int SizeFieldNumber = 4;
+    private int size_;
+    /// <summary>
+    /// Current number of users in the match.
+    /// </summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public int Size {
+      get { return size_; }
+      set {
+        size_ = value;
+      }
+    }
+
+    /// <summary>Field number for the "tick_rate" field.</summary>
+    public const int TickRateFieldNumber = 5;
+    private int tickRate_;
+    /// <summary>
+    /// Tick Rate
+    /// </summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public int TickRate {
+      get { return tickRate_; }
+      set {
+        tickRate_ = value;
+      }
+    }
+
+    /// <summary>Field number for the "handler_name" field.</summary>
+    public const int HandlerNameFieldNumber = 6;
+    private string handlerName_ = "";
+    /// <summary>
+    /// Handler name
+    /// </summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public string HandlerName {
+      get { return handlerName_; }
+      set {
+        handlerName_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
+      }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public override bool Equals(object other) {
+      return Equals(other as Match);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public bool Equals(Match other) {
+      if (ReferenceEquals(other, null)) {
+        return false;
+      }
+      if (ReferenceEquals(other, this)) {
+        return true;
+      }
+      if (MatchId != other.MatchId) return false;
+      if (Authoritative != other.Authoritative) return false;
+      if (Label != other.Label) return false;
+      if (Size != other.Size) return false;
+      if (TickRate != other.TickRate) return false;
+      if (HandlerName != other.HandlerName) return false;
+      return Equals(_unknownFields, other._unknownFields);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public override int GetHashCode() {
+      int hash = 1;
+      if (MatchId.Length != 0) hash ^= MatchId.GetHashCode();
+      if (Authoritative != false) hash ^= Authoritative.GetHashCode();
+      if (label_ != null) hash ^= Label.GetHashCode();
+      if (Size != 0) hash ^= Size.GetHashCode();
+      if (TickRate != 0) hash ^= TickRate.GetHashCode();
+      if (HandlerName.Length != 0) hash ^= HandlerName.GetHashCode();
+      if (_unknownFields != null) {
+        hash ^= _unknownFields.GetHashCode();
+      }
+      return hash;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public override string ToString() {
+      return pb::JsonFormatter.ToDiagnosticString(this);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public void WriteTo(pb::CodedOutputStream output) {
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+      output.WriteRawMessage(this);
+    #else
+      if (MatchId.Length != 0) {
+        output.WriteRawTag(10);
+        output.WriteString(MatchId);
+      }
+      if (Authoritative != false) {
+        output.WriteRawTag(16);
+        output.WriteBool(Authoritative);
+      }
+      if (label_ != null) {
+        _single_label_codec.WriteTagAndValue(output, Label);
+      }
+      if (Size != 0) {
+        output.WriteRawTag(32);
+        output.WriteInt32(Size);
+      }
+      if (TickRate != 0) {
+        output.WriteRawTag(40);
+        output.WriteInt32(TickRate);
+      }
+      if (HandlerName.Length != 0) {
+        output.WriteRawTag(50);
+        output.WriteString(HandlerName);
+      }
+      if (_unknownFields != null) {
+        _unknownFields.WriteTo(output);
+      }
+    #endif
+    }
+
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    void pb::IBufferMessage.InternalWriteTo(ref pb::WriteContext output) {
+      if (MatchId.Length != 0) {
+        output.WriteRawTag(10);
+        output.WriteString(MatchId);
+      }
+      if (Authoritative != false) {
+        output.WriteRawTag(16);
+        output.WriteBool(Authoritative);
+      }
+      if (label_ != null) {
+        _single_label_codec.WriteTagAndValue(ref output, Label);
+      }
+      if (Size != 0) {
+        output.WriteRawTag(32);
+        output.WriteInt32(Size);
+      }
+      if (TickRate != 0) {
+        output.WriteRawTag(40);
+        output.WriteInt32(TickRate);
+      }
+      if (HandlerName.Length != 0) {
+        output.WriteRawTag(50);
+        output.WriteString(HandlerName);
+      }
+      if (_unknownFields != null) {
+        _unknownFields.WriteTo(ref output);
+      }
+    }
+    #endif
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public int CalculateSize() {
+      int size = 0;
+      if (MatchId.Length != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeStringSize(MatchId);
+      }
+      if (Authoritative != false) {
+        size += 1 + 1;
+      }
+      if (label_ != null) {
+        size += _single_label_codec.CalculateSizeWithTag(Label);
+      }
+      if (Size != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeInt32Size(Size);
+      }
+      if (TickRate != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeInt32Size(TickRate);
+      }
+      if (HandlerName.Length != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeStringSize(HandlerName);
+      }
+      if (_unknownFields != null) {
+        size += _unknownFields.CalculateSize();
+      }
+      return size;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public void MergeFrom(Match other) {
+      if (other == null) {
+        return;
+      }
+      if (other.MatchId.Length != 0) {
+        MatchId = other.MatchId;
+      }
+      if (other.Authoritative != false) {
+        Authoritative = other.Authoritative;
+      }
+      if (other.label_ != null) {
+        if (label_ == null || other.Label != "") {
+          Label = other.Label;
+        }
+      }
+      if (other.Size != 0) {
+        Size = other.Size;
+      }
+      if (other.TickRate != 0) {
+        TickRate = other.TickRate;
+      }
+      if (other.HandlerName.Length != 0) {
+        HandlerName = other.HandlerName;
+      }
+      _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public void MergeFrom(pb::CodedInputStream input) {
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+      input.ReadRawMessage(this);
+    #else
+      uint tag;
+      while ((tag = input.ReadTag()) != 0) {
+      if ((tag & 7) == 4) {
+        // Abort on any end group tag.
+        return;
+      }
+      switch(tag) {
+          default:
+            _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
+            break;
+          case 10: {
+            MatchId = input.ReadString();
+            break;
+          }
+          case 16: {
+            Authoritative = input.ReadBool();
+            break;
+          }
+          case 26: {
+            string value = _single_label_codec.Read(input);
+            if (label_ == null || value != "") {
+              Label = value;
+            }
+            break;
+          }
+          case 32: {
+            Size = input.ReadInt32();
+            break;
+          }
+          case 40: {
+            TickRate = input.ReadInt32();
+            break;
+          }
+          case 50: {
+            HandlerName = input.ReadString();
+            break;
+          }
+        }
+      }
+    #endif
+    }
+
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    void pb::IBufferMessage.InternalMergeFrom(ref pb::ParseContext input) {
+      uint tag;
+      while ((tag = input.ReadTag()) != 0) {
+      if ((tag & 7) == 4) {
+        // Abort on any end group tag.
+        return;
+      }
+      switch(tag) {
+          default:
+            _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, ref input);
+            break;
+          case 10: {
+            MatchId = input.ReadString();
+            break;
+          }
+          case 16: {
+            Authoritative = input.ReadBool();
+            break;
+          }
+          case 26: {
+            string value = _single_label_codec.Read(ref input);
+            if (label_ == null || value != "") {
+              Label = value;
+            }
+            break;
+          }
+          case 32: {
+            Size = input.ReadInt32();
+            break;
+          }
+          case 40: {
+            TickRate = input.ReadInt32();
+            break;
+          }
+          case 50: {
+            HandlerName = input.ReadString();
             break;
           }
         }

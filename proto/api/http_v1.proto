@@ -131,3 +131,19 @@ message LobbyEntrant {
   int32 role_alignment = 19;
   map<string, string> metadata = 23;
 }
+
+// Represents a realtime match.
+message Match {
+  // The ID of the match, can be used to join.
+  string match_id = 1;
+  // True if it's an server-managed authoritative match, false otherwise.
+  bool authoritative = 2;
+  // Match label, if any.
+  google.protobuf.StringValue label = 3;
+  // Current number of users in the match.
+  int32 size = 4;
+  // Tick Rate
+  int32 tick_rate = 5;
+  // Handler name
+  string handler_name = 6;
+}

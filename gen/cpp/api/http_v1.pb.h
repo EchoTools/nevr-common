@@ -110,6 +110,10 @@ class LobbySessionCreateRequest_MetadataEntry_DoNotUse;
 struct LobbySessionCreateRequest_MetadataEntry_DoNotUseDefaultTypeInternal;
 extern LobbySessionCreateRequest_MetadataEntry_DoNotUseDefaultTypeInternal _LobbySessionCreateRequest_MetadataEntry_DoNotUse_default_instance_;
 extern const ::google::protobuf::internal::ClassDataFull LobbySessionCreateRequest_MetadataEntry_DoNotUse_class_data_;
+class Match;
+struct MatchDefaultTypeInternal;
+extern MatchDefaultTypeInternal _Match_default_instance_;
+extern const ::google::protobuf::internal::ClassDataFull Match_class_data_;
 }  // namespace v1
 }  // namespace http
 }  // namespace nevr
@@ -325,6 +329,272 @@ class GameServer_MetadataEntry_DoNotUse final
   static constexpr auto InternalNewImpl_();
 };
 extern const ::google::protobuf::internal::ClassDataFull GameServer_MetadataEntry_DoNotUse_class_data_;
+// -------------------------------------------------------------------
+
+class Match final : public ::google::protobuf::Message
+/* @@protoc_insertion_point(class_definition:nevr.http.v1.Match) */ {
+ public:
+  inline Match() : Match(nullptr) {}
+  ~Match() PROTOBUF_FINAL;
+
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+  void operator delete(Match* PROTOBUF_NONNULL msg, ::std::destroying_delete_t) {
+    SharedDtor(*msg);
+    ::google::protobuf::internal::SizedDelete(msg, sizeof(Match));
+  }
+#endif
+
+  template <typename = void>
+  explicit PROTOBUF_CONSTEXPR Match(::google::protobuf::internal::ConstantInitialized);
+
+  inline Match(const Match& from) : Match(nullptr, from) {}
+  inline Match(Match&& from) noexcept
+      : Match(nullptr, ::std::move(from)) {}
+  inline Match& operator=(const Match& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline Match& operator=(Match&& from) noexcept {
+    if (this == &from) return *this;
+    if (::google::protobuf::internal::CanMoveWithInternalSwap(GetArena(), from.GetArena())) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  inline const ::google::protobuf::UnknownFieldSet& unknown_fields() const
+      ABSL_ATTRIBUTE_LIFETIME_BOUND {
+    return _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance);
+  }
+  inline ::google::protobuf::UnknownFieldSet* PROTOBUF_NONNULL mutable_unknown_fields()
+      ABSL_ATTRIBUTE_LIFETIME_BOUND {
+    return _internal_metadata_.mutable_unknown_fields<::google::protobuf::UnknownFieldSet>();
+  }
+
+  static const ::google::protobuf::Descriptor* PROTOBUF_NONNULL descriptor() {
+    return GetDescriptor();
+  }
+  static const ::google::protobuf::Descriptor* PROTOBUF_NONNULL GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::google::protobuf::Reflection* PROTOBUF_NONNULL GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const Match& default_instance() {
+    return *reinterpret_cast<const Match*>(
+        &_Match_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages = 11;
+  friend void swap(Match& a, Match& b) { a.Swap(&b); }
+  inline void Swap(Match* PROTOBUF_NONNULL other) {
+    if (other == this) return;
+    if (::google::protobuf::internal::CanUseInternalSwap(GetArena(), other->GetArena())) {
+      InternalSwap(other);
+    } else {
+      ::google::protobuf::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(Match* PROTOBUF_NONNULL other) {
+    if (other == this) return;
+    ABSL_DCHECK(GetArena() == other->GetArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  Match* PROTOBUF_NONNULL New(::google::protobuf::Arena* PROTOBUF_NULLABLE arena = nullptr) const {
+    return ::google::protobuf::Message::DefaultConstruct<Match>(arena);
+  }
+  using ::google::protobuf::Message::CopyFrom;
+  void CopyFrom(const Match& from);
+  using ::google::protobuf::Message::MergeFrom;
+  void MergeFrom(const Match& from) { Match::MergeImpl(*this, from); }
+
+  private:
+  static void MergeImpl(::google::protobuf::MessageLite& to_msg,
+                        const ::google::protobuf::MessageLite& from_msg);
+
+  public:
+  bool IsInitialized() const {
+    return true;
+  }
+  ABSL_ATTRIBUTE_REINITIALIZES void Clear() PROTOBUF_FINAL;
+  #if defined(PROTOBUF_CUSTOM_VTABLE)
+  private:
+  static ::size_t ByteSizeLong(const ::google::protobuf::MessageLite& msg);
+  static ::uint8_t* PROTOBUF_NONNULL _InternalSerialize(
+      const ::google::protobuf::MessageLite& msg, ::uint8_t* PROTOBUF_NONNULL target,
+      ::google::protobuf::io::EpsCopyOutputStream* PROTOBUF_NONNULL stream);
+
+  public:
+  ::size_t ByteSizeLong() const { return ByteSizeLong(*this); }
+  ::uint8_t* PROTOBUF_NONNULL _InternalSerialize(
+      ::uint8_t* PROTOBUF_NONNULL target,
+      ::google::protobuf::io::EpsCopyOutputStream* PROTOBUF_NONNULL stream) const {
+    return _InternalSerialize(*this, target, stream);
+  }
+  #else   // PROTOBUF_CUSTOM_VTABLE
+  ::size_t ByteSizeLong() const final;
+  ::uint8_t* PROTOBUF_NONNULL _InternalSerialize(
+      ::uint8_t* PROTOBUF_NONNULL target,
+      ::google::protobuf::io::EpsCopyOutputStream* PROTOBUF_NONNULL stream) const final;
+  #endif  // PROTOBUF_CUSTOM_VTABLE
+  int GetCachedSize() const { return _impl_._cached_size_.Get(); }
+
+  private:
+  void SharedCtor(::google::protobuf::Arena* PROTOBUF_NULLABLE arena);
+  static void SharedDtor(MessageLite& self);
+  void InternalSwap(Match* PROTOBUF_NONNULL other);
+ private:
+  template <typename T>
+  friend ::absl::string_view(::google::protobuf::internal::GetAnyMessageName)();
+  static ::absl::string_view FullMessageName() { return "nevr.http.v1.Match"; }
+
+ protected:
+  explicit Match(::google::protobuf::Arena* PROTOBUF_NULLABLE arena);
+  Match(::google::protobuf::Arena* PROTOBUF_NULLABLE arena, const Match& from);
+  Match(
+      ::google::protobuf::Arena* PROTOBUF_NULLABLE arena, Match&& from) noexcept
+      : Match(arena) {
+    *this = ::std::move(from);
+  }
+  const ::google::protobuf::internal::ClassData* PROTOBUF_NONNULL GetClassData() const PROTOBUF_FINAL;
+  static void* PROTOBUF_NONNULL PlacementNew_(
+      const void* PROTOBUF_NONNULL, void* PROTOBUF_NONNULL mem,
+      ::google::protobuf::Arena* PROTOBUF_NULLABLE arena);
+  static constexpr auto InternalNewImpl_();
+
+ public:
+  static constexpr auto InternalGenerateClassData_();
+
+  ::google::protobuf::Metadata GetMetadata() const;
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+  enum : int {
+    kMatchIdFieldNumber = 1,
+    kHandlerNameFieldNumber = 6,
+    kLabelFieldNumber = 3,
+    kAuthoritativeFieldNumber = 2,
+    kSizeFieldNumber = 4,
+    kTickRateFieldNumber = 5,
+  };
+  // string match_id = 1 [json_name = "matchId"];
+  void clear_match_id() ;
+  const ::std::string& match_id() const;
+  template <typename Arg_ = const ::std::string&, typename... Args_>
+  void set_match_id(Arg_&& arg, Args_... args);
+  ::std::string* PROTOBUF_NONNULL mutable_match_id();
+  [[nodiscard]] ::std::string* PROTOBUF_NULLABLE release_match_id();
+  void set_allocated_match_id(::std::string* PROTOBUF_NULLABLE value);
+
+  private:
+  const ::std::string& _internal_match_id() const;
+  PROTOBUF_ALWAYS_INLINE void _internal_set_match_id(const ::std::string& value);
+  ::std::string* PROTOBUF_NONNULL _internal_mutable_match_id();
+
+  public:
+  // string handler_name = 6 [json_name = "handlerName"];
+  void clear_handler_name() ;
+  const ::std::string& handler_name() const;
+  template <typename Arg_ = const ::std::string&, typename... Args_>
+  void set_handler_name(Arg_&& arg, Args_... args);
+  ::std::string* PROTOBUF_NONNULL mutable_handler_name();
+  [[nodiscard]] ::std::string* PROTOBUF_NULLABLE release_handler_name();
+  void set_allocated_handler_name(::std::string* PROTOBUF_NULLABLE value);
+
+  private:
+  const ::std::string& _internal_handler_name() const;
+  PROTOBUF_ALWAYS_INLINE void _internal_set_handler_name(const ::std::string& value);
+  ::std::string* PROTOBUF_NONNULL _internal_mutable_handler_name();
+
+  public:
+  // .google.protobuf.StringValue label = 3 [json_name = "label"];
+  bool has_label() const;
+  void clear_label() ;
+  const ::google::protobuf::StringValue& label() const;
+  [[nodiscard]] ::google::protobuf::StringValue* PROTOBUF_NULLABLE release_label();
+  ::google::protobuf::StringValue* PROTOBUF_NONNULL mutable_label();
+  void set_allocated_label(::google::protobuf::StringValue* PROTOBUF_NULLABLE value);
+  void unsafe_arena_set_allocated_label(::google::protobuf::StringValue* PROTOBUF_NULLABLE value);
+  ::google::protobuf::StringValue* PROTOBUF_NULLABLE unsafe_arena_release_label();
+
+  private:
+  const ::google::protobuf::StringValue& _internal_label() const;
+  ::google::protobuf::StringValue* PROTOBUF_NONNULL _internal_mutable_label();
+
+  public:
+  // bool authoritative = 2 [json_name = "authoritative"];
+  void clear_authoritative() ;
+  bool authoritative() const;
+  void set_authoritative(bool value);
+
+  private:
+  bool _internal_authoritative() const;
+  void _internal_set_authoritative(bool value);
+
+  public:
+  // int32 size = 4 [json_name = "size"];
+  void clear_size() ;
+  ::int32_t size() const;
+  void set_size(::int32_t value);
+
+  private:
+  ::int32_t _internal_size() const;
+  void _internal_set_size(::int32_t value);
+
+  public:
+  // int32 tick_rate = 5 [json_name = "tickRate"];
+  void clear_tick_rate() ;
+  ::int32_t tick_rate() const;
+  void set_tick_rate(::int32_t value);
+
+  private:
+  ::int32_t _internal_tick_rate() const;
+  void _internal_set_tick_rate(::int32_t value);
+
+  public:
+  // @@protoc_insertion_point(class_scope:nevr.http.v1.Match)
+ private:
+  class _Internal;
+  friend class ::google::protobuf::internal::TcParser;
+  static const ::google::protobuf::internal::TcParseTable<3, 6,
+                                   1, 47,
+                                   2>
+      _table_;
+
+  friend class ::google::protobuf::MessageLite;
+  friend class ::google::protobuf::Arena;
+  template <typename T>
+  friend class ::google::protobuf::Arena::InternalHelper;
+  using InternalArenaConstructable_ = void;
+  using DestructorSkippable_ = void;
+  struct Impl_ {
+    inline explicit constexpr Impl_(::google::protobuf::internal::ConstantInitialized) noexcept;
+    inline explicit Impl_(
+        ::google::protobuf::internal::InternalVisibility visibility,
+        ::google::protobuf::Arena* PROTOBUF_NULLABLE arena);
+    inline explicit Impl_(
+        ::google::protobuf::internal::InternalVisibility visibility,
+        ::google::protobuf::Arena* PROTOBUF_NULLABLE arena, const Impl_& from,
+        const Match& from_msg);
+    ::google::protobuf::internal::HasBits<1> _has_bits_;
+    ::google::protobuf::internal::CachedSize _cached_size_;
+    ::google::protobuf::internal::ArenaStringPtr match_id_;
+    ::google::protobuf::internal::ArenaStringPtr handler_name_;
+    ::google::protobuf::StringValue* PROTOBUF_NULLABLE label_;
+    bool authoritative_;
+    ::int32_t size_;
+    ::int32_t tick_rate_;
+    PROTOBUF_TSAN_DECLARE_MEMBER
+  };
+  union { Impl_ _impl_; };
+  friend struct ::TableStruct_api_2fhttp_5fv1_2eproto;
+};
+
+extern const ::google::protobuf::internal::ClassDataFull Match_class_data_;
 // -------------------------------------------------------------------
 
 class LobbyEntrant final : public ::google::protobuf::Message
@@ -4956,6 +5226,305 @@ inline ::google::protobuf::Map<::std::string, ::std::string>* PROTOBUF_NONNULL L
     ABSL_ATTRIBUTE_LIFETIME_BOUND {
   // @@protoc_insertion_point(field_mutable_map:nevr.http.v1.LobbyEntrant.metadata)
   return _internal_mutable_metadata();
+}
+
+// -------------------------------------------------------------------
+
+// Match
+
+// string match_id = 1 [json_name = "matchId"];
+inline void Match::clear_match_id() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.match_id_.ClearToEmpty();
+  _impl_._has_bits_[0] &= ~0x00000001U;
+}
+inline const ::std::string& Match::match_id() const
+    ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_get:nevr.http.v1.Match.match_id)
+  return _internal_match_id();
+}
+template <typename Arg_, typename... Args_>
+PROTOBUF_ALWAYS_INLINE void Match::set_match_id(Arg_&& arg, Args_... args) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_._has_bits_[0] |= 0x00000001U;
+  _impl_.match_id_.Set(static_cast<Arg_&&>(arg), args..., GetArena());
+  // @@protoc_insertion_point(field_set:nevr.http.v1.Match.match_id)
+}
+inline ::std::string* PROTOBUF_NONNULL Match::mutable_match_id()
+    ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  ::std::string* _s = _internal_mutable_match_id();
+  // @@protoc_insertion_point(field_mutable:nevr.http.v1.Match.match_id)
+  return _s;
+}
+inline const ::std::string& Match::_internal_match_id() const {
+  ::google::protobuf::internal::TSanRead(&_impl_);
+  return _impl_.match_id_.Get();
+}
+inline void Match::_internal_set_match_id(const ::std::string& value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_._has_bits_[0] |= 0x00000001U;
+  _impl_.match_id_.Set(value, GetArena());
+}
+inline ::std::string* PROTOBUF_NONNULL Match::_internal_mutable_match_id() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_._has_bits_[0] |= 0x00000001U;
+  return _impl_.match_id_.Mutable( GetArena());
+}
+inline ::std::string* PROTOBUF_NULLABLE Match::release_match_id() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  // @@protoc_insertion_point(field_release:nevr.http.v1.Match.match_id)
+  if ((_impl_._has_bits_[0] & 0x00000001U) == 0) {
+    return nullptr;
+  }
+  _impl_._has_bits_[0] &= ~0x00000001U;
+  auto* released = _impl_.match_id_.Release();
+  if (::google::protobuf::internal::DebugHardenForceCopyDefaultString()) {
+    _impl_.match_id_.Set("", GetArena());
+  }
+  return released;
+}
+inline void Match::set_allocated_match_id(::std::string* PROTOBUF_NULLABLE value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  if (value != nullptr) {
+    _impl_._has_bits_[0] |= 0x00000001U;
+  } else {
+    _impl_._has_bits_[0] &= ~0x00000001U;
+  }
+  _impl_.match_id_.SetAllocated(value, GetArena());
+  if (::google::protobuf::internal::DebugHardenForceCopyDefaultString() && _impl_.match_id_.IsDefault()) {
+    _impl_.match_id_.Set("", GetArena());
+  }
+  // @@protoc_insertion_point(field_set_allocated:nevr.http.v1.Match.match_id)
+}
+
+// bool authoritative = 2 [json_name = "authoritative"];
+inline void Match::clear_authoritative() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.authoritative_ = false;
+  _impl_._has_bits_[0] &= ~0x00000008U;
+}
+inline bool Match::authoritative() const {
+  // @@protoc_insertion_point(field_get:nevr.http.v1.Match.authoritative)
+  return _internal_authoritative();
+}
+inline void Match::set_authoritative(bool value) {
+  _internal_set_authoritative(value);
+  _impl_._has_bits_[0] |= 0x00000008U;
+  // @@protoc_insertion_point(field_set:nevr.http.v1.Match.authoritative)
+}
+inline bool Match::_internal_authoritative() const {
+  ::google::protobuf::internal::TSanRead(&_impl_);
+  return _impl_.authoritative_;
+}
+inline void Match::_internal_set_authoritative(bool value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.authoritative_ = value;
+}
+
+// .google.protobuf.StringValue label = 3 [json_name = "label"];
+inline bool Match::has_label() const {
+  bool value = (_impl_._has_bits_[0] & 0x00000004U) != 0;
+  PROTOBUF_ASSUME(!value || _impl_.label_ != nullptr);
+  return value;
+}
+inline const ::google::protobuf::StringValue& Match::_internal_label() const {
+  ::google::protobuf::internal::TSanRead(&_impl_);
+  const ::google::protobuf::StringValue* p = _impl_.label_;
+  return p != nullptr ? *p : reinterpret_cast<const ::google::protobuf::StringValue&>(::google::protobuf::_StringValue_default_instance_);
+}
+inline const ::google::protobuf::StringValue& Match::label() const ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_get:nevr.http.v1.Match.label)
+  return _internal_label();
+}
+inline void Match::unsafe_arena_set_allocated_label(
+    ::google::protobuf::StringValue* PROTOBUF_NULLABLE value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  if (GetArena() == nullptr) {
+    delete reinterpret_cast<::google::protobuf::MessageLite*>(_impl_.label_);
+  }
+  _impl_.label_ = reinterpret_cast<::google::protobuf::StringValue*>(value);
+  if (value != nullptr) {
+    _impl_._has_bits_[0] |= 0x00000004U;
+  } else {
+    _impl_._has_bits_[0] &= ~0x00000004U;
+  }
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:nevr.http.v1.Match.label)
+}
+inline ::google::protobuf::StringValue* PROTOBUF_NULLABLE Match::release_label() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+
+  _impl_._has_bits_[0] &= ~0x00000004U;
+  ::google::protobuf::StringValue* released = _impl_.label_;
+  _impl_.label_ = nullptr;
+  if (::google::protobuf::internal::DebugHardenForceCopyInRelease()) {
+    auto* old = reinterpret_cast<::google::protobuf::MessageLite*>(released);
+    released = ::google::protobuf::internal::DuplicateIfNonNull(released);
+    if (GetArena() == nullptr) {
+      delete old;
+    }
+  } else {
+    if (GetArena() != nullptr) {
+      released = ::google::protobuf::internal::DuplicateIfNonNull(released);
+    }
+  }
+  return released;
+}
+inline ::google::protobuf::StringValue* PROTOBUF_NULLABLE Match::unsafe_arena_release_label() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  // @@protoc_insertion_point(field_release:nevr.http.v1.Match.label)
+
+  _impl_._has_bits_[0] &= ~0x00000004U;
+  ::google::protobuf::StringValue* temp = _impl_.label_;
+  _impl_.label_ = nullptr;
+  return temp;
+}
+inline ::google::protobuf::StringValue* PROTOBUF_NONNULL Match::_internal_mutable_label() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  if (_impl_.label_ == nullptr) {
+    auto* p = ::google::protobuf::Message::DefaultConstruct<::google::protobuf::StringValue>(GetArena());
+    _impl_.label_ = reinterpret_cast<::google::protobuf::StringValue*>(p);
+  }
+  return _impl_.label_;
+}
+inline ::google::protobuf::StringValue* PROTOBUF_NONNULL Match::mutable_label()
+    ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  _impl_._has_bits_[0] |= 0x00000004U;
+  ::google::protobuf::StringValue* _msg = _internal_mutable_label();
+  // @@protoc_insertion_point(field_mutable:nevr.http.v1.Match.label)
+  return _msg;
+}
+inline void Match::set_allocated_label(::google::protobuf::StringValue* PROTOBUF_NULLABLE value) {
+  ::google::protobuf::Arena* message_arena = GetArena();
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  if (message_arena == nullptr) {
+    delete reinterpret_cast<::google::protobuf::MessageLite*>(_impl_.label_);
+  }
+
+  if (value != nullptr) {
+    ::google::protobuf::Arena* submessage_arena = reinterpret_cast<::google::protobuf::Message*>(value)->GetArena();
+    if (message_arena != submessage_arena) {
+      value = ::google::protobuf::internal::GetOwnedMessage(message_arena, value, submessage_arena);
+    }
+    _impl_._has_bits_[0] |= 0x00000004U;
+  } else {
+    _impl_._has_bits_[0] &= ~0x00000004U;
+  }
+
+  _impl_.label_ = reinterpret_cast<::google::protobuf::StringValue*>(value);
+  // @@protoc_insertion_point(field_set_allocated:nevr.http.v1.Match.label)
+}
+
+// int32 size = 4 [json_name = "size"];
+inline void Match::clear_size() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.size_ = 0;
+  _impl_._has_bits_[0] &= ~0x00000010U;
+}
+inline ::int32_t Match::size() const {
+  // @@protoc_insertion_point(field_get:nevr.http.v1.Match.size)
+  return _internal_size();
+}
+inline void Match::set_size(::int32_t value) {
+  _internal_set_size(value);
+  _impl_._has_bits_[0] |= 0x00000010U;
+  // @@protoc_insertion_point(field_set:nevr.http.v1.Match.size)
+}
+inline ::int32_t Match::_internal_size() const {
+  ::google::protobuf::internal::TSanRead(&_impl_);
+  return _impl_.size_;
+}
+inline void Match::_internal_set_size(::int32_t value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.size_ = value;
+}
+
+// int32 tick_rate = 5 [json_name = "tickRate"];
+inline void Match::clear_tick_rate() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.tick_rate_ = 0;
+  _impl_._has_bits_[0] &= ~0x00000020U;
+}
+inline ::int32_t Match::tick_rate() const {
+  // @@protoc_insertion_point(field_get:nevr.http.v1.Match.tick_rate)
+  return _internal_tick_rate();
+}
+inline void Match::set_tick_rate(::int32_t value) {
+  _internal_set_tick_rate(value);
+  _impl_._has_bits_[0] |= 0x00000020U;
+  // @@protoc_insertion_point(field_set:nevr.http.v1.Match.tick_rate)
+}
+inline ::int32_t Match::_internal_tick_rate() const {
+  ::google::protobuf::internal::TSanRead(&_impl_);
+  return _impl_.tick_rate_;
+}
+inline void Match::_internal_set_tick_rate(::int32_t value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.tick_rate_ = value;
+}
+
+// string handler_name = 6 [json_name = "handlerName"];
+inline void Match::clear_handler_name() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.handler_name_.ClearToEmpty();
+  _impl_._has_bits_[0] &= ~0x00000002U;
+}
+inline const ::std::string& Match::handler_name() const
+    ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_get:nevr.http.v1.Match.handler_name)
+  return _internal_handler_name();
+}
+template <typename Arg_, typename... Args_>
+PROTOBUF_ALWAYS_INLINE void Match::set_handler_name(Arg_&& arg, Args_... args) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_._has_bits_[0] |= 0x00000002U;
+  _impl_.handler_name_.Set(static_cast<Arg_&&>(arg), args..., GetArena());
+  // @@protoc_insertion_point(field_set:nevr.http.v1.Match.handler_name)
+}
+inline ::std::string* PROTOBUF_NONNULL Match::mutable_handler_name()
+    ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  ::std::string* _s = _internal_mutable_handler_name();
+  // @@protoc_insertion_point(field_mutable:nevr.http.v1.Match.handler_name)
+  return _s;
+}
+inline const ::std::string& Match::_internal_handler_name() const {
+  ::google::protobuf::internal::TSanRead(&_impl_);
+  return _impl_.handler_name_.Get();
+}
+inline void Match::_internal_set_handler_name(const ::std::string& value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_._has_bits_[0] |= 0x00000002U;
+  _impl_.handler_name_.Set(value, GetArena());
+}
+inline ::std::string* PROTOBUF_NONNULL Match::_internal_mutable_handler_name() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_._has_bits_[0] |= 0x00000002U;
+  return _impl_.handler_name_.Mutable( GetArena());
+}
+inline ::std::string* PROTOBUF_NULLABLE Match::release_handler_name() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  // @@protoc_insertion_point(field_release:nevr.http.v1.Match.handler_name)
+  if ((_impl_._has_bits_[0] & 0x00000002U) == 0) {
+    return nullptr;
+  }
+  _impl_._has_bits_[0] &= ~0x00000002U;
+  auto* released = _impl_.handler_name_.Release();
+  if (::google::protobuf::internal::DebugHardenForceCopyDefaultString()) {
+    _impl_.handler_name_.Set("", GetArena());
+  }
+  return released;
+}
+inline void Match::set_allocated_handler_name(::std::string* PROTOBUF_NULLABLE value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  if (value != nullptr) {
+    _impl_._has_bits_[0] |= 0x00000002U;
+  } else {
+    _impl_._has_bits_[0] &= ~0x00000002U;
+  }
+  _impl_.handler_name_.SetAllocated(value, GetArena());
+  if (::google::protobuf::internal::DebugHardenForceCopyDefaultString() && _impl_.handler_name_.IsDefault()) {
+    _impl_.handler_name_.Set("", GetArena());
+  }
+  // @@protoc_insertion_point(field_set_allocated:nevr.http.v1.Match.handler_name)
 }
 
 #ifdef __GNUC__

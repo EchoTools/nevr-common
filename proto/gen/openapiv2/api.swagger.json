@@ -1,13 +1,25 @@
 {
   "swagger": "2.0",
   "info": {
-    "title": "api/http_v1.proto",
-    "version": "version not set"
+    "title": "NEVR API v2",
+    "version": "2.0",
+    "contact": {
+      "name": "The NEVR Authors \u0026 Contributors",
+      "url": "https://github.com/echotools/nevr",
+      "email": "a@sprock.io"
+    }
   },
   "tags": [
     {
+      "name": "NevrService"
+    },
+    {
       "name": "EngineHttpService"
     }
+  ],
+  "host": "127.0.0.1:7350",
+  "schemes": [
+    "http"
   ],
   "consumes": [
     "application/json"
@@ -61,9 +73,120 @@
           "EngineHttpService"
         ]
       }
+    },
+    "/v3/guildgroup/{guildGroupId}/gameservers": {
+      "get": {
+        "summary": "List game servers.",
+        "operationId": "NevrService_ListGuildGameServers",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1GuildGameServerList"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "guildGroupId",
+            "description": "The guild ID to list from.",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "limit",
+            "description": "Max number of records to return. Between 1 and 100.",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "state",
+            "description": "The game server state to list.",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "query",
+            "description": "Arbitrary label query.",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "cursor",
+            "description": "An optional next page cursor.",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "NevrService"
+        ]
+      }
+    },
+    "/v3/lobby/session": {
+      "post": {
+        "summary": "Create a lobby session.",
+        "operationId": "NevrService_CreateLobbySession",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1Match"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "description": "Request to create a lobby session.",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/v1LobbySessionCreateRequest"
+            }
+          }
+        ],
+        "tags": [
+          "NevrService"
+        ]
+      }
     }
   },
   "definitions": {
+    "GuildGameServerListGuildGameServer": {
+      "type": "object",
+      "properties": {
+        "gameServer": {
+          "$ref": "#/definitions/v1GameServer",
+          "description": "Server."
+        },
+        "state": {
+          "type": "integer",
+          "format": "int32",
+          "description": "The user's relationship to the group."
+        }
+      },
+      "description": "A single server-state pair."
+    },
     "httpBodyPart": {
       "type": "object",
       "properties": {
@@ -779,6 +902,208 @@
           }
         }
       }
+    },
+    "v1GameServer": {
+      "type": "object",
+      "properties": {
+        "serverId": {
+          "type": "string",
+          "format": "uint64",
+          "description": "The id of the server."
+        },
+        "operatorId": {
+          "type": "string",
+          "description": "The user ID of the owner of the server."
+        },
+        "endpoint": {
+          "type": "string",
+          "title": "The endpoint data used for client connections. (internal_ip:external_ip:port)"
+        },
+        "supportedFeatures": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "The features of the server."
+        },
+        "timestepNanos": {
+          "type": "integer",
+          "format": "int32",
+          "description": "The timestep duration in nanoseconds."
+        },
+        "metadata": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "string"
+          },
+          "description": "Additional information about the server."
+        }
+      },
+      "title": "Game Server"
+    },
+    "v1GuildGameServerList": {
+      "type": "object",
+      "properties": {
+        "guildServers": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/GuildGameServerListGuildGameServer"
+          },
+          "description": "Server-state pairs."
+        },
+        "cursor": {
+          "type": "string",
+          "description": "An optional next page cursor."
+        }
+      }
+    },
+    "v1LobbyEntrant": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "title": "The unique ID for this entrant record"
+        },
+        "sessionId": {
+          "type": "string",
+          "title": "The user's game service session ID"
+        },
+        "userId": {
+          "type": "string",
+          "title": "The user's NEVR user ID"
+        },
+        "xpid": {
+          "type": "string",
+          "title": "The user's cross-platform ID (e.g. OVR-ORG-123412341234)"
+        },
+        "displayName": {
+          "type": "string",
+          "title": "The user's in-game display name"
+        },
+        "roleAlignment": {
+          "type": "integer",
+          "format": "int32",
+          "title": "RoleIndex as int32, see Role enum below"
+        },
+        "metadata": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "string"
+          }
+        }
+      },
+      "description": "A single entrant in a lobby session."
+    },
+    "v1LobbySessionCreateRequest": {
+      "type": "object",
+      "properties": {
+        "mode": {
+          "type": "string",
+          "title": "The game mode, e.g. \"echo_arena_private\""
+        },
+        "level": {
+          "type": "string",
+          "title": "The level to play on, e.g. \"mpl_arena\""
+        },
+        "teamSize": {
+          "type": "integer",
+          "format": "int32",
+          "description": "The number of players per team (1-5), ignored for social modes."
+        },
+        "guildGroupId": {
+          "type": "string",
+          "description": "The guild group ID to which the lobby belongs."
+        },
+        "ownerId": {
+          "type": "string",
+          "title": "The ID of the lobby creator/allocator"
+        },
+        "requiredFeatures": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "Any required features that must be supported by the game server/clients."
+        },
+        "reservations": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/v1LobbyEntrant"
+          },
+          "description": "Entrant reservations."
+        },
+        "matchExpiry": {
+          "type": "string",
+          "format": "date-time",
+          "description": "The time when the match will expire if no players join."
+        },
+        "metadata": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "string"
+          },
+          "description": "Extra metadata for the lobby session."
+        }
+      },
+      "description": "Request to create a lobby session."
+    },
+    "v1Match": {
+      "type": "object",
+      "properties": {
+        "matchId": {
+          "type": "string",
+          "description": "The ID of the match, can be used to join."
+        },
+        "authoritative": {
+          "type": "boolean",
+          "description": "True if it's an server-managed authoritative match, false otherwise."
+        },
+        "label": {
+          "type": "string",
+          "description": "Match label, if any."
+        },
+        "size": {
+          "type": "integer",
+          "format": "int32",
+          "description": "Current number of users in the match."
+        },
+        "tickRate": {
+          "type": "integer",
+          "format": "int32",
+          "title": "Tick Rate"
+        },
+        "handlerName": {
+          "type": "string",
+          "title": "Handler name"
+        }
+      },
+      "description": "Represents a realtime match."
     }
+  },
+  "securityDefinitions": {
+    "BasicAuth": {
+      "type": "basic"
+    },
+    "BearerJwt": {
+      "type": "apiKey",
+      "name": "Authorization",
+      "in": "header"
+    },
+    "HttpKeyAuth": {
+      "type": "apiKey",
+      "name": "http_key",
+      "in": "header"
+    }
+  },
+  "security": [
+    {
+      "BearerJwt": []
+    }
+  ],
+  "externalDocs": {
+    "description": "NEVR server documentation",
+    "url": "https://github.com/echotools/nevr/docs"
   }
 }
