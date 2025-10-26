@@ -9,7 +9,7 @@ using pb = global::Google.Protobuf;
 using pbc = global::Google.Protobuf.Collections;
 using pbr = global::Google.Protobuf.Reflection;
 using scg = global::System.Collections.Generic;
-namespace Nevr.Api.Types.V1 {
+namespace Types {
 
   /// <summary>Holder for reflection information generated from types_lobby_session.proto</summary>
   public static partial class TypesLobbySessionReflection {
@@ -24,10 +24,10 @@ namespace Nevr.Api.Types.V1 {
     static TypesLobbySessionReflection() {
       byte[] descriptorData = global::System.Convert.FromBase64String(
           string.Concat(
-            "Chl0eXBlc19sb2JieV9zZXNzaW9uLnByb3RvEhFuZXZyLmFwaS50eXBlcy52",
-            "MRofZ29vZ2xlL3Byb3RvYnVmL3RpbWVzdGFtcC5wcm90b0JDWkFnaXRodWIu",
-            "Y29tL2VjaG90b29scy9uZXZyLWNvbW1vbi9nZW4vZ28vbmV2ci9hcGkvdHlw",
-            "ZXMvdjE7dHlwZXN2MWIGcHJvdG8z"));
+            "Chl0eXBlc19sb2JieV9zZXNzaW9uLnByb3RvEgV0eXBlcxofZ29vZ2xlL3By",
+            "b3RvYnVmL3RpbWVzdGFtcC5wcm90b0JGWkRnaXRodWIuY29tL2VjaG90b29s",
+            "cy9uZXZyLWNvbW1vbi92NC9nZW4vZ28vbmV2ci9hcGkvdHlwZXMvdjE7dHlw",
+            "ZXN2MWIGcHJvdG8z"));
       descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
           new pbr::FileDescriptor[] { global::Google.Protobuf.WellKnownTypes.TimestampReflection.Descriptor, },
           new pbr::GeneratedClrTypeInfo(null, null, null));

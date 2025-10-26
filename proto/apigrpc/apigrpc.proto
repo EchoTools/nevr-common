@@ -3,15 +3,15 @@
  */
 syntax = "proto3";
 
-package nevr.apigrpc;
+package apigrpc;
 
+import "api/http_v1.proto";
 import "google/api/annotations.proto";
 import "google/protobuf/empty.proto";
 import "protoc-gen-openapiv2/options/annotations.proto";
-import "api/http_v1.proto";
 
 option csharp_namespace = "Nevr.Protobuf";
-option go_package = "github.com/echotools/nevr-common/gen/go/apigrpc";
+option go_package = "github.com/echotools/nevr-common/v4/gen/go/apigrpc";
 option java_multiple_files = true;
 option java_outer_classname = "NevrApiGrpc";
 option java_package = "com.echotools.nevr.apigrpc";
@@ -69,12 +69,12 @@ option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_swagger) = {
  */
 service NevrService {
   // List game servers.
-  rpc ListGuildGameServers(nevr.http.v1.ListGuildGameServersRequest) returns (nevr.http.v1.GuildGameServerList) {
+  rpc ListGuildGameServers(api.ListGuildGameServersRequest) returns (api.GuildGameServerList) {
     option (google.api.http).get = "/v3/guildgroup/{guild_group_id}/gameservers";
   }
 
   // Create a lobby session.
-  rpc CreateLobbySession(nevr.http.v1.LobbySessionCreateRequest) returns (nevr.http.v1.Match) {
+  rpc LobbySessionCreate(api.LobbySessionCreateRequest) returns (api.Match) {
     option (google.api.http).post = "/v3/lobby/session";
     option (google.api.http).body = "*";
   }

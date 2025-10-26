@@ -24,8 +24,8 @@ import (
 const _ = grpc.SupportPackageIsVersion9
 
 const (
-	EngineHttpService_GetSession_FullMethodName   = "/nevr.engine.http.EngineHttpService/GetSession"
-	EngineHttpService_GetUserBones_FullMethodName = "/nevr.engine.http.EngineHttpService/GetUserBones"
+	EngineHttpService_GetSession_FullMethodName     = "/enginehttp.EngineHttpService/GetSession"
+	EngineHttpService_GetPlayerBones_FullMethodName = "/enginehttp.EngineHttpService/GetPlayerBones"
 )
 
 // EngineHttpServiceClient is the client API for EngineHttpService service.
@@ -37,7 +37,7 @@ type EngineHttpServiceClient interface {
 	// GET /session -> returns the current session state as JSON.
 	GetSession(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*SessionResponse, error)
 	// GET /user_bones -> returns the current user bones payload as JSON.
-	GetUserBones(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*UserBonesResponse, error)
+	GetPlayerBones(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*PlayerBonesResponse, error)
 }
 
 type engineHttpServiceClient struct {
@@ -58,10 +58,10 @@ func (c *engineHttpServiceClient) GetSession(ctx context.Context, in *emptypb.Em
 	return out, nil
 }
 
-func (c *engineHttpServiceClient) GetUserBones(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*UserBonesResponse, error) {
+func (c *engineHttpServiceClient) GetPlayerBones(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*PlayerBonesResponse, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(UserBonesResponse)
-	err := c.cc.Invoke(ctx, EngineHttpService_GetUserBones_FullMethodName, in, out, cOpts...)
+	out := new(PlayerBonesResponse)
+	err := c.cc.Invoke(ctx, EngineHttpService_GetPlayerBones_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
@@ -77,7 +77,7 @@ type EngineHttpServiceServer interface {
 	// GET /session -> returns the current session state as JSON.
 	GetSession(context.Context, *emptypb.Empty) (*SessionResponse, error)
 	// GET /user_bones -> returns the current user bones payload as JSON.
-	GetUserBones(context.Context, *emptypb.Empty) (*UserBonesResponse, error)
+	GetPlayerBones(context.Context, *emptypb.Empty) (*PlayerBonesResponse, error)
 }
 
 // UnimplementedEngineHttpServiceServer should be embedded to have
@@ -90,8 +90,8 @@ type UnimplementedEngineHttpServiceServer struct{}
 func (UnimplementedEngineHttpServiceServer) GetSession(context.Context, *emptypb.Empty) (*SessionResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetSession not implemented")
 }
-func (UnimplementedEngineHttpServiceServer) GetUserBones(context.Context, *emptypb.Empty) (*UserBonesResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method GetUserBones not implemented")
+func (UnimplementedEngineHttpServiceServer) GetPlayerBones(context.Context, *emptypb.Empty) (*PlayerBonesResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetPlayerBones not implemented")
 }
 func (UnimplementedEngineHttpServiceServer) testEmbeddedByValue() {}
 
@@ -131,20 +131,20 @@ func _EngineHttpService_GetSession_Handler(srv interface{}, ctx context.Context,
 	return interceptor(ctx, in, info, handler)
 }
 
-func _EngineHttpService_GetUserBones_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _EngineHttpService_GetPlayerBones_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(emptypb.Empty)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(EngineHttpServiceServer).GetUserBones(ctx, in)
+		return srv.(EngineHttpServiceServer).GetPlayerBones(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: EngineHttpService_GetUserBones_FullMethodName,
+		FullMethod: EngineHttpService_GetPlayerBones_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(EngineHttpServiceServer).GetUserBones(ctx, req.(*emptypb.Empty))
+		return srv.(EngineHttpServiceServer).GetPlayerBones(ctx, req.(*emptypb.Empty))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -153,7 +153,7 @@ func _EngineHttpService_GetUserBones_Handler(srv interface{}, ctx context.Contex
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
 var EngineHttpService_ServiceDesc = grpc.ServiceDesc{
-	ServiceName: "nevr.engine.http.EngineHttpService",
+	ServiceName: "enginehttp.EngineHttpService",
 	HandlerType: (*EngineHttpServiceServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{
@@ -161,8 +161,8 @@ var EngineHttpService_ServiceDesc = grpc.ServiceDesc{
 			Handler:    _EngineHttpService_GetSession_Handler,
 		},
 		{
-			MethodName: "GetUserBones",
-			Handler:    _EngineHttpService_GetUserBones_Handler,
+			MethodName: "GetPlayerBones",
+			Handler:    _EngineHttpService_GetPlayerBones_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

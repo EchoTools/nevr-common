@@ -4,13 +4,13 @@
  */
 syntax = "proto3";
 
-package nevr.engine.http;
+package enginehttp;
 
 import "google/api/annotations.proto";
 import "google/protobuf/empty.proto";
 
 option csharp_namespace = "Nevr.Engine.Http.V1";
-option go_package = "github.com/echotools/nevr-common/gen/go/apigame";
+option go_package = "github.com/echotools/nevr-common/v4/gen/go/apigame";
 option java_multiple_files = true;
 option java_outer_classname = "EngineHttpProto";
 option java_package = "com.github.echotools.nevr.engine.http.v1";
@@ -23,7 +23,7 @@ service EngineHttpService {
   }
 
   // GET /user_bones -> returns the current user bones payload as JSON.
-  rpc GetUserBones(google.protobuf.Empty) returns (UserBonesResponse) {
+  rpc GetPlayerBones(google.protobuf.Empty) returns (PlayerBonesResponse) {
     option (google.api.http) = {get: "/user_bones"};
   }
 }
@@ -40,8 +40,15 @@ message Disc {
 
 // Represents an object's head, body, or hand properties.
 message BodyPart {
-  repeated double pos = 1 [json_name = "pos"];
   repeated double position = 2 [json_name = "position"];
+  repeated double forward = 3 [json_name = "forward"];
+  repeated double left = 4 [json_name = "left"];
+  repeated double up = 5 [json_name = "up"];
+}
+
+message HandPart {
+  // Represents an object's head, body, or hand properties.
+  repeated double pos = 1 [json_name = "pos"];
   repeated double forward = 3 [json_name = "forward"];
   repeated double left = 4 [json_name = "left"];
   repeated double up = 5 [json_name = "up"];
@@ -68,7 +75,6 @@ message TeamMember {
   string weapon = 1 [json_name = "Weapon"];
   string ordnance = 2 [json_name = "Ordnance"];
   string tac_mod = 3 [json_name = "TacMod"];
-  string arm = 4 [json_name = "Arm"];
   BodyPart head = 5 [json_name = "head"];
   BodyPart body = 6 [json_name = "body"];
   uint64 account_number = 7 [json_name = "userid"];
@@ -85,8 +91,8 @@ message TeamMember {
   bool is_blocking = 18 [json_name = "blocking"];
   bool is_emote_playing = 19 [json_name = "is_emote_playing"];
   bool has_possession = 20 [json_name = "possession"];
-  BodyPart left_hand = 21 [json_name = "lhand"];
-  BodyPart right_hand = 22 [json_name = "rhand"];
+  HandPart left_hand = 21 [json_name = "lhand"];
+  HandPart right_hand = 22 [json_name = "rhand"];
   repeated double velocity = 23 [json_name = "velocity"];
   PlayerStats stats = 24 [json_name = "stats"];
 }
@@ -167,13 +173,13 @@ message SessionResponse {
   // Number of restart requests from the orange team.
   int32 orange_team_restart_request = 1 [json_name = "orange_team_restart_request"];
   // Unique session identifier.
-  string sessionID = 2 [json_name = "sessionid"];
+  string session_id = 2 [json_name = "sessionid"];
   // Display string for the game clock.
   string game_clock_display = 3 [json_name = "game_clock_display"];
   // Current status of the game.
   string game_status = 4 [json_name = "game_status"];
   // IP address of the session.
-  string sessionIP = 5 [json_name = "sessionip"];
+  string session_ip = 5 [json_name = "sessionip"];
   // Type of match being played.
   string match_type = 6 [json_name = "match_type"];
   // Name of the map.
@@ -222,8 +228,6 @@ message SessionResponse {
   LastScore last_score = 31 [json_name = "last_score"];
   // List of teams in the session.
   repeated Team teams = 32 [json_name = "teams"];
-  // Indicates if the disc is contested.
-  bool contested = 33 [json_name = "contested"];
   // Payload multiplier value.
   double payload_multiplier = 34 [json_name = "payload_multiplier"];
   // Current payload checkpoint.
@@ -243,25 +247,15 @@ message SessionResponse {
 // endpoint: /user_bones
 // Represents the user_bones API response structure.
 
-// Represents a 3D translation vector.
-message BoneTranslation {
-  repeated double v = 1 [json_name = "v"];
-}
-
-// Represents a 4D quaternion for rotation.
-message BoneOrientation {
-  repeated double v = 1 [json_name = "v"];
-}
-
 // Represents bone data for a single player.
-message PlayerBones {
-  BoneTranslation bone_t = 1 [json_name = "bone_t"];
-  int32 XPID = 2 [json_name = "playerid"];
-  BoneOrientation bone_o = 3 [json_name = "bone_o"];
+message UserBones {
+  repeated float bone_t = 1 [json_name = "bone_t"];
+  int32 player_index = 2 [json_name = "playerid"];
+  repeated float bone_o = 3 [json_name = "bone_o"];
 }
 
 // Top-level message representing the user_bones API response.
-message UserBonesResponse {
-  repeated PlayerBones user_bones = 1 [json_name = "user_bones"];
+message PlayerBonesResponse {
+  repeated UserBones user_bones = 1 [json_name = "user_bones"];
   int32 err_code = 2 [json_name = "err_code"];
 }

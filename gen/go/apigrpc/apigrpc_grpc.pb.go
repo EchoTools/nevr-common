@@ -11,7 +11,7 @@ package apigrpc
 
 import (
 	context "context"
-	api "github.com/echotools/nevr-common/gen/go/api"
+	api "github.com/echotools/nevr-common/v4/gen/go/api"
 	grpc "google.golang.org/grpc"
 	codes "google.golang.org/grpc/codes"
 	status "google.golang.org/grpc/status"
@@ -23,8 +23,8 @@ import (
 const _ = grpc.SupportPackageIsVersion9
 
 const (
-	NevrService_ListGuildGameServers_FullMethodName = "/nevr.apigrpc.NevrService/ListGuildGameServers"
-	NevrService_CreateLobbySession_FullMethodName   = "/nevr.apigrpc.NevrService/CreateLobbySession"
+	NevrService_ListGuildGameServers_FullMethodName = "/apigrpc.NevrService/ListGuildGameServers"
+	NevrService_LobbySessionCreate_FullMethodName   = "/apigrpc.NevrService/LobbySessionCreate"
 )
 
 // NevrServiceClient is the client API for NevrService service.
@@ -37,7 +37,7 @@ type NevrServiceClient interface {
 	// List game servers.
 	ListGuildGameServers(ctx context.Context, in *api.ListGuildGameServersRequest, opts ...grpc.CallOption) (*api.GuildGameServerList, error)
 	// Create a lobby session.
-	CreateLobbySession(ctx context.Context, in *api.LobbySessionCreateRequest, opts ...grpc.CallOption) (*api.Match, error)
+	LobbySessionCreate(ctx context.Context, in *api.LobbySessionCreateRequest, opts ...grpc.CallOption) (*api.Match, error)
 }
 
 type nevrServiceClient struct {
@@ -58,10 +58,10 @@ func (c *nevrServiceClient) ListGuildGameServers(ctx context.Context, in *api.Li
 	return out, nil
 }
 
-func (c *nevrServiceClient) CreateLobbySession(ctx context.Context, in *api.LobbySessionCreateRequest, opts ...grpc.CallOption) (*api.Match, error) {
+func (c *nevrServiceClient) LobbySessionCreate(ctx context.Context, in *api.LobbySessionCreateRequest, opts ...grpc.CallOption) (*api.Match, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(api.Match)
-	err := c.cc.Invoke(ctx, NevrService_CreateLobbySession_FullMethodName, in, out, cOpts...)
+	err := c.cc.Invoke(ctx, NevrService_LobbySessionCreate_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
@@ -78,7 +78,7 @@ type NevrServiceServer interface {
 	// List game servers.
 	ListGuildGameServers(context.Context, *api.ListGuildGameServersRequest) (*api.GuildGameServerList, error)
 	// Create a lobby session.
-	CreateLobbySession(context.Context, *api.LobbySessionCreateRequest) (*api.Match, error)
+	LobbySessionCreate(context.Context, *api.LobbySessionCreateRequest) (*api.Match, error)
 }
 
 // UnimplementedNevrServiceServer should be embedded to have
@@ -91,8 +91,8 @@ type UnimplementedNevrServiceServer struct{}
 func (UnimplementedNevrServiceServer) ListGuildGameServers(context.Context, *api.ListGuildGameServersRequest) (*api.GuildGameServerList, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ListGuildGameServers not implemented")
 }
-func (UnimplementedNevrServiceServer) CreateLobbySession(context.Context, *api.LobbySessionCreateRequest) (*api.Match, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method CreateLobbySession not implemented")
+func (UnimplementedNevrServiceServer) LobbySessionCreate(context.Context, *api.LobbySessionCreateRequest) (*api.Match, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method LobbySessionCreate not implemented")
 }
 func (UnimplementedNevrServiceServer) testEmbeddedByValue() {}
 
@@ -132,20 +132,20 @@ func _NevrService_ListGuildGameServers_Handler(srv interface{}, ctx context.Cont
 	return interceptor(ctx, in, info, handler)
 }
 
-func _NevrService_CreateLobbySession_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _NevrService_LobbySessionCreate_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(api.LobbySessionCreateRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(NevrServiceServer).CreateLobbySession(ctx, in)
+		return srv.(NevrServiceServer).LobbySessionCreate(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: NevrService_CreateLobbySession_FullMethodName,
+		FullMethod: NevrService_LobbySessionCreate_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(NevrServiceServer).CreateLobbySession(ctx, req.(*api.LobbySessionCreateRequest))
+		return srv.(NevrServiceServer).LobbySessionCreate(ctx, req.(*api.LobbySessionCreateRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -154,7 +154,7 @@ func _NevrService_CreateLobbySession_Handler(srv interface{}, ctx context.Contex
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
 var NevrService_ServiceDesc = grpc.ServiceDesc{
-	ServiceName: "nevr.apigrpc.NevrService",
+	ServiceName: "apigrpc.NevrService",
 	HandlerType: (*NevrServiceServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{
@@ -162,8 +162,8 @@ var NevrService_ServiceDesc = grpc.ServiceDesc{
 			Handler:    _NevrService_ListGuildGameServers_Handler,
 		},
 		{
-			MethodName: "CreateLobbySession",
-			Handler:    _NevrService_CreateLobbySession_Handler,
+			MethodName: "LobbySessionCreate",
+			Handler:    _NevrService_LobbySessionCreate_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

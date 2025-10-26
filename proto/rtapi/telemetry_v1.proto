@@ -7,14 +7,14 @@
  */
 syntax = "proto3";
 
-package nevr.telemetry.v1;
+package telemetry;
 
 import "apigame/http_v1.proto";
 import "google/protobuf/timestamp.proto";
 
 option csharp_namespace = "Nevr.Telemetry.Protobuf";
 // --- Language-specific options ---
-option go_package = "github.com/echotools/nevr-common/gen/go/rtapi";
+option go_package = "github.com/echotools/nevr-common/v4/gen/go/rtapi";
 option java_multiple_files = true;
 option java_outer_classname = "NevrTelemetry";
 option java_package = "com.echotools.nevr.rtapi";
@@ -50,10 +50,10 @@ message LobbySessionStateFrame {
   repeated LobbySessionEvent events = 3;
 
   // The session data for this frame, including player locations.
-  nevr.engine.http.SessionResponse session = 4;
+  enginehttp.SessionResponse session = 4;
 
   // The user bones data for this frame.
-  nevr.engine.http.UserBonesResponse user_bones = 5;
+  enginehttp.PlayerBonesResponse player_bones = 5;
 }
 
 // Defines the possible roles or teams a player can be assigned to.
@@ -115,12 +115,12 @@ message RoundStarted {
 
 // Fired when the game is paused.
 message RoundPaused {
-  nevr.engine.http.PauseState pause_state = 1;
+  enginehttp.PauseState pause_state = 1;
 }
 
 // Fired when the game is unpaused.
 message RoundUnpaused {
-  nevr.engine.http.PauseState pause_state = 1;
+  enginehttp.PauseState pause_state = 1;
 }
 
 // Fired when a round finishes.
@@ -150,7 +150,7 @@ message ScoreboardUpdated {
 // Fired when a new player is detected in the session.
 message PlayerJoined {
   // Contains the full initial state of the player.
-  nevr.engine.http.TeamMember player = 1;
+  enginehttp.TeamMember player = 1;
   Role role = 2;
 }
 
@@ -191,7 +191,7 @@ message DiscPossessionChanged {
 message DiscThrown {
   int32 player_slot = 1;
   // Contains the detailed physics of the throw.
-  nevr.engine.http.LastThrowInfo throw_details = 2;
+  enginehttp.LastThrowInfo throw_details = 2;
 }
 
 // Fired when a player catches the disc.
@@ -206,12 +206,18 @@ message DiscCaught {
 // Fired when a goal is scored.
 message GoalScored {
   // Contains all details about the score.
-  nevr.engine.http.LastScore score_details = 1;
+  enginehttp.LastScore score_details = 1;
 }
 
 // ------------------------------------------------------------------
 // Stat-based Events
 // ------------------------------------------------------------------
+
+message PlayerGoal {
+  int32 player_slot = 1;
+  int32 total_goals = 2;
+  int32 points = 3;
+}
 
 // Fired when a player's 'saves' stat increments.
 message PlayerSave {

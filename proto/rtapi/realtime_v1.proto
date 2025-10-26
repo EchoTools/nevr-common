@@ -1,12 +1,12 @@
 syntax = "proto3";
 
-package nevr.realtime.v1;
+package realtime;
 
 import "google/protobuf/timestamp.proto";
 import "rtapi/telemetry_v1.proto";
 
 option csharp_namespace = "Nevr.Protobuf";
-option go_package = "github.com/echotools/nevr-common/gen/go/rtapi";
+option go_package = "github.com/echotools/nevr-common/v4/gen/go/rtapi";
 option java_multiple_files = true;
 option java_outer_classname = "NevrRealtime";
 option java_package = "com.github.echotools.nevr.rtapi";
@@ -141,14 +141,15 @@ message Error {
 message LobbySessionEventMessage {
   // The selection of possible session event codes.
   enum Code {
+    CODE_UNSPECIFIED = 0;
     // Session started
-    STARTED = 0;
+    CODE_STARTED = 1;
     // Session ended
-    ENDED = 1;
+    CODE_ENDED = 2;
     // Session locked
-    LOCKED = 2;
+    CODE_LOCKED = 3;
     // Session unlocked
-    UNLOCKED = 3;
+    CODE_UNLOCKED = 4;
   }
   string lobby_session_id = 1;
   int32 code = 2;
@@ -241,7 +242,7 @@ message LobbySessionStateMessage {
   uint64 tick_count = 2;
   oneof state {
     LobbySessionStateRawMessage session_state_raw = 3;
-    nevr.telemetry.v1.LobbySessionStateFrame session_state = 4;
+    telemetry.LobbySessionStateFrame session_state = 4;
   }
 }
 

@@ -3,13 +3,13 @@
  */
 syntax = "proto3";
 
-package nevr.http.v1;
+package api;
 
 import "google/protobuf/timestamp.proto";
 import "google/protobuf/wrappers.proto";
 
 option csharp_namespace = "Nevr.Protobuf";
-option go_package = "github.com/echotools/nevr-common/gen/go/api";
+option go_package = "github.com/echotools/nevr-common/v4/gen/go/api";
 option java_multiple_files = true;
 option java_outer_classname = "NevrApi";
 option java_package = "com.github.echotools.nevr.api";
