@@ -1,0 +1,1070 @@
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <title>Protocol Documentation</title>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Ubuntu:400,700,400italic"/>
+    <style>
+      body {
+        width: 60em;
+        margin: 1em auto;
+        color: #222;
+        font-family: "Ubuntu", sans-serif;
+        padding-bottom: 4em;
+      }
+
+      h1 {
+        font-weight: normal;
+        border-bottom: 1px solid #aaa;
+        padding-bottom: 0.5ex;
+      }
+
+      h2 {
+        border-bottom: 1px solid #aaa;
+        padding-bottom: 0.5ex;
+        margin: 1.5em 0;
+      }
+
+      h3 {
+        font-weight: normal;
+        border-bottom: 1px solid #aaa;
+        padding-bottom: 0.5ex;
+      }
+
+      a {
+        text-decoration: none;
+        color: #567e25;
+      }
+
+      table {
+        width: 100%;
+        font-size: 80%;
+        border-collapse: collapse;
+      }
+
+      thead {
+        font-weight: 700;
+        background-color: #dcdcdc;
+      }
+
+      tbody tr:nth-child(even) {
+        background-color: #fbfbfb;
+      }
+
+      td {
+        border: 1px solid #ccc;
+        padding: 0.5ex 2ex;
+      }
+
+      td p {
+        text-indent: 1em;
+        margin: 0;
+      }
+
+      td p:nth-child(1) {
+        text-indent: 0;  
+      }
+
+       
+      .field-table td:nth-child(1) {  
+        width: 10em;
+      }
+      .field-table td:nth-child(2) {  
+        width: 10em;
+      }
+      .field-table td:nth-child(3) {  
+        width: 6em;
+      }
+      .field-table td:nth-child(4) {  
+        width: auto;
+      }
+
+       
+      .extension-table td:nth-child(1) {  
+        width: 10em;
+      }
+      .extension-table td:nth-child(2) {  
+        width: 10em;
+      }
+      .extension-table td:nth-child(3) {  
+        width: 10em;
+      }
+      .extension-table td:nth-child(4) {  
+        width: 5em;
+      }
+      .extension-table td:nth-child(5) {  
+        width: auto;
+      }
+
+       
+      .enum-table td:nth-child(1) {  
+        width: 10em;
+      }
+      .enum-table td:nth-child(2) {  
+        width: 10em;
+      }
+      .enum-table td:nth-child(3) {  
+        width: auto;
+      }
+
+       
+      .scalar-value-types-table tr {
+        height: 3em;
+      }
+
+       
+      #toc-container ul {
+        list-style-type: none;
+        padding-left: 1em;
+        line-height: 180%;
+        margin: 0;
+      }
+      #toc > li > a {
+        font-weight: bold;
+      }
+
+       
+      .file-heading {
+        width: 100%;
+        display: table;
+        border-bottom: 1px solid #aaa;
+        margin: 4em 0 1.5em 0;
+      }
+      .file-heading h2 {
+        border: none;
+        display: table-cell;
+      }
+      .file-heading a {
+        text-align: right;
+        display: table-cell;
+      }
+
+       
+      .badge {
+        width: 1.6em;
+        height: 1.6em;
+        display: inline-block;
+
+        line-height: 1.6em;
+        text-align: center;
+        font-weight: bold;
+        font-size: 60%;
+
+        color: #89ba48;
+        background-color: #dff0c8;
+
+        margin: 0.5ex 1em 0.5ex -1em;
+        border: 1px solid #fbfbfb;
+        border-radius: 1ex;
+      }
+    </style>
+
+    
+    <link rel="stylesheet" type="text/css" href="stylesheet.css"/>
+  </head>
+
+  <body>
+
+    <h1 id="title">Protocol Documentation</h1>
+
+    <h2>Table of Contents</h2>
+
+    <div id="toc-container">
+      <ul id="toc">
+        
+          
+          <li>
+            <a href="#api%2fhttp_v1.proto">api/http_v1.proto</a>
+            <ul>
+              
+                <li>
+                  <a href="#api.GameServer"><span class="badge">M</span>GameServer</a>
+                </li>
+              
+                <li>
+                  <a href="#api.GameServer.MetadataEntry"><span class="badge">M</span>GameServer.MetadataEntry</a>
+                </li>
+              
+                <li>
+                  <a href="#api.GuildGameServerList"><span class="badge">M</span>GuildGameServerList</a>
+                </li>
+              
+                <li>
+                  <a href="#api.GuildGameServerList.GuildGameServer"><span class="badge">M</span>GuildGameServerList.GuildGameServer</a>
+                </li>
+              
+                <li>
+                  <a href="#api.ListGuildGameServersRequest"><span class="badge">M</span>ListGuildGameServersRequest</a>
+                </li>
+              
+                <li>
+                  <a href="#api.ListServersRequest"><span class="badge">M</span>ListServersRequest</a>
+                </li>
+              
+                <li>
+                  <a href="#api.LobbyEntrant"><span class="badge">M</span>LobbyEntrant</a>
+                </li>
+              
+                <li>
+                  <a href="#api.LobbyEntrant.MetadataEntry"><span class="badge">M</span>LobbyEntrant.MetadataEntry</a>
+                </li>
+              
+                <li>
+                  <a href="#api.LobbySessionCreateRequest"><span class="badge">M</span>LobbySessionCreateRequest</a>
+                </li>
+              
+                <li>
+                  <a href="#api.LobbySessionCreateRequest.EntrantReservation"><span class="badge">M</span>LobbySessionCreateRequest.EntrantReservation</a>
+                </li>
+              
+                <li>
+                  <a href="#api.LobbySessionCreateRequest.MetadataEntry"><span class="badge">M</span>LobbySessionCreateRequest.MetadataEntry</a>
+                </li>
+              
+                <li>
+                  <a href="#api.Match"><span class="badge">M</span>Match</a>
+                </li>
+              
+              
+                <li>
+                  <a href="#api.GuildGameServerList.GuildGameServer.State"><span class="badge">E</span>GuildGameServerList.GuildGameServer.State</a>
+                </li>
+              
+                <li>
+                  <a href="#api.LobbySessionCreateRequest.EntrantReservation.RoleAlignment"><span class="badge">E</span>LobbySessionCreateRequest.EntrantReservation.RoleAlignment</a>
+                </li>
+              
+              
+              
+            </ul>
+          </li>
+        
+        <li><a href="#scalar-value-types">Scalar Value Types</a></li>
+      </ul>
+    </div>
+
+    
+      
+      <div class="file-heading">
+        <h2 id="api/http_v1.proto">api/http_v1.proto</h2><a href="#title">Top</a>
+      </div>
+      <p>The Nevr server RPC protocol for games and apps.</p>
+
+      
+        <h3 id="api.GameServer">GameServer</h3>
+        <p>Game Server</p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>server_id</td>
+                  <td><a href="#google.protobuf.UInt64Value">google.protobuf.UInt64Value</a></td>
+                  <td></td>
+                  <td><p>The id of the server. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>operator_id</td>
+                  <td><a href="#google.protobuf.StringValue">google.protobuf.StringValue</a></td>
+                  <td></td>
+                  <td><p>The user ID of the owner of the server. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>endpoint</td>
+                  <td><a href="#google.protobuf.StringValue">google.protobuf.StringValue</a></td>
+                  <td></td>
+                  <td><p>The endpoint data used for client connections. (internal_ip:external_ip:port) </p></td>
+                </tr>
+              
+                <tr>
+                  <td>supported_features</td>
+                  <td><a href="#string">string</a></td>
+                  <td>repeated</td>
+                  <td><p>The features of the server. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>timestep_nanos</td>
+                  <td><a href="#int32">int32</a></td>
+                  <td></td>
+                  <td><p>The timestep duration in nanoseconds. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>metadata</td>
+                  <td><a href="#api.GameServer.MetadataEntry">GameServer.MetadataEntry</a></td>
+                  <td>repeated</td>
+                  <td><p>Additional information about the server. </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="api.GameServer.MetadataEntry">GameServer.MetadataEntry</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>key</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>value</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="api.GuildGameServerList">GuildGameServerList</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>guild_servers</td>
+                  <td><a href="#api.GuildGameServerList.GuildGameServer">GuildGameServerList.GuildGameServer</a></td>
+                  <td>repeated</td>
+                  <td><p>Server-state pairs. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>cursor</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>An optional next page cursor. </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="api.GuildGameServerList.GuildGameServer">GuildGameServerList.GuildGameServer</h3>
+        <p>A single server-state pair.</p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>game_server</td>
+                  <td><a href="#api.GameServer">GameServer</a></td>
+                  <td></td>
+                  <td><p>Server. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>state</td>
+                  <td><a href="#google.protobuf.Int32Value">google.protobuf.Int32Value</a></td>
+                  <td></td>
+                  <td><p>The user&#39;s relationship to the group. </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="api.ListGuildGameServersRequest">ListGuildGameServersRequest</h3>
+        <p>List all users that are part of a group.</p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>guild_group_id</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>The guild ID to list from. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>limit</td>
+                  <td><a href="#google.protobuf.Int32Value">google.protobuf.Int32Value</a></td>
+                  <td></td>
+                  <td><p>Max number of records to return. Between 1 and 100. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>state</td>
+                  <td><a href="#google.protobuf.Int32Value">google.protobuf.Int32Value</a></td>
+                  <td></td>
+                  <td><p>The game server state to list. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>query</td>
+                  <td><a href="#google.protobuf.StringValue">google.protobuf.StringValue</a></td>
+                  <td></td>
+                  <td><p>Arbitrary label query. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>cursor</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>An optional next page cursor. </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="api.ListServersRequest">ListServersRequest</h3>
+        <p>List game servers.</p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>limit</td>
+                  <td><a href="#google.protobuf.Int32Value">google.protobuf.Int32Value</a></td>
+                  <td></td>
+                  <td><p>Limit the number of returned matches. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>query</td>
+                  <td><a href="#google.protobuf.StringValue">google.protobuf.StringValue</a></td>
+                  <td></td>
+                  <td><p>Arbitrary label query. </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="api.LobbyEntrant">LobbyEntrant</h3>
+        <p>A single entrant in a lobby session.</p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>id</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>The unique ID for this entrant record </p></td>
+                </tr>
+              
+                <tr>
+                  <td>session_id</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>The user&#39;s game service session ID </p></td>
+                </tr>
+              
+                <tr>
+                  <td>user_id</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>The user&#39;s NEVR user ID </p></td>
+                </tr>
+              
+                <tr>
+                  <td>xpid</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>The user&#39;s cross-platform ID (e.g. OVR-ORG-123412341234) </p></td>
+                </tr>
+              
+                <tr>
+                  <td>display_name</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>The user&#39;s in-game display name </p></td>
+                </tr>
+              
+                <tr>
+                  <td>role_alignment</td>
+                  <td><a href="#int32">int32</a></td>
+                  <td></td>
+                  <td><p>RoleIndex as int32, see Role enum below </p></td>
+                </tr>
+              
+                <tr>
+                  <td>metadata</td>
+                  <td><a href="#api.LobbyEntrant.MetadataEntry">LobbyEntrant.MetadataEntry</a></td>
+                  <td>repeated</td>
+                  <td><p> </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="api.LobbyEntrant.MetadataEntry">LobbyEntrant.MetadataEntry</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>key</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>value</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="api.LobbySessionCreateRequest">LobbySessionCreateRequest</h3>
+        <p>Request to create a lobby session.</p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>mode</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>The game mode, e.g. &#34;echo_arena_private&#34; </p></td>
+                </tr>
+              
+                <tr>
+                  <td>level</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>The level to play on, e.g. &#34;mpl_arena&#34; </p></td>
+                </tr>
+              
+                <tr>
+                  <td>team_size</td>
+                  <td><a href="#int32">int32</a></td>
+                  <td></td>
+                  <td><p>The number of players per team (1-5), ignored for social modes. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>guild_group_id</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>The guild group ID to which the lobby belongs. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>owner_id</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>The ID of the lobby creator/allocator </p></td>
+                </tr>
+              
+                <tr>
+                  <td>required_features</td>
+                  <td><a href="#string">string</a></td>
+                  <td>repeated</td>
+                  <td><p>Any required features that must be supported by the game server/clients. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>reservations</td>
+                  <td><a href="#api.LobbyEntrant">LobbyEntrant</a></td>
+                  <td>repeated</td>
+                  <td><p>Entrant reservations. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>match_expiry</td>
+                  <td><a href="#google.protobuf.Timestamp">google.protobuf.Timestamp</a></td>
+                  <td></td>
+                  <td><p>The time when the match will expire if no players join. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>metadata</td>
+                  <td><a href="#api.LobbySessionCreateRequest.MetadataEntry">LobbySessionCreateRequest.MetadataEntry</a></td>
+                  <td>repeated</td>
+                  <td><p>Extra metadata for the lobby session. </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="api.LobbySessionCreateRequest.EntrantReservation">LobbySessionCreateRequest.EntrantReservation</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>entrant</td>
+                  <td><a href="#api.LobbyEntrant">LobbyEntrant</a></td>
+                  <td></td>
+                  <td><p>Entrant. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>role_alignment</td>
+                  <td><a href="#google.protobuf.Int32Value">google.protobuf.Int32Value</a></td>
+                  <td></td>
+                  <td><p>The user&#39;s relationship to the group. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>expiry</td>
+                  <td><a href="#google.protobuf.Timestamp">google.protobuf.Timestamp</a></td>
+                  <td></td>
+                  <td><p>The expiry time for the reservations. </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="api.LobbySessionCreateRequest.MetadataEntry">LobbySessionCreateRequest.MetadataEntry</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>key</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>value</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="api.Match">Match</h3>
+        <p>Represents a realtime match.</p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>match_id</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>The ID of the match, can be used to join. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>authoritative</td>
+                  <td><a href="#bool">bool</a></td>
+                  <td></td>
+                  <td><p>True if it&#39;s an server-managed authoritative match, false otherwise. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>label</td>
+                  <td><a href="#google.protobuf.StringValue">google.protobuf.StringValue</a></td>
+                  <td></td>
+                  <td><p>Match label, if any. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>size</td>
+                  <td><a href="#int32">int32</a></td>
+                  <td></td>
+                  <td><p>Current number of users in the match. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>tick_rate</td>
+                  <td><a href="#int32">int32</a></td>
+                  <td></td>
+                  <td><p>Tick Rate </p></td>
+                </tr>
+              
+                <tr>
+                  <td>handler_name</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>Handler name </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+
+      
+        <h3 id="api.GuildGameServerList.GuildGameServer.State">GuildGameServerList.GuildGameServer.State</h3>
+        <p>The server session status.</p>
+        <table class="enum-table">
+          <thead>
+            <tr><td>Name</td><td>Number</td><td>Description</td></tr>
+          </thead>
+          <tbody>
+            
+              <tr>
+                <td>STATE_UNSPECIFIED</td>
+                <td>0</td>
+                <td><p>Default unspecified state.</p></td>
+              </tr>
+            
+              <tr>
+                <td>STATE_ACTIVE</td>
+                <td>1</td>
+                <td><p>The session is active and can be connected to.</p></td>
+              </tr>
+            
+              <tr>
+                <td>STATE_CLOSED</td>
+                <td>2</td>
+                <td><p>The session is closed and will be deleted soon.</p></td>
+              </tr>
+            
+          </tbody>
+        </table>
+      
+        <h3 id="api.LobbySessionCreateRequest.EntrantReservation.RoleAlignment">LobbySessionCreateRequest.EntrantReservation.RoleAlignment</h3>
+        <p>A single entrant reservation.</p>
+        <table class="enum-table">
+          <thead>
+            <tr><td>Name</td><td>Number</td><td>Description</td></tr>
+          </thead>
+          <tbody>
+            
+              <tr>
+                <td>ROLE_ALIGNMENT_UNSPECIFIED</td>
+                <td>0</td>
+                <td><p></p></td>
+              </tr>
+            
+              <tr>
+                <td>ROLE_ALIGNMENT_BLUE</td>
+                <td>1</td>
+                <td><p></p></td>
+              </tr>
+            
+              <tr>
+                <td>ROLE_ALIGNMENT_ORANGE</td>
+                <td>2</td>
+                <td><p></p></td>
+              </tr>
+            
+              <tr>
+                <td>ROLE_ALIGNMENT_SPECTATOR</td>
+                <td>3</td>
+                <td><p></p></td>
+              </tr>
+            
+              <tr>
+                <td>ROLE_ALIGNMENT_SOCIAL</td>
+                <td>4</td>
+                <td><p></p></td>
+              </tr>
+            
+              <tr>
+                <td>ROLE_ALIGNMENT_MODERATOR</td>
+                <td>5</td>
+                <td><p></p></td>
+              </tr>
+            
+          </tbody>
+        </table>
+      
+
+      
+
+      
+    
+
+    <h2 id="scalar-value-types">Scalar Value Types</h2>
+    <table class="scalar-value-types-table">
+      <thead>
+        <tr><td>.proto Type</td><td>Notes</td><td>C++</td><td>Java</td><td>Python</td><td>Go</td><td>C#</td><td>PHP</td><td>Ruby</td></tr>
+      </thead>
+      <tbody>
+        
+          <tr id="double">
+            <td>double</td>
+            <td></td>
+            <td>double</td>
+            <td>double</td>
+            <td>float</td>
+            <td>float64</td>
+            <td>double</td>
+            <td>float</td>
+            <td>Float</td>
+          </tr>
+        
+          <tr id="float">
+            <td>float</td>
+            <td></td>
+            <td>float</td>
+            <td>float</td>
+            <td>float</td>
+            <td>float32</td>
+            <td>float</td>
+            <td>float</td>
+            <td>Float</td>
+          </tr>
+        
+          <tr id="int32">
+            <td>int32</td>
+            <td>Uses variable-length encoding. Inefficient for encoding negative numbers – if your field is likely to have negative values, use sint32 instead.</td>
+            <td>int32</td>
+            <td>int</td>
+            <td>int</td>
+            <td>int32</td>
+            <td>int</td>
+            <td>integer</td>
+            <td>Bignum or Fixnum (as required)</td>
+          </tr>
+        
+          <tr id="int64">
+            <td>int64</td>
+            <td>Uses variable-length encoding. Inefficient for encoding negative numbers – if your field is likely to have negative values, use sint64 instead.</td>
+            <td>int64</td>
+            <td>long</td>
+            <td>int/long</td>
+            <td>int64</td>
+            <td>long</td>
+            <td>integer/string</td>
+            <td>Bignum</td>
+          </tr>
+        
+          <tr id="uint32">
+            <td>uint32</td>
+            <td>Uses variable-length encoding.</td>
+            <td>uint32</td>
+            <td>int</td>
+            <td>int/long</td>
+            <td>uint32</td>
+            <td>uint</td>
+            <td>integer</td>
+            <td>Bignum or Fixnum (as required)</td>
+          </tr>
+        
+          <tr id="uint64">
+            <td>uint64</td>
+            <td>Uses variable-length encoding.</td>
+            <td>uint64</td>
+            <td>long</td>
+            <td>int/long</td>
+            <td>uint64</td>
+            <td>ulong</td>
+            <td>integer/string</td>
+            <td>Bignum or Fixnum (as required)</td>
+          </tr>
+        
+          <tr id="sint32">
+            <td>sint32</td>
+            <td>Uses variable-length encoding. Signed int value. These more efficiently encode negative numbers than regular int32s.</td>
+            <td>int32</td>
+            <td>int</td>
+            <td>int</td>
+            <td>int32</td>
+            <td>int</td>
+            <td>integer</td>
+            <td>Bignum or Fixnum (as required)</td>
+          </tr>
+        
+          <tr id="sint64">
+            <td>sint64</td>
+            <td>Uses variable-length encoding. Signed int value. These more efficiently encode negative numbers than regular int64s.</td>
+            <td>int64</td>
+            <td>long</td>
+            <td>int/long</td>
+            <td>int64</td>
+            <td>long</td>
+            <td>integer/string</td>
+            <td>Bignum</td>
+          </tr>
+        
+          <tr id="fixed32">
+            <td>fixed32</td>
+            <td>Always four bytes. More efficient than uint32 if values are often greater than 2^28.</td>
+            <td>uint32</td>
+            <td>int</td>
+            <td>int</td>
+            <td>uint32</td>
+            <td>uint</td>
+            <td>integer</td>
+            <td>Bignum or Fixnum (as required)</td>
+          </tr>
+        
+          <tr id="fixed64">
+            <td>fixed64</td>
+            <td>Always eight bytes. More efficient than uint64 if values are often greater than 2^56.</td>
+            <td>uint64</td>
+            <td>long</td>
+            <td>int/long</td>
+            <td>uint64</td>
+            <td>ulong</td>
+            <td>integer/string</td>
+            <td>Bignum</td>
+          </tr>
+        
+          <tr id="sfixed32">
+            <td>sfixed32</td>
+            <td>Always four bytes.</td>
+            <td>int32</td>
+            <td>int</td>
+            <td>int</td>
+            <td>int32</td>
+            <td>int</td>
+            <td>integer</td>
+            <td>Bignum or Fixnum (as required)</td>
+          </tr>
+        
+          <tr id="sfixed64">
+            <td>sfixed64</td>
+            <td>Always eight bytes.</td>
+            <td>int64</td>
+            <td>long</td>
+            <td>int/long</td>
+            <td>int64</td>
+            <td>long</td>
+            <td>integer/string</td>
+            <td>Bignum</td>
+          </tr>
+        
+          <tr id="bool">
+            <td>bool</td>
+            <td></td>
+            <td>bool</td>
+            <td>boolean</td>
+            <td>boolean</td>
+            <td>bool</td>
+            <td>bool</td>
+            <td>boolean</td>
+            <td>TrueClass/FalseClass</td>
+          </tr>
+        
+          <tr id="string">
+            <td>string</td>
+            <td>A string must always contain UTF-8 encoded or 7-bit ASCII text.</td>
+            <td>string</td>
+            <td>String</td>
+            <td>str/unicode</td>
+            <td>string</td>
+            <td>string</td>
+            <td>string</td>
+            <td>String (UTF-8)</td>
+          </tr>
+        
+          <tr id="bytes">
+            <td>bytes</td>
+            <td>May contain any arbitrary sequence of bytes.</td>
+            <td>string</td>
+            <td>ByteString</td>
+            <td>str</td>
+            <td>[]byte</td>
+            <td>ByteString</td>
+            <td>string</td>
+            <td>String (ASCII-8BIT)</td>
+          </tr>
+        
+      </tbody>
+    </table>
+  </body>
+</html>
+
