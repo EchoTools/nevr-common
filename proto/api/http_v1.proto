@@ -105,6 +105,8 @@ message LobbySessionCreateRequest {
   string guild_group_id = 6;
   // The ID of the lobby creator/allocator
   string owner_id = 5;
+  // The preferred region for the lobby session.
+  string region_code = 8;
   // Any required features that must be supported by the game server/clients.
   repeated string required_features = 7;
   // Entrant reservations.
