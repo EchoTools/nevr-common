@@ -69,7 +69,7 @@ enum Role {
 // A wrapper for any event that can occur during a session.
 message LobbySessionEvent {
   // The specific event payload.
-  oneof payload {
+  oneof event {
     // Game State Events
     RoundStarted round_started = 10;
     RoundPaused round_paused = 11;

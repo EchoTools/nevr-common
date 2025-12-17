@@ -25,9 +25,9 @@ message Envelope {
     LobbySessionCreateMessage lobby_session_create = 7;
     LobbySessionEventMessage lobby_session_event = 8;
     LobbyEntrantsConnectedMessage lobby_entrant_connected = 9;
-    LobbyEntrantsAcceptMessage lobby_entrant_accept = 10;
+    LobbyEntrantsAcceptMessage lobby_entrants_accept = 10;
     LobbyEntrantsRejectMessage lobby_entrant_reject = 11;
-    LobbyEntrantRemovedMessage lobby_entrant_remove = 12;
+    LobbyEntrantRemovedMessage lobby_entrant_removed = 12;
 
     // Unknown message.
     SNSUnknownMessage unknown_message = 13;
