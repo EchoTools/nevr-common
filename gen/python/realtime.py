@@ -86,13 +86,13 @@ class Envelope(betterproto.Message):
     lobby_entrant_connected: "LobbyEntrantsConnectedMessage" = (
         betterproto.message_field(9, group="message")
     )
-    lobby_entrant_accept: "LobbyEntrantsAcceptMessage" = betterproto.message_field(
+    lobby_entrants_accept: "LobbyEntrantsAcceptMessage" = betterproto.message_field(
         10, group="message"
     )
     lobby_entrant_reject: "LobbyEntrantsRejectMessage" = betterproto.message_field(
         11, group="message"
     )
-    lobby_entrant_remove: "LobbyEntrantRemovedMessage" = betterproto.message_field(
+    lobby_entrant_removed: "LobbyEntrantRemovedMessage" = betterproto.message_field(
         12, group="message"
     )
     # Unknown message.

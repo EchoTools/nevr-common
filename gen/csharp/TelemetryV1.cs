@@ -38,7 +38,7 @@ namespace Nevr.Telemetry.Protobuf {
             "ZW50UgZldmVudHMSNQoHc2Vzc2lvbhgEIAEoCzIbLmVuZ2luZWh0dHAuU2Vz",
             "c2lvblJlc3BvbnNlUgdzZXNzaW9uEkIKDHBsYXllcl9ib25lcxgFIAEoCzIf",
             "LmVuZ2luZWh0dHAuUGxheWVyQm9uZXNSZXNwb25zZVILcGxheWVyQm9uZXMi",
-            "uQsKEUxvYmJ5U2Vzc2lvbkV2ZW50Ej4KDXJvdW5kX3N0YXJ0ZWQYCiABKAsy",
+            "twsKEUxvYmJ5U2Vzc2lvbkV2ZW50Ej4KDXJvdW5kX3N0YXJ0ZWQYCiABKAsy",
             "Fy50ZWxlbWV0cnkuUm91bmRTdGFydGVkSABSDHJvdW5kU3RhcnRlZBI7Cgxy",
             "b3VuZF9wYXVzZWQYCyABKAsyFi50ZWxlbWV0cnkuUm91bmRQYXVzZWRIAFIL",
             "cm91bmRQYXVzZWQSQQoOcm91bmRfdW5wYXVzZWQYDCABKAsyGC50ZWxlbWV0",
@@ -70,66 +70,66 @@ namespace Nevr.Telemetry.Protobuf {
             "ckludGVyY2VwdGlvbhI+Cg1wbGF5ZXJfYXNzaXN0GDggASgLMhcudGVsZW1l",
             "dHJ5LlBsYXllckFzc2lzdEgAUgxwbGF5ZXJBc3Npc3QSSAoRcGxheWVyX3No",
             "b3RfdGFrZW4YOSABKAsyGi50ZWxlbWV0cnkuUGxheWVyU2hvdFRha2VuSABS",
-            "D3BsYXllclNob3RUYWtlbkIJCgdwYXlsb2FkIjEKDFJvdW5kU3RhcnRlZBIh",
-            "Cgxyb3VuZF9udW1iZXIYASABKAVSC3JvdW5kTnVtYmVyIkYKC1JvdW5kUGF1",
-            "c2VkEjcKC3BhdXNlX3N0YXRlGAEgASgLMhYuZW5naW5laHR0cC5QYXVzZVN0",
-            "YXRlUgpwYXVzZVN0YXRlIkgKDVJvdW5kVW5wYXVzZWQSNwoLcGF1c2Vfc3Rh",
-            "dGUYASABKAsyFi5lbmdpbmVodHRwLlBhdXNlU3RhdGVSCnBhdXNlU3RhdGUi",
-            "YwoKUm91bmRFbmRlZBIhCgxyb3VuZF9udW1iZXIYASABKAVSC3JvdW5kTnVt",
-            "YmVyEjIKDHdpbm5pbmdfdGVhbRgCIAEoDjIPLnRlbGVtZXRyeS5Sb2xlUgt3",
-            "aW5uaW5nVGVhbSJACgpNYXRjaEVuZGVkEjIKDHdpbm5pbmdfdGVhbRgBIAEo",
-            "DjIPLnRlbGVtZXRyeS5Sb2xlUgt3aW5uaW5nVGVhbSLfAQoRU2NvcmVib2Fy",
-            "ZFVwZGF0ZWQSHwoLYmx1ZV9wb2ludHMYASABKAVSCmJsdWVQb2ludHMSIwoN",
-            "b3JhbmdlX3BvaW50cxgCIAEoBVIMb3JhbmdlUG9pbnRzEigKEGJsdWVfcm91",
-            "bmRfc2NvcmUYAyABKAVSDmJsdWVSb3VuZFNjb3JlEiwKEm9yYW5nZV9yb3Vu",
-            "ZF9zY29yZRgEIAEoBVIQb3JhbmdlUm91bmRTY29yZRIsChJnYW1lX2Nsb2Nr",
-            "X2Rpc3BsYXkYBSABKAlSEGdhbWVDbG9ja0Rpc3BsYXkiYwoMUGxheWVySm9p",
-            "bmVkEi4KBnBsYXllchgBIAEoCzIWLmVuZ2luZWh0dHAuVGVhbU1lbWJlclIG",
-            "cGxheWVyEiMKBHJvbGUYAiABKA4yDy50ZWxlbWV0cnkuUm9sZVIEcm9sZSJQ",
-            "CgpQbGF5ZXJMZWZ0Eh8KC3BsYXllcl9zbG90GAEgASgFUgpwbGF5ZXJTbG90",
-            "EiEKDGRpc3BsYXlfbmFtZRgCIAEoCVILZGlzcGxheU5hbWUijwEKElBsYXll",
-            "clN3aXRjaGVkVGVhbRIfCgtwbGF5ZXJfc2xvdBgBIAEoBVIKcGxheWVyU2xv",
-            "dBIqCghuZXdfcm9sZRgCIAEoDjIPLnRlbGVtZXRyeS5Sb2xlUgduZXdSb2xl",
-            "EiwKCXByZXZfcm9sZRgDIAEoDjIPLnRlbGVtZXRyeS5Sb2xlUghwcmV2Um9s",
-            "ZSJXCgtFbW90ZVBsYXllZBIfCgtwbGF5ZXJfc2xvdBgBIAEoBVIKcGxheWVy",
-            "U2xvdCInCglFbW90ZVR5cGUSCwoHUFJJTUFSWRAAEg0KCVNFQ09OREFSWRAB",
-            "Il0KFURpc2NQb3NzZXNzaW9uQ2hhbmdlZBIfCgtwbGF5ZXJfc2xvdBgBIAEo",
-            "BVIKcGxheWVyU2xvdBIjCg1wcmV2aW91c19zbG90GAIgASgFUgxwcmV2aW91",
-            "c1Nsb3QibQoKRGlzY1Rocm93bhIfCgtwbGF5ZXJfc2xvdBgBIAEoBVIKcGxh",
-            "eWVyU2xvdBI+Cg10aHJvd19kZXRhaWxzGAIgASgLMhkuZW5naW5laHR0cC5M",
-            "YXN0VGhyb3dJbmZvUgx0aHJvd0RldGFpbHMiLQoKRGlzY0NhdWdodBIfCgtw",
-            "bGF5ZXJfc2xvdBgBIAEoBVIKcGxheWVyU2xvdCJICgpHb2FsU2NvcmVkEjoK",
-            "DXNjb3JlX2RldGFpbHMYASABKAsyFS5lbmdpbmVodHRwLkxhc3RTY29yZVIM",
-            "c2NvcmVEZXRhaWxzImYKClBsYXllckdvYWwSHwoLcGxheWVyX3Nsb3QYASAB",
-            "KAVSCnBsYXllclNsb3QSHwoLdG90YWxfZ29hbHMYAiABKAVSCnRvdGFsR29h",
-            "bHMSFgoGcG9pbnRzGAMgASgFUgZwb2ludHMiTgoKUGxheWVyU2F2ZRIfCgtw",
-            "bGF5ZXJfc2xvdBgBIAEoBVIKcGxheWVyU2xvdBIfCgt0b3RhbF9zYXZlcxgC",
-            "IAEoBVIKdG90YWxTYXZlcyJOCgpQbGF5ZXJTdHVuEh8KC3BsYXllcl9zbG90",
-            "GAEgASgFUgpwbGF5ZXJTbG90Eh8KC3RvdGFsX3N0dW5zGAIgASgFUgp0b3Rh",
-            "bFN0dW5zIlAKClBsYXllclBhc3MSHwoLcGxheWVyX3Nsb3QYASABKAVSCnBs",
-            "YXllclNsb3QSIQoMdG90YWxfcGFzc2VzGAIgASgFUgt0b3RhbFBhc3NlcyJR",
-            "CgtQbGF5ZXJTdGVhbBIfCgtwbGF5ZXJfc2xvdBgBIAEoBVIKcGxheWVyU2xv",
-            "dBIhCgx0b3RhbF9zdGVhbHMYAiABKAVSC3RvdGFsU3RlYWxzIlEKC1BsYXll",
-            "ckJsb2NrEh8KC3BsYXllcl9zbG90GAEgASgFUgpwbGF5ZXJTbG90EiEKDHRv",
-            "dGFsX2Jsb2NrcxgCIAEoBVILdG90YWxCbG9ja3MiZgoSUGxheWVySW50ZXJj",
-            "ZXB0aW9uEh8KC3BsYXllcl9zbG90GAEgASgFUgpwbGF5ZXJTbG90Ei8KE3Rv",
-            "dGFsX2ludGVyY2VwdGlvbnMYAiABKAVSEnRvdGFsSW50ZXJjZXB0aW9ucyJU",
-            "CgxQbGF5ZXJBc3Npc3QSHwoLcGxheWVyX3Nsb3QYASABKAVSCnBsYXllclNs",
-            "b3QSIwoNdG90YWxfYXNzaXN0cxgCIAEoBVIMdG90YWxBc3Npc3RzIlMKD1Bs",
-            "YXllclNob3RUYWtlbhIfCgtwbGF5ZXJfc2xvdBgBIAEoBVIKcGxheWVyU2xv",
-            "dBIfCgt0b3RhbF9zaG90cxgCIAEoBVIKdG90YWxTaG90cypyCgRSb2xlEhQK",
-            "EFJPTEVfVU5TUEVDSUZJRUQQABINCglCTFVFX1RFQU0QARIPCgtPUkFOR0Vf",
-            "VEVBTRACEg0KCVNQRUNUQVRPUhADEhYKElNPQ0lBTF9QQVJUSUNJUEFOVBAE",
-            "Eg0KCU1PREVSQVRPUhAFQncKGGNvbS5lY2hvdG9vbHMubmV2ci5ydGFwaUIN",
-            "TmV2clRlbGVtZXRyeVABWjBnaXRodWIuY29tL2VjaG90b29scy9uZXZyLWNv",
-            "bW1vbi92NC9nZW4vZ28vcnRhcGmqAhdOZXZyLlRlbGVtZXRyeS5Qcm90b2J1",
-            "ZmIGcHJvdG8z"));
+            "D3BsYXllclNob3RUYWtlbkIHCgVldmVudCIxCgxSb3VuZFN0YXJ0ZWQSIQoM",
+            "cm91bmRfbnVtYmVyGAEgASgFUgtyb3VuZE51bWJlciJGCgtSb3VuZFBhdXNl",
+            "ZBI3CgtwYXVzZV9zdGF0ZRgBIAEoCzIWLmVuZ2luZWh0dHAuUGF1c2VTdGF0",
+            "ZVIKcGF1c2VTdGF0ZSJICg1Sb3VuZFVucGF1c2VkEjcKC3BhdXNlX3N0YXRl",
+            "GAEgASgLMhYuZW5naW5laHR0cC5QYXVzZVN0YXRlUgpwYXVzZVN0YXRlImMK",
+            "ClJvdW5kRW5kZWQSIQoMcm91bmRfbnVtYmVyGAEgASgFUgtyb3VuZE51bWJl",
+            "chIyCgx3aW5uaW5nX3RlYW0YAiABKA4yDy50ZWxlbWV0cnkuUm9sZVILd2lu",
+            "bmluZ1RlYW0iQAoKTWF0Y2hFbmRlZBIyCgx3aW5uaW5nX3RlYW0YASABKA4y",
+            "Dy50ZWxlbWV0cnkuUm9sZVILd2lubmluZ1RlYW0i3wEKEVNjb3JlYm9hcmRV",
+            "cGRhdGVkEh8KC2JsdWVfcG9pbnRzGAEgASgFUgpibHVlUG9pbnRzEiMKDW9y",
+            "YW5nZV9wb2ludHMYAiABKAVSDG9yYW5nZVBvaW50cxIoChBibHVlX3JvdW5k",
+            "X3Njb3JlGAMgASgFUg5ibHVlUm91bmRTY29yZRIsChJvcmFuZ2Vfcm91bmRf",
+            "c2NvcmUYBCABKAVSEG9yYW5nZVJvdW5kU2NvcmUSLAoSZ2FtZV9jbG9ja19k",
+            "aXNwbGF5GAUgASgJUhBnYW1lQ2xvY2tEaXNwbGF5ImMKDFBsYXllckpvaW5l",
+            "ZBIuCgZwbGF5ZXIYASABKAsyFi5lbmdpbmVodHRwLlRlYW1NZW1iZXJSBnBs",
+            "YXllchIjCgRyb2xlGAIgASgOMg8udGVsZW1ldHJ5LlJvbGVSBHJvbGUiUAoK",
+            "UGxheWVyTGVmdBIfCgtwbGF5ZXJfc2xvdBgBIAEoBVIKcGxheWVyU2xvdBIh",
+            "CgxkaXNwbGF5X25hbWUYAiABKAlSC2Rpc3BsYXlOYW1lIo8BChJQbGF5ZXJT",
+            "d2l0Y2hlZFRlYW0SHwoLcGxheWVyX3Nsb3QYASABKAVSCnBsYXllclNsb3QS",
+            "KgoIbmV3X3JvbGUYAiABKA4yDy50ZWxlbWV0cnkuUm9sZVIHbmV3Um9sZRIs",
+            "CglwcmV2X3JvbGUYAyABKA4yDy50ZWxlbWV0cnkuUm9sZVIIcHJldlJvbGUi",
+            "VwoLRW1vdGVQbGF5ZWQSHwoLcGxheWVyX3Nsb3QYASABKAVSCnBsYXllclNs",
+            "b3QiJwoJRW1vdGVUeXBlEgsKB1BSSU1BUlkQABINCglTRUNPTkRBUlkQASJd",
+            "ChVEaXNjUG9zc2Vzc2lvbkNoYW5nZWQSHwoLcGxheWVyX3Nsb3QYASABKAVS",
+            "CnBsYXllclNsb3QSIwoNcHJldmlvdXNfc2xvdBgCIAEoBVIMcHJldmlvdXNT",
+            "bG90Im0KCkRpc2NUaHJvd24SHwoLcGxheWVyX3Nsb3QYASABKAVSCnBsYXll",
+            "clNsb3QSPgoNdGhyb3dfZGV0YWlscxgCIAEoCzIZLmVuZ2luZWh0dHAuTGFz",
+            "dFRocm93SW5mb1IMdGhyb3dEZXRhaWxzIi0KCkRpc2NDYXVnaHQSHwoLcGxh",
+            "eWVyX3Nsb3QYASABKAVSCnBsYXllclNsb3QiSAoKR29hbFNjb3JlZBI6Cg1z",
+            "Y29yZV9kZXRhaWxzGAEgASgLMhUuZW5naW5laHR0cC5MYXN0U2NvcmVSDHNj",
+            "b3JlRGV0YWlscyJmCgpQbGF5ZXJHb2FsEh8KC3BsYXllcl9zbG90GAEgASgF",
+            "UgpwbGF5ZXJTbG90Eh8KC3RvdGFsX2dvYWxzGAIgASgFUgp0b3RhbEdvYWxz",
+            "EhYKBnBvaW50cxgDIAEoBVIGcG9pbnRzIk4KClBsYXllclNhdmUSHwoLcGxh",
+            "eWVyX3Nsb3QYASABKAVSCnBsYXllclNsb3QSHwoLdG90YWxfc2F2ZXMYAiAB",
+            "KAVSCnRvdGFsU2F2ZXMiTgoKUGxheWVyU3R1bhIfCgtwbGF5ZXJfc2xvdBgB",
+            "IAEoBVIKcGxheWVyU2xvdBIfCgt0b3RhbF9zdHVucxgCIAEoBVIKdG90YWxT",
+            "dHVucyJQCgpQbGF5ZXJQYXNzEh8KC3BsYXllcl9zbG90GAEgASgFUgpwbGF5",
+            "ZXJTbG90EiEKDHRvdGFsX3Bhc3NlcxgCIAEoBVILdG90YWxQYXNzZXMiUQoL",
+            "UGxheWVyU3RlYWwSHwoLcGxheWVyX3Nsb3QYASABKAVSCnBsYXllclNsb3QS",
+            "IQoMdG90YWxfc3RlYWxzGAIgASgFUgt0b3RhbFN0ZWFscyJRCgtQbGF5ZXJC",
+            "bG9jaxIfCgtwbGF5ZXJfc2xvdBgBIAEoBVIKcGxheWVyU2xvdBIhCgx0b3Rh",
+            "bF9ibG9ja3MYAiABKAVSC3RvdGFsQmxvY2tzImYKElBsYXllckludGVyY2Vw",
+            "dGlvbhIfCgtwbGF5ZXJfc2xvdBgBIAEoBVIKcGxheWVyU2xvdBIvChN0b3Rh",
+            "bF9pbnRlcmNlcHRpb25zGAIgASgFUhJ0b3RhbEludGVyY2VwdGlvbnMiVAoM",
+            "UGxheWVyQXNzaXN0Eh8KC3BsYXllcl9zbG90GAEgASgFUgpwbGF5ZXJTbG90",
+            "EiMKDXRvdGFsX2Fzc2lzdHMYAiABKAVSDHRvdGFsQXNzaXN0cyJTCg9QbGF5",
+            "ZXJTaG90VGFrZW4SHwoLcGxheWVyX3Nsb3QYASABKAVSCnBsYXllclNsb3QS",
+            "HwoLdG90YWxfc2hvdHMYAiABKAVSCnRvdGFsU2hvdHMqcgoEUm9sZRIUChBS",
+            "T0xFX1VOU1BFQ0lGSUVEEAASDQoJQkxVRV9URUFNEAESDwoLT1JBTkdFX1RF",
+            "QU0QAhINCglTUEVDVEFUT1IQAxIWChJTT0NJQUxfUEFSVElDSVBBTlQQBBIN",
+            "CglNT0RFUkFUT1IQBUJ3Chhjb20uZWNob3Rvb2xzLm5ldnIucnRhcGlCDU5l",
+            "dnJUZWxlbWV0cnlQAVowZ2l0aHViLmNvbS9lY2hvdG9vbHMvbmV2ci1jb21t",
+            "b24vdjQvZ2VuL2dvL3J0YXBpqgIXTmV2ci5UZWxlbWV0cnkuUHJvdG9idWZi",
+            "BnByb3RvMw=="));
       descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
           new pbr::FileDescriptor[] { global::Nevr.Engine.Http.V1.HttpV1Reflection.Descriptor, global::Google.Protobuf.WellKnownTypes.TimestampReflection.Descriptor, },
           new pbr::GeneratedClrTypeInfo(new[] {typeof(global::Nevr.Telemetry.Protobuf.Role), }, null, new pbr::GeneratedClrTypeInfo[] {
             new pbr::GeneratedClrTypeInfo(typeof(global::Nevr.Telemetry.Protobuf.TelemetryHeader), global::Nevr.Telemetry.Protobuf.TelemetryHeader.Parser, new[]{ "CaptureId", "CreatedAt", "Metadata" }, null, null, null, new pbr::GeneratedClrTypeInfo[] { null, }),
             new pbr::GeneratedClrTypeInfo(typeof(global::Nevr.Telemetry.Protobuf.LobbySessionStateFrame), global::Nevr.Telemetry.Protobuf.LobbySessionStateFrame.Parser, new[]{ "FrameIndex", "Timestamp", "Events", "Session", "PlayerBones" }, null, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::Nevr.Telemetry.Protobuf.LobbySessionEvent), global::Nevr.Telemetry.Protobuf.LobbySessionEvent.Parser, new[]{ "RoundStarted", "RoundPaused", "RoundUnpaused", "RoundEnded", "MatchEnded", "ScoreboardUpdated", "PlayerJoined", "PlayerLeft", "PlayerSwitchedTeam", "EmotePlayed", "DiscPossessionChanged", "DiscThrown", "DiscCaught", "GoalScored", "PlayerSave", "PlayerStun", "PlayerPass", "PlayerSteal", "PlayerBlock", "PlayerInterception", "PlayerAssist", "PlayerShotTaken" }, new[]{ "Payload" }, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::Nevr.Telemetry.Protobuf.LobbySessionEvent), global::Nevr.Telemetry.Protobuf.LobbySessionEvent.Parser, new[]{ "RoundStarted", "RoundPaused", "RoundUnpaused", "RoundEnded", "MatchEnded", "ScoreboardUpdated", "PlayerJoined", "PlayerLeft", "PlayerSwitchedTeam", "EmotePlayed", "DiscPossessionChanged", "DiscThrown", "DiscCaught", "GoalScored", "PlayerSave", "PlayerStun", "PlayerPass", "PlayerSteal", "PlayerBlock", "PlayerInterception", "PlayerAssist", "PlayerShotTaken" }, new[]{ "Event" }, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Nevr.Telemetry.Protobuf.RoundStarted), global::Nevr.Telemetry.Protobuf.RoundStarted.Parser, new[]{ "RoundNumber" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Nevr.Telemetry.Protobuf.RoundPaused), global::Nevr.Telemetry.Protobuf.RoundPaused.Parser, new[]{ "PauseState" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Nevr.Telemetry.Protobuf.RoundUnpaused), global::Nevr.Telemetry.Protobuf.RoundUnpaused.Parser, new[]{ "PauseState" }, null, null, null, null),
@@ -879,71 +879,71 @@ namespace Nevr.Telemetry.Protobuf {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public LobbySessionEvent(LobbySessionEvent other) : this() {
-      switch (other.PayloadCase) {
-        case PayloadOneofCase.RoundStarted:
+      switch (other.EventCase) {
+        case EventOneofCase.RoundStarted:
           RoundStarted = other.RoundStarted.Clone();
           break;
-        case PayloadOneofCase.RoundPaused:
+        case EventOneofCase.RoundPaused:
           RoundPaused = other.RoundPaused.Clone();
           break;
-        case PayloadOneofCase.RoundUnpaused:
+        case EventOneofCase.RoundUnpaused:
           RoundUnpaused = other.RoundUnpaused.Clone();
           break;
-        case PayloadOneofCase.RoundEnded:
+        case EventOneofCase.RoundEnded:
           RoundEnded = other.RoundEnded.Clone();
           break;
-        case PayloadOneofCase.MatchEnded:
+        case EventOneofCase.MatchEnded:
           MatchEnded = other.MatchEnded.Clone();
           break;
-        case PayloadOneofCase.ScoreboardUpdated:
+        case EventOneofCase.ScoreboardUpdated:
           ScoreboardUpdated = other.ScoreboardUpdated.Clone();
           break;
-        case PayloadOneofCase.PlayerJoined:
+        case EventOneofCase.PlayerJoined:
           PlayerJoined = other.PlayerJoined.Clone();
           break;
-        case PayloadOneofCase.PlayerLeft:
+        case EventOneofCase.PlayerLeft:
           PlayerLeft = other.PlayerLeft.Clone();
           break;
-        case PayloadOneofCase.PlayerSwitchedTeam:
+        case EventOneofCase.PlayerSwitchedTeam:
           PlayerSwitchedTeam = other.PlayerSwitchedTeam.Clone();
           break;
-        case PayloadOneofCase.EmotePlayed:
+        case EventOneofCase.EmotePlayed:
           EmotePlayed = other.EmotePlayed.Clone();
           break;
-        case PayloadOneofCase.DiscPossessionChanged:
+        case EventOneofCase.DiscPossessionChanged:
           DiscPossessionChanged = other.DiscPossessionChanged.Clone();
           break;
-        case PayloadOneofCase.DiscThrown:
+        case EventOneofCase.DiscThrown:
           DiscThrown = other.DiscThrown.Clone();
           break;
-        case PayloadOneofCase.DiscCaught:
+        case EventOneofCase.DiscCaught:
           DiscCaught = other.DiscCaught.Clone();
           break;
-        case PayloadOneofCase.GoalScored:
+        case EventOneofCase.GoalScored:
           GoalScored = other.GoalScored.Clone();
           break;
-        case PayloadOneofCase.PlayerSave:
+        case EventOneofCase.PlayerSave:
           PlayerSave = other.PlayerSave.Clone();
           break;
-        case PayloadOneofCase.PlayerStun:
+        case EventOneofCase.PlayerStun:
           PlayerStun = other.PlayerStun.Clone();
           break;
-        case PayloadOneofCase.PlayerPass:
+        case EventOneofCase.PlayerPass:
           PlayerPass = other.PlayerPass.Clone();
           break;
-        case PayloadOneofCase.PlayerSteal:
+        case EventOneofCase.PlayerSteal:
           PlayerSteal = other.PlayerSteal.Clone();
           break;
-        case PayloadOneofCase.PlayerBlock:
+        case EventOneofCase.PlayerBlock:
           PlayerBlock = other.PlayerBlock.Clone();
           break;
-        case PayloadOneofCase.PlayerInterception:
+        case EventOneofCase.PlayerInterception:
           PlayerInterception = other.PlayerInterception.Clone();
           break;
-        case PayloadOneofCase.PlayerAssist:
+        case EventOneofCase.PlayerAssist:
           PlayerAssist = other.PlayerAssist.Clone();
           break;
-        case PayloadOneofCase.PlayerShotTaken:
+        case EventOneofCase.PlayerShotTaken:
           PlayerShotTaken = other.PlayerShotTaken.Clone();
           break;
       }
@@ -965,10 +965,10 @@ namespace Nevr.Telemetry.Protobuf {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public global::Nevr.Telemetry.Protobuf.RoundStarted RoundStarted {
-      get { return payloadCase_ == PayloadOneofCase.RoundStarted ? (global::Nevr.Telemetry.Protobuf.RoundStarted) payload_ : null; }
+      get { return eventCase_ == EventOneofCase.RoundStarted ? (global::Nevr.Telemetry.Protobuf.RoundStarted) event_ : null; }
       set {
-        payload_ = value;
-        payloadCase_ = value == null ? PayloadOneofCase.None : PayloadOneofCase.RoundStarted;
+        event_ = value;
+        eventCase_ = value == null ? EventOneofCase.None : EventOneofCase.RoundStarted;
       }
     }
 
@@ -977,10 +977,10 @@ namespace Nevr.Telemetry.Protobuf {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public global::Nevr.Telemetry.Protobuf.RoundPaused RoundPaused {
-      get { return payloadCase_ == PayloadOneofCase.RoundPaused ? (global::Nevr.Telemetry.Protobuf.RoundPaused) payload_ : null; }
+      get { return eventCase_ == EventOneofCase.RoundPaused ? (global::Nevr.Telemetry.Protobuf.RoundPaused) event_ : null; }
       set {
-        payload_ = value;
-        payloadCase_ = value == null ? PayloadOneofCase.None : PayloadOneofCase.RoundPaused;
+        event_ = value;
+        eventCase_ = value == null ? EventOneofCase.None : EventOneofCase.RoundPaused;
       }
     }
 
@@ -989,10 +989,10 @@ namespace Nevr.Telemetry.Protobuf {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public global::Nevr.Telemetry.Protobuf.RoundUnpaused RoundUnpaused {
-      get { return payloadCase_ == PayloadOneofCase.RoundUnpaused ? (global::Nevr.Telemetry.Protobuf.RoundUnpaused) payload_ : null; }
+      get { return eventCase_ == EventOneofCase.RoundUnpaused ? (global::Nevr.Telemetry.Protobuf.RoundUnpaused) event_ : null; }
       set {
-        payload_ = value;
-        payloadCase_ = value == null ? PayloadOneofCase.None : PayloadOneofCase.RoundUnpaused;
+        event_ = value;
+        eventCase_ = value == null ? EventOneofCase.None : EventOneofCase.RoundUnpaused;
       }
     }
 
@@ -1001,10 +1001,10 @@ namespace Nevr.Telemetry.Protobuf {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public global::Nevr.Telemetry.Protobuf.RoundEnded RoundEnded {
-      get { return payloadCase_ == PayloadOneofCase.RoundEnded ? (global::Nevr.Telemetry.Protobuf.RoundEnded) payload_ : null; }
+      get { return eventCase_ == EventOneofCase.RoundEnded ? (global::Nevr.Telemetry.Protobuf.RoundEnded) event_ : null; }
       set {
-        payload_ = value;
-        payloadCase_ = value == null ? PayloadOneofCase.None : PayloadOneofCase.RoundEnded;
+        event_ = value;
+        eventCase_ = value == null ? EventOneofCase.None : EventOneofCase.RoundEnded;
       }
     }
 
@@ -1013,10 +1013,10 @@ namespace Nevr.Telemetry.Protobuf {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public global::Nevr.Telemetry.Protobuf.MatchEnded MatchEnded {
-      get { return payloadCase_ == PayloadOneofCase.MatchEnded ? (global::Nevr.Telemetry.Protobuf.MatchEnded) payload_ : null; }
+      get { return eventCase_ == EventOneofCase.MatchEnded ? (global::Nevr.Telemetry.Protobuf.MatchEnded) event_ : null; }
       set {
-        payload_ = value;
-        payloadCase_ = value == null ? PayloadOneofCase.None : PayloadOneofCase.MatchEnded;
+        event_ = value;
+        eventCase_ = value == null ? EventOneofCase.None : EventOneofCase.MatchEnded;
       }
     }
 
@@ -1025,10 +1025,10 @@ namespace Nevr.Telemetry.Protobuf {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public global::Nevr.Telemetry.Protobuf.ScoreboardUpdated ScoreboardUpdated {
-      get { return payloadCase_ == PayloadOneofCase.ScoreboardUpdated ? (global::Nevr.Telemetry.Protobuf.ScoreboardUpdated) payload_ : null; }
+      get { return eventCase_ == EventOneofCase.ScoreboardUpdated ? (global::Nevr.Telemetry.Protobuf.ScoreboardUpdated) event_ : null; }
       set {
-        payload_ = value;
-        payloadCase_ = value == null ? PayloadOneofCase.None : PayloadOneofCase.ScoreboardUpdated;
+        event_ = value;
+        eventCase_ = value == null ? EventOneofCase.None : EventOneofCase.ScoreboardUpdated;
       }
     }
 
@@ -1040,10 +1040,10 @@ namespace Nevr.Telemetry.Protobuf {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public global::Nevr.Telemetry.Protobuf.PlayerJoined PlayerJoined {
-      get { return payloadCase_ == PayloadOneofCase.PlayerJoined ? (global::Nevr.Telemetry.Protobuf.PlayerJoined) payload_ : null; }
+      get { return eventCase_ == EventOneofCase.PlayerJoined ? (global::Nevr.Telemetry.Protobuf.PlayerJoined) event_ : null; }
       set {
-        payload_ = value;
-        payloadCase_ = value == null ? PayloadOneofCase.None : PayloadOneofCase.PlayerJoined;
+        event_ = value;
+        eventCase_ = value == null ? EventOneofCase.None : EventOneofCase.PlayerJoined;
       }
     }
 
@@ -1052,10 +1052,10 @@ namespace Nevr.Telemetry.Protobuf {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public global::Nevr.Telemetry.Protobuf.PlayerLeft PlayerLeft {
-      get { return payloadCase_ == PayloadOneofCase.PlayerLeft ? (global::Nevr.Telemetry.Protobuf.PlayerLeft) payload_ : null; }
+      get { return eventCase_ == EventOneofCase.PlayerLeft ? (global::Nevr.Telemetry.Protobuf.PlayerLeft) event_ : null; }
       set {
-        payload_ = value;
-        payloadCase_ = value == null ? PayloadOneofCase.None : PayloadOneofCase.PlayerLeft;
+        event_ = value;
+        eventCase_ = value == null ? EventOneofCase.None : EventOneofCase.PlayerLeft;
       }
     }
 
@@ -1064,10 +1064,10 @@ namespace Nevr.Telemetry.Protobuf {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public global::Nevr.Telemetry.Protobuf.PlayerSwitchedTeam PlayerSwitchedTeam {
-      get { return payloadCase_ == PayloadOneofCase.PlayerSwitchedTeam ? (global::Nevr.Telemetry.Protobuf.PlayerSwitchedTeam) payload_ : null; }
+      get { return eventCase_ == EventOneofCase.PlayerSwitchedTeam ? (global::Nevr.Telemetry.Protobuf.PlayerSwitchedTeam) event_ : null; }
       set {
-        payload_ = value;
-        payloadCase_ = value == null ? PayloadOneofCase.None : PayloadOneofCase.PlayerSwitchedTeam;
+        event_ = value;
+        eventCase_ = value == null ? EventOneofCase.None : EventOneofCase.PlayerSwitchedTeam;
       }
     }
 
@@ -1076,10 +1076,10 @@ namespace Nevr.Telemetry.Protobuf {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public global::Nevr.Telemetry.Protobuf.EmotePlayed EmotePlayed {
-      get { return payloadCase_ == PayloadOneofCase.EmotePlayed ? (global::Nevr.Telemetry.Protobuf.EmotePlayed) payload_ : null; }
+      get { return eventCase_ == EventOneofCase.EmotePlayed ? (global::Nevr.Telemetry.Protobuf.EmotePlayed) event_ : null; }
       set {
-        payload_ = value;
-        payloadCase_ = value == null ? PayloadOneofCase.None : PayloadOneofCase.EmotePlayed;
+        event_ = value;
+        eventCase_ = value == null ? EventOneofCase.None : EventOneofCase.EmotePlayed;
       }
     }
 
@@ -1091,10 +1091,10 @@ namespace Nevr.Telemetry.Protobuf {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public global::Nevr.Telemetry.Protobuf.DiscPossessionChanged DiscPossessionChanged {
-      get { return payloadCase_ == PayloadOneofCase.DiscPossessionChanged ? (global::Nevr.Telemetry.Protobuf.DiscPossessionChanged) payload_ : null; }
+      get { return eventCase_ == EventOneofCase.DiscPossessionChanged ? (global::Nevr.Telemetry.Protobuf.DiscPossessionChanged) event_ : null; }
       set {
-        payload_ = value;
-        payloadCase_ = value == null ? PayloadOneofCase.None : PayloadOneofCase.DiscPossessionChanged;
+        event_ = value;
+        eventCase_ = value == null ? EventOneofCase.None : EventOneofCase.DiscPossessionChanged;
       }
     }
 
@@ -1103,10 +1103,10 @@ namespace Nevr.Telemetry.Protobuf {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public global::Nevr.Telemetry.Protobuf.DiscThrown DiscThrown {
-      get { return payloadCase_ == PayloadOneofCase.DiscThrown ? (global::Nevr.Telemetry.Protobuf.DiscThrown) payload_ : null; }
+      get { return eventCase_ == EventOneofCase.DiscThrown ? (global::Nevr.Telemetry.Protobuf.DiscThrown) event_ : null; }
       set {
-        payload_ = value;
-        payloadCase_ = value == null ? PayloadOneofCase.None : PayloadOneofCase.DiscThrown;
+        event_ = value;
+        eventCase_ = value == null ? EventOneofCase.None : EventOneofCase.DiscThrown;
       }
     }
 
@@ -1115,10 +1115,10 @@ namespace Nevr.Telemetry.Protobuf {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public global::Nevr.Telemetry.Protobuf.DiscCaught DiscCaught {
-      get { return payloadCase_ == PayloadOneofCase.DiscCaught ? (global::Nevr.Telemetry.Protobuf.DiscCaught) payload_ : null; }
+      get { return eventCase_ == EventOneofCase.DiscCaught ? (global::Nevr.Telemetry.Protobuf.DiscCaught) event_ : null; }
       set {
-        payload_ = value;
-        payloadCase_ = value == null ? PayloadOneofCase.None : PayloadOneofCase.DiscCaught;
+        event_ = value;
+        eventCase_ = value == null ? EventOneofCase.None : EventOneofCase.DiscCaught;
       }
     }
 
@@ -1130,10 +1130,10 @@ namespace Nevr.Telemetry.Protobuf {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public global::Nevr.Telemetry.Protobuf.GoalScored GoalScored {
-      get { return payloadCase_ == PayloadOneofCase.GoalScored ? (global::Nevr.Telemetry.Protobuf.GoalScored) payload_ : null; }
+      get { return eventCase_ == EventOneofCase.GoalScored ? (global::Nevr.Telemetry.Protobuf.GoalScored) event_ : null; }
       set {
-        payload_ = value;
-        payloadCase_ = value == null ? PayloadOneofCase.None : PayloadOneofCase.GoalScored;
+        event_ = value;
+        eventCase_ = value == null ? EventOneofCase.None : EventOneofCase.GoalScored;
       }
     }
 
@@ -1145,10 +1145,10 @@ namespace Nevr.Telemetry.Protobuf {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public global::Nevr.Telemetry.Protobuf.PlayerSave PlayerSave {
-      get { return payloadCase_ == PayloadOneofCase.PlayerSave ? (global::Nevr.Telemetry.Protobuf.PlayerSave) payload_ : null; }
+      get { return eventCase_ == EventOneofCase.PlayerSave ? (global::Nevr.Telemetry.Protobuf.PlayerSave) event_ : null; }
       set {
-        payload_ = value;
-        payloadCase_ = value == null ? PayloadOneofCase.None : PayloadOneofCase.PlayerSave;
+        event_ = value;
+        eventCase_ = value == null ? EventOneofCase.None : EventOneofCase.PlayerSave;
       }
     }
 
@@ -1157,10 +1157,10 @@ namespace Nevr.Telemetry.Protobuf {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public global::Nevr.Telemetry.Protobuf.PlayerStun PlayerStun {
-      get { return payloadCase_ == PayloadOneofCase.PlayerStun ? (global::Nevr.Telemetry.Protobuf.PlayerStun) payload_ : null; }
+      get { return eventCase_ == EventOneofCase.PlayerStun ? (global::Nevr.Telemetry.Protobuf.PlayerStun) event_ : null; }
       set {
-        payload_ = value;
-        payloadCase_ = value == null ? PayloadOneofCase.None : PayloadOneofCase.PlayerStun;
+        event_ = value;
+        eventCase_ = value == null ? EventOneofCase.None : EventOneofCase.PlayerStun;
       }
     }
 
@@ -1169,10 +1169,10 @@ namespace Nevr.Telemetry.Protobuf {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public global::Nevr.Telemetry.Protobuf.PlayerPass PlayerPass {
-      get { return payloadCase_ == PayloadOneofCase.PlayerPass ? (global::Nevr.Telemetry.Protobuf.PlayerPass) payload_ : null; }
+      get { return eventCase_ == EventOneofCase.PlayerPass ? (global::Nevr.Telemetry.Protobuf.PlayerPass) event_ : null; }
       set {
-        payload_ = value;
-        payloadCase_ = value == null ? PayloadOneofCase.None : PayloadOneofCase.PlayerPass;
+        event_ = value;
+        eventCase_ = value == null ? EventOneofCase.None : EventOneofCase.PlayerPass;
       }
     }
 
@@ -1181,10 +1181,10 @@ namespace Nevr.Telemetry.Protobuf {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public global::Nevr.Telemetry.Protobuf.PlayerSteal PlayerSteal {
-      get { return payloadCase_ == PayloadOneofCase.PlayerSteal ? (global::Nevr.Telemetry.Protobuf.PlayerSteal) payload_ : null; }
+      get { return eventCase_ == EventOneofCase.PlayerSteal ? (global::Nevr.Telemetry.Protobuf.PlayerSteal) event_ : null; }
       set {
-        payload_ = value;
-        payloadCase_ = value == null ? PayloadOneofCase.None : PayloadOneofCase.PlayerSteal;
+        event_ = value;
+        eventCase_ = value == null ? EventOneofCase.None : EventOneofCase.PlayerSteal;
       }
     }
 
@@ -1193,10 +1193,10 @@ namespace Nevr.Telemetry.Protobuf {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public global::Nevr.Telemetry.Protobuf.PlayerBlock PlayerBlock {
-      get { return payloadCase_ == PayloadOneofCase.PlayerBlock ? (global::Nevr.Telemetry.Protobuf.PlayerBlock) payload_ : null; }
+      get { return eventCase_ == EventOneofCase.PlayerBlock ? (global::Nevr.Telemetry.Protobuf.PlayerBlock) event_ : null; }
       set {
-        payload_ = value;
-        payloadCase_ = value == null ? PayloadOneofCase.None : PayloadOneofCase.PlayerBlock;
+        event_ = value;
+        eventCase_ = value == null ? EventOneofCase.None : EventOneofCase.PlayerBlock;
       }
     }
 
@@ -1205,10 +1205,10 @@ namespace Nevr.Telemetry.Protobuf {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public global::Nevr.Telemetry.Protobuf.PlayerInterception PlayerInterception {
-      get { return payloadCase_ == PayloadOneofCase.PlayerInterception ? (global::Nevr.Telemetry.Protobuf.PlayerInterception) payload_ : null; }
+      get { return eventCase_ == EventOneofCase.PlayerInterception ? (global::Nevr.Telemetry.Protobuf.PlayerInterception) event_ : null; }
       set {
-        payload_ = value;
-        payloadCase_ = value == null ? PayloadOneofCase.None : PayloadOneofCase.PlayerInterception;
+        event_ = value;
+        eventCase_ = value == null ? EventOneofCase.None : EventOneofCase.PlayerInterception;
       }
     }
 
@@ -1217,10 +1217,10 @@ namespace Nevr.Telemetry.Protobuf {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public global::Nevr.Telemetry.Protobuf.PlayerAssist PlayerAssist {
-      get { return payloadCase_ == PayloadOneofCase.PlayerAssist ? (global::Nevr.Telemetry.Protobuf.PlayerAssist) payload_ : null; }
+      get { return eventCase_ == EventOneofCase.PlayerAssist ? (global::Nevr.Telemetry.Protobuf.PlayerAssist) event_ : null; }
       set {
-        payload_ = value;
-        payloadCase_ = value == null ? PayloadOneofCase.None : PayloadOneofCase.PlayerAssist;
+        event_ = value;
+        eventCase_ = value == null ? EventOneofCase.None : EventOneofCase.PlayerAssist;
       }
     }
 
@@ -1229,16 +1229,16 @@ namespace Nevr.Telemetry.Protobuf {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public global::Nevr.Telemetry.Protobuf.PlayerShotTaken PlayerShotTaken {
-      get { return payloadCase_ == PayloadOneofCase.PlayerShotTaken ? (global::Nevr.Telemetry.Protobuf.PlayerShotTaken) payload_ : null; }
+      get { return eventCase_ == EventOneofCase.PlayerShotTaken ? (global::Nevr.Telemetry.Protobuf.PlayerShotTaken) event_ : null; }
       set {
-        payload_ = value;
-        payloadCase_ = value == null ? PayloadOneofCase.None : PayloadOneofCase.PlayerShotTaken;
+        event_ = value;
+        eventCase_ = value == null ? EventOneofCase.None : EventOneofCase.PlayerShotTaken;
       }
     }
 
-    private object payload_;
-    /// <summary>Enum of possible cases for the "payload" oneof.</summary>
-    public enum PayloadOneofCase {
+    private object event_;
+    /// <summary>Enum of possible cases for the "event" oneof.</summary>
+    public enum EventOneofCase {
       None = 0,
       RoundStarted = 10,
       RoundPaused = 11,
@@ -1263,18 +1263,18 @@ namespace Nevr.Telemetry.Protobuf {
       PlayerAssist = 56,
       PlayerShotTaken = 57,
     }
-    private PayloadOneofCase payloadCase_ = PayloadOneofCase.None;
+    private EventOneofCase eventCase_ = EventOneofCase.None;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public PayloadOneofCase PayloadCase {
-      get { return payloadCase_; }
+    public EventOneofCase EventCase {
+      get { return eventCase_; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public void ClearPayload() {
-      payloadCase_ = PayloadOneofCase.None;
-      payload_ = null;
+    public void ClearEvent() {
+      eventCase_ = EventOneofCase.None;
+      event_ = null;
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -1314,7 +1314,7 @@ namespace Nevr.Telemetry.Protobuf {
       if (!object.Equals(PlayerInterception, other.PlayerInterception)) return false;
       if (!object.Equals(PlayerAssist, other.PlayerAssist)) return false;
       if (!object.Equals(PlayerShotTaken, other.PlayerShotTaken)) return false;
-      if (PayloadCase != other.PayloadCase) return false;
+      if (EventCase != other.EventCase) return false;
       return Equals(_unknownFields, other._unknownFields);
     }
 
@@ -1322,29 +1322,29 @@ namespace Nevr.Telemetry.Protobuf {
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public override int GetHashCode() {
       int hash = 1;
-      if (payloadCase_ == PayloadOneofCase.RoundStarted) hash ^= RoundStarted.GetHashCode();
-      if (payloadCase_ == PayloadOneofCase.RoundPaused) hash ^= RoundPaused.GetHashCode();
-      if (payloadCase_ == PayloadOneofCase.RoundUnpaused) hash ^= RoundUnpaused.GetHashCode();
-      if (payloadCase_ == PayloadOneofCase.RoundEnded) hash ^= RoundEnded.GetHashCode();
-      if (payloadCase_ == PayloadOneofCase.MatchEnded) hash ^= MatchEnded.GetHashCode();
-      if (payloadCase_ == PayloadOneofCase.ScoreboardUpdated) hash ^= ScoreboardUpdated.GetHashCode();
-      if (payloadCase_ == PayloadOneofCase.PlayerJoined) hash ^= PlayerJoined.GetHashCode();
-      if (payloadCase_ == PayloadOneofCase.PlayerLeft) hash ^= PlayerLeft.GetHashCode();
-      if (payloadCase_ == PayloadOneofCase.PlayerSwitchedTeam) hash ^= PlayerSwitchedTeam.GetHashCode();
-      if (payloadCase_ == PayloadOneofCase.EmotePlayed) hash ^= EmotePlayed.GetHashCode();
-      if (payloadCase_ == PayloadOneofCase.DiscPossessionChanged) hash ^= DiscPossessionChanged.GetHashCode();
-      if (payloadCase_ == PayloadOneofCase.DiscThrown) hash ^= DiscThrown.GetHashCode();
-      if (payloadCase_ == PayloadOneofCase.DiscCaught) hash ^= DiscCaught.GetHashCode();
-      if (payloadCase_ == PayloadOneofCase.GoalScored) hash ^= GoalScored.GetHashCode();
-      if (payloadCase_ == PayloadOneofCase.PlayerSave) hash ^= PlayerSave.GetHashCode();
-      if (payloadCase_ == PayloadOneofCase.PlayerStun) hash ^= PlayerStun.GetHashCode();
-      if (payloadCase_ == PayloadOneofCase.PlayerPass) hash ^= PlayerPass.GetHashCode();
-      if (payloadCase_ == PayloadOneofCase.PlayerSteal) hash ^= PlayerSteal.GetHashCode();
-      if (payloadCase_ == PayloadOneofCase.PlayerBlock) hash ^= PlayerBlock.GetHashCode();
-      if (payloadCase_ == PayloadOneofCase.PlayerInterception) hash ^= PlayerInterception.GetHashCode();
-      if (payloadCase_ == PayloadOneofCase.PlayerAssist) hash ^= PlayerAssist.GetHashCode();
-      if (payloadCase_ == PayloadOneofCase.PlayerShotTaken) hash ^= PlayerShotTaken.GetHashCode();
-      hash ^= (int) payloadCase_;
+      if (eventCase_ == EventOneofCase.RoundStarted) hash ^= RoundStarted.GetHashCode();
+      if (eventCase_ == EventOneofCase.RoundPaused) hash ^= RoundPaused.GetHashCode();
+      if (eventCase_ == EventOneofCase.RoundUnpaused) hash ^= RoundUnpaused.GetHashCode();
+      if (eventCase_ == EventOneofCase.RoundEnded) hash ^= RoundEnded.GetHashCode();
+      if (eventCase_ == EventOneofCase.MatchEnded) hash ^= MatchEnded.GetHashCode();
+      if (eventCase_ == EventOneofCase.ScoreboardUpdated) hash ^= ScoreboardUpdated.GetHashCode();
+      if (eventCase_ == EventOneofCase.PlayerJoined) hash ^= PlayerJoined.GetHashCode();
+      if (eventCase_ == EventOneofCase.PlayerLeft) hash ^= PlayerLeft.GetHashCode();
+      if (eventCase_ == EventOneofCase.PlayerSwitchedTeam) hash ^= PlayerSwitchedTeam.GetHashCode();
+      if (eventCase_ == EventOneofCase.EmotePlayed) hash ^= EmotePlayed.GetHashCode();
+      if (eventCase_ == EventOneofCase.DiscPossessionChanged) hash ^= DiscPossessionChanged.GetHashCode();
+      if (eventCase_ == EventOneofCase.DiscThrown) hash ^= DiscThrown.GetHashCode();
+      if (eventCase_ == EventOneofCase.DiscCaught) hash ^= DiscCaught.GetHashCode();
+      if (eventCase_ == EventOneofCase.GoalScored) hash ^= GoalScored.GetHashCode();
+      if (eventCase_ == EventOneofCase.PlayerSave) hash ^= PlayerSave.GetHashCode();
+      if (eventCase_ == EventOneofCase.PlayerStun) hash ^= PlayerStun.GetHashCode();
+      if (eventCase_ == EventOneofCase.PlayerPass) hash ^= PlayerPass.GetHashCode();
+      if (eventCase_ == EventOneofCase.PlayerSteal) hash ^= PlayerSteal.GetHashCode();
+      if (eventCase_ == EventOneofCase.PlayerBlock) hash ^= PlayerBlock.GetHashCode();
+      if (eventCase_ == EventOneofCase.PlayerInterception) hash ^= PlayerInterception.GetHashCode();
+      if (eventCase_ == EventOneofCase.PlayerAssist) hash ^= PlayerAssist.GetHashCode();
+      if (eventCase_ == EventOneofCase.PlayerShotTaken) hash ^= PlayerShotTaken.GetHashCode();
+      hash ^= (int) eventCase_;
       if (_unknownFields != null) {
         hash ^= _unknownFields.GetHashCode();
       }
@@ -1363,91 +1363,91 @@ namespace Nevr.Telemetry.Protobuf {
     #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       output.WriteRawMessage(this);
     #else
-      if (payloadCase_ == PayloadOneofCase.RoundStarted) {
+      if (eventCase_ == EventOneofCase.RoundStarted) {
         output.WriteRawTag(82);
         output.WriteMessage(RoundStarted);
       }
-      if (payloadCase_ == PayloadOneofCase.RoundPaused) {
+      if (eventCase_ == EventOneofCase.RoundPaused) {
         output.WriteRawTag(90);
         output.WriteMessage(RoundPaused);
       }
-      if (payloadCase_ == PayloadOneofCase.RoundUnpaused) {
+      if (eventCase_ == EventOneofCase.RoundUnpaused) {
         output.WriteRawTag(98);
         output.WriteMessage(RoundUnpaused);
       }
-      if (payloadCase_ == PayloadOneofCase.RoundEnded) {
+      if (eventCase_ == EventOneofCase.RoundEnded) {
         output.WriteRawTag(106);
         output.WriteMessage(RoundEnded);
       }
-      if (payloadCase_ == PayloadOneofCase.MatchEnded) {
+      if (eventCase_ == EventOneofCase.MatchEnded) {
         output.WriteRawTag(114);
         output.WriteMessage(MatchEnded);
       }
-      if (payloadCase_ == PayloadOneofCase.ScoreboardUpdated) {
+      if (eventCase_ == EventOneofCase.ScoreboardUpdated) {
         output.WriteRawTag(122);
         output.WriteMessage(ScoreboardUpdated);
       }
-      if (payloadCase_ == PayloadOneofCase.PlayerJoined) {
+      if (eventCase_ == EventOneofCase.PlayerJoined) {
         output.WriteRawTag(162, 1);
         output.WriteMessage(PlayerJoined);
       }
-      if (payloadCase_ == PayloadOneofCase.PlayerLeft) {
+      if (eventCase_ == EventOneofCase.PlayerLeft) {
         output.WriteRawTag(170, 1);
         output.WriteMessage(PlayerLeft);
       }
-      if (payloadCase_ == PayloadOneofCase.PlayerSwitchedTeam) {
+      if (eventCase_ == EventOneofCase.PlayerSwitchedTeam) {
         output.WriteRawTag(178, 1);
         output.WriteMessage(PlayerSwitchedTeam);
       }
-      if (payloadCase_ == PayloadOneofCase.EmotePlayed) {
+      if (eventCase_ == EventOneofCase.EmotePlayed) {
         output.WriteRawTag(186, 1);
         output.WriteMessage(EmotePlayed);
       }
-      if (payloadCase_ == PayloadOneofCase.DiscPossessionChanged) {
+      if (eventCase_ == EventOneofCase.DiscPossessionChanged) {
         output.WriteRawTag(242, 1);
         output.WriteMessage(DiscPossessionChanged);
       }
-      if (payloadCase_ == PayloadOneofCase.DiscThrown) {
+      if (eventCase_ == EventOneofCase.DiscThrown) {
         output.WriteRawTag(250, 1);
         output.WriteMessage(DiscThrown);
       }
-      if (payloadCase_ == PayloadOneofCase.DiscCaught) {
+      if (eventCase_ == EventOneofCase.DiscCaught) {
         output.WriteRawTag(130, 2);
         output.WriteMessage(DiscCaught);
       }
-      if (payloadCase_ == PayloadOneofCase.GoalScored) {
+      if (eventCase_ == EventOneofCase.GoalScored) {
         output.WriteRawTag(194, 2);
         output.WriteMessage(GoalScored);
       }
-      if (payloadCase_ == PayloadOneofCase.PlayerSave) {
+      if (eventCase_ == EventOneofCase.PlayerSave) {
         output.WriteRawTag(146, 3);
         output.WriteMessage(PlayerSave);
       }
-      if (payloadCase_ == PayloadOneofCase.PlayerStun) {
+      if (eventCase_ == EventOneofCase.PlayerStun) {
         output.WriteRawTag(154, 3);
         output.WriteMessage(PlayerStun);
       }
-      if (payloadCase_ == PayloadOneofCase.PlayerPass) {
+      if (eventCase_ == EventOneofCase.PlayerPass) {
         output.WriteRawTag(162, 3);
         output.WriteMessage(PlayerPass);
       }
-      if (payloadCase_ == PayloadOneofCase.PlayerSteal) {
+      if (eventCase_ == EventOneofCase.PlayerSteal) {
         output.WriteRawTag(170, 3);
         output.WriteMessage(PlayerSteal);
       }
-      if (payloadCase_ == PayloadOneofCase.PlayerBlock) {
+      if (eventCase_ == EventOneofCase.PlayerBlock) {
         output.WriteRawTag(178, 3);
         output.WriteMessage(PlayerBlock);
       }
-      if (payloadCase_ == PayloadOneofCase.PlayerInterception) {
+      if (eventCase_ == EventOneofCase.PlayerInterception) {
         output.WriteRawTag(186, 3);
         output.WriteMessage(PlayerInterception);
       }
-      if (payloadCase_ == PayloadOneofCase.PlayerAssist) {
+      if (eventCase_ == EventOneofCase.PlayerAssist) {
         output.WriteRawTag(194, 3);
         output.WriteMessage(PlayerAssist);
       }
-      if (payloadCase_ == PayloadOneofCase.PlayerShotTaken) {
+      if (eventCase_ == EventOneofCase.PlayerShotTaken) {
         output.WriteRawTag(202, 3);
         output.WriteMessage(PlayerShotTaken);
       }
@@ -1461,91 +1461,91 @@ namespace Nevr.Telemetry.Protobuf {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     void pb::IBufferMessage.InternalWriteTo(ref pb::WriteContext output) {
-      if (payloadCase_ == PayloadOneofCase.RoundStarted) {
+      if (eventCase_ == EventOneofCase.RoundStarted) {
         output.WriteRawTag(82);
         output.WriteMessage(RoundStarted);
       }
-      if (payloadCase_ == PayloadOneofCase.RoundPaused) {
+      if (eventCase_ == EventOneofCase.RoundPaused) {
         output.WriteRawTag(90);
         output.WriteMessage(RoundPaused);
       }
-      if (payloadCase_ == PayloadOneofCase.RoundUnpaused) {
+      if (eventCase_ == EventOneofCase.RoundUnpaused) {
         output.WriteRawTag(98);
         output.WriteMessage(RoundUnpaused);
       }
-      if (payloadCase_ == PayloadOneofCase.RoundEnded) {
+      if (eventCase_ == EventOneofCase.RoundEnded) {
         output.WriteRawTag(106);
         output.WriteMessage(RoundEnded);
       }
-      if (payloadCase_ == PayloadOneofCase.MatchEnded) {
+      if (eventCase_ == EventOneofCase.MatchEnded) {
         output.WriteRawTag(114);
         output.WriteMessage(MatchEnded);
       }
-      if (payloadCase_ == PayloadOneofCase.ScoreboardUpdated) {
+      if (eventCase_ == EventOneofCase.ScoreboardUpdated) {
         output.WriteRawTag(122);
         output.WriteMessage(ScoreboardUpdated);
       }
-      if (payloadCase_ == PayloadOneofCase.PlayerJoined) {
+      if (eventCase_ == EventOneofCase.PlayerJoined) {
         output.WriteRawTag(162, 1);
         output.WriteMessage(PlayerJoined);
       }
-      if (payloadCase_ == PayloadOneofCase.PlayerLeft) {
+      if (eventCase_ == EventOneofCase.PlayerLeft) {
         output.WriteRawTag(170, 1);
         output.WriteMessage(PlayerLeft);
       }
-      if (payloadCase_ == PayloadOneofCase.PlayerSwitchedTeam) {
+      if (eventCase_ == EventOneofCase.PlayerSwitchedTeam) {
         output.WriteRawTag(178, 1);
         output.WriteMessage(PlayerSwitchedTeam);
       }
-      if (payloadCase_ == PayloadOneofCase.EmotePlayed) {
+      if (eventCase_ == EventOneofCase.EmotePlayed) {
         output.WriteRawTag(186, 1);
         output.WriteMessage(EmotePlayed);
       }
-      if (payloadCase_ == PayloadOneofCase.DiscPossessionChanged) {
+      if (eventCase_ == EventOneofCase.DiscPossessionChanged) {
         output.WriteRawTag(242, 1);
         output.WriteMessage(DiscPossessionChanged);
       }
-      if (payloadCase_ == PayloadOneofCase.DiscThrown) {
+      if (eventCase_ == EventOneofCase.DiscThrown) {
         output.WriteRawTag(250, 1);
         output.WriteMessage(DiscThrown);
       }
-      if (payloadCase_ == PayloadOneofCase.DiscCaught) {
+      if (eventCase_ == EventOneofCase.DiscCaught) {
         output.WriteRawTag(130, 2);
         output.WriteMessage(DiscCaught);
       }
-      if (payloadCase_ == PayloadOneofCase.GoalScored) {
+      if (eventCase_ == EventOneofCase.GoalScored) {
         output.WriteRawTag(194, 2);
         output.WriteMessage(GoalScored);
       }
-      if (payloadCase_ == PayloadOneofCase.PlayerSave) {
+      if (eventCase_ == EventOneofCase.PlayerSave) {
         output.WriteRawTag(146, 3);
         output.WriteMessage(PlayerSave);
       }
-      if (payloadCase_ == PayloadOneofCase.PlayerStun) {
+      if (eventCase_ == EventOneofCase.PlayerStun) {
         output.WriteRawTag(154, 3);
         output.WriteMessage(PlayerStun);
       }
-      if (payloadCase_ == PayloadOneofCase.PlayerPass) {
+      if (eventCase_ == EventOneofCase.PlayerPass) {
         output.WriteRawTag(162, 3);
         output.WriteMessage(PlayerPass);
       }
-      if (payloadCase_ == PayloadOneofCase.PlayerSteal) {
+      if (eventCase_ == EventOneofCase.PlayerSteal) {
         output.WriteRawTag(170, 3);
         output.WriteMessage(PlayerSteal);
       }
-      if (payloadCase_ == PayloadOneofCase.PlayerBlock) {
+      if (eventCase_ == EventOneofCase.PlayerBlock) {
         output.WriteRawTag(178, 3);
         output.WriteMessage(PlayerBlock);
       }
-      if (payloadCase_ == PayloadOneofCase.PlayerInterception) {
+      if (eventCase_ == EventOneofCase.PlayerInterception) {
         output.WriteRawTag(186, 3);
         output.WriteMessage(PlayerInterception);
       }
-      if (payloadCase_ == PayloadOneofCase.PlayerAssist) {
+      if (eventCase_ == EventOneofCase.PlayerAssist) {
         output.WriteRawTag(194, 3);
         output.WriteMessage(PlayerAssist);
       }
-      if (payloadCase_ == PayloadOneofCase.PlayerShotTaken) {
+      if (eventCase_ == EventOneofCase.PlayerShotTaken) {
         output.WriteRawTag(202, 3);
         output.WriteMessage(PlayerShotTaken);
       }
@@ -1559,70 +1559,70 @@ namespace Nevr.Telemetry.Protobuf {
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public int CalculateSize() {
       int size = 0;
-      if (payloadCase_ == PayloadOneofCase.RoundStarted) {
+      if (eventCase_ == EventOneofCase.RoundStarted) {
         size += 1 + pb::CodedOutputStream.ComputeMessageSize(RoundStarted);
       }
-      if (payloadCase_ == PayloadOneofCase.RoundPaused) {
+      if (eventCase_ == EventOneofCase.RoundPaused) {
         size += 1 + pb::CodedOutputStream.ComputeMessageSize(RoundPaused);
       }
-      if (payloadCase_ == PayloadOneofCase.RoundUnpaused) {
+      if (eventCase_ == EventOneofCase.RoundUnpaused) {
         size += 1 + pb::CodedOutputStream.ComputeMessageSize(RoundUnpaused);
       }
-      if (payloadCase_ == PayloadOneofCase.RoundEnded) {
+      if (eventCase_ == EventOneofCase.RoundEnded) {
         size += 1 + pb::CodedOutputStream.ComputeMessageSize(RoundEnded);
       }
-      if (payloadCase_ == PayloadOneofCase.MatchEnded) {
+      if (eventCase_ == EventOneofCase.MatchEnded) {
         size += 1 + pb::CodedOutputStream.ComputeMessageSize(MatchEnded);
       }
-      if (payloadCase_ == PayloadOneofCase.ScoreboardUpdated) {
+      if (eventCase_ == EventOneofCase.ScoreboardUpdated) {
         size += 1 + pb::CodedOutputStream.ComputeMessageSize(ScoreboardUpdated);
       }
-      if (payloadCase_ == PayloadOneofCase.PlayerJoined) {
+      if (eventCase_ == EventOneofCase.PlayerJoined) {
         size += 2 + pb::CodedOutputStream.ComputeMessageSize(PlayerJoined);
       }
-      if (payloadCase_ == PayloadOneofCase.PlayerLeft) {
+      if (eventCase_ == EventOneofCase.PlayerLeft) {
         size += 2 + pb::CodedOutputStream.ComputeMessageSize(PlayerLeft);
       }
-      if (payloadCase_ == PayloadOneofCase.PlayerSwitchedTeam) {
+      if (eventCase_ == EventOneofCase.PlayerSwitchedTeam) {
         size += 2 + pb::CodedOutputStream.ComputeMessageSize(PlayerSwitchedTeam);
       }
-      if (payloadCase_ == PayloadOneofCase.EmotePlayed) {
+      if (eventCase_ == EventOneofCase.EmotePlayed) {
         size += 2 + pb::CodedOutputStream.ComputeMessageSize(EmotePlayed);
       }
-      if (payloadCase_ == PayloadOneofCase.DiscPossessionChanged) {
+      if (eventCase_ == EventOneofCase.DiscPossessionChanged) {
         size += 2 + pb::CodedOutputStream.ComputeMessageSize(DiscPossessionChanged);
       }
-      if (payloadCase_ == PayloadOneofCase.DiscThrown) {
+      if (eventCase_ == EventOneofCase.DiscThrown) {
         size += 2 + pb::CodedOutputStream.ComputeMessageSize(DiscThrown);
       }
-      if (payloadCase_ == PayloadOneofCase.DiscCaught) {
+      if (eventCase_ == EventOneofCase.DiscCaught) {
         size += 2 + pb::CodedOutputStream.ComputeMessageSize(DiscCaught);
       }
-      if (payloadCase_ == PayloadOneofCase.GoalScored) {
+      if (eventCase_ == EventOneofCase.GoalScored) {
         size += 2 + pb::CodedOutputStream.ComputeMessageSize(GoalScored);
       }
-      if (payloadCase_ == PayloadOneofCase.PlayerSave) {
+      if (eventCase_ == EventOneofCase.PlayerSave) {
         size += 2 + pb::CodedOutputStream.ComputeMessageSize(PlayerSave);
       }
-      if (payloadCase_ == PayloadOneofCase.PlayerStun) {
+      if (eventCase_ == EventOneofCase.PlayerStun) {
         size += 2 + pb::CodedOutputStream.ComputeMessageSize(PlayerStun);
       }
-      if (payloadCase_ == PayloadOneofCase.PlayerPass) {
+      if (eventCase_ == EventOneofCase.PlayerPass) {
         size += 2 + pb::CodedOutputStream.ComputeMessageSize(PlayerPass);
       }
-      if (payloadCase_ == PayloadOneofCase.PlayerSteal) {
+      if (eventCase_ == EventOneofCase.PlayerSteal) {
         size += 2 + pb::CodedOutputStream.ComputeMessageSize(PlayerSteal);
       }
-      if (payloadCase_ == PayloadOneofCase.PlayerBlock) {
+      if (eventCase_ == EventOneofCase.PlayerBlock) {
         size += 2 + pb::CodedOutputStream.ComputeMessageSize(PlayerBlock);
       }
-      if (payloadCase_ == PayloadOneofCase.PlayerInterception) {
+      if (eventCase_ == EventOneofCase.PlayerInterception) {
         size += 2 + pb::CodedOutputStream.ComputeMessageSize(PlayerInterception);
       }
-      if (payloadCase_ == PayloadOneofCase.PlayerAssist) {
+      if (eventCase_ == EventOneofCase.PlayerAssist) {
         size += 2 + pb::CodedOutputStream.ComputeMessageSize(PlayerAssist);
       }
-      if (payloadCase_ == PayloadOneofCase.PlayerShotTaken) {
+      if (eventCase_ == EventOneofCase.PlayerShotTaken) {
         size += 2 + pb::CodedOutputStream.ComputeMessageSize(PlayerShotTaken);
       }
       if (_unknownFields != null) {
@@ -1637,134 +1637,134 @@ namespace Nevr.Telemetry.Protobuf {
       if (other == null) {
         return;
       }
-      switch (other.PayloadCase) {
-        case PayloadOneofCase.RoundStarted:
+      switch (other.EventCase) {
+        case EventOneofCase.RoundStarted:
           if (RoundStarted == null) {
             RoundStarted = new global::Nevr.Telemetry.Protobuf.RoundStarted();
           }
           RoundStarted.MergeFrom(other.RoundStarted);
           break;
-        case PayloadOneofCase.RoundPaused:
+        case EventOneofCase.RoundPaused:
           if (RoundPaused == null) {
             RoundPaused = new global::Nevr.Telemetry.Protobuf.RoundPaused();
           }
           RoundPaused.MergeFrom(other.RoundPaused);
           break;
-        case PayloadOneofCase.RoundUnpaused:
+        case EventOneofCase.RoundUnpaused:
           if (RoundUnpaused == null) {
             RoundUnpaused = new global::Nevr.Telemetry.Protobuf.RoundUnpaused();
           }
           RoundUnpaused.MergeFrom(other.RoundUnpaused);
           break;
-        case PayloadOneofCase.RoundEnded:
+        case EventOneofCase.RoundEnded:
           if (RoundEnded == null) {
             RoundEnded = new global::Nevr.Telemetry.Protobuf.RoundEnded();
           }
           RoundEnded.MergeFrom(other.RoundEnded);
           break;
-        case PayloadOneofCase.MatchEnded:
+        case EventOneofCase.MatchEnded:
           if (MatchEnded == null) {
             MatchEnded = new global::Nevr.Telemetry.Protobuf.MatchEnded();
           }
           MatchEnded.MergeFrom(other.MatchEnded);
           break;
-        case PayloadOneofCase.ScoreboardUpdated:
+        case EventOneofCase.ScoreboardUpdated:
           if (ScoreboardUpdated == null) {
             ScoreboardUpdated = new global::Nevr.Telemetry.Protobuf.ScoreboardUpdated();
           }
           ScoreboardUpdated.MergeFrom(other.ScoreboardUpdated);
           break;
-        case PayloadOneofCase.PlayerJoined:
+        case EventOneofCase.PlayerJoined:
           if (PlayerJoined == null) {
             PlayerJoined = new global::Nevr.Telemetry.Protobuf.PlayerJoined();
           }
           PlayerJoined.MergeFrom(other.PlayerJoined);
           break;
-        case PayloadOneofCase.PlayerLeft:
+        case EventOneofCase.PlayerLeft:
           if (PlayerLeft == null) {
             PlayerLeft = new global::Nevr.Telemetry.Protobuf.PlayerLeft();
           }
           PlayerLeft.MergeFrom(other.PlayerLeft);
           break;
-        case PayloadOneofCase.PlayerSwitchedTeam:
+        case EventOneofCase.PlayerSwitchedTeam:
           if (PlayerSwitchedTeam == null) {
             PlayerSwitchedTeam = new global::Nevr.Telemetry.Protobuf.PlayerSwitchedTeam();
           }
           PlayerSwitchedTeam.MergeFrom(other.PlayerSwitchedTeam);
           break;
-        case PayloadOneofCase.EmotePlayed:
+        case EventOneofCase.EmotePlayed:
           if (EmotePlayed == null) {
             EmotePlayed = new global::Nevr.Telemetry.Protobuf.EmotePlayed();
           }
           EmotePlayed.MergeFrom(other.EmotePlayed);
           break;
-        case PayloadOneofCase.DiscPossessionChanged:
+        case EventOneofCase.DiscPossessionChanged:
           if (DiscPossessionChanged == null) {
             DiscPossessionChanged = new global::Nevr.Telemetry.Protobuf.DiscPossessionChanged();
           }
           DiscPossessionChanged.MergeFrom(other.DiscPossessionChanged);
           break;
-        case PayloadOneofCase.DiscThrown:
+        case EventOneofCase.DiscThrown:
           if (DiscThrown == null) {
             DiscThrown = new global::Nevr.Telemetry.Protobuf.DiscThrown();
           }
           DiscThrown.MergeFrom(other.DiscThrown);
           break;
-        case PayloadOneofCase.DiscCaught:
+        case EventOneofCase.DiscCaught:
           if (DiscCaught == null) {
             DiscCaught = new global::Nevr.Telemetry.Protobuf.DiscCaught();
           }
           DiscCaught.MergeFrom(other.DiscCaught);
           break;
-        case PayloadOneofCase.GoalScored:
+        case EventOneofCase.GoalScored:
           if (GoalScored == null) {
             GoalScored = new global::Nevr.Telemetry.Protobuf.GoalScored();
           }
           GoalScored.MergeFrom(other.GoalScored);
           break;
-        case PayloadOneofCase.PlayerSave:
+        case EventOneofCase.PlayerSave:
           if (PlayerSave == null) {
             PlayerSave = new global::Nevr.Telemetry.Protobuf.PlayerSave();
           }
           PlayerSave.MergeFrom(other.PlayerSave);
           break;
-        case PayloadOneofCase.PlayerStun:
+        case EventOneofCase.PlayerStun:
           if (PlayerStun == null) {
             PlayerStun = new global::Nevr.Telemetry.Protobuf.PlayerStun();
           }
           PlayerStun.MergeFrom(other.PlayerStun);
           break;
-        case PayloadOneofCase.PlayerPass:
+        case EventOneofCase.PlayerPass:
           if (PlayerPass == null) {
             PlayerPass = new global::Nevr.Telemetry.Protobuf.PlayerPass();
           }
           PlayerPass.MergeFrom(other.PlayerPass);
           break;
-        case PayloadOneofCase.PlayerSteal:
+        case EventOneofCase.PlayerSteal:
           if (PlayerSteal == null) {
             PlayerSteal = new global::Nevr.Telemetry.Protobuf.PlayerSteal();
           }
           PlayerSteal.MergeFrom(other.PlayerSteal);
           break;
-        case PayloadOneofCase.PlayerBlock:
+        case EventOneofCase.PlayerBlock:
           if (PlayerBlock == null) {
             PlayerBlock = new global::Nevr.Telemetry.Protobuf.PlayerBlock();
           }
           PlayerBlock.MergeFrom(other.PlayerBlock);
           break;
-        case PayloadOneofCase.PlayerInterception:
+        case EventOneofCase.PlayerInterception:
           if (PlayerInterception == null) {
             PlayerInterception = new global::Nevr.Telemetry.Protobuf.PlayerInterception();
           }
           PlayerInterception.MergeFrom(other.PlayerInterception);
           break;
-        case PayloadOneofCase.PlayerAssist:
+        case EventOneofCase.PlayerAssist:
           if (PlayerAssist == null) {
             PlayerAssist = new global::Nevr.Telemetry.Protobuf.PlayerAssist();
           }
           PlayerAssist.MergeFrom(other.PlayerAssist);
           break;
-        case PayloadOneofCase.PlayerShotTaken:
+        case EventOneofCase.PlayerShotTaken:
           if (PlayerShotTaken == null) {
             PlayerShotTaken = new global::Nevr.Telemetry.Protobuf.PlayerShotTaken();
           }
@@ -1793,7 +1793,7 @@ namespace Nevr.Telemetry.Protobuf {
             break;
           case 82: {
             global::Nevr.Telemetry.Protobuf.RoundStarted subBuilder = new global::Nevr.Telemetry.Protobuf.RoundStarted();
-            if (payloadCase_ == PayloadOneofCase.RoundStarted) {
+            if (eventCase_ == EventOneofCase.RoundStarted) {
               subBuilder.MergeFrom(RoundStarted);
             }
             input.ReadMessage(subBuilder);
@@ -1802,7 +1802,7 @@ namespace Nevr.Telemetry.Protobuf {
           }
           case 90: {
             global::Nevr.Telemetry.Protobuf.RoundPaused subBuilder = new global::Nevr.Telemetry.Protobuf.RoundPaused();
-            if (payloadCase_ == PayloadOneofCase.RoundPaused) {
+            if (eventCase_ == EventOneofCase.RoundPaused) {
               subBuilder.MergeFrom(RoundPaused);
             }
             input.ReadMessage(subBuilder);
@@ -1811,7 +1811,7 @@ namespace Nevr.Telemetry.Protobuf {
           }
           case 98: {
             global::Nevr.Telemetry.Protobuf.RoundUnpaused subBuilder = new global::Nevr.Telemetry.Protobuf.RoundUnpaused();
-            if (payloadCase_ == PayloadOneofCase.RoundUnpaused) {
+            if (eventCase_ == EventOneofCase.RoundUnpaused) {
               subBuilder.MergeFrom(RoundUnpaused);
             }
             input.ReadMessage(subBuilder);
@@ -1820,7 +1820,7 @@ namespace Nevr.Telemetry.Protobuf {
           }
           case 106: {
             global::Nevr.Telemetry.Protobuf.RoundEnded subBuilder = new global::Nevr.Telemetry.Protobuf.RoundEnded();
-            if (payloadCase_ == PayloadOneofCase.RoundEnded) {
+            if (eventCase_ == EventOneofCase.RoundEnded) {
               subBuilder.MergeFrom(RoundEnded);
             }
             input.ReadMessage(subBuilder);
@@ -1829,7 +1829,7 @@ namespace Nevr.Telemetry.Protobuf {
           }
           case 114: {
             global::Nevr.Telemetry.Protobuf.MatchEnded subBuilder = new global::Nevr.Telemetry.Protobuf.MatchEnded();
-            if (payloadCase_ == PayloadOneofCase.MatchEnded) {
+            if (eventCase_ == EventOneofCase.MatchEnded) {
               subBuilder.MergeFrom(MatchEnded);
             }
             input.ReadMessage(subBuilder);
@@ -1838,7 +1838,7 @@ namespace Nevr.Telemetry.Protobuf {
           }
           case 122: {
             global::Nevr.Telemetry.Protobuf.ScoreboardUpdated subBuilder = new global::Nevr.Telemetry.Protobuf.ScoreboardUpdated();
-            if (payloadCase_ == PayloadOneofCase.ScoreboardUpdated) {
+            if (eventCase_ == EventOneofCase.ScoreboardUpdated) {
               subBuilder.MergeFrom(ScoreboardUpdated);
             }
             input.ReadMessage(subBuilder);
@@ -1847,7 +1847,7 @@ namespace Nevr.Telemetry.Protobuf {
           }
           case 162: {
             global::Nevr.Telemetry.Protobuf.PlayerJoined subBuilder = new global::Nevr.Telemetry.Protobuf.PlayerJoined();
-            if (payloadCase_ == PayloadOneofCase.PlayerJoined) {
+            if (eventCase_ == EventOneofCase.PlayerJoined) {
               subBuilder.MergeFrom(PlayerJoined);
             }
             input.ReadMessage(subBuilder);
@@ -1856,7 +1856,7 @@ namespace Nevr.Telemetry.Protobuf {
           }
           case 170: {
             global::Nevr.Telemetry.Protobuf.PlayerLeft subBuilder = new global::Nevr.Telemetry.Protobuf.PlayerLeft();
-            if (payloadCase_ == PayloadOneofCase.PlayerLeft) {
+            if (eventCase_ == EventOneofCase.PlayerLeft) {
               subBuilder.MergeFrom(PlayerLeft);
             }
             input.ReadMessage(subBuilder);
@@ -1865,7 +1865,7 @@ namespace Nevr.Telemetry.Protobuf {
           }
           case 178: {
             global::Nevr.Telemetry.Protobuf.PlayerSwitchedTeam subBuilder = new global::Nevr.Telemetry.Protobuf.PlayerSwitchedTeam();
-            if (payloadCase_ == PayloadOneofCase.PlayerSwitchedTeam) {
+            if (eventCase_ == EventOneofCase.PlayerSwitchedTeam) {
               subBuilder.MergeFrom(PlayerSwitchedTeam);
             }
             input.ReadMessage(subBuilder);
@@ -1874,7 +1874,7 @@ namespace Nevr.Telemetry.Protobuf {
           }
           case 186: {
             global::Nevr.Telemetry.Protobuf.EmotePlayed subBuilder = new global::Nevr.Telemetry.Protobuf.EmotePlayed();
-            if (payloadCase_ == PayloadOneofCase.EmotePlayed) {
+            if (eventCase_ == EventOneofCase.EmotePlayed) {
               subBuilder.MergeFrom(EmotePlayed);
             }
             input.ReadMessage(subBuilder);
@@ -1883,7 +1883,7 @@ namespace Nevr.Telemetry.Protobuf {
           }
           case 242: {
             global::Nevr.Telemetry.Protobuf.DiscPossessionChanged subBuilder = new global::Nevr.Telemetry.Protobuf.DiscPossessionChanged();
-            if (payloadCase_ == PayloadOneofCase.DiscPossessionChanged) {
+            if (eventCase_ == EventOneofCase.DiscPossessionChanged) {
               subBuilder.MergeFrom(DiscPossessionChanged);
             }
             input.ReadMessage(subBuilder);
@@ -1892,7 +1892,7 @@ namespace Nevr.Telemetry.Protobuf {
           }
           case 250: {
             global::Nevr.Telemetry.Protobuf.DiscThrown subBuilder = new global::Nevr.Telemetry.Protobuf.DiscThrown();
-            if (payloadCase_ == PayloadOneofCase.DiscThrown) {
+            if (eventCase_ == EventOneofCase.DiscThrown) {
               subBuilder.MergeFrom(DiscThrown);
             }
             input.ReadMessage(subBuilder);
@@ -1901,7 +1901,7 @@ namespace Nevr.Telemetry.Protobuf {
           }
           case 258: {
             global::Nevr.Telemetry.Protobuf.DiscCaught subBuilder = new global::Nevr.Telemetry.Protobuf.DiscCaught();
-            if (payloadCase_ == PayloadOneofCase.DiscCaught) {
+            if (eventCase_ == EventOneofCase.DiscCaught) {
               subBuilder.MergeFrom(DiscCaught);
             }
             input.ReadMessage(subBuilder);
@@ -1910,7 +1910,7 @@ namespace Nevr.Telemetry.Protobuf {
           }
           case 322: {
             global::Nevr.Telemetry.Protobuf.GoalScored subBuilder = new global::Nevr.Telemetry.Protobuf.GoalScored();
-            if (payloadCase_ == PayloadOneofCase.GoalScored) {
+            if (eventCase_ == EventOneofCase.GoalScored) {
               subBuilder.MergeFrom(GoalScored);
             }
             input.ReadMessage(subBuilder);
@@ -1919,7 +1919,7 @@ namespace Nevr.Telemetry.Protobuf {
           }
           case 402: {
             global::Nevr.Telemetry.Protobuf.PlayerSave subBuilder = new global::Nevr.Telemetry.Protobuf.PlayerSave();
-            if (payloadCase_ == PayloadOneofCase.PlayerSave) {
+            if (eventCase_ == EventOneofCase.PlayerSave) {
               subBuilder.MergeFrom(PlayerSave);
             }
             input.ReadMessage(subBuilder);
@@ -1928,7 +1928,7 @@ namespace Nevr.Telemetry.Protobuf {
           }
           case 410: {
             global::Nevr.Telemetry.Protobuf.PlayerStun subBuilder = new global::Nevr.Telemetry.Protobuf.PlayerStun();
-            if (payloadCase_ == PayloadOneofCase.PlayerStun) {
+            if (eventCase_ == EventOneofCase.PlayerStun) {
               subBuilder.MergeFrom(PlayerStun);
             }
             input.ReadMessage(subBuilder);
@@ -1937,7 +1937,7 @@ namespace Nevr.Telemetry.Protobuf {
           }
           case 418: {
             global::Nevr.Telemetry.Protobuf.PlayerPass subBuilder = new global::Nevr.Telemetry.Protobuf.PlayerPass();
-            if (payloadCase_ == PayloadOneofCase.PlayerPass) {
+            if (eventCase_ == EventOneofCase.PlayerPass) {
               subBuilder.MergeFrom(PlayerPass);
             }
             input.ReadMessage(subBuilder);
@@ -1946,7 +1946,7 @@ namespace Nevr.Telemetry.Protobuf {
           }
           case 426: {
             global::Nevr.Telemetry.Protobuf.PlayerSteal subBuilder = new global::Nevr.Telemetry.Protobuf.PlayerSteal();
-            if (payloadCase_ == PayloadOneofCase.PlayerSteal) {
+            if (eventCase_ == EventOneofCase.PlayerSteal) {
               subBuilder.MergeFrom(PlayerSteal);
             }
             input.ReadMessage(subBuilder);
@@ -1955,7 +1955,7 @@ namespace Nevr.Telemetry.Protobuf {
           }
           case 434: {
             global::Nevr.Telemetry.Protobuf.PlayerBlock subBuilder = new global::Nevr.Telemetry.Protobuf.PlayerBlock();
-            if (payloadCase_ == PayloadOneofCase.PlayerBlock) {
+            if (eventCase_ == EventOneofCase.PlayerBlock) {
               subBuilder.MergeFrom(PlayerBlock);
             }
             input.ReadMessage(subBuilder);
@@ -1964,7 +1964,7 @@ namespace Nevr.Telemetry.Protobuf {
           }
           case 442: {
             global::Nevr.Telemetry.Protobuf.PlayerInterception subBuilder = new global::Nevr.Telemetry.Protobuf.PlayerInterception();
-            if (payloadCase_ == PayloadOneofCase.PlayerInterception) {
+            if (eventCase_ == EventOneofCase.PlayerInterception) {
               subBuilder.MergeFrom(PlayerInterception);
             }
             input.ReadMessage(subBuilder);
@@ -1973,7 +1973,7 @@ namespace Nevr.Telemetry.Protobuf {
           }
           case 450: {
             global::Nevr.Telemetry.Protobuf.PlayerAssist subBuilder = new global::Nevr.Telemetry.Protobuf.PlayerAssist();
-            if (payloadCase_ == PayloadOneofCase.PlayerAssist) {
+            if (eventCase_ == EventOneofCase.PlayerAssist) {
               subBuilder.MergeFrom(PlayerAssist);
             }
             input.ReadMessage(subBuilder);
@@ -1982,7 +1982,7 @@ namespace Nevr.Telemetry.Protobuf {
           }
           case 458: {
             global::Nevr.Telemetry.Protobuf.PlayerShotTaken subBuilder = new global::Nevr.Telemetry.Protobuf.PlayerShotTaken();
-            if (payloadCase_ == PayloadOneofCase.PlayerShotTaken) {
+            if (eventCase_ == EventOneofCase.PlayerShotTaken) {
               subBuilder.MergeFrom(PlayerShotTaken);
             }
             input.ReadMessage(subBuilder);
@@ -2010,7 +2010,7 @@ namespace Nevr.Telemetry.Protobuf {
             break;
           case 82: {
             global::Nevr.Telemetry.Protobuf.RoundStarted subBuilder = new global::Nevr.Telemetry.Protobuf.RoundStarted();
-            if (payloadCase_ == PayloadOneofCase.RoundStarted) {
+            if (eventCase_ == EventOneofCase.RoundStarted) {
               subBuilder.MergeFrom(RoundStarted);
             }
             input.ReadMessage(subBuilder);
@@ -2019,7 +2019,7 @@ namespace Nevr.Telemetry.Protobuf {
           }
           case 90: {
             global::Nevr.Telemetry.Protobuf.RoundPaused subBuilder = new global::Nevr.Telemetry.Protobuf.RoundPaused();
-            if (payloadCase_ == PayloadOneofCase.RoundPaused) {
+            if (eventCase_ == EventOneofCase.RoundPaused) {
               subBuilder.MergeFrom(RoundPaused);
             }
             input.ReadMessage(subBuilder);
@@ -2028,7 +2028,7 @@ namespace Nevr.Telemetry.Protobuf {
           }
           case 98: {
             global::Nevr.Telemetry.Protobuf.RoundUnpaused subBuilder = new global::Nevr.Telemetry.Protobuf.RoundUnpaused();
-            if (payloadCase_ == PayloadOneofCase.RoundUnpaused) {
+            if (eventCase_ == EventOneofCase.RoundUnpaused) {
               subBuilder.MergeFrom(RoundUnpaused);
             }
             input.ReadMessage(subBuilder);
@@ -2037,7 +2037,7 @@ namespace Nevr.Telemetry.Protobuf {
           }
           case 106: {
             global::Nevr.Telemetry.Protobuf.RoundEnded subBuilder = new global::Nevr.Telemetry.Protobuf.RoundEnded();
-            if (payloadCase_ == PayloadOneofCase.RoundEnded) {
+            if (eventCase_ == EventOneofCase.RoundEnded) {
               subBuilder.MergeFrom(RoundEnded);
             }
             input.ReadMessage(subBuilder);
@@ -2046,7 +2046,7 @@ namespace Nevr.Telemetry.Protobuf {
           }
           case 114: {
             global::Nevr.Telemetry.Protobuf.MatchEnded subBuilder = new global::Nevr.Telemetry.Protobuf.MatchEnded();
-            if (payloadCase_ == PayloadOneofCase.MatchEnded) {
+            if (eventCase_ == EventOneofCase.MatchEnded) {
               subBuilder.MergeFrom(MatchEnded);
             }
             input.ReadMessage(subBuilder);
@@ -2055,7 +2055,7 @@ namespace Nevr.Telemetry.Protobuf {
           }
           case 122: {
             global::Nevr.Telemetry.Protobuf.ScoreboardUpdated subBuilder = new global::Nevr.Telemetry.Protobuf.ScoreboardUpdated();
-            if (payloadCase_ == PayloadOneofCase.ScoreboardUpdated) {
+            if (eventCase_ == EventOneofCase.ScoreboardUpdated) {
               subBuilder.MergeFrom(ScoreboardUpdated);
             }
             input.ReadMessage(subBuilder);
@@ -2064,7 +2064,7 @@ namespace Nevr.Telemetry.Protobuf {
           }
           case 162: {
             global::Nevr.Telemetry.Protobuf.PlayerJoined subBuilder = new global::Nevr.Telemetry.Protobuf.PlayerJoined();
-            if (payloadCase_ == PayloadOneofCase.PlayerJoined) {
+            if (eventCase_ == EventOneofCase.PlayerJoined) {
               subBuilder.MergeFrom(PlayerJoined);
             }
             input.ReadMessage(subBuilder);
@@ -2073,7 +2073,7 @@ namespace Nevr.Telemetry.Protobuf {
           }
           case 170: {
             global::Nevr.Telemetry.Protobuf.PlayerLeft subBuilder = new global::Nevr.Telemetry.Protobuf.PlayerLeft();
-            if (payloadCase_ == PayloadOneofCase.PlayerLeft) {
+            if (eventCase_ == EventOneofCase.PlayerLeft) {
               subBuilder.MergeFrom(PlayerLeft);
             }
             input.ReadMessage(subBuilder);
@@ -2082,7 +2082,7 @@ namespace Nevr.Telemetry.Protobuf {
           }
           case 178: {
             global::Nevr.Telemetry.Protobuf.PlayerSwitchedTeam subBuilder = new global::Nevr.Telemetry.Protobuf.PlayerSwitchedTeam();
-            if (payloadCase_ == PayloadOneofCase.PlayerSwitchedTeam) {
+            if (eventCase_ == EventOneofCase.PlayerSwitchedTeam) {
               subBuilder.MergeFrom(PlayerSwitchedTeam);
             }
             input.ReadMessage(subBuilder);
@@ -2091,7 +2091,7 @@ namespace Nevr.Telemetry.Protobuf {
           }
           case 186: {
             global::Nevr.Telemetry.Protobuf.EmotePlayed subBuilder = new global::Nevr.Telemetry.Protobuf.EmotePlayed();
-            if (payloadCase_ == PayloadOneofCase.EmotePlayed) {
+            if (eventCase_ == EventOneofCase.EmotePlayed) {
               subBuilder.MergeFrom(EmotePlayed);
             }
             input.ReadMessage(subBuilder);
@@ -2100,7 +2100,7 @@ namespace Nevr.Telemetry.Protobuf {
           }
           case 242: {
             global::Nevr.Telemetry.Protobuf.DiscPossessionChanged subBuilder = new global::Nevr.Telemetry.Protobuf.DiscPossessionChanged();
-            if (payloadCase_ == PayloadOneofCase.DiscPossessionChanged) {
+            if (eventCase_ == EventOneofCase.DiscPossessionChanged) {
               subBuilder.MergeFrom(DiscPossessionChanged);
             }
             input.ReadMessage(subBuilder);
@@ -2109,7 +2109,7 @@ namespace Nevr.Telemetry.Protobuf {
           }
           case 250: {
             global::Nevr.Telemetry.Protobuf.DiscThrown subBuilder = new global::Nevr.Telemetry.Protobuf.DiscThrown();
-            if (payloadCase_ == PayloadOneofCase.DiscThrown) {
+            if (eventCase_ == EventOneofCase.DiscThrown) {
               subBuilder.MergeFrom(DiscThrown);
             }
             input.ReadMessage(subBuilder);
@@ -2118,7 +2118,7 @@ namespace Nevr.Telemetry.Protobuf {
           }
           case 258: {
             global::Nevr.Telemetry.Protobuf.DiscCaught subBuilder = new global::Nevr.Telemetry.Protobuf.DiscCaught();
-            if (payloadCase_ == PayloadOneofCase.DiscCaught) {
+            if (eventCase_ == EventOneofCase.DiscCaught) {
               subBuilder.MergeFrom(DiscCaught);
             }
             input.ReadMessage(subBuilder);
@@ -2127,7 +2127,7 @@ namespace Nevr.Telemetry.Protobuf {
           }
           case 322: {
             global::Nevr.Telemetry.Protobuf.GoalScored subBuilder = new global::Nevr.Telemetry.Protobuf.GoalScored();
-            if (payloadCase_ == PayloadOneofCase.GoalScored) {
+            if (eventCase_ == EventOneofCase.GoalScored) {
               subBuilder.MergeFrom(GoalScored);
             }
             input.ReadMessage(subBuilder);
@@ -2136,7 +2136,7 @@ namespace Nevr.Telemetry.Protobuf {
           }
           case 402: {
             global::Nevr.Telemetry.Protobuf.PlayerSave subBuilder = new global::Nevr.Telemetry.Protobuf.PlayerSave();
-            if (payloadCase_ == PayloadOneofCase.PlayerSave) {
+            if (eventCase_ == EventOneofCase.PlayerSave) {
               subBuilder.MergeFrom(PlayerSave);
             }
             input.ReadMessage(subBuilder);
@@ -2145,7 +2145,7 @@ namespace Nevr.Telemetry.Protobuf {
           }
           case 410: {
             global::Nevr.Telemetry.Protobuf.PlayerStun subBuilder = new global::Nevr.Telemetry.Protobuf.PlayerStun();
-            if (payloadCase_ == PayloadOneofCase.PlayerStun) {
+            if (eventCase_ == EventOneofCase.PlayerStun) {
               subBuilder.MergeFrom(PlayerStun);
             }
             input.ReadMessage(subBuilder);
@@ -2154,7 +2154,7 @@ namespace Nevr.Telemetry.Protobuf {
           }
           case 418: {
             global::Nevr.Telemetry.Protobuf.PlayerPass subBuilder = new global::Nevr.Telemetry.Protobuf.PlayerPass();
-            if (payloadCase_ == PayloadOneofCase.PlayerPass) {
+            if (eventCase_ == EventOneofCase.PlayerPass) {
               subBuilder.MergeFrom(PlayerPass);
             }
             input.ReadMessage(subBuilder);
@@ -2163,7 +2163,7 @@ namespace Nevr.Telemetry.Protobuf {
           }
           case 426: {
             global::Nevr.Telemetry.Protobuf.PlayerSteal subBuilder = new global::Nevr.Telemetry.Protobuf.PlayerSteal();
-            if (payloadCase_ == PayloadOneofCase.PlayerSteal) {
+            if (eventCase_ == EventOneofCase.PlayerSteal) {
               subBuilder.MergeFrom(PlayerSteal);
             }
             input.ReadMessage(subBuilder);
@@ -2172,7 +2172,7 @@ namespace Nevr.Telemetry.Protobuf {
           }
           case 434: {
             global::Nevr.Telemetry.Protobuf.PlayerBlock subBuilder = new global::Nevr.Telemetry.Protobuf.PlayerBlock();
-            if (payloadCase_ == PayloadOneofCase.PlayerBlock) {
+            if (eventCase_ == EventOneofCase.PlayerBlock) {
               subBuilder.MergeFrom(PlayerBlock);
             }
             input.ReadMessage(subBuilder);
@@ -2181,7 +2181,7 @@ namespace Nevr.Telemetry.Protobuf {
           }
           case 442: {
             global::Nevr.Telemetry.Protobuf.PlayerInterception subBuilder = new global::Nevr.Telemetry.Protobuf.PlayerInterception();
-            if (payloadCase_ == PayloadOneofCase.PlayerInterception) {
+            if (eventCase_ == EventOneofCase.PlayerInterception) {
               subBuilder.MergeFrom(PlayerInterception);
             }
             input.ReadMessage(subBuilder);
@@ -2190,7 +2190,7 @@ namespace Nevr.Telemetry.Protobuf {
           }
           case 450: {
             global::Nevr.Telemetry.Protobuf.PlayerAssist subBuilder = new global::Nevr.Telemetry.Protobuf.PlayerAssist();
-            if (payloadCase_ == PayloadOneofCase.PlayerAssist) {
+            if (eventCase_ == EventOneofCase.PlayerAssist) {
               subBuilder.MergeFrom(PlayerAssist);
             }
             input.ReadMessage(subBuilder);
@@ -2199,7 +2199,7 @@ namespace Nevr.Telemetry.Protobuf {
           }
           case 458: {
             global::Nevr.Telemetry.Protobuf.PlayerShotTaken subBuilder = new global::Nevr.Telemetry.Protobuf.PlayerShotTaken();
-            if (payloadCase_ == PayloadOneofCase.PlayerShotTaken) {
+            if (eventCase_ == EventOneofCase.PlayerShotTaken) {
               subBuilder.MergeFrom(PlayerShotTaken);
             }
             input.ReadMessage(subBuilder);

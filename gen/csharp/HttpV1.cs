@@ -50,39 +50,40 @@ namespace Nevr.Protobuf {
             "bm9zGAMgASgFUg10aW1lc3RlcE5hbm9zEjkKCG1ldGFkYXRhGBggAygLMh0u",
             "YXBpLkdhbWVTZXJ2ZXIuTWV0YWRhdGFFbnRyeVIIbWV0YWRhdGEaOwoNTWV0",
             "YWRhdGFFbnRyeRIQCgNrZXkYASABKAlSA2tleRIUCgV2YWx1ZRgCIAEoCVIF",
-            "dmFsdWU6AjgBIsYGChlMb2JieVNlc3Npb25DcmVhdGVSZXF1ZXN0EhIKBG1v",
+            "dmFsdWU6AjgBIucGChlMb2JieVNlc3Npb25DcmVhdGVSZXF1ZXN0EhIKBG1v",
             "ZGUYASABKAlSBG1vZGUSFAoFbGV2ZWwYAiABKAlSBWxldmVsEhsKCXRlYW1f",
             "c2l6ZRgDIAEoBVIIdGVhbVNpemUSJAoOZ3VpbGRfZ3JvdXBfaWQYBiABKAlS",
-            "DGd1aWxkR3JvdXBJZBIZCghvd25lcl9pZBgFIAEoCVIHb3duZXJJZBIrChFy",
-            "ZXF1aXJlZF9mZWF0dXJlcxgHIAMoCVIQcmVxdWlyZWRGZWF0dXJlcxI1Cgxy",
-            "ZXNlcnZhdGlvbnMYBCADKAsyES5hcGkuTG9iYnlFbnRyYW50UgxyZXNlcnZh",
-            "dGlvbnMSPQoMbWF0Y2hfZXhwaXJ5GAsgASgLMhouZ29vZ2xlLnByb3RvYnVm",
-            "LlRpbWVzdGFtcFILbWF0Y2hFeHBpcnkSSAoIbWV0YWRhdGEYDCADKAsyLC5h",
-            "cGkuTG9iYnlTZXNzaW9uQ3JlYXRlUmVxdWVzdC5NZXRhZGF0YUVudHJ5Ught",
-            "ZXRhZGF0YRr2AgoSRW50cmFudFJlc2VydmF0aW9uEisKB2VudHJhbnQYASAB",
-            "KAsyES5hcGkuTG9iYnlFbnRyYW50UgdlbnRyYW50EkIKDnJvbGVfYWxpZ25t",
-            "ZW50GAIgASgLMhsuZ29vZ2xlLnByb3RvYnVmLkludDMyVmFsdWVSDXJvbGVB",
-            "bGlnbm1lbnQSMgoGZXhwaXJ5GAogASgLMhouZ29vZ2xlLnByb3RvYnVmLlRp",
-            "bWVzdGFtcFIGZXhwaXJ5IroBCg1Sb2xlQWxpZ25tZW50Eh4KGlJPTEVfQUxJ",
-            "R05NRU5UX1VOU1BFQ0lGSUVEEAASFwoTUk9MRV9BTElHTk1FTlRfQkxVRRAB",
-            "EhkKFVJPTEVfQUxJR05NRU5UX09SQU5HRRACEhwKGFJPTEVfQUxJR05NRU5U",
-            "X1NQRUNUQVRPUhADEhkKFVJPTEVfQUxJR05NRU5UX1NPQ0lBTBAEEhwKGFJP",
-            "TEVfQUxJR05NRU5UX01PREVSQVRPUhAFGjsKDU1ldGFkYXRhRW50cnkSEAoD",
-            "a2V5GAEgASgJUgNrZXkSFAoFdmFsdWUYAiABKAlSBXZhbHVlOgI4ASKuAgoM",
-            "TG9iYnlFbnRyYW50Eg4KAmlkGAEgASgJUgJpZBIdCgpzZXNzaW9uX2lkGAIg",
-            "ASgJUglzZXNzaW9uSWQSFwoHdXNlcl9pZBgDIAEoCVIGdXNlcklkEhIKBHhw",
-            "aWQYBCABKAlSBHhwaWQSIQoMZGlzcGxheV9uYW1lGAogASgJUgtkaXNwbGF5",
-            "TmFtZRIlCg5yb2xlX2FsaWdubWVudBgTIAEoBVINcm9sZUFsaWdubWVudBI7",
-            "CghtZXRhZGF0YRgXIAMoCzIfLmFwaS5Mb2JieUVudHJhbnQuTWV0YWRhdGFF",
-            "bnRyeVIIbWV0YWRhdGEaOwoNTWV0YWRhdGFFbnRyeRIQCgNrZXkYASABKAlS",
-            "A2tleRIUCgV2YWx1ZRgCIAEoCVIFdmFsdWU6AjgBItABCgVNYXRjaBIZCght",
-            "YXRjaF9pZBgBIAEoCVIHbWF0Y2hJZBIkCg1hdXRob3JpdGF0aXZlGAIgASgI",
-            "Ug1hdXRob3JpdGF0aXZlEjIKBWxhYmVsGAMgASgLMhwuZ29vZ2xlLnByb3Rv",
-            "YnVmLlN0cmluZ1ZhbHVlUgVsYWJlbBISCgRzaXplGAQgASgFUgRzaXplEhsK",
-            "CXRpY2tfcmF0ZRgFIAEoBVIIdGlja1JhdGUSIQoMaGFuZGxlcl9uYW1lGAYg",
-            "ASgJUgtoYW5kbGVyTmFtZUJqCh1jb20uZ2l0aHViLmVjaG90b29scy5uZXZy",
-            "LmFwaUIHTmV2ckFwaVABWi5naXRodWIuY29tL2VjaG90b29scy9uZXZyLWNv",
-            "bW1vbi92NC9nZW4vZ28vYXBpqgINTmV2ci5Qcm90b2J1ZmIGcHJvdG8z"));
+            "DGd1aWxkR3JvdXBJZBIZCghvd25lcl9pZBgFIAEoCVIHb3duZXJJZBIfCgty",
+            "ZWdpb25fY29kZRgIIAEoCVIKcmVnaW9uQ29kZRIrChFyZXF1aXJlZF9mZWF0",
+            "dXJlcxgHIAMoCVIQcmVxdWlyZWRGZWF0dXJlcxI1CgxyZXNlcnZhdGlvbnMY",
+            "BCADKAsyES5hcGkuTG9iYnlFbnRyYW50UgxyZXNlcnZhdGlvbnMSPQoMbWF0",
+            "Y2hfZXhwaXJ5GAsgASgLMhouZ29vZ2xlLnByb3RvYnVmLlRpbWVzdGFtcFIL",
+            "bWF0Y2hFeHBpcnkSSAoIbWV0YWRhdGEYDCADKAsyLC5hcGkuTG9iYnlTZXNz",
+            "aW9uQ3JlYXRlUmVxdWVzdC5NZXRhZGF0YUVudHJ5UghtZXRhZGF0YRr2AgoS",
+            "RW50cmFudFJlc2VydmF0aW9uEisKB2VudHJhbnQYASABKAsyES5hcGkuTG9i",
+            "YnlFbnRyYW50UgdlbnRyYW50EkIKDnJvbGVfYWxpZ25tZW50GAIgASgLMhsu",
+            "Z29vZ2xlLnByb3RvYnVmLkludDMyVmFsdWVSDXJvbGVBbGlnbm1lbnQSMgoG",
+            "ZXhwaXJ5GAogASgLMhouZ29vZ2xlLnByb3RvYnVmLlRpbWVzdGFtcFIGZXhw",
+            "aXJ5IroBCg1Sb2xlQWxpZ25tZW50Eh4KGlJPTEVfQUxJR05NRU5UX1VOU1BF",
+            "Q0lGSUVEEAASFwoTUk9MRV9BTElHTk1FTlRfQkxVRRABEhkKFVJPTEVfQUxJ",
+            "R05NRU5UX09SQU5HRRACEhwKGFJPTEVfQUxJR05NRU5UX1NQRUNUQVRPUhAD",
+            "EhkKFVJPTEVfQUxJR05NRU5UX1NPQ0lBTBAEEhwKGFJPTEVfQUxJR05NRU5U",
+            "X01PREVSQVRPUhAFGjsKDU1ldGFkYXRhRW50cnkSEAoDa2V5GAEgASgJUgNr",
+            "ZXkSFAoFdmFsdWUYAiABKAlSBXZhbHVlOgI4ASKuAgoMTG9iYnlFbnRyYW50",
+            "Eg4KAmlkGAEgASgJUgJpZBIdCgpzZXNzaW9uX2lkGAIgASgJUglzZXNzaW9u",
+            "SWQSFwoHdXNlcl9pZBgDIAEoCVIGdXNlcklkEhIKBHhwaWQYBCABKAlSBHhw",
+            "aWQSIQoMZGlzcGxheV9uYW1lGAogASgJUgtkaXNwbGF5TmFtZRIlCg5yb2xl",
+            "X2FsaWdubWVudBgTIAEoBVINcm9sZUFsaWdubWVudBI7CghtZXRhZGF0YRgX",
+            "IAMoCzIfLmFwaS5Mb2JieUVudHJhbnQuTWV0YWRhdGFFbnRyeVIIbWV0YWRh",
+            "dGEaOwoNTWV0YWRhdGFFbnRyeRIQCgNrZXkYASABKAlSA2tleRIUCgV2YWx1",
+            "ZRgCIAEoCVIFdmFsdWU6AjgBItABCgVNYXRjaBIZCghtYXRjaF9pZBgBIAEo",
+            "CVIHbWF0Y2hJZBIkCg1hdXRob3JpdGF0aXZlGAIgASgIUg1hdXRob3JpdGF0",
+            "aXZlEjIKBWxhYmVsGAMgASgLMhwuZ29vZ2xlLnByb3RvYnVmLlN0cmluZ1Zh",
+            "bHVlUgVsYWJlbBISCgRzaXplGAQgASgFUgRzaXplEhsKCXRpY2tfcmF0ZRgF",
+            "IAEoBVIIdGlja1JhdGUSIQoMaGFuZGxlcl9uYW1lGAYgASgJUgtoYW5kbGVy",
+            "TmFtZUJqCh1jb20uZ2l0aHViLmVjaG90b29scy5uZXZyLmFwaUIHTmV2ckFw",
+            "aVABWi5naXRodWIuY29tL2VjaG90b29scy9uZXZyLWNvbW1vbi92NC9nZW4v",
+            "Z28vYXBpqgINTmV2ci5Qcm90b2J1ZmIGcHJvdG8z"));
       descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
           new pbr::FileDescriptor[] { global::Google.Protobuf.WellKnownTypes.TimestampReflection.Descriptor, global::Google.Protobuf.WellKnownTypes.WrappersReflection.Descriptor, },
           new pbr::GeneratedClrTypeInfo(null, null, new pbr::GeneratedClrTypeInfo[] {
@@ -90,7 +91,7 @@ namespace Nevr.Protobuf {
             new pbr::GeneratedClrTypeInfo(typeof(global::Nevr.Protobuf.ListGuildGameServersRequest), global::Nevr.Protobuf.ListGuildGameServersRequest.Parser, new[]{ "GuildGroupId", "Limit", "State", "Query", "Cursor" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Nevr.Protobuf.GuildGameServerList), global::Nevr.Protobuf.GuildGameServerList.Parser, new[]{ "GuildServers", "Cursor" }, null, null, null, new pbr::GeneratedClrTypeInfo[] { new pbr::GeneratedClrTypeInfo(typeof(global::Nevr.Protobuf.GuildGameServerList.Types.GuildGameServer), global::Nevr.Protobuf.GuildGameServerList.Types.GuildGameServer.Parser, new[]{ "GameServer", "State" }, null, new[]{ typeof(global::Nevr.Protobuf.GuildGameServerList.Types.GuildGameServer.Types.State) }, null, null)}),
             new pbr::GeneratedClrTypeInfo(typeof(global::Nevr.Protobuf.GameServer), global::Nevr.Protobuf.GameServer.Parser, new[]{ "ServerId", "OperatorId", "Endpoint", "SupportedFeatures", "TimestepNanos", "Metadata" }, null, null, null, new pbr::GeneratedClrTypeInfo[] { null, }),
-            new pbr::GeneratedClrTypeInfo(typeof(global::Nevr.Protobuf.LobbySessionCreateRequest), global::Nevr.Protobuf.LobbySessionCreateRequest.Parser, new[]{ "Mode", "Level", "TeamSize", "GuildGroupId", "OwnerId", "RequiredFeatures", "Reservations", "MatchExpiry", "Metadata" }, null, null, null, new pbr::GeneratedClrTypeInfo[] { new pbr::GeneratedClrTypeInfo(typeof(global::Nevr.Protobuf.LobbySessionCreateRequest.Types.EntrantReservation), global::Nevr.Protobuf.LobbySessionCreateRequest.Types.EntrantReservation.Parser, new[]{ "Entrant", "RoleAlignment", "Expiry" }, null, new[]{ typeof(global::Nevr.Protobuf.LobbySessionCreateRequest.Types.EntrantReservation.Types.RoleAlignment) }, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::Nevr.Protobuf.LobbySessionCreateRequest), global::Nevr.Protobuf.LobbySessionCreateRequest.Parser, new[]{ "Mode", "Level", "TeamSize", "GuildGroupId", "OwnerId", "RegionCode", "RequiredFeatures", "Reservations", "MatchExpiry", "Metadata" }, null, null, null, new pbr::GeneratedClrTypeInfo[] { new pbr::GeneratedClrTypeInfo(typeof(global::Nevr.Protobuf.LobbySessionCreateRequest.Types.EntrantReservation), global::Nevr.Protobuf.LobbySessionCreateRequest.Types.EntrantReservation.Parser, new[]{ "Entrant", "RoleAlignment", "Expiry" }, null, new[]{ typeof(global::Nevr.Protobuf.LobbySessionCreateRequest.Types.EntrantReservation.Types.RoleAlignment) }, null, null),
             null, }),
             new pbr::GeneratedClrTypeInfo(typeof(global::Nevr.Protobuf.LobbyEntrant), global::Nevr.Protobuf.LobbyEntrant.Parser, new[]{ "Id", "SessionId", "UserId", "Xpid", "DisplayName", "RoleAlignment", "Metadata" }, null, null, null, new pbr::GeneratedClrTypeInfo[] { null, }),
             new pbr::GeneratedClrTypeInfo(typeof(global::Nevr.Protobuf.Match), global::Nevr.Protobuf.Match.Parser, new[]{ "MatchId", "Authoritative", "Label", "Size", "TickRate", "HandlerName" }, null, null, null, null)
@@ -1722,6 +1723,7 @@ namespace Nevr.Protobuf {
       teamSize_ = other.teamSize_;
       guildGroupId_ = other.guildGroupId_;
       ownerId_ = other.ownerId_;
+      regionCode_ = other.regionCode_;
       requiredFeatures_ = other.requiredFeatures_.Clone();
       reservations_ = other.reservations_.Clone();
       matchExpiry_ = other.matchExpiry_ != null ? other.matchExpiry_.Clone() : null;
@@ -1810,6 +1812,21 @@ namespace Nevr.Protobuf {
       }
     }
 
+    /// <summary>Field number for the "region_code" field.</summary>
+    public const int RegionCodeFieldNumber = 8;
+    private string regionCode_ = "";
+    /// <summary>
+    /// The preferred region for the lobby session.
+    /// </summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public string RegionCode {
+      get { return regionCode_; }
+      set {
+        regionCode_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
+      }
+    }
+
     /// <summary>Field number for the "required_features" field.</summary>
     public const int RequiredFeaturesFieldNumber = 7;
     private static readonly pb::FieldCodec<string> _repeated_requiredFeatures_codec
@@ -1887,6 +1904,7 @@ namespace Nevr.Protobuf {
       if (TeamSize != other.TeamSize) return false;
       if (GuildGroupId != other.GuildGroupId) return false;
       if (OwnerId != other.OwnerId) return false;
+      if (RegionCode != other.RegionCode) return false;
       if(!requiredFeatures_.Equals(other.requiredFeatures_)) return false;
       if(!reservations_.Equals(other.reservations_)) return false;
       if (!object.Equals(MatchExpiry, other.MatchExpiry)) return false;
@@ -1903,6 +1921,7 @@ namespace Nevr.Protobuf {
       if (TeamSize != 0) hash ^= TeamSize.GetHashCode();
       if (GuildGroupId.Length != 0) hash ^= GuildGroupId.GetHashCode();
       if (OwnerId.Length != 0) hash ^= OwnerId.GetHashCode();
+      if (RegionCode.Length != 0) hash ^= RegionCode.GetHashCode();
       hash ^= requiredFeatures_.GetHashCode();
       hash ^= reservations_.GetHashCode();
       if (matchExpiry_ != null) hash ^= MatchExpiry.GetHashCode();
@@ -1947,6 +1966,10 @@ namespace Nevr.Protobuf {
         output.WriteString(GuildGroupId);
       }
       requiredFeatures_.WriteTo(output, _repeated_requiredFeatures_codec);
+      if (RegionCode.Length != 0) {
+        output.WriteRawTag(66);
+        output.WriteString(RegionCode);
+      }
       if (matchExpiry_ != null) {
         output.WriteRawTag(90);
         output.WriteMessage(MatchExpiry);
@@ -1984,6 +2007,10 @@ namespace Nevr.Protobuf {
         output.WriteString(GuildGroupId);
       }
       requiredFeatures_.WriteTo(ref output, _repeated_requiredFeatures_codec);
+      if (RegionCode.Length != 0) {
+        output.WriteRawTag(66);
+        output.WriteString(RegionCode);
+      }
       if (matchExpiry_ != null) {
         output.WriteRawTag(90);
         output.WriteMessage(MatchExpiry);
@@ -2013,6 +2040,9 @@ namespace Nevr.Protobuf {
       }
       if (OwnerId.Length != 0) {
         size += 1 + pb::CodedOutputStream.ComputeStringSize(OwnerId);
+      }
+      if (RegionCode.Length != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeStringSize(RegionCode);
       }
       size += requiredFeatures_.CalculateSize(_repeated_requiredFeatures_codec);
       size += reservations_.CalculateSize(_repeated_reservations_codec);
@@ -2046,6 +2076,9 @@ namespace Nevr.Protobuf {
       }
       if (other.OwnerId.Length != 0) {
         OwnerId = other.OwnerId;
+      }
+      if (other.RegionCode.Length != 0) {
+        RegionCode = other.RegionCode;
       }
       requiredFeatures_.Add(other.requiredFeatures_);
       reservations_.Add(other.reservations_);
@@ -2101,6 +2134,10 @@ namespace Nevr.Protobuf {
           }
           case 58: {
             requiredFeatures_.AddEntriesFrom(input, _repeated_requiredFeatures_codec);
+            break;
+          }
+          case 66: {
+            RegionCode = input.ReadString();
             break;
           }
           case 90: {
@@ -2159,6 +2196,10 @@ namespace Nevr.Protobuf {
           }
           case 58: {
             requiredFeatures_.AddEntriesFrom(ref input, _repeated_requiredFeatures_codec);
+            break;
+          }
+          case 66: {
+            RegionCode = input.ReadString();
             break;
           }
           case 90: {

@@ -303,6 +303,10 @@
           "type": "string",
           "title": "The ID of the lobby creator/allocator"
         },
+        "regionCode": {
+          "type": "string",
+          "description": "The preferred region for the lobby session."
+        },
         "requiredFeatures": {
           "type": "array",
           "items": {

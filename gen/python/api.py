@@ -110,6 +110,8 @@ class LobbySessionCreateRequest(betterproto.Message):
     guild_group_id: str = betterproto.string_field(6)
     # The ID of the lobby creator/allocator
     owner_id: str = betterproto.string_field(5)
+    # The preferred region for the lobby session.
+    region_code: str = betterproto.string_field(8)
     # Any required features that must be supported by the game server/clients.
     required_features: List[str] = betterproto.string_field(7)
     # Entrant reservations.

@@ -68,42 +68,40 @@ class LobbySessionEvent(betterproto.Message):
     """A wrapper for any event that can occur during a session."""
 
     # Game State Events
-    round_started: "RoundStarted" = betterproto.message_field(10, group="payload")
-    round_paused: "RoundPaused" = betterproto.message_field(11, group="payload")
-    round_unpaused: "RoundUnpaused" = betterproto.message_field(12, group="payload")
-    round_ended: "RoundEnded" = betterproto.message_field(13, group="payload")
-    match_ended: "MatchEnded" = betterproto.message_field(14, group="payload")
+    round_started: "RoundStarted" = betterproto.message_field(10, group="event")
+    round_paused: "RoundPaused" = betterproto.message_field(11, group="event")
+    round_unpaused: "RoundUnpaused" = betterproto.message_field(12, group="event")
+    round_ended: "RoundEnded" = betterproto.message_field(13, group="event")
+    match_ended: "MatchEnded" = betterproto.message_field(14, group="event")
     scoreboard_updated: "ScoreboardUpdated" = betterproto.message_field(
-        15, group="payload"
+        15, group="event"
     )
     # Player Events
-    player_joined: "PlayerJoined" = betterproto.message_field(20, group="payload")
-    player_left: "PlayerLeft" = betterproto.message_field(21, group="payload")
+    player_joined: "PlayerJoined" = betterproto.message_field(20, group="event")
+    player_left: "PlayerLeft" = betterproto.message_field(21, group="event")
     player_switched_team: "PlayerSwitchedTeam" = betterproto.message_field(
-        22, group="payload"
+        22, group="event"
     )
-    emote_played: "EmotePlayed" = betterproto.message_field(23, group="payload")
+    emote_played: "EmotePlayed" = betterproto.message_field(23, group="event")
     # Disc Events
     disc_possession_changed: "DiscPossessionChanged" = betterproto.message_field(
-        30, group="payload"
+        30, group="event"
     )
-    disc_thrown: "DiscThrown" = betterproto.message_field(31, group="payload")
-    disc_caught: "DiscCaught" = betterproto.message_field(32, group="payload")
+    disc_thrown: "DiscThrown" = betterproto.message_field(31, group="event")
+    disc_caught: "DiscCaught" = betterproto.message_field(32, group="event")
     # Scoring Events
-    goal_scored: "GoalScored" = betterproto.message_field(40, group="payload")
+    goal_scored: "GoalScored" = betterproto.message_field(40, group="event")
     # Stat-based Events
-    player_save: "PlayerSave" = betterproto.message_field(50, group="payload")
-    player_stun: "PlayerStun" = betterproto.message_field(51, group="payload")
-    player_pass: "PlayerPass" = betterproto.message_field(52, group="payload")
-    player_steal: "PlayerSteal" = betterproto.message_field(53, group="payload")
-    player_block: "PlayerBlock" = betterproto.message_field(54, group="payload")
+    player_save: "PlayerSave" = betterproto.message_field(50, group="event")
+    player_stun: "PlayerStun" = betterproto.message_field(51, group="event")
+    player_pass: "PlayerPass" = betterproto.message_field(52, group="event")
+    player_steal: "PlayerSteal" = betterproto.message_field(53, group="event")
+    player_block: "PlayerBlock" = betterproto.message_field(54, group="event")
     player_interception: "PlayerInterception" = betterproto.message_field(
-        55, group="payload"
+        55, group="event"
     )
-    player_assist: "PlayerAssist" = betterproto.message_field(56, group="payload")
-    player_shot_taken: "PlayerShotTaken" = betterproto.message_field(
-        57, group="payload"
-    )
+    player_assist: "PlayerAssist" = betterproto.message_field(56, group="event")
+    player_shot_taken: "PlayerShotTaken" = betterproto.message_field(57, group="event")
 
 
 @dataclass
