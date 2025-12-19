@@ -318,12 +318,12 @@ internal::EnumTraitsT<::realtime::LobbySessionEventMessage_Code_internal_data_>
 
 namespace realtime {
 enum Error_Code : int {
-  Error_Code_RUNTIME_EXCEPTION = 0,
-  Error_Code_UNRECOGNIZED_PAYLOAD = 1,
-  Error_Code_MISSING_PAYLOAD = 2,
-  Error_Code_BAD_INPUT = 3,
-  Error_Code_REGISTRATION_FAILED = 4,
-  Error_Code_LOBBY_SESSION_NOT_FOUND = 5,
+  Error_Code_CODE_RUNTIME_EXCEPTION_UNSPECIFIED = 0,
+  Error_Code_CODE_UNRECOGNIZED_PAYLOAD = 1,
+  Error_Code_CODE_MISSING_PAYLOAD = 2,
+  Error_Code_CODE_BAD_INPUT = 3,
+  Error_Code_CODE_REGISTRATION_FAILED = 4,
+  Error_Code_CODE_LOBBY_SESSION_NOT_FOUND = 5,
   Error_Code_Error_Code_INT_MIN_SENTINEL_DO_NOT_USE_ =
       ::std::numeric_limits<::int32_t>::min(),
   Error_Code_Error_Code_INT_MAX_SENTINEL_DO_NOT_USE_ =
@@ -397,16 +397,16 @@ inline bool LobbySessionEventMessage_Code_Parse(
                                            value);
 }
 enum LobbyEntrantsRejectMessage_Code : int {
-  LobbyEntrantsRejectMessage_Code_INTERNAL = 0,
-  LobbyEntrantsRejectMessage_Code_BAD_REQUEST = 1,
-  LobbyEntrantsRejectMessage_Code_TIMEOUT = 2,
-  LobbyEntrantsRejectMessage_Code_DUPLICATE_USER_ID = 3,
-  LobbyEntrantsRejectMessage_Code_LOBBY_LOCKED = 4,
-  LobbyEntrantsRejectMessage_Code_LOBBY_FULL = 5,
-  LobbyEntrantsRejectMessage_Code_LOBBY_ENDING = 6,
-  LobbyEntrantsRejectMessage_Code_KICKED = 7,
-  LobbyEntrantsRejectMessage_Code_DISCONNECTED = 8,
-  LobbyEntrantsRejectMessage_Code_INACTIVE = 9,
+  LobbyEntrantsRejectMessage_Code_CODE_INTERNAL_UNSPECIFIED = 0,
+  LobbyEntrantsRejectMessage_Code_CODE_BAD_REQUEST = 1,
+  LobbyEntrantsRejectMessage_Code_CODE_TIMEOUT = 2,
+  LobbyEntrantsRejectMessage_Code_CODE_DUPLICATE_USER_ID = 3,
+  LobbyEntrantsRejectMessage_Code_CODE_LOBBY_LOCKED = 4,
+  LobbyEntrantsRejectMessage_Code_CODE_LOBBY_FULL = 5,
+  LobbyEntrantsRejectMessage_Code_CODE_LOBBY_ENDING = 6,
+  LobbyEntrantsRejectMessage_Code_CODE_KICKED = 7,
+  LobbyEntrantsRejectMessage_Code_CODE_DISCONNECTED = 8,
+  LobbyEntrantsRejectMessage_Code_CODE_INACTIVE = 9,
   LobbyEntrantsRejectMessage_Code_LobbyEntrantsRejectMessage_Code_INT_MIN_SENTINEL_DO_NOT_USE_ =
       ::std::numeric_limits<::int32_t>::min(),
   LobbyEntrantsRejectMessage_Code_LobbyEntrantsRejectMessage_Code_INT_MAX_SENTINEL_DO_NOT_USE_ =
@@ -441,16 +441,16 @@ inline bool LobbyEntrantsRejectMessage_Code_Parse(
                                            value);
 }
 enum LobbyEntrantRemovedMessage_Code : int {
-  LobbyEntrantRemovedMessage_Code_INTERNAL = 0,
-  LobbyEntrantRemovedMessage_Code_BAD_REQUEST = 1,
-  LobbyEntrantRemovedMessage_Code_TIMEOUT = 2,
-  LobbyEntrantRemovedMessage_Code_DUPLICATE_USER_ID = 3,
-  LobbyEntrantRemovedMessage_Code_LOBBY_LOCKED = 4,
-  LobbyEntrantRemovedMessage_Code_LOBBY_FULL = 5,
-  LobbyEntrantRemovedMessage_Code_LOBBY_ENDING = 6,
-  LobbyEntrantRemovedMessage_Code_KICKED = 7,
-  LobbyEntrantRemovedMessage_Code_DISCONNECTED = 8,
-  LobbyEntrantRemovedMessage_Code_INACTIVE = 9,
+  LobbyEntrantRemovedMessage_Code_CODE_INTERNAL_UNSPECIFIED = 0,
+  LobbyEntrantRemovedMessage_Code_CODE_BAD_REQUEST = 1,
+  LobbyEntrantRemovedMessage_Code_CODE_TIMEOUT = 2,
+  LobbyEntrantRemovedMessage_Code_CODE_DUPLICATE_USER_ID = 3,
+  LobbyEntrantRemovedMessage_Code_CODE_LOBBY_LOCKED = 4,
+  LobbyEntrantRemovedMessage_Code_CODE_LOBBY_FULL = 5,
+  LobbyEntrantRemovedMessage_Code_CODE_LOBBY_ENDING = 6,
+  LobbyEntrantRemovedMessage_Code_CODE_KICKED = 7,
+  LobbyEntrantRemovedMessage_Code_CODE_DISCONNECTED = 8,
+  LobbyEntrantRemovedMessage_Code_CODE_INACTIVE = 9,
   LobbyEntrantRemovedMessage_Code_LobbyEntrantRemovedMessage_Code_INT_MIN_SENTINEL_DO_NOT_USE_ =
       ::std::numeric_limits<::int32_t>::min(),
   LobbyEntrantRemovedMessage_Code_LobbyEntrantRemovedMessage_Code_INT_MAX_SENTINEL_DO_NOT_USE_ =
@@ -485,8 +485,8 @@ inline bool LobbyEntrantRemovedMessage_Code_Parse(
                                            value);
 }
 enum LobbySessionCreateMessage_LobbyType : int {
-  LobbySessionCreateMessage_LobbyType_PUBLIC = 0,
-  LobbySessionCreateMessage_LobbyType_PRIVATE = 1,
+  LobbySessionCreateMessage_LobbyType_LOBBY_TYPE_PUBLIC_UNSPECIFIED = 0,
+  LobbySessionCreateMessage_LobbyType_LOBBY_TYPE_PRIVATE = 1,
   LobbySessionCreateMessage_LobbyType_LobbySessionCreateMessage_LobbyType_INT_MIN_SENTINEL_DO_NOT_USE_ =
       ::std::numeric_limits<::int32_t>::min(),
   LobbySessionCreateMessage_LobbyType_LobbySessionCreateMessage_LobbyType_INT_MAX_SENTINEL_DO_NOT_USE_ =
@@ -4687,8 +4687,8 @@ class LobbySessionCreateMessage final : public ::google::protobuf::Message
   ::google::protobuf::Metadata GetMetadata() const;
   // nested types ----------------------------------------------------
   using LobbyType = LobbySessionCreateMessage_LobbyType;
-  static constexpr LobbyType PUBLIC = LobbySessionCreateMessage_LobbyType_PUBLIC;
-  static constexpr LobbyType PRIVATE = LobbySessionCreateMessage_LobbyType_PRIVATE;
+  static constexpr LobbyType LOBBY_TYPE_PUBLIC_UNSPECIFIED = LobbySessionCreateMessage_LobbyType_LOBBY_TYPE_PUBLIC_UNSPECIFIED;
+  static constexpr LobbyType LOBBY_TYPE_PRIVATE = LobbySessionCreateMessage_LobbyType_LOBBY_TYPE_PRIVATE;
   static inline bool LobbyType_IsValid(int value) {
     return LobbySessionCreateMessage_LobbyType_IsValid(value);
   }
@@ -4996,16 +4996,16 @@ class LobbyEntrantsRejectMessage final : public ::google::protobuf::Message
   ::google::protobuf::Metadata GetMetadata() const;
   // nested types ----------------------------------------------------
   using Code = LobbyEntrantsRejectMessage_Code;
-  static constexpr Code INTERNAL = LobbyEntrantsRejectMessage_Code_INTERNAL;
-  static constexpr Code BAD_REQUEST = LobbyEntrantsRejectMessage_Code_BAD_REQUEST;
-  static constexpr Code TIMEOUT = LobbyEntrantsRejectMessage_Code_TIMEOUT;
-  static constexpr Code DUPLICATE_USER_ID = LobbyEntrantsRejectMessage_Code_DUPLICATE_USER_ID;
-  static constexpr Code LOBBY_LOCKED = LobbyEntrantsRejectMessage_Code_LOBBY_LOCKED;
-  static constexpr Code LOBBY_FULL = LobbyEntrantsRejectMessage_Code_LOBBY_FULL;
-  static constexpr Code LOBBY_ENDING = LobbyEntrantsRejectMessage_Code_LOBBY_ENDING;
-  static constexpr Code KICKED = LobbyEntrantsRejectMessage_Code_KICKED;
-  static constexpr Code DISCONNECTED = LobbyEntrantsRejectMessage_Code_DISCONNECTED;
-  static constexpr Code INACTIVE = LobbyEntrantsRejectMessage_Code_INACTIVE;
+  static constexpr Code CODE_INTERNAL_UNSPECIFIED = LobbyEntrantsRejectMessage_Code_CODE_INTERNAL_UNSPECIFIED;
+  static constexpr Code CODE_BAD_REQUEST = LobbyEntrantsRejectMessage_Code_CODE_BAD_REQUEST;
+  static constexpr Code CODE_TIMEOUT = LobbyEntrantsRejectMessage_Code_CODE_TIMEOUT;
+  static constexpr Code CODE_DUPLICATE_USER_ID = LobbyEntrantsRejectMessage_Code_CODE_DUPLICATE_USER_ID;
+  static constexpr Code CODE_LOBBY_LOCKED = LobbyEntrantsRejectMessage_Code_CODE_LOBBY_LOCKED;
+  static constexpr Code CODE_LOBBY_FULL = LobbyEntrantsRejectMessage_Code_CODE_LOBBY_FULL;
+  static constexpr Code CODE_LOBBY_ENDING = LobbyEntrantsRejectMessage_Code_CODE_LOBBY_ENDING;
+  static constexpr Code CODE_KICKED = LobbyEntrantsRejectMessage_Code_CODE_KICKED;
+  static constexpr Code CODE_DISCONNECTED = LobbyEntrantsRejectMessage_Code_CODE_DISCONNECTED;
+  static constexpr Code CODE_INACTIVE = LobbyEntrantsRejectMessage_Code_CODE_INACTIVE;
   static inline bool Code_IsValid(int value) {
     return LobbyEntrantsRejectMessage_Code_IsValid(value);
   }
@@ -5659,16 +5659,16 @@ class LobbyEntrantRemovedMessage final : public ::google::protobuf::Message
   ::google::protobuf::Metadata GetMetadata() const;
   // nested types ----------------------------------------------------
   using Code = LobbyEntrantRemovedMessage_Code;
-  static constexpr Code INTERNAL = LobbyEntrantRemovedMessage_Code_INTERNAL;
-  static constexpr Code BAD_REQUEST = LobbyEntrantRemovedMessage_Code_BAD_REQUEST;
-  static constexpr Code TIMEOUT = LobbyEntrantRemovedMessage_Code_TIMEOUT;
-  static constexpr Code DUPLICATE_USER_ID = LobbyEntrantRemovedMessage_Code_DUPLICATE_USER_ID;
-  static constexpr Code LOBBY_LOCKED = LobbyEntrantRemovedMessage_Code_LOBBY_LOCKED;
-  static constexpr Code LOBBY_FULL = LobbyEntrantRemovedMessage_Code_LOBBY_FULL;
-  static constexpr Code LOBBY_ENDING = LobbyEntrantRemovedMessage_Code_LOBBY_ENDING;
-  static constexpr Code KICKED = LobbyEntrantRemovedMessage_Code_KICKED;
-  static constexpr Code DISCONNECTED = LobbyEntrantRemovedMessage_Code_DISCONNECTED;
-  static constexpr Code INACTIVE = LobbyEntrantRemovedMessage_Code_INACTIVE;
+  static constexpr Code CODE_INTERNAL_UNSPECIFIED = LobbyEntrantRemovedMessage_Code_CODE_INTERNAL_UNSPECIFIED;
+  static constexpr Code CODE_BAD_REQUEST = LobbyEntrantRemovedMessage_Code_CODE_BAD_REQUEST;
+  static constexpr Code CODE_TIMEOUT = LobbyEntrantRemovedMessage_Code_CODE_TIMEOUT;
+  static constexpr Code CODE_DUPLICATE_USER_ID = LobbyEntrantRemovedMessage_Code_CODE_DUPLICATE_USER_ID;
+  static constexpr Code CODE_LOBBY_LOCKED = LobbyEntrantRemovedMessage_Code_CODE_LOBBY_LOCKED;
+  static constexpr Code CODE_LOBBY_FULL = LobbyEntrantRemovedMessage_Code_CODE_LOBBY_FULL;
+  static constexpr Code CODE_LOBBY_ENDING = LobbyEntrantRemovedMessage_Code_CODE_LOBBY_ENDING;
+  static constexpr Code CODE_KICKED = LobbyEntrantRemovedMessage_Code_CODE_KICKED;
+  static constexpr Code CODE_DISCONNECTED = LobbyEntrantRemovedMessage_Code_CODE_DISCONNECTED;
+  static constexpr Code CODE_INACTIVE = LobbyEntrantRemovedMessage_Code_CODE_INACTIVE;
   static inline bool Code_IsValid(int value) {
     return LobbyEntrantRemovedMessage_Code_IsValid(value);
   }
@@ -12238,12 +12238,12 @@ class Error final : public ::google::protobuf::Message
   ::google::protobuf::Metadata GetMetadata() const;
   // nested types ----------------------------------------------------
   using Code = Error_Code;
-  static constexpr Code RUNTIME_EXCEPTION = Error_Code_RUNTIME_EXCEPTION;
-  static constexpr Code UNRECOGNIZED_PAYLOAD = Error_Code_UNRECOGNIZED_PAYLOAD;
-  static constexpr Code MISSING_PAYLOAD = Error_Code_MISSING_PAYLOAD;
-  static constexpr Code BAD_INPUT = Error_Code_BAD_INPUT;
-  static constexpr Code REGISTRATION_FAILED = Error_Code_REGISTRATION_FAILED;
-  static constexpr Code LOBBY_SESSION_NOT_FOUND = Error_Code_LOBBY_SESSION_NOT_FOUND;
+  static constexpr Code CODE_RUNTIME_EXCEPTION_UNSPECIFIED = Error_Code_CODE_RUNTIME_EXCEPTION_UNSPECIFIED;
+  static constexpr Code CODE_UNRECOGNIZED_PAYLOAD = Error_Code_CODE_UNRECOGNIZED_PAYLOAD;
+  static constexpr Code CODE_MISSING_PAYLOAD = Error_Code_CODE_MISSING_PAYLOAD;
+  static constexpr Code CODE_BAD_INPUT = Error_Code_CODE_BAD_INPUT;
+  static constexpr Code CODE_REGISTRATION_FAILED = Error_Code_CODE_REGISTRATION_FAILED;
+  static constexpr Code CODE_LOBBY_SESSION_NOT_FOUND = Error_Code_CODE_LOBBY_SESSION_NOT_FOUND;
   static inline bool Code_IsValid(int value) {
     return Error_Code_IsValid(value);
   }

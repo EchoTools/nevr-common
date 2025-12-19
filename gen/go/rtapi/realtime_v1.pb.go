@@ -28,36 +28,36 @@ type Error_Code int32
 
 const (
 	// An unexpected result from the server.
-	Error_RUNTIME_EXCEPTION Error_Code = 0
+	Error_CODE_RUNTIME_EXCEPTION_UNSPECIFIED Error_Code = 0
 	// The server received a message which is not recognised.
-	Error_UNRECOGNIZED_PAYLOAD Error_Code = 1
+	Error_CODE_UNRECOGNIZED_PAYLOAD Error_Code = 1
 	// A message was expected but contains no content.
-	Error_MISSING_PAYLOAD Error_Code = 2
+	Error_CODE_MISSING_PAYLOAD Error_Code = 2
 	// Fields in the message have an invalid format.
-	Error_BAD_INPUT Error_Code = 3
+	Error_CODE_BAD_INPUT Error_Code = 3
 	// Game server registration failed
-	Error_REGISTRATION_FAILED Error_Code = 4
+	Error_CODE_REGISTRATION_FAILED Error_Code = 4
 	// The lobby session was not found.
-	Error_LOBBY_SESSION_NOT_FOUND Error_Code = 5
+	Error_CODE_LOBBY_SESSION_NOT_FOUND Error_Code = 5
 )
 
 // Enum value maps for Error_Code.
 var (
 	Error_Code_name = map[int32]string{
-		0: "RUNTIME_EXCEPTION",
-		1: "UNRECOGNIZED_PAYLOAD",
-		2: "MISSING_PAYLOAD",
-		3: "BAD_INPUT",
-		4: "REGISTRATION_FAILED",
-		5: "LOBBY_SESSION_NOT_FOUND",
+		0: "CODE_RUNTIME_EXCEPTION_UNSPECIFIED",
+		1: "CODE_UNRECOGNIZED_PAYLOAD",
+		2: "CODE_MISSING_PAYLOAD",
+		3: "CODE_BAD_INPUT",
+		4: "CODE_REGISTRATION_FAILED",
+		5: "CODE_LOBBY_SESSION_NOT_FOUND",
 	}
 	Error_Code_value = map[string]int32{
-		"RUNTIME_EXCEPTION":       0,
-		"UNRECOGNIZED_PAYLOAD":    1,
-		"MISSING_PAYLOAD":         2,
-		"BAD_INPUT":               3,
-		"REGISTRATION_FAILED":     4,
-		"LOBBY_SESSION_NOT_FOUND": 5,
+		"CODE_RUNTIME_EXCEPTION_UNSPECIFIED": 0,
+		"CODE_UNRECOGNIZED_PAYLOAD":          1,
+		"CODE_MISSING_PAYLOAD":               2,
+		"CODE_BAD_INPUT":                     3,
+		"CODE_REGISTRATION_FAILED":           4,
+		"CODE_LOBBY_SESSION_NOT_FOUND":       5,
 	}
 )
 
@@ -151,43 +151,43 @@ func (LobbySessionEventMessage_Code) EnumDescriptor() ([]byte, []int) {
 type LobbyEntrantsRejectMessage_Code int32
 
 const (
-	LobbyEntrantsRejectMessage_INTERNAL          LobbyEntrantsRejectMessage_Code = 0 // Internal server error
-	LobbyEntrantsRejectMessage_BAD_REQUEST       LobbyEntrantsRejectMessage_Code = 1 // Bad request from the player
-	LobbyEntrantsRejectMessage_TIMEOUT           LobbyEntrantsRejectMessage_Code = 2 // Player connection timeout
-	LobbyEntrantsRejectMessage_DUPLICATE_USER_ID LobbyEntrantsRejectMessage_Code = 3 // Duplicate player session
-	LobbyEntrantsRejectMessage_LOBBY_LOCKED      LobbyEntrantsRejectMessage_Code = 4 // Lobby is locked
-	LobbyEntrantsRejectMessage_LOBBY_FULL        LobbyEntrantsRejectMessage_Code = 5 // Lobby is full
-	LobbyEntrantsRejectMessage_LOBBY_ENDING      LobbyEntrantsRejectMessage_Code = 6 // Lobby is ending
-	LobbyEntrantsRejectMessage_KICKED            LobbyEntrantsRejectMessage_Code = 7 // Player was kicked from the server
-	LobbyEntrantsRejectMessage_DISCONNECTED      LobbyEntrantsRejectMessage_Code = 8 // Player was disconnected
-	LobbyEntrantsRejectMessage_INACTIVE          LobbyEntrantsRejectMessage_Code = 9 // Player is inactive
+	LobbyEntrantsRejectMessage_CODE_INTERNAL_UNSPECIFIED LobbyEntrantsRejectMessage_Code = 0 // Internal server error
+	LobbyEntrantsRejectMessage_CODE_BAD_REQUEST          LobbyEntrantsRejectMessage_Code = 1 // Bad request from the player
+	LobbyEntrantsRejectMessage_CODE_TIMEOUT              LobbyEntrantsRejectMessage_Code = 2 // Player connection timeout
+	LobbyEntrantsRejectMessage_CODE_DUPLICATE_USER_ID    LobbyEntrantsRejectMessage_Code = 3 // Duplicate player session
+	LobbyEntrantsRejectMessage_CODE_LOBBY_LOCKED         LobbyEntrantsRejectMessage_Code = 4 // Lobby is locked
+	LobbyEntrantsRejectMessage_CODE_LOBBY_FULL           LobbyEntrantsRejectMessage_Code = 5 // Lobby is full
+	LobbyEntrantsRejectMessage_CODE_LOBBY_ENDING         LobbyEntrantsRejectMessage_Code = 6 // Lobby is ending
+	LobbyEntrantsRejectMessage_CODE_KICKED               LobbyEntrantsRejectMessage_Code = 7 // Player was kicked from the server
+	LobbyEntrantsRejectMessage_CODE_DISCONNECTED         LobbyEntrantsRejectMessage_Code = 8 // Player was disconnected
+	LobbyEntrantsRejectMessage_CODE_INACTIVE             LobbyEntrantsRejectMessage_Code = 9 // Player is inactive
 )
 
 // Enum value maps for LobbyEntrantsRejectMessage_Code.
 var (
 	LobbyEntrantsRejectMessage_Code_name = map[int32]string{
-		0: "INTERNAL",
-		1: "BAD_REQUEST",
-		2: "TIMEOUT",
-		3: "DUPLICATE_USER_ID",
-		4: "LOBBY_LOCKED",
-		5: "LOBBY_FULL",
-		6: "LOBBY_ENDING",
-		7: "KICKED",
-		8: "DISCONNECTED",
-		9: "INACTIVE",
+		0: "CODE_INTERNAL_UNSPECIFIED",
+		1: "CODE_BAD_REQUEST",
+		2: "CODE_TIMEOUT",
+		3: "CODE_DUPLICATE_USER_ID",
+		4: "CODE_LOBBY_LOCKED",
+		5: "CODE_LOBBY_FULL",
+		6: "CODE_LOBBY_ENDING",
+		7: "CODE_KICKED",
+		8: "CODE_DISCONNECTED",
+		9: "CODE_INACTIVE",
 	}
 	LobbyEntrantsRejectMessage_Code_value = map[string]int32{
-		"INTERNAL":          0,
-		"BAD_REQUEST":       1,
-		"TIMEOUT":           2,
-		"DUPLICATE_USER_ID": 3,
-		"LOBBY_LOCKED":      4,
-		"LOBBY_FULL":        5,
-		"LOBBY_ENDING":      6,
-		"KICKED":            7,
-		"DISCONNECTED":      8,
-		"INACTIVE":          9,
+		"CODE_INTERNAL_UNSPECIFIED": 0,
+		"CODE_BAD_REQUEST":          1,
+		"CODE_TIMEOUT":              2,
+		"CODE_DUPLICATE_USER_ID":    3,
+		"CODE_LOBBY_LOCKED":         4,
+		"CODE_LOBBY_FULL":           5,
+		"CODE_LOBBY_ENDING":         6,
+		"CODE_KICKED":               7,
+		"CODE_DISCONNECTED":         8,
+		"CODE_INACTIVE":             9,
 	}
 )
 
@@ -221,43 +221,43 @@ func (LobbyEntrantsRejectMessage_Code) EnumDescriptor() ([]byte, []int) {
 type LobbyEntrantRemovedMessage_Code int32
 
 const (
-	LobbyEntrantRemovedMessage_INTERNAL          LobbyEntrantRemovedMessage_Code = 0 // Internal server error
-	LobbyEntrantRemovedMessage_BAD_REQUEST       LobbyEntrantRemovedMessage_Code = 1 // Bad request from the player
-	LobbyEntrantRemovedMessage_TIMEOUT           LobbyEntrantRemovedMessage_Code = 2 // Player connection timeout
-	LobbyEntrantRemovedMessage_DUPLICATE_USER_ID LobbyEntrantRemovedMessage_Code = 3 // Duplicate player session
-	LobbyEntrantRemovedMessage_LOBBY_LOCKED      LobbyEntrantRemovedMessage_Code = 4 // Lobby is locked
-	LobbyEntrantRemovedMessage_LOBBY_FULL        LobbyEntrantRemovedMessage_Code = 5 // Lobby is full
-	LobbyEntrantRemovedMessage_LOBBY_ENDING      LobbyEntrantRemovedMessage_Code = 6 // Lobby is ending
-	LobbyEntrantRemovedMessage_KICKED            LobbyEntrantRemovedMessage_Code = 7 // Player was kicked from the server
-	LobbyEntrantRemovedMessage_DISCONNECTED      LobbyEntrantRemovedMessage_Code = 8 // Player was disconnected
-	LobbyEntrantRemovedMessage_INACTIVE          LobbyEntrantRemovedMessage_Code = 9 // Player is inactive
+	LobbyEntrantRemovedMessage_CODE_INTERNAL_UNSPECIFIED LobbyEntrantRemovedMessage_Code = 0 // Internal server error
+	LobbyEntrantRemovedMessage_CODE_BAD_REQUEST          LobbyEntrantRemovedMessage_Code = 1 // Bad request from the player
+	LobbyEntrantRemovedMessage_CODE_TIMEOUT              LobbyEntrantRemovedMessage_Code = 2 // Player connection timeout
+	LobbyEntrantRemovedMessage_CODE_DUPLICATE_USER_ID    LobbyEntrantRemovedMessage_Code = 3 // Duplicate player session
+	LobbyEntrantRemovedMessage_CODE_LOBBY_LOCKED         LobbyEntrantRemovedMessage_Code = 4 // Lobby is locked
+	LobbyEntrantRemovedMessage_CODE_LOBBY_FULL           LobbyEntrantRemovedMessage_Code = 5 // Lobby is full
+	LobbyEntrantRemovedMessage_CODE_LOBBY_ENDING         LobbyEntrantRemovedMessage_Code = 6 // Lobby is ending
+	LobbyEntrantRemovedMessage_CODE_KICKED               LobbyEntrantRemovedMessage_Code = 7 // Player was kicked from the server
+	LobbyEntrantRemovedMessage_CODE_DISCONNECTED         LobbyEntrantRemovedMessage_Code = 8 // Player was disconnected
+	LobbyEntrantRemovedMessage_CODE_INACTIVE             LobbyEntrantRemovedMessage_Code = 9 // Player is inactive
 )
 
 // Enum value maps for LobbyEntrantRemovedMessage_Code.
 var (
 	LobbyEntrantRemovedMessage_Code_name = map[int32]string{
-		0: "INTERNAL",
-		1: "BAD_REQUEST",
-		2: "TIMEOUT",
-		3: "DUPLICATE_USER_ID",
-		4: "LOBBY_LOCKED",
-		5: "LOBBY_FULL",
-		6: "LOBBY_ENDING",
-		7: "KICKED",
-		8: "DISCONNECTED",
-		9: "INACTIVE",
+		0: "CODE_INTERNAL_UNSPECIFIED",
+		1: "CODE_BAD_REQUEST",
+		2: "CODE_TIMEOUT",
+		3: "CODE_DUPLICATE_USER_ID",
+		4: "CODE_LOBBY_LOCKED",
+		5: "CODE_LOBBY_FULL",
+		6: "CODE_LOBBY_ENDING",
+		7: "CODE_KICKED",
+		8: "CODE_DISCONNECTED",
+		9: "CODE_INACTIVE",
 	}
 	LobbyEntrantRemovedMessage_Code_value = map[string]int32{
-		"INTERNAL":          0,
-		"BAD_REQUEST":       1,
-		"TIMEOUT":           2,
-		"DUPLICATE_USER_ID": 3,
-		"LOBBY_LOCKED":      4,
-		"LOBBY_FULL":        5,
-		"LOBBY_ENDING":      6,
-		"KICKED":            7,
-		"DISCONNECTED":      8,
-		"INACTIVE":          9,
+		"CODE_INTERNAL_UNSPECIFIED": 0,
+		"CODE_BAD_REQUEST":          1,
+		"CODE_TIMEOUT":              2,
+		"CODE_DUPLICATE_USER_ID":    3,
+		"CODE_LOBBY_LOCKED":         4,
+		"CODE_LOBBY_FULL":           5,
+		"CODE_LOBBY_ENDING":         6,
+		"CODE_KICKED":               7,
+		"CODE_DISCONNECTED":         8,
+		"CODE_INACTIVE":             9,
 	}
 )
 
@@ -292,20 +292,20 @@ type LobbySessionCreateMessage_LobbyType int32
 
 const (
 	// A public lobby which is visible to all players.
-	LobbySessionCreateMessage_PUBLIC LobbySessionCreateMessage_LobbyType = 0
+	LobbySessionCreateMessage_LOBBY_TYPE_PUBLIC_UNSPECIFIED LobbySessionCreateMessage_LobbyType = 0
 	// A private lobby which is only visible to invited players.
-	LobbySessionCreateMessage_PRIVATE LobbySessionCreateMessage_LobbyType = 1
+	LobbySessionCreateMessage_LOBBY_TYPE_PRIVATE LobbySessionCreateMessage_LobbyType = 1
 )
 
 // Enum value maps for LobbySessionCreateMessage_LobbyType.
 var (
 	LobbySessionCreateMessage_LobbyType_name = map[int32]string{
-		0: "PUBLIC",
-		1: "PRIVATE",
+		0: "LOBBY_TYPE_PUBLIC_UNSPECIFIED",
+		1: "LOBBY_TYPE_PRIVATE",
 	}
 	LobbySessionCreateMessage_LobbyType_value = map[string]int32{
-		"PUBLIC":  0,
-		"PRIVATE": 1,
+		"LOBBY_TYPE_PUBLIC_UNSPECIFIED": 0,
+		"LOBBY_TYPE_PRIVATE":            1,
 	}
 )
 
@@ -4603,21 +4603,21 @@ const file_rtapi_realtime_v1_proto_rawDesc = "" +
 	"\x16update_profile_failure\x182 \x01(\v2(.realtime.SNSUpdateProfileFailureMessageH\x00R\x14updateProfileFailure\x12\x80\x01\n" +
 	"\"user_server_profile_update_request\x183 \x01(\v22.realtime.SNSUserServerProfileUpdateRequestMessageH\x00R\x1euserServerProfileUpdateRequest\x12\x80\x01\n" +
 	"\"user_server_profile_update_success\x184 \x01(\v22.realtime.SNSUserServerProfileUpdateSuccessMessageH\x00R\x1euserServerProfileUpdateSuccessB\t\n" +
-	"\amessage\"\xbd\x02\n" +
+	"\amessage\"\xe7\x02\n" +
 	"\x05Error\x12\x12\n" +
 	"\x04code\x18\x01 \x01(\x05R\x04code\x12\x18\n" +
 	"\amessage\x18\x02 \x01(\tR\amessage\x126\n" +
 	"\acontext\x18\x03 \x03(\v2\x1c.realtime.Error.ContextEntryR\acontext\x1a:\n" +
 	"\fContextEntry\x12\x10\n" +
 	"\x03key\x18\x01 \x01(\tR\x03key\x12\x14\n" +
-	"\x05value\x18\x02 \x01(\tR\x05value:\x028\x01\"\x91\x01\n" +
-	"\x04Code\x12\x15\n" +
-	"\x11RUNTIME_EXCEPTION\x10\x00\x12\x18\n" +
-	"\x14UNRECOGNIZED_PAYLOAD\x10\x01\x12\x13\n" +
-	"\x0fMISSING_PAYLOAD\x10\x02\x12\r\n" +
-	"\tBAD_INPUT\x10\x03\x12\x17\n" +
-	"\x13REGISTRATION_FAILED\x10\x04\x12\x1b\n" +
-	"\x17LOBBY_SESSION_NOT_FOUND\x10\x05\"\xbc\x01\n" +
+	"\x05value\x18\x02 \x01(\tR\x05value:\x028\x01\"\xbb\x01\n" +
+	"\x04Code\x12&\n" +
+	"\"CODE_RUNTIME_EXCEPTION_UNSPECIFIED\x10\x00\x12\x1d\n" +
+	"\x19CODE_UNRECOGNIZED_PAYLOAD\x10\x01\x12\x18\n" +
+	"\x14CODE_MISSING_PAYLOAD\x10\x02\x12\x12\n" +
+	"\x0eCODE_BAD_INPUT\x10\x03\x12\x1c\n" +
+	"\x18CODE_REGISTRATION_FAILED\x10\x04\x12 \n" +
+	"\x1cCODE_LOBBY_SESSION_NOT_FOUND\x10\x05\"\xbc\x01\n" +
 	"\x18LobbySessionEventMessage\x12(\n" +
 	"\x10lobby_session_id\x18\x01 \x01(\tR\x0elobbySessionId\x12\x12\n" +
 	"\x04code\x18\x02 \x01(\x05R\x04code\"b\n" +
@@ -4646,42 +4646,38 @@ const file_rtapi_realtime_v1_proto_rawDesc = "" +
 	"entrantIds\"=\n" +
 	"\x1aLobbyEntrantsAcceptMessage\x12\x1f\n" +
 	"\ventrant_ids\x18\x01 \x03(\tR\n" +
-	"entrantIds\"\xfd\x01\n" +
+	"entrantIds\"\xbb\x02\n" +
 	"\x1aLobbyEntrantsRejectMessage\x12\x1f\n" +
 	"\ventrant_ids\x18\x01 \x03(\tR\n" +
 	"entrantIds\x12\x12\n" +
-	"\x04code\x18\x02 \x01(\x05R\x04code\"\xa9\x01\n" +
-	"\x04Code\x12\f\n" +
-	"\bINTERNAL\x10\x00\x12\x0f\n" +
-	"\vBAD_REQUEST\x10\x01\x12\v\n" +
-	"\aTIMEOUT\x10\x02\x12\x15\n" +
-	"\x11DUPLICATE_USER_ID\x10\x03\x12\x10\n" +
-	"\fLOBBY_LOCKED\x10\x04\x12\x0e\n" +
-	"\n" +
-	"LOBBY_FULL\x10\x05\x12\x10\n" +
-	"\fLOBBY_ENDING\x10\x06\x12\n" +
-	"\n" +
-	"\x06KICKED\x10\a\x12\x10\n" +
-	"\fDISCONNECTED\x10\b\x12\f\n" +
-	"\bINACTIVE\x10\t\"\xa5\x02\n" +
+	"\x04code\x18\x02 \x01(\x05R\x04code\"\xe7\x01\n" +
+	"\x04Code\x12\x1d\n" +
+	"\x19CODE_INTERNAL_UNSPECIFIED\x10\x00\x12\x14\n" +
+	"\x10CODE_BAD_REQUEST\x10\x01\x12\x10\n" +
+	"\fCODE_TIMEOUT\x10\x02\x12\x1a\n" +
+	"\x16CODE_DUPLICATE_USER_ID\x10\x03\x12\x15\n" +
+	"\x11CODE_LOBBY_LOCKED\x10\x04\x12\x13\n" +
+	"\x0fCODE_LOBBY_FULL\x10\x05\x12\x15\n" +
+	"\x11CODE_LOBBY_ENDING\x10\x06\x12\x0f\n" +
+	"\vCODE_KICKED\x10\a\x12\x15\n" +
+	"\x11CODE_DISCONNECTED\x10\b\x12\x11\n" +
+	"\rCODE_INACTIVE\x10\t\"\xe3\x02\n" +
 	"\x1aLobbyEntrantRemovedMessage\x12(\n" +
 	"\x10lobby_session_id\x18\x01 \x01(\tR\x0elobbySessionId\x12\x1d\n" +
 	"\n" +
 	"entrant_id\x18\x02 \x01(\tR\tentrantId\x12\x12\n" +
-	"\x04code\x18\x03 \x01(\x05R\x04code\"\xa9\x01\n" +
-	"\x04Code\x12\f\n" +
-	"\bINTERNAL\x10\x00\x12\x0f\n" +
-	"\vBAD_REQUEST\x10\x01\x12\v\n" +
-	"\aTIMEOUT\x10\x02\x12\x15\n" +
-	"\x11DUPLICATE_USER_ID\x10\x03\x12\x10\n" +
-	"\fLOBBY_LOCKED\x10\x04\x12\x0e\n" +
-	"\n" +
-	"LOBBY_FULL\x10\x05\x12\x10\n" +
-	"\fLOBBY_ENDING\x10\x06\x12\n" +
-	"\n" +
-	"\x06KICKED\x10\a\x12\x10\n" +
-	"\fDISCONNECTED\x10\b\x12\f\n" +
-	"\bINACTIVE\x10\t\"\xb1\x02\n" +
+	"\x04code\x18\x03 \x01(\x05R\x04code\"\xe7\x01\n" +
+	"\x04Code\x12\x1d\n" +
+	"\x19CODE_INTERNAL_UNSPECIFIED\x10\x00\x12\x14\n" +
+	"\x10CODE_BAD_REQUEST\x10\x01\x12\x10\n" +
+	"\fCODE_TIMEOUT\x10\x02\x12\x1a\n" +
+	"\x16CODE_DUPLICATE_USER_ID\x10\x03\x12\x15\n" +
+	"\x11CODE_LOBBY_LOCKED\x10\x04\x12\x13\n" +
+	"\x0fCODE_LOBBY_FULL\x10\x05\x12\x15\n" +
+	"\x11CODE_LOBBY_ENDING\x10\x06\x12\x0f\n" +
+	"\vCODE_KICKED\x10\a\x12\x15\n" +
+	"\x11CODE_DISCONNECTED\x10\b\x12\x11\n" +
+	"\rCODE_INACTIVE\x10\t\"\xd3\x02\n" +
 	"\x19LobbySessionCreateMessage\x12(\n" +
 	"\x10lobby_session_id\x18\x01 \x01(\tR\x0elobbySessionId\x12\x1d\n" +
 	"\n" +
@@ -4690,11 +4686,10 @@ const file_rtapi_realtime_v1_proto_rawDesc = "" +
 	"\fmax_entrants\x18\x04 \x01(\x05R\vmaxEntrants\x12#\n" +
 	"\rsettings_json\x18\x05 \x01(\tR\fsettingsJson\x12\x1a\n" +
 	"\bfeatures\x18\x06 \x03(\tR\bfeatures\x12&\n" +
-	"\x0ftime_step_usecs\x18\a \x01(\rR\rtimeStepUsecs\"$\n" +
-	"\tLobbyType\x12\n" +
-	"\n" +
-	"\x06PUBLIC\x10\x00\x12\v\n" +
-	"\aPRIVATE\x10\x01\"\x8c\x02\n" +
+	"\x0ftime_step_usecs\x18\a \x01(\rR\rtimeStepUsecs\"F\n" +
+	"\tLobbyType\x12!\n" +
+	"\x1dLOBBY_TYPE_PUBLIC_UNSPECIFIED\x10\x00\x12\x16\n" +
+	"\x12LOBBY_TYPE_PRIVATE\x10\x01\"\x8c\x02\n" +
 	"\x18LobbySessionStateMessage\x12&\n" +
 	"\x0ftime_step_usecs\x18\x01 \x01(\rR\rtimeStepUsecs\x12\x1d\n" +
 	"\n" +

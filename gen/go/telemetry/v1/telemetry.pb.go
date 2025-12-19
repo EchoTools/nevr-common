@@ -210,11 +210,11 @@ func (x *TelemetryHeader) GetMetadata() map[string]string {
 // and is primarily used for streaming scenarios.
 type Envelope struct {
 	state protoimpl.MessageState `protogen:"open.v1"`
-	// Types that are valid to be assigned to Payload:
+	// Types that are valid to be assigned to Message:
 	//
 	//	*Envelope_Header
 	//	*Envelope_Frame
-	Payload       isEnvelope_Payload `protobuf_oneof:"payload"`
+	Message       isEnvelope_Message `protobuf_oneof:"message"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -249,16 +249,16 @@ func (*Envelope) Descriptor() ([]byte, []int) {
 	return file_telemetry_v1_telemetry_proto_rawDescGZIP(), []int{1}
 }
 
-func (x *Envelope) GetPayload() isEnvelope_Payload {
+func (x *Envelope) GetMessage() isEnvelope_Message {
 	if x != nil {
-		return x.Payload
+		return x.Message
 	}
 	return nil
 }
 
 func (x *Envelope) GetHeader() *TelemetryHeader {
 	if x != nil {
-		if x, ok := x.Payload.(*Envelope_Header); ok {
+		if x, ok := x.Message.(*Envelope_Header); ok {
 			return x.Header
 		}
 	}
@@ -267,15 +267,15 @@ func (x *Envelope) GetHeader() *TelemetryHeader {
 
 func (x *Envelope) GetFrame() *LobbySessionStateFrame {
 	if x != nil {
-		if x, ok := x.Payload.(*Envelope_Frame); ok {
+		if x, ok := x.Message.(*Envelope_Frame); ok {
 			return x.Frame
 		}
 	}
 	return nil
 }
 
-type isEnvelope_Payload interface {
-	isEnvelope_Payload()
+type isEnvelope_Message interface {
+	isEnvelope_Message()
 }
 
 type Envelope_Header struct {
@@ -286,9 +286,9 @@ type Envelope_Frame struct {
 	Frame *LobbySessionStateFrame `protobuf:"bytes,2,opt,name=frame,proto3,oneof"`
 }
 
-func (*Envelope_Header) isEnvelope_Payload() {}
+func (*Envelope_Header) isEnvelope_Message() {}
 
-func (*Envelope_Frame) isEnvelope_Payload() {}
+func (*Envelope_Frame) isEnvelope_Message() {}
 
 // *
 // Frame represents a single snapshot of game state data.
@@ -2031,7 +2031,7 @@ const file_telemetry_v1_telemetry_proto_rawDesc = "" +
 	"\bEnvelope\x127\n" +
 	"\x06header\x18\x01 \x01(\v2\x1d.telemetry.v1.TelemetryHeaderH\x00R\x06header\x12<\n" +
 	"\x05frame\x18\x02 \x01(\v2$.telemetry.v1.LobbySessionStateFrameH\x00R\x05frameB\t\n" +
-	"\apayload\"\xa7\x02\n" +
+	"\amessage\"\xa7\x02\n" +
 	"\x16LobbySessionStateFrame\x12\x1f\n" +
 	"\vframe_index\x18\x01 \x01(\rR\n" +
 	"frameIndex\x128\n" +

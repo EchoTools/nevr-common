@@ -55,8 +55,8 @@ class Envelope(betterproto.Message):
     and is primarily used for streaming scenarios.
     """
 
-    header: "TelemetryHeader" = betterproto.message_field(1, group="payload")
-    frame: "LobbySessionStateFrame" = betterproto.message_field(2, group="payload")
+    header: "TelemetryHeader" = betterproto.message_field(1, group="message")
+    frame: "LobbySessionStateFrame" = betterproto.message_field(2, group="message")
 
 
 @dataclass

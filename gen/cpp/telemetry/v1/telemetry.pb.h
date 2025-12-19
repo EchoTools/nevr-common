@@ -6269,10 +6269,10 @@ class Envelope final : public ::google::protobuf::Message
     return *reinterpret_cast<const Envelope*>(
         &_Envelope_default_instance_);
   }
-  enum PayloadCase {
+  enum MessageCase {
     kHeader = 1,
     kFrame = 2,
-    PAYLOAD_NOT_SET = 0,
+    MESSAGE_NOT_SET = 0,
   };
   static constexpr int kIndexInFileMessages = 2;
   friend void swap(Envelope& a, Envelope& b) { a.Swap(&b); }
@@ -6402,15 +6402,15 @@ class Envelope final : public ::google::protobuf::Message
   ::telemetry::v1::LobbySessionStateFrame* PROTOBUF_NONNULL _internal_mutable_frame();
 
   public:
-  void clear_payload();
-  PayloadCase payload_case() const;
+  void clear_message();
+  MessageCase message_case() const;
   // @@protoc_insertion_point(class_scope:telemetry.v1.Envelope)
  private:
   class _Internal;
   void set_has_header();
   void set_has_frame();
-  inline bool has_payload() const;
-  inline void clear_has_payload();
+  inline bool has_message() const;
+  inline void clear_has_message();
   friend class ::google::protobuf::internal::TcParser;
   static const ::google::protobuf::internal::TcParseTable<0, 2,
                                    2, 0,
@@ -6432,12 +6432,12 @@ class Envelope final : public ::google::protobuf::Message
         ::google::protobuf::internal::InternalVisibility visibility,
         ::google::protobuf::Arena* PROTOBUF_NULLABLE arena, const Impl_& from,
         const Envelope& from_msg);
-    union PayloadUnion {
-      constexpr PayloadUnion() : _constinit_{} {}
+    union MessageUnion {
+      constexpr MessageUnion() : _constinit_{} {}
       ::google::protobuf::internal::ConstantInitialized _constinit_;
       ::telemetry::v1::TelemetryHeader* PROTOBUF_NULLABLE header_;
       ::telemetry::v1::LobbySessionStateFrame* PROTOBUF_NULLABLE frame_;
-    } payload_;
+    } message_;
     ::google::protobuf::internal::CachedSize _cached_size_;
     ::uint32_t _oneof_case_[1];
     PROTOBUF_TSAN_DECLARE_MEMBER
@@ -6662,41 +6662,41 @@ inline ::google::protobuf::Map<::std::string, ::std::string>* PROTOBUF_NONNULL T
 
 // .telemetry.v1.TelemetryHeader header = 1 [json_name = "header"];
 inline bool Envelope::has_header() const {
-  return payload_case() == kHeader;
+  return message_case() == kHeader;
 }
 inline bool Envelope::_internal_has_header() const {
-  return payload_case() == kHeader;
+  return message_case() == kHeader;
 }
 inline void Envelope::set_has_header() {
   _impl_._oneof_case_[0] = kHeader;
 }
 inline void Envelope::clear_header() {
   ::google::protobuf::internal::TSanWrite(&_impl_);
-  if (payload_case() == kHeader) {
+  if (message_case() == kHeader) {
     if (GetArena() == nullptr) {
-      delete _impl_.payload_.header_;
+      delete _impl_.message_.header_;
     } else if (::google::protobuf::internal::DebugHardenClearOneofMessageOnArena()) {
-      ::google::protobuf::internal::MaybePoisonAfterClear(_impl_.payload_.header_);
+      ::google::protobuf::internal::MaybePoisonAfterClear(_impl_.message_.header_);
     }
-    clear_has_payload();
+    clear_has_message();
   }
 }
 inline ::telemetry::v1::TelemetryHeader* PROTOBUF_NULLABLE Envelope::release_header() {
   // @@protoc_insertion_point(field_release:telemetry.v1.Envelope.header)
-  if (payload_case() == kHeader) {
-    clear_has_payload();
-    auto* temp = _impl_.payload_.header_;
+  if (message_case() == kHeader) {
+    clear_has_message();
+    auto* temp = _impl_.message_.header_;
     if (GetArena() != nullptr) {
       temp = ::google::protobuf::internal::DuplicateIfNonNull(temp);
     }
-    _impl_.payload_.header_ = nullptr;
+    _impl_.message_.header_ = nullptr;
     return temp;
   } else {
     return nullptr;
   }
 }
 inline const ::telemetry::v1::TelemetryHeader& Envelope::_internal_header() const {
-  return payload_case() == kHeader ? static_cast<const ::telemetry::v1::TelemetryHeader&>(*_impl_.payload_.header_)
+  return message_case() == kHeader ? static_cast<const ::telemetry::v1::TelemetryHeader&>(*_impl_.message_.header_)
                      : reinterpret_cast<const ::telemetry::v1::TelemetryHeader&>(::telemetry::v1::_TelemetryHeader_default_instance_);
 }
 inline const ::telemetry::v1::TelemetryHeader& Envelope::header() const ABSL_ATTRIBUTE_LIFETIME_BOUND {
@@ -6705,10 +6705,10 @@ inline const ::telemetry::v1::TelemetryHeader& Envelope::header() const ABSL_ATT
 }
 inline ::telemetry::v1::TelemetryHeader* PROTOBUF_NULLABLE Envelope::unsafe_arena_release_header() {
   // @@protoc_insertion_point(field_unsafe_arena_release:telemetry.v1.Envelope.header)
-  if (payload_case() == kHeader) {
-    clear_has_payload();
-    auto* temp = _impl_.payload_.header_;
-    _impl_.payload_.header_ = nullptr;
+  if (message_case() == kHeader) {
+    clear_has_message();
+    auto* temp = _impl_.message_.header_;
+    _impl_.message_.header_ = nullptr;
     return temp;
   } else {
     return nullptr;
@@ -6719,21 +6719,21 @@ inline void Envelope::unsafe_arena_set_allocated_header(
   // We rely on the oneof clear method to free the earlier contents
   // of this oneof. We can directly use the pointer we're given to
   // set the new value.
-  clear_payload();
+  clear_message();
   if (value) {
     set_has_header();
-    _impl_.payload_.header_ = value;
+    _impl_.message_.header_ = value;
   }
   // @@protoc_insertion_point(field_unsafe_arena_set_allocated:telemetry.v1.Envelope.header)
 }
 inline ::telemetry::v1::TelemetryHeader* PROTOBUF_NONNULL Envelope::_internal_mutable_header() {
-  if (payload_case() != kHeader) {
-    clear_payload();
+  if (message_case() != kHeader) {
+    clear_message();
     set_has_header();
-    _impl_.payload_.header_ = 
+    _impl_.message_.header_ = 
         ::google::protobuf::Message::DefaultConstruct<::telemetry::v1::TelemetryHeader>(GetArena());
   }
-  return _impl_.payload_.header_;
+  return _impl_.message_.header_;
 }
 inline ::telemetry::v1::TelemetryHeader* PROTOBUF_NONNULL Envelope::mutable_header()
     ABSL_ATTRIBUTE_LIFETIME_BOUND {
@@ -6744,41 +6744,41 @@ inline ::telemetry::v1::TelemetryHeader* PROTOBUF_NONNULL Envelope::mutable_head
 
 // .telemetry.v1.LobbySessionStateFrame frame = 2 [json_name = "frame"];
 inline bool Envelope::has_frame() const {
-  return payload_case() == kFrame;
+  return message_case() == kFrame;
 }
 inline bool Envelope::_internal_has_frame() const {
-  return payload_case() == kFrame;
+  return message_case() == kFrame;
 }
 inline void Envelope::set_has_frame() {
   _impl_._oneof_case_[0] = kFrame;
 }
 inline void Envelope::clear_frame() {
   ::google::protobuf::internal::TSanWrite(&_impl_);
-  if (payload_case() == kFrame) {
+  if (message_case() == kFrame) {
     if (GetArena() == nullptr) {
-      delete _impl_.payload_.frame_;
+      delete _impl_.message_.frame_;
     } else if (::google::protobuf::internal::DebugHardenClearOneofMessageOnArena()) {
-      ::google::protobuf::internal::MaybePoisonAfterClear(_impl_.payload_.frame_);
+      ::google::protobuf::internal::MaybePoisonAfterClear(_impl_.message_.frame_);
     }
-    clear_has_payload();
+    clear_has_message();
   }
 }
 inline ::telemetry::v1::LobbySessionStateFrame* PROTOBUF_NULLABLE Envelope::release_frame() {
   // @@protoc_insertion_point(field_release:telemetry.v1.Envelope.frame)
-  if (payload_case() == kFrame) {
-    clear_has_payload();
-    auto* temp = _impl_.payload_.frame_;
+  if (message_case() == kFrame) {
+    clear_has_message();
+    auto* temp = _impl_.message_.frame_;
     if (GetArena() != nullptr) {
       temp = ::google::protobuf::internal::DuplicateIfNonNull(temp);
     }
-    _impl_.payload_.frame_ = nullptr;
+    _impl_.message_.frame_ = nullptr;
     return temp;
   } else {
     return nullptr;
   }
 }
 inline const ::telemetry::v1::LobbySessionStateFrame& Envelope::_internal_frame() const {
-  return payload_case() == kFrame ? static_cast<const ::telemetry::v1::LobbySessionStateFrame&>(*_impl_.payload_.frame_)
+  return message_case() == kFrame ? static_cast<const ::telemetry::v1::LobbySessionStateFrame&>(*_impl_.message_.frame_)
                      : reinterpret_cast<const ::telemetry::v1::LobbySessionStateFrame&>(::telemetry::v1::_LobbySessionStateFrame_default_instance_);
 }
 inline const ::telemetry::v1::LobbySessionStateFrame& Envelope::frame() const ABSL_ATTRIBUTE_LIFETIME_BOUND {
@@ -6787,10 +6787,10 @@ inline const ::telemetry::v1::LobbySessionStateFrame& Envelope::frame() const AB
 }
 inline ::telemetry::v1::LobbySessionStateFrame* PROTOBUF_NULLABLE Envelope::unsafe_arena_release_frame() {
   // @@protoc_insertion_point(field_unsafe_arena_release:telemetry.v1.Envelope.frame)
-  if (payload_case() == kFrame) {
-    clear_has_payload();
-    auto* temp = _impl_.payload_.frame_;
-    _impl_.payload_.frame_ = nullptr;
+  if (message_case() == kFrame) {
+    clear_has_message();
+    auto* temp = _impl_.message_.frame_;
+    _impl_.message_.frame_ = nullptr;
     return temp;
   } else {
     return nullptr;
@@ -6801,21 +6801,21 @@ inline void Envelope::unsafe_arena_set_allocated_frame(
   // We rely on the oneof clear method to free the earlier contents
   // of this oneof. We can directly use the pointer we're given to
   // set the new value.
-  clear_payload();
+  clear_message();
   if (value) {
     set_has_frame();
-    _impl_.payload_.frame_ = value;
+    _impl_.message_.frame_ = value;
   }
   // @@protoc_insertion_point(field_unsafe_arena_set_allocated:telemetry.v1.Envelope.frame)
 }
 inline ::telemetry::v1::LobbySessionStateFrame* PROTOBUF_NONNULL Envelope::_internal_mutable_frame() {
-  if (payload_case() != kFrame) {
-    clear_payload();
+  if (message_case() != kFrame) {
+    clear_message();
     set_has_frame();
-    _impl_.payload_.frame_ = 
+    _impl_.message_.frame_ = 
         ::google::protobuf::Message::DefaultConstruct<::telemetry::v1::LobbySessionStateFrame>(GetArena());
   }
-  return _impl_.payload_.frame_;
+  return _impl_.message_.frame_;
 }
 inline ::telemetry::v1::LobbySessionStateFrame* PROTOBUF_NONNULL Envelope::mutable_frame()
     ABSL_ATTRIBUTE_LIFETIME_BOUND {
@@ -6824,14 +6824,14 @@ inline ::telemetry::v1::LobbySessionStateFrame* PROTOBUF_NONNULL Envelope::mutab
   return _msg;
 }
 
-inline bool Envelope::has_payload() const {
-  return payload_case() != PAYLOAD_NOT_SET;
+inline bool Envelope::has_message() const {
+  return message_case() != MESSAGE_NOT_SET;
 }
-inline void Envelope::clear_has_payload() {
-  _impl_._oneof_case_[0] = PAYLOAD_NOT_SET;
+inline void Envelope::clear_has_message() {
+  _impl_._oneof_case_[0] = MESSAGE_NOT_SET;
 }
-inline Envelope::PayloadCase Envelope::payload_case() const {
-  return Envelope::PayloadCase(_impl_._oneof_case_[0]);
+inline Envelope::MessageCase Envelope::message_case() const {
+  return Envelope::MessageCase(_impl_._oneof_case_[0]);
 }
 // -------------------------------------------------------------------
 

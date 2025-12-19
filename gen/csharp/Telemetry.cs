@@ -34,7 +34,7 @@ namespace Nevr.Telemetry.Protobuf {
             "a2V5EhQKBXZhbHVlGAIgASgJUgV2YWx1ZToCOAEijAEKCEVudmVsb3BlEjcK",
             "BmhlYWRlchgBIAEoCzIdLnRlbGVtZXRyeS52MS5UZWxlbWV0cnlIZWFkZXJI",
             "AFIGaGVhZGVyEjwKBWZyYW1lGAIgASgLMiQudGVsZW1ldHJ5LnYxLkxvYmJ5",
-            "U2Vzc2lvblN0YXRlRnJhbWVIAFIFZnJhbWVCCQoHcGF5bG9hZCKnAgoWTG9i",
+            "U2Vzc2lvblN0YXRlRnJhbWVIAFIFZnJhbWVCCQoHbWVzc2FnZSKnAgoWTG9i",
             "YnlTZXNzaW9uU3RhdGVGcmFtZRIfCgtmcmFtZV9pbmRleBgBIAEoDVIKZnJh",
             "bWVJbmRleBI4Cgl0aW1lc3RhbXAYAiABKAsyGi5nb29nbGUucHJvdG9idWYu",
             "VGltZXN0YW1wUgl0aW1lc3RhbXASNwoGZXZlbnRzGAMgAygLMh8udGVsZW1l",
@@ -138,7 +138,7 @@ namespace Nevr.Telemetry.Protobuf {
           new pbr::FileDescriptor[] { global::Nevr.Engine.Http.V1.HttpV1Reflection.Descriptor, global::Google.Protobuf.WellKnownTypes.TimestampReflection.Descriptor, },
           new pbr::GeneratedClrTypeInfo(new[] {typeof(global::Nevr.Telemetry.Protobuf.Role), }, null, new pbr::GeneratedClrTypeInfo[] {
             new pbr::GeneratedClrTypeInfo(typeof(global::Nevr.Telemetry.Protobuf.TelemetryHeader), global::Nevr.Telemetry.Protobuf.TelemetryHeader.Parser, new[]{ "CaptureId", "CreatedAt", "Metadata" }, null, null, null, new pbr::GeneratedClrTypeInfo[] { null, }),
-            new pbr::GeneratedClrTypeInfo(typeof(global::Nevr.Telemetry.Protobuf.Envelope), global::Nevr.Telemetry.Protobuf.Envelope.Parser, new[]{ "Header", "Frame" }, new[]{ "Payload" }, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::Nevr.Telemetry.Protobuf.Envelope), global::Nevr.Telemetry.Protobuf.Envelope.Parser, new[]{ "Header", "Frame" }, new[]{ "Message" }, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Nevr.Telemetry.Protobuf.LobbySessionStateFrame), global::Nevr.Telemetry.Protobuf.LobbySessionStateFrame.Parser, new[]{ "FrameIndex", "Timestamp", "Events", "Session", "PlayerBones" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Nevr.Telemetry.Protobuf.LobbySessionEvent), global::Nevr.Telemetry.Protobuf.LobbySessionEvent.Parser, new[]{ "RoundStarted", "RoundPaused", "RoundUnpaused", "RoundEnded", "MatchEnded", "ScoreboardUpdated", "PlayerJoined", "PlayerLeft", "PlayerSwitchedTeam", "EmotePlayed", "DiscPossessionChanged", "DiscThrown", "DiscCaught", "GoalScored", "PlayerGoal", "PlayerSave", "PlayerStun", "PlayerPass", "PlayerSteal", "PlayerBlock", "PlayerInterception", "PlayerAssist", "PlayerShotTaken" }, new[]{ "Event" }, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Nevr.Telemetry.Protobuf.RoundStarted), global::Nevr.Telemetry.Protobuf.RoundStarted.Parser, new[]{ "RoundNumber" }, null, null, null, null),
@@ -512,11 +512,11 @@ namespace Nevr.Telemetry.Protobuf {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public Envelope(Envelope other) : this() {
-      switch (other.PayloadCase) {
-        case PayloadOneofCase.Header:
+      switch (other.MessageCase) {
+        case MessageOneofCase.Header:
           Header = other.Header.Clone();
           break;
-        case PayloadOneofCase.Frame:
+        case MessageOneofCase.Frame:
           Frame = other.Frame.Clone();
           break;
       }
@@ -535,10 +535,10 @@ namespace Nevr.Telemetry.Protobuf {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public global::Nevr.Telemetry.Protobuf.TelemetryHeader Header {
-      get { return payloadCase_ == PayloadOneofCase.Header ? (global::Nevr.Telemetry.Protobuf.TelemetryHeader) payload_ : null; }
+      get { return messageCase_ == MessageOneofCase.Header ? (global::Nevr.Telemetry.Protobuf.TelemetryHeader) message_ : null; }
       set {
-        payload_ = value;
-        payloadCase_ = value == null ? PayloadOneofCase.None : PayloadOneofCase.Header;
+        message_ = value;
+        messageCase_ = value == null ? MessageOneofCase.None : MessageOneofCase.Header;
       }
     }
 
@@ -547,32 +547,32 @@ namespace Nevr.Telemetry.Protobuf {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public global::Nevr.Telemetry.Protobuf.LobbySessionStateFrame Frame {
-      get { return payloadCase_ == PayloadOneofCase.Frame ? (global::Nevr.Telemetry.Protobuf.LobbySessionStateFrame) payload_ : null; }
+      get { return messageCase_ == MessageOneofCase.Frame ? (global::Nevr.Telemetry.Protobuf.LobbySessionStateFrame) message_ : null; }
       set {
-        payload_ = value;
-        payloadCase_ = value == null ? PayloadOneofCase.None : PayloadOneofCase.Frame;
+        message_ = value;
+        messageCase_ = value == null ? MessageOneofCase.None : MessageOneofCase.Frame;
       }
     }
 
-    private object payload_;
-    /// <summary>Enum of possible cases for the "payload" oneof.</summary>
-    public enum PayloadOneofCase {
+    private object message_;
+    /// <summary>Enum of possible cases for the "message" oneof.</summary>
+    public enum MessageOneofCase {
       None = 0,
       Header = 1,
       Frame = 2,
     }
-    private PayloadOneofCase payloadCase_ = PayloadOneofCase.None;
+    private MessageOneofCase messageCase_ = MessageOneofCase.None;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public PayloadOneofCase PayloadCase {
-      get { return payloadCase_; }
+    public MessageOneofCase MessageCase {
+      get { return messageCase_; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public void ClearPayload() {
-      payloadCase_ = PayloadOneofCase.None;
-      payload_ = null;
+    public void ClearMessage() {
+      messageCase_ = MessageOneofCase.None;
+      message_ = null;
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -592,7 +592,7 @@ namespace Nevr.Telemetry.Protobuf {
       }
       if (!object.Equals(Header, other.Header)) return false;
       if (!object.Equals(Frame, other.Frame)) return false;
-      if (PayloadCase != other.PayloadCase) return false;
+      if (MessageCase != other.MessageCase) return false;
       return Equals(_unknownFields, other._unknownFields);
     }
 
@@ -600,9 +600,9 @@ namespace Nevr.Telemetry.Protobuf {
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public override int GetHashCode() {
       int hash = 1;
-      if (payloadCase_ == PayloadOneofCase.Header) hash ^= Header.GetHashCode();
-      if (payloadCase_ == PayloadOneofCase.Frame) hash ^= Frame.GetHashCode();
-      hash ^= (int) payloadCase_;
+      if (messageCase_ == MessageOneofCase.Header) hash ^= Header.GetHashCode();
+      if (messageCase_ == MessageOneofCase.Frame) hash ^= Frame.GetHashCode();
+      hash ^= (int) messageCase_;
       if (_unknownFields != null) {
         hash ^= _unknownFields.GetHashCode();
       }
@@ -621,11 +621,11 @@ namespace Nevr.Telemetry.Protobuf {
     #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       output.WriteRawMessage(this);
     #else
-      if (payloadCase_ == PayloadOneofCase.Header) {
+      if (messageCase_ == MessageOneofCase.Header) {
         output.WriteRawTag(10);
         output.WriteMessage(Header);
       }
-      if (payloadCase_ == PayloadOneofCase.Frame) {
+      if (messageCase_ == MessageOneofCase.Frame) {
         output.WriteRawTag(18);
         output.WriteMessage(Frame);
       }
@@ -639,11 +639,11 @@ namespace Nevr.Telemetry.Protobuf {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     void pb::IBufferMessage.InternalWriteTo(ref pb::WriteContext output) {
-      if (payloadCase_ == PayloadOneofCase.Header) {
+      if (messageCase_ == MessageOneofCase.Header) {
         output.WriteRawTag(10);
         output.WriteMessage(Header);
       }
-      if (payloadCase_ == PayloadOneofCase.Frame) {
+      if (messageCase_ == MessageOneofCase.Frame) {
         output.WriteRawTag(18);
         output.WriteMessage(Frame);
       }
@@ -657,10 +657,10 @@ namespace Nevr.Telemetry.Protobuf {
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public int CalculateSize() {
       int size = 0;
-      if (payloadCase_ == PayloadOneofCase.Header) {
+      if (messageCase_ == MessageOneofCase.Header) {
         size += 1 + pb::CodedOutputStream.ComputeMessageSize(Header);
       }
-      if (payloadCase_ == PayloadOneofCase.Frame) {
+      if (messageCase_ == MessageOneofCase.Frame) {
         size += 1 + pb::CodedOutputStream.ComputeMessageSize(Frame);
       }
       if (_unknownFields != null) {
@@ -675,14 +675,14 @@ namespace Nevr.Telemetry.Protobuf {
       if (other == null) {
         return;
       }
-      switch (other.PayloadCase) {
-        case PayloadOneofCase.Header:
+      switch (other.MessageCase) {
+        case MessageOneofCase.Header:
           if (Header == null) {
             Header = new global::Nevr.Telemetry.Protobuf.TelemetryHeader();
           }
           Header.MergeFrom(other.Header);
           break;
-        case PayloadOneofCase.Frame:
+        case MessageOneofCase.Frame:
           if (Frame == null) {
             Frame = new global::Nevr.Telemetry.Protobuf.LobbySessionStateFrame();
           }
@@ -711,7 +711,7 @@ namespace Nevr.Telemetry.Protobuf {
             break;
           case 10: {
             global::Nevr.Telemetry.Protobuf.TelemetryHeader subBuilder = new global::Nevr.Telemetry.Protobuf.TelemetryHeader();
-            if (payloadCase_ == PayloadOneofCase.Header) {
+            if (messageCase_ == MessageOneofCase.Header) {
               subBuilder.MergeFrom(Header);
             }
             input.ReadMessage(subBuilder);
@@ -720,7 +720,7 @@ namespace Nevr.Telemetry.Protobuf {
           }
           case 18: {
             global::Nevr.Telemetry.Protobuf.LobbySessionStateFrame subBuilder = new global::Nevr.Telemetry.Protobuf.LobbySessionStateFrame();
-            if (payloadCase_ == PayloadOneofCase.Frame) {
+            if (messageCase_ == MessageOneofCase.Frame) {
               subBuilder.MergeFrom(Frame);
             }
             input.ReadMessage(subBuilder);
@@ -748,7 +748,7 @@ namespace Nevr.Telemetry.Protobuf {
             break;
           case 10: {
             global::Nevr.Telemetry.Protobuf.TelemetryHeader subBuilder = new global::Nevr.Telemetry.Protobuf.TelemetryHeader();
-            if (payloadCase_ == PayloadOneofCase.Header) {
+            if (messageCase_ == MessageOneofCase.Header) {
               subBuilder.MergeFrom(Header);
             }
             input.ReadMessage(subBuilder);
@@ -757,7 +757,7 @@ namespace Nevr.Telemetry.Protobuf {
           }
           case 18: {
             global::Nevr.Telemetry.Protobuf.LobbySessionStateFrame subBuilder = new global::Nevr.Telemetry.Protobuf.LobbySessionStateFrame();
-            if (payloadCase_ == PayloadOneofCase.Frame) {
+            if (messageCase_ == MessageOneofCase.Frame) {
               subBuilder.MergeFrom(Frame);
             }
             input.ReadMessage(subBuilder);

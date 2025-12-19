@@ -732,7 +732,7 @@ PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
 
 inline constexpr Envelope::Impl_::Impl_(
     ::_pbi::ConstantInitialized) noexcept
-      : payload_{},
+      : message_{},
         _cached_size_{0},
         _oneof_case_{} {}
 
@@ -782,9 +782,9 @@ const ::uint32_t
         2,
         0x004, // bitmap
         PROTOBUF_FIELD_OFFSET(::telemetry::v1::Envelope, _impl_._oneof_case_[0]),
-        PROTOBUF_FIELD_OFFSET(::telemetry::v1::Envelope, _impl_.payload_),
-        PROTOBUF_FIELD_OFFSET(::telemetry::v1::Envelope, _impl_.payload_),
-        PROTOBUF_FIELD_OFFSET(::telemetry::v1::Envelope, _impl_.payload_),
+        PROTOBUF_FIELD_OFFSET(::telemetry::v1::Envelope, _impl_.message_),
+        PROTOBUF_FIELD_OFFSET(::telemetry::v1::Envelope, _impl_.message_),
+        PROTOBUF_FIELD_OFFSET(::telemetry::v1::Envelope, _impl_.message_),
         0x081, // bitmap
         PROTOBUF_FIELD_OFFSET(::telemetry::v1::LobbySessionStateFrame, _impl_._has_bits_),
         8, // hasbit index offset
@@ -1060,7 +1060,7 @@ const char descriptor_table_protodef_telemetry_2fv1_2ftelemetry_2eproto[] ABSL_A
     "\006header\030\001 \001(\0132\035.telemetry.v1.TelemetryHe"
     "aderH\000R\006header\022<\n\005frame\030\002 \001(\0132$.telemetr"
     "y.v1.LobbySessionStateFrameH\000R\005frameB\t\n\007"
-    "payload\"\247\002\n\026LobbySessionStateFrame\022\037\n\013fr"
+    "message\"\247\002\n\026LobbySessionStateFrame\022\037\n\013fr"
     "ame_index\030\001 \001(\rR\nframeIndex\0228\n\ttimestamp"
     "\030\002 \001(\0132\032.google.protobuf.TimestampR\ttime"
     "stamp\0227\n\006events\030\003 \003(\0132\037.telemetry.v1.Lob"
@@ -1714,27 +1714,27 @@ class Envelope::_Internal {
 
 void Envelope::set_allocated_header(::telemetry::v1::TelemetryHeader* PROTOBUF_NULLABLE header) {
   ::google::protobuf::Arena* message_arena = GetArena();
-  clear_payload();
+  clear_message();
   if (header) {
     ::google::protobuf::Arena* submessage_arena = header->GetArena();
     if (message_arena != submessage_arena) {
       header = ::google::protobuf::internal::GetOwnedMessage(message_arena, header, submessage_arena);
     }
     set_has_header();
-    _impl_.payload_.header_ = header;
+    _impl_.message_.header_ = header;
   }
   // @@protoc_insertion_point(field_set_allocated:telemetry.v1.Envelope.header)
 }
 void Envelope::set_allocated_frame(::telemetry::v1::LobbySessionStateFrame* PROTOBUF_NULLABLE frame) {
   ::google::protobuf::Arena* message_arena = GetArena();
-  clear_payload();
+  clear_message();
   if (frame) {
     ::google::protobuf::Arena* submessage_arena = frame->GetArena();
     if (message_arena != submessage_arena) {
       frame = ::google::protobuf::internal::GetOwnedMessage(message_arena, frame, submessage_arena);
     }
     set_has_frame();
-    _impl_.payload_.frame_ = frame;
+    _impl_.message_.frame_ = frame;
   }
   // @@protoc_insertion_point(field_set_allocated:telemetry.v1.Envelope.frame)
 }
@@ -1751,7 +1751,7 @@ PROTOBUF_NDEBUG_INLINE Envelope::Impl_::Impl_(
     [[maybe_unused]] ::google::protobuf::internal::InternalVisibility visibility,
     [[maybe_unused]] ::google::protobuf::Arena* PROTOBUF_NULLABLE arena, const Impl_& from,
     [[maybe_unused]] const ::telemetry::v1::Envelope& from_msg)
-      : payload_{},
+      : message_{},
         _cached_size_{0},
         _oneof_case_{from._oneof_case_[0]} {}
 
@@ -1768,14 +1768,14 @@ Envelope::Envelope(
   _internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(
       from._internal_metadata_);
   new (&_impl_) Impl_(internal_visibility(), arena, from._impl_, from);
-  switch (payload_case()) {
-    case PAYLOAD_NOT_SET:
+  switch (message_case()) {
+    case MESSAGE_NOT_SET:
       break;
       case kHeader:
-        _impl_.payload_.header_ = ::google::protobuf::Message::CopyConstruct(arena, *from._impl_.payload_.header_);
+        _impl_.message_.header_ = ::google::protobuf::Message::CopyConstruct(arena, *from._impl_.message_.header_);
         break;
       case kFrame:
-        _impl_.payload_.frame_ = ::google::protobuf::Message::CopyConstruct(arena, *from._impl_.payload_.frame_);
+        _impl_.message_.frame_ = ::google::protobuf::Message::CopyConstruct(arena, *from._impl_.message_.frame_);
         break;
   }
 
@@ -1784,7 +1784,7 @@ Envelope::Envelope(
 PROTOBUF_NDEBUG_INLINE Envelope::Impl_::Impl_(
     [[maybe_unused]] ::google::protobuf::internal::InternalVisibility visibility,
     [[maybe_unused]] ::google::protobuf::Arena* PROTOBUF_NULLABLE arena)
-      : payload_{},
+      : message_{},
         _cached_size_{0},
         _oneof_case_{} {}
 
@@ -1802,37 +1802,37 @@ inline void Envelope::SharedDtor(MessageLite& self) {
   }
   this_._internal_metadata_.Delete<::google::protobuf::UnknownFieldSet>();
   ABSL_DCHECK(this_.GetArena() == nullptr);
-  if (this_.has_payload()) {
-    this_.clear_payload();
+  if (this_.has_message()) {
+    this_.clear_message();
   }
   this_._impl_.~Impl_();
 }
 
-void Envelope::clear_payload() {
+void Envelope::clear_message() {
 // @@protoc_insertion_point(one_of_clear_start:telemetry.v1.Envelope)
   ::google::protobuf::internal::TSanWrite(&_impl_);
-  switch (payload_case()) {
+  switch (message_case()) {
     case kHeader: {
       if (GetArena() == nullptr) {
-        delete _impl_.payload_.header_;
+        delete _impl_.message_.header_;
       } else if (::google::protobuf::internal::DebugHardenClearOneofMessageOnArena()) {
-        ::google::protobuf::internal::MaybePoisonAfterClear(_impl_.payload_.header_);
+        ::google::protobuf::internal::MaybePoisonAfterClear(_impl_.message_.header_);
       }
       break;
     }
     case kFrame: {
       if (GetArena() == nullptr) {
-        delete _impl_.payload_.frame_;
+        delete _impl_.message_.frame_;
       } else if (::google::protobuf::internal::DebugHardenClearOneofMessageOnArena()) {
-        ::google::protobuf::internal::MaybePoisonAfterClear(_impl_.payload_.frame_);
+        ::google::protobuf::internal::MaybePoisonAfterClear(_impl_.message_.frame_);
       }
       break;
     }
-    case PAYLOAD_NOT_SET: {
+    case MESSAGE_NOT_SET: {
       break;
     }
   }
-  _impl_._oneof_case_[0] = PAYLOAD_NOT_SET;
+  _impl_._oneof_case_[0] = MESSAGE_NOT_SET;
 }
 
 
@@ -1903,9 +1903,9 @@ Envelope::_table_ = {
     65535, 65535
   }}, {{
     // .telemetry.v1.TelemetryHeader header = 1 [json_name = "header"];
-    {PROTOBUF_FIELD_OFFSET(Envelope, _impl_.payload_.header_), _Internal::kOneofCaseOffset + 0, 0, (0 | ::_fl::kFcOneof | ::_fl::kMessage | ::_fl::kTvTable)},
+    {PROTOBUF_FIELD_OFFSET(Envelope, _impl_.message_.header_), _Internal::kOneofCaseOffset + 0, 0, (0 | ::_fl::kFcOneof | ::_fl::kMessage | ::_fl::kTvTable)},
     // .telemetry.v1.LobbySessionStateFrame frame = 2 [json_name = "frame"];
-    {PROTOBUF_FIELD_OFFSET(Envelope, _impl_.payload_.frame_), _Internal::kOneofCaseOffset + 0, 1, (0 | ::_fl::kFcOneof | ::_fl::kMessage | ::_fl::kTvTable)},
+    {PROTOBUF_FIELD_OFFSET(Envelope, _impl_.message_.frame_), _Internal::kOneofCaseOffset + 0, 1, (0 | ::_fl::kFcOneof | ::_fl::kMessage | ::_fl::kTvTable)},
   }},
   {{
       {::_pbi::TcParser::GetTable<::telemetry::v1::TelemetryHeader>()},
@@ -1921,7 +1921,7 @@ PROTOBUF_NOINLINE void Envelope::Clear() {
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  clear_payload();
+  clear_message();
   _internal_metadata_.Clear<::google::protobuf::UnknownFieldSet>();
 }
 
@@ -1943,16 +1943,16 @@ PROTOBUF_NOINLINE void Envelope::Clear() {
   ::uint32_t cached_has_bits = 0;
   (void)cached_has_bits;
 
-  switch (this_.payload_case()) {
+  switch (this_.message_case()) {
     case kHeader: {
       target = ::google::protobuf::internal::WireFormatLite::InternalWriteMessage(
-          1, *this_._impl_.payload_.header_, this_._impl_.payload_.header_->GetCachedSize(), target,
+          1, *this_._impl_.message_.header_, this_._impl_.message_.header_->GetCachedSize(), target,
           stream);
       break;
     }
     case kFrame: {
       target = ::google::protobuf::internal::WireFormatLite::InternalWriteMessage(
-          2, *this_._impl_.payload_.frame_, this_._impl_.payload_.frame_->GetCachedSize(), target,
+          2, *this_._impl_.message_.frame_, this_._impl_.message_.frame_->GetCachedSize(), target,
           stream);
       break;
     }
@@ -1982,20 +1982,20 @@ PROTOBUF_NOINLINE void Envelope::Clear() {
   // Prevent compiler warnings about cached_has_bits being unused
   (void)cached_has_bits;
 
-  switch (this_.payload_case()) {
+  switch (this_.message_case()) {
     // .telemetry.v1.TelemetryHeader header = 1 [json_name = "header"];
     case kHeader: {
       total_size += 1 +
-                    ::google::protobuf::internal::WireFormatLite::MessageSize(*this_._impl_.payload_.header_);
+                    ::google::protobuf::internal::WireFormatLite::MessageSize(*this_._impl_.message_.header_);
       break;
     }
     // .telemetry.v1.LobbySessionStateFrame frame = 2 [json_name = "frame"];
     case kFrame: {
       total_size += 1 +
-                    ::google::protobuf::internal::WireFormatLite::MessageSize(*this_._impl_.payload_.frame_);
+                    ::google::protobuf::internal::WireFormatLite::MessageSize(*this_._impl_.message_.frame_);
       break;
     }
-    case PAYLOAD_NOT_SET: {
+    case MESSAGE_NOT_SET: {
       break;
     }
   }
@@ -2023,7 +2023,7 @@ void Envelope::MergeImpl(::google::protobuf::MessageLite& to_msg,
     const bool oneof_needs_init = oneof_to_case != oneof_from_case;
     if (oneof_needs_init) {
       if (oneof_to_case != 0) {
-        _this->clear_payload();
+        _this->clear_message();
       }
       _this->_impl_._oneof_case_[0] = oneof_from_case;
     }
@@ -2031,21 +2031,21 @@ void Envelope::MergeImpl(::google::protobuf::MessageLite& to_msg,
     switch (oneof_from_case) {
       case kHeader: {
         if (oneof_needs_init) {
-          _this->_impl_.payload_.header_ = ::google::protobuf::Message::CopyConstruct(arena, *from._impl_.payload_.header_);
+          _this->_impl_.message_.header_ = ::google::protobuf::Message::CopyConstruct(arena, *from._impl_.message_.header_);
         } else {
-          _this->_impl_.payload_.header_->MergeFrom(*from._impl_.payload_.header_);
+          _this->_impl_.message_.header_->MergeFrom(*from._impl_.message_.header_);
         }
         break;
       }
       case kFrame: {
         if (oneof_needs_init) {
-          _this->_impl_.payload_.frame_ = ::google::protobuf::Message::CopyConstruct(arena, *from._impl_.payload_.frame_);
+          _this->_impl_.message_.frame_ = ::google::protobuf::Message::CopyConstruct(arena, *from._impl_.message_.frame_);
         } else {
-          _this->_impl_.payload_.frame_->MergeFrom(*from._impl_.payload_.frame_);
+          _this->_impl_.message_.frame_->MergeFrom(*from._impl_.message_.frame_);
         }
         break;
       }
-      case PAYLOAD_NOT_SET:
+      case MESSAGE_NOT_SET:
         break;
     }
   }
@@ -2064,7 +2064,7 @@ void Envelope::CopyFrom(const Envelope& from) {
 void Envelope::InternalSwap(Envelope* PROTOBUF_RESTRICT PROTOBUF_NONNULL other) {
   using ::std::swap;
   _internal_metadata_.InternalSwap(&other->_internal_metadata_);
-  swap(_impl_.payload_, other->_impl_.payload_);
+  swap(_impl_.message_, other->_impl_.message_);
   swap(_impl_._oneof_case_[0], other->_impl_._oneof_case_[0]);
 }
 

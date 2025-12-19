@@ -11,12 +11,12 @@ from .telemetry import v1
 
 
 class ErrorCode(betterproto.Enum):
-    RUNTIME_EXCEPTION = 0
-    UNRECOGNIZED_PAYLOAD = 1
-    MISSING_PAYLOAD = 2
-    BAD_INPUT = 3
-    REGISTRATION_FAILED = 4
-    LOBBY_SESSION_NOT_FOUND = 5
+    CODE_RUNTIME_EXCEPTION_UNSPECIFIED = 0
+    CODE_UNRECOGNIZED_PAYLOAD = 1
+    CODE_MISSING_PAYLOAD = 2
+    CODE_BAD_INPUT = 3
+    CODE_REGISTRATION_FAILED = 4
+    CODE_LOBBY_SESSION_NOT_FOUND = 5
 
 
 class LobbySessionEventMessageCode(betterproto.Enum):
@@ -28,34 +28,34 @@ class LobbySessionEventMessageCode(betterproto.Enum):
 
 
 class LobbyEntrantsRejectMessageCode(betterproto.Enum):
-    INTERNAL = 0
-    BAD_REQUEST = 1
-    TIMEOUT = 2
-    DUPLICATE_USER_ID = 3
-    LOBBY_LOCKED = 4
-    LOBBY_FULL = 5
-    LOBBY_ENDING = 6
-    KICKED = 7
-    DISCONNECTED = 8
-    INACTIVE = 9
+    CODE_INTERNAL_UNSPECIFIED = 0
+    CODE_BAD_REQUEST = 1
+    CODE_TIMEOUT = 2
+    CODE_DUPLICATE_USER_ID = 3
+    CODE_LOBBY_LOCKED = 4
+    CODE_LOBBY_FULL = 5
+    CODE_LOBBY_ENDING = 6
+    CODE_KICKED = 7
+    CODE_DISCONNECTED = 8
+    CODE_INACTIVE = 9
 
 
 class LobbyEntrantRemovedMessageCode(betterproto.Enum):
-    INTERNAL = 0
-    BAD_REQUEST = 1
-    TIMEOUT = 2
-    DUPLICATE_USER_ID = 3
-    LOBBY_LOCKED = 4
-    LOBBY_FULL = 5
-    LOBBY_ENDING = 6
-    KICKED = 7
-    DISCONNECTED = 8
-    INACTIVE = 9
+    CODE_INTERNAL_UNSPECIFIED = 0
+    CODE_BAD_REQUEST = 1
+    CODE_TIMEOUT = 2
+    CODE_DUPLICATE_USER_ID = 3
+    CODE_LOBBY_LOCKED = 4
+    CODE_LOBBY_FULL = 5
+    CODE_LOBBY_ENDING = 6
+    CODE_KICKED = 7
+    CODE_DISCONNECTED = 8
+    CODE_INACTIVE = 9
 
 
 class LobbySessionCreateMessageLobbyType(betterproto.Enum):
-    PUBLIC = 0
-    PRIVATE = 1
+    LOBBY_TYPE_PUBLIC_UNSPECIFIED = 0
+    LOBBY_TYPE_PRIVATE = 1
 
 
 @dataclass
