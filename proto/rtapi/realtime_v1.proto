@@ -3,7 +3,7 @@ syntax = "proto3";
 package realtime;
 
 import "google/protobuf/timestamp.proto";
-import "telemetry/telemetry_v1.proto";
+import "telemetry/v1/telemetry.proto";
 
 option csharp_namespace = "Nevr.Protobuf";
 option go_package = "github.com/echotools/nevr-common/v4/gen/go/rtapi";
@@ -242,7 +242,7 @@ message LobbySessionStateMessage {
   uint64 tick_count = 2;
   oneof state {
     LobbySessionStateRawMessage session_state_raw = 3;
-    telemetry.LobbySessionStateFrame session_state = 4;
+    telemetry.v1.LobbySessionStateFrame session_state = 4;
   }
 }
 
