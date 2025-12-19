@@ -3,7 +3,7 @@ syntax = "proto3";
 package realtime;
 
 import "google/protobuf/timestamp.proto";
-import "rtapi/telemetry_v1.proto";
+import "telemetry/telemetry_v1.proto";
 
 option csharp_namespace = "Nevr.Protobuf";
 option go_package = "github.com/echotools/nevr-common/v4/gen/go/rtapi";

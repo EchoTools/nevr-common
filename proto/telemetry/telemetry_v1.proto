@@ -35,6 +35,15 @@ message TelemetryHeader {
   map<string, string> metadata = 3;
 }
 
+// Envelope is a wrapper message that can contain any of the defined telemetry
+// and is primarily used for streaming scenarios.
+message TelemetryEnvelope {
+  oneof payload {
+    TelemetryHeader header = 1;
+    LobbySessionStateFrame frame = 2;
+  }
+}
+
 /**
  * Frame represents a single snapshot of game state data.
  * A sequence of these messages follows the Header in the data stream.
