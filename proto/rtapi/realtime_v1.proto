@@ -117,17 +117,17 @@ message Error {
   // The selection of possible error codes.
   enum Code {
     // An unexpected result from the server.
-    RUNTIME_EXCEPTION = 0;
+    CODE_RUNTIME_EXCEPTION_UNSPECIFIED = 0;
     // The server received a message which is not recognised.
-    UNRECOGNIZED_PAYLOAD = 1;
+    CODE_UNRECOGNIZED_PAYLOAD = 1;
     // A message was expected but contains no content.
-    MISSING_PAYLOAD = 2;
+    CODE_MISSING_PAYLOAD = 2;
     // Fields in the message have an invalid format.
-    BAD_INPUT = 3;
+    CODE_BAD_INPUT = 3;
     // Game server registration failed
-    REGISTRATION_FAILED = 4;
+    CODE_REGISTRATION_FAILED = 4;
     // The lobby session was not found.
-    LOBBY_SESSION_NOT_FOUND = 5;
+    CODE_LOBBY_SESSION_NOT_FOUND = 5;
   }
   // The error code which should be one of "Error.Code" enums.
   int32 code = 1;
@@ -187,16 +187,16 @@ message LobbyEntrantsAcceptMessage {
 // Entrant rejection message is sent from the server to the service.
 message LobbyEntrantsRejectMessage {
   enum Code {
-    INTERNAL = 0; // Internal server error
-    BAD_REQUEST = 1; // Bad request from the player
-    TIMEOUT = 2; // Player connection timeout
-    DUPLICATE_USER_ID = 3; // Duplicate player session
-    LOBBY_LOCKED = 4; // Lobby is locked
-    LOBBY_FULL = 5; // Lobby is full
-    LOBBY_ENDING = 6; // Lobby is ending
-    KICKED = 7; // Player was kicked from the server
-    DISCONNECTED = 8; // Player was disconnected
-    INACTIVE = 9; // Player is inactive
+    CODE_INTERNAL_UNSPECIFIED = 0; // Internal server error
+    CODE_BAD_REQUEST = 1; // Bad request from the player
+    CODE_TIMEOUT = 2; // Player connection timeout
+    CODE_DUPLICATE_USER_ID = 3; // Duplicate player session
+    CODE_LOBBY_LOCKED = 4; // Lobby is locked
+    CODE_LOBBY_FULL = 5; // Lobby is full
+    CODE_LOBBY_ENDING = 6; // Lobby is ending
+    CODE_KICKED = 7; // Player was kicked from the server
+    CODE_DISCONNECTED = 8; // Player was disconnected
+    CODE_INACTIVE = 9; // Player is inactive
   }
   repeated string entrant_ids = 1;
   int32 code = 2; // Optional reason for rejection
@@ -205,16 +205,16 @@ message LobbyEntrantsRejectMessage {
 // Entrant rejection message is sent from the server to the service.
 message LobbyEntrantRemovedMessage {
   enum Code {
-    INTERNAL = 0; // Internal server error
-    BAD_REQUEST = 1; // Bad request from the player
-    TIMEOUT = 2; // Player connection timeout
-    DUPLICATE_USER_ID = 3; // Duplicate player session
-    LOBBY_LOCKED = 4; // Lobby is locked
-    LOBBY_FULL = 5; // Lobby is full
-    LOBBY_ENDING = 6; // Lobby is ending
-    KICKED = 7; // Player was kicked from the server
-    DISCONNECTED = 8; // Player was disconnected
-    INACTIVE = 9; // Player is inactive
+    CODE_INTERNAL_UNSPECIFIED = 0; // Internal server error
+    CODE_BAD_REQUEST = 1; // Bad request from the player
+    CODE_TIMEOUT = 2; // Player connection timeout
+    CODE_DUPLICATE_USER_ID = 3; // Duplicate player session
+    CODE_LOBBY_LOCKED = 4; // Lobby is locked
+    CODE_LOBBY_FULL = 5; // Lobby is full
+    CODE_LOBBY_ENDING = 6; // Lobby is ending
+    CODE_KICKED = 7; // Player was kicked from the server
+    CODE_DISCONNECTED = 8; // Player was disconnected
+    CODE_INACTIVE = 9; // Player is inactive
   }
   string lobby_session_id = 1;
   string entrant_id = 2;
@@ -224,9 +224,9 @@ message LobbyEntrantRemovedMessage {
 message LobbySessionCreateMessage {
   enum LobbyType {
     // A public lobby which is visible to all players.
-    PUBLIC = 0;
+    LOBBY_TYPE_PUBLIC_UNSPECIFIED = 0;
     // A private lobby which is only visible to invited players.
-    PRIVATE = 1;
+    LOBBY_TYPE_PRIVATE = 1;
   }
   string lobby_session_id = 1;
   int32 lobby_type = 2;
