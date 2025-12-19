@@ -7,7 +7,7 @@ from typing import Dict, List
 
 import betterproto
 
-from . import telemetry
+from .telemetry import v1
 
 
 class ErrorCode(betterproto.Enum):
@@ -353,7 +353,7 @@ class LobbySessionStateMessage(betterproto.Message):
     session_state_raw: "LobbySessionStateRawMessage" = betterproto.message_field(
         3, group="state"
     )
-    session_state: telemetry.LobbySessionStateFrame = betterproto.message_field(
+    session_state: v1.LobbySessionStateFrame = betterproto.message_field(
         4, group="state"
     )
 

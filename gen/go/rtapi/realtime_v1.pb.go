@@ -7,6 +7,7 @@
 package rtapi
 
 import (
+	v1 "github.com/echotools/nevr-common/v4/gen/go/telemetry/v1"
 	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
 	protoimpl "google.golang.org/protobuf/runtime/protoimpl"
 	timestamppb "google.golang.org/protobuf/types/known/timestamppb"
@@ -1900,7 +1901,7 @@ func (x *LobbySessionStateMessage) GetSessionStateRaw() *LobbySessionStateRawMes
 	return nil
 }
 
-func (x *LobbySessionStateMessage) GetSessionState() *LobbySessionStateFrame {
+func (x *LobbySessionStateMessage) GetSessionState() *v1.LobbySessionStateFrame {
 	if x != nil {
 		if x, ok := x.State.(*LobbySessionStateMessage_SessionState); ok {
 			return x.SessionState
@@ -1918,7 +1919,7 @@ type LobbySessionStateMessage_SessionStateRaw struct {
 }
 
 type LobbySessionStateMessage_SessionState struct {
-	SessionState *LobbySessionStateFrame `protobuf:"bytes,4,opt,name=session_state,json=sessionState,proto3,oneof"`
+	SessionState *v1.LobbySessionStateFrame `protobuf:"bytes,4,opt,name=session_state,json=sessionState,proto3,oneof"`
 }
 
 func (*LobbySessionStateMessage_SessionStateRaw) isLobbySessionStateMessage_State() {}
@@ -4547,7 +4548,7 @@ var File_rtapi_realtime_v1_proto protoreflect.FileDescriptor
 
 const file_rtapi_realtime_v1_proto_rawDesc = "" +
 	"\n" +
-	"\x17rtapi/realtime_v1.proto\x12\brealtime\x1a\x1fgoogle/protobuf/timestamp.proto\x1a\x18rtapi/telemetry_v1.proto\"\xfb&\n" +
+	"\x17rtapi/realtime_v1.proto\x12\brealtime\x1a\x1fgoogle/protobuf/timestamp.proto\x1a\x1ctelemetry/v1/telemetry.proto\"\xfb&\n" +
 	"\bEnvelope\x12\x10\n" +
 	"\x03cid\x18\x01 \x01(\tR\x03cid\x12'\n" +
 	"\x05error\x18\x02 \x01(\v2\x0f.realtime.ErrorH\x00R\x05error\x12T\n" +
@@ -4693,13 +4694,13 @@ const file_rtapi_realtime_v1_proto_rawDesc = "" +
 	"\tLobbyType\x12\n" +
 	"\n" +
 	"\x06PUBLIC\x10\x00\x12\v\n" +
-	"\aPRIVATE\x10\x01\"\x89\x02\n" +
+	"\aPRIVATE\x10\x01\"\x8c\x02\n" +
 	"\x18LobbySessionStateMessage\x12&\n" +
 	"\x0ftime_step_usecs\x18\x01 \x01(\rR\rtimeStepUsecs\x12\x1d\n" +
 	"\n" +
 	"tick_count\x18\x02 \x01(\x04R\ttickCount\x12S\n" +
-	"\x11session_state_raw\x18\x03 \x01(\v2%.realtime.LobbySessionStateRawMessageH\x00R\x0fsessionStateRaw\x12H\n" +
-	"\rsession_state\x18\x04 \x01(\v2!.telemetry.LobbySessionStateFrameH\x00R\fsessionStateB\a\n" +
+	"\x11session_state_raw\x18\x03 \x01(\v2%.realtime.LobbySessionStateRawMessageH\x00R\x0fsessionStateRaw\x12K\n" +
+	"\rsession_state\x18\x04 \x01(\v2$.telemetry.v1.LobbySessionStateFrameH\x00R\fsessionStateB\a\n" +
 	"\x05state\"\xae\x01\n" +
 	"\x1bLobbySessionStateRawMessage\x128\n" +
 	"\ttimestamp\x18\x01 \x01(\v2\x1a.google.protobuf.TimestampR\ttimestamp\x12'\n" +
@@ -4956,9 +4957,9 @@ var file_rtapi_realtime_v1_proto_goTypes = []any{
 	(*SNSUpdateProfileFailureMessage)(nil),           // 57: realtime.SNSUpdateProfileFailureMessage
 	(*SNSUserServerProfileUpdateRequestMessage)(nil), // 58: realtime.SNSUserServerProfileUpdateRequestMessage
 	(*SNSUserServerProfileUpdateSuccessMessage)(nil), // 59: realtime.SNSUserServerProfileUpdateSuccessMessage
-	nil,                            // 60: realtime.Error.ContextEntry
-	(*LobbySessionStateFrame)(nil), // 61: telemetry.LobbySessionStateFrame
-	(*timestamppb.Timestamp)(nil),  // 62: google.protobuf.Timestamp
+	nil,                               // 60: realtime.Error.ContextEntry
+	(*v1.LobbySessionStateFrame)(nil), // 61: telemetry.v1.LobbySessionStateFrame
+	(*timestamppb.Timestamp)(nil),     // 62: google.protobuf.Timestamp
 }
 var file_rtapi_realtime_v1_proto_depIdxs = []int32{
 	6,  // 0: realtime.Envelope.error:type_name -> realtime.Error
@@ -5014,7 +5015,7 @@ var file_rtapi_realtime_v1_proto_depIdxs = []int32{
 	59, // 50: realtime.Envelope.user_server_profile_update_success:type_name -> realtime.SNSUserServerProfileUpdateSuccessMessage
 	60, // 51: realtime.Error.context:type_name -> realtime.Error.ContextEntry
 	16, // 52: realtime.LobbySessionStateMessage.session_state_raw:type_name -> realtime.LobbySessionStateRawMessage
-	61, // 53: realtime.LobbySessionStateMessage.session_state:type_name -> telemetry.LobbySessionStateFrame
+	61, // 53: realtime.LobbySessionStateMessage.session_state:type_name -> telemetry.v1.LobbySessionStateFrame
 	62, // 54: realtime.LobbySessionStateRawMessage.timestamp:type_name -> google.protobuf.Timestamp
 	18, // 55: realtime.SNSUnknownMessage.type:type_name -> realtime.SymbolHash
 	18, // 56: realtime.SNSConfigSuccessV2Message.type:type_name -> realtime.SymbolHash
@@ -5064,7 +5065,6 @@ func file_rtapi_realtime_v1_proto_init() {
 	if File_rtapi_realtime_v1_proto != nil {
 		return
 	}
-	file_rtapi_telemetry_v1_proto_init()
 	file_rtapi_realtime_v1_proto_msgTypes[0].OneofWrappers = []any{
 		(*Envelope_Error)(nil),
 		(*Envelope_LobbySessionState)(nil),

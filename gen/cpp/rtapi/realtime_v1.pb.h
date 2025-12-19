@@ -36,7 +36,7 @@
 #include "google/protobuf/generated_enum_reflection.h"
 #include "google/protobuf/unknown_field_set.h"
 #include "google/protobuf/timestamp.pb.h"
-#include "rtapi/telemetry_v1.pb.h"
+#include "telemetry/v1/telemetry.pb.h"
 // @@protoc_insertion_point(includes)
 
 // Must be included last.
@@ -12540,23 +12540,23 @@ class LobbySessionStateMessage final : public ::google::protobuf::Message
   ::realtime::LobbySessionStateRawMessage* PROTOBUF_NONNULL _internal_mutable_session_state_raw();
 
   public:
-  // .telemetry.LobbySessionStateFrame session_state = 4 [json_name = "sessionState"];
+  // .telemetry.v1.LobbySessionStateFrame session_state = 4 [json_name = "sessionState"];
   bool has_session_state() const;
   private:
   bool _internal_has_session_state() const;
 
   public:
   void clear_session_state() ;
-  const ::telemetry::LobbySessionStateFrame& session_state() const;
-  [[nodiscard]] ::telemetry::LobbySessionStateFrame* PROTOBUF_NULLABLE release_session_state();
-  ::telemetry::LobbySessionStateFrame* PROTOBUF_NONNULL mutable_session_state();
-  void set_allocated_session_state(::telemetry::LobbySessionStateFrame* PROTOBUF_NULLABLE value);
-  void unsafe_arena_set_allocated_session_state(::telemetry::LobbySessionStateFrame* PROTOBUF_NULLABLE value);
-  ::telemetry::LobbySessionStateFrame* PROTOBUF_NULLABLE unsafe_arena_release_session_state();
+  const ::telemetry::v1::LobbySessionStateFrame& session_state() const;
+  [[nodiscard]] ::telemetry::v1::LobbySessionStateFrame* PROTOBUF_NULLABLE release_session_state();
+  ::telemetry::v1::LobbySessionStateFrame* PROTOBUF_NONNULL mutable_session_state();
+  void set_allocated_session_state(::telemetry::v1::LobbySessionStateFrame* PROTOBUF_NULLABLE value);
+  void unsafe_arena_set_allocated_session_state(::telemetry::v1::LobbySessionStateFrame* PROTOBUF_NULLABLE value);
+  ::telemetry::v1::LobbySessionStateFrame* PROTOBUF_NULLABLE unsafe_arena_release_session_state();
 
   private:
-  const ::telemetry::LobbySessionStateFrame& _internal_session_state() const;
-  ::telemetry::LobbySessionStateFrame* PROTOBUF_NONNULL _internal_mutable_session_state();
+  const ::telemetry::v1::LobbySessionStateFrame& _internal_session_state() const;
+  ::telemetry::v1::LobbySessionStateFrame* PROTOBUF_NONNULL _internal_mutable_session_state();
 
   public:
   void clear_state();
@@ -12597,7 +12597,7 @@ class LobbySessionStateMessage final : public ::google::protobuf::Message
       constexpr StateUnion() : _constinit_{} {}
       ::google::protobuf::internal::ConstantInitialized _constinit_;
       ::realtime::LobbySessionStateRawMessage* PROTOBUF_NULLABLE session_state_raw_;
-      ::telemetry::LobbySessionStateFrame* PROTOBUF_NULLABLE session_state_;
+      ::telemetry::v1::LobbySessionStateFrame* PROTOBUF_NULLABLE session_state_;
     } state_;
     ::uint32_t _oneof_case_[1];
     PROTOBUF_TSAN_DECLARE_MEMBER
@@ -19859,7 +19859,7 @@ inline ::realtime::LobbySessionStateRawMessage* PROTOBUF_NONNULL LobbySessionSta
   return _msg;
 }
 
-// .telemetry.LobbySessionStateFrame session_state = 4 [json_name = "sessionState"];
+// .telemetry.v1.LobbySessionStateFrame session_state = 4 [json_name = "sessionState"];
 inline bool LobbySessionStateMessage::has_session_state() const {
   return state_case() == kSessionState;
 }
@@ -19869,7 +19869,7 @@ inline bool LobbySessionStateMessage::_internal_has_session_state() const {
 inline void LobbySessionStateMessage::set_has_session_state() {
   _impl_._oneof_case_[0] = kSessionState;
 }
-inline ::telemetry::LobbySessionStateFrame* PROTOBUF_NULLABLE LobbySessionStateMessage::release_session_state() {
+inline ::telemetry::v1::LobbySessionStateFrame* PROTOBUF_NULLABLE LobbySessionStateMessage::release_session_state() {
   // @@protoc_insertion_point(field_release:realtime.LobbySessionStateMessage.session_state)
   if (state_case() == kSessionState) {
     clear_has_state();
@@ -19883,15 +19883,15 @@ inline ::telemetry::LobbySessionStateFrame* PROTOBUF_NULLABLE LobbySessionStateM
     return nullptr;
   }
 }
-inline const ::telemetry::LobbySessionStateFrame& LobbySessionStateMessage::_internal_session_state() const {
-  return state_case() == kSessionState ? static_cast<const ::telemetry::LobbySessionStateFrame&>(*_impl_.state_.session_state_)
-                     : reinterpret_cast<const ::telemetry::LobbySessionStateFrame&>(::telemetry::_LobbySessionStateFrame_default_instance_);
+inline const ::telemetry::v1::LobbySessionStateFrame& LobbySessionStateMessage::_internal_session_state() const {
+  return state_case() == kSessionState ? static_cast<const ::telemetry::v1::LobbySessionStateFrame&>(*_impl_.state_.session_state_)
+                     : reinterpret_cast<const ::telemetry::v1::LobbySessionStateFrame&>(::telemetry::v1::_LobbySessionStateFrame_default_instance_);
 }
-inline const ::telemetry::LobbySessionStateFrame& LobbySessionStateMessage::session_state() const ABSL_ATTRIBUTE_LIFETIME_BOUND {
+inline const ::telemetry::v1::LobbySessionStateFrame& LobbySessionStateMessage::session_state() const ABSL_ATTRIBUTE_LIFETIME_BOUND {
   // @@protoc_insertion_point(field_get:realtime.LobbySessionStateMessage.session_state)
   return _internal_session_state();
 }
-inline ::telemetry::LobbySessionStateFrame* PROTOBUF_NULLABLE LobbySessionStateMessage::unsafe_arena_release_session_state() {
+inline ::telemetry::v1::LobbySessionStateFrame* PROTOBUF_NULLABLE LobbySessionStateMessage::unsafe_arena_release_session_state() {
   // @@protoc_insertion_point(field_unsafe_arena_release:realtime.LobbySessionStateMessage.session_state)
   if (state_case() == kSessionState) {
     clear_has_state();
@@ -19903,7 +19903,7 @@ inline ::telemetry::LobbySessionStateFrame* PROTOBUF_NULLABLE LobbySessionStateM
   }
 }
 inline void LobbySessionStateMessage::unsafe_arena_set_allocated_session_state(
-    ::telemetry::LobbySessionStateFrame* PROTOBUF_NULLABLE value) {
+    ::telemetry::v1::LobbySessionStateFrame* PROTOBUF_NULLABLE value) {
   // We rely on the oneof clear method to free the earlier contents
   // of this oneof. We can directly use the pointer we're given to
   // set the new value.
@@ -19914,18 +19914,18 @@ inline void LobbySessionStateMessage::unsafe_arena_set_allocated_session_state(
   }
   // @@protoc_insertion_point(field_unsafe_arena_set_allocated:realtime.LobbySessionStateMessage.session_state)
 }
-inline ::telemetry::LobbySessionStateFrame* PROTOBUF_NONNULL LobbySessionStateMessage::_internal_mutable_session_state() {
+inline ::telemetry::v1::LobbySessionStateFrame* PROTOBUF_NONNULL LobbySessionStateMessage::_internal_mutable_session_state() {
   if (state_case() != kSessionState) {
     clear_state();
     set_has_session_state();
     _impl_.state_.session_state_ = 
-        ::google::protobuf::Message::DefaultConstruct<::telemetry::LobbySessionStateFrame>(GetArena());
+        ::google::protobuf::Message::DefaultConstruct<::telemetry::v1::LobbySessionStateFrame>(GetArena());
   }
   return _impl_.state_.session_state_;
 }
-inline ::telemetry::LobbySessionStateFrame* PROTOBUF_NONNULL LobbySessionStateMessage::mutable_session_state()
+inline ::telemetry::v1::LobbySessionStateFrame* PROTOBUF_NONNULL LobbySessionStateMessage::mutable_session_state()
     ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  ::telemetry::LobbySessionStateFrame* _msg = _internal_mutable_session_state();
+  ::telemetry::v1::LobbySessionStateFrame* _msg = _internal_mutable_session_state();
   // @@protoc_insertion_point(field_mutable:realtime.LobbySessionStateMessage.session_state)
   return _msg;
 }
