@@ -39,7 +39,7 @@ message TelemetryHeader {
 // Envelope is a wrapper message that can contain any of the defined telemetry
 // and is primarily used for streaming scenarios.
 message Envelope {
-  oneof payload {
+  oneof message {
     TelemetryHeader header = 1;
     LobbySessionStateFrame frame = 2;
   }
