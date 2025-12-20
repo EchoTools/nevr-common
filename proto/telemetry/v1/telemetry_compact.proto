@@ -1,0 +1,424 @@
+/**
+ * The EchoTools NEVR Compact Telemetry Schema (V2).
+ * 
+ * This file introduces a compact telemetry format to address storage inefficiencies
+ * observed in the original telemetry schema while maintaining wire compatibility.
+ * 
+ * Key optimizations:
+ * - Base time in header with per-frame delta varints instead of repeated Timestamps
+ * - Separation of static vs dynamic session data
+ * - float32 instead of double (64-bit) for positions/velocities
+ * - Enums instead of string enums for common fields
+ * - Keyframe + delta frames for player bones with bitmask of changed indices
+ * - Typed metadata fields to reduce map overhead
+ * 
+ * Migration notes:
+ * - Producers: Populate TelemetryHeaderV2 with base_time and known metadata,
+ *   emit LobbySessionStateFrameV2 with delta_nanos (or omit if fixed-step),
+ *   use Compact* messages for state and bones.
+ * - Consumers: Read EnvelopeV2 alongside existing Envelope; prefer V2 when available.
+ * - Keep zstd compression; compact schema improves raw size and compression ratio.
+ * 
+ * Out of scope (future PRs):
+ * - rtapi integration to stream EnvelopeV2 over realtime API
+ * - Quantization (int16/int24) and enum tables for weapons/ordnance/tac_mod
+ * - Event-only frames when no state changed
+ */
+syntax = "proto3";
+
+package telemetry.v1;
+
+import "google/protobuf/timestamp.proto"; // kept for possible interop
+import "telemetry/v1/telemetry.proto"; // import LobbySessionEvent for reuse
+
+option csharp_namespace = "Nevr.Telemetry.Protobuf";
+option go_package = "github.com/echotools/nevr-common/v4/gen/go/telemetry/v1;telemetry";
+option java_multiple_files = true;
+option java_outer_classname = "NevrTelemetryCompact";
+option java_package = "com.echotools.nevr.telemetry.v1";
+
+/**
+ * EnvelopeV2 wraps compact telemetry messages for streaming.
+ * Similar to Envelope but designed for V2 compact messages.
+ */
+message EnvelopeV2 {
+  oneof message {
+    TelemetryHeaderV2 header = 1;
+    LobbySessionStateFrameV2 frame = 2;
+  }
+}
+
+/**
+ * TelemetryHeaderV2 contains metadata for the entire session capture (V2 compact format).
+ * This message should be written once at the beginning of the stream.
+ * 
+ * Improvements over TelemetryHeader:
+ * - Uses base_time_unix_nanos instead of Timestamp for efficiency
+ * - Promotes common metadata to typed fields (server_id, mode, level)
+ * - Keeps small extra map for remaining metadata
+ * - Includes SessionStatic for rarely-changing session strings
+ */
+message TelemetryHeaderV2 {
+  // A unique identifier for the capture, e.g., a UUID.
+  string capture_id = 1;
+  
+  // Base time in Unix nanoseconds; per-frame times are deltas from this.
+  uint64 base_time_unix_nanos = 2;
+  
+  // Fixed timestep in nanoseconds (optional); if set, frame times can be
+  // derived from frame_index without delta_nanos.
+  uint32 timestep_nanos = 3;
+  
+  // Server identifier (promoted from metadata).
+  uint64 server_id = 4;
+  
+  // Game mode (promoted from metadata).
+  string mode = 5;
+  
+  // Map/level name (promoted from metadata).
+  string level = 6;
+  
+  // Remaining arbitrary key-value metadata.
+  map<string, string> extra = 7;
+  
+  // Static session data that rarely changes.
+  SessionStatic static = 8;
+}
+
+/**
+ * SessionStatic contains session-level strings that rarely change during a capture.
+ * These are separated out to avoid repeating them in every frame.
+ */
+message SessionStatic {
+  // Unique session identifier.
+  string session_id = 1;
+  
+  // Name of the map being played.
+  string map_name = 2;
+  
+  // Type of match (enum instead of string).
+  MatchType match_type = 3;
+  
+  // Name of the client.
+  string client_name = 4;
+}
+
+/**
+ * MatchType enum replaces string-based match_type for efficiency.
+ */
+enum MatchType {
+  MATCH_TYPE_UNSPECIFIED = 0;
+  MATCH_TYPE_ARENA_PUBLIC = 1;
+  MATCH_TYPE_ARENA_PRIVATE = 2;
+  MATCH_TYPE_COMBAT_PUBLIC = 3;
+  MATCH_TYPE_COMBAT_PRIVATE = 4;
+}
+
+/**
+ * LobbySessionStateFrameV2 represents a single snapshot of game state (V2 compact format).
+ * 
+ * Improvements over LobbySessionStateFrame:
+ * - Uses delta_nanos instead of full Timestamp
+ * - Uses CompactSessionState instead of full enginehttp.SessionResponse
+ * - Uses CompactPlayerBones with keyframe + delta encoding
+ */
+message LobbySessionStateFrameV2 {
+  // The sequential index of the frame, starting from 0.
+  uint32 frame_index = 1;
+  
+  // Signed varint delta in nanoseconds from base_time_unix_nanos.
+  // Can be omitted if derivable from frame_index and timestep_nanos in header.
+  sint32 delta_nanos = 2;
+  
+  // A list of discrete events that occurred during this frame.
+  // Reuses existing LobbySessionEvent types from telemetry.proto for compatibility.
+  repeated LobbySessionEvent events = 3;
+  
+  // Compact session state for this frame.
+  CompactSessionState session = 4;
+  
+  // Compact player bones for this frame.
+  CompactPlayerBones player_bones = 5;
+}
+
+/**
+ * CompactSessionState replaces enginehttp.SessionResponse with a more efficient representation.
+ * 
+ * Key changes:
+ * - Uses repeated float (float32, packed) instead of repeated double for vectors
+ * - Uses enums instead of strings for pause_state
+ * - Focuses on dynamic data; static data moved to header
+ */
+message CompactSessionState {
+  // Disc position (3 floats: x, y, z).
+  repeated float disc_position = 1 [packed = true];
+  
+  // Disc forward direction (3 floats).
+  repeated float disc_forward = 2 [packed = true];
+  
+  // Disc left direction (3 floats).
+  repeated float disc_left = 3 [packed = true];
+  
+  // Disc up direction (3 floats).
+  repeated float disc_up = 4 [packed = true];
+  
+  // Disc velocity (3 floats).
+  repeated float disc_velocity = 5 [packed = true];
+
+  // Teams in the session.
+  repeated CompactTeam teams = 10;
+
+  // Pause state (enum instead of string).
+  PauseStateEnum pause_state = 20;
+  
+  // Paused timer value.
+  float paused_timer = 21;
+  
+  // Unpaused timer value.
+  float unpaused_timer = 22;
+
+  // Game clock value.
+  float game_clock = 30;
+  
+  // Payload multiplier.
+  float payload_multiplier = 31;
+  
+  // Payload distance.
+  float payload_distance = 32;
+  
+  // Payload speed.
+  float payload_speed = 33;
+  
+  // Payload checkpoint.
+  int32 payload_checkpoint = 34;
+  
+  // Blue team points.
+  uint32 blue_points = 35;
+  
+  // Orange team points.
+  uint32 orange_points = 36;
+}
+
+/**
+ * PauseStateEnum replaces string-based pause state for efficiency.
+ */
+enum PauseStateEnum {
+  PAUSE_STATE_UNSPECIFIED = 0;
+  PAUSE_STATE_PAUSED = 1;
+  PAUSE_STATE_UNPAUSED = 2;
+  PAUSE_STATE_PENDING = 3;
+}
+
+/**
+ * CompactTeam represents team data in a more efficient format.
+ */
+message CompactTeam {
+  // Team identifier (could be enum or small ID in future).
+  uint32 team_id = 1;
+  
+  // Whether this team has disc possession.
+  bool has_possession = 2;
+  
+  // Team statistics.
+  CompactTeamStats stats = 3;
+  
+  // Players on this team.
+  repeated CompactPlayer players = 4;
+}
+
+/**
+ * CompactTeamStats represents team statistics in a more efficient format.
+ */
+message CompactTeamStats {
+  // Possession time (float32 instead of double).
+  float possession_time = 1;
+  
+  // Total points.
+  uint32 points = 2;
+  
+  // Total saves.
+  uint32 saves = 3;
+  
+  // Total goals.
+  uint32 goals = 4;
+  
+  // Total stuns.
+  uint32 stuns = 5;
+  
+  // Total passes.
+  uint32 passes = 6;
+  
+  // Total catches.
+  uint32 catches = 7;
+  
+  // Total steals.
+  uint32 steals = 8;
+  
+  // Total blocks.
+  uint32 blocks = 9;
+  
+  // Total interceptions.
+  uint32 interceptions = 10;
+  
+  // Total assists.
+  uint32 assists = 11;
+  
+  // Total shots taken.
+  uint32 shots_taken = 12;
+}
+
+/**
+ * CompactPlayer represents individual player data in a more efficient format.
+ * 
+ * Key changes:
+ * - Uses repeated float (float32, packed) instead of repeated double for all vectors
+ * - All 3D vectors (position, forward, left, up, velocity) are length 3
+ */
+message CompactPlayer {
+  // Player account number.
+  uint64 account_number = 1;
+  
+  // Jersey number.
+  uint32 jersey_number = 2;
+  
+  // Player level.
+  uint32 level = 3;
+
+  // Head position (3 floats: x, y, z).
+  repeated float head_pos = 10 [packed = true];
+  
+  // Head forward direction (3 floats).
+  repeated float head_forward = 11 [packed = true];
+  
+  // Head left direction (3 floats).
+  repeated float head_left = 12 [packed = true];
+  
+  // Head up direction (3 floats).
+  repeated float head_up = 13 [packed = true];
+
+  // Body position (3 floats: x, y, z).
+  repeated float body_pos = 14 [packed = true];
+  
+  // Body forward direction (3 floats).
+  repeated float body_forward = 15 [packed = true];
+  
+  // Body left direction (3 floats).
+  repeated float body_left = 16 [packed = true];
+  
+  // Body up direction (3 floats).
+  repeated float body_up = 17 [packed = true];
+
+  // Left hand position (3 floats: x, y, z).
+  repeated float left_hand_pos = 18 [packed = true];
+  
+  // Left hand forward direction (3 floats).
+  repeated float left_hand_forward = 19 [packed = true];
+  
+  // Left hand left direction (3 floats).
+  repeated float left_hand_left = 20 [packed = true];
+  
+  // Left hand up direction (3 floats).
+  repeated float left_hand_up = 21 [packed = true];
+
+  // Right hand position (3 floats: x, y, z).
+  repeated float right_hand_pos = 22 [packed = true];
+  
+  // Right hand forward direction (3 floats).
+  repeated float right_hand_forward = 23 [packed = true];
+  
+  // Right hand left direction (3 floats).
+  repeated float right_hand_left = 24 [packed = true];
+  
+  // Right hand up direction (3 floats).
+  repeated float right_hand_up = 25 [packed = true];
+
+  // Player velocity (3 floats: x, y, z).
+  repeated float velocity = 26 [packed = true];
+
+  // Player statistics.
+  CompactPlayerStats stats = 30;
+}
+
+/**
+ * CompactPlayerStats represents player statistics in a more efficient format.
+ */
+message CompactPlayerStats {
+  // Possession time (float32 instead of double).
+  float possession_time = 1;
+  
+  // Total points.
+  uint32 points = 2;
+  
+  // Total saves.
+  uint32 saves = 3;
+  
+  // Total goals.
+  uint32 goals = 4;
+  
+  // Total stuns.
+  uint32 stuns = 5;
+  
+  // Total passes.
+  uint32 passes = 6;
+  
+  // Total catches.
+  uint32 catches = 7;
+  
+  // Total steals.
+  uint32 steals = 8;
+  
+  // Total blocks.
+  uint32 blocks = 9;
+  
+  // Total interceptions.
+  uint32 interceptions = 10;
+  
+  // Total assists.
+  uint32 assists = 11;
+  
+  // Total shots taken.
+  uint32 shots_taken = 12;
+}
+
+/**
+ * CompactPlayerBones provides keyframe + delta frame encoding for player bones.
+ * 
+ * This approach significantly reduces data size by:
+ * - Sending full bone data only at keyframe intervals
+ * - Sending only changed bones in delta frames using a bitmask
+ * - Using float32 instead of double for all bone transforms
+ */
+message CompactPlayerBones {
+  // Keyframe interval (e.g., 5 means keyframe every 5 frames).
+  uint32 frame_modulus = 1;
+  
+  // Bone frames for all players.
+  repeated BonesFrame frames = 2;
+}
+
+/**
+ * BonesFrame represents bone data for a single player in a frame.
+ * 
+ * Keyframes contain all bone data; delta frames contain only changed bones.
+ */
+message BonesFrame {
+  // Whether this is a keyframe (full data) or delta frame (partial data).
+  bool is_keyframe = 1;
+  
+  // Index of the player (corresponding to CompactPlayer order).
+  uint32 player_index = 2;
+  
+  // Bitmask indicating which bone indices have changed (for delta frames).
+  // Each bit represents one bone; bit is set if bone data is included.
+  bytes changed_mask = 3;
+  
+  // Bone translation data (packed float32).
+  // For keyframes: all bone translations.
+  // For delta frames: only translations for bones indicated in changed_mask.
+  repeated float bone_t = 4 [packed = true];
+  
+  // Bone orientation/rotation data (packed float32).
+  // For keyframes: all bone orientations.
+  // For delta frames: only orientations for bones indicated in changed_mask.
+  repeated float bone_o = 5 [packed = true];
+}
