@@ -1,63 +1,98 @@
 # nevr-common
 
-the runtime framework for the NEVR service.
+Shared protobuf definitions and generated code for the NEVR telemetry ecosystem.
 
-This codebase defines the runtime API and protocol interface used by [NEVR](https://github.com/echotools/nevr-service)
+This repository contains the protocol interface used by:
+- [nevr-agent](https://github.com/echotools/nevr-agent) - Recording and streaming CLI
+- [nevrcap](https://github.com/echotools/nevr-capture) - High-performance telemetry processing library
+- [nakama](https://github.com/echotools/nakama) - Game server backend
 
-It is tightly integrated with components of [Nakama](https://github.com/heroiclabs/nakama), and is structured similarly to the `heroiclabs/nakama-common` repository.
+## Structure
 
-The code is broken up into packages for different parts:
+```
+proto/          # Protobuf definitions
+├── api/        # REST API definitions
+├── apigame/    # Game-specific API
+├── apigrpc/    # gRPC service definitions
+├── rtapi/      # Real-time API (WebSocket)
+└── telemetry/  # Telemetry frame definitions
 
-* `proto` - protobuf definitions for GRPC, HTTP, and Realtime protocols.
-* `gen`   - generated source code for various languages.
-* `common`: Shared utilities and types used across the codebase.
+gen/            # Generated source code
+├── go/         # Go packages
+├── python/     # Python modules
+├── csharp/     # C# classes
+├── cpp/        # C++ headers
+├── docs/       # Documentation
+└── openapiv2/  # OpenAPI specifications
 
+common/         # Shared C++ utilities
+serviceapi/     # Go service API helpers
+```
 
 ## Usage
 
-Protocol Buffer files have already been generated and are included in the repository. To use them in your project:
+Protocol Buffer files have already been generated and are included in the repository.
 
-* **Go**: Import the generated Go packages directly in your project. Example:
+### Go
 
-    ```go
-    import "github.com/echotools/nevr-common/rtapi"
-    ```
+```go
+import (
+    "github.com/echotools/nevr-common/v4/gen/go/telemetry/v1"
+    "github.com/echotools/nevr-common/v4/gen/go/rtapi/v1"
+)
 
-* **Python**: Use the generated `.py` files in your Python project. Example:
+// Use telemetry types
+frame := &telemetry.LobbySessionStateFrame{
+    SessionId: "...",
+    // ...
+}
+```
 
-    ```python
-    from api import api_pb
-    ```
+### Python
 
-* **CSharp**: Reference the generated `.cs` files in your C# project. Example:
+```python
+from gen.python.telemetry.v1 import telemetry_pb2
 
-    ```csharp
-    using Api;
-    ```
+frame = telemetry_pb2.LobbySessionStateFrame()
+frame.session_id = "..."
+```
 
+### C#
+
+```csharp
+using Telemetry.V1;
+
+var frame = new LobbySessionStateFrame {
+    SessionId = "..."
+};
+```
 
 No additional code generation is required unless you modify the `.proto` files.
 
 ## Generating Protocol Buffer Sources
 
-   ```shell
-   buf generate
-   ```
-
-### Method A: `build.sh`
-
-To generate all source files with Make, run:
+If you modify `.proto` files, regenerate the sources:
 
 ```shell
-./build.sh
+# Using buf (recommended)
+buf generate
+
+# Or using the build script
+./scripts/build.sh
 ```
 
-## Method B: Generate Go stubs using the Go generate command
+### Requirements
 
-To generate all Go source files, run:
+- [buf](https://buf.build/) CLI
+- Go 1.25+ toolchain
+- protoc-gen-go, protoc-gen-go-grpc (for Go generation)
 
-```shell
-env PATH="$HOME/go/bin:$PATH" go generate -x ./...
-```
+## Version Compatibility
 
-These steps have been tested with the Go 1.24 toolchain. Earlier Go toolchain versions may work though YMMV.
+| nevr-common | nevr-agent | nevrcap | Go Version |
+|-------------|------------|---------|------------|
+| v4.x        | v1.x       | v3.x    | 1.25+      |
+
+## License
+
+See [LICENSE](LICENSE) file for details.
