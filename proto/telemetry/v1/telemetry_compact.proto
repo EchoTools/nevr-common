@@ -66,7 +66,8 @@ message TelemetryHeaderV2 {
   uint64 base_time_unix_nanos = 2;
   
   // Fixed timestep in nanoseconds (optional); if set, frame times can be
-  // derived from frame_index without delta_nanos.
+  // derived from frame_index without delta_nanos using the formula:
+  // frame_time = base_time_unix_nanos + (frame_index * timestep_nanos)
   uint32 timestep_nanos = 3;
   
   // Server identifier (promoted from metadata).
@@ -150,19 +151,24 @@ message LobbySessionStateFrameV2 {
  * - Focuses on dynamic data; static data moved to header
  */
 message CompactSessionState {
-  // Disc position (3 floats: x, y, z).
+  // Disc position (exactly 3 floats: x, y, z).
+  // Producers MUST send exactly 3 values; consumers SHOULD validate length.
   repeated float disc_position = 1 [packed = true];
   
-  // Disc forward direction (3 floats).
+  // Disc forward direction (exactly 3 floats: x, y, z).
+  // Producers MUST send exactly 3 values; consumers SHOULD validate length.
   repeated float disc_forward = 2 [packed = true];
   
-  // Disc left direction (3 floats).
+  // Disc left direction (exactly 3 floats: x, y, z).
+  // Producers MUST send exactly 3 values; consumers SHOULD validate length.
   repeated float disc_left = 3 [packed = true];
   
-  // Disc up direction (3 floats).
+  // Disc up direction (exactly 3 floats: x, y, z).
+  // Producers MUST send exactly 3 values; consumers SHOULD validate length.
   repeated float disc_up = 4 [packed = true];
   
-  // Disc velocity (3 floats).
+  // Disc velocity (exactly 3 floats: x, y, z).
+  // Producers MUST send exactly 3 values; consumers SHOULD validate length.
   repeated float disc_velocity = 5 [packed = true];
 
   // Teams in the session.
@@ -284,55 +290,72 @@ message CompactPlayer {
   // Player level.
   uint32 level = 3;
 
-  // Head position (3 floats: x, y, z).
+  // Head position (exactly 3 floats: x, y, z).
+  // Producers MUST send exactly 3 values; consumers SHOULD validate length.
   repeated float head_pos = 10 [packed = true];
   
-  // Head forward direction (3 floats).
+  // Head forward direction (exactly 3 floats: x, y, z).
+  // Producers MUST send exactly 3 values; consumers SHOULD validate length.
   repeated float head_forward = 11 [packed = true];
   
-  // Head left direction (3 floats).
+  // Head left direction (exactly 3 floats: x, y, z).
+  // Producers MUST send exactly 3 values; consumers SHOULD validate length.
   repeated float head_left = 12 [packed = true];
   
-  // Head up direction (3 floats).
+  // Head up direction (exactly 3 floats: x, y, z).
+  // Producers MUST send exactly 3 values; consumers SHOULD validate length.
   repeated float head_up = 13 [packed = true];
 
-  // Body position (3 floats: x, y, z).
+  // Body position (exactly 3 floats: x, y, z).
+  // Producers MUST send exactly 3 values; consumers SHOULD validate length.
   repeated float body_pos = 14 [packed = true];
   
-  // Body forward direction (3 floats).
+  // Body forward direction (exactly 3 floats: x, y, z).
+  // Producers MUST send exactly 3 values; consumers SHOULD validate length.
   repeated float body_forward = 15 [packed = true];
   
-  // Body left direction (3 floats).
+  // Body left direction (exactly 3 floats: x, y, z).
+  // Producers MUST send exactly 3 values; consumers SHOULD validate length.
   repeated float body_left = 16 [packed = true];
   
-  // Body up direction (3 floats).
+  // Body up direction (exactly 3 floats: x, y, z).
+  // Producers MUST send exactly 3 values; consumers SHOULD validate length.
   repeated float body_up = 17 [packed = true];
 
-  // Left hand position (3 floats: x, y, z).
+  // Left hand position (exactly 3 floats: x, y, z).
+  // Producers MUST send exactly 3 values; consumers SHOULD validate length.
   repeated float left_hand_pos = 18 [packed = true];
   
-  // Left hand forward direction (3 floats).
+  // Left hand forward direction (exactly 3 floats: x, y, z).
+  // Producers MUST send exactly 3 values; consumers SHOULD validate length.
   repeated float left_hand_forward = 19 [packed = true];
   
-  // Left hand left direction (3 floats).
+  // Left hand left direction (exactly 3 floats: x, y, z).
+  // Producers MUST send exactly 3 values; consumers SHOULD validate length.
   repeated float left_hand_left = 20 [packed = true];
   
-  // Left hand up direction (3 floats).
+  // Left hand up direction (exactly 3 floats: x, y, z).
+  // Producers MUST send exactly 3 values; consumers SHOULD validate length.
   repeated float left_hand_up = 21 [packed = true];
 
-  // Right hand position (3 floats: x, y, z).
+  // Right hand position (exactly 3 floats: x, y, z).
+  // Producers MUST send exactly 3 values; consumers SHOULD validate length.
   repeated float right_hand_pos = 22 [packed = true];
   
-  // Right hand forward direction (3 floats).
+  // Right hand forward direction (exactly 3 floats: x, y, z).
+  // Producers MUST send exactly 3 values; consumers SHOULD validate length.
   repeated float right_hand_forward = 23 [packed = true];
   
-  // Right hand left direction (3 floats).
+  // Right hand left direction (exactly 3 floats: x, y, z).
+  // Producers MUST send exactly 3 values; consumers SHOULD validate length.
   repeated float right_hand_left = 24 [packed = true];
   
-  // Right hand up direction (3 floats).
+  // Right hand up direction (exactly 3 floats: x, y, z).
+  // Producers MUST send exactly 3 values; consumers SHOULD validate length.
   repeated float right_hand_up = 25 [packed = true];
 
-  // Player velocity (3 floats: x, y, z).
+  // Player velocity (exactly 3 floats: x, y, z).
+  // Producers MUST send exactly 3 values; consumers SHOULD validate length.
   repeated float velocity = 26 [packed = true];
 
   // Player statistics.
@@ -409,16 +432,19 @@ message BonesFrame {
   uint32 player_index = 2;
   
   // Bitmask indicating which bone indices have changed (for delta frames).
-  // Each bit represents one bone; bit is set if bone data is included.
+  // Each bit represents one bone; bit is set (1) if bone data is included.
+  // Bit ordering: little-endian within each byte (bit 0 = LSB).
+  // Byte ordering: byte 0 contains bones 0-7, byte 1 contains bones 8-15, etc.
+  // If number of bones exceeds mask size, extend with additional bytes as needed.
   bytes changed_mask = 3;
   
-  // Bone translation data (packed float32).
-  // For keyframes: all bone translations.
-  // For delta frames: only translations for bones indicated in changed_mask.
+  // Bone translation data (packed float32, 3 values per bone: x, y, z).
+  // For keyframes: all bone translations in order (bone 0, bone 1, ...).
+  // For delta frames: only translations for bones indicated in changed_mask, in order.
   repeated float bone_t = 4 [packed = true];
   
-  // Bone orientation/rotation data (packed float32).
-  // For keyframes: all bone orientations.
-  // For delta frames: only orientations for bones indicated in changed_mask.
+  // Bone orientation/rotation data (packed float32, 4 values per bone: x, y, z, w quaternion).
+  // For keyframes: all bone orientations in order (bone 0, bone 1, ...).
+  // For delta frames: only orientations for bones indicated in changed_mask, in order.
   repeated float bone_o = 5 [packed = true];
 }
