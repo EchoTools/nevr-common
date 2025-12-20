@@ -440,11 +440,15 @@ message BonesFrame {
   
   // Bone translation data (packed float32, 3 values per bone: x, y, z).
   // For keyframes: all bone translations in order (bone 0, bone 1, ...).
+  //   Producers MUST send exactly 3*N values where N is the number of bones.
   // For delta frames: only translations for bones indicated in changed_mask, in order.
+  //   Producers MUST send exactly 3*M values where M is the count of set bits in changed_mask.
   repeated float bone_t = 4 [packed = true];
   
   // Bone orientation/rotation data (packed float32, 4 values per bone: x, y, z, w quaternion).
   // For keyframes: all bone orientations in order (bone 0, bone 1, ...).
+  //   Producers MUST send exactly 4*N values where N is the number of bones.
   // For delta frames: only orientations for bones indicated in changed_mask, in order.
+  //   Producers MUST send exactly 4*M values where M is the count of set bits in changed_mask.
   repeated float bone_o = 5 [packed = true];
 }
