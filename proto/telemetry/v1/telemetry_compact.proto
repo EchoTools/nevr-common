@@ -68,6 +68,8 @@ message TelemetryHeaderV2 {
   // Fixed timestep in nanoseconds (optional); if set, frame times can be
   // derived from frame_index without delta_nanos using the formula:
   // frame_time = base_time_unix_nanos + (frame_index * timestep_nanos)
+  // Note: For very long captures, ensure frame_index * timestep_nanos fits within
+  // the range of base_time_unix_nanos (uint64) to avoid overflow.
   uint32 timestep_nanos = 3;
   
   // Server identifier (promoted from metadata).
@@ -129,6 +131,9 @@ message LobbySessionStateFrameV2 {
   
   // Signed varint delta in nanoseconds from base_time_unix_nanos.
   // Can be omitted if derivable from frame_index and timestep_nanos in header.
+  // Note: sint32 range is approximately ±2.1 seconds. For typical frame rates
+  // (e.g., 90 Hz = ~11ms per frame), this supports ~190 frames from base time.
+  // Consider periodic base time updates in header if deltas exceed this range.
   sint32 delta_nanos = 2;
   
   // A list of discrete events that occurred during this frame.
@@ -435,20 +440,27 @@ message BonesFrame {
   // Each bit represents one bone; bit is set (1) if bone data is included.
   // Bit ordering: little-endian within each byte (bit 0 = LSB).
   // Byte ordering: byte 0 contains bones 0-7, byte 1 contains bones 8-15, etc.
+  // Example: For bones 0, 2, and 9 changed:
+  //   byte 0 = 0x05 (bits 0 and 2 set)
+  //   byte 1 = 0x02 (bit 1 set, representing bone 8+1=9)
   // If number of bones exceeds mask size, extend with additional bytes as needed.
   bytes changed_mask = 3;
   
   // Bone translation data (packed float32, 3 values per bone: x, y, z).
   // For keyframes: all bone translations in order (bone 0, bone 1, ...).
   //   Producers MUST send exactly 3*N values where N is the number of bones.
-  // For delta frames: only translations for bones indicated in changed_mask, in order.
+  // For delta frames: only translations for bones indicated in changed_mask.
+  //   Data MUST be in ascending bone index order (e.g., if bones 2, 5, 8 are changed,
+  //   send translations for bone 2, then bone 5, then bone 8).
   //   Producers MUST send exactly 3*M values where M is the count of set bits in changed_mask.
   repeated float bone_t = 4 [packed = true];
   
   // Bone orientation/rotation data (packed float32, 4 values per bone: x, y, z, w quaternion).
   // For keyframes: all bone orientations in order (bone 0, bone 1, ...).
   //   Producers MUST send exactly 4*N values where N is the number of bones.
-  // For delta frames: only orientations for bones indicated in changed_mask, in order.
+  // For delta frames: only orientations for bones indicated in changed_mask.
+  //   Data MUST be in ascending bone index order (e.g., if bones 2, 5, 8 are changed,
+  //   send orientations for bone 2, then bone 5, then bone 8).
   //   Producers MUST send exactly 4*M values where M is the count of set bits in changed_mask.
   repeated float bone_o = 5 [packed = true];
 }
