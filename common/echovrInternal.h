@@ -114,6 +114,44 @@ typedef UINT64 SetWindowTextAFunc(HWND hWnd, LPCSTR lpString);
 /// Reference: https://learn.microsoft.com/en-us/windows/win32/api/winuser/nf-winuser-setwindowtexta
 typedef UINT64 SetWindowTextAFunc(HWND hWnd, LPCSTR lpString);
 extern SetWindowTextAFunc* SetWindowTextA_;
+
+// --- UDP/protocol function declarations ---
+typedef void ListenProxyFunc(void);
+extern ListenProxyFunc* ListenProxy;
+
+typedef void udp_recvfrom_sockaddr_storageFunc(void);
+extern udp_recvfrom_sockaddr_storageFunc* udp_recvfrom_sockaddr_storage;
+
+typedef void CleanupPingsFunc(long long* in_RCX, long long* in_R8);
+extern CleanupPingsFunc* CleanupPings;
+
+typedef unsigned int udp_protocol_lookup_or_dispatchFunc(long long, unsigned long long, int);
+extern udp_protocol_lookup_or_dispatchFunc* udp_protocol_lookup_or_dispatch;
+
+typedef unsigned long long* udp_protocol_get_stateFunc(long long, unsigned long long*, unsigned long long, int);
+extern udp_protocol_get_stateFunc* udp_protocol_get_state;
+
+typedef unsigned int udp_protocol_get_peer_idFunc(long long, unsigned long long, int);
+extern udp_protocol_get_peer_idFunc* udp_protocol_get_peer_id;
+
+typedef long long* udp_protocol_find_peerFunc(long long, long long);
+extern udp_protocol_find_peerFunc* udp_protocol_find_peer;
+
+typedef long long udp_protocol_find_peer_by_addrFunc(long long, long long);
+extern udp_protocol_find_peer_by_addrFunc* udp_protocol_find_peer_by_addr;
+
+typedef long long udp_protocol_get_contextFunc(long long);
+extern udp_protocol_get_contextFunc* udp_protocol_get_context;
+
+typedef void udp_protocol_handshake_or_intro1Func(long long, unsigned long long, void*, unsigned long long,
+                                                  unsigned int, unsigned int);
+extern udp_protocol_handshake_or_intro1Func* udp_protocol_handshake_or_intro1;
+
+typedef void udp_protocol_handshake_or_intro2Func(long long, unsigned long long, unsigned int, unsigned int);
+extern udp_protocol_handshake_or_intro2Func* udp_protocol_handshake_or_intro2;
+
+typedef void udp_protocol_handshake_or_intro3Func(long long, long long, int, int);
+extern udp_protocol_handshake_or_intro3Func* udp_protocol_handshake_or_intro3;
 }  // namespace EchoVR
 
 #endif  // ECHOVR_INTERNAL_H
