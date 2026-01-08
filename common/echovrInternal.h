@@ -86,7 +86,11 @@ extern WriteLogFunc* WriteLog;
 /// <returns>TODO: Unknown</returns>
 typedef UINT64 HttpConnectFunc(VOID* unk, CHAR* uri);
 extern HttpConnectFunc* HttpConnect;
-typedef UINT64 LoadLocalConfigFunc(PVOID pGame);
+
+/// Loads a JSON file from disk into a Json structure.
+/// <returns>0 on success, non-zero error code on failure</returns>
+typedef UINT32 LoadJsonFromFileFunc(EchoVR::Json* dest, const CHAR* filePath, UINT32 flags);
+extern LoadJsonFromFileFunc* LoadJsonFromFile;
 
 /// Loads the local config (located at ./_local/config.json) for the provided game instance.
 typedef UINT64 LoadLocalConfigFunc(PVOID pGame);
