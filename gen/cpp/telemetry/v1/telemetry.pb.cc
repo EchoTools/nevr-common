@@ -184,7 +184,8 @@ inline constexpr PlayerSteal::Impl_::Impl_(
     ::_pbi::ConstantInitialized) noexcept
       : _cached_size_{0},
         player_slot_{0},
-        total_steals_{0} {}
+        total_steals_{0},
+        victim_player_slot_{0} {}
 
 template <typename>
 PROTOBUF_CONSTEXPR PlayerSteal::PlayerSteal(::_pbi::ConstantInitialized)
@@ -950,11 +951,13 @@ const ::uint32_t
         1,
         0x081, // bitmap
         PROTOBUF_FIELD_OFFSET(::telemetry::v1::PlayerSteal, _impl_._has_bits_),
-        5, // hasbit index offset
+        6, // hasbit index offset
         PROTOBUF_FIELD_OFFSET(::telemetry::v1::PlayerSteal, _impl_.player_slot_),
         PROTOBUF_FIELD_OFFSET(::telemetry::v1::PlayerSteal, _impl_.total_steals_),
+        PROTOBUF_FIELD_OFFSET(::telemetry::v1::PlayerSteal, _impl_.victim_player_slot_),
         0,
         1,
+        2,
         0x081, // bitmap
         PROTOBUF_FIELD_OFFSET(::telemetry::v1::PlayerBlock, _impl_._has_bits_),
         5, // hasbit index offset
@@ -1011,10 +1014,10 @@ static const ::_pbi::MigrationSchema
         {170, sizeof(::telemetry::v1::PlayerStun)},
         {177, sizeof(::telemetry::v1::PlayerPass)},
         {184, sizeof(::telemetry::v1::PlayerSteal)},
-        {191, sizeof(::telemetry::v1::PlayerBlock)},
-        {198, sizeof(::telemetry::v1::PlayerInterception)},
-        {205, sizeof(::telemetry::v1::PlayerAssist)},
-        {212, sizeof(::telemetry::v1::PlayerShotTaken)},
+        {193, sizeof(::telemetry::v1::PlayerBlock)},
+        {200, sizeof(::telemetry::v1::PlayerInterception)},
+        {207, sizeof(::telemetry::v1::PlayerAssist)},
+        {214, sizeof(::telemetry::v1::PlayerShotTaken)},
 };
 static const ::_pb::Message* PROTOBUF_NONNULL const file_default_instances[] = {
     &::telemetry::v1::_TelemetryHeader_MetadataEntry_DoNotUse_default_instance_._instance,
@@ -1152,26 +1155,27 @@ const char descriptor_table_protodef_telemetry_2fv1_2ftelemetry_2eproto[] ABSL_A
     "layerStun\022\037\n\013player_slot\030\001 \001(\005R\nplayerSl"
     "ot\022\037\n\013total_stuns\030\002 \001(\005R\ntotalStuns\"P\n\nP"
     "layerPass\022\037\n\013player_slot\030\001 \001(\005R\nplayerSl"
-    "ot\022!\n\014total_passes\030\002 \001(\005R\013totalPasses\"Q\n"
+    "ot\022!\n\014total_passes\030\002 \001(\005R\013totalPasses\"\177\n"
     "\013PlayerSteal\022\037\n\013player_slot\030\001 \001(\005R\nplaye"
     "rSlot\022!\n\014total_steals\030\002 \001(\005R\013totalSteals"
-    "\"Q\n\013PlayerBlock\022\037\n\013player_slot\030\001 \001(\005R\npl"
-    "ayerSlot\022!\n\014total_blocks\030\002 \001(\005R\013totalBlo"
-    "cks\"f\n\022PlayerInterception\022\037\n\013player_slot"
-    "\030\001 \001(\005R\nplayerSlot\022/\n\023total_interception"
-    "s\030\002 \001(\005R\022totalInterceptions\"T\n\014PlayerAss"
-    "ist\022\037\n\013player_slot\030\001 \001(\005R\nplayerSlot\022#\n\r"
-    "total_assists\030\002 \001(\005R\014totalAssists\"S\n\017Pla"
-    "yerShotTaken\022\037\n\013player_slot\030\001 \001(\005R\nplaye"
-    "rSlot\022\037\n\013total_shots\030\002 \001(\005R\ntotalShots*\213"
-    "\001\n\004Role\022\024\n\020ROLE_UNSPECIFIED\020\000\022\022\n\016ROLE_BL"
-    "UE_TEAM\020\001\022\024\n\020ROLE_ORANGE_TEAM\020\002\022\022\n\016ROLE_"
-    "SPECTATOR\020\003\022\033\n\027ROLE_SOCIAL_PARTICIPANT\020\004"
-    "\022\022\n\016ROLE_MODERATOR\020\005B\217\001\n\037com.echotools.n"
-    "evr.telemetry.v1B\rNevrTelemetryP\001ZAgithu"
-    "b.com/echotools/nevr-common/v4/gen/go/te"
-    "lemetry/v1;telemetry\252\002\027Nevr.Telemetry.Pr"
-    "otobufb\006proto3"
+    "\022,\n\022victim_player_slot\030\003 \001(\005R\020victimPlay"
+    "erSlot\"Q\n\013PlayerBlock\022\037\n\013player_slot\030\001 \001"
+    "(\005R\nplayerSlot\022!\n\014total_blocks\030\002 \001(\005R\013to"
+    "talBlocks\"f\n\022PlayerInterception\022\037\n\013playe"
+    "r_slot\030\001 \001(\005R\nplayerSlot\022/\n\023total_interc"
+    "eptions\030\002 \001(\005R\022totalInterceptions\"T\n\014Pla"
+    "yerAssist\022\037\n\013player_slot\030\001 \001(\005R\nplayerSl"
+    "ot\022#\n\rtotal_assists\030\002 \001(\005R\014totalAssists\""
+    "S\n\017PlayerShotTaken\022\037\n\013player_slot\030\001 \001(\005R"
+    "\nplayerSlot\022\037\n\013total_shots\030\002 \001(\005R\ntotalS"
+    "hots*\213\001\n\004Role\022\024\n\020ROLE_UNSPECIFIED\020\000\022\022\n\016R"
+    "OLE_BLUE_TEAM\020\001\022\024\n\020ROLE_ORANGE_TEAM\020\002\022\022\n"
+    "\016ROLE_SPECTATOR\020\003\022\033\n\027ROLE_SOCIAL_PARTICI"
+    "PANT\020\004\022\022\n\016ROLE_MODERATOR\020\005B\217\001\n\037com.echot"
+    "ools.nevr.telemetry.v1B\rNevrTelemetryP\001Z"
+    "Agithub.com/echotools/nevr-common/v4/gen"
+    "/go/telemetry/v1;telemetry\252\002\027Nevr.Teleme"
+    "try.Protobufb\006proto3"
 };
 static const ::_pbi::DescriptorTable* PROTOBUF_NONNULL const
     descriptor_table_telemetry_2fv1_2ftelemetry_2eproto_deps[2] = {
@@ -1182,7 +1186,7 @@ static ::absl::once_flag descriptor_table_telemetry_2fv1_2ftelemetry_2eproto_onc
 PROTOBUF_CONSTINIT const ::_pbi::DescriptorTable descriptor_table_telemetry_2fv1_2ftelemetry_2eproto = {
     false,
     false,
-    4934,
+    4980,
     descriptor_table_protodef_telemetry_2fv1_2ftelemetry_2eproto,
     "telemetry/v1/telemetry.proto",
     &descriptor_table_telemetry_2fv1_2ftelemetry_2eproto_once,
@@ -9259,9 +9263,9 @@ inline void PlayerSteal::SharedCtor(::_pb::Arena* PROTOBUF_NULLABLE arena) {
   ::memset(reinterpret_cast<char*>(&_impl_) +
                offsetof(Impl_, player_slot_),
            0,
-           offsetof(Impl_, total_steals_) -
+           offsetof(Impl_, victim_player_slot_) -
                offsetof(Impl_, player_slot_) +
-               sizeof(Impl_::total_steals_));
+               sizeof(Impl_::victim_player_slot_));
 }
 PlayerSteal::~PlayerSteal() {
   // @@protoc_insertion_point(destructor:telemetry.v1.PlayerSteal)
@@ -9320,16 +9324,16 @@ PlayerSteal::GetClassData() const {
   return PlayerSteal_class_data_.base();
 }
 PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
-const ::_pbi::TcParseTable<1, 2, 0, 0, 2>
+const ::_pbi::TcParseTable<2, 3, 0, 0, 2>
 PlayerSteal::_table_ = {
   {
     PROTOBUF_FIELD_OFFSET(PlayerSteal, _impl_._has_bits_),
     0, // no _extensions_
-    2, 8,  // max_field_number, fast_idx_mask
+    3, 24,  // max_field_number, fast_idx_mask
     offsetof(decltype(_table_), field_lookup_table),
-    4294967292,  // skipmap
+    4294967288,  // skipmap
     offsetof(decltype(_table_), field_entries),
-    2,  // num_field_entries
+    3,  // num_field_entries
     0,  // num_aux_entries
     offsetof(decltype(_table_), field_names),  // no aux_entries
     PlayerSteal_class_data_.base(),
@@ -9339,14 +9343,19 @@ PlayerSteal::_table_ = {
     ::_pbi::TcParser::GetTable<::telemetry::v1::PlayerSteal>(),  // to_prefetch
     #endif  // PROTOBUF_PREFETCH_PARSE_TABLE
   }, {{
-    // int32 total_steals = 2 [json_name = "totalSteals"];
-    {::_pbi::TcParser::SingularVarintNoZag1<::uint32_t, offsetof(PlayerSteal, _impl_.total_steals_), 1>(),
-     {16, 1, 0,
-      PROTOBUF_FIELD_OFFSET(PlayerSteal, _impl_.total_steals_)}},
+    {::_pbi::TcParser::MiniParse, {}},
     // int32 player_slot = 1 [json_name = "playerSlot"];
     {::_pbi::TcParser::SingularVarintNoZag1<::uint32_t, offsetof(PlayerSteal, _impl_.player_slot_), 0>(),
      {8, 0, 0,
       PROTOBUF_FIELD_OFFSET(PlayerSteal, _impl_.player_slot_)}},
+    // int32 total_steals = 2 [json_name = "totalSteals"];
+    {::_pbi::TcParser::SingularVarintNoZag1<::uint32_t, offsetof(PlayerSteal, _impl_.total_steals_), 1>(),
+     {16, 1, 0,
+      PROTOBUF_FIELD_OFFSET(PlayerSteal, _impl_.total_steals_)}},
+    // int32 victim_player_slot = 3 [json_name = "victimPlayerSlot"];
+    {::_pbi::TcParser::SingularVarintNoZag1<::uint32_t, offsetof(PlayerSteal, _impl_.victim_player_slot_), 2>(),
+     {24, 2, 0,
+      PROTOBUF_FIELD_OFFSET(PlayerSteal, _impl_.victim_player_slot_)}},
   }}, {{
     65535, 65535
   }}, {{
@@ -9354,6 +9363,8 @@ PlayerSteal::_table_ = {
     {PROTOBUF_FIELD_OFFSET(PlayerSteal, _impl_.player_slot_), _Internal::kHasBitsOffset + 0, 0, (0 | ::_fl::kFcOptional | ::_fl::kInt32)},
     // int32 total_steals = 2 [json_name = "totalSteals"];
     {PROTOBUF_FIELD_OFFSET(PlayerSteal, _impl_.total_steals_), _Internal::kHasBitsOffset + 1, 0, (0 | ::_fl::kFcOptional | ::_fl::kInt32)},
+    // int32 victim_player_slot = 3 [json_name = "victimPlayerSlot"];
+    {PROTOBUF_FIELD_OFFSET(PlayerSteal, _impl_.victim_player_slot_), _Internal::kHasBitsOffset + 2, 0, (0 | ::_fl::kFcOptional | ::_fl::kInt32)},
   }},
   // no aux_entries
   {{
@@ -9367,10 +9378,10 @@ PROTOBUF_NOINLINE void PlayerSteal::Clear() {
   (void) cached_has_bits;
 
   cached_has_bits = _impl_._has_bits_[0];
-  if (BatchCheckHasBit(cached_has_bits, 0x00000003U)) {
+  if (BatchCheckHasBit(cached_has_bits, 0x00000007U)) {
     ::memset(&_impl_.player_slot_, 0, static_cast<::size_t>(
-        reinterpret_cast<char*>(&_impl_.total_steals_) -
-        reinterpret_cast<char*>(&_impl_.player_slot_)) + sizeof(_impl_.total_steals_));
+        reinterpret_cast<char*>(&_impl_.victim_player_slot_) -
+        reinterpret_cast<char*>(&_impl_.player_slot_)) + sizeof(_impl_.victim_player_slot_));
   }
   _impl_._has_bits_.Clear();
   _internal_metadata_.Clear<::google::protobuf::UnknownFieldSet>();
@@ -9413,6 +9424,15 @@ PROTOBUF_NOINLINE void PlayerSteal::Clear() {
     }
   }
 
+  // int32 victim_player_slot = 3 [json_name = "victimPlayerSlot"];
+  if (CheckHasBit(cached_has_bits, 0x00000004U)) {
+    if (this_._internal_victim_player_slot() != 0) {
+      target =
+          ::google::protobuf::internal::WireFormatLite::WriteInt32ToArrayWithField<3>(
+              stream, this_._internal_victim_player_slot(), target);
+    }
+  }
+
   if (ABSL_PREDICT_FALSE(this_._internal_metadata_.have_unknown_fields())) {
     target =
         ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
@@ -9438,7 +9458,7 @@ PROTOBUF_NOINLINE void PlayerSteal::Clear() {
 
   ::_pbi::Prefetch5LinesFrom7Lines(&this_);
   cached_has_bits = this_._impl_._has_bits_[0];
-  if (BatchCheckHasBit(cached_has_bits, 0x00000003U)) {
+  if (BatchCheckHasBit(cached_has_bits, 0x00000007U)) {
     // int32 player_slot = 1 [json_name = "playerSlot"];
     if (CheckHasBit(cached_has_bits, 0x00000001U)) {
       if (this_._internal_player_slot() != 0) {
@@ -9451,6 +9471,13 @@ PROTOBUF_NOINLINE void PlayerSteal::Clear() {
       if (this_._internal_total_steals() != 0) {
         total_size += ::_pbi::WireFormatLite::Int32SizePlusOne(
             this_._internal_total_steals());
+      }
+    }
+    // int32 victim_player_slot = 3 [json_name = "victimPlayerSlot"];
+    if (CheckHasBit(cached_has_bits, 0x00000004U)) {
+      if (this_._internal_victim_player_slot() != 0) {
+        total_size += ::_pbi::WireFormatLite::Int32SizePlusOne(
+            this_._internal_victim_player_slot());
       }
     }
   }
@@ -9472,7 +9499,7 @@ void PlayerSteal::MergeImpl(::google::protobuf::MessageLite& to_msg,
   (void)cached_has_bits;
 
   cached_has_bits = from._impl_._has_bits_[0];
-  if (BatchCheckHasBit(cached_has_bits, 0x00000003U)) {
+  if (BatchCheckHasBit(cached_has_bits, 0x00000007U)) {
     if (CheckHasBit(cached_has_bits, 0x00000001U)) {
       if (from._internal_player_slot() != 0) {
         _this->_impl_.player_slot_ = from._impl_.player_slot_;
@@ -9481,6 +9508,11 @@ void PlayerSteal::MergeImpl(::google::protobuf::MessageLite& to_msg,
     if (CheckHasBit(cached_has_bits, 0x00000002U)) {
       if (from._internal_total_steals() != 0) {
         _this->_impl_.total_steals_ = from._impl_.total_steals_;
+      }
+    }
+    if (CheckHasBit(cached_has_bits, 0x00000004U)) {
+      if (from._internal_victim_player_slot() != 0) {
+        _this->_impl_.victim_player_slot_ = from._impl_.victim_player_slot_;
       }
     }
   }
@@ -9502,8 +9534,8 @@ void PlayerSteal::InternalSwap(PlayerSteal* PROTOBUF_RESTRICT PROTOBUF_NONNULL o
   _internal_metadata_.InternalSwap(&other->_internal_metadata_);
   swap(_impl_._has_bits_[0], other->_impl_._has_bits_[0]);
   ::google::protobuf::internal::memswap<
-      PROTOBUF_FIELD_OFFSET(PlayerSteal, _impl_.total_steals_)
-      + sizeof(PlayerSteal::_impl_.total_steals_)
+      PROTOBUF_FIELD_OFFSET(PlayerSteal, _impl_.victim_player_slot_)
+      + sizeof(PlayerSteal::_impl_.victim_player_slot_)
       - PROTOBUF_FIELD_OFFSET(PlayerSteal, _impl_.player_slot_)>(
           reinterpret_cast<char*>(&_impl_.player_slot_),
           reinterpret_cast<char*>(&other->_impl_.player_slot_));

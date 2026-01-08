@@ -162,14 +162,24 @@ inline constexpr SNSLobbySessionSuccessV5Message::Impl_::Impl_(
         server_random_key_(
             &::google::protobuf::internal::fixed_address_empty_string,
             ::_pbi::ConstantInitialized()),
+        client_mac_key_(
+            &::google::protobuf::internal::fixed_address_empty_string,
+            ::_pbi::ConstantInitialized()),
+        client_enc_key_(
+            &::google::protobuf::internal::fixed_address_empty_string,
+            ::_pbi::ConstantInitialized()),
+        client_random_key_(
+            &::google::protobuf::internal::fixed_address_empty_string,
+            ::_pbi::ConstantInitialized()),
         game_mode_{::uint64_t{0u}},
         team_index_{0},
-        unk1_{0u},
+        user_slot_{0u},
+        flags32_{0u},
+        session_flags_{0u},
         server_encoder_flags_{::uint64_t{0u}},
         client_encoder_flags_{::uint64_t{0u}},
         server_sequence_id_{::uint64_t{0u}},
-        client_sequence_id_{::uint64_t{0u}},
-        headset_type_{0} {}
+        client_sequence_id_{::uint64_t{0u}} {}
 
 template <typename>
 PROTOBUF_CONSTEXPR SNSLobbySessionSuccessV5Message::SNSLobbySessionSuccessV5Message(::_pbi::ConstantInitialized)
@@ -708,6 +718,32 @@ struct LobbyEntrantRemovedMessageDefaultTypeInternal {
 
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
     PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 LobbyEntrantRemovedMessageDefaultTypeInternal _LobbyEntrantRemovedMessage_default_instance_;
+
+inline constexpr LoadoutItem::Impl_::Impl_(
+    ::_pbi::ConstantInitialized) noexcept
+      : _cached_size_{0},
+        slot_type_{::uint64_t{0u}},
+        equipped_item_{::uint64_t{0u}} {}
+
+template <typename>
+PROTOBUF_CONSTEXPR LoadoutItem::LoadoutItem(::_pbi::ConstantInitialized)
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+    : ::google::protobuf::Message(LoadoutItem_class_data_.base()),
+#else   // PROTOBUF_CUSTOM_VTABLE
+    : ::google::protobuf::Message(),
+#endif  // PROTOBUF_CUSTOM_VTABLE
+      _impl_(::_pbi::ConstantInitialized()) {
+}
+struct LoadoutItemDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR LoadoutItemDefaultTypeInternal() : _instance(::_pbi::ConstantInitialized{}) {}
+  ~LoadoutItemDefaultTypeInternal() {}
+  union {
+    LoadoutItem _instance;
+  };
+};
+
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
+    PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 LoadoutItemDefaultTypeInternal _LoadoutItem_default_instance_;
 
 inline constexpr GameServerRegistrationSuccessMessage::Impl_::Impl_(
     ::_pbi::ConstantInitialized) noexcept
@@ -1537,6 +1573,32 @@ struct LobbySessionStateRawMessageDefaultTypeInternal {
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
     PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 LobbySessionStateRawMessageDefaultTypeInternal _LobbySessionStateRawMessage_default_instance_;
 
+inline constexpr LoadoutInstance::Impl_::Impl_(
+    ::_pbi::ConstantInitialized) noexcept
+      : _cached_size_{0},
+        items_{},
+        instance_name_{::uint64_t{0u}} {}
+
+template <typename>
+PROTOBUF_CONSTEXPR LoadoutInstance::LoadoutInstance(::_pbi::ConstantInitialized)
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+    : ::google::protobuf::Message(LoadoutInstance_class_data_.base()),
+#else   // PROTOBUF_CUSTOM_VTABLE
+    : ::google::protobuf::Message(),
+#endif  // PROTOBUF_CUSTOM_VTABLE
+      _impl_(::_pbi::ConstantInitialized()) {
+}
+struct LoadoutInstanceDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR LoadoutInstanceDefaultTypeInternal() : _instance(::_pbi::ConstantInitialized{}) {}
+  ~LoadoutInstanceDefaultTypeInternal() {}
+  union {
+    LoadoutInstance _instance;
+  };
+};
+
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
+    PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 LoadoutInstanceDefaultTypeInternal _LoadoutInstance_default_instance_;
+
 inline constexpr Error::Impl_::Impl_(
     ::_pbi::ConstantInitialized) noexcept
       : _cached_size_{0},
@@ -1565,6 +1627,39 @@ struct ErrorDefaultTypeInternal {
 
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
     PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 ErrorDefaultTypeInternal _Error_default_instance_;
+
+inline constexpr GameServerSaveLoadoutMessage::Impl_::Impl_(
+    ::_pbi::ConstantInitialized) noexcept
+      : _cached_size_{0},
+        loadout_instances_{},
+        lobby_session_id_(
+            &::google::protobuf::internal::fixed_address_empty_string,
+            ::_pbi::ConstantInitialized()),
+        entrant_id_(
+            &::google::protobuf::internal::fixed_address_empty_string,
+            ::_pbi::ConstantInitialized()),
+        loadout_slot_{0},
+        jersey_number_{0} {}
+
+template <typename>
+PROTOBUF_CONSTEXPR GameServerSaveLoadoutMessage::GameServerSaveLoadoutMessage(::_pbi::ConstantInitialized)
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+    : ::google::protobuf::Message(GameServerSaveLoadoutMessage_class_data_.base()),
+#else   // PROTOBUF_CUSTOM_VTABLE
+    : ::google::protobuf::Message(),
+#endif  // PROTOBUF_CUSTOM_VTABLE
+      _impl_(::_pbi::ConstantInitialized()) {
+}
+struct GameServerSaveLoadoutMessageDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR GameServerSaveLoadoutMessageDefaultTypeInternal() : _instance(::_pbi::ConstantInitialized{}) {}
+  ~GameServerSaveLoadoutMessageDefaultTypeInternal() {}
+  union {
+    GameServerSaveLoadoutMessage _instance;
+  };
+};
+
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
+    PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 GameServerSaveLoadoutMessageDefaultTypeInternal _GameServerSaveLoadoutMessage_default_instance_;
 
 inline constexpr LobbySessionStateMessage::Impl_::Impl_(
     ::_pbi::ConstantInitialized) noexcept
@@ -1633,7 +1728,7 @@ const ::uint32_t
         0x085, // bitmap
         PROTOBUF_FIELD_OFFSET(::realtime::Envelope, _impl_._has_bits_),
         PROTOBUF_FIELD_OFFSET(::realtime::Envelope, _impl_._oneof_case_[0]),
-        57, // hasbit index offset
+        58, // hasbit index offset
         PROTOBUF_FIELD_OFFSET(::realtime::Envelope, _impl_.cid_),
         PROTOBUF_FIELD_OFFSET(::realtime::Envelope, _impl_.message_),
         PROTOBUF_FIELD_OFFSET(::realtime::Envelope, _impl_.message_),
@@ -1687,7 +1782,9 @@ const ::uint32_t
         PROTOBUF_FIELD_OFFSET(::realtime::Envelope, _impl_.message_),
         PROTOBUF_FIELD_OFFSET(::realtime::Envelope, _impl_.message_),
         PROTOBUF_FIELD_OFFSET(::realtime::Envelope, _impl_.message_),
+        PROTOBUF_FIELD_OFFSET(::realtime::Envelope, _impl_.message_),
         0,
+        ~0u,
         ~0u,
         ~0u,
         ~0u,
@@ -1787,6 +1884,33 @@ const ::uint32_t
         PROTOBUF_FIELD_OFFSET(::realtime::GameServerRegistrationSuccessMessage, _impl_.server_id_),
         PROTOBUF_FIELD_OFFSET(::realtime::GameServerRegistrationSuccessMessage, _impl_.external_ip_address_),
         1,
+        0,
+        0x081, // bitmap
+        PROTOBUF_FIELD_OFFSET(::realtime::LoadoutItem, _impl_._has_bits_),
+        5, // hasbit index offset
+        PROTOBUF_FIELD_OFFSET(::realtime::LoadoutItem, _impl_.slot_type_),
+        PROTOBUF_FIELD_OFFSET(::realtime::LoadoutItem, _impl_.equipped_item_),
+        0,
+        1,
+        0x081, // bitmap
+        PROTOBUF_FIELD_OFFSET(::realtime::LoadoutInstance, _impl_._has_bits_),
+        5, // hasbit index offset
+        PROTOBUF_FIELD_OFFSET(::realtime::LoadoutInstance, _impl_.instance_name_),
+        PROTOBUF_FIELD_OFFSET(::realtime::LoadoutInstance, _impl_.items_),
+        1,
+        0,
+        0x081, // bitmap
+        PROTOBUF_FIELD_OFFSET(::realtime::GameServerSaveLoadoutMessage, _impl_._has_bits_),
+        8, // hasbit index offset
+        PROTOBUF_FIELD_OFFSET(::realtime::GameServerSaveLoadoutMessage, _impl_.lobby_session_id_),
+        PROTOBUF_FIELD_OFFSET(::realtime::GameServerSaveLoadoutMessage, _impl_.entrant_id_),
+        PROTOBUF_FIELD_OFFSET(::realtime::GameServerSaveLoadoutMessage, _impl_.loadout_slot_),
+        PROTOBUF_FIELD_OFFSET(::realtime::GameServerSaveLoadoutMessage, _impl_.jersey_number_),
+        PROTOBUF_FIELD_OFFSET(::realtime::GameServerSaveLoadoutMessage, _impl_.loadout_instances_),
+        1,
+        2,
+        3,
+        4,
         0,
         0x081, // bitmap
         PROTOBUF_FIELD_OFFSET(::realtime::LobbyEntrantsConnectedMessage, _impl_._has_bits_),
@@ -2050,14 +2174,15 @@ const ::uint32_t
         0,
         0x081, // bitmap
         PROTOBUF_FIELD_OFFSET(::realtime::SNSLobbySessionSuccessV5Message, _impl_._has_bits_),
-        17, // hasbit index offset
+        21, // hasbit index offset
         PROTOBUF_FIELD_OFFSET(::realtime::SNSLobbySessionSuccessV5Message, _impl_.game_mode_),
         PROTOBUF_FIELD_OFFSET(::realtime::SNSLobbySessionSuccessV5Message, _impl_.lobby_id_),
         PROTOBUF_FIELD_OFFSET(::realtime::SNSLobbySessionSuccessV5Message, _impl_.group_id_),
         PROTOBUF_FIELD_OFFSET(::realtime::SNSLobbySessionSuccessV5Message, _impl_.endpoint_),
         PROTOBUF_FIELD_OFFSET(::realtime::SNSLobbySessionSuccessV5Message, _impl_.team_index_),
-        PROTOBUF_FIELD_OFFSET(::realtime::SNSLobbySessionSuccessV5Message, _impl_.unk1_),
-        PROTOBUF_FIELD_OFFSET(::realtime::SNSLobbySessionSuccessV5Message, _impl_.headset_type_),
+        PROTOBUF_FIELD_OFFSET(::realtime::SNSLobbySessionSuccessV5Message, _impl_.user_slot_),
+        PROTOBUF_FIELD_OFFSET(::realtime::SNSLobbySessionSuccessV5Message, _impl_.flags32_),
+        PROTOBUF_FIELD_OFFSET(::realtime::SNSLobbySessionSuccessV5Message, _impl_.session_flags_),
         PROTOBUF_FIELD_OFFSET(::realtime::SNSLobbySessionSuccessV5Message, _impl_.server_encoder_flags_),
         PROTOBUF_FIELD_OFFSET(::realtime::SNSLobbySessionSuccessV5Message, _impl_.client_encoder_flags_),
         PROTOBUF_FIELD_OFFSET(::realtime::SNSLobbySessionSuccessV5Message, _impl_.server_sequence_id_),
@@ -2065,20 +2190,27 @@ const ::uint32_t
         PROTOBUF_FIELD_OFFSET(::realtime::SNSLobbySessionSuccessV5Message, _impl_.server_enc_key_),
         PROTOBUF_FIELD_OFFSET(::realtime::SNSLobbySessionSuccessV5Message, _impl_.server_random_key_),
         PROTOBUF_FIELD_OFFSET(::realtime::SNSLobbySessionSuccessV5Message, _impl_.client_sequence_id_),
-        6,
+        PROTOBUF_FIELD_OFFSET(::realtime::SNSLobbySessionSuccessV5Message, _impl_.client_mac_key_),
+        PROTOBUF_FIELD_OFFSET(::realtime::SNSLobbySessionSuccessV5Message, _impl_.client_enc_key_),
+        PROTOBUF_FIELD_OFFSET(::realtime::SNSLobbySessionSuccessV5Message, _impl_.client_random_key_),
+        9,
         0,
         1,
         2,
-        7,
-        8,
-        13,
-        9,
         10,
         11,
+        12,
+        13,
+        14,
+        15,
+        16,
         3,
         4,
         5,
-        12,
+        17,
+        6,
+        7,
+        8,
         0x081, // bitmap
         PROTOBUF_FIELD_OFFSET(::realtime::SNSLoggedInUserProfileFailureMessage, _impl_._has_bits_),
         6, // hasbit index offset
@@ -2213,61 +2345,64 @@ const ::uint32_t
 static const ::_pbi::MigrationSchema
     schemas[] ABSL_ATTRIBUTE_SECTION_VARIABLE(protodesc_cold) = {
         {0, sizeof(::realtime::Envelope)},
-        {109, sizeof(::realtime::Error_ContextEntry_DoNotUse)},
-        {116, sizeof(::realtime::Error)},
-        {125, sizeof(::realtime::LobbySessionEventMessage)},
-        {132, sizeof(::realtime::GameServerRegistrationMessage)},
-        {151, sizeof(::realtime::GameServerRegistrationSuccessMessage)},
-        {158, sizeof(::realtime::LobbyEntrantsConnectedMessage)},
-        {165, sizeof(::realtime::LobbyEntrantsAcceptMessage)},
-        {170, sizeof(::realtime::LobbyEntrantsRejectMessage)},
-        {177, sizeof(::realtime::LobbyEntrantRemovedMessage)},
-        {186, sizeof(::realtime::LobbySessionCreateMessage)},
-        {203, sizeof(::realtime::LobbySessionStateMessage)},
-        {216, sizeof(::realtime::LobbySessionStateRawMessage)},
-        {225, sizeof(::realtime::ConnectivityStatisticsMessage)},
-        {242, sizeof(::realtime::SymbolHash)},
-        {247, sizeof(::realtime::XPlatformID)},
-        {252, sizeof(::realtime::SNSUnknownMessage)},
-        {259, sizeof(::realtime::STCPConnectionRequireEvent)},
-        {260, sizeof(::realtime::STCPConnectionUnrequireEvent)},
-        {261, sizeof(::realtime::SNSConfigRequestV2Message)},
-        {266, sizeof(::realtime::SNSConfigSuccessV2Message)},
-        {275, sizeof(::realtime::SNSConfigFailureV2Message)},
-        {280, sizeof(::realtime::SNSReconcileIAPMessage)},
-        {287, sizeof(::realtime::SNSChannelInfoRequestMessage)},
-        {288, sizeof(::realtime::SNSChannelInfoResponseMessage)},
-        {293, sizeof(::realtime::SNSDocumentRequestV2Message)},
-        {300, sizeof(::realtime::SNSDocumentSuccessMessage)},
-        {305, sizeof(::realtime::SNSDocumentFailureMessage)},
-        {310, sizeof(::realtime::SNSLobbyCreateSessionRequestV9Message)},
-        {329, sizeof(::realtime::SNSLobbyFindSessionRequestv11Message)},
-        {350, sizeof(::realtime::SNSLobbyJoinSessionRequestV7Message)},
-        {363, sizeof(::realtime::SNSLobbyMatchmakerStatusMessage)},
-        {368, sizeof(::realtime::SNSLobbyMatchmakerStatusRequestMessage)},
-        {377, sizeof(::realtime::SNSLobbyPendingSessionCancelV2Message)},
-        {382, sizeof(::realtime::SNSLobbyPingRequestV3Message)},
-        {393, sizeof(::realtime::SNSLobbyPingResponseMessage)},
-        {398, sizeof(::realtime::SNSLobbyPlayerSessionsRequestV5Message)},
-        {411, sizeof(::realtime::SNSLobbySessionFailureV4Message)},
-        {418, sizeof(::realtime::SNSLobbySessionSuccessV5Message)},
-        {449, sizeof(::realtime::SNSLoggedInUserProfileFailureMessage)},
-        {458, sizeof(::realtime::SNSLoggedInUserProfileRequestMessage)},
-        {467, sizeof(::realtime::SNSLoggedInUserProfileSuccessMessage)},
-        {474, sizeof(::realtime::SNSLogInFailureMessage)},
-        {483, sizeof(::realtime::SNSLogInRequestV2Message)},
-        {492, sizeof(::realtime::SNSLoginSettingsMessage)},
-        {497, sizeof(::realtime::SNSLogInSuccessMessage)},
-        {504, sizeof(::realtime::SNSOtherUserProfileFailureMessage)},
-        {513, sizeof(::realtime::SNSOtherUserProfileRequestMessage)},
-        {520, sizeof(::realtime::SNSOtherUserProfileSuccessMessage)},
-        {527, sizeof(::realtime::SNSReconcileIAPResultMessage)},
-        {534, sizeof(::realtime::SNSRemoteLogSetV3Message)},
-        {543, sizeof(::realtime::SNSUpdateProfileMessage)},
-        {552, sizeof(::realtime::SNSUpdateProfileSuccessMessage)},
-        {557, sizeof(::realtime::SNSUpdateProfileFailureMessage)},
-        {566, sizeof(::realtime::SNSUserServerProfileUpdateRequestMessage)},
-        {573, sizeof(::realtime::SNSUserServerProfileUpdateSuccessMessage)},
+        {111, sizeof(::realtime::Error_ContextEntry_DoNotUse)},
+        {118, sizeof(::realtime::Error)},
+        {127, sizeof(::realtime::LobbySessionEventMessage)},
+        {134, sizeof(::realtime::GameServerRegistrationMessage)},
+        {153, sizeof(::realtime::GameServerRegistrationSuccessMessage)},
+        {160, sizeof(::realtime::LoadoutItem)},
+        {167, sizeof(::realtime::LoadoutInstance)},
+        {174, sizeof(::realtime::GameServerSaveLoadoutMessage)},
+        {187, sizeof(::realtime::LobbyEntrantsConnectedMessage)},
+        {194, sizeof(::realtime::LobbyEntrantsAcceptMessage)},
+        {199, sizeof(::realtime::LobbyEntrantsRejectMessage)},
+        {206, sizeof(::realtime::LobbyEntrantRemovedMessage)},
+        {215, sizeof(::realtime::LobbySessionCreateMessage)},
+        {232, sizeof(::realtime::LobbySessionStateMessage)},
+        {245, sizeof(::realtime::LobbySessionStateRawMessage)},
+        {254, sizeof(::realtime::ConnectivityStatisticsMessage)},
+        {271, sizeof(::realtime::SymbolHash)},
+        {276, sizeof(::realtime::XPlatformID)},
+        {281, sizeof(::realtime::SNSUnknownMessage)},
+        {288, sizeof(::realtime::STCPConnectionRequireEvent)},
+        {289, sizeof(::realtime::STCPConnectionUnrequireEvent)},
+        {290, sizeof(::realtime::SNSConfigRequestV2Message)},
+        {295, sizeof(::realtime::SNSConfigSuccessV2Message)},
+        {304, sizeof(::realtime::SNSConfigFailureV2Message)},
+        {309, sizeof(::realtime::SNSReconcileIAPMessage)},
+        {316, sizeof(::realtime::SNSChannelInfoRequestMessage)},
+        {317, sizeof(::realtime::SNSChannelInfoResponseMessage)},
+        {322, sizeof(::realtime::SNSDocumentRequestV2Message)},
+        {329, sizeof(::realtime::SNSDocumentSuccessMessage)},
+        {334, sizeof(::realtime::SNSDocumentFailureMessage)},
+        {339, sizeof(::realtime::SNSLobbyCreateSessionRequestV9Message)},
+        {358, sizeof(::realtime::SNSLobbyFindSessionRequestv11Message)},
+        {379, sizeof(::realtime::SNSLobbyJoinSessionRequestV7Message)},
+        {392, sizeof(::realtime::SNSLobbyMatchmakerStatusMessage)},
+        {397, sizeof(::realtime::SNSLobbyMatchmakerStatusRequestMessage)},
+        {406, sizeof(::realtime::SNSLobbyPendingSessionCancelV2Message)},
+        {411, sizeof(::realtime::SNSLobbyPingRequestV3Message)},
+        {422, sizeof(::realtime::SNSLobbyPingResponseMessage)},
+        {427, sizeof(::realtime::SNSLobbyPlayerSessionsRequestV5Message)},
+        {440, sizeof(::realtime::SNSLobbySessionFailureV4Message)},
+        {447, sizeof(::realtime::SNSLobbySessionSuccessV5Message)},
+        {486, sizeof(::realtime::SNSLoggedInUserProfileFailureMessage)},
+        {495, sizeof(::realtime::SNSLoggedInUserProfileRequestMessage)},
+        {504, sizeof(::realtime::SNSLoggedInUserProfileSuccessMessage)},
+        {511, sizeof(::realtime::SNSLogInFailureMessage)},
+        {520, sizeof(::realtime::SNSLogInRequestV2Message)},
+        {529, sizeof(::realtime::SNSLoginSettingsMessage)},
+        {534, sizeof(::realtime::SNSLogInSuccessMessage)},
+        {541, sizeof(::realtime::SNSOtherUserProfileFailureMessage)},
+        {550, sizeof(::realtime::SNSOtherUserProfileRequestMessage)},
+        {557, sizeof(::realtime::SNSOtherUserProfileSuccessMessage)},
+        {564, sizeof(::realtime::SNSReconcileIAPResultMessage)},
+        {571, sizeof(::realtime::SNSRemoteLogSetV3Message)},
+        {580, sizeof(::realtime::SNSUpdateProfileMessage)},
+        {589, sizeof(::realtime::SNSUpdateProfileSuccessMessage)},
+        {594, sizeof(::realtime::SNSUpdateProfileFailureMessage)},
+        {603, sizeof(::realtime::SNSUserServerProfileUpdateRequestMessage)},
+        {610, sizeof(::realtime::SNSUserServerProfileUpdateSuccessMessage)},
 };
 static const ::_pb::Message* PROTOBUF_NONNULL const file_default_instances[] = {
     &::realtime::_Envelope_default_instance_._instance,
@@ -2276,6 +2411,9 @@ static const ::_pb::Message* PROTOBUF_NONNULL const file_default_instances[] = {
     &::realtime::_LobbySessionEventMessage_default_instance_._instance,
     &::realtime::_GameServerRegistrationMessage_default_instance_._instance,
     &::realtime::_GameServerRegistrationSuccessMessage_default_instance_._instance,
+    &::realtime::_LoadoutItem_default_instance_._instance,
+    &::realtime::_LoadoutInstance_default_instance_._instance,
+    &::realtime::_GameServerSaveLoadoutMessage_default_instance_._instance,
     &::realtime::_LobbyEntrantsConnectedMessage_default_instance_._instance,
     &::realtime::_LobbyEntrantsAcceptMessage_default_instance_._instance,
     &::realtime::_LobbyEntrantsRejectMessage_default_instance_._instance,
@@ -2331,7 +2469,7 @@ const char descriptor_table_protodef_rtapi_2frealtime_5fv1_2eproto[] ABSL_ATTRIB
     protodesc_cold) = {
     "\n\027rtapi/realtime_v1.proto\022\010realtime\032\037goo"
     "gle/protobuf/timestamp.proto\032\034telemetry/"
-    "v1/telemetry.proto\"\373&\n\010Envelope\022\020\n\003cid\030\001"
+    "v1/telemetry.proto\"\336\'\n\010Envelope\022\020\n\003cid\030\001"
     " \001(\tR\003cid\022\'\n\005error\030\002 \001(\0132\017.realtime.Erro"
     "rH\000R\005error\022T\n\023lobby_session_state\030\003 \001(\0132"
     "\".realtime.LobbySessionStateMessageH\000R\021l"
@@ -2455,218 +2593,235 @@ const char descriptor_table_protodef_rtapi_2frealtime_5fv1_2eproto[] ABSL_ATTRIB
     "ServerProfileUpdateRequest\022\200\001\n\"user_serv"
     "er_profile_update_success\0304 \001(\01322.realti"
     "me.SNSUserServerProfileUpdateSuccessMess"
-    "ageH\000R\036userServerProfileUpdateSuccessB\t\n"
-    "\007message\"\347\002\n\005Error\022\022\n\004code\030\001 \001(\005R\004code\022\030"
-    "\n\007message\030\002 \001(\tR\007message\0226\n\007context\030\003 \003("
-    "\0132\034.realtime.Error.ContextEntryR\007context"
-    "\032:\n\014ContextEntry\022\020\n\003key\030\001 \001(\tR\003key\022\024\n\005va"
-    "lue\030\002 \001(\tR\005value:\0028\001\"\273\001\n\004Code\022&\n\"CODE_RU"
-    "NTIME_EXCEPTION_UNSPECIFIED\020\000\022\035\n\031CODE_UN"
-    "RECOGNIZED_PAYLOAD\020\001\022\030\n\024CODE_MISSING_PAY"
-    "LOAD\020\002\022\022\n\016CODE_BAD_INPUT\020\003\022\034\n\030CODE_REGIS"
-    "TRATION_FAILED\020\004\022 \n\034CODE_LOBBY_SESSION_N"
-    "OT_FOUND\020\005\"\274\001\n\030LobbySessionEventMessage\022"
-    "(\n\020lobby_session_id\030\001 \001(\tR\016lobbySessionI"
-    "d\022\022\n\004code\030\002 \001(\005R\004code\"b\n\004Code\022\024\n\020CODE_UN"
-    "SPECIFIED\020\000\022\020\n\014CODE_STARTED\020\001\022\016\n\nCODE_EN"
-    "DED\020\002\022\017\n\013CODE_LOCKED\020\003\022\021\n\rCODE_UNLOCKED\020"
-    "\004\"\247\002\n\035GameServerRegistrationMessage\022(\n\020l"
-    "ogin_session_id\030\001 \001(\tR\016loginSessionId\022\033\n"
-    "\tserver_id\030\002 \001(\004R\010serverId\022.\n\023internal_i"
-    "p_address\030\003 \001(\tR\021internalIpAddress\022\022\n\004po"
-    "rt\030\004 \001(\rR\004port\022\026\n\006region\030\005 \001(\004R\006region\022!"
-    "\n\014version_lock\030\006 \001(\004R\013versionLock\022&\n\017tim"
-    "e_step_usecs\030\007 \001(\rR\rtimeStepUsecs\022\030\n\007ver"
-    "sion\030\010 \001(\tR\007version\"s\n$GameServerRegistr"
-    "ationSuccessMessage\022\033\n\tserver_id\030\001 \001(\004R\010"
-    "serverId\022.\n\023external_ip_address\030\002 \001(\tR\021e"
-    "xternalIpAddress\"j\n\035LobbyEntrantsConnect"
-    "edMessage\022(\n\020lobby_session_id\030\001 \001(\tR\016lob"
-    "bySessionId\022\037\n\013entrant_ids\030\002 \003(\tR\nentran"
-    "tIds\"=\n\032LobbyEntrantsAcceptMessage\022\037\n\013en"
-    "trant_ids\030\001 \003(\tR\nentrantIds\"\273\002\n\032LobbyEnt"
-    "rantsRejectMessage\022\037\n\013entrant_ids\030\001 \003(\tR"
-    "\nentrantIds\022\022\n\004code\030\002 \001(\005R\004code\"\347\001\n\004Code"
-    "\022\035\n\031CODE_INTERNAL_UNSPECIFIED\020\000\022\024\n\020CODE_"
-    "BAD_REQUEST\020\001\022\020\n\014CODE_TIMEOUT\020\002\022\032\n\026CODE_"
-    "DUPLICATE_USER_ID\020\003\022\025\n\021CODE_LOBBY_LOCKED"
-    "\020\004\022\023\n\017CODE_LOBBY_FULL\020\005\022\025\n\021CODE_LOBBY_EN"
-    "DING\020\006\022\017\n\013CODE_KICKED\020\007\022\025\n\021CODE_DISCONNE"
-    "CTED\020\010\022\021\n\rCODE_INACTIVE\020\t\"\343\002\n\032LobbyEntra"
-    "ntRemovedMessage\022(\n\020lobby_session_id\030\001 \001"
-    "(\tR\016lobbySessionId\022\035\n\nentrant_id\030\002 \001(\tR\t"
-    "entrantId\022\022\n\004code\030\003 \001(\005R\004code\"\347\001\n\004Code\022\035"
-    "\n\031CODE_INTERNAL_UNSPECIFIED\020\000\022\024\n\020CODE_BA"
-    "D_REQUEST\020\001\022\020\n\014CODE_TIMEOUT\020\002\022\032\n\026CODE_DU"
-    "PLICATE_USER_ID\020\003\022\025\n\021CODE_LOBBY_LOCKED\020\004"
-    "\022\023\n\017CODE_LOBBY_FULL\020\005\022\025\n\021CODE_LOBBY_ENDI"
-    "NG\020\006\022\017\n\013CODE_KICKED\020\007\022\025\n\021CODE_DISCONNECT"
-    "ED\020\010\022\021\n\rCODE_INACTIVE\020\t\"\323\002\n\031LobbySession"
-    "CreateMessage\022(\n\020lobby_session_id\030\001 \001(\tR"
-    "\016lobbySessionId\022\035\n\nlobby_type\030\002 \001(\005R\tlob"
-    "byType\022\031\n\010group_id\030\003 \001(\tR\007groupId\022!\n\014max"
-    "_entrants\030\004 \001(\005R\013maxEntrants\022#\n\rsettings"
-    "_json\030\005 \001(\tR\014settingsJson\022\032\n\010features\030\006 "
-    "\003(\tR\010features\022&\n\017time_step_usecs\030\007 \001(\rR\r"
-    "timeStepUsecs\"F\n\tLobbyType\022!\n\035LOBBY_TYPE"
-    "_PUBLIC_UNSPECIFIED\020\000\022\026\n\022LOBBY_TYPE_PRIV"
-    "ATE\020\001\"\214\002\n\030LobbySessionStateMessage\022&\n\017ti"
-    "me_step_usecs\030\001 \001(\rR\rtimeStepUsecs\022\035\n\nti"
-    "ck_count\030\002 \001(\004R\ttickCount\022S\n\021session_sta"
-    "te_raw\030\003 \001(\0132%.realtime.LobbySessionStat"
-    "eRawMessageH\000R\017sessionStateRaw\022K\n\rsessio"
-    "n_state\030\004 \001(\0132$.telemetry.v1.LobbySessio"
-    "nStateFrameH\000R\014sessionStateB\007\n\005state\"\256\001\n"
-    "\033LobbySessionStateRawMessage\0228\n\ttimestam"
-    "p\030\001 \001(\0132\032.google.protobuf.TimestampR\ttim"
-    "estamp\022\'\n\017session_payload\030\002 \001(\014R\016session"
-    "Payload\022,\n\022user_bones_payload\030\003 \001(\014R\020use"
-    "rBonesPayload\"\262\002\n\035ConnectivityStatistics"
-    "Message\022*\n\021packet_loss_ratio\030\001 \001(\002R\017pack"
-    "etLossRatio\022+\n\021prediction_offset\030\002 \001(\004R\020"
-    "predictionOffset\022\026\n\006target\030\003 \001(\004R\006target"
-    "\022\035\n\nlocal_time\030\004 \001(\004R\tlocalTime\022\037\n\013serve"
-    "r_time\030\005 \001(\004R\nserverTime\0220\n\024pending_serv"
-    "er_delta\030\006 \001(\003R\022pendingServerDelta\022.\n\023di"
-    "scarded_frame_pct\030\007 \001(\002R\021discardedFrameP"
-    "ct\"\"\n\nSymbolHash\022\024\n\005value\030\001 \001(\006R\005value\"\035"
-    "\n\013XPlatformID\022\016\n\002id\030\001 \001(\tR\002id\"Q\n\021SNSUnkn"
-    "ownMessage\022(\n\004type\030\001 \001(\0132\024.realtime.Symb"
-    "olHashR\004type\022\022\n\004data\030\002 \001(\014R\004data\"\034\n\032STCP"
-    "ConnectionRequireEvent\"\036\n\034STCPConnection"
-    "UnrequireEvent\">\n\031SNSConfigRequestV2Mess"
-    "age\022!\n\014request_json\030\001 \001(\tR\013requestJson\"\177"
-    "\n\031SNSConfigSuccessV2Message\022(\n\004type\030\001 \001("
-    "\0132\024.realtime.SymbolHashR\004type\022$\n\002id\030\002 \001("
-    "\0132\024.realtime.SymbolHashR\002id\022\022\n\004data\030\003 \001("
-    "\tR\004data\"1\n\031SNSConfigFailureV2Message\022\024\n\005"
-    "error\030\001 \001(\tR\005error\"g\n\026SNSReconcileIAPMes"
-    "sage\022\035\n\nsession_id\030\001 \001(\tR\tsessionId\022.\n\007u"
-    "ser_id\030\002 \001(\0132\025.realtime.XPlatformIDR\006use"
-    "rId\"\036\n\034SNSChannelInfoRequestMessage\"B\n\035S"
-    "NSChannelInfoResponseMessage\022!\n\014channel_"
-    "info\030\001 \001(\tR\013channelInfo\"M\n\033SNSDocumentRe"
-    "questV2Message\022\032\n\010language\030\001 \001(\tR\010langua"
-    "ge\022\022\n\004type\030\002 \001(\tR\004type\"@\n\031SNSDocumentSuc"
-    "cessMessage\022#\n\rdocument_json\030\001 \001(\tR\014docu"
-    "mentJson\"5\n\031SNSDocumentFailureMessage\022\030\n"
-    "\007message\030\003 \001(\tR\007message\"\236\003\n%SNSLobbyCrea"
-    "teSessionRequestV9Message\022,\n\006region\030\001 \001("
-    "\0132\024.realtime.SymbolHashR\006region\0227\n\014versi"
-    "on_lock\030\002 \001(\0132\024.realtime.SymbolHashR\013ver"
-    "sionLock\022(\n\004mode\030\003 \001(\0132\024.realtime.Symbol"
-    "HashR\004mode\022*\n\005level\030\004 \001(\0132\024.realtime.Sym"
-    "bolHashR\005level\0220\n\010platform\030\005 \001(\0132\024.realt"
+    "ageH\000R\036userServerProfileUpdateSuccess\022a\n"
+    "\030game_server_save_loadout\0305 \001(\0132&.realti"
+    "me.GameServerSaveLoadoutMessageH\000R\025gameS"
+    "erverSaveLoadoutB\t\n\007message\"\347\002\n\005Error\022\022\n"
+    "\004code\030\001 \001(\005R\004code\022\030\n\007message\030\002 \001(\tR\007mess"
+    "age\0226\n\007context\030\003 \003(\0132\034.realtime.Error.Co"
+    "ntextEntryR\007context\032:\n\014ContextEntry\022\020\n\003k"
+    "ey\030\001 \001(\tR\003key\022\024\n\005value\030\002 \001(\tR\005value:\0028\001\""
+    "\273\001\n\004Code\022&\n\"CODE_RUNTIME_EXCEPTION_UNSPE"
+    "CIFIED\020\000\022\035\n\031CODE_UNRECOGNIZED_PAYLOAD\020\001\022"
+    "\030\n\024CODE_MISSING_PAYLOAD\020\002\022\022\n\016CODE_BAD_IN"
+    "PUT\020\003\022\034\n\030CODE_REGISTRATION_FAILED\020\004\022 \n\034C"
+    "ODE_LOBBY_SESSION_NOT_FOUND\020\005\"\274\001\n\030LobbyS"
+    "essionEventMessage\022(\n\020lobby_session_id\030\001"
+    " \001(\tR\016lobbySessionId\022\022\n\004code\030\002 \001(\005R\004code"
+    "\"b\n\004Code\022\024\n\020CODE_UNSPECIFIED\020\000\022\020\n\014CODE_S"
+    "TARTED\020\001\022\016\n\nCODE_ENDED\020\002\022\017\n\013CODE_LOCKED\020"
+    "\003\022\021\n\rCODE_UNLOCKED\020\004\"\247\002\n\035GameServerRegis"
+    "trationMessage\022(\n\020login_session_id\030\001 \001(\t"
+    "R\016loginSessionId\022\033\n\tserver_id\030\002 \001(\004R\010ser"
+    "verId\022.\n\023internal_ip_address\030\003 \001(\tR\021inte"
+    "rnalIpAddress\022\022\n\004port\030\004 \001(\rR\004port\022\026\n\006reg"
+    "ion\030\005 \001(\004R\006region\022!\n\014version_lock\030\006 \001(\004R"
+    "\013versionLock\022&\n\017time_step_usecs\030\007 \001(\rR\rt"
+    "imeStepUsecs\022\030\n\007version\030\010 \001(\tR\007version\"s"
+    "\n$GameServerRegistrationSuccessMessage\022\033"
+    "\n\tserver_id\030\001 \001(\004R\010serverId\022.\n\023external_"
+    "ip_address\030\002 \001(\tR\021externalIpAddress\"O\n\013L"
+    "oadoutItem\022\033\n\tslot_type\030\001 \001(\006R\010slotType\022"
+    "#\n\requipped_item\030\002 \001(\006R\014equippedItem\"c\n\017"
+    "LoadoutInstance\022#\n\rinstance_name\030\001 \001(\006R\014"
+    "instanceName\022+\n\005items\030\002 \003(\0132\025.realtime.L"
+    "oadoutItemR\005items\"\367\001\n\034GameServerSaveLoad"
+    "outMessage\022(\n\020lobby_session_id\030\001 \001(\tR\016lo"
+    "bbySessionId\022\035\n\nentrant_id\030\002 \001(\tR\tentran"
+    "tId\022!\n\014loadout_slot\030\003 \001(\005R\013loadoutSlot\022#"
+    "\n\rjersey_number\030\004 \001(\005R\014jerseyNumber\022F\n\021l"
+    "oadout_instances\030\005 \003(\0132\031.realtime.Loadou"
+    "tInstanceR\020loadoutInstances\"j\n\035LobbyEntr"
+    "antsConnectedMessage\022(\n\020lobby_session_id"
+    "\030\001 \001(\tR\016lobbySessionId\022\037\n\013entrant_ids\030\002 "
+    "\003(\tR\nentrantIds\"=\n\032LobbyEntrantsAcceptMe"
+    "ssage\022\037\n\013entrant_ids\030\001 \003(\tR\nentrantIds\"\273"
+    "\002\n\032LobbyEntrantsRejectMessage\022\037\n\013entrant"
+    "_ids\030\001 \003(\tR\nentrantIds\022\022\n\004code\030\002 \001(\005R\004co"
+    "de\"\347\001\n\004Code\022\035\n\031CODE_INTERNAL_UNSPECIFIED"
+    "\020\000\022\024\n\020CODE_BAD_REQUEST\020\001\022\020\n\014CODE_TIMEOUT"
+    "\020\002\022\032\n\026CODE_DUPLICATE_USER_ID\020\003\022\025\n\021CODE_L"
+    "OBBY_LOCKED\020\004\022\023\n\017CODE_LOBBY_FULL\020\005\022\025\n\021CO"
+    "DE_LOBBY_ENDING\020\006\022\017\n\013CODE_KICKED\020\007\022\025\n\021CO"
+    "DE_DISCONNECTED\020\010\022\021\n\rCODE_INACTIVE\020\t\"\343\002\n"
+    "\032LobbyEntrantRemovedMessage\022(\n\020lobby_ses"
+    "sion_id\030\001 \001(\tR\016lobbySessionId\022\035\n\nentrant"
+    "_id\030\002 \001(\tR\tentrantId\022\022\n\004code\030\003 \001(\005R\004code"
+    "\"\347\001\n\004Code\022\035\n\031CODE_INTERNAL_UNSPECIFIED\020\000"
+    "\022\024\n\020CODE_BAD_REQUEST\020\001\022\020\n\014CODE_TIMEOUT\020\002"
+    "\022\032\n\026CODE_DUPLICATE_USER_ID\020\003\022\025\n\021CODE_LOB"
+    "BY_LOCKED\020\004\022\023\n\017CODE_LOBBY_FULL\020\005\022\025\n\021CODE"
+    "_LOBBY_ENDING\020\006\022\017\n\013CODE_KICKED\020\007\022\025\n\021CODE"
+    "_DISCONNECTED\020\010\022\021\n\rCODE_INACTIVE\020\t\"\323\002\n\031L"
+    "obbySessionCreateMessage\022(\n\020lobby_sessio"
+    "n_id\030\001 \001(\tR\016lobbySessionId\022\035\n\nlobby_type"
+    "\030\002 \001(\005R\tlobbyType\022\031\n\010group_id\030\003 \001(\tR\007gro"
+    "upId\022!\n\014max_entrants\030\004 \001(\005R\013maxEntrants\022"
+    "#\n\rsettings_json\030\005 \001(\tR\014settingsJson\022\032\n\010"
+    "features\030\006 \003(\tR\010features\022&\n\017time_step_us"
+    "ecs\030\007 \001(\rR\rtimeStepUsecs\"F\n\tLobbyType\022!\n"
+    "\035LOBBY_TYPE_PUBLIC_UNSPECIFIED\020\000\022\026\n\022LOBB"
+    "Y_TYPE_PRIVATE\020\001\"\214\002\n\030LobbySessionStateMe"
+    "ssage\022&\n\017time_step_usecs\030\001 \001(\rR\rtimeStep"
+    "Usecs\022\035\n\ntick_count\030\002 \001(\004R\ttickCount\022S\n\021"
+    "session_state_raw\030\003 \001(\0132%.realtime.Lobby"
+    "SessionStateRawMessageH\000R\017sessionStateRa"
+    "w\022K\n\rsession_state\030\004 \001(\0132$.telemetry.v1."
+    "LobbySessionStateFrameH\000R\014sessionStateB\007"
+    "\n\005state\"\256\001\n\033LobbySessionStateRawMessage\022"
+    "8\n\ttimestamp\030\001 \001(\0132\032.google.protobuf.Tim"
+    "estampR\ttimestamp\022\'\n\017session_payload\030\002 \001"
+    "(\014R\016sessionPayload\022,\n\022user_bones_payload"
+    "\030\003 \001(\014R\020userBonesPayload\"\262\002\n\035Connectivit"
+    "yStatisticsMessage\022*\n\021packet_loss_ratio\030"
+    "\001 \001(\002R\017packetLossRatio\022+\n\021prediction_off"
+    "set\030\002 \001(\004R\020predictionOffset\022\026\n\006target\030\003 "
+    "\001(\004R\006target\022\035\n\nlocal_time\030\004 \001(\004R\tlocalTi"
+    "me\022\037\n\013server_time\030\005 \001(\004R\nserverTime\0220\n\024p"
+    "ending_server_delta\030\006 \001(\003R\022pendingServer"
+    "Delta\022.\n\023discarded_frame_pct\030\007 \001(\002R\021disc"
+    "ardedFramePct\"\"\n\nSymbolHash\022\024\n\005value\030\001 \001"
+    "(\006R\005value\"\035\n\013XPlatformID\022\016\n\002id\030\001 \001(\tR\002id"
+    "\"Q\n\021SNSUnknownMessage\022(\n\004type\030\001 \001(\0132\024.re"
+    "altime.SymbolHashR\004type\022\022\n\004data\030\002 \001(\014R\004d"
+    "ata\"\034\n\032STCPConnectionRequireEvent\"\036\n\034STC"
+    "PConnectionUnrequireEvent\">\n\031SNSConfigRe"
+    "questV2Message\022!\n\014request_json\030\001 \001(\tR\013re"
+    "questJson\"\177\n\031SNSConfigSuccessV2Message\022("
+    "\n\004type\030\001 \001(\0132\024.realtime.SymbolHashR\004type"
+    "\022$\n\002id\030\002 \001(\0132\024.realtime.SymbolHashR\002id\022\022"
+    "\n\004data\030\003 \001(\tR\004data\"1\n\031SNSConfigFailureV2"
+    "Message\022\024\n\005error\030\001 \001(\tR\005error\"g\n\026SNSReco"
+    "ncileIAPMessage\022\035\n\nsession_id\030\001 \001(\tR\tses"
+    "sionId\022.\n\007user_id\030\002 \001(\0132\025.realtime.XPlat"
+    "formIDR\006userId\"\036\n\034SNSChannelInfoRequestM"
+    "essage\"B\n\035SNSChannelInfoResponseMessage\022"
+    "!\n\014channel_info\030\001 \001(\tR\013channelInfo\"M\n\033SN"
+    "SDocumentRequestV2Message\022\032\n\010language\030\001 "
+    "\001(\tR\010language\022\022\n\004type\030\002 \001(\tR\004type\"@\n\031SNS"
+    "DocumentSuccessMessage\022#\n\rdocument_json\030"
+    "\001 \001(\tR\014documentJson\"5\n\031SNSDocumentFailur"
+    "eMessage\022\030\n\007message\030\003 \001(\tR\007message\"\236\003\n%S"
+    "NSLobbyCreateSessionRequestV9Message\022,\n\006"
+    "region\030\001 \001(\0132\024.realtime.SymbolHashR\006regi"
+    "on\0227\n\014version_lock\030\002 \001(\0132\024.realtime.Symb"
+    "olHashR\013versionLock\022(\n\004mode\030\003 \001(\0132\024.real"
+    "time.SymbolHashR\004mode\022*\n\005level\030\004 \001(\0132\024.r"
+    "ealtime.SymbolHashR\005level\0220\n\010platform\030\005 "
+    "\001(\0132\024.realtime.SymbolHashR\010platform\022(\n\020l"
+    "ogin_session_id\030\006 \001(\tR\016loginSessionId\0221\n"
+    "\010entrants\030\007 \003(\0132\025.realtime.XPlatformIDR\010"
+    "entrants\022)\n\020session_settings\030\010 \001(\tR\017sess"
+    "ionSettings\"\264\003\n$SNSLobbyFindSessionReque"
+    "stv11Message\0227\n\014version_lock\030\001 \001(\0132\024.rea"
+    "ltime.SymbolHashR\013versionLock\022(\n\004mode\030\002 "
+    "\001(\0132\024.realtime.SymbolHashR\004mode\022*\n\005level"
+    "\030\003 \001(\0132\024.realtime.SymbolHashR\005level\0220\n\010p"
+    "latform\030\004 \001(\0132\024.realtime.SymbolHashR\010pla"
+    "tform\022(\n\020login_session_id\030\005 \001(\tR\016loginSe"
+    "ssionId\022(\n\020current_lobby_id\030\006 \001(\tR\016curre"
+    "ntLobbyId\022\031\n\010group_id\030\007 \001(\tR\007groupId\022)\n\020"
+    "session_settings\030\010 \001(\tR\017sessionSettings\022"
+    "1\n\010entrants\030\t \003(\0132\025.realtime.XPlatformID"
+    "R\010entrants\"\353\001\n#SNSLobbyJoinSessionReques"
+    "tV7Message\022\031\n\010lobby_id\030\001 \001(\tR\007lobbyId\0227\n"
+    "\014version_lock\030\002 \001(\0132\024.realtime.SymbolHas"
+    "hR\013versionLock\0220\n\010platform\030\003 \001(\0132\024.realt"
     "ime.SymbolHashR\010platform\022(\n\020login_sessio"
-    "n_id\030\006 \001(\tR\016loginSessionId\0221\n\010entrants\030\007"
-    " \003(\0132\025.realtime.XPlatformIDR\010entrants\022)\n"
-    "\020session_settings\030\010 \001(\tR\017sessionSettings"
-    "\"\264\003\n$SNSLobbyFindSessionRequestv11Messag"
-    "e\0227\n\014version_lock\030\001 \001(\0132\024.realtime.Symbo"
-    "lHashR\013versionLock\022(\n\004mode\030\002 \001(\0132\024.realt"
-    "ime.SymbolHashR\004mode\022*\n\005level\030\003 \001(\0132\024.re"
-    "altime.SymbolHashR\005level\0220\n\010platform\030\004 \001"
-    "(\0132\024.realtime.SymbolHashR\010platform\022(\n\020lo"
-    "gin_session_id\030\005 \001(\tR\016loginSessionId\022(\n\020"
-    "current_lobby_id\030\006 \001(\tR\016currentLobbyId\022\031"
-    "\n\010group_id\030\007 \001(\tR\007groupId\022)\n\020session_set"
-    "tings\030\010 \001(\tR\017sessionSettings\0221\n\010entrants"
-    "\030\t \003(\0132\025.realtime.XPlatformIDR\010entrants\""
-    "\353\001\n#SNSLobbyJoinSessionRequestV7Message\022"
-    "\031\n\010lobby_id\030\001 \001(\tR\007lobbyId\0227\n\014version_lo"
-    "ck\030\002 \001(\0132\024.realtime.SymbolHashR\013versionL"
-    "ock\0220\n\010platform\030\003 \001(\0132\024.realtime.SymbolH"
-    "ashR\010platform\022(\n\020login_session_id\030\004 \001(\tR"
-    "\016loginSessionId\022\024\n\005flags\030\005 \001(\004R\005flags\"B\n"
-    "\037SNSLobbyMatchmakerStatusMessage\022\037\n\013stat"
-    "us_code\030\001 \001(\rR\nstatusCode\"d\n&SNSLobbyMat"
-    "chmakerStatusRequestMessage\022\022\n\004unk0\030\001 \001("
-    "\rR\004unk0\022\022\n\004unk1\030\002 \001(\rR\004unk1\022\022\n\004unk2\030\003 \001("
-    "\rR\004unk2\"F\n%SNSLobbyPendingSessionCancelV"
-    "2Message\022\035\n\nsession_id\030\001 \001(\tR\tsessionId\""
-    "}\n\034SNSLobbyPingRequestV3Message\022\022\n\004unk0\030"
-    "\001 \001(\rR\004unk0\022\022\n\004unk1\030\002 \001(\rR\004unk1\022\027\n\007rtt_m"
-    "ax\030\003 \001(\rR\006rttMax\022\034\n\tendpoints\030\004 \003(\tR\tend"
-    "points\"7\n\033SNSLobbyPingResponseMessage\022\030\n"
-    "\007results\030\001 \003(\tR\007results\"\211\002\n&SNSLobbyPlay"
-    "erSessionsRequestV5Message\022(\n\020login_sess"
-    "ion_id\030\001 \001(\tR\016loginSessionId\022.\n\007user_id\030"
-    "\002 \001(\0132\025.realtime.XPlatformIDR\006userId\022\031\n\010"
-    "lobby_id\030\003 \001(\tR\007lobbyId\0220\n\010platform\030\004 \001("
-    "\0132\024.realtime.SymbolHashR\010platform\0228\n\014pla"
-    "yer_xpids\030\005 \003(\0132\025.realtime.XPlatformIDR\013"
-    "playerXpids\"Z\n\037SNSLobbySessionFailureV4M"
-    "essage\022\035\n\nerror_code\030\001 \001(\rR\terrorCode\022\030\n"
-    "\007message\030\002 \001(\tR\007message\"\236\004\n\037SNSLobbySess"
-    "ionSuccessV5Message\022\033\n\tgame_mode\030\001 \001(\006R\010"
-    "gameMode\022\031\n\010lobby_id\030\002 \001(\tR\007lobbyId\022\031\n\010g"
-    "roup_id\030\003 \001(\tR\007groupId\022\032\n\010endpoint\030\004 \001(\t"
-    "R\010endpoint\022\035\n\nteam_index\030\005 \001(\005R\tteamInde"
-    "x\022\022\n\004unk1\030\006 \001(\rR\004unk1\022!\n\014headset_type\030\007 "
-    "\001(\005R\013headsetType\0220\n\024server_encoder_flags"
-    "\030\010 \001(\004R\022serverEncoderFlags\0220\n\024client_enc"
-    "oder_flags\030\t \001(\004R\022clientEncoderFlags\022,\n\022"
-    "server_sequence_id\030\n \001(\004R\020serverSequence"
-    "Id\022$\n\016server_mac_key\030\013 \001(\014R\014serverMacKey"
-    "\022$\n\016server_enc_key\030\014 \001(\014R\014serverEncKey\022*"
-    "\n\021server_random_key\030\r \001(\014R\017serverRandomK"
-    "ey\022,\n\022client_sequence_id\030\016 \001(\004R\020clientSe"
-    "quenceId\"\234\001\n$SNSLoggedInUserProfileFailu"
-    "reMessage\022.\n\007user_id\030\001 \001(\0132\025.realtime.XP"
-    "latformIDR\006userId\022\037\n\013status_code\030\002 \001(\004R\n"
-    "statusCode\022#\n\rerror_message\030\003 \001(\tR\014error"
-    "Message\"\247\001\n$SNSLoggedInUserProfileReques"
-    "tMessage\022\035\n\nsession_id\030\001 \001(\tR\tsessionId\022"
+    "n_id\030\004 \001(\tR\016loginSessionId\022\024\n\005flags\030\005 \001("
+    "\004R\005flags\"B\n\037SNSLobbyMatchmakerStatusMess"
+    "age\022\037\n\013status_code\030\001 \001(\rR\nstatusCode\"d\n&"
+    "SNSLobbyMatchmakerStatusRequestMessage\022\022"
+    "\n\004unk0\030\001 \001(\rR\004unk0\022\022\n\004unk1\030\002 \001(\rR\004unk1\022\022"
+    "\n\004unk2\030\003 \001(\rR\004unk2\"F\n%SNSLobbyPendingSes"
+    "sionCancelV2Message\022\035\n\nsession_id\030\001 \001(\tR"
+    "\tsessionId\"}\n\034SNSLobbyPingRequestV3Messa"
+    "ge\022\022\n\004unk0\030\001 \001(\rR\004unk0\022\022\n\004unk1\030\002 \001(\rR\004un"
+    "k1\022\027\n\007rtt_max\030\003 \001(\rR\006rttMax\022\034\n\tendpoints"
+    "\030\004 \003(\tR\tendpoints\"7\n\033SNSLobbyPingRespons"
+    "eMessage\022\030\n\007results\030\001 \003(\tR\007results\"\211\002\n&S"
+    "NSLobbyPlayerSessionsRequestV5Message\022(\n"
+    "\020login_session_id\030\001 \001(\tR\016loginSessionId\022"
     ".\n\007user_id\030\002 \001(\0132\025.realtime.XPlatformIDR"
-    "\006userId\0220\n\024profile_request_data\030\003 \001(\tR\022p"
-    "rofileRequestData\"p\n$SNSLoggedInUserProf"
-    "ileSuccessMessage\022.\n\007user_id\030\001 \001(\0132\025.rea"
-    "ltime.XPlatformIDR\006userId\022\030\n\007payload\030\002 \001"
-    "(\tR\007payload\"\216\001\n\026SNSLogInFailureMessage\022."
-    "\n\007user_id\030\001 \001(\0132\025.realtime.XPlatformIDR\006"
-    "userId\022\037\n\013status_code\030\002 \001(\004R\nstatusCode\022"
-    "#\n\rerror_message\030\003 \001(\tR\014errorMessage\"\224\001\n"
-    "\030SNSLogInRequestV2Message\022.\n\023previous_se"
-    "ssion_id\030\001 \001(\tR\021previousSessionId\022.\n\007use"
-    "r_id\030\002 \001(\0132\025.realtime.XPlatformIDR\006userI"
-    "d\022\030\n\007payload\030\003 \001(\tR\007payload\":\n\027SNSLoginS"
-    "ettingsMessage\022\037\n\013config_data\030\001 \001(\tR\ncon"
-    "figData\"g\n\026SNSLogInSuccessMessage\022\035\n\nses"
-    "sion_id\030\001 \001(\tR\tsessionId\022.\n\007user_id\030\002 \001("
-    "\0132\025.realtime.XPlatformIDR\006userId\"\216\001\n!SNS"
-    "OtherUserProfileFailureMessage\022.\n\007user_i"
-    "d\030\001 \001(\0132\025.realtime.XPlatformIDR\006userId\022\037"
-    "\n\013status_code\030\002 \001(\004R\nstatusCode\022\030\n\007messa"
-    "ge\030\003 \001(\tR\007message\"g\n!SNSOtherUserProfile"
-    "RequestMessage\022.\n\007user_id\030\001 \001(\0132\025.realti"
-    "me.XPlatformIDR\006userId\022\022\n\004data\030\002 \001(\tR\004da"
-    "ta\"m\n!SNSOtherUserProfileSuccessMessage\022"
-    ".\n\007user_id\030\001 \001(\0132\025.realtime.XPlatformIDR"
-    "\006userId\022\030\n\007profile\030\002 \001(\tR\007profile\"i\n\034SNS"
-    "ReconcileIAPResultMessage\022.\n\007user_id\030\001 \001"
-    "(\0132\025.realtime.XPlatformIDR\006userId\022\031\n\010iap"
-    "_data\030\002 \001(\tR\007iapData\"{\n\030SNSRemoteLogSetV"
-    "3Message\022.\n\007user_id\030\001 \001(\0132\025.realtime.XPl"
-    "atformIDR\006userId\022\033\n\tlog_level\030\006 \001(\004R\010log"
-    "Level\022\022\n\004logs\030\007 \003(\tR\004logs\"\215\001\n\027SNSUpdateP"
-    "rofileMessage\022(\n\020login_session_id\030\001 \001(\tR"
-    "\016loginSessionId\022.\n\007user_id\030\002 \001(\0132\025.realt"
-    "ime.XPlatformIDR\006userId\022\030\n\007payload\030\003 \001(\t"
-    "R\007payload\"P\n\036SNSUpdateProfileSuccessMess"
-    "age\022.\n\007user_id\030\001 \001(\0132\025.realtime.XPlatfor"
-    "mIDR\006userId\"\213\001\n\036SNSUpdateProfileFailureM"
+    "\006userId\022\031\n\010lobby_id\030\003 \001(\tR\007lobbyId\0220\n\010pl"
+    "atform\030\004 \001(\0132\024.realtime.SymbolHashR\010plat"
+    "form\0228\n\014player_xpids\030\005 \003(\0132\025.realtime.XP"
+    "latformIDR\013playerXpids\"Z\n\037SNSLobbySessio"
+    "nFailureV4Message\022\035\n\nerror_code\030\001 \001(\rR\te"
+    "rrorCode\022\030\n\007message\030\002 \001(\tR\007message\"\273\005\n\037S"
+    "NSLobbySessionSuccessV5Message\022\033\n\tgame_m"
+    "ode\030\001 \001(\006R\010gameMode\022\031\n\010lobby_id\030\002 \001(\tR\007l"
+    "obbyId\022\031\n\010group_id\030\003 \001(\tR\007groupId\022\032\n\010end"
+    "point\030\004 \001(\tR\010endpoint\022\035\n\nteam_index\030\005 \001("
+    "\005R\tteamIndex\022\033\n\tuser_slot\030\006 \001(\rR\010userSlo"
+    "t\022\030\n\007flags32\030\007 \001(\rR\007flags32\022#\n\rsession_f"
+    "lags\030\010 \001(\rR\014sessionFlags\0220\n\024server_encod"
+    "er_flags\030\t \001(\004R\022serverEncoderFlags\0220\n\024cl"
+    "ient_encoder_flags\030\n \001(\004R\022clientEncoderF"
+    "lags\022,\n\022server_sequence_id\030\013 \001(\004R\020server"
+    "SequenceId\022$\n\016server_mac_key\030\014 \001(\014R\014serv"
+    "erMacKey\022$\n\016server_enc_key\030\r \001(\014R\014server"
+    "EncKey\022*\n\021server_random_key\030\016 \001(\014R\017serve"
+    "rRandomKey\022,\n\022client_sequence_id\030\017 \001(\004R\020"
+    "clientSequenceId\022$\n\016client_mac_key\030\020 \001(\014"
+    "R\014clientMacKey\022$\n\016client_enc_key\030\021 \001(\014R\014"
+    "clientEncKey\022*\n\021client_random_key\030\022 \001(\014R"
+    "\017clientRandomKey\"\234\001\n$SNSLoggedInUserProf"
+    "ileFailureMessage\022.\n\007user_id\030\001 \001(\0132\025.rea"
+    "ltime.XPlatformIDR\006userId\022\037\n\013status_code"
+    "\030\002 \001(\004R\nstatusCode\022#\n\rerror_message\030\003 \001("
+    "\tR\014errorMessage\"\247\001\n$SNSLoggedInUserProfi"
+    "leRequestMessage\022\035\n\nsession_id\030\001 \001(\tR\tse"
+    "ssionId\022.\n\007user_id\030\002 \001(\0132\025.realtime.XPla"
+    "tformIDR\006userId\0220\n\024profile_request_data\030"
+    "\003 \001(\tR\022profileRequestData\"p\n$SNSLoggedIn"
+    "UserProfileSuccessMessage\022.\n\007user_id\030\001 \001"
+    "(\0132\025.realtime.XPlatformIDR\006userId\022\030\n\007pay"
+    "load\030\002 \001(\tR\007payload\"\216\001\n\026SNSLogInFailureM"
     "essage\022.\n\007user_id\030\001 \001(\0132\025.realtime.XPlat"
     "formIDR\006userId\022\037\n\013status_code\030\002 \001(\004R\nsta"
-    "tusCode\022\030\n\007message\030\003 \001(\tR\007message\"t\n(SNS"
-    "UserServerProfileUpdateRequestMessage\022.\n"
-    "\007user_id\030\001 \001(\0132\025.realtime.XPlatformIDR\006u"
-    "serId\022\030\n\007payload\030\002 \001(\tR\007payload\"Z\n(SNSUs"
-    "erServerProfileUpdateSuccessMessage\022.\n\007u"
-    "ser_id\030\001 \001(\0132\025.realtime.XPlatformIDR\006use"
-    "rIdBs\n\037com.github.echotools.nevr.rtapiB\014"
-    "NevrRealtimeP\001Z0github.com/echotools/nev"
-    "r-common/v4/gen/go/rtapi\252\002\rNevr.Protobuf"
-    "b\006proto3"
+    "tusCode\022#\n\rerror_message\030\003 \001(\tR\014errorMes"
+    "sage\"\224\001\n\030SNSLogInRequestV2Message\022.\n\023pre"
+    "vious_session_id\030\001 \001(\tR\021previousSessionI"
+    "d\022.\n\007user_id\030\002 \001(\0132\025.realtime.XPlatformI"
+    "DR\006userId\022\030\n\007payload\030\003 \001(\tR\007payload\":\n\027S"
+    "NSLoginSettingsMessage\022\037\n\013config_data\030\001 "
+    "\001(\tR\nconfigData\"g\n\026SNSLogInSuccessMessag"
+    "e\022\035\n\nsession_id\030\001 \001(\tR\tsessionId\022.\n\007user"
+    "_id\030\002 \001(\0132\025.realtime.XPlatformIDR\006userId"
+    "\"\216\001\n!SNSOtherUserProfileFailureMessage\022."
+    "\n\007user_id\030\001 \001(\0132\025.realtime.XPlatformIDR\006"
+    "userId\022\037\n\013status_code\030\002 \001(\004R\nstatusCode\022"
+    "\030\n\007message\030\003 \001(\tR\007message\"g\n!SNSOtherUse"
+    "rProfileRequestMessage\022.\n\007user_id\030\001 \001(\0132"
+    "\025.realtime.XPlatformIDR\006userId\022\022\n\004data\030\002"
+    " \001(\tR\004data\"m\n!SNSOtherUserProfileSuccess"
+    "Message\022.\n\007user_id\030\001 \001(\0132\025.realtime.XPla"
+    "tformIDR\006userId\022\030\n\007profile\030\002 \001(\tR\007profil"
+    "e\"i\n\034SNSReconcileIAPResultMessage\022.\n\007use"
+    "r_id\030\001 \001(\0132\025.realtime.XPlatformIDR\006userI"
+    "d\022\031\n\010iap_data\030\002 \001(\tR\007iapData\"{\n\030SNSRemot"
+    "eLogSetV3Message\022.\n\007user_id\030\001 \001(\0132\025.real"
+    "time.XPlatformIDR\006userId\022\033\n\tlog_level\030\002 "
+    "\001(\004R\010logLevel\022\022\n\004logs\030\003 \003(\tR\004logs\"\215\001\n\027SN"
+    "SUpdateProfileMessage\022(\n\020login_session_i"
+    "d\030\001 \001(\tR\016loginSessionId\022.\n\007user_id\030\002 \001(\013"
+    "2\025.realtime.XPlatformIDR\006userId\022\030\n\007paylo"
+    "ad\030\003 \001(\tR\007payload\"P\n\036SNSUpdateProfileSuc"
+    "cessMessage\022.\n\007user_id\030\001 \001(\0132\025.realtime."
+    "XPlatformIDR\006userId\"\213\001\n\036SNSUpdateProfile"
+    "FailureMessage\022.\n\007user_id\030\001 \001(\0132\025.realti"
+    "me.XPlatformIDR\006userId\022\037\n\013status_code\030\002 "
+    "\001(\004R\nstatusCode\022\030\n\007message\030\003 \001(\tR\007messag"
+    "e\"t\n(SNSUserServerProfileUpdateRequestMe"
+    "ssage\022.\n\007user_id\030\001 \001(\0132\025.realtime.XPlatf"
+    "ormIDR\006userId\022\030\n\007payload\030\002 \001(\tR\007payload\""
+    "Z\n(SNSUserServerProfileUpdateSuccessMess"
+    "age\022.\n\007user_id\030\001 \001(\0132\025.realtime.XPlatfor"
+    "mIDR\006userIdBs\n\037com.github.echotools.nevr"
+    ".rtapiB\014NevrRealtimeP\001Z0github.com/echot"
+    "ools/nevr-common/v4/gen/go/rtapi\252\002\rNevr."
+    "Protobufb\006proto3"
 };
 static const ::_pbi::DescriptorTable* PROTOBUF_NONNULL const
     descriptor_table_rtapi_2frealtime_5fv1_2eproto_deps[2] = {
@@ -2677,13 +2832,13 @@ static ::absl::once_flag descriptor_table_rtapi_2frealtime_5fv1_2eproto_once;
 PROTOBUF_CONSTINIT const ::_pbi::DescriptorTable descriptor_table_rtapi_2frealtime_5fv1_2eproto = {
     false,
     false,
-    13488,
+    14176,
     descriptor_table_protodef_rtapi_2frealtime_5fv1_2eproto,
     "rtapi/realtime_v1.proto",
     &descriptor_table_rtapi_2frealtime_5fv1_2eproto_once,
     descriptor_table_rtapi_2frealtime_5fv1_2eproto_deps,
     2,
-    56,
+    59,
     schemas,
     file_default_instances,
     TableStruct_rtapi_2frealtime_5fv1_2eproto::offsets,
@@ -3396,6 +3551,19 @@ void Envelope::set_allocated_user_server_profile_update_success(::realtime::SNSU
   }
   // @@protoc_insertion_point(field_set_allocated:realtime.Envelope.user_server_profile_update_success)
 }
+void Envelope::set_allocated_game_server_save_loadout(::realtime::GameServerSaveLoadoutMessage* PROTOBUF_NULLABLE game_server_save_loadout) {
+  ::google::protobuf::Arena* message_arena = GetArena();
+  clear_message();
+  if (game_server_save_loadout) {
+    ::google::protobuf::Arena* submessage_arena = game_server_save_loadout->GetArena();
+    if (message_arena != submessage_arena) {
+      game_server_save_loadout = ::google::protobuf::internal::GetOwnedMessage(message_arena, game_server_save_loadout, submessage_arena);
+    }
+    set_has_game_server_save_loadout();
+    _impl_.message_.game_server_save_loadout_ = game_server_save_loadout;
+  }
+  // @@protoc_insertion_point(field_set_allocated:realtime.Envelope.game_server_save_loadout)
+}
 Envelope::Envelope(::google::protobuf::Arena* PROTOBUF_NULLABLE arena)
 #if defined(PROTOBUF_CUSTOM_VTABLE)
     : ::google::protobuf::Message(arena, Envelope_class_data_.base()) {
@@ -3583,6 +3751,9 @@ Envelope::Envelope(
         break;
       case kUserServerProfileUpdateSuccess:
         _impl_.message_.user_server_profile_update_success_ = ::google::protobuf::Message::CopyConstruct(arena, *from._impl_.message_.user_server_profile_update_success_);
+        break;
+      case kGameServerSaveLoadout:
+        _impl_.message_.game_server_save_loadout_ = ::google::protobuf::Message::CopyConstruct(arena, *from._impl_.message_.game_server_save_loadout_);
         break;
   }
 
@@ -4029,6 +4200,14 @@ void Envelope::clear_message() {
       }
       break;
     }
+    case kGameServerSaveLoadout: {
+      if (GetArena() == nullptr) {
+        delete _impl_.message_.game_server_save_loadout_;
+      } else if (::google::protobuf::internal::DebugHardenClearOneofMessageOnArena()) {
+        ::google::protobuf::internal::MaybePoisonAfterClear(_impl_.message_.game_server_save_loadout_);
+      }
+      break;
+    }
     case MESSAGE_NOT_SET: {
       break;
     }
@@ -4080,17 +4259,17 @@ Envelope::GetClassData() const {
   return Envelope_class_data_.base();
 }
 PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
-const ::_pbi::TcParseTable<0, 52, 51, 77, 9>
+const ::_pbi::TcParseTable<0, 53, 52, 77, 9>
 Envelope::_table_ = {
   {
     PROTOBUF_FIELD_OFFSET(Envelope, _impl_._has_bits_),
     0, // no _extensions_
-    52, 0,  // max_field_number, fast_idx_mask
+    53, 0,  // max_field_number, fast_idx_mask
     offsetof(decltype(_table_), field_lookup_table),
     0,  // skipmap
     offsetof(decltype(_table_), field_entries),
-    52,  // num_field_entries
-    51,  // num_aux_entries
+    53,  // num_field_entries
+    52,  // num_aux_entries
     offsetof(decltype(_table_), aux_entries),
     Envelope_class_data_.base(),
     nullptr,  // post_loop_handler
@@ -4106,7 +4285,7 @@ Envelope::_table_ = {
   }}, {{
     33, 0, 2,
     0, 32,
-    65520, 48,
+    65504, 48,
     65535, 65535
   }}, {{
     // string cid = 1 [json_name = "cid"];
@@ -4213,6 +4392,8 @@ Envelope::_table_ = {
     {PROTOBUF_FIELD_OFFSET(Envelope, _impl_.message_.user_server_profile_update_request_), _Internal::kOneofCaseOffset + 0, 49, (0 | ::_fl::kFcOneof | ::_fl::kMessage | ::_fl::kTvTable)},
     // .realtime.SNSUserServerProfileUpdateSuccessMessage user_server_profile_update_success = 52 [json_name = "userServerProfileUpdateSuccess"];
     {PROTOBUF_FIELD_OFFSET(Envelope, _impl_.message_.user_server_profile_update_success_), _Internal::kOneofCaseOffset + 0, 50, (0 | ::_fl::kFcOneof | ::_fl::kMessage | ::_fl::kTvTable)},
+    // .realtime.GameServerSaveLoadoutMessage game_server_save_loadout = 53 [json_name = "gameServerSaveLoadout"];
+    {PROTOBUF_FIELD_OFFSET(Envelope, _impl_.message_.game_server_save_loadout_), _Internal::kOneofCaseOffset + 0, 51, (0 | ::_fl::kFcOneof | ::_fl::kMessage | ::_fl::kTvTable)},
   }},
   {{
       {::_pbi::TcParser::GetTable<::realtime::Error>()},
@@ -4266,6 +4447,7 @@ Envelope::_table_ = {
       {::_pbi::TcParser::GetTable<::realtime::SNSUpdateProfileFailureMessage>()},
       {::_pbi::TcParser::GetTable<::realtime::SNSUserServerProfileUpdateRequestMessage>()},
       {::_pbi::TcParser::GetTable<::realtime::SNSUserServerProfileUpdateSuccessMessage>()},
+      {::_pbi::TcParser::GetTable<::realtime::GameServerSaveLoadoutMessage>()},
   }},
   {{
     "\21\3\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0"
@@ -4625,6 +4807,12 @@ PROTOBUF_NOINLINE void Envelope::Clear() {
           stream);
       break;
     }
+    case kGameServerSaveLoadout: {
+      target = ::google::protobuf::internal::WireFormatLite::InternalWriteMessage(
+          53, *this_._impl_.message_.game_server_save_loadout_, this_._impl_.message_.game_server_save_loadout_->GetCachedSize(), target,
+          stream);
+      break;
+    }
     default:
       break;
   }
@@ -4966,6 +5154,12 @@ PROTOBUF_NOINLINE void Envelope::Clear() {
     case kUserServerProfileUpdateSuccess: {
       total_size += 2 +
                     ::google::protobuf::internal::WireFormatLite::MessageSize(*this_._impl_.message_.user_server_profile_update_success_);
+      break;
+    }
+    // .realtime.GameServerSaveLoadoutMessage game_server_save_loadout = 53 [json_name = "gameServerSaveLoadout"];
+    case kGameServerSaveLoadout: {
+      total_size += 2 +
+                    ::google::protobuf::internal::WireFormatLite::MessageSize(*this_._impl_.message_.game_server_save_loadout_);
       break;
     }
     case MESSAGE_NOT_SET: {
@@ -5418,6 +5612,14 @@ void Envelope::MergeImpl(::google::protobuf::MessageLite& to_msg,
           _this->_impl_.message_.user_server_profile_update_success_ = ::google::protobuf::Message::CopyConstruct(arena, *from._impl_.message_.user_server_profile_update_success_);
         } else {
           _this->_impl_.message_.user_server_profile_update_success_->MergeFrom(*from._impl_.message_.user_server_profile_update_success_);
+        }
+        break;
+      }
+      case kGameServerSaveLoadout: {
+        if (oneof_needs_init) {
+          _this->_impl_.message_.game_server_save_loadout_ = ::google::protobuf::Message::CopyConstruct(arena, *from._impl_.message_.game_server_save_loadout_);
+        } else {
+          _this->_impl_.message_.game_server_save_loadout_->MergeFrom(*from._impl_.message_.game_server_save_loadout_);
         }
         break;
       }
@@ -7067,6 +7269,1066 @@ void GameServerRegistrationSuccessMessage::InternalSwap(GameServerRegistrationSu
 }
 
 ::google::protobuf::Metadata GameServerRegistrationSuccessMessage::GetMetadata() const {
+  return ::google::protobuf::Message::GetMetadataImpl(GetClassData()->full());
+}
+// ===================================================================
+
+class LoadoutItem::_Internal {
+ public:
+  using HasBits =
+      decltype(::std::declval<LoadoutItem>()._impl_._has_bits_);
+  static constexpr ::int32_t kHasBitsOffset =
+      8 * PROTOBUF_FIELD_OFFSET(LoadoutItem, _impl_._has_bits_);
+};
+
+LoadoutItem::LoadoutItem(::google::protobuf::Arena* PROTOBUF_NULLABLE arena)
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+    : ::google::protobuf::Message(arena, LoadoutItem_class_data_.base()) {
+#else   // PROTOBUF_CUSTOM_VTABLE
+    : ::google::protobuf::Message(arena) {
+#endif  // PROTOBUF_CUSTOM_VTABLE
+  SharedCtor(arena);
+  // @@protoc_insertion_point(arena_constructor:realtime.LoadoutItem)
+}
+LoadoutItem::LoadoutItem(
+    ::google::protobuf::Arena* PROTOBUF_NULLABLE arena, const LoadoutItem& from)
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+    : ::google::protobuf::Message(arena, LoadoutItem_class_data_.base()),
+#else   // PROTOBUF_CUSTOM_VTABLE
+    : ::google::protobuf::Message(arena),
+#endif  // PROTOBUF_CUSTOM_VTABLE
+      _impl_(from._impl_) {
+  _internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(
+      from._internal_metadata_);
+}
+PROTOBUF_NDEBUG_INLINE LoadoutItem::Impl_::Impl_(
+    [[maybe_unused]] ::google::protobuf::internal::InternalVisibility visibility,
+    [[maybe_unused]] ::google::protobuf::Arena* PROTOBUF_NULLABLE arena)
+      : _cached_size_{0} {}
+
+inline void LoadoutItem::SharedCtor(::_pb::Arena* PROTOBUF_NULLABLE arena) {
+  new (&_impl_) Impl_(internal_visibility(), arena);
+  ::memset(reinterpret_cast<char*>(&_impl_) +
+               offsetof(Impl_, slot_type_),
+           0,
+           offsetof(Impl_, equipped_item_) -
+               offsetof(Impl_, slot_type_) +
+               sizeof(Impl_::equipped_item_));
+}
+LoadoutItem::~LoadoutItem() {
+  // @@protoc_insertion_point(destructor:realtime.LoadoutItem)
+  SharedDtor(*this);
+}
+inline void LoadoutItem::SharedDtor(MessageLite& self) {
+  LoadoutItem& this_ = static_cast<LoadoutItem&>(self);
+  if constexpr (::_pbi::DebugHardenCheckHasBitConsistency()) {
+    this_.CheckHasBitConsistency();
+  }
+  this_._internal_metadata_.Delete<::google::protobuf::UnknownFieldSet>();
+  ABSL_DCHECK(this_.GetArena() == nullptr);
+  this_._impl_.~Impl_();
+}
+
+inline void* PROTOBUF_NONNULL LoadoutItem::PlacementNew_(
+    const void* PROTOBUF_NONNULL, void* PROTOBUF_NONNULL mem,
+    ::google::protobuf::Arena* PROTOBUF_NULLABLE arena) {
+  return ::new (mem) LoadoutItem(arena);
+}
+constexpr auto LoadoutItem::InternalNewImpl_() {
+  return ::google::protobuf::internal::MessageCreator::ZeroInit(sizeof(LoadoutItem),
+                                            alignof(LoadoutItem));
+}
+constexpr auto LoadoutItem::InternalGenerateClassData_() {
+  return ::google::protobuf::internal::ClassDataFull{
+      ::google::protobuf::internal::ClassData{
+          &_LoadoutItem_default_instance_._instance,
+          &_table_.header,
+          nullptr,  // OnDemandRegisterArenaDtor
+          nullptr,  // IsInitialized
+          &LoadoutItem::MergeImpl,
+          ::google::protobuf::Message::GetNewImpl<LoadoutItem>(),
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+          &LoadoutItem::SharedDtor,
+          ::google::protobuf::Message::GetClearImpl<LoadoutItem>(), &LoadoutItem::ByteSizeLong,
+              &LoadoutItem::_InternalSerialize,
+#endif  // PROTOBUF_CUSTOM_VTABLE
+          PROTOBUF_FIELD_OFFSET(LoadoutItem, _impl_._cached_size_),
+          false,
+      },
+      &LoadoutItem::kDescriptorMethods,
+      &descriptor_table_rtapi_2frealtime_5fv1_2eproto,
+      nullptr,  // tracker
+  };
+}
+
+PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 const
+    ::google::protobuf::internal::ClassDataFull LoadoutItem_class_data_ =
+        LoadoutItem::InternalGenerateClassData_();
+
+PROTOBUF_ATTRIBUTE_WEAK const ::google::protobuf::internal::ClassData* PROTOBUF_NONNULL
+LoadoutItem::GetClassData() const {
+  ::google::protobuf::internal::PrefetchToLocalCache(&LoadoutItem_class_data_);
+  ::google::protobuf::internal::PrefetchToLocalCache(LoadoutItem_class_data_.tc_table);
+  return LoadoutItem_class_data_.base();
+}
+PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
+const ::_pbi::TcParseTable<1, 2, 0, 0, 2>
+LoadoutItem::_table_ = {
+  {
+    PROTOBUF_FIELD_OFFSET(LoadoutItem, _impl_._has_bits_),
+    0, // no _extensions_
+    2, 8,  // max_field_number, fast_idx_mask
+    offsetof(decltype(_table_), field_lookup_table),
+    4294967292,  // skipmap
+    offsetof(decltype(_table_), field_entries),
+    2,  // num_field_entries
+    0,  // num_aux_entries
+    offsetof(decltype(_table_), field_names),  // no aux_entries
+    LoadoutItem_class_data_.base(),
+    nullptr,  // post_loop_handler
+    ::_pbi::TcParser::GenericFallback,  // fallback
+    #ifdef PROTOBUF_PREFETCH_PARSE_TABLE
+    ::_pbi::TcParser::GetTable<::realtime::LoadoutItem>(),  // to_prefetch
+    #endif  // PROTOBUF_PREFETCH_PARSE_TABLE
+  }, {{
+    // fixed64 equipped_item = 2 [json_name = "equippedItem"];
+    {::_pbi::TcParser::FastF64S1,
+     {17, 1, 0,
+      PROTOBUF_FIELD_OFFSET(LoadoutItem, _impl_.equipped_item_)}},
+    // fixed64 slot_type = 1 [json_name = "slotType"];
+    {::_pbi::TcParser::FastF64S1,
+     {9, 0, 0,
+      PROTOBUF_FIELD_OFFSET(LoadoutItem, _impl_.slot_type_)}},
+  }}, {{
+    65535, 65535
+  }}, {{
+    // fixed64 slot_type = 1 [json_name = "slotType"];
+    {PROTOBUF_FIELD_OFFSET(LoadoutItem, _impl_.slot_type_), _Internal::kHasBitsOffset + 0, 0, (0 | ::_fl::kFcOptional | ::_fl::kFixed64)},
+    // fixed64 equipped_item = 2 [json_name = "equippedItem"];
+    {PROTOBUF_FIELD_OFFSET(LoadoutItem, _impl_.equipped_item_), _Internal::kHasBitsOffset + 1, 0, (0 | ::_fl::kFcOptional | ::_fl::kFixed64)},
+  }},
+  // no aux_entries
+  {{
+  }},
+};
+PROTOBUF_NOINLINE void LoadoutItem::Clear() {
+// @@protoc_insertion_point(message_clear_start:realtime.LoadoutItem)
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  ::uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  cached_has_bits = _impl_._has_bits_[0];
+  if (BatchCheckHasBit(cached_has_bits, 0x00000003U)) {
+    ::memset(&_impl_.slot_type_, 0, static_cast<::size_t>(
+        reinterpret_cast<char*>(&_impl_.equipped_item_) -
+        reinterpret_cast<char*>(&_impl_.slot_type_)) + sizeof(_impl_.equipped_item_));
+  }
+  _impl_._has_bits_.Clear();
+  _internal_metadata_.Clear<::google::protobuf::UnknownFieldSet>();
+}
+
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+::uint8_t* PROTOBUF_NONNULL LoadoutItem::_InternalSerialize(
+    const ::google::protobuf::MessageLite& base, ::uint8_t* PROTOBUF_NONNULL target,
+    ::google::protobuf::io::EpsCopyOutputStream* PROTOBUF_NONNULL stream) {
+  const LoadoutItem& this_ = static_cast<const LoadoutItem&>(base);
+#else   // PROTOBUF_CUSTOM_VTABLE
+::uint8_t* PROTOBUF_NONNULL LoadoutItem::_InternalSerialize(
+    ::uint8_t* PROTOBUF_NONNULL target,
+    ::google::protobuf::io::EpsCopyOutputStream* PROTOBUF_NONNULL stream) const {
+  const LoadoutItem& this_ = *this;
+#endif  // PROTOBUF_CUSTOM_VTABLE
+  if constexpr (::_pbi::DebugHardenCheckHasBitConsistency()) {
+    this_.CheckHasBitConsistency();
+  }
+  // @@protoc_insertion_point(serialize_to_array_start:realtime.LoadoutItem)
+  ::uint32_t cached_has_bits = 0;
+  (void)cached_has_bits;
+
+  cached_has_bits = this_._impl_._has_bits_[0];
+  // fixed64 slot_type = 1 [json_name = "slotType"];
+  if (CheckHasBit(cached_has_bits, 0x00000001U)) {
+    if (this_._internal_slot_type() != 0) {
+      target = stream->EnsureSpace(target);
+      target = ::_pbi::WireFormatLite::WriteFixed64ToArray(
+          1, this_._internal_slot_type(), target);
+    }
+  }
+
+  // fixed64 equipped_item = 2 [json_name = "equippedItem"];
+  if (CheckHasBit(cached_has_bits, 0x00000002U)) {
+    if (this_._internal_equipped_item() != 0) {
+      target = stream->EnsureSpace(target);
+      target = ::_pbi::WireFormatLite::WriteFixed64ToArray(
+          2, this_._internal_equipped_item(), target);
+    }
+  }
+
+  if (ABSL_PREDICT_FALSE(this_._internal_metadata_.have_unknown_fields())) {
+    target =
+        ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
+            this_._internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance), target, stream);
+  }
+  // @@protoc_insertion_point(serialize_to_array_end:realtime.LoadoutItem)
+  return target;
+}
+
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+::size_t LoadoutItem::ByteSizeLong(const MessageLite& base) {
+  const LoadoutItem& this_ = static_cast<const LoadoutItem&>(base);
+#else   // PROTOBUF_CUSTOM_VTABLE
+::size_t LoadoutItem::ByteSizeLong() const {
+  const LoadoutItem& this_ = *this;
+#endif  // PROTOBUF_CUSTOM_VTABLE
+  // @@protoc_insertion_point(message_byte_size_start:realtime.LoadoutItem)
+  ::size_t total_size = 0;
+
+  ::uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void)cached_has_bits;
+
+  ::_pbi::Prefetch5LinesFrom7Lines(&this_);
+  cached_has_bits = this_._impl_._has_bits_[0];
+  if (BatchCheckHasBit(cached_has_bits, 0x00000003U)) {
+    // fixed64 slot_type = 1 [json_name = "slotType"];
+    if (CheckHasBit(cached_has_bits, 0x00000001U)) {
+      if (this_._internal_slot_type() != 0) {
+        total_size += 9;
+      }
+    }
+    // fixed64 equipped_item = 2 [json_name = "equippedItem"];
+    if (CheckHasBit(cached_has_bits, 0x00000002U)) {
+      if (this_._internal_equipped_item() != 0) {
+        total_size += 9;
+      }
+    }
+  }
+  return this_.MaybeComputeUnknownFieldsSize(total_size,
+                                             &this_._impl_._cached_size_);
+}
+
+void LoadoutItem::MergeImpl(::google::protobuf::MessageLite& to_msg,
+                            const ::google::protobuf::MessageLite& from_msg) {
+   auto* const _this =
+      static_cast<LoadoutItem*>(&to_msg);
+  auto& from = static_cast<const LoadoutItem&>(from_msg);
+  if constexpr (::_pbi::DebugHardenCheckHasBitConsistency()) {
+    from.CheckHasBitConsistency();
+  }
+  // @@protoc_insertion_point(class_specific_merge_from_start:realtime.LoadoutItem)
+  ABSL_DCHECK_NE(&from, _this);
+  ::uint32_t cached_has_bits = 0;
+  (void)cached_has_bits;
+
+  cached_has_bits = from._impl_._has_bits_[0];
+  if (BatchCheckHasBit(cached_has_bits, 0x00000003U)) {
+    if (CheckHasBit(cached_has_bits, 0x00000001U)) {
+      if (from._internal_slot_type() != 0) {
+        _this->_impl_.slot_type_ = from._impl_.slot_type_;
+      }
+    }
+    if (CheckHasBit(cached_has_bits, 0x00000002U)) {
+      if (from._internal_equipped_item() != 0) {
+        _this->_impl_.equipped_item_ = from._impl_.equipped_item_;
+      }
+    }
+  }
+  _this->_impl_._has_bits_[0] |= cached_has_bits;
+  _this->_internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(
+      from._internal_metadata_);
+}
+
+void LoadoutItem::CopyFrom(const LoadoutItem& from) {
+  // @@protoc_insertion_point(class_specific_copy_from_start:realtime.LoadoutItem)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+
+void LoadoutItem::InternalSwap(LoadoutItem* PROTOBUF_RESTRICT PROTOBUF_NONNULL other) {
+  using ::std::swap;
+  _internal_metadata_.InternalSwap(&other->_internal_metadata_);
+  swap(_impl_._has_bits_[0], other->_impl_._has_bits_[0]);
+  ::google::protobuf::internal::memswap<
+      PROTOBUF_FIELD_OFFSET(LoadoutItem, _impl_.equipped_item_)
+      + sizeof(LoadoutItem::_impl_.equipped_item_)
+      - PROTOBUF_FIELD_OFFSET(LoadoutItem, _impl_.slot_type_)>(
+          reinterpret_cast<char*>(&_impl_.slot_type_),
+          reinterpret_cast<char*>(&other->_impl_.slot_type_));
+}
+
+::google::protobuf::Metadata LoadoutItem::GetMetadata() const {
+  return ::google::protobuf::Message::GetMetadataImpl(GetClassData()->full());
+}
+// ===================================================================
+
+class LoadoutInstance::_Internal {
+ public:
+  using HasBits =
+      decltype(::std::declval<LoadoutInstance>()._impl_._has_bits_);
+  static constexpr ::int32_t kHasBitsOffset =
+      8 * PROTOBUF_FIELD_OFFSET(LoadoutInstance, _impl_._has_bits_);
+};
+
+LoadoutInstance::LoadoutInstance(::google::protobuf::Arena* PROTOBUF_NULLABLE arena)
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+    : ::google::protobuf::Message(arena, LoadoutInstance_class_data_.base()) {
+#else   // PROTOBUF_CUSTOM_VTABLE
+    : ::google::protobuf::Message(arena) {
+#endif  // PROTOBUF_CUSTOM_VTABLE
+  SharedCtor(arena);
+  // @@protoc_insertion_point(arena_constructor:realtime.LoadoutInstance)
+}
+PROTOBUF_NDEBUG_INLINE LoadoutInstance::Impl_::Impl_(
+    [[maybe_unused]] ::google::protobuf::internal::InternalVisibility visibility,
+    [[maybe_unused]] ::google::protobuf::Arena* PROTOBUF_NULLABLE arena, const Impl_& from,
+    [[maybe_unused]] const ::realtime::LoadoutInstance& from_msg)
+      : _has_bits_{from._has_bits_},
+        _cached_size_{0},
+        items_{visibility, arena, from.items_} {}
+
+LoadoutInstance::LoadoutInstance(
+    ::google::protobuf::Arena* PROTOBUF_NULLABLE arena,
+    const LoadoutInstance& from)
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+    : ::google::protobuf::Message(arena, LoadoutInstance_class_data_.base()) {
+#else   // PROTOBUF_CUSTOM_VTABLE
+    : ::google::protobuf::Message(arena) {
+#endif  // PROTOBUF_CUSTOM_VTABLE
+  LoadoutInstance* const _this = this;
+  (void)_this;
+  _internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(
+      from._internal_metadata_);
+  new (&_impl_) Impl_(internal_visibility(), arena, from._impl_, from);
+  _impl_.instance_name_ = from._impl_.instance_name_;
+
+  // @@protoc_insertion_point(copy_constructor:realtime.LoadoutInstance)
+}
+PROTOBUF_NDEBUG_INLINE LoadoutInstance::Impl_::Impl_(
+    [[maybe_unused]] ::google::protobuf::internal::InternalVisibility visibility,
+    [[maybe_unused]] ::google::protobuf::Arena* PROTOBUF_NULLABLE arena)
+      : _cached_size_{0},
+        items_{visibility, arena} {}
+
+inline void LoadoutInstance::SharedCtor(::_pb::Arena* PROTOBUF_NULLABLE arena) {
+  new (&_impl_) Impl_(internal_visibility(), arena);
+  _impl_.instance_name_ = {};
+}
+LoadoutInstance::~LoadoutInstance() {
+  // @@protoc_insertion_point(destructor:realtime.LoadoutInstance)
+  SharedDtor(*this);
+}
+inline void LoadoutInstance::SharedDtor(MessageLite& self) {
+  LoadoutInstance& this_ = static_cast<LoadoutInstance&>(self);
+  if constexpr (::_pbi::DebugHardenCheckHasBitConsistency()) {
+    this_.CheckHasBitConsistency();
+  }
+  this_._internal_metadata_.Delete<::google::protobuf::UnknownFieldSet>();
+  ABSL_DCHECK(this_.GetArena() == nullptr);
+  this_._impl_.~Impl_();
+}
+
+inline void* PROTOBUF_NONNULL LoadoutInstance::PlacementNew_(
+    const void* PROTOBUF_NONNULL, void* PROTOBUF_NONNULL mem,
+    ::google::protobuf::Arena* PROTOBUF_NULLABLE arena) {
+  return ::new (mem) LoadoutInstance(arena);
+}
+constexpr auto LoadoutInstance::InternalNewImpl_() {
+  constexpr auto arena_bits = ::google::protobuf::internal::EncodePlacementArenaOffsets({
+      PROTOBUF_FIELD_OFFSET(LoadoutInstance, _impl_.items_) +
+          decltype(LoadoutInstance::_impl_.items_)::
+              InternalGetArenaOffset(
+                  ::google::protobuf::Message::internal_visibility()),
+  });
+  if (arena_bits.has_value()) {
+    return ::google::protobuf::internal::MessageCreator::ZeroInit(
+        sizeof(LoadoutInstance), alignof(LoadoutInstance), *arena_bits);
+  } else {
+    return ::google::protobuf::internal::MessageCreator(&LoadoutInstance::PlacementNew_,
+                                 sizeof(LoadoutInstance),
+                                 alignof(LoadoutInstance));
+  }
+}
+constexpr auto LoadoutInstance::InternalGenerateClassData_() {
+  return ::google::protobuf::internal::ClassDataFull{
+      ::google::protobuf::internal::ClassData{
+          &_LoadoutInstance_default_instance_._instance,
+          &_table_.header,
+          nullptr,  // OnDemandRegisterArenaDtor
+          nullptr,  // IsInitialized
+          &LoadoutInstance::MergeImpl,
+          ::google::protobuf::Message::GetNewImpl<LoadoutInstance>(),
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+          &LoadoutInstance::SharedDtor,
+          ::google::protobuf::Message::GetClearImpl<LoadoutInstance>(), &LoadoutInstance::ByteSizeLong,
+              &LoadoutInstance::_InternalSerialize,
+#endif  // PROTOBUF_CUSTOM_VTABLE
+          PROTOBUF_FIELD_OFFSET(LoadoutInstance, _impl_._cached_size_),
+          false,
+      },
+      &LoadoutInstance::kDescriptorMethods,
+      &descriptor_table_rtapi_2frealtime_5fv1_2eproto,
+      nullptr,  // tracker
+  };
+}
+
+PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 const
+    ::google::protobuf::internal::ClassDataFull LoadoutInstance_class_data_ =
+        LoadoutInstance::InternalGenerateClassData_();
+
+PROTOBUF_ATTRIBUTE_WEAK const ::google::protobuf::internal::ClassData* PROTOBUF_NONNULL
+LoadoutInstance::GetClassData() const {
+  ::google::protobuf::internal::PrefetchToLocalCache(&LoadoutInstance_class_data_);
+  ::google::protobuf::internal::PrefetchToLocalCache(LoadoutInstance_class_data_.tc_table);
+  return LoadoutInstance_class_data_.base();
+}
+PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
+const ::_pbi::TcParseTable<1, 2, 1, 0, 2>
+LoadoutInstance::_table_ = {
+  {
+    PROTOBUF_FIELD_OFFSET(LoadoutInstance, _impl_._has_bits_),
+    0, // no _extensions_
+    2, 8,  // max_field_number, fast_idx_mask
+    offsetof(decltype(_table_), field_lookup_table),
+    4294967292,  // skipmap
+    offsetof(decltype(_table_), field_entries),
+    2,  // num_field_entries
+    1,  // num_aux_entries
+    offsetof(decltype(_table_), aux_entries),
+    LoadoutInstance_class_data_.base(),
+    nullptr,  // post_loop_handler
+    ::_pbi::TcParser::GenericFallback,  // fallback
+    #ifdef PROTOBUF_PREFETCH_PARSE_TABLE
+    ::_pbi::TcParser::GetTable<::realtime::LoadoutInstance>(),  // to_prefetch
+    #endif  // PROTOBUF_PREFETCH_PARSE_TABLE
+  }, {{
+    // repeated .realtime.LoadoutItem items = 2 [json_name = "items"];
+    {::_pbi::TcParser::FastMtR1,
+     {18, 0, 0,
+      PROTOBUF_FIELD_OFFSET(LoadoutInstance, _impl_.items_)}},
+    // fixed64 instance_name = 1 [json_name = "instanceName"];
+    {::_pbi::TcParser::FastF64S1,
+     {9, 1, 0,
+      PROTOBUF_FIELD_OFFSET(LoadoutInstance, _impl_.instance_name_)}},
+  }}, {{
+    65535, 65535
+  }}, {{
+    // fixed64 instance_name = 1 [json_name = "instanceName"];
+    {PROTOBUF_FIELD_OFFSET(LoadoutInstance, _impl_.instance_name_), _Internal::kHasBitsOffset + 1, 0, (0 | ::_fl::kFcOptional | ::_fl::kFixed64)},
+    // repeated .realtime.LoadoutItem items = 2 [json_name = "items"];
+    {PROTOBUF_FIELD_OFFSET(LoadoutInstance, _impl_.items_), _Internal::kHasBitsOffset + 0, 0, (0 | ::_fl::kFcRepeated | ::_fl::kMessage | ::_fl::kTvTable)},
+  }},
+  {{
+      {::_pbi::TcParser::GetTable<::realtime::LoadoutItem>()},
+  }},
+  {{
+  }},
+};
+PROTOBUF_NOINLINE void LoadoutInstance::Clear() {
+// @@protoc_insertion_point(message_clear_start:realtime.LoadoutInstance)
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  ::uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  cached_has_bits = _impl_._has_bits_[0];
+  if (CheckHasBitForRepeated(cached_has_bits, 0x00000001U)) {
+    _impl_.items_.Clear();
+  }
+  _impl_.instance_name_ = ::uint64_t{0u};
+  _impl_._has_bits_.Clear();
+  _internal_metadata_.Clear<::google::protobuf::UnknownFieldSet>();
+}
+
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+::uint8_t* PROTOBUF_NONNULL LoadoutInstance::_InternalSerialize(
+    const ::google::protobuf::MessageLite& base, ::uint8_t* PROTOBUF_NONNULL target,
+    ::google::protobuf::io::EpsCopyOutputStream* PROTOBUF_NONNULL stream) {
+  const LoadoutInstance& this_ = static_cast<const LoadoutInstance&>(base);
+#else   // PROTOBUF_CUSTOM_VTABLE
+::uint8_t* PROTOBUF_NONNULL LoadoutInstance::_InternalSerialize(
+    ::uint8_t* PROTOBUF_NONNULL target,
+    ::google::protobuf::io::EpsCopyOutputStream* PROTOBUF_NONNULL stream) const {
+  const LoadoutInstance& this_ = *this;
+#endif  // PROTOBUF_CUSTOM_VTABLE
+  if constexpr (::_pbi::DebugHardenCheckHasBitConsistency()) {
+    this_.CheckHasBitConsistency();
+  }
+  // @@protoc_insertion_point(serialize_to_array_start:realtime.LoadoutInstance)
+  ::uint32_t cached_has_bits = 0;
+  (void)cached_has_bits;
+
+  cached_has_bits = this_._impl_._has_bits_[0];
+  // fixed64 instance_name = 1 [json_name = "instanceName"];
+  if (CheckHasBit(cached_has_bits, 0x00000002U)) {
+    if (this_._internal_instance_name() != 0) {
+      target = stream->EnsureSpace(target);
+      target = ::_pbi::WireFormatLite::WriteFixed64ToArray(
+          1, this_._internal_instance_name(), target);
+    }
+  }
+
+  // repeated .realtime.LoadoutItem items = 2 [json_name = "items"];
+  if (CheckHasBitForRepeated(cached_has_bits, 0x00000001U)) {
+    for (unsigned i = 0, n = static_cast<unsigned>(
+                             this_._internal_items_size());
+         i < n; i++) {
+      const auto& repfield = this_._internal_items().Get(i);
+      target =
+          ::google::protobuf::internal::WireFormatLite::InternalWriteMessage(
+              2, repfield, repfield.GetCachedSize(),
+              target, stream);
+    }
+  }
+
+  if (ABSL_PREDICT_FALSE(this_._internal_metadata_.have_unknown_fields())) {
+    target =
+        ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
+            this_._internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance), target, stream);
+  }
+  // @@protoc_insertion_point(serialize_to_array_end:realtime.LoadoutInstance)
+  return target;
+}
+
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+::size_t LoadoutInstance::ByteSizeLong(const MessageLite& base) {
+  const LoadoutInstance& this_ = static_cast<const LoadoutInstance&>(base);
+#else   // PROTOBUF_CUSTOM_VTABLE
+::size_t LoadoutInstance::ByteSizeLong() const {
+  const LoadoutInstance& this_ = *this;
+#endif  // PROTOBUF_CUSTOM_VTABLE
+  // @@protoc_insertion_point(message_byte_size_start:realtime.LoadoutInstance)
+  ::size_t total_size = 0;
+
+  ::uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void)cached_has_bits;
+
+  ::_pbi::Prefetch5LinesFrom7Lines(&this_);
+  cached_has_bits = this_._impl_._has_bits_[0];
+  if (BatchCheckHasBit(cached_has_bits, 0x00000003U)) {
+    // repeated .realtime.LoadoutItem items = 2 [json_name = "items"];
+    if (CheckHasBitForRepeated(cached_has_bits, 0x00000001U)) {
+      total_size += 1UL * this_._internal_items_size();
+      for (const auto& msg : this_._internal_items()) {
+        total_size += ::google::protobuf::internal::WireFormatLite::MessageSize(msg);
+      }
+    }
+    // fixed64 instance_name = 1 [json_name = "instanceName"];
+    if (CheckHasBit(cached_has_bits, 0x00000002U)) {
+      if (this_._internal_instance_name() != 0) {
+        total_size += 9;
+      }
+    }
+  }
+  return this_.MaybeComputeUnknownFieldsSize(total_size,
+                                             &this_._impl_._cached_size_);
+}
+
+void LoadoutInstance::MergeImpl(::google::protobuf::MessageLite& to_msg,
+                            const ::google::protobuf::MessageLite& from_msg) {
+   auto* const _this =
+      static_cast<LoadoutInstance*>(&to_msg);
+  auto& from = static_cast<const LoadoutInstance&>(from_msg);
+  if constexpr (::_pbi::DebugHardenCheckHasBitConsistency()) {
+    from.CheckHasBitConsistency();
+  }
+  ::google::protobuf::Arena* arena = _this->GetArena();
+  // @@protoc_insertion_point(class_specific_merge_from_start:realtime.LoadoutInstance)
+  ABSL_DCHECK_NE(&from, _this);
+  ::uint32_t cached_has_bits = 0;
+  (void)cached_has_bits;
+
+  cached_has_bits = from._impl_._has_bits_[0];
+  if (BatchCheckHasBit(cached_has_bits, 0x00000003U)) {
+    if (CheckHasBitForRepeated(cached_has_bits, 0x00000001U)) {
+      _this->_internal_mutable_items()->InternalMergeFromWithArena(
+          ::google::protobuf::MessageLite::internal_visibility(), arena,
+          from._internal_items());
+    }
+    if (CheckHasBit(cached_has_bits, 0x00000002U)) {
+      if (from._internal_instance_name() != 0) {
+        _this->_impl_.instance_name_ = from._impl_.instance_name_;
+      }
+    }
+  }
+  _this->_impl_._has_bits_[0] |= cached_has_bits;
+  _this->_internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(
+      from._internal_metadata_);
+}
+
+void LoadoutInstance::CopyFrom(const LoadoutInstance& from) {
+  // @@protoc_insertion_point(class_specific_copy_from_start:realtime.LoadoutInstance)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+
+void LoadoutInstance::InternalSwap(LoadoutInstance* PROTOBUF_RESTRICT PROTOBUF_NONNULL other) {
+  using ::std::swap;
+  _internal_metadata_.InternalSwap(&other->_internal_metadata_);
+  swap(_impl_._has_bits_[0], other->_impl_._has_bits_[0]);
+  _impl_.items_.InternalSwap(&other->_impl_.items_);
+  swap(_impl_.instance_name_, other->_impl_.instance_name_);
+}
+
+::google::protobuf::Metadata LoadoutInstance::GetMetadata() const {
+  return ::google::protobuf::Message::GetMetadataImpl(GetClassData()->full());
+}
+// ===================================================================
+
+class GameServerSaveLoadoutMessage::_Internal {
+ public:
+  using HasBits =
+      decltype(::std::declval<GameServerSaveLoadoutMessage>()._impl_._has_bits_);
+  static constexpr ::int32_t kHasBitsOffset =
+      8 * PROTOBUF_FIELD_OFFSET(GameServerSaveLoadoutMessage, _impl_._has_bits_);
+};
+
+GameServerSaveLoadoutMessage::GameServerSaveLoadoutMessage(::google::protobuf::Arena* PROTOBUF_NULLABLE arena)
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+    : ::google::protobuf::Message(arena, GameServerSaveLoadoutMessage_class_data_.base()) {
+#else   // PROTOBUF_CUSTOM_VTABLE
+    : ::google::protobuf::Message(arena) {
+#endif  // PROTOBUF_CUSTOM_VTABLE
+  SharedCtor(arena);
+  // @@protoc_insertion_point(arena_constructor:realtime.GameServerSaveLoadoutMessage)
+}
+PROTOBUF_NDEBUG_INLINE GameServerSaveLoadoutMessage::Impl_::Impl_(
+    [[maybe_unused]] ::google::protobuf::internal::InternalVisibility visibility,
+    [[maybe_unused]] ::google::protobuf::Arena* PROTOBUF_NULLABLE arena, const Impl_& from,
+    [[maybe_unused]] const ::realtime::GameServerSaveLoadoutMessage& from_msg)
+      : _has_bits_{from._has_bits_},
+        _cached_size_{0},
+        loadout_instances_{visibility, arena, from.loadout_instances_},
+        lobby_session_id_(arena, from.lobby_session_id_),
+        entrant_id_(arena, from.entrant_id_) {}
+
+GameServerSaveLoadoutMessage::GameServerSaveLoadoutMessage(
+    ::google::protobuf::Arena* PROTOBUF_NULLABLE arena,
+    const GameServerSaveLoadoutMessage& from)
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+    : ::google::protobuf::Message(arena, GameServerSaveLoadoutMessage_class_data_.base()) {
+#else   // PROTOBUF_CUSTOM_VTABLE
+    : ::google::protobuf::Message(arena) {
+#endif  // PROTOBUF_CUSTOM_VTABLE
+  GameServerSaveLoadoutMessage* const _this = this;
+  (void)_this;
+  _internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(
+      from._internal_metadata_);
+  new (&_impl_) Impl_(internal_visibility(), arena, from._impl_, from);
+  ::memcpy(reinterpret_cast<char*>(&_impl_) +
+               offsetof(Impl_, loadout_slot_),
+           reinterpret_cast<const char*>(&from._impl_) +
+               offsetof(Impl_, loadout_slot_),
+           offsetof(Impl_, jersey_number_) -
+               offsetof(Impl_, loadout_slot_) +
+               sizeof(Impl_::jersey_number_));
+
+  // @@protoc_insertion_point(copy_constructor:realtime.GameServerSaveLoadoutMessage)
+}
+PROTOBUF_NDEBUG_INLINE GameServerSaveLoadoutMessage::Impl_::Impl_(
+    [[maybe_unused]] ::google::protobuf::internal::InternalVisibility visibility,
+    [[maybe_unused]] ::google::protobuf::Arena* PROTOBUF_NULLABLE arena)
+      : _cached_size_{0},
+        loadout_instances_{visibility, arena},
+        lobby_session_id_(arena),
+        entrant_id_(arena) {}
+
+inline void GameServerSaveLoadoutMessage::SharedCtor(::_pb::Arena* PROTOBUF_NULLABLE arena) {
+  new (&_impl_) Impl_(internal_visibility(), arena);
+  ::memset(reinterpret_cast<char*>(&_impl_) +
+               offsetof(Impl_, loadout_slot_),
+           0,
+           offsetof(Impl_, jersey_number_) -
+               offsetof(Impl_, loadout_slot_) +
+               sizeof(Impl_::jersey_number_));
+}
+GameServerSaveLoadoutMessage::~GameServerSaveLoadoutMessage() {
+  // @@protoc_insertion_point(destructor:realtime.GameServerSaveLoadoutMessage)
+  SharedDtor(*this);
+}
+inline void GameServerSaveLoadoutMessage::SharedDtor(MessageLite& self) {
+  GameServerSaveLoadoutMessage& this_ = static_cast<GameServerSaveLoadoutMessage&>(self);
+  if constexpr (::_pbi::DebugHardenCheckHasBitConsistency()) {
+    this_.CheckHasBitConsistency();
+  }
+  this_._internal_metadata_.Delete<::google::protobuf::UnknownFieldSet>();
+  ABSL_DCHECK(this_.GetArena() == nullptr);
+  this_._impl_.lobby_session_id_.Destroy();
+  this_._impl_.entrant_id_.Destroy();
+  this_._impl_.~Impl_();
+}
+
+inline void* PROTOBUF_NONNULL GameServerSaveLoadoutMessage::PlacementNew_(
+    const void* PROTOBUF_NONNULL, void* PROTOBUF_NONNULL mem,
+    ::google::protobuf::Arena* PROTOBUF_NULLABLE arena) {
+  return ::new (mem) GameServerSaveLoadoutMessage(arena);
+}
+constexpr auto GameServerSaveLoadoutMessage::InternalNewImpl_() {
+  constexpr auto arena_bits = ::google::protobuf::internal::EncodePlacementArenaOffsets({
+      PROTOBUF_FIELD_OFFSET(GameServerSaveLoadoutMessage, _impl_.loadout_instances_) +
+          decltype(GameServerSaveLoadoutMessage::_impl_.loadout_instances_)::
+              InternalGetArenaOffset(
+                  ::google::protobuf::Message::internal_visibility()),
+  });
+  if (arena_bits.has_value()) {
+    return ::google::protobuf::internal::MessageCreator::CopyInit(
+        sizeof(GameServerSaveLoadoutMessage), alignof(GameServerSaveLoadoutMessage), *arena_bits);
+  } else {
+    return ::google::protobuf::internal::MessageCreator(&GameServerSaveLoadoutMessage::PlacementNew_,
+                                 sizeof(GameServerSaveLoadoutMessage),
+                                 alignof(GameServerSaveLoadoutMessage));
+  }
+}
+constexpr auto GameServerSaveLoadoutMessage::InternalGenerateClassData_() {
+  return ::google::protobuf::internal::ClassDataFull{
+      ::google::protobuf::internal::ClassData{
+          &_GameServerSaveLoadoutMessage_default_instance_._instance,
+          &_table_.header,
+          nullptr,  // OnDemandRegisterArenaDtor
+          nullptr,  // IsInitialized
+          &GameServerSaveLoadoutMessage::MergeImpl,
+          ::google::protobuf::Message::GetNewImpl<GameServerSaveLoadoutMessage>(),
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+          &GameServerSaveLoadoutMessage::SharedDtor,
+          ::google::protobuf::Message::GetClearImpl<GameServerSaveLoadoutMessage>(), &GameServerSaveLoadoutMessage::ByteSizeLong,
+              &GameServerSaveLoadoutMessage::_InternalSerialize,
+#endif  // PROTOBUF_CUSTOM_VTABLE
+          PROTOBUF_FIELD_OFFSET(GameServerSaveLoadoutMessage, _impl_._cached_size_),
+          false,
+      },
+      &GameServerSaveLoadoutMessage::kDescriptorMethods,
+      &descriptor_table_rtapi_2frealtime_5fv1_2eproto,
+      nullptr,  // tracker
+  };
+}
+
+PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 const
+    ::google::protobuf::internal::ClassDataFull GameServerSaveLoadoutMessage_class_data_ =
+        GameServerSaveLoadoutMessage::InternalGenerateClassData_();
+
+PROTOBUF_ATTRIBUTE_WEAK const ::google::protobuf::internal::ClassData* PROTOBUF_NONNULL
+GameServerSaveLoadoutMessage::GetClassData() const {
+  ::google::protobuf::internal::PrefetchToLocalCache(&GameServerSaveLoadoutMessage_class_data_);
+  ::google::protobuf::internal::PrefetchToLocalCache(GameServerSaveLoadoutMessage_class_data_.tc_table);
+  return GameServerSaveLoadoutMessage_class_data_.base();
+}
+PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
+const ::_pbi::TcParseTable<3, 5, 1, 72, 2>
+GameServerSaveLoadoutMessage::_table_ = {
+  {
+    PROTOBUF_FIELD_OFFSET(GameServerSaveLoadoutMessage, _impl_._has_bits_),
+    0, // no _extensions_
+    5, 56,  // max_field_number, fast_idx_mask
+    offsetof(decltype(_table_), field_lookup_table),
+    4294967264,  // skipmap
+    offsetof(decltype(_table_), field_entries),
+    5,  // num_field_entries
+    1,  // num_aux_entries
+    offsetof(decltype(_table_), aux_entries),
+    GameServerSaveLoadoutMessage_class_data_.base(),
+    nullptr,  // post_loop_handler
+    ::_pbi::TcParser::GenericFallback,  // fallback
+    #ifdef PROTOBUF_PREFETCH_PARSE_TABLE
+    ::_pbi::TcParser::GetTable<::realtime::GameServerSaveLoadoutMessage>(),  // to_prefetch
+    #endif  // PROTOBUF_PREFETCH_PARSE_TABLE
+  }, {{
+    {::_pbi::TcParser::MiniParse, {}},
+    // string lobby_session_id = 1 [json_name = "lobbySessionId"];
+    {::_pbi::TcParser::FastUS1,
+     {10, 1, 0,
+      PROTOBUF_FIELD_OFFSET(GameServerSaveLoadoutMessage, _impl_.lobby_session_id_)}},
+    // string entrant_id = 2 [json_name = "entrantId"];
+    {::_pbi::TcParser::FastUS1,
+     {18, 2, 0,
+      PROTOBUF_FIELD_OFFSET(GameServerSaveLoadoutMessage, _impl_.entrant_id_)}},
+    // int32 loadout_slot = 3 [json_name = "loadoutSlot"];
+    {::_pbi::TcParser::SingularVarintNoZag1<::uint32_t, offsetof(GameServerSaveLoadoutMessage, _impl_.loadout_slot_), 3>(),
+     {24, 3, 0,
+      PROTOBUF_FIELD_OFFSET(GameServerSaveLoadoutMessage, _impl_.loadout_slot_)}},
+    // int32 jersey_number = 4 [json_name = "jerseyNumber"];
+    {::_pbi::TcParser::SingularVarintNoZag1<::uint32_t, offsetof(GameServerSaveLoadoutMessage, _impl_.jersey_number_), 4>(),
+     {32, 4, 0,
+      PROTOBUF_FIELD_OFFSET(GameServerSaveLoadoutMessage, _impl_.jersey_number_)}},
+    // repeated .realtime.LoadoutInstance loadout_instances = 5 [json_name = "loadoutInstances"];
+    {::_pbi::TcParser::FastMtR1,
+     {42, 0, 0,
+      PROTOBUF_FIELD_OFFSET(GameServerSaveLoadoutMessage, _impl_.loadout_instances_)}},
+    {::_pbi::TcParser::MiniParse, {}},
+    {::_pbi::TcParser::MiniParse, {}},
+  }}, {{
+    65535, 65535
+  }}, {{
+    // string lobby_session_id = 1 [json_name = "lobbySessionId"];
+    {PROTOBUF_FIELD_OFFSET(GameServerSaveLoadoutMessage, _impl_.lobby_session_id_), _Internal::kHasBitsOffset + 1, 0, (0 | ::_fl::kFcOptional | ::_fl::kUtf8String | ::_fl::kRepAString)},
+    // string entrant_id = 2 [json_name = "entrantId"];
+    {PROTOBUF_FIELD_OFFSET(GameServerSaveLoadoutMessage, _impl_.entrant_id_), _Internal::kHasBitsOffset + 2, 0, (0 | ::_fl::kFcOptional | ::_fl::kUtf8String | ::_fl::kRepAString)},
+    // int32 loadout_slot = 3 [json_name = "loadoutSlot"];
+    {PROTOBUF_FIELD_OFFSET(GameServerSaveLoadoutMessage, _impl_.loadout_slot_), _Internal::kHasBitsOffset + 3, 0, (0 | ::_fl::kFcOptional | ::_fl::kInt32)},
+    // int32 jersey_number = 4 [json_name = "jerseyNumber"];
+    {PROTOBUF_FIELD_OFFSET(GameServerSaveLoadoutMessage, _impl_.jersey_number_), _Internal::kHasBitsOffset + 4, 0, (0 | ::_fl::kFcOptional | ::_fl::kInt32)},
+    // repeated .realtime.LoadoutInstance loadout_instances = 5 [json_name = "loadoutInstances"];
+    {PROTOBUF_FIELD_OFFSET(GameServerSaveLoadoutMessage, _impl_.loadout_instances_), _Internal::kHasBitsOffset + 0, 0, (0 | ::_fl::kFcRepeated | ::_fl::kMessage | ::_fl::kTvTable)},
+  }},
+  {{
+      {::_pbi::TcParser::GetTable<::realtime::LoadoutInstance>()},
+  }},
+  {{
+    "\45\20\12\0\0\0\0\0"
+    "realtime.GameServerSaveLoadoutMessage"
+    "lobby_session_id"
+    "entrant_id"
+  }},
+};
+PROTOBUF_NOINLINE void GameServerSaveLoadoutMessage::Clear() {
+// @@protoc_insertion_point(message_clear_start:realtime.GameServerSaveLoadoutMessage)
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  ::uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  cached_has_bits = _impl_._has_bits_[0];
+  if (BatchCheckHasBit(cached_has_bits, 0x00000007U)) {
+    if (CheckHasBitForRepeated(cached_has_bits, 0x00000001U)) {
+      _impl_.loadout_instances_.Clear();
+    }
+    if (CheckHasBit(cached_has_bits, 0x00000002U)) {
+      _impl_.lobby_session_id_.ClearNonDefaultToEmpty();
+    }
+    if (CheckHasBit(cached_has_bits, 0x00000004U)) {
+      _impl_.entrant_id_.ClearNonDefaultToEmpty();
+    }
+  }
+  if (BatchCheckHasBit(cached_has_bits, 0x00000018U)) {
+    ::memset(&_impl_.loadout_slot_, 0, static_cast<::size_t>(
+        reinterpret_cast<char*>(&_impl_.jersey_number_) -
+        reinterpret_cast<char*>(&_impl_.loadout_slot_)) + sizeof(_impl_.jersey_number_));
+  }
+  _impl_._has_bits_.Clear();
+  _internal_metadata_.Clear<::google::protobuf::UnknownFieldSet>();
+}
+
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+::uint8_t* PROTOBUF_NONNULL GameServerSaveLoadoutMessage::_InternalSerialize(
+    const ::google::protobuf::MessageLite& base, ::uint8_t* PROTOBUF_NONNULL target,
+    ::google::protobuf::io::EpsCopyOutputStream* PROTOBUF_NONNULL stream) {
+  const GameServerSaveLoadoutMessage& this_ = static_cast<const GameServerSaveLoadoutMessage&>(base);
+#else   // PROTOBUF_CUSTOM_VTABLE
+::uint8_t* PROTOBUF_NONNULL GameServerSaveLoadoutMessage::_InternalSerialize(
+    ::uint8_t* PROTOBUF_NONNULL target,
+    ::google::protobuf::io::EpsCopyOutputStream* PROTOBUF_NONNULL stream) const {
+  const GameServerSaveLoadoutMessage& this_ = *this;
+#endif  // PROTOBUF_CUSTOM_VTABLE
+  if constexpr (::_pbi::DebugHardenCheckHasBitConsistency()) {
+    this_.CheckHasBitConsistency();
+  }
+  // @@protoc_insertion_point(serialize_to_array_start:realtime.GameServerSaveLoadoutMessage)
+  ::uint32_t cached_has_bits = 0;
+  (void)cached_has_bits;
+
+  cached_has_bits = this_._impl_._has_bits_[0];
+  // string lobby_session_id = 1 [json_name = "lobbySessionId"];
+  if (CheckHasBit(cached_has_bits, 0x00000002U)) {
+    if (!this_._internal_lobby_session_id().empty()) {
+      const ::std::string& _s = this_._internal_lobby_session_id();
+      ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
+          _s.data(), static_cast<int>(_s.length()), ::google::protobuf::internal::WireFormatLite::SERIALIZE, "realtime.GameServerSaveLoadoutMessage.lobby_session_id");
+      target = stream->WriteStringMaybeAliased(1, _s, target);
+    }
+  }
+
+  // string entrant_id = 2 [json_name = "entrantId"];
+  if (CheckHasBit(cached_has_bits, 0x00000004U)) {
+    if (!this_._internal_entrant_id().empty()) {
+      const ::std::string& _s = this_._internal_entrant_id();
+      ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
+          _s.data(), static_cast<int>(_s.length()), ::google::protobuf::internal::WireFormatLite::SERIALIZE, "realtime.GameServerSaveLoadoutMessage.entrant_id");
+      target = stream->WriteStringMaybeAliased(2, _s, target);
+    }
+  }
+
+  // int32 loadout_slot = 3 [json_name = "loadoutSlot"];
+  if (CheckHasBit(cached_has_bits, 0x00000008U)) {
+    if (this_._internal_loadout_slot() != 0) {
+      target =
+          ::google::protobuf::internal::WireFormatLite::WriteInt32ToArrayWithField<3>(
+              stream, this_._internal_loadout_slot(), target);
+    }
+  }
+
+  // int32 jersey_number = 4 [json_name = "jerseyNumber"];
+  if (CheckHasBit(cached_has_bits, 0x00000010U)) {
+    if (this_._internal_jersey_number() != 0) {
+      target =
+          ::google::protobuf::internal::WireFormatLite::WriteInt32ToArrayWithField<4>(
+              stream, this_._internal_jersey_number(), target);
+    }
+  }
+
+  // repeated .realtime.LoadoutInstance loadout_instances = 5 [json_name = "loadoutInstances"];
+  if (CheckHasBitForRepeated(cached_has_bits, 0x00000001U)) {
+    for (unsigned i = 0, n = static_cast<unsigned>(
+                             this_._internal_loadout_instances_size());
+         i < n; i++) {
+      const auto& repfield = this_._internal_loadout_instances().Get(i);
+      target =
+          ::google::protobuf::internal::WireFormatLite::InternalWriteMessage(
+              5, repfield, repfield.GetCachedSize(),
+              target, stream);
+    }
+  }
+
+  if (ABSL_PREDICT_FALSE(this_._internal_metadata_.have_unknown_fields())) {
+    target =
+        ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
+            this_._internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance), target, stream);
+  }
+  // @@protoc_insertion_point(serialize_to_array_end:realtime.GameServerSaveLoadoutMessage)
+  return target;
+}
+
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+::size_t GameServerSaveLoadoutMessage::ByteSizeLong(const MessageLite& base) {
+  const GameServerSaveLoadoutMessage& this_ = static_cast<const GameServerSaveLoadoutMessage&>(base);
+#else   // PROTOBUF_CUSTOM_VTABLE
+::size_t GameServerSaveLoadoutMessage::ByteSizeLong() const {
+  const GameServerSaveLoadoutMessage& this_ = *this;
+#endif  // PROTOBUF_CUSTOM_VTABLE
+  // @@protoc_insertion_point(message_byte_size_start:realtime.GameServerSaveLoadoutMessage)
+  ::size_t total_size = 0;
+
+  ::uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void)cached_has_bits;
+
+  ::_pbi::Prefetch5LinesFrom7Lines(&this_);
+  cached_has_bits = this_._impl_._has_bits_[0];
+  if (BatchCheckHasBit(cached_has_bits, 0x0000001fU)) {
+    // repeated .realtime.LoadoutInstance loadout_instances = 5 [json_name = "loadoutInstances"];
+    if (CheckHasBitForRepeated(cached_has_bits, 0x00000001U)) {
+      total_size += 1UL * this_._internal_loadout_instances_size();
+      for (const auto& msg : this_._internal_loadout_instances()) {
+        total_size += ::google::protobuf::internal::WireFormatLite::MessageSize(msg);
+      }
+    }
+    // string lobby_session_id = 1 [json_name = "lobbySessionId"];
+    if (CheckHasBit(cached_has_bits, 0x00000002U)) {
+      if (!this_._internal_lobby_session_id().empty()) {
+        total_size += 1 + ::google::protobuf::internal::WireFormatLite::StringSize(
+                                        this_._internal_lobby_session_id());
+      }
+    }
+    // string entrant_id = 2 [json_name = "entrantId"];
+    if (CheckHasBit(cached_has_bits, 0x00000004U)) {
+      if (!this_._internal_entrant_id().empty()) {
+        total_size += 1 + ::google::protobuf::internal::WireFormatLite::StringSize(
+                                        this_._internal_entrant_id());
+      }
+    }
+    // int32 loadout_slot = 3 [json_name = "loadoutSlot"];
+    if (CheckHasBit(cached_has_bits, 0x00000008U)) {
+      if (this_._internal_loadout_slot() != 0) {
+        total_size += ::_pbi::WireFormatLite::Int32SizePlusOne(
+            this_._internal_loadout_slot());
+      }
+    }
+    // int32 jersey_number = 4 [json_name = "jerseyNumber"];
+    if (CheckHasBit(cached_has_bits, 0x00000010U)) {
+      if (this_._internal_jersey_number() != 0) {
+        total_size += ::_pbi::WireFormatLite::Int32SizePlusOne(
+            this_._internal_jersey_number());
+      }
+    }
+  }
+  return this_.MaybeComputeUnknownFieldsSize(total_size,
+                                             &this_._impl_._cached_size_);
+}
+
+void GameServerSaveLoadoutMessage::MergeImpl(::google::protobuf::MessageLite& to_msg,
+                            const ::google::protobuf::MessageLite& from_msg) {
+   auto* const _this =
+      static_cast<GameServerSaveLoadoutMessage*>(&to_msg);
+  auto& from = static_cast<const GameServerSaveLoadoutMessage&>(from_msg);
+  if constexpr (::_pbi::DebugHardenCheckHasBitConsistency()) {
+    from.CheckHasBitConsistency();
+  }
+  ::google::protobuf::Arena* arena = _this->GetArena();
+  // @@protoc_insertion_point(class_specific_merge_from_start:realtime.GameServerSaveLoadoutMessage)
+  ABSL_DCHECK_NE(&from, _this);
+  ::uint32_t cached_has_bits = 0;
+  (void)cached_has_bits;
+
+  cached_has_bits = from._impl_._has_bits_[0];
+  if (BatchCheckHasBit(cached_has_bits, 0x0000001fU)) {
+    if (CheckHasBitForRepeated(cached_has_bits, 0x00000001U)) {
+      _this->_internal_mutable_loadout_instances()->InternalMergeFromWithArena(
+          ::google::protobuf::MessageLite::internal_visibility(), arena,
+          from._internal_loadout_instances());
+    }
+    if (CheckHasBit(cached_has_bits, 0x00000002U)) {
+      if (!from._internal_lobby_session_id().empty()) {
+        _this->_internal_set_lobby_session_id(from._internal_lobby_session_id());
+      } else {
+        if (_this->_impl_.lobby_session_id_.IsDefault()) {
+          _this->_internal_set_lobby_session_id("");
+        }
+      }
+    }
+    if (CheckHasBit(cached_has_bits, 0x00000004U)) {
+      if (!from._internal_entrant_id().empty()) {
+        _this->_internal_set_entrant_id(from._internal_entrant_id());
+      } else {
+        if (_this->_impl_.entrant_id_.IsDefault()) {
+          _this->_internal_set_entrant_id("");
+        }
+      }
+    }
+    if (CheckHasBit(cached_has_bits, 0x00000008U)) {
+      if (from._internal_loadout_slot() != 0) {
+        _this->_impl_.loadout_slot_ = from._impl_.loadout_slot_;
+      }
+    }
+    if (CheckHasBit(cached_has_bits, 0x00000010U)) {
+      if (from._internal_jersey_number() != 0) {
+        _this->_impl_.jersey_number_ = from._impl_.jersey_number_;
+      }
+    }
+  }
+  _this->_impl_._has_bits_[0] |= cached_has_bits;
+  _this->_internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(
+      from._internal_metadata_);
+}
+
+void GameServerSaveLoadoutMessage::CopyFrom(const GameServerSaveLoadoutMessage& from) {
+  // @@protoc_insertion_point(class_specific_copy_from_start:realtime.GameServerSaveLoadoutMessage)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+
+void GameServerSaveLoadoutMessage::InternalSwap(GameServerSaveLoadoutMessage* PROTOBUF_RESTRICT PROTOBUF_NONNULL other) {
+  using ::std::swap;
+  auto* arena = GetArena();
+  ABSL_DCHECK_EQ(arena, other->GetArena());
+  _internal_metadata_.InternalSwap(&other->_internal_metadata_);
+  swap(_impl_._has_bits_[0], other->_impl_._has_bits_[0]);
+  _impl_.loadout_instances_.InternalSwap(&other->_impl_.loadout_instances_);
+  ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.lobby_session_id_, &other->_impl_.lobby_session_id_, arena);
+  ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.entrant_id_, &other->_impl_.entrant_id_, arena);
+  ::google::protobuf::internal::memswap<
+      PROTOBUF_FIELD_OFFSET(GameServerSaveLoadoutMessage, _impl_.jersey_number_)
+      + sizeof(GameServerSaveLoadoutMessage::_impl_.jersey_number_)
+      - PROTOBUF_FIELD_OFFSET(GameServerSaveLoadoutMessage, _impl_.loadout_slot_)>(
+          reinterpret_cast<char*>(&_impl_.loadout_slot_),
+          reinterpret_cast<char*>(&other->_impl_.loadout_slot_));
+}
+
+::google::protobuf::Metadata GameServerSaveLoadoutMessage::GetMetadata() const {
   return ::google::protobuf::Message::GetMetadataImpl(GetClassData()->full());
 }
 // ===================================================================
@@ -17598,7 +18860,10 @@ PROTOBUF_NDEBUG_INLINE SNSLobbySessionSuccessV5Message::Impl_::Impl_(
         endpoint_(arena, from.endpoint_),
         server_mac_key_(arena, from.server_mac_key_),
         server_enc_key_(arena, from.server_enc_key_),
-        server_random_key_(arena, from.server_random_key_) {}
+        server_random_key_(arena, from.server_random_key_),
+        client_mac_key_(arena, from.client_mac_key_),
+        client_enc_key_(arena, from.client_enc_key_),
+        client_random_key_(arena, from.client_random_key_) {}
 
 SNSLobbySessionSuccessV5Message::SNSLobbySessionSuccessV5Message(
     ::google::protobuf::Arena* PROTOBUF_NULLABLE arena,
@@ -17617,9 +18882,9 @@ SNSLobbySessionSuccessV5Message::SNSLobbySessionSuccessV5Message(
                offsetof(Impl_, game_mode_),
            reinterpret_cast<const char*>(&from._impl_) +
                offsetof(Impl_, game_mode_),
-           offsetof(Impl_, headset_type_) -
+           offsetof(Impl_, client_sequence_id_) -
                offsetof(Impl_, game_mode_) +
-               sizeof(Impl_::headset_type_));
+               sizeof(Impl_::client_sequence_id_));
 
   // @@protoc_insertion_point(copy_constructor:realtime.SNSLobbySessionSuccessV5Message)
 }
@@ -17632,16 +18897,19 @@ PROTOBUF_NDEBUG_INLINE SNSLobbySessionSuccessV5Message::Impl_::Impl_(
         endpoint_(arena),
         server_mac_key_(arena),
         server_enc_key_(arena),
-        server_random_key_(arena) {}
+        server_random_key_(arena),
+        client_mac_key_(arena),
+        client_enc_key_(arena),
+        client_random_key_(arena) {}
 
 inline void SNSLobbySessionSuccessV5Message::SharedCtor(::_pb::Arena* PROTOBUF_NULLABLE arena) {
   new (&_impl_) Impl_(internal_visibility(), arena);
   ::memset(reinterpret_cast<char*>(&_impl_) +
                offsetof(Impl_, game_mode_),
            0,
-           offsetof(Impl_, headset_type_) -
+           offsetof(Impl_, client_sequence_id_) -
                offsetof(Impl_, game_mode_) +
-               sizeof(Impl_::headset_type_));
+               sizeof(Impl_::client_sequence_id_));
 }
 SNSLobbySessionSuccessV5Message::~SNSLobbySessionSuccessV5Message() {
   // @@protoc_insertion_point(destructor:realtime.SNSLobbySessionSuccessV5Message)
@@ -17660,6 +18928,9 @@ inline void SNSLobbySessionSuccessV5Message::SharedDtor(MessageLite& self) {
   this_._impl_.server_mac_key_.Destroy();
   this_._impl_.server_enc_key_.Destroy();
   this_._impl_.server_random_key_.Destroy();
+  this_._impl_.client_mac_key_.Destroy();
+  this_._impl_.client_enc_key_.Destroy();
+  this_._impl_.client_random_key_.Destroy();
   this_._impl_.~Impl_();
 }
 
@@ -17706,16 +18977,16 @@ SNSLobbySessionSuccessV5Message::GetClassData() const {
   return SNSLobbySessionSuccessV5Message_class_data_.base();
 }
 PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
-const ::_pbi::TcParseTable<4, 14, 0, 81, 2>
+const ::_pbi::TcParseTable<5, 18, 0, 89, 2>
 SNSLobbySessionSuccessV5Message::_table_ = {
   {
     PROTOBUF_FIELD_OFFSET(SNSLobbySessionSuccessV5Message, _impl_._has_bits_),
     0, // no _extensions_
-    14, 120,  // max_field_number, fast_idx_mask
+    18, 248,  // max_field_number, fast_idx_mask
     offsetof(decltype(_table_), field_lookup_table),
-    4294950912,  // skipmap
+    4294705152,  // skipmap
     offsetof(decltype(_table_), field_entries),
-    14,  // num_field_entries
+    18,  // num_field_entries
     0,  // num_aux_entries
     offsetof(decltype(_table_), field_names),  // no aux_entries
     SNSLobbySessionSuccessV5Message_class_data_.base(),
@@ -17728,7 +18999,7 @@ SNSLobbySessionSuccessV5Message::_table_ = {
     {::_pbi::TcParser::MiniParse, {}},
     // fixed64 game_mode = 1 [json_name = "gameMode"];
     {::_pbi::TcParser::FastF64S1,
-     {9, 6, 0,
+     {9, 9, 0,
       PROTOBUF_FIELD_OFFSET(SNSLobbySessionSuccessV5Message, _impl_.game_mode_)}},
     // string lobby_id = 2 [json_name = "lobbyId"];
     {::_pbi::TcParser::FastUS1,
@@ -17743,51 +19014,79 @@ SNSLobbySessionSuccessV5Message::_table_ = {
      {34, 2, 0,
       PROTOBUF_FIELD_OFFSET(SNSLobbySessionSuccessV5Message, _impl_.endpoint_)}},
     // int32 team_index = 5 [json_name = "teamIndex"];
-    {::_pbi::TcParser::SingularVarintNoZag1<::uint32_t, offsetof(SNSLobbySessionSuccessV5Message, _impl_.team_index_), 7>(),
-     {40, 7, 0,
+    {::_pbi::TcParser::SingularVarintNoZag1<::uint32_t, offsetof(SNSLobbySessionSuccessV5Message, _impl_.team_index_), 10>(),
+     {40, 10, 0,
       PROTOBUF_FIELD_OFFSET(SNSLobbySessionSuccessV5Message, _impl_.team_index_)}},
-    // uint32 unk1 = 6 [json_name = "unk1"];
-    {::_pbi::TcParser::SingularVarintNoZag1<::uint32_t, offsetof(SNSLobbySessionSuccessV5Message, _impl_.unk1_), 8>(),
-     {48, 8, 0,
-      PROTOBUF_FIELD_OFFSET(SNSLobbySessionSuccessV5Message, _impl_.unk1_)}},
-    // int32 headset_type = 7 [json_name = "headsetType"];
-    {::_pbi::TcParser::SingularVarintNoZag1<::uint32_t, offsetof(SNSLobbySessionSuccessV5Message, _impl_.headset_type_), 13>(),
-     {56, 13, 0,
-      PROTOBUF_FIELD_OFFSET(SNSLobbySessionSuccessV5Message, _impl_.headset_type_)}},
-    // uint64 server_encoder_flags = 8 [json_name = "serverEncoderFlags"];
-    {::_pbi::TcParser::SingularVarintNoZag1<::uint64_t, offsetof(SNSLobbySessionSuccessV5Message, _impl_.server_encoder_flags_), 9>(),
-     {64, 9, 0,
+    // uint32 user_slot = 6 [json_name = "userSlot"];
+    {::_pbi::TcParser::SingularVarintNoZag1<::uint32_t, offsetof(SNSLobbySessionSuccessV5Message, _impl_.user_slot_), 11>(),
+     {48, 11, 0,
+      PROTOBUF_FIELD_OFFSET(SNSLobbySessionSuccessV5Message, _impl_.user_slot_)}},
+    // uint32 flags32 = 7 [json_name = "flags32"];
+    {::_pbi::TcParser::SingularVarintNoZag1<::uint32_t, offsetof(SNSLobbySessionSuccessV5Message, _impl_.flags32_), 12>(),
+     {56, 12, 0,
+      PROTOBUF_FIELD_OFFSET(SNSLobbySessionSuccessV5Message, _impl_.flags32_)}},
+    // uint32 session_flags = 8 [json_name = "sessionFlags"];
+    {::_pbi::TcParser::SingularVarintNoZag1<::uint32_t, offsetof(SNSLobbySessionSuccessV5Message, _impl_.session_flags_), 13>(),
+     {64, 13, 0,
+      PROTOBUF_FIELD_OFFSET(SNSLobbySessionSuccessV5Message, _impl_.session_flags_)}},
+    // uint64 server_encoder_flags = 9 [json_name = "serverEncoderFlags"];
+    {::_pbi::TcParser::SingularVarintNoZag1<::uint64_t, offsetof(SNSLobbySessionSuccessV5Message, _impl_.server_encoder_flags_), 14>(),
+     {72, 14, 0,
       PROTOBUF_FIELD_OFFSET(SNSLobbySessionSuccessV5Message, _impl_.server_encoder_flags_)}},
-    // uint64 client_encoder_flags = 9 [json_name = "clientEncoderFlags"];
-    {::_pbi::TcParser::SingularVarintNoZag1<::uint64_t, offsetof(SNSLobbySessionSuccessV5Message, _impl_.client_encoder_flags_), 10>(),
-     {72, 10, 0,
+    // uint64 client_encoder_flags = 10 [json_name = "clientEncoderFlags"];
+    {::_pbi::TcParser::SingularVarintNoZag1<::uint64_t, offsetof(SNSLobbySessionSuccessV5Message, _impl_.client_encoder_flags_), 15>(),
+     {80, 15, 0,
       PROTOBUF_FIELD_OFFSET(SNSLobbySessionSuccessV5Message, _impl_.client_encoder_flags_)}},
-    // uint64 server_sequence_id = 10 [json_name = "serverSequenceId"];
-    {::_pbi::TcParser::SingularVarintNoZag1<::uint64_t, offsetof(SNSLobbySessionSuccessV5Message, _impl_.server_sequence_id_), 11>(),
-     {80, 11, 0,
+    // uint64 server_sequence_id = 11 [json_name = "serverSequenceId"];
+    {::_pbi::TcParser::SingularVarintNoZag1<::uint64_t, offsetof(SNSLobbySessionSuccessV5Message, _impl_.server_sequence_id_), 16>(),
+     {88, 16, 0,
       PROTOBUF_FIELD_OFFSET(SNSLobbySessionSuccessV5Message, _impl_.server_sequence_id_)}},
-    // bytes server_mac_key = 11 [json_name = "serverMacKey"];
+    // bytes server_mac_key = 12 [json_name = "serverMacKey"];
     {::_pbi::TcParser::FastBS1,
-     {90, 3, 0,
+     {98, 3, 0,
       PROTOBUF_FIELD_OFFSET(SNSLobbySessionSuccessV5Message, _impl_.server_mac_key_)}},
-    // bytes server_enc_key = 12 [json_name = "serverEncKey"];
+    // bytes server_enc_key = 13 [json_name = "serverEncKey"];
     {::_pbi::TcParser::FastBS1,
-     {98, 4, 0,
+     {106, 4, 0,
       PROTOBUF_FIELD_OFFSET(SNSLobbySessionSuccessV5Message, _impl_.server_enc_key_)}},
-    // bytes server_random_key = 13 [json_name = "serverRandomKey"];
+    // bytes server_random_key = 14 [json_name = "serverRandomKey"];
     {::_pbi::TcParser::FastBS1,
-     {106, 5, 0,
+     {114, 5, 0,
       PROTOBUF_FIELD_OFFSET(SNSLobbySessionSuccessV5Message, _impl_.server_random_key_)}},
-    // uint64 client_sequence_id = 14 [json_name = "clientSequenceId"];
-    {::_pbi::TcParser::SingularVarintNoZag1<::uint64_t, offsetof(SNSLobbySessionSuccessV5Message, _impl_.client_sequence_id_), 12>(),
-     {112, 12, 0,
+    // uint64 client_sequence_id = 15 [json_name = "clientSequenceId"];
+    {::_pbi::TcParser::SingularVarintNoZag1<::uint64_t, offsetof(SNSLobbySessionSuccessV5Message, _impl_.client_sequence_id_), 17>(),
+     {120, 17, 0,
       PROTOBUF_FIELD_OFFSET(SNSLobbySessionSuccessV5Message, _impl_.client_sequence_id_)}},
+    // bytes client_mac_key = 16 [json_name = "clientMacKey"];
+    {::_pbi::TcParser::FastBS2,
+     {386, 6, 0,
+      PROTOBUF_FIELD_OFFSET(SNSLobbySessionSuccessV5Message, _impl_.client_mac_key_)}},
+    // bytes client_enc_key = 17 [json_name = "clientEncKey"];
+    {::_pbi::TcParser::FastBS2,
+     {394, 7, 0,
+      PROTOBUF_FIELD_OFFSET(SNSLobbySessionSuccessV5Message, _impl_.client_enc_key_)}},
+    // bytes client_random_key = 18 [json_name = "clientRandomKey"];
+    {::_pbi::TcParser::FastBS2,
+     {402, 8, 0,
+      PROTOBUF_FIELD_OFFSET(SNSLobbySessionSuccessV5Message, _impl_.client_random_key_)}},
+    {::_pbi::TcParser::MiniParse, {}},
+    {::_pbi::TcParser::MiniParse, {}},
+    {::_pbi::TcParser::MiniParse, {}},
+    {::_pbi::TcParser::MiniParse, {}},
+    {::_pbi::TcParser::MiniParse, {}},
+    {::_pbi::TcParser::MiniParse, {}},
+    {::_pbi::TcParser::MiniParse, {}},
+    {::_pbi::TcParser::MiniParse, {}},
+    {::_pbi::TcParser::MiniParse, {}},
+    {::_pbi::TcParser::MiniParse, {}},
+    {::_pbi::TcParser::MiniParse, {}},
+    {::_pbi::TcParser::MiniParse, {}},
     {::_pbi::TcParser::MiniParse, {}},
   }}, {{
     65535, 65535
   }}, {{
     // fixed64 game_mode = 1 [json_name = "gameMode"];
-    {PROTOBUF_FIELD_OFFSET(SNSLobbySessionSuccessV5Message, _impl_.game_mode_), _Internal::kHasBitsOffset + 6, 0, (0 | ::_fl::kFcOptional | ::_fl::kFixed64)},
+    {PROTOBUF_FIELD_OFFSET(SNSLobbySessionSuccessV5Message, _impl_.game_mode_), _Internal::kHasBitsOffset + 9, 0, (0 | ::_fl::kFcOptional | ::_fl::kFixed64)},
     // string lobby_id = 2 [json_name = "lobbyId"];
     {PROTOBUF_FIELD_OFFSET(SNSLobbySessionSuccessV5Message, _impl_.lobby_id_), _Internal::kHasBitsOffset + 0, 0, (0 | ::_fl::kFcOptional | ::_fl::kUtf8String | ::_fl::kRepAString)},
     // string group_id = 3 [json_name = "groupId"];
@@ -17795,29 +19094,37 @@ SNSLobbySessionSuccessV5Message::_table_ = {
     // string endpoint = 4 [json_name = "endpoint"];
     {PROTOBUF_FIELD_OFFSET(SNSLobbySessionSuccessV5Message, _impl_.endpoint_), _Internal::kHasBitsOffset + 2, 0, (0 | ::_fl::kFcOptional | ::_fl::kUtf8String | ::_fl::kRepAString)},
     // int32 team_index = 5 [json_name = "teamIndex"];
-    {PROTOBUF_FIELD_OFFSET(SNSLobbySessionSuccessV5Message, _impl_.team_index_), _Internal::kHasBitsOffset + 7, 0, (0 | ::_fl::kFcOptional | ::_fl::kInt32)},
-    // uint32 unk1 = 6 [json_name = "unk1"];
-    {PROTOBUF_FIELD_OFFSET(SNSLobbySessionSuccessV5Message, _impl_.unk1_), _Internal::kHasBitsOffset + 8, 0, (0 | ::_fl::kFcOptional | ::_fl::kUInt32)},
-    // int32 headset_type = 7 [json_name = "headsetType"];
-    {PROTOBUF_FIELD_OFFSET(SNSLobbySessionSuccessV5Message, _impl_.headset_type_), _Internal::kHasBitsOffset + 13, 0, (0 | ::_fl::kFcOptional | ::_fl::kInt32)},
-    // uint64 server_encoder_flags = 8 [json_name = "serverEncoderFlags"];
-    {PROTOBUF_FIELD_OFFSET(SNSLobbySessionSuccessV5Message, _impl_.server_encoder_flags_), _Internal::kHasBitsOffset + 9, 0, (0 | ::_fl::kFcOptional | ::_fl::kUInt64)},
-    // uint64 client_encoder_flags = 9 [json_name = "clientEncoderFlags"];
-    {PROTOBUF_FIELD_OFFSET(SNSLobbySessionSuccessV5Message, _impl_.client_encoder_flags_), _Internal::kHasBitsOffset + 10, 0, (0 | ::_fl::kFcOptional | ::_fl::kUInt64)},
-    // uint64 server_sequence_id = 10 [json_name = "serverSequenceId"];
-    {PROTOBUF_FIELD_OFFSET(SNSLobbySessionSuccessV5Message, _impl_.server_sequence_id_), _Internal::kHasBitsOffset + 11, 0, (0 | ::_fl::kFcOptional | ::_fl::kUInt64)},
-    // bytes server_mac_key = 11 [json_name = "serverMacKey"];
+    {PROTOBUF_FIELD_OFFSET(SNSLobbySessionSuccessV5Message, _impl_.team_index_), _Internal::kHasBitsOffset + 10, 0, (0 | ::_fl::kFcOptional | ::_fl::kInt32)},
+    // uint32 user_slot = 6 [json_name = "userSlot"];
+    {PROTOBUF_FIELD_OFFSET(SNSLobbySessionSuccessV5Message, _impl_.user_slot_), _Internal::kHasBitsOffset + 11, 0, (0 | ::_fl::kFcOptional | ::_fl::kUInt32)},
+    // uint32 flags32 = 7 [json_name = "flags32"];
+    {PROTOBUF_FIELD_OFFSET(SNSLobbySessionSuccessV5Message, _impl_.flags32_), _Internal::kHasBitsOffset + 12, 0, (0 | ::_fl::kFcOptional | ::_fl::kUInt32)},
+    // uint32 session_flags = 8 [json_name = "sessionFlags"];
+    {PROTOBUF_FIELD_OFFSET(SNSLobbySessionSuccessV5Message, _impl_.session_flags_), _Internal::kHasBitsOffset + 13, 0, (0 | ::_fl::kFcOptional | ::_fl::kUInt32)},
+    // uint64 server_encoder_flags = 9 [json_name = "serverEncoderFlags"];
+    {PROTOBUF_FIELD_OFFSET(SNSLobbySessionSuccessV5Message, _impl_.server_encoder_flags_), _Internal::kHasBitsOffset + 14, 0, (0 | ::_fl::kFcOptional | ::_fl::kUInt64)},
+    // uint64 client_encoder_flags = 10 [json_name = "clientEncoderFlags"];
+    {PROTOBUF_FIELD_OFFSET(SNSLobbySessionSuccessV5Message, _impl_.client_encoder_flags_), _Internal::kHasBitsOffset + 15, 0, (0 | ::_fl::kFcOptional | ::_fl::kUInt64)},
+    // uint64 server_sequence_id = 11 [json_name = "serverSequenceId"];
+    {PROTOBUF_FIELD_OFFSET(SNSLobbySessionSuccessV5Message, _impl_.server_sequence_id_), _Internal::kHasBitsOffset + 16, 0, (0 | ::_fl::kFcOptional | ::_fl::kUInt64)},
+    // bytes server_mac_key = 12 [json_name = "serverMacKey"];
     {PROTOBUF_FIELD_OFFSET(SNSLobbySessionSuccessV5Message, _impl_.server_mac_key_), _Internal::kHasBitsOffset + 3, 0, (0 | ::_fl::kFcOptional | ::_fl::kBytes | ::_fl::kRepAString)},
-    // bytes server_enc_key = 12 [json_name = "serverEncKey"];
+    // bytes server_enc_key = 13 [json_name = "serverEncKey"];
     {PROTOBUF_FIELD_OFFSET(SNSLobbySessionSuccessV5Message, _impl_.server_enc_key_), _Internal::kHasBitsOffset + 4, 0, (0 | ::_fl::kFcOptional | ::_fl::kBytes | ::_fl::kRepAString)},
-    // bytes server_random_key = 13 [json_name = "serverRandomKey"];
+    // bytes server_random_key = 14 [json_name = "serverRandomKey"];
     {PROTOBUF_FIELD_OFFSET(SNSLobbySessionSuccessV5Message, _impl_.server_random_key_), _Internal::kHasBitsOffset + 5, 0, (0 | ::_fl::kFcOptional | ::_fl::kBytes | ::_fl::kRepAString)},
-    // uint64 client_sequence_id = 14 [json_name = "clientSequenceId"];
-    {PROTOBUF_FIELD_OFFSET(SNSLobbySessionSuccessV5Message, _impl_.client_sequence_id_), _Internal::kHasBitsOffset + 12, 0, (0 | ::_fl::kFcOptional | ::_fl::kUInt64)},
+    // uint64 client_sequence_id = 15 [json_name = "clientSequenceId"];
+    {PROTOBUF_FIELD_OFFSET(SNSLobbySessionSuccessV5Message, _impl_.client_sequence_id_), _Internal::kHasBitsOffset + 17, 0, (0 | ::_fl::kFcOptional | ::_fl::kUInt64)},
+    // bytes client_mac_key = 16 [json_name = "clientMacKey"];
+    {PROTOBUF_FIELD_OFFSET(SNSLobbySessionSuccessV5Message, _impl_.client_mac_key_), _Internal::kHasBitsOffset + 6, 0, (0 | ::_fl::kFcOptional | ::_fl::kBytes | ::_fl::kRepAString)},
+    // bytes client_enc_key = 17 [json_name = "clientEncKey"];
+    {PROTOBUF_FIELD_OFFSET(SNSLobbySessionSuccessV5Message, _impl_.client_enc_key_), _Internal::kHasBitsOffset + 7, 0, (0 | ::_fl::kFcOptional | ::_fl::kBytes | ::_fl::kRepAString)},
+    // bytes client_random_key = 18 [json_name = "clientRandomKey"];
+    {PROTOBUF_FIELD_OFFSET(SNSLobbySessionSuccessV5Message, _impl_.client_random_key_), _Internal::kHasBitsOffset + 8, 0, (0 | ::_fl::kFcOptional | ::_fl::kBytes | ::_fl::kRepAString)},
   }},
   // no aux_entries
   {{
-    "\50\0\10\10\10\0\0\0\0\0\0\0\0\0\0\0"
+    "\50\0\10\10\10\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0"
     "realtime.SNSLobbySessionSuccessV5Message"
     "lobby_id"
     "group_id"
@@ -17832,7 +19139,7 @@ PROTOBUF_NOINLINE void SNSLobbySessionSuccessV5Message::Clear() {
   (void) cached_has_bits;
 
   cached_has_bits = _impl_._has_bits_[0];
-  if (BatchCheckHasBit(cached_has_bits, 0x0000003fU)) {
+  if (BatchCheckHasBit(cached_has_bits, 0x000000ffU)) {
     if (CheckHasBit(cached_has_bits, 0x00000001U)) {
       _impl_.lobby_id_.ClearNonDefaultToEmpty();
     }
@@ -17851,16 +19158,25 @@ PROTOBUF_NOINLINE void SNSLobbySessionSuccessV5Message::Clear() {
     if (CheckHasBit(cached_has_bits, 0x00000020U)) {
       _impl_.server_random_key_.ClearNonDefaultToEmpty();
     }
+    if (CheckHasBit(cached_has_bits, 0x00000040U)) {
+      _impl_.client_mac_key_.ClearNonDefaultToEmpty();
+    }
+    if (CheckHasBit(cached_has_bits, 0x00000080U)) {
+      _impl_.client_enc_key_.ClearNonDefaultToEmpty();
+    }
   }
-  if (BatchCheckHasBit(cached_has_bits, 0x000000c0U)) {
+  if (CheckHasBit(cached_has_bits, 0x00000100U)) {
+    _impl_.client_random_key_.ClearNonDefaultToEmpty();
+  }
+  if (BatchCheckHasBit(cached_has_bits, 0x0000fe00U)) {
     ::memset(&_impl_.game_mode_, 0, static_cast<::size_t>(
-        reinterpret_cast<char*>(&_impl_.team_index_) -
-        reinterpret_cast<char*>(&_impl_.game_mode_)) + sizeof(_impl_.team_index_));
+        reinterpret_cast<char*>(&_impl_.client_encoder_flags_) -
+        reinterpret_cast<char*>(&_impl_.game_mode_)) + sizeof(_impl_.client_encoder_flags_));
   }
-  if (BatchCheckHasBit(cached_has_bits, 0x00003f00U)) {
-    ::memset(&_impl_.unk1_, 0, static_cast<::size_t>(
-        reinterpret_cast<char*>(&_impl_.headset_type_) -
-        reinterpret_cast<char*>(&_impl_.unk1_)) + sizeof(_impl_.headset_type_));
+  if (BatchCheckHasBit(cached_has_bits, 0x00030000U)) {
+    ::memset(&_impl_.server_sequence_id_, 0, static_cast<::size_t>(
+        reinterpret_cast<char*>(&_impl_.client_sequence_id_) -
+        reinterpret_cast<char*>(&_impl_.server_sequence_id_)) + sizeof(_impl_.client_sequence_id_));
   }
   _impl_._has_bits_.Clear();
   _internal_metadata_.Clear<::google::protobuf::UnknownFieldSet>();
@@ -17886,7 +19202,7 @@ PROTOBUF_NOINLINE void SNSLobbySessionSuccessV5Message::Clear() {
 
   cached_has_bits = this_._impl_._has_bits_[0];
   // fixed64 game_mode = 1 [json_name = "gameMode"];
-  if (CheckHasBit(cached_has_bits, 0x00000040U)) {
+  if (CheckHasBit(cached_has_bits, 0x00000200U)) {
     if (this_._internal_game_mode() != 0) {
       target = stream->EnsureSpace(target);
       target = ::_pbi::WireFormatLite::WriteFixed64ToArray(
@@ -17925,7 +19241,7 @@ PROTOBUF_NOINLINE void SNSLobbySessionSuccessV5Message::Clear() {
   }
 
   // int32 team_index = 5 [json_name = "teamIndex"];
-  if (CheckHasBit(cached_has_bits, 0x00000080U)) {
+  if (CheckHasBit(cached_has_bits, 0x00000400U)) {
     if (this_._internal_team_index() != 0) {
       target =
           ::google::protobuf::internal::WireFormatLite::WriteInt32ToArrayWithField<5>(
@@ -17933,81 +19249,114 @@ PROTOBUF_NOINLINE void SNSLobbySessionSuccessV5Message::Clear() {
     }
   }
 
-  // uint32 unk1 = 6 [json_name = "unk1"];
-  if (CheckHasBit(cached_has_bits, 0x00000100U)) {
-    if (this_._internal_unk1() != 0) {
+  // uint32 user_slot = 6 [json_name = "userSlot"];
+  if (CheckHasBit(cached_has_bits, 0x00000800U)) {
+    if (this_._internal_user_slot() != 0) {
       target = stream->EnsureSpace(target);
       target = ::_pbi::WireFormatLite::WriteUInt32ToArray(
-          6, this_._internal_unk1(), target);
+          6, this_._internal_user_slot(), target);
     }
   }
 
-  // int32 headset_type = 7 [json_name = "headsetType"];
+  // uint32 flags32 = 7 [json_name = "flags32"];
+  if (CheckHasBit(cached_has_bits, 0x00001000U)) {
+    if (this_._internal_flags32() != 0) {
+      target = stream->EnsureSpace(target);
+      target = ::_pbi::WireFormatLite::WriteUInt32ToArray(
+          7, this_._internal_flags32(), target);
+    }
+  }
+
+  // uint32 session_flags = 8 [json_name = "sessionFlags"];
   if (CheckHasBit(cached_has_bits, 0x00002000U)) {
-    if (this_._internal_headset_type() != 0) {
-      target =
-          ::google::protobuf::internal::WireFormatLite::WriteInt32ToArrayWithField<7>(
-              stream, this_._internal_headset_type(), target);
+    if (this_._internal_session_flags() != 0) {
+      target = stream->EnsureSpace(target);
+      target = ::_pbi::WireFormatLite::WriteUInt32ToArray(
+          8, this_._internal_session_flags(), target);
     }
   }
 
-  // uint64 server_encoder_flags = 8 [json_name = "serverEncoderFlags"];
-  if (CheckHasBit(cached_has_bits, 0x00000200U)) {
+  // uint64 server_encoder_flags = 9 [json_name = "serverEncoderFlags"];
+  if (CheckHasBit(cached_has_bits, 0x00004000U)) {
     if (this_._internal_server_encoder_flags() != 0) {
       target = stream->EnsureSpace(target);
       target = ::_pbi::WireFormatLite::WriteUInt64ToArray(
-          8, this_._internal_server_encoder_flags(), target);
+          9, this_._internal_server_encoder_flags(), target);
     }
   }
 
-  // uint64 client_encoder_flags = 9 [json_name = "clientEncoderFlags"];
-  if (CheckHasBit(cached_has_bits, 0x00000400U)) {
+  // uint64 client_encoder_flags = 10 [json_name = "clientEncoderFlags"];
+  if (CheckHasBit(cached_has_bits, 0x00008000U)) {
     if (this_._internal_client_encoder_flags() != 0) {
       target = stream->EnsureSpace(target);
       target = ::_pbi::WireFormatLite::WriteUInt64ToArray(
-          9, this_._internal_client_encoder_flags(), target);
+          10, this_._internal_client_encoder_flags(), target);
     }
   }
 
-  // uint64 server_sequence_id = 10 [json_name = "serverSequenceId"];
-  if (CheckHasBit(cached_has_bits, 0x00000800U)) {
+  // uint64 server_sequence_id = 11 [json_name = "serverSequenceId"];
+  if (CheckHasBit(cached_has_bits, 0x00010000U)) {
     if (this_._internal_server_sequence_id() != 0) {
       target = stream->EnsureSpace(target);
       target = ::_pbi::WireFormatLite::WriteUInt64ToArray(
-          10, this_._internal_server_sequence_id(), target);
+          11, this_._internal_server_sequence_id(), target);
     }
   }
 
-  // bytes server_mac_key = 11 [json_name = "serverMacKey"];
+  // bytes server_mac_key = 12 [json_name = "serverMacKey"];
   if (CheckHasBit(cached_has_bits, 0x00000008U)) {
     if (!this_._internal_server_mac_key().empty()) {
       const ::std::string& _s = this_._internal_server_mac_key();
-      target = stream->WriteBytesMaybeAliased(11, _s, target);
-    }
-  }
-
-  // bytes server_enc_key = 12 [json_name = "serverEncKey"];
-  if (CheckHasBit(cached_has_bits, 0x00000010U)) {
-    if (!this_._internal_server_enc_key().empty()) {
-      const ::std::string& _s = this_._internal_server_enc_key();
       target = stream->WriteBytesMaybeAliased(12, _s, target);
     }
   }
 
-  // bytes server_random_key = 13 [json_name = "serverRandomKey"];
-  if (CheckHasBit(cached_has_bits, 0x00000020U)) {
-    if (!this_._internal_server_random_key().empty()) {
-      const ::std::string& _s = this_._internal_server_random_key();
+  // bytes server_enc_key = 13 [json_name = "serverEncKey"];
+  if (CheckHasBit(cached_has_bits, 0x00000010U)) {
+    if (!this_._internal_server_enc_key().empty()) {
+      const ::std::string& _s = this_._internal_server_enc_key();
       target = stream->WriteBytesMaybeAliased(13, _s, target);
     }
   }
 
-  // uint64 client_sequence_id = 14 [json_name = "clientSequenceId"];
-  if (CheckHasBit(cached_has_bits, 0x00001000U)) {
+  // bytes server_random_key = 14 [json_name = "serverRandomKey"];
+  if (CheckHasBit(cached_has_bits, 0x00000020U)) {
+    if (!this_._internal_server_random_key().empty()) {
+      const ::std::string& _s = this_._internal_server_random_key();
+      target = stream->WriteBytesMaybeAliased(14, _s, target);
+    }
+  }
+
+  // uint64 client_sequence_id = 15 [json_name = "clientSequenceId"];
+  if (CheckHasBit(cached_has_bits, 0x00020000U)) {
     if (this_._internal_client_sequence_id() != 0) {
       target = stream->EnsureSpace(target);
       target = ::_pbi::WireFormatLite::WriteUInt64ToArray(
-          14, this_._internal_client_sequence_id(), target);
+          15, this_._internal_client_sequence_id(), target);
+    }
+  }
+
+  // bytes client_mac_key = 16 [json_name = "clientMacKey"];
+  if (CheckHasBit(cached_has_bits, 0x00000040U)) {
+    if (!this_._internal_client_mac_key().empty()) {
+      const ::std::string& _s = this_._internal_client_mac_key();
+      target = stream->WriteBytesMaybeAliased(16, _s, target);
+    }
+  }
+
+  // bytes client_enc_key = 17 [json_name = "clientEncKey"];
+  if (CheckHasBit(cached_has_bits, 0x00000080U)) {
+    if (!this_._internal_client_enc_key().empty()) {
+      const ::std::string& _s = this_._internal_client_enc_key();
+      target = stream->WriteBytesMaybeAliased(17, _s, target);
+    }
+  }
+
+  // bytes client_random_key = 18 [json_name = "clientRandomKey"];
+  if (CheckHasBit(cached_has_bits, 0x00000100U)) {
+    if (!this_._internal_client_random_key().empty()) {
+      const ::std::string& _s = this_._internal_client_random_key();
+      target = stream->WriteBytesMaybeAliased(18, _s, target);
     }
   }
 
@@ -18058,82 +19407,112 @@ PROTOBUF_NOINLINE void SNSLobbySessionSuccessV5Message::Clear() {
                                         this_._internal_endpoint());
       }
     }
-    // bytes server_mac_key = 11 [json_name = "serverMacKey"];
+    // bytes server_mac_key = 12 [json_name = "serverMacKey"];
     if (CheckHasBit(cached_has_bits, 0x00000008U)) {
       if (!this_._internal_server_mac_key().empty()) {
         total_size += 1 + ::google::protobuf::internal::WireFormatLite::BytesSize(
                                         this_._internal_server_mac_key());
       }
     }
-    // bytes server_enc_key = 12 [json_name = "serverEncKey"];
+    // bytes server_enc_key = 13 [json_name = "serverEncKey"];
     if (CheckHasBit(cached_has_bits, 0x00000010U)) {
       if (!this_._internal_server_enc_key().empty()) {
         total_size += 1 + ::google::protobuf::internal::WireFormatLite::BytesSize(
                                         this_._internal_server_enc_key());
       }
     }
-    // bytes server_random_key = 13 [json_name = "serverRandomKey"];
+    // bytes server_random_key = 14 [json_name = "serverRandomKey"];
     if (CheckHasBit(cached_has_bits, 0x00000020U)) {
       if (!this_._internal_server_random_key().empty()) {
         total_size += 1 + ::google::protobuf::internal::WireFormatLite::BytesSize(
                                         this_._internal_server_random_key());
       }
     }
-    // fixed64 game_mode = 1 [json_name = "gameMode"];
+    // bytes client_mac_key = 16 [json_name = "clientMacKey"];
     if (CheckHasBit(cached_has_bits, 0x00000040U)) {
+      if (!this_._internal_client_mac_key().empty()) {
+        total_size += 2 + ::google::protobuf::internal::WireFormatLite::BytesSize(
+                                        this_._internal_client_mac_key());
+      }
+    }
+    // bytes client_enc_key = 17 [json_name = "clientEncKey"];
+    if (CheckHasBit(cached_has_bits, 0x00000080U)) {
+      if (!this_._internal_client_enc_key().empty()) {
+        total_size += 2 + ::google::protobuf::internal::WireFormatLite::BytesSize(
+                                        this_._internal_client_enc_key());
+      }
+    }
+  }
+  if (BatchCheckHasBit(cached_has_bits, 0x0000ff00U)) {
+    // bytes client_random_key = 18 [json_name = "clientRandomKey"];
+    if (CheckHasBit(cached_has_bits, 0x00000100U)) {
+      if (!this_._internal_client_random_key().empty()) {
+        total_size += 2 + ::google::protobuf::internal::WireFormatLite::BytesSize(
+                                        this_._internal_client_random_key());
+      }
+    }
+    // fixed64 game_mode = 1 [json_name = "gameMode"];
+    if (CheckHasBit(cached_has_bits, 0x00000200U)) {
       if (this_._internal_game_mode() != 0) {
         total_size += 9;
       }
     }
     // int32 team_index = 5 [json_name = "teamIndex"];
-    if (CheckHasBit(cached_has_bits, 0x00000080U)) {
+    if (CheckHasBit(cached_has_bits, 0x00000400U)) {
       if (this_._internal_team_index() != 0) {
         total_size += ::_pbi::WireFormatLite::Int32SizePlusOne(
             this_._internal_team_index());
       }
     }
-  }
-  if (BatchCheckHasBit(cached_has_bits, 0x00003f00U)) {
-    // uint32 unk1 = 6 [json_name = "unk1"];
-    if (CheckHasBit(cached_has_bits, 0x00000100U)) {
-      if (this_._internal_unk1() != 0) {
+    // uint32 user_slot = 6 [json_name = "userSlot"];
+    if (CheckHasBit(cached_has_bits, 0x00000800U)) {
+      if (this_._internal_user_slot() != 0) {
         total_size += ::_pbi::WireFormatLite::UInt32SizePlusOne(
-            this_._internal_unk1());
+            this_._internal_user_slot());
       }
     }
-    // uint64 server_encoder_flags = 8 [json_name = "serverEncoderFlags"];
-    if (CheckHasBit(cached_has_bits, 0x00000200U)) {
+    // uint32 flags32 = 7 [json_name = "flags32"];
+    if (CheckHasBit(cached_has_bits, 0x00001000U)) {
+      if (this_._internal_flags32() != 0) {
+        total_size += ::_pbi::WireFormatLite::UInt32SizePlusOne(
+            this_._internal_flags32());
+      }
+    }
+    // uint32 session_flags = 8 [json_name = "sessionFlags"];
+    if (CheckHasBit(cached_has_bits, 0x00002000U)) {
+      if (this_._internal_session_flags() != 0) {
+        total_size += ::_pbi::WireFormatLite::UInt32SizePlusOne(
+            this_._internal_session_flags());
+      }
+    }
+    // uint64 server_encoder_flags = 9 [json_name = "serverEncoderFlags"];
+    if (CheckHasBit(cached_has_bits, 0x00004000U)) {
       if (this_._internal_server_encoder_flags() != 0) {
         total_size += ::_pbi::WireFormatLite::UInt64SizePlusOne(
             this_._internal_server_encoder_flags());
       }
     }
-    // uint64 client_encoder_flags = 9 [json_name = "clientEncoderFlags"];
-    if (CheckHasBit(cached_has_bits, 0x00000400U)) {
+    // uint64 client_encoder_flags = 10 [json_name = "clientEncoderFlags"];
+    if (CheckHasBit(cached_has_bits, 0x00008000U)) {
       if (this_._internal_client_encoder_flags() != 0) {
         total_size += ::_pbi::WireFormatLite::UInt64SizePlusOne(
             this_._internal_client_encoder_flags());
       }
     }
-    // uint64 server_sequence_id = 10 [json_name = "serverSequenceId"];
-    if (CheckHasBit(cached_has_bits, 0x00000800U)) {
+  }
+  if (BatchCheckHasBit(cached_has_bits, 0x00030000U)) {
+    // uint64 server_sequence_id = 11 [json_name = "serverSequenceId"];
+    if (CheckHasBit(cached_has_bits, 0x00010000U)) {
       if (this_._internal_server_sequence_id() != 0) {
         total_size += ::_pbi::WireFormatLite::UInt64SizePlusOne(
             this_._internal_server_sequence_id());
       }
     }
-    // uint64 client_sequence_id = 14 [json_name = "clientSequenceId"];
-    if (CheckHasBit(cached_has_bits, 0x00001000U)) {
+    // uint64 client_sequence_id = 15 [json_name = "clientSequenceId"];
+    if (CheckHasBit(cached_has_bits, 0x00020000U)) {
       if (this_._internal_client_sequence_id() != 0) {
         total_size += ::_pbi::WireFormatLite::UInt64SizePlusOne(
             this_._internal_client_sequence_id());
-      }
-    }
-    // int32 headset_type = 7 [json_name = "headsetType"];
-    if (CheckHasBit(cached_has_bits, 0x00002000U)) {
-      if (this_._internal_headset_type() != 0) {
-        total_size += ::_pbi::WireFormatLite::Int32SizePlusOne(
-            this_._internal_headset_type());
       }
     }
   }
@@ -18211,45 +19590,79 @@ void SNSLobbySessionSuccessV5Message::MergeImpl(::google::protobuf::MessageLite&
       }
     }
     if (CheckHasBit(cached_has_bits, 0x00000040U)) {
+      if (!from._internal_client_mac_key().empty()) {
+        _this->_internal_set_client_mac_key(from._internal_client_mac_key());
+      } else {
+        if (_this->_impl_.client_mac_key_.IsDefault()) {
+          _this->_internal_set_client_mac_key("");
+        }
+      }
+    }
+    if (CheckHasBit(cached_has_bits, 0x00000080U)) {
+      if (!from._internal_client_enc_key().empty()) {
+        _this->_internal_set_client_enc_key(from._internal_client_enc_key());
+      } else {
+        if (_this->_impl_.client_enc_key_.IsDefault()) {
+          _this->_internal_set_client_enc_key("");
+        }
+      }
+    }
+  }
+  if (BatchCheckHasBit(cached_has_bits, 0x0000ff00U)) {
+    if (CheckHasBit(cached_has_bits, 0x00000100U)) {
+      if (!from._internal_client_random_key().empty()) {
+        _this->_internal_set_client_random_key(from._internal_client_random_key());
+      } else {
+        if (_this->_impl_.client_random_key_.IsDefault()) {
+          _this->_internal_set_client_random_key("");
+        }
+      }
+    }
+    if (CheckHasBit(cached_has_bits, 0x00000200U)) {
       if (from._internal_game_mode() != 0) {
         _this->_impl_.game_mode_ = from._impl_.game_mode_;
       }
     }
-    if (CheckHasBit(cached_has_bits, 0x00000080U)) {
+    if (CheckHasBit(cached_has_bits, 0x00000400U)) {
       if (from._internal_team_index() != 0) {
         _this->_impl_.team_index_ = from._impl_.team_index_;
       }
     }
-  }
-  if (BatchCheckHasBit(cached_has_bits, 0x00003f00U)) {
-    if (CheckHasBit(cached_has_bits, 0x00000100U)) {
-      if (from._internal_unk1() != 0) {
-        _this->_impl_.unk1_ = from._impl_.unk1_;
+    if (CheckHasBit(cached_has_bits, 0x00000800U)) {
+      if (from._internal_user_slot() != 0) {
+        _this->_impl_.user_slot_ = from._impl_.user_slot_;
       }
     }
-    if (CheckHasBit(cached_has_bits, 0x00000200U)) {
+    if (CheckHasBit(cached_has_bits, 0x00001000U)) {
+      if (from._internal_flags32() != 0) {
+        _this->_impl_.flags32_ = from._impl_.flags32_;
+      }
+    }
+    if (CheckHasBit(cached_has_bits, 0x00002000U)) {
+      if (from._internal_session_flags() != 0) {
+        _this->_impl_.session_flags_ = from._impl_.session_flags_;
+      }
+    }
+    if (CheckHasBit(cached_has_bits, 0x00004000U)) {
       if (from._internal_server_encoder_flags() != 0) {
         _this->_impl_.server_encoder_flags_ = from._impl_.server_encoder_flags_;
       }
     }
-    if (CheckHasBit(cached_has_bits, 0x00000400U)) {
+    if (CheckHasBit(cached_has_bits, 0x00008000U)) {
       if (from._internal_client_encoder_flags() != 0) {
         _this->_impl_.client_encoder_flags_ = from._impl_.client_encoder_flags_;
       }
     }
-    if (CheckHasBit(cached_has_bits, 0x00000800U)) {
+  }
+  if (BatchCheckHasBit(cached_has_bits, 0x00030000U)) {
+    if (CheckHasBit(cached_has_bits, 0x00010000U)) {
       if (from._internal_server_sequence_id() != 0) {
         _this->_impl_.server_sequence_id_ = from._impl_.server_sequence_id_;
       }
     }
-    if (CheckHasBit(cached_has_bits, 0x00001000U)) {
+    if (CheckHasBit(cached_has_bits, 0x00020000U)) {
       if (from._internal_client_sequence_id() != 0) {
         _this->_impl_.client_sequence_id_ = from._impl_.client_sequence_id_;
-      }
-    }
-    if (CheckHasBit(cached_has_bits, 0x00002000U)) {
-      if (from._internal_headset_type() != 0) {
-        _this->_impl_.headset_type_ = from._impl_.headset_type_;
       }
     }
   }
@@ -18278,9 +19691,12 @@ void SNSLobbySessionSuccessV5Message::InternalSwap(SNSLobbySessionSuccessV5Messa
   ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.server_mac_key_, &other->_impl_.server_mac_key_, arena);
   ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.server_enc_key_, &other->_impl_.server_enc_key_, arena);
   ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.server_random_key_, &other->_impl_.server_random_key_, arena);
+  ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.client_mac_key_, &other->_impl_.client_mac_key_, arena);
+  ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.client_enc_key_, &other->_impl_.client_enc_key_, arena);
+  ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.client_random_key_, &other->_impl_.client_random_key_, arena);
   ::google::protobuf::internal::memswap<
-      PROTOBUF_FIELD_OFFSET(SNSLobbySessionSuccessV5Message, _impl_.headset_type_)
-      + sizeof(SNSLobbySessionSuccessV5Message::_impl_.headset_type_)
+      PROTOBUF_FIELD_OFFSET(SNSLobbySessionSuccessV5Message, _impl_.client_sequence_id_)
+      + sizeof(SNSLobbySessionSuccessV5Message::_impl_.client_sequence_id_)
       - PROTOBUF_FIELD_OFFSET(SNSLobbySessionSuccessV5Message, _impl_.game_mode_)>(
           reinterpret_cast<char*>(&_impl_.game_mode_),
           reinterpret_cast<char*>(&other->_impl_.game_mode_));
@@ -22104,9 +23520,9 @@ SNSRemoteLogSetV3Message::_table_ = {
   {
     PROTOBUF_FIELD_OFFSET(SNSRemoteLogSetV3Message, _impl_._has_bits_),
     0, // no _extensions_
-    7, 24,  // max_field_number, fast_idx_mask
+    3, 24,  // max_field_number, fast_idx_mask
     offsetof(decltype(_table_), field_lookup_table),
-    4294967198,  // skipmap
+    4294967288,  // skipmap
     offsetof(decltype(_table_), field_entries),
     3,  // num_field_entries
     1,  // num_aux_entries
@@ -22123,22 +23539,22 @@ SNSRemoteLogSetV3Message::_table_ = {
     {::_pbi::TcParser::FastMtS1,
      {10, 1, 0,
       PROTOBUF_FIELD_OFFSET(SNSRemoteLogSetV3Message, _impl_.user_id_)}},
-    // uint64 log_level = 6 [json_name = "logLevel"];
+    // uint64 log_level = 2 [json_name = "logLevel"];
     {::_pbi::TcParser::SingularVarintNoZag1<::uint64_t, offsetof(SNSRemoteLogSetV3Message, _impl_.log_level_), 2>(),
-     {48, 2, 0,
+     {16, 2, 0,
       PROTOBUF_FIELD_OFFSET(SNSRemoteLogSetV3Message, _impl_.log_level_)}},
-    // repeated string logs = 7 [json_name = "logs"];
+    // repeated string logs = 3 [json_name = "logs"];
     {::_pbi::TcParser::FastUR1,
-     {58, 0, 0,
+     {26, 0, 0,
       PROTOBUF_FIELD_OFFSET(SNSRemoteLogSetV3Message, _impl_.logs_)}},
   }}, {{
     65535, 65535
   }}, {{
     // .realtime.XPlatformID user_id = 1 [json_name = "userId"];
     {PROTOBUF_FIELD_OFFSET(SNSRemoteLogSetV3Message, _impl_.user_id_), _Internal::kHasBitsOffset + 1, 0, (0 | ::_fl::kFcOptional | ::_fl::kMessage | ::_fl::kTvTable)},
-    // uint64 log_level = 6 [json_name = "logLevel"];
+    // uint64 log_level = 2 [json_name = "logLevel"];
     {PROTOBUF_FIELD_OFFSET(SNSRemoteLogSetV3Message, _impl_.log_level_), _Internal::kHasBitsOffset + 2, 0, (0 | ::_fl::kFcOptional | ::_fl::kUInt64)},
-    // repeated string logs = 7 [json_name = "logs"];
+    // repeated string logs = 3 [json_name = "logs"];
     {PROTOBUF_FIELD_OFFSET(SNSRemoteLogSetV3Message, _impl_.logs_), _Internal::kHasBitsOffset + 0, 0, (0 | ::_fl::kFcRepeated | ::_fl::kUtf8String | ::_fl::kRepSString)},
   }},
   {{
@@ -22198,22 +23614,22 @@ PROTOBUF_NOINLINE void SNSRemoteLogSetV3Message::Clear() {
         stream);
   }
 
-  // uint64 log_level = 6 [json_name = "logLevel"];
+  // uint64 log_level = 2 [json_name = "logLevel"];
   if (CheckHasBit(cached_has_bits, 0x00000004U)) {
     if (this_._internal_log_level() != 0) {
       target = stream->EnsureSpace(target);
       target = ::_pbi::WireFormatLite::WriteUInt64ToArray(
-          6, this_._internal_log_level(), target);
+          2, this_._internal_log_level(), target);
     }
   }
 
-  // repeated string logs = 7 [json_name = "logs"];
+  // repeated string logs = 3 [json_name = "logs"];
   if (CheckHasBitForRepeated(cached_has_bits, 0x00000001U)) {
     for (int i = 0, n = this_._internal_logs_size(); i < n; ++i) {
       const auto& s = this_._internal_logs().Get(i);
       ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
           s.data(), static_cast<int>(s.length()), ::google::protobuf::internal::WireFormatLite::SERIALIZE, "realtime.SNSRemoteLogSetV3Message.logs");
-      target = stream->WriteString(7, s, target);
+      target = stream->WriteString(3, s, target);
     }
   }
 
@@ -22243,7 +23659,7 @@ PROTOBUF_NOINLINE void SNSRemoteLogSetV3Message::Clear() {
   ::_pbi::Prefetch5LinesFrom7Lines(&this_);
   cached_has_bits = this_._impl_._has_bits_[0];
   if (BatchCheckHasBit(cached_has_bits, 0x00000007U)) {
-    // repeated string logs = 7 [json_name = "logs"];
+    // repeated string logs = 3 [json_name = "logs"];
     if (CheckHasBitForRepeated(cached_has_bits, 0x00000001U)) {
       total_size +=
           1 * ::google::protobuf::internal::FromIntSize(this_._internal_logs().size());
@@ -22257,7 +23673,7 @@ PROTOBUF_NOINLINE void SNSRemoteLogSetV3Message::Clear() {
       total_size += 1 +
                     ::google::protobuf::internal::WireFormatLite::MessageSize(*this_._impl_.user_id_);
     }
-    // uint64 log_level = 6 [json_name = "logLevel"];
+    // uint64 log_level = 2 [json_name = "logLevel"];
     if (CheckHasBit(cached_has_bits, 0x00000004U)) {
       if (this_._internal_log_level() != 0) {
         total_size += ::_pbi::WireFormatLite::UInt64SizePlusOne(

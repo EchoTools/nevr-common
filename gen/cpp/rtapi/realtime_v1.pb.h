@@ -95,6 +95,18 @@ class GameServerRegistrationSuccessMessage;
 struct GameServerRegistrationSuccessMessageDefaultTypeInternal;
 extern GameServerRegistrationSuccessMessageDefaultTypeInternal _GameServerRegistrationSuccessMessage_default_instance_;
 extern const ::google::protobuf::internal::ClassDataFull GameServerRegistrationSuccessMessage_class_data_;
+class GameServerSaveLoadoutMessage;
+struct GameServerSaveLoadoutMessageDefaultTypeInternal;
+extern GameServerSaveLoadoutMessageDefaultTypeInternal _GameServerSaveLoadoutMessage_default_instance_;
+extern const ::google::protobuf::internal::ClassDataFull GameServerSaveLoadoutMessage_class_data_;
+class LoadoutInstance;
+struct LoadoutInstanceDefaultTypeInternal;
+extern LoadoutInstanceDefaultTypeInternal _LoadoutInstance_default_instance_;
+extern const ::google::protobuf::internal::ClassDataFull LoadoutInstance_class_data_;
+class LoadoutItem;
+struct LoadoutItemDefaultTypeInternal;
+extern LoadoutItemDefaultTypeInternal _LoadoutItem_default_instance_;
+extern const ::google::protobuf::internal::ClassDataFull LoadoutItem_class_data_;
 class LobbyEntrantRemovedMessage;
 struct LobbyEntrantRemovedMessageDefaultTypeInternal;
 extern LobbyEntrantRemovedMessageDefaultTypeInternal _LobbyEntrantRemovedMessage_default_instance_;
@@ -581,7 +593,7 @@ class XPlatformID final : public ::google::protobuf::Message
     return *reinterpret_cast<const XPlatformID*>(
         &_XPlatformID_default_instance_);
   }
-  static constexpr int kIndexInFileMessages = 15;
+  static constexpr int kIndexInFileMessages = 18;
   friend void swap(XPlatformID& a, XPlatformID& b) { a.Swap(&b); }
   inline void Swap(XPlatformID* PROTOBUF_NONNULL other) {
     if (other == this) return;
@@ -776,7 +788,7 @@ class SymbolHash final : public ::google::protobuf::Message
     return *reinterpret_cast<const SymbolHash*>(
         &_SymbolHash_default_instance_);
   }
-  static constexpr int kIndexInFileMessages = 14;
+  static constexpr int kIndexInFileMessages = 17;
   friend void swap(SymbolHash& a, SymbolHash& b) { a.Swap(&b); }
   inline void Swap(SymbolHash* PROTOBUF_NONNULL other) {
     if (other == this) return;
@@ -965,7 +977,7 @@ class STCPConnectionUnrequireEvent final : public ::google::protobuf::internal::
     return *reinterpret_cast<const STCPConnectionUnrequireEvent*>(
         &_STCPConnectionUnrequireEvent_default_instance_);
   }
-  static constexpr int kIndexInFileMessages = 18;
+  static constexpr int kIndexInFileMessages = 21;
   friend void swap(STCPConnectionUnrequireEvent& a, STCPConnectionUnrequireEvent& b) { a.Swap(&b); }
   inline void Swap(STCPConnectionUnrequireEvent* PROTOBUF_NONNULL other) {
     if (other == this) return;
@@ -1099,7 +1111,7 @@ class STCPConnectionRequireEvent final : public ::google::protobuf::internal::Ze
     return *reinterpret_cast<const STCPConnectionRequireEvent*>(
         &_STCPConnectionRequireEvent_default_instance_);
   }
-  static constexpr int kIndexInFileMessages = 17;
+  static constexpr int kIndexInFileMessages = 20;
   friend void swap(STCPConnectionRequireEvent& a, STCPConnectionRequireEvent& b) { a.Swap(&b); }
   inline void Swap(STCPConnectionRequireEvent* PROTOBUF_NONNULL other) {
     if (other == this) return;
@@ -1234,7 +1246,7 @@ class SNSLoginSettingsMessage final : public ::google::protobuf::Message
     return *reinterpret_cast<const SNSLoginSettingsMessage*>(
         &_SNSLoginSettingsMessage_default_instance_);
   }
-  static constexpr int kIndexInFileMessages = 44;
+  static constexpr int kIndexInFileMessages = 47;
   friend void swap(SNSLoginSettingsMessage& a, SNSLoginSettingsMessage& b) { a.Swap(&b); }
   inline void Swap(SNSLoginSettingsMessage* PROTOBUF_NONNULL other) {
     if (other == this) return;
@@ -1429,7 +1441,7 @@ class SNSLobbySessionSuccessV5Message final : public ::google::protobuf::Message
     return *reinterpret_cast<const SNSLobbySessionSuccessV5Message*>(
         &_SNSLobbySessionSuccessV5Message_default_instance_);
   }
-  static constexpr int kIndexInFileMessages = 38;
+  static constexpr int kIndexInFileMessages = 41;
   friend void swap(SNSLobbySessionSuccessV5Message& a, SNSLobbySessionSuccessV5Message& b) { a.Swap(&b); }
   inline void Swap(SNSLobbySessionSuccessV5Message* PROTOBUF_NONNULL other) {
     if (other == this) return;
@@ -1519,17 +1531,21 @@ class SNSLobbySessionSuccessV5Message final : public ::google::protobuf::Message
     kLobbyIdFieldNumber = 2,
     kGroupIdFieldNumber = 3,
     kEndpointFieldNumber = 4,
-    kServerMacKeyFieldNumber = 11,
-    kServerEncKeyFieldNumber = 12,
-    kServerRandomKeyFieldNumber = 13,
+    kServerMacKeyFieldNumber = 12,
+    kServerEncKeyFieldNumber = 13,
+    kServerRandomKeyFieldNumber = 14,
+    kClientMacKeyFieldNumber = 16,
+    kClientEncKeyFieldNumber = 17,
+    kClientRandomKeyFieldNumber = 18,
     kGameModeFieldNumber = 1,
     kTeamIndexFieldNumber = 5,
-    kUnk1FieldNumber = 6,
-    kServerEncoderFlagsFieldNumber = 8,
-    kClientEncoderFlagsFieldNumber = 9,
-    kServerSequenceIdFieldNumber = 10,
-    kClientSequenceIdFieldNumber = 14,
-    kHeadsetTypeFieldNumber = 7,
+    kUserSlotFieldNumber = 6,
+    kFlags32FieldNumber = 7,
+    kSessionFlagsFieldNumber = 8,
+    kServerEncoderFlagsFieldNumber = 9,
+    kClientEncoderFlagsFieldNumber = 10,
+    kServerSequenceIdFieldNumber = 11,
+    kClientSequenceIdFieldNumber = 15,
   };
   // string lobby_id = 2 [json_name = "lobbyId"];
   void clear_lobby_id() ;
@@ -1576,7 +1592,7 @@ class SNSLobbySessionSuccessV5Message final : public ::google::protobuf::Message
   ::std::string* PROTOBUF_NONNULL _internal_mutable_endpoint();
 
   public:
-  // bytes server_mac_key = 11 [json_name = "serverMacKey"];
+  // bytes server_mac_key = 12 [json_name = "serverMacKey"];
   void clear_server_mac_key() ;
   const ::std::string& server_mac_key() const;
   template <typename Arg_ = const ::std::string&, typename... Args_>
@@ -1591,7 +1607,7 @@ class SNSLobbySessionSuccessV5Message final : public ::google::protobuf::Message
   ::std::string* PROTOBUF_NONNULL _internal_mutable_server_mac_key();
 
   public:
-  // bytes server_enc_key = 12 [json_name = "serverEncKey"];
+  // bytes server_enc_key = 13 [json_name = "serverEncKey"];
   void clear_server_enc_key() ;
   const ::std::string& server_enc_key() const;
   template <typename Arg_ = const ::std::string&, typename... Args_>
@@ -1606,7 +1622,7 @@ class SNSLobbySessionSuccessV5Message final : public ::google::protobuf::Message
   ::std::string* PROTOBUF_NONNULL _internal_mutable_server_enc_key();
 
   public:
-  // bytes server_random_key = 13 [json_name = "serverRandomKey"];
+  // bytes server_random_key = 14 [json_name = "serverRandomKey"];
   void clear_server_random_key() ;
   const ::std::string& server_random_key() const;
   template <typename Arg_ = const ::std::string&, typename... Args_>
@@ -1619,6 +1635,51 @@ class SNSLobbySessionSuccessV5Message final : public ::google::protobuf::Message
   const ::std::string& _internal_server_random_key() const;
   PROTOBUF_ALWAYS_INLINE void _internal_set_server_random_key(const ::std::string& value);
   ::std::string* PROTOBUF_NONNULL _internal_mutable_server_random_key();
+
+  public:
+  // bytes client_mac_key = 16 [json_name = "clientMacKey"];
+  void clear_client_mac_key() ;
+  const ::std::string& client_mac_key() const;
+  template <typename Arg_ = const ::std::string&, typename... Args_>
+  void set_client_mac_key(Arg_&& arg, Args_... args);
+  ::std::string* PROTOBUF_NONNULL mutable_client_mac_key();
+  [[nodiscard]] ::std::string* PROTOBUF_NULLABLE release_client_mac_key();
+  void set_allocated_client_mac_key(::std::string* PROTOBUF_NULLABLE value);
+
+  private:
+  const ::std::string& _internal_client_mac_key() const;
+  PROTOBUF_ALWAYS_INLINE void _internal_set_client_mac_key(const ::std::string& value);
+  ::std::string* PROTOBUF_NONNULL _internal_mutable_client_mac_key();
+
+  public:
+  // bytes client_enc_key = 17 [json_name = "clientEncKey"];
+  void clear_client_enc_key() ;
+  const ::std::string& client_enc_key() const;
+  template <typename Arg_ = const ::std::string&, typename... Args_>
+  void set_client_enc_key(Arg_&& arg, Args_... args);
+  ::std::string* PROTOBUF_NONNULL mutable_client_enc_key();
+  [[nodiscard]] ::std::string* PROTOBUF_NULLABLE release_client_enc_key();
+  void set_allocated_client_enc_key(::std::string* PROTOBUF_NULLABLE value);
+
+  private:
+  const ::std::string& _internal_client_enc_key() const;
+  PROTOBUF_ALWAYS_INLINE void _internal_set_client_enc_key(const ::std::string& value);
+  ::std::string* PROTOBUF_NONNULL _internal_mutable_client_enc_key();
+
+  public:
+  // bytes client_random_key = 18 [json_name = "clientRandomKey"];
+  void clear_client_random_key() ;
+  const ::std::string& client_random_key() const;
+  template <typename Arg_ = const ::std::string&, typename... Args_>
+  void set_client_random_key(Arg_&& arg, Args_... args);
+  ::std::string* PROTOBUF_NONNULL mutable_client_random_key();
+  [[nodiscard]] ::std::string* PROTOBUF_NULLABLE release_client_random_key();
+  void set_allocated_client_random_key(::std::string* PROTOBUF_NULLABLE value);
+
+  private:
+  const ::std::string& _internal_client_random_key() const;
+  PROTOBUF_ALWAYS_INLINE void _internal_set_client_random_key(const ::std::string& value);
+  ::std::string* PROTOBUF_NONNULL _internal_mutable_client_random_key();
 
   public:
   // fixed64 game_mode = 1 [json_name = "gameMode"];
@@ -1641,17 +1702,37 @@ class SNSLobbySessionSuccessV5Message final : public ::google::protobuf::Message
   void _internal_set_team_index(::int32_t value);
 
   public:
-  // uint32 unk1 = 6 [json_name = "unk1"];
-  void clear_unk1() ;
-  ::uint32_t unk1() const;
-  void set_unk1(::uint32_t value);
+  // uint32 user_slot = 6 [json_name = "userSlot"];
+  void clear_user_slot() ;
+  ::uint32_t user_slot() const;
+  void set_user_slot(::uint32_t value);
 
   private:
-  ::uint32_t _internal_unk1() const;
-  void _internal_set_unk1(::uint32_t value);
+  ::uint32_t _internal_user_slot() const;
+  void _internal_set_user_slot(::uint32_t value);
 
   public:
-  // uint64 server_encoder_flags = 8 [json_name = "serverEncoderFlags"];
+  // uint32 flags32 = 7 [json_name = "flags32"];
+  void clear_flags32() ;
+  ::uint32_t flags32() const;
+  void set_flags32(::uint32_t value);
+
+  private:
+  ::uint32_t _internal_flags32() const;
+  void _internal_set_flags32(::uint32_t value);
+
+  public:
+  // uint32 session_flags = 8 [json_name = "sessionFlags"];
+  void clear_session_flags() ;
+  ::uint32_t session_flags() const;
+  void set_session_flags(::uint32_t value);
+
+  private:
+  ::uint32_t _internal_session_flags() const;
+  void _internal_set_session_flags(::uint32_t value);
+
+  public:
+  // uint64 server_encoder_flags = 9 [json_name = "serverEncoderFlags"];
   void clear_server_encoder_flags() ;
   ::uint64_t server_encoder_flags() const;
   void set_server_encoder_flags(::uint64_t value);
@@ -1661,7 +1742,7 @@ class SNSLobbySessionSuccessV5Message final : public ::google::protobuf::Message
   void _internal_set_server_encoder_flags(::uint64_t value);
 
   public:
-  // uint64 client_encoder_flags = 9 [json_name = "clientEncoderFlags"];
+  // uint64 client_encoder_flags = 10 [json_name = "clientEncoderFlags"];
   void clear_client_encoder_flags() ;
   ::uint64_t client_encoder_flags() const;
   void set_client_encoder_flags(::uint64_t value);
@@ -1671,7 +1752,7 @@ class SNSLobbySessionSuccessV5Message final : public ::google::protobuf::Message
   void _internal_set_client_encoder_flags(::uint64_t value);
 
   public:
-  // uint64 server_sequence_id = 10 [json_name = "serverSequenceId"];
+  // uint64 server_sequence_id = 11 [json_name = "serverSequenceId"];
   void clear_server_sequence_id() ;
   ::uint64_t server_sequence_id() const;
   void set_server_sequence_id(::uint64_t value);
@@ -1681,7 +1762,7 @@ class SNSLobbySessionSuccessV5Message final : public ::google::protobuf::Message
   void _internal_set_server_sequence_id(::uint64_t value);
 
   public:
-  // uint64 client_sequence_id = 14 [json_name = "clientSequenceId"];
+  // uint64 client_sequence_id = 15 [json_name = "clientSequenceId"];
   void clear_client_sequence_id() ;
   ::uint64_t client_sequence_id() const;
   void set_client_sequence_id(::uint64_t value);
@@ -1691,22 +1772,12 @@ class SNSLobbySessionSuccessV5Message final : public ::google::protobuf::Message
   void _internal_set_client_sequence_id(::uint64_t value);
 
   public:
-  // int32 headset_type = 7 [json_name = "headsetType"];
-  void clear_headset_type() ;
-  ::int32_t headset_type() const;
-  void set_headset_type(::int32_t value);
-
-  private:
-  ::int32_t _internal_headset_type() const;
-  void _internal_set_headset_type(::int32_t value);
-
-  public:
   // @@protoc_insertion_point(class_scope:realtime.SNSLobbySessionSuccessV5Message)
  private:
   class _Internal;
   friend class ::google::protobuf::internal::TcParser;
-  static const ::google::protobuf::internal::TcParseTable<4, 14,
-                                   0, 81,
+  static const ::google::protobuf::internal::TcParseTable<5, 18,
+                                   0, 89,
                                    2>
       _table_;
 
@@ -1733,14 +1804,18 @@ class SNSLobbySessionSuccessV5Message final : public ::google::protobuf::Message
     ::google::protobuf::internal::ArenaStringPtr server_mac_key_;
     ::google::protobuf::internal::ArenaStringPtr server_enc_key_;
     ::google::protobuf::internal::ArenaStringPtr server_random_key_;
+    ::google::protobuf::internal::ArenaStringPtr client_mac_key_;
+    ::google::protobuf::internal::ArenaStringPtr client_enc_key_;
+    ::google::protobuf::internal::ArenaStringPtr client_random_key_;
     ::uint64_t game_mode_;
     ::int32_t team_index_;
-    ::uint32_t unk1_;
+    ::uint32_t user_slot_;
+    ::uint32_t flags32_;
+    ::uint32_t session_flags_;
     ::uint64_t server_encoder_flags_;
     ::uint64_t client_encoder_flags_;
     ::uint64_t server_sequence_id_;
     ::uint64_t client_sequence_id_;
-    ::int32_t headset_type_;
     PROTOBUF_TSAN_DECLARE_MEMBER
   };
   union { Impl_ _impl_; };
@@ -1805,7 +1880,7 @@ class SNSLobbySessionFailureV4Message final : public ::google::protobuf::Message
     return *reinterpret_cast<const SNSLobbySessionFailureV4Message*>(
         &_SNSLobbySessionFailureV4Message_default_instance_);
   }
-  static constexpr int kIndexInFileMessages = 37;
+  static constexpr int kIndexInFileMessages = 40;
   friend void swap(SNSLobbySessionFailureV4Message& a, SNSLobbySessionFailureV4Message& b) { a.Swap(&b); }
   inline void Swap(SNSLobbySessionFailureV4Message* PROTOBUF_NONNULL other) {
     if (other == this) return;
@@ -2012,7 +2087,7 @@ class SNSLobbyPingResponseMessage final : public ::google::protobuf::Message
     return *reinterpret_cast<const SNSLobbyPingResponseMessage*>(
         &_SNSLobbyPingResponseMessage_default_instance_);
   }
-  static constexpr int kIndexInFileMessages = 35;
+  static constexpr int kIndexInFileMessages = 38;
   friend void swap(SNSLobbyPingResponseMessage& a, SNSLobbyPingResponseMessage& b) { a.Swap(&b); }
   inline void Swap(SNSLobbyPingResponseMessage* PROTOBUF_NONNULL other) {
     if (other == this) return;
@@ -2214,7 +2289,7 @@ class SNSLobbyPingRequestV3Message final : public ::google::protobuf::Message
     return *reinterpret_cast<const SNSLobbyPingRequestV3Message*>(
         &_SNSLobbyPingRequestV3Message_default_instance_);
   }
-  static constexpr int kIndexInFileMessages = 34;
+  static constexpr int kIndexInFileMessages = 37;
   friend void swap(SNSLobbyPingRequestV3Message& a, SNSLobbyPingRequestV3Message& b) { a.Swap(&b); }
   inline void Swap(SNSLobbyPingRequestV3Message* PROTOBUF_NONNULL other) {
     if (other == this) return;
@@ -2452,7 +2527,7 @@ class SNSLobbyPendingSessionCancelV2Message final : public ::google::protobuf::M
     return *reinterpret_cast<const SNSLobbyPendingSessionCancelV2Message*>(
         &_SNSLobbyPendingSessionCancelV2Message_default_instance_);
   }
-  static constexpr int kIndexInFileMessages = 33;
+  static constexpr int kIndexInFileMessages = 36;
   friend void swap(SNSLobbyPendingSessionCancelV2Message& a, SNSLobbyPendingSessionCancelV2Message& b) { a.Swap(&b); }
   inline void Swap(SNSLobbyPendingSessionCancelV2Message* PROTOBUF_NONNULL other) {
     if (other == this) return;
@@ -2647,7 +2722,7 @@ class SNSLobbyMatchmakerStatusRequestMessage final : public ::google::protobuf::
     return *reinterpret_cast<const SNSLobbyMatchmakerStatusRequestMessage*>(
         &_SNSLobbyMatchmakerStatusRequestMessage_default_instance_);
   }
-  static constexpr int kIndexInFileMessages = 32;
+  static constexpr int kIndexInFileMessages = 35;
   friend void swap(SNSLobbyMatchmakerStatusRequestMessage& a, SNSLobbyMatchmakerStatusRequestMessage& b) { a.Swap(&b); }
   inline void Swap(SNSLobbyMatchmakerStatusRequestMessage* PROTOBUF_NONNULL other) {
     if (other == this) return;
@@ -2861,7 +2936,7 @@ class SNSLobbyMatchmakerStatusMessage final : public ::google::protobuf::Message
     return *reinterpret_cast<const SNSLobbyMatchmakerStatusMessage*>(
         &_SNSLobbyMatchmakerStatusMessage_default_instance_);
   }
-  static constexpr int kIndexInFileMessages = 31;
+  static constexpr int kIndexInFileMessages = 34;
   friend void swap(SNSLobbyMatchmakerStatusMessage& a, SNSLobbyMatchmakerStatusMessage& b) { a.Swap(&b); }
   inline void Swap(SNSLobbyMatchmakerStatusMessage* PROTOBUF_NONNULL other) {
     if (other == this) return;
@@ -3051,7 +3126,7 @@ class SNSDocumentSuccessMessage final : public ::google::protobuf::Message
     return *reinterpret_cast<const SNSDocumentSuccessMessage*>(
         &_SNSDocumentSuccessMessage_default_instance_);
   }
-  static constexpr int kIndexInFileMessages = 26;
+  static constexpr int kIndexInFileMessages = 29;
   friend void swap(SNSDocumentSuccessMessage& a, SNSDocumentSuccessMessage& b) { a.Swap(&b); }
   inline void Swap(SNSDocumentSuccessMessage* PROTOBUF_NONNULL other) {
     if (other == this) return;
@@ -3246,7 +3321,7 @@ class SNSDocumentRequestV2Message final : public ::google::protobuf::Message
     return *reinterpret_cast<const SNSDocumentRequestV2Message*>(
         &_SNSDocumentRequestV2Message_default_instance_);
   }
-  static constexpr int kIndexInFileMessages = 25;
+  static constexpr int kIndexInFileMessages = 28;
   friend void swap(SNSDocumentRequestV2Message& a, SNSDocumentRequestV2Message& b) { a.Swap(&b); }
   inline void Swap(SNSDocumentRequestV2Message* PROTOBUF_NONNULL other) {
     if (other == this) return;
@@ -3458,7 +3533,7 @@ class SNSDocumentFailureMessage final : public ::google::protobuf::Message
     return *reinterpret_cast<const SNSDocumentFailureMessage*>(
         &_SNSDocumentFailureMessage_default_instance_);
   }
-  static constexpr int kIndexInFileMessages = 27;
+  static constexpr int kIndexInFileMessages = 30;
   friend void swap(SNSDocumentFailureMessage& a, SNSDocumentFailureMessage& b) { a.Swap(&b); }
   inline void Swap(SNSDocumentFailureMessage* PROTOBUF_NONNULL other) {
     if (other == this) return;
@@ -3653,7 +3728,7 @@ class SNSConfigRequestV2Message final : public ::google::protobuf::Message
     return *reinterpret_cast<const SNSConfigRequestV2Message*>(
         &_SNSConfigRequestV2Message_default_instance_);
   }
-  static constexpr int kIndexInFileMessages = 19;
+  static constexpr int kIndexInFileMessages = 22;
   friend void swap(SNSConfigRequestV2Message& a, SNSConfigRequestV2Message& b) { a.Swap(&b); }
   inline void Swap(SNSConfigRequestV2Message* PROTOBUF_NONNULL other) {
     if (other == this) return;
@@ -3848,7 +3923,7 @@ class SNSConfigFailureV2Message final : public ::google::protobuf::Message
     return *reinterpret_cast<const SNSConfigFailureV2Message*>(
         &_SNSConfigFailureV2Message_default_instance_);
   }
-  static constexpr int kIndexInFileMessages = 21;
+  static constexpr int kIndexInFileMessages = 24;
   friend void swap(SNSConfigFailureV2Message& a, SNSConfigFailureV2Message& b) { a.Swap(&b); }
   inline void Swap(SNSConfigFailureV2Message* PROTOBUF_NONNULL other) {
     if (other == this) return;
@@ -4043,7 +4118,7 @@ class SNSChannelInfoResponseMessage final : public ::google::protobuf::Message
     return *reinterpret_cast<const SNSChannelInfoResponseMessage*>(
         &_SNSChannelInfoResponseMessage_default_instance_);
   }
-  static constexpr int kIndexInFileMessages = 24;
+  static constexpr int kIndexInFileMessages = 27;
   friend void swap(SNSChannelInfoResponseMessage& a, SNSChannelInfoResponseMessage& b) { a.Swap(&b); }
   inline void Swap(SNSChannelInfoResponseMessage* PROTOBUF_NONNULL other) {
     if (other == this) return;
@@ -4237,7 +4312,7 @@ class SNSChannelInfoRequestMessage final : public ::google::protobuf::internal::
     return *reinterpret_cast<const SNSChannelInfoRequestMessage*>(
         &_SNSChannelInfoRequestMessage_default_instance_);
   }
-  static constexpr int kIndexInFileMessages = 23;
+  static constexpr int kIndexInFileMessages = 26;
   friend void swap(SNSChannelInfoRequestMessage& a, SNSChannelInfoRequestMessage& b) { a.Swap(&b); }
   inline void Swap(SNSChannelInfoRequestMessage* PROTOBUF_NONNULL other) {
     if (other == this) return;
@@ -4602,7 +4677,7 @@ class LobbySessionCreateMessage final : public ::google::protobuf::Message
     return *reinterpret_cast<const LobbySessionCreateMessage*>(
         &_LobbySessionCreateMessage_default_instance_);
   }
-  static constexpr int kIndexInFileMessages = 10;
+  static constexpr int kIndexInFileMessages = 13;
   friend void swap(LobbySessionCreateMessage& a, LobbySessionCreateMessage& b) { a.Swap(&b); }
   inline void Swap(LobbySessionCreateMessage* PROTOBUF_NONNULL other) {
     if (other == this) return;
@@ -4911,7 +4986,7 @@ class LobbyEntrantsRejectMessage final : public ::google::protobuf::Message
     return *reinterpret_cast<const LobbyEntrantsRejectMessage*>(
         &_LobbyEntrantsRejectMessage_default_instance_);
   }
-  static constexpr int kIndexInFileMessages = 8;
+  static constexpr int kIndexInFileMessages = 11;
   friend void swap(LobbyEntrantsRejectMessage& a, LobbyEntrantsRejectMessage& b) { a.Swap(&b); }
   inline void Swap(LobbyEntrantsRejectMessage* PROTOBUF_NONNULL other) {
     if (other == this) return;
@@ -5153,7 +5228,7 @@ class LobbyEntrantsConnectedMessage final : public ::google::protobuf::Message
     return *reinterpret_cast<const LobbyEntrantsConnectedMessage*>(
         &_LobbyEntrantsConnectedMessage_default_instance_);
   }
-  static constexpr int kIndexInFileMessages = 6;
+  static constexpr int kIndexInFileMessages = 9;
   friend void swap(LobbyEntrantsConnectedMessage& a, LobbyEntrantsConnectedMessage& b) { a.Swap(&b); }
   inline void Swap(LobbyEntrantsConnectedMessage* PROTOBUF_NONNULL other) {
     if (other == this) return;
@@ -5372,7 +5447,7 @@ class LobbyEntrantsAcceptMessage final : public ::google::protobuf::Message
     return *reinterpret_cast<const LobbyEntrantsAcceptMessage*>(
         &_LobbyEntrantsAcceptMessage_default_instance_);
   }
-  static constexpr int kIndexInFileMessages = 7;
+  static constexpr int kIndexInFileMessages = 10;
   friend void swap(LobbyEntrantsAcceptMessage& a, LobbyEntrantsAcceptMessage& b) { a.Swap(&b); }
   inline void Swap(LobbyEntrantsAcceptMessage* PROTOBUF_NONNULL other) {
     if (other == this) return;
@@ -5574,7 +5649,7 @@ class LobbyEntrantRemovedMessage final : public ::google::protobuf::Message
     return *reinterpret_cast<const LobbyEntrantRemovedMessage*>(
         &_LobbyEntrantRemovedMessage_default_instance_);
   }
-  static constexpr int kIndexInFileMessages = 9;
+  static constexpr int kIndexInFileMessages = 12;
   friend void swap(LobbyEntrantRemovedMessage& a, LobbyEntrantRemovedMessage& b) { a.Swap(&b); }
   inline void Swap(LobbyEntrantRemovedMessage* PROTOBUF_NONNULL other) {
     if (other == this) return;
@@ -5769,6 +5844,208 @@ class LobbyEntrantRemovedMessage final : public ::google::protobuf::Message
 };
 
 extern const ::google::protobuf::internal::ClassDataFull LobbyEntrantRemovedMessage_class_data_;
+// -------------------------------------------------------------------
+
+class LoadoutItem final : public ::google::protobuf::Message
+/* @@protoc_insertion_point(class_definition:realtime.LoadoutItem) */ {
+ public:
+  inline LoadoutItem() : LoadoutItem(nullptr) {}
+  ~LoadoutItem() PROTOBUF_FINAL;
+
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+  void operator delete(LoadoutItem* PROTOBUF_NONNULL msg, ::std::destroying_delete_t) {
+    SharedDtor(*msg);
+    ::google::protobuf::internal::SizedDelete(msg, sizeof(LoadoutItem));
+  }
+#endif
+
+  template <typename = void>
+  explicit PROTOBUF_CONSTEXPR LoadoutItem(::google::protobuf::internal::ConstantInitialized);
+
+  inline LoadoutItem(const LoadoutItem& from) : LoadoutItem(nullptr, from) {}
+  inline LoadoutItem(LoadoutItem&& from) noexcept
+      : LoadoutItem(nullptr, ::std::move(from)) {}
+  inline LoadoutItem& operator=(const LoadoutItem& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline LoadoutItem& operator=(LoadoutItem&& from) noexcept {
+    if (this == &from) return *this;
+    if (::google::protobuf::internal::CanMoveWithInternalSwap(GetArena(), from.GetArena())) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  inline const ::google::protobuf::UnknownFieldSet& unknown_fields() const
+      ABSL_ATTRIBUTE_LIFETIME_BOUND {
+    return _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance);
+  }
+  inline ::google::protobuf::UnknownFieldSet* PROTOBUF_NONNULL mutable_unknown_fields()
+      ABSL_ATTRIBUTE_LIFETIME_BOUND {
+    return _internal_metadata_.mutable_unknown_fields<::google::protobuf::UnknownFieldSet>();
+  }
+
+  static const ::google::protobuf::Descriptor* PROTOBUF_NONNULL descriptor() {
+    return GetDescriptor();
+  }
+  static const ::google::protobuf::Descriptor* PROTOBUF_NONNULL GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::google::protobuf::Reflection* PROTOBUF_NONNULL GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const LoadoutItem& default_instance() {
+    return *reinterpret_cast<const LoadoutItem*>(
+        &_LoadoutItem_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages = 6;
+  friend void swap(LoadoutItem& a, LoadoutItem& b) { a.Swap(&b); }
+  inline void Swap(LoadoutItem* PROTOBUF_NONNULL other) {
+    if (other == this) return;
+    if (::google::protobuf::internal::CanUseInternalSwap(GetArena(), other->GetArena())) {
+      InternalSwap(other);
+    } else {
+      ::google::protobuf::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(LoadoutItem* PROTOBUF_NONNULL other) {
+    if (other == this) return;
+    ABSL_DCHECK(GetArena() == other->GetArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  LoadoutItem* PROTOBUF_NONNULL New(::google::protobuf::Arena* PROTOBUF_NULLABLE arena = nullptr) const {
+    return ::google::protobuf::Message::DefaultConstruct<LoadoutItem>(arena);
+  }
+  using ::google::protobuf::Message::CopyFrom;
+  void CopyFrom(const LoadoutItem& from);
+  using ::google::protobuf::Message::MergeFrom;
+  void MergeFrom(const LoadoutItem& from) { LoadoutItem::MergeImpl(*this, from); }
+
+  private:
+  static void MergeImpl(::google::protobuf::MessageLite& to_msg,
+                        const ::google::protobuf::MessageLite& from_msg);
+
+  public:
+  bool IsInitialized() const {
+    return true;
+  }
+  ABSL_ATTRIBUTE_REINITIALIZES void Clear() PROTOBUF_FINAL;
+  #if defined(PROTOBUF_CUSTOM_VTABLE)
+  private:
+  static ::size_t ByteSizeLong(const ::google::protobuf::MessageLite& msg);
+  static ::uint8_t* PROTOBUF_NONNULL _InternalSerialize(
+      const ::google::protobuf::MessageLite& msg, ::uint8_t* PROTOBUF_NONNULL target,
+      ::google::protobuf::io::EpsCopyOutputStream* PROTOBUF_NONNULL stream);
+
+  public:
+  ::size_t ByteSizeLong() const { return ByteSizeLong(*this); }
+  ::uint8_t* PROTOBUF_NONNULL _InternalSerialize(
+      ::uint8_t* PROTOBUF_NONNULL target,
+      ::google::protobuf::io::EpsCopyOutputStream* PROTOBUF_NONNULL stream) const {
+    return _InternalSerialize(*this, target, stream);
+  }
+  #else   // PROTOBUF_CUSTOM_VTABLE
+  ::size_t ByteSizeLong() const final;
+  ::uint8_t* PROTOBUF_NONNULL _InternalSerialize(
+      ::uint8_t* PROTOBUF_NONNULL target,
+      ::google::protobuf::io::EpsCopyOutputStream* PROTOBUF_NONNULL stream) const final;
+  #endif  // PROTOBUF_CUSTOM_VTABLE
+  int GetCachedSize() const { return _impl_._cached_size_.Get(); }
+
+  private:
+  void SharedCtor(::google::protobuf::Arena* PROTOBUF_NULLABLE arena);
+  static void SharedDtor(MessageLite& self);
+  void InternalSwap(LoadoutItem* PROTOBUF_NONNULL other);
+ private:
+  template <typename T>
+  friend ::absl::string_view(::google::protobuf::internal::GetAnyMessageName)();
+  static ::absl::string_view FullMessageName() { return "realtime.LoadoutItem"; }
+
+  explicit LoadoutItem(::google::protobuf::Arena* PROTOBUF_NULLABLE arena);
+  LoadoutItem(::google::protobuf::Arena* PROTOBUF_NULLABLE arena, const LoadoutItem& from);
+  LoadoutItem(
+      ::google::protobuf::Arena* PROTOBUF_NULLABLE arena, LoadoutItem&& from) noexcept
+      : LoadoutItem(arena) {
+    *this = ::std::move(from);
+  }
+  const ::google::protobuf::internal::ClassData* PROTOBUF_NONNULL GetClassData() const PROTOBUF_FINAL;
+  static void* PROTOBUF_NONNULL PlacementNew_(
+      const void* PROTOBUF_NONNULL, void* PROTOBUF_NONNULL mem,
+      ::google::protobuf::Arena* PROTOBUF_NULLABLE arena);
+  static constexpr auto InternalNewImpl_();
+
+ public:
+  static constexpr auto InternalGenerateClassData_();
+
+  ::google::protobuf::Metadata GetMetadata() const;
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+  enum : int {
+    kSlotTypeFieldNumber = 1,
+    kEquippedItemFieldNumber = 2,
+  };
+  // fixed64 slot_type = 1 [json_name = "slotType"];
+  void clear_slot_type() ;
+  ::uint64_t slot_type() const;
+  void set_slot_type(::uint64_t value);
+
+  private:
+  ::uint64_t _internal_slot_type() const;
+  void _internal_set_slot_type(::uint64_t value);
+
+  public:
+  // fixed64 equipped_item = 2 [json_name = "equippedItem"];
+  void clear_equipped_item() ;
+  ::uint64_t equipped_item() const;
+  void set_equipped_item(::uint64_t value);
+
+  private:
+  ::uint64_t _internal_equipped_item() const;
+  void _internal_set_equipped_item(::uint64_t value);
+
+  public:
+  // @@protoc_insertion_point(class_scope:realtime.LoadoutItem)
+ private:
+  class _Internal;
+  friend class ::google::protobuf::internal::TcParser;
+  static const ::google::protobuf::internal::TcParseTable<1, 2,
+                                   0, 0,
+                                   2>
+      _table_;
+
+  friend class ::google::protobuf::MessageLite;
+  friend class ::google::protobuf::Arena;
+  template <typename T>
+  friend class ::google::protobuf::Arena::InternalHelper;
+  using InternalArenaConstructable_ = void;
+  using DestructorSkippable_ = void;
+  struct Impl_ {
+    inline explicit constexpr Impl_(::google::protobuf::internal::ConstantInitialized) noexcept;
+    inline explicit Impl_(
+        ::google::protobuf::internal::InternalVisibility visibility,
+        ::google::protobuf::Arena* PROTOBUF_NULLABLE arena);
+    inline explicit Impl_(
+        ::google::protobuf::internal::InternalVisibility visibility,
+        ::google::protobuf::Arena* PROTOBUF_NULLABLE arena, const Impl_& from,
+        const LoadoutItem& from_msg);
+    ::google::protobuf::internal::HasBits<1> _has_bits_;
+    ::google::protobuf::internal::CachedSize _cached_size_;
+    ::uint64_t slot_type_;
+    ::uint64_t equipped_item_;
+    PROTOBUF_TSAN_DECLARE_MEMBER
+  };
+  union { Impl_ _impl_; };
+  friend struct ::TableStruct_rtapi_2frealtime_5fv1_2eproto;
+};
+
+extern const ::google::protobuf::internal::ClassDataFull LoadoutItem_class_data_;
 // -------------------------------------------------------------------
 
 class GameServerRegistrationSuccessMessage final : public ::google::protobuf::Message
@@ -6361,7 +6638,7 @@ class ConnectivityStatisticsMessage final : public ::google::protobuf::Message
     return *reinterpret_cast<const ConnectivityStatisticsMessage*>(
         &_ConnectivityStatisticsMessage_default_instance_);
   }
-  static constexpr int kIndexInFileMessages = 13;
+  static constexpr int kIndexInFileMessages = 16;
   friend void swap(ConnectivityStatisticsMessage& a, ConnectivityStatisticsMessage& b) { a.Swap(&b); }
   inline void Swap(ConnectivityStatisticsMessage* PROTOBUF_NONNULL other) {
     if (other == this) return;
@@ -6623,7 +6900,7 @@ class SNSUserServerProfileUpdateSuccessMessage final : public ::google::protobuf
     return *reinterpret_cast<const SNSUserServerProfileUpdateSuccessMessage*>(
         &_SNSUserServerProfileUpdateSuccessMessage_default_instance_);
   }
-  static constexpr int kIndexInFileMessages = 55;
+  static constexpr int kIndexInFileMessages = 58;
   friend void swap(SNSUserServerProfileUpdateSuccessMessage& a, SNSUserServerProfileUpdateSuccessMessage& b) { a.Swap(&b); }
   inline void Swap(SNSUserServerProfileUpdateSuccessMessage* PROTOBUF_NONNULL other) {
     if (other == this) return;
@@ -6818,7 +7095,7 @@ class SNSUserServerProfileUpdateRequestMessage final : public ::google::protobuf
     return *reinterpret_cast<const SNSUserServerProfileUpdateRequestMessage*>(
         &_SNSUserServerProfileUpdateRequestMessage_default_instance_);
   }
-  static constexpr int kIndexInFileMessages = 54;
+  static constexpr int kIndexInFileMessages = 57;
   friend void swap(SNSUserServerProfileUpdateRequestMessage& a, SNSUserServerProfileUpdateRequestMessage& b) { a.Swap(&b); }
   inline void Swap(SNSUserServerProfileUpdateRequestMessage* PROTOBUF_NONNULL other) {
     if (other == this) return;
@@ -7030,7 +7307,7 @@ class SNSUpdateProfileSuccessMessage final : public ::google::protobuf::Message
     return *reinterpret_cast<const SNSUpdateProfileSuccessMessage*>(
         &_SNSUpdateProfileSuccessMessage_default_instance_);
   }
-  static constexpr int kIndexInFileMessages = 52;
+  static constexpr int kIndexInFileMessages = 55;
   friend void swap(SNSUpdateProfileSuccessMessage& a, SNSUpdateProfileSuccessMessage& b) { a.Swap(&b); }
   inline void Swap(SNSUpdateProfileSuccessMessage* PROTOBUF_NONNULL other) {
     if (other == this) return;
@@ -7225,7 +7502,7 @@ class SNSUpdateProfileMessage final : public ::google::protobuf::Message
     return *reinterpret_cast<const SNSUpdateProfileMessage*>(
         &_SNSUpdateProfileMessage_default_instance_);
   }
-  static constexpr int kIndexInFileMessages = 51;
+  static constexpr int kIndexInFileMessages = 54;
   friend void swap(SNSUpdateProfileMessage& a, SNSUpdateProfileMessage& b) { a.Swap(&b); }
   inline void Swap(SNSUpdateProfileMessage* PROTOBUF_NONNULL other) {
     if (other == this) return;
@@ -7454,7 +7731,7 @@ class SNSUpdateProfileFailureMessage final : public ::google::protobuf::Message
     return *reinterpret_cast<const SNSUpdateProfileFailureMessage*>(
         &_SNSUpdateProfileFailureMessage_default_instance_);
   }
-  static constexpr int kIndexInFileMessages = 53;
+  static constexpr int kIndexInFileMessages = 56;
   friend void swap(SNSUpdateProfileFailureMessage& a, SNSUpdateProfileFailureMessage& b) { a.Swap(&b); }
   inline void Swap(SNSUpdateProfileFailureMessage* PROTOBUF_NONNULL other) {
     if (other == this) return;
@@ -7678,7 +7955,7 @@ class SNSUnknownMessage final : public ::google::protobuf::Message
     return *reinterpret_cast<const SNSUnknownMessage*>(
         &_SNSUnknownMessage_default_instance_);
   }
-  static constexpr int kIndexInFileMessages = 16;
+  static constexpr int kIndexInFileMessages = 19;
   friend void swap(SNSUnknownMessage& a, SNSUnknownMessage& b) { a.Swap(&b); }
   inline void Swap(SNSUnknownMessage* PROTOBUF_NONNULL other) {
     if (other == this) return;
@@ -7890,7 +8167,7 @@ class SNSRemoteLogSetV3Message final : public ::google::protobuf::Message
     return *reinterpret_cast<const SNSRemoteLogSetV3Message*>(
         &_SNSRemoteLogSetV3Message_default_instance_);
   }
-  static constexpr int kIndexInFileMessages = 50;
+  static constexpr int kIndexInFileMessages = 53;
   friend void swap(SNSRemoteLogSetV3Message& a, SNSRemoteLogSetV3Message& b) { a.Swap(&b); }
   inline void Swap(SNSRemoteLogSetV3Message* PROTOBUF_NONNULL other) {
     if (other == this) return;
@@ -7977,11 +8254,11 @@ class SNSRemoteLogSetV3Message final : public ::google::protobuf::Message
 
   // accessors -------------------------------------------------------
   enum : int {
-    kLogsFieldNumber = 7,
+    kLogsFieldNumber = 3,
     kUserIdFieldNumber = 1,
-    kLogLevelFieldNumber = 6,
+    kLogLevelFieldNumber = 2,
   };
-  // repeated string logs = 7 [json_name = "logs"];
+  // repeated string logs = 3 [json_name = "logs"];
   int logs_size() const;
   private:
   int _internal_logs_size() const;
@@ -8018,7 +8295,7 @@ class SNSRemoteLogSetV3Message final : public ::google::protobuf::Message
   ::realtime::XPlatformID* PROTOBUF_NONNULL _internal_mutable_user_id();
 
   public:
-  // uint64 log_level = 6 [json_name = "logLevel"];
+  // uint64 log_level = 2 [json_name = "logLevel"];
   void clear_log_level() ;
   ::uint64_t log_level() const;
   void set_log_level(::uint64_t value);
@@ -8121,7 +8398,7 @@ class SNSReconcileIAPResultMessage final : public ::google::protobuf::Message
     return *reinterpret_cast<const SNSReconcileIAPResultMessage*>(
         &_SNSReconcileIAPResultMessage_default_instance_);
   }
-  static constexpr int kIndexInFileMessages = 49;
+  static constexpr int kIndexInFileMessages = 52;
   friend void swap(SNSReconcileIAPResultMessage& a, SNSReconcileIAPResultMessage& b) { a.Swap(&b); }
   inline void Swap(SNSReconcileIAPResultMessage* PROTOBUF_NONNULL other) {
     if (other == this) return;
@@ -8333,7 +8610,7 @@ class SNSReconcileIAPMessage final : public ::google::protobuf::Message
     return *reinterpret_cast<const SNSReconcileIAPMessage*>(
         &_SNSReconcileIAPMessage_default_instance_);
   }
-  static constexpr int kIndexInFileMessages = 22;
+  static constexpr int kIndexInFileMessages = 25;
   friend void swap(SNSReconcileIAPMessage& a, SNSReconcileIAPMessage& b) { a.Swap(&b); }
   inline void Swap(SNSReconcileIAPMessage* PROTOBUF_NONNULL other) {
     if (other == this) return;
@@ -8545,7 +8822,7 @@ class SNSOtherUserProfileSuccessMessage final : public ::google::protobuf::Messa
     return *reinterpret_cast<const SNSOtherUserProfileSuccessMessage*>(
         &_SNSOtherUserProfileSuccessMessage_default_instance_);
   }
-  static constexpr int kIndexInFileMessages = 48;
+  static constexpr int kIndexInFileMessages = 51;
   friend void swap(SNSOtherUserProfileSuccessMessage& a, SNSOtherUserProfileSuccessMessage& b) { a.Swap(&b); }
   inline void Swap(SNSOtherUserProfileSuccessMessage* PROTOBUF_NONNULL other) {
     if (other == this) return;
@@ -8757,7 +9034,7 @@ class SNSOtherUserProfileRequestMessage final : public ::google::protobuf::Messa
     return *reinterpret_cast<const SNSOtherUserProfileRequestMessage*>(
         &_SNSOtherUserProfileRequestMessage_default_instance_);
   }
-  static constexpr int kIndexInFileMessages = 47;
+  static constexpr int kIndexInFileMessages = 50;
   friend void swap(SNSOtherUserProfileRequestMessage& a, SNSOtherUserProfileRequestMessage& b) { a.Swap(&b); }
   inline void Swap(SNSOtherUserProfileRequestMessage* PROTOBUF_NONNULL other) {
     if (other == this) return;
@@ -8969,7 +9246,7 @@ class SNSOtherUserProfileFailureMessage final : public ::google::protobuf::Messa
     return *reinterpret_cast<const SNSOtherUserProfileFailureMessage*>(
         &_SNSOtherUserProfileFailureMessage_default_instance_);
   }
-  static constexpr int kIndexInFileMessages = 46;
+  static constexpr int kIndexInFileMessages = 49;
   friend void swap(SNSOtherUserProfileFailureMessage& a, SNSOtherUserProfileFailureMessage& b) { a.Swap(&b); }
   inline void Swap(SNSOtherUserProfileFailureMessage* PROTOBUF_NONNULL other) {
     if (other == this) return;
@@ -9193,7 +9470,7 @@ class SNSLoggedInUserProfileSuccessMessage final : public ::google::protobuf::Me
     return *reinterpret_cast<const SNSLoggedInUserProfileSuccessMessage*>(
         &_SNSLoggedInUserProfileSuccessMessage_default_instance_);
   }
-  static constexpr int kIndexInFileMessages = 41;
+  static constexpr int kIndexInFileMessages = 44;
   friend void swap(SNSLoggedInUserProfileSuccessMessage& a, SNSLoggedInUserProfileSuccessMessage& b) { a.Swap(&b); }
   inline void Swap(SNSLoggedInUserProfileSuccessMessage* PROTOBUF_NONNULL other) {
     if (other == this) return;
@@ -9405,7 +9682,7 @@ class SNSLoggedInUserProfileRequestMessage final : public ::google::protobuf::Me
     return *reinterpret_cast<const SNSLoggedInUserProfileRequestMessage*>(
         &_SNSLoggedInUserProfileRequestMessage_default_instance_);
   }
-  static constexpr int kIndexInFileMessages = 40;
+  static constexpr int kIndexInFileMessages = 43;
   friend void swap(SNSLoggedInUserProfileRequestMessage& a, SNSLoggedInUserProfileRequestMessage& b) { a.Swap(&b); }
   inline void Swap(SNSLoggedInUserProfileRequestMessage* PROTOBUF_NONNULL other) {
     if (other == this) return;
@@ -9634,7 +9911,7 @@ class SNSLoggedInUserProfileFailureMessage final : public ::google::protobuf::Me
     return *reinterpret_cast<const SNSLoggedInUserProfileFailureMessage*>(
         &_SNSLoggedInUserProfileFailureMessage_default_instance_);
   }
-  static constexpr int kIndexInFileMessages = 39;
+  static constexpr int kIndexInFileMessages = 42;
   friend void swap(SNSLoggedInUserProfileFailureMessage& a, SNSLoggedInUserProfileFailureMessage& b) { a.Swap(&b); }
   inline void Swap(SNSLoggedInUserProfileFailureMessage* PROTOBUF_NONNULL other) {
     if (other == this) return;
@@ -9858,7 +10135,7 @@ class SNSLogInSuccessMessage final : public ::google::protobuf::Message
     return *reinterpret_cast<const SNSLogInSuccessMessage*>(
         &_SNSLogInSuccessMessage_default_instance_);
   }
-  static constexpr int kIndexInFileMessages = 45;
+  static constexpr int kIndexInFileMessages = 48;
   friend void swap(SNSLogInSuccessMessage& a, SNSLogInSuccessMessage& b) { a.Swap(&b); }
   inline void Swap(SNSLogInSuccessMessage* PROTOBUF_NONNULL other) {
     if (other == this) return;
@@ -10070,7 +10347,7 @@ class SNSLogInRequestV2Message final : public ::google::protobuf::Message
     return *reinterpret_cast<const SNSLogInRequestV2Message*>(
         &_SNSLogInRequestV2Message_default_instance_);
   }
-  static constexpr int kIndexInFileMessages = 43;
+  static constexpr int kIndexInFileMessages = 46;
   friend void swap(SNSLogInRequestV2Message& a, SNSLogInRequestV2Message& b) { a.Swap(&b); }
   inline void Swap(SNSLogInRequestV2Message* PROTOBUF_NONNULL other) {
     if (other == this) return;
@@ -10299,7 +10576,7 @@ class SNSLogInFailureMessage final : public ::google::protobuf::Message
     return *reinterpret_cast<const SNSLogInFailureMessage*>(
         &_SNSLogInFailureMessage_default_instance_);
   }
-  static constexpr int kIndexInFileMessages = 42;
+  static constexpr int kIndexInFileMessages = 45;
   friend void swap(SNSLogInFailureMessage& a, SNSLogInFailureMessage& b) { a.Swap(&b); }
   inline void Swap(SNSLogInFailureMessage* PROTOBUF_NONNULL other) {
     if (other == this) return;
@@ -10523,7 +10800,7 @@ class SNSLobbyPlayerSessionsRequestV5Message final : public ::google::protobuf::
     return *reinterpret_cast<const SNSLobbyPlayerSessionsRequestV5Message*>(
         &_SNSLobbyPlayerSessionsRequestV5Message_default_instance_);
   }
-  static constexpr int kIndexInFileMessages = 36;
+  static constexpr int kIndexInFileMessages = 39;
   friend void swap(SNSLobbyPlayerSessionsRequestV5Message& a, SNSLobbyPlayerSessionsRequestV5Message& b) { a.Swap(&b); }
   inline void Swap(SNSLobbyPlayerSessionsRequestV5Message* PROTOBUF_NONNULL other) {
     if (other == this) return;
@@ -10788,7 +11065,7 @@ class SNSLobbyJoinSessionRequestV7Message final : public ::google::protobuf::Mes
     return *reinterpret_cast<const SNSLobbyJoinSessionRequestV7Message*>(
         &_SNSLobbyJoinSessionRequestV7Message_default_instance_);
   }
-  static constexpr int kIndexInFileMessages = 30;
+  static constexpr int kIndexInFileMessages = 33;
   friend void swap(SNSLobbyJoinSessionRequestV7Message& a, SNSLobbyJoinSessionRequestV7Message& b) { a.Swap(&b); }
   inline void Swap(SNSLobbyJoinSessionRequestV7Message* PROTOBUF_NONNULL other) {
     if (other == this) return;
@@ -11046,7 +11323,7 @@ class SNSLobbyFindSessionRequestv11Message final : public ::google::protobuf::Me
     return *reinterpret_cast<const SNSLobbyFindSessionRequestv11Message*>(
         &_SNSLobbyFindSessionRequestv11Message_default_instance_);
   }
-  static constexpr int kIndexInFileMessages = 29;
+  static constexpr int kIndexInFileMessages = 32;
   friend void swap(SNSLobbyFindSessionRequestv11Message& a, SNSLobbyFindSessionRequestv11Message& b) { a.Swap(&b); }
   inline void Swap(SNSLobbyFindSessionRequestv11Message* PROTOBUF_NONNULL other) {
     if (other == this) return;
@@ -11379,7 +11656,7 @@ class SNSLobbyCreateSessionRequestV9Message final : public ::google::protobuf::M
     return *reinterpret_cast<const SNSLobbyCreateSessionRequestV9Message*>(
         &_SNSLobbyCreateSessionRequestV9Message_default_instance_);
   }
-  static constexpr int kIndexInFileMessages = 28;
+  static constexpr int kIndexInFileMessages = 31;
   friend void swap(SNSLobbyCreateSessionRequestV9Message& a, SNSLobbyCreateSessionRequestV9Message& b) { a.Swap(&b); }
   inline void Swap(SNSLobbyCreateSessionRequestV9Message* PROTOBUF_NONNULL other) {
     if (other == this) return;
@@ -11695,7 +11972,7 @@ class SNSConfigSuccessV2Message final : public ::google::protobuf::Message
     return *reinterpret_cast<const SNSConfigSuccessV2Message*>(
         &_SNSConfigSuccessV2Message_default_instance_);
   }
-  static constexpr int kIndexInFileMessages = 20;
+  static constexpr int kIndexInFileMessages = 23;
   friend void swap(SNSConfigSuccessV2Message& a, SNSConfigSuccessV2Message& b) { a.Swap(&b); }
   inline void Swap(SNSConfigSuccessV2Message* PROTOBUF_NONNULL other) {
     if (other == this) return;
@@ -11924,7 +12201,7 @@ class LobbySessionStateRawMessage final : public ::google::protobuf::Message
     return *reinterpret_cast<const LobbySessionStateRawMessage*>(
         &_LobbySessionStateRawMessage_default_instance_);
   }
-  static constexpr int kIndexInFileMessages = 12;
+  static constexpr int kIndexInFileMessages = 15;
   friend void swap(LobbySessionStateRawMessage& a, LobbySessionStateRawMessage& b) { a.Swap(&b); }
   inline void Swap(LobbySessionStateRawMessage* PROTOBUF_NONNULL other) {
     if (other == this) return;
@@ -12096,6 +12373,215 @@ class LobbySessionStateRawMessage final : public ::google::protobuf::Message
 };
 
 extern const ::google::protobuf::internal::ClassDataFull LobbySessionStateRawMessage_class_data_;
+// -------------------------------------------------------------------
+
+class LoadoutInstance final : public ::google::protobuf::Message
+/* @@protoc_insertion_point(class_definition:realtime.LoadoutInstance) */ {
+ public:
+  inline LoadoutInstance() : LoadoutInstance(nullptr) {}
+  ~LoadoutInstance() PROTOBUF_FINAL;
+
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+  void operator delete(LoadoutInstance* PROTOBUF_NONNULL msg, ::std::destroying_delete_t) {
+    SharedDtor(*msg);
+    ::google::protobuf::internal::SizedDelete(msg, sizeof(LoadoutInstance));
+  }
+#endif
+
+  template <typename = void>
+  explicit PROTOBUF_CONSTEXPR LoadoutInstance(::google::protobuf::internal::ConstantInitialized);
+
+  inline LoadoutInstance(const LoadoutInstance& from) : LoadoutInstance(nullptr, from) {}
+  inline LoadoutInstance(LoadoutInstance&& from) noexcept
+      : LoadoutInstance(nullptr, ::std::move(from)) {}
+  inline LoadoutInstance& operator=(const LoadoutInstance& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline LoadoutInstance& operator=(LoadoutInstance&& from) noexcept {
+    if (this == &from) return *this;
+    if (::google::protobuf::internal::CanMoveWithInternalSwap(GetArena(), from.GetArena())) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  inline const ::google::protobuf::UnknownFieldSet& unknown_fields() const
+      ABSL_ATTRIBUTE_LIFETIME_BOUND {
+    return _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance);
+  }
+  inline ::google::protobuf::UnknownFieldSet* PROTOBUF_NONNULL mutable_unknown_fields()
+      ABSL_ATTRIBUTE_LIFETIME_BOUND {
+    return _internal_metadata_.mutable_unknown_fields<::google::protobuf::UnknownFieldSet>();
+  }
+
+  static const ::google::protobuf::Descriptor* PROTOBUF_NONNULL descriptor() {
+    return GetDescriptor();
+  }
+  static const ::google::protobuf::Descriptor* PROTOBUF_NONNULL GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::google::protobuf::Reflection* PROTOBUF_NONNULL GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const LoadoutInstance& default_instance() {
+    return *reinterpret_cast<const LoadoutInstance*>(
+        &_LoadoutInstance_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages = 7;
+  friend void swap(LoadoutInstance& a, LoadoutInstance& b) { a.Swap(&b); }
+  inline void Swap(LoadoutInstance* PROTOBUF_NONNULL other) {
+    if (other == this) return;
+    if (::google::protobuf::internal::CanUseInternalSwap(GetArena(), other->GetArena())) {
+      InternalSwap(other);
+    } else {
+      ::google::protobuf::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(LoadoutInstance* PROTOBUF_NONNULL other) {
+    if (other == this) return;
+    ABSL_DCHECK(GetArena() == other->GetArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  LoadoutInstance* PROTOBUF_NONNULL New(::google::protobuf::Arena* PROTOBUF_NULLABLE arena = nullptr) const {
+    return ::google::protobuf::Message::DefaultConstruct<LoadoutInstance>(arena);
+  }
+  using ::google::protobuf::Message::CopyFrom;
+  void CopyFrom(const LoadoutInstance& from);
+  using ::google::protobuf::Message::MergeFrom;
+  void MergeFrom(const LoadoutInstance& from) { LoadoutInstance::MergeImpl(*this, from); }
+
+  private:
+  static void MergeImpl(::google::protobuf::MessageLite& to_msg,
+                        const ::google::protobuf::MessageLite& from_msg);
+
+  public:
+  bool IsInitialized() const {
+    return true;
+  }
+  ABSL_ATTRIBUTE_REINITIALIZES void Clear() PROTOBUF_FINAL;
+  #if defined(PROTOBUF_CUSTOM_VTABLE)
+  private:
+  static ::size_t ByteSizeLong(const ::google::protobuf::MessageLite& msg);
+  static ::uint8_t* PROTOBUF_NONNULL _InternalSerialize(
+      const ::google::protobuf::MessageLite& msg, ::uint8_t* PROTOBUF_NONNULL target,
+      ::google::protobuf::io::EpsCopyOutputStream* PROTOBUF_NONNULL stream);
+
+  public:
+  ::size_t ByteSizeLong() const { return ByteSizeLong(*this); }
+  ::uint8_t* PROTOBUF_NONNULL _InternalSerialize(
+      ::uint8_t* PROTOBUF_NONNULL target,
+      ::google::protobuf::io::EpsCopyOutputStream* PROTOBUF_NONNULL stream) const {
+    return _InternalSerialize(*this, target, stream);
+  }
+  #else   // PROTOBUF_CUSTOM_VTABLE
+  ::size_t ByteSizeLong() const final;
+  ::uint8_t* PROTOBUF_NONNULL _InternalSerialize(
+      ::uint8_t* PROTOBUF_NONNULL target,
+      ::google::protobuf::io::EpsCopyOutputStream* PROTOBUF_NONNULL stream) const final;
+  #endif  // PROTOBUF_CUSTOM_VTABLE
+  int GetCachedSize() const { return _impl_._cached_size_.Get(); }
+
+  private:
+  void SharedCtor(::google::protobuf::Arena* PROTOBUF_NULLABLE arena);
+  static void SharedDtor(MessageLite& self);
+  void InternalSwap(LoadoutInstance* PROTOBUF_NONNULL other);
+ private:
+  template <typename T>
+  friend ::absl::string_view(::google::protobuf::internal::GetAnyMessageName)();
+  static ::absl::string_view FullMessageName() { return "realtime.LoadoutInstance"; }
+
+  explicit LoadoutInstance(::google::protobuf::Arena* PROTOBUF_NULLABLE arena);
+  LoadoutInstance(::google::protobuf::Arena* PROTOBUF_NULLABLE arena, const LoadoutInstance& from);
+  LoadoutInstance(
+      ::google::protobuf::Arena* PROTOBUF_NULLABLE arena, LoadoutInstance&& from) noexcept
+      : LoadoutInstance(arena) {
+    *this = ::std::move(from);
+  }
+  const ::google::protobuf::internal::ClassData* PROTOBUF_NONNULL GetClassData() const PROTOBUF_FINAL;
+  static void* PROTOBUF_NONNULL PlacementNew_(
+      const void* PROTOBUF_NONNULL, void* PROTOBUF_NONNULL mem,
+      ::google::protobuf::Arena* PROTOBUF_NULLABLE arena);
+  static constexpr auto InternalNewImpl_();
+
+ public:
+  static constexpr auto InternalGenerateClassData_();
+
+  ::google::protobuf::Metadata GetMetadata() const;
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+  enum : int {
+    kItemsFieldNumber = 2,
+    kInstanceNameFieldNumber = 1,
+  };
+  // repeated .realtime.LoadoutItem items = 2 [json_name = "items"];
+  int items_size() const;
+  private:
+  int _internal_items_size() const;
+
+  public:
+  void clear_items() ;
+  ::realtime::LoadoutItem* PROTOBUF_NONNULL mutable_items(int index);
+  ::google::protobuf::RepeatedPtrField<::realtime::LoadoutItem>* PROTOBUF_NONNULL mutable_items();
+
+  private:
+  const ::google::protobuf::RepeatedPtrField<::realtime::LoadoutItem>& _internal_items() const;
+  ::google::protobuf::RepeatedPtrField<::realtime::LoadoutItem>* PROTOBUF_NONNULL _internal_mutable_items();
+  public:
+  const ::realtime::LoadoutItem& items(int index) const;
+  ::realtime::LoadoutItem* PROTOBUF_NONNULL add_items();
+  const ::google::protobuf::RepeatedPtrField<::realtime::LoadoutItem>& items() const;
+  // fixed64 instance_name = 1 [json_name = "instanceName"];
+  void clear_instance_name() ;
+  ::uint64_t instance_name() const;
+  void set_instance_name(::uint64_t value);
+
+  private:
+  ::uint64_t _internal_instance_name() const;
+  void _internal_set_instance_name(::uint64_t value);
+
+  public:
+  // @@protoc_insertion_point(class_scope:realtime.LoadoutInstance)
+ private:
+  class _Internal;
+  friend class ::google::protobuf::internal::TcParser;
+  static const ::google::protobuf::internal::TcParseTable<1, 2,
+                                   1, 0,
+                                   2>
+      _table_;
+
+  friend class ::google::protobuf::MessageLite;
+  friend class ::google::protobuf::Arena;
+  template <typename T>
+  friend class ::google::protobuf::Arena::InternalHelper;
+  using InternalArenaConstructable_ = void;
+  using DestructorSkippable_ = void;
+  struct Impl_ {
+    inline explicit constexpr Impl_(::google::protobuf::internal::ConstantInitialized) noexcept;
+    inline explicit Impl_(
+        ::google::protobuf::internal::InternalVisibility visibility,
+        ::google::protobuf::Arena* PROTOBUF_NULLABLE arena);
+    inline explicit Impl_(
+        ::google::protobuf::internal::InternalVisibility visibility,
+        ::google::protobuf::Arena* PROTOBUF_NULLABLE arena, const Impl_& from,
+        const LoadoutInstance& from_msg);
+    ::google::protobuf::internal::HasBits<1> _has_bits_;
+    ::google::protobuf::internal::CachedSize _cached_size_;
+    ::google::protobuf::RepeatedPtrField< ::realtime::LoadoutItem > items_;
+    ::uint64_t instance_name_;
+    PROTOBUF_TSAN_DECLARE_MEMBER
+  };
+  union { Impl_ _impl_; };
+  friend struct ::TableStruct_rtapi_2frealtime_5fv1_2eproto;
+};
+
+extern const ::google::protobuf::internal::ClassDataFull LoadoutInstance_class_data_;
 // -------------------------------------------------------------------
 
 class Error final : public ::google::protobuf::Message
@@ -12349,6 +12835,261 @@ class Error final : public ::google::protobuf::Message
 extern const ::google::protobuf::internal::ClassDataFull Error_class_data_;
 // -------------------------------------------------------------------
 
+class GameServerSaveLoadoutMessage final : public ::google::protobuf::Message
+/* @@protoc_insertion_point(class_definition:realtime.GameServerSaveLoadoutMessage) */ {
+ public:
+  inline GameServerSaveLoadoutMessage() : GameServerSaveLoadoutMessage(nullptr) {}
+  ~GameServerSaveLoadoutMessage() PROTOBUF_FINAL;
+
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+  void operator delete(GameServerSaveLoadoutMessage* PROTOBUF_NONNULL msg, ::std::destroying_delete_t) {
+    SharedDtor(*msg);
+    ::google::protobuf::internal::SizedDelete(msg, sizeof(GameServerSaveLoadoutMessage));
+  }
+#endif
+
+  template <typename = void>
+  explicit PROTOBUF_CONSTEXPR GameServerSaveLoadoutMessage(::google::protobuf::internal::ConstantInitialized);
+
+  inline GameServerSaveLoadoutMessage(const GameServerSaveLoadoutMessage& from) : GameServerSaveLoadoutMessage(nullptr, from) {}
+  inline GameServerSaveLoadoutMessage(GameServerSaveLoadoutMessage&& from) noexcept
+      : GameServerSaveLoadoutMessage(nullptr, ::std::move(from)) {}
+  inline GameServerSaveLoadoutMessage& operator=(const GameServerSaveLoadoutMessage& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline GameServerSaveLoadoutMessage& operator=(GameServerSaveLoadoutMessage&& from) noexcept {
+    if (this == &from) return *this;
+    if (::google::protobuf::internal::CanMoveWithInternalSwap(GetArena(), from.GetArena())) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  inline const ::google::protobuf::UnknownFieldSet& unknown_fields() const
+      ABSL_ATTRIBUTE_LIFETIME_BOUND {
+    return _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance);
+  }
+  inline ::google::protobuf::UnknownFieldSet* PROTOBUF_NONNULL mutable_unknown_fields()
+      ABSL_ATTRIBUTE_LIFETIME_BOUND {
+    return _internal_metadata_.mutable_unknown_fields<::google::protobuf::UnknownFieldSet>();
+  }
+
+  static const ::google::protobuf::Descriptor* PROTOBUF_NONNULL descriptor() {
+    return GetDescriptor();
+  }
+  static const ::google::protobuf::Descriptor* PROTOBUF_NONNULL GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::google::protobuf::Reflection* PROTOBUF_NONNULL GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const GameServerSaveLoadoutMessage& default_instance() {
+    return *reinterpret_cast<const GameServerSaveLoadoutMessage*>(
+        &_GameServerSaveLoadoutMessage_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages = 8;
+  friend void swap(GameServerSaveLoadoutMessage& a, GameServerSaveLoadoutMessage& b) { a.Swap(&b); }
+  inline void Swap(GameServerSaveLoadoutMessage* PROTOBUF_NONNULL other) {
+    if (other == this) return;
+    if (::google::protobuf::internal::CanUseInternalSwap(GetArena(), other->GetArena())) {
+      InternalSwap(other);
+    } else {
+      ::google::protobuf::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(GameServerSaveLoadoutMessage* PROTOBUF_NONNULL other) {
+    if (other == this) return;
+    ABSL_DCHECK(GetArena() == other->GetArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  GameServerSaveLoadoutMessage* PROTOBUF_NONNULL New(::google::protobuf::Arena* PROTOBUF_NULLABLE arena = nullptr) const {
+    return ::google::protobuf::Message::DefaultConstruct<GameServerSaveLoadoutMessage>(arena);
+  }
+  using ::google::protobuf::Message::CopyFrom;
+  void CopyFrom(const GameServerSaveLoadoutMessage& from);
+  using ::google::protobuf::Message::MergeFrom;
+  void MergeFrom(const GameServerSaveLoadoutMessage& from) { GameServerSaveLoadoutMessage::MergeImpl(*this, from); }
+
+  private:
+  static void MergeImpl(::google::protobuf::MessageLite& to_msg,
+                        const ::google::protobuf::MessageLite& from_msg);
+
+  public:
+  bool IsInitialized() const {
+    return true;
+  }
+  ABSL_ATTRIBUTE_REINITIALIZES void Clear() PROTOBUF_FINAL;
+  #if defined(PROTOBUF_CUSTOM_VTABLE)
+  private:
+  static ::size_t ByteSizeLong(const ::google::protobuf::MessageLite& msg);
+  static ::uint8_t* PROTOBUF_NONNULL _InternalSerialize(
+      const ::google::protobuf::MessageLite& msg, ::uint8_t* PROTOBUF_NONNULL target,
+      ::google::protobuf::io::EpsCopyOutputStream* PROTOBUF_NONNULL stream);
+
+  public:
+  ::size_t ByteSizeLong() const { return ByteSizeLong(*this); }
+  ::uint8_t* PROTOBUF_NONNULL _InternalSerialize(
+      ::uint8_t* PROTOBUF_NONNULL target,
+      ::google::protobuf::io::EpsCopyOutputStream* PROTOBUF_NONNULL stream) const {
+    return _InternalSerialize(*this, target, stream);
+  }
+  #else   // PROTOBUF_CUSTOM_VTABLE
+  ::size_t ByteSizeLong() const final;
+  ::uint8_t* PROTOBUF_NONNULL _InternalSerialize(
+      ::uint8_t* PROTOBUF_NONNULL target,
+      ::google::protobuf::io::EpsCopyOutputStream* PROTOBUF_NONNULL stream) const final;
+  #endif  // PROTOBUF_CUSTOM_VTABLE
+  int GetCachedSize() const { return _impl_._cached_size_.Get(); }
+
+  private:
+  void SharedCtor(::google::protobuf::Arena* PROTOBUF_NULLABLE arena);
+  static void SharedDtor(MessageLite& self);
+  void InternalSwap(GameServerSaveLoadoutMessage* PROTOBUF_NONNULL other);
+ private:
+  template <typename T>
+  friend ::absl::string_view(::google::protobuf::internal::GetAnyMessageName)();
+  static ::absl::string_view FullMessageName() { return "realtime.GameServerSaveLoadoutMessage"; }
+
+  explicit GameServerSaveLoadoutMessage(::google::protobuf::Arena* PROTOBUF_NULLABLE arena);
+  GameServerSaveLoadoutMessage(::google::protobuf::Arena* PROTOBUF_NULLABLE arena, const GameServerSaveLoadoutMessage& from);
+  GameServerSaveLoadoutMessage(
+      ::google::protobuf::Arena* PROTOBUF_NULLABLE arena, GameServerSaveLoadoutMessage&& from) noexcept
+      : GameServerSaveLoadoutMessage(arena) {
+    *this = ::std::move(from);
+  }
+  const ::google::protobuf::internal::ClassData* PROTOBUF_NONNULL GetClassData() const PROTOBUF_FINAL;
+  static void* PROTOBUF_NONNULL PlacementNew_(
+      const void* PROTOBUF_NONNULL, void* PROTOBUF_NONNULL mem,
+      ::google::protobuf::Arena* PROTOBUF_NULLABLE arena);
+  static constexpr auto InternalNewImpl_();
+
+ public:
+  static constexpr auto InternalGenerateClassData_();
+
+  ::google::protobuf::Metadata GetMetadata() const;
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+  enum : int {
+    kLoadoutInstancesFieldNumber = 5,
+    kLobbySessionIdFieldNumber = 1,
+    kEntrantIdFieldNumber = 2,
+    kLoadoutSlotFieldNumber = 3,
+    kJerseyNumberFieldNumber = 4,
+  };
+  // repeated .realtime.LoadoutInstance loadout_instances = 5 [json_name = "loadoutInstances"];
+  int loadout_instances_size() const;
+  private:
+  int _internal_loadout_instances_size() const;
+
+  public:
+  void clear_loadout_instances() ;
+  ::realtime::LoadoutInstance* PROTOBUF_NONNULL mutable_loadout_instances(int index);
+  ::google::protobuf::RepeatedPtrField<::realtime::LoadoutInstance>* PROTOBUF_NONNULL mutable_loadout_instances();
+
+  private:
+  const ::google::protobuf::RepeatedPtrField<::realtime::LoadoutInstance>& _internal_loadout_instances() const;
+  ::google::protobuf::RepeatedPtrField<::realtime::LoadoutInstance>* PROTOBUF_NONNULL _internal_mutable_loadout_instances();
+  public:
+  const ::realtime::LoadoutInstance& loadout_instances(int index) const;
+  ::realtime::LoadoutInstance* PROTOBUF_NONNULL add_loadout_instances();
+  const ::google::protobuf::RepeatedPtrField<::realtime::LoadoutInstance>& loadout_instances() const;
+  // string lobby_session_id = 1 [json_name = "lobbySessionId"];
+  void clear_lobby_session_id() ;
+  const ::std::string& lobby_session_id() const;
+  template <typename Arg_ = const ::std::string&, typename... Args_>
+  void set_lobby_session_id(Arg_&& arg, Args_... args);
+  ::std::string* PROTOBUF_NONNULL mutable_lobby_session_id();
+  [[nodiscard]] ::std::string* PROTOBUF_NULLABLE release_lobby_session_id();
+  void set_allocated_lobby_session_id(::std::string* PROTOBUF_NULLABLE value);
+
+  private:
+  const ::std::string& _internal_lobby_session_id() const;
+  PROTOBUF_ALWAYS_INLINE void _internal_set_lobby_session_id(const ::std::string& value);
+  ::std::string* PROTOBUF_NONNULL _internal_mutable_lobby_session_id();
+
+  public:
+  // string entrant_id = 2 [json_name = "entrantId"];
+  void clear_entrant_id() ;
+  const ::std::string& entrant_id() const;
+  template <typename Arg_ = const ::std::string&, typename... Args_>
+  void set_entrant_id(Arg_&& arg, Args_... args);
+  ::std::string* PROTOBUF_NONNULL mutable_entrant_id();
+  [[nodiscard]] ::std::string* PROTOBUF_NULLABLE release_entrant_id();
+  void set_allocated_entrant_id(::std::string* PROTOBUF_NULLABLE value);
+
+  private:
+  const ::std::string& _internal_entrant_id() const;
+  PROTOBUF_ALWAYS_INLINE void _internal_set_entrant_id(const ::std::string& value);
+  ::std::string* PROTOBUF_NONNULL _internal_mutable_entrant_id();
+
+  public:
+  // int32 loadout_slot = 3 [json_name = "loadoutSlot"];
+  void clear_loadout_slot() ;
+  ::int32_t loadout_slot() const;
+  void set_loadout_slot(::int32_t value);
+
+  private:
+  ::int32_t _internal_loadout_slot() const;
+  void _internal_set_loadout_slot(::int32_t value);
+
+  public:
+  // int32 jersey_number = 4 [json_name = "jerseyNumber"];
+  void clear_jersey_number() ;
+  ::int32_t jersey_number() const;
+  void set_jersey_number(::int32_t value);
+
+  private:
+  ::int32_t _internal_jersey_number() const;
+  void _internal_set_jersey_number(::int32_t value);
+
+  public:
+  // @@protoc_insertion_point(class_scope:realtime.GameServerSaveLoadoutMessage)
+ private:
+  class _Internal;
+  friend class ::google::protobuf::internal::TcParser;
+  static const ::google::protobuf::internal::TcParseTable<3, 5,
+                                   1, 72,
+                                   2>
+      _table_;
+
+  friend class ::google::protobuf::MessageLite;
+  friend class ::google::protobuf::Arena;
+  template <typename T>
+  friend class ::google::protobuf::Arena::InternalHelper;
+  using InternalArenaConstructable_ = void;
+  using DestructorSkippable_ = void;
+  struct Impl_ {
+    inline explicit constexpr Impl_(::google::protobuf::internal::ConstantInitialized) noexcept;
+    inline explicit Impl_(
+        ::google::protobuf::internal::InternalVisibility visibility,
+        ::google::protobuf::Arena* PROTOBUF_NULLABLE arena);
+    inline explicit Impl_(
+        ::google::protobuf::internal::InternalVisibility visibility,
+        ::google::protobuf::Arena* PROTOBUF_NULLABLE arena, const Impl_& from,
+        const GameServerSaveLoadoutMessage& from_msg);
+    ::google::protobuf::internal::HasBits<1> _has_bits_;
+    ::google::protobuf::internal::CachedSize _cached_size_;
+    ::google::protobuf::RepeatedPtrField< ::realtime::LoadoutInstance > loadout_instances_;
+    ::google::protobuf::internal::ArenaStringPtr lobby_session_id_;
+    ::google::protobuf::internal::ArenaStringPtr entrant_id_;
+    ::int32_t loadout_slot_;
+    ::int32_t jersey_number_;
+    PROTOBUF_TSAN_DECLARE_MEMBER
+  };
+  union { Impl_ _impl_; };
+  friend struct ::TableStruct_rtapi_2frealtime_5fv1_2eproto;
+};
+
+extern const ::google::protobuf::internal::ClassDataFull GameServerSaveLoadoutMessage_class_data_;
+// -------------------------------------------------------------------
+
 class LobbySessionStateMessage final : public ::google::protobuf::Message
 /* @@protoc_insertion_point(class_definition:realtime.LobbySessionStateMessage) */ {
  public:
@@ -12409,7 +13150,7 @@ class LobbySessionStateMessage final : public ::google::protobuf::Message
     kSessionState = 4,
     STATE_NOT_SET = 0,
   };
-  static constexpr int kIndexInFileMessages = 11;
+  static constexpr int kIndexInFileMessages = 14;
   friend void swap(LobbySessionStateMessage& a, LobbySessionStateMessage& b) { a.Swap(&b); }
   inline void Swap(LobbySessionStateMessage* PROTOBUF_NONNULL other) {
     if (other == this) return;
@@ -12716,6 +13457,7 @@ class Envelope final : public ::google::protobuf::Message
     kUpdateProfileFailure = 50,
     kUserServerProfileUpdateRequest = 51,
     kUserServerProfileUpdateSuccess = 52,
+    kGameServerSaveLoadout = 53,
     MESSAGE_NOT_SET = 0,
   };
   static constexpr int kIndexInFileMessages = 0;
@@ -12857,6 +13599,7 @@ class Envelope final : public ::google::protobuf::Message
     kUpdateProfileFailureFieldNumber = 50,
     kUserServerProfileUpdateRequestFieldNumber = 51,
     kUserServerProfileUpdateSuccessFieldNumber = 52,
+    kGameServerSaveLoadoutFieldNumber = 53,
   };
   // string cid = 1 [json_name = "cid"];
   void clear_cid() ;
@@ -13842,6 +14585,25 @@ class Envelope final : public ::google::protobuf::Message
   ::realtime::SNSUserServerProfileUpdateSuccessMessage* PROTOBUF_NONNULL _internal_mutable_user_server_profile_update_success();
 
   public:
+  // .realtime.GameServerSaveLoadoutMessage game_server_save_loadout = 53 [json_name = "gameServerSaveLoadout"];
+  bool has_game_server_save_loadout() const;
+  private:
+  bool _internal_has_game_server_save_loadout() const;
+
+  public:
+  void clear_game_server_save_loadout() ;
+  const ::realtime::GameServerSaveLoadoutMessage& game_server_save_loadout() const;
+  [[nodiscard]] ::realtime::GameServerSaveLoadoutMessage* PROTOBUF_NULLABLE release_game_server_save_loadout();
+  ::realtime::GameServerSaveLoadoutMessage* PROTOBUF_NONNULL mutable_game_server_save_loadout();
+  void set_allocated_game_server_save_loadout(::realtime::GameServerSaveLoadoutMessage* PROTOBUF_NULLABLE value);
+  void unsafe_arena_set_allocated_game_server_save_loadout(::realtime::GameServerSaveLoadoutMessage* PROTOBUF_NULLABLE value);
+  ::realtime::GameServerSaveLoadoutMessage* PROTOBUF_NULLABLE unsafe_arena_release_game_server_save_loadout();
+
+  private:
+  const ::realtime::GameServerSaveLoadoutMessage& _internal_game_server_save_loadout() const;
+  ::realtime::GameServerSaveLoadoutMessage* PROTOBUF_NONNULL _internal_mutable_game_server_save_loadout();
+
+  public:
   void clear_message();
   MessageCase message_case() const;
   // @@protoc_insertion_point(class_scope:realtime.Envelope)
@@ -13898,11 +14660,12 @@ class Envelope final : public ::google::protobuf::Message
   void set_has_update_profile_failure();
   void set_has_user_server_profile_update_request();
   void set_has_user_server_profile_update_success();
+  void set_has_game_server_save_loadout();
   inline bool has_message() const;
   inline void clear_has_message();
   friend class ::google::protobuf::internal::TcParser;
-  static const ::google::protobuf::internal::TcParseTable<0, 52,
-                                   51, 77,
+  static const ::google::protobuf::internal::TcParseTable<0, 53,
+                                   52, 77,
                                    9>
       _table_;
 
@@ -13978,6 +14741,7 @@ class Envelope final : public ::google::protobuf::Message
       ::google::protobuf::Message* PROTOBUF_NULLABLE update_profile_failure_;
       ::google::protobuf::Message* PROTOBUF_NULLABLE user_server_profile_update_request_;
       ::google::protobuf::Message* PROTOBUF_NULLABLE user_server_profile_update_success_;
+      ::google::protobuf::Message* PROTOBUF_NULLABLE game_server_save_loadout_;
     } message_;
     ::uint32_t _oneof_case_[1];
     PROTOBUF_TSAN_DECLARE_MEMBER
@@ -18251,6 +19015,88 @@ inline ::realtime::SNSUserServerProfileUpdateSuccessMessage* PROTOBUF_NONNULL En
   return _msg;
 }
 
+// .realtime.GameServerSaveLoadoutMessage game_server_save_loadout = 53 [json_name = "gameServerSaveLoadout"];
+inline bool Envelope::has_game_server_save_loadout() const {
+  return message_case() == kGameServerSaveLoadout;
+}
+inline bool Envelope::_internal_has_game_server_save_loadout() const {
+  return message_case() == kGameServerSaveLoadout;
+}
+inline void Envelope::set_has_game_server_save_loadout() {
+  _impl_._oneof_case_[0] = kGameServerSaveLoadout;
+}
+inline void Envelope::clear_game_server_save_loadout() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  if (message_case() == kGameServerSaveLoadout) {
+    if (GetArena() == nullptr) {
+      delete _impl_.message_.game_server_save_loadout_;
+    } else if (::google::protobuf::internal::DebugHardenClearOneofMessageOnArena()) {
+      ::google::protobuf::internal::MaybePoisonAfterClear(_impl_.message_.game_server_save_loadout_);
+    }
+    clear_has_message();
+  }
+}
+inline ::realtime::GameServerSaveLoadoutMessage* PROTOBUF_NULLABLE Envelope::release_game_server_save_loadout() {
+  // @@protoc_insertion_point(field_release:realtime.Envelope.game_server_save_loadout)
+  if (message_case() == kGameServerSaveLoadout) {
+    clear_has_message();
+    auto* temp = reinterpret_cast<::realtime::GameServerSaveLoadoutMessage*>(_impl_.message_.game_server_save_loadout_);
+    if (GetArena() != nullptr) {
+      temp = ::google::protobuf::internal::DuplicateIfNonNull(temp);
+    }
+    _impl_.message_.game_server_save_loadout_ = nullptr;
+    return temp;
+  } else {
+    return nullptr;
+  }
+}
+inline const ::realtime::GameServerSaveLoadoutMessage& Envelope::_internal_game_server_save_loadout() const {
+  return message_case() == kGameServerSaveLoadout ? static_cast<const ::realtime::GameServerSaveLoadoutMessage&>(*reinterpret_cast<::realtime::GameServerSaveLoadoutMessage*>(_impl_.message_.game_server_save_loadout_))
+                     : reinterpret_cast<const ::realtime::GameServerSaveLoadoutMessage&>(::realtime::_GameServerSaveLoadoutMessage_default_instance_);
+}
+inline const ::realtime::GameServerSaveLoadoutMessage& Envelope::game_server_save_loadout() const ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_get:realtime.Envelope.game_server_save_loadout)
+  return _internal_game_server_save_loadout();
+}
+inline ::realtime::GameServerSaveLoadoutMessage* PROTOBUF_NULLABLE Envelope::unsafe_arena_release_game_server_save_loadout() {
+  // @@protoc_insertion_point(field_unsafe_arena_release:realtime.Envelope.game_server_save_loadout)
+  if (message_case() == kGameServerSaveLoadout) {
+    clear_has_message();
+    auto* temp = reinterpret_cast<::realtime::GameServerSaveLoadoutMessage*>(_impl_.message_.game_server_save_loadout_);
+    _impl_.message_.game_server_save_loadout_ = nullptr;
+    return temp;
+  } else {
+    return nullptr;
+  }
+}
+inline void Envelope::unsafe_arena_set_allocated_game_server_save_loadout(
+    ::realtime::GameServerSaveLoadoutMessage* PROTOBUF_NULLABLE value) {
+  // We rely on the oneof clear method to free the earlier contents
+  // of this oneof. We can directly use the pointer we're given to
+  // set the new value.
+  clear_message();
+  if (value) {
+    set_has_game_server_save_loadout();
+    _impl_.message_.game_server_save_loadout_ = reinterpret_cast<::google::protobuf::Message*>(value);
+  }
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:realtime.Envelope.game_server_save_loadout)
+}
+inline ::realtime::GameServerSaveLoadoutMessage* PROTOBUF_NONNULL Envelope::_internal_mutable_game_server_save_loadout() {
+  if (message_case() != kGameServerSaveLoadout) {
+    clear_message();
+    set_has_game_server_save_loadout();
+    _impl_.message_.game_server_save_loadout_ = reinterpret_cast<::google::protobuf::Message*>(
+        ::google::protobuf::Message::DefaultConstruct<::realtime::GameServerSaveLoadoutMessage>(GetArena()));
+  }
+  return reinterpret_cast<::realtime::GameServerSaveLoadoutMessage*>(_impl_.message_.game_server_save_loadout_);
+}
+inline ::realtime::GameServerSaveLoadoutMessage* PROTOBUF_NONNULL Envelope::mutable_game_server_save_loadout()
+    ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  ::realtime::GameServerSaveLoadoutMessage* _msg = _internal_mutable_game_server_save_loadout();
+  // @@protoc_insertion_point(field_mutable:realtime.Envelope.game_server_save_loadout)
+  return _msg;
+}
+
 inline bool Envelope::has_message() const {
   return message_case() != MESSAGE_NOT_SET;
 }
@@ -18898,6 +19744,385 @@ inline void GameServerRegistrationSuccessMessage::set_allocated_external_ip_addr
     _impl_.external_ip_address_.Set("", GetArena());
   }
   // @@protoc_insertion_point(field_set_allocated:realtime.GameServerRegistrationSuccessMessage.external_ip_address)
+}
+
+// -------------------------------------------------------------------
+
+// LoadoutItem
+
+// fixed64 slot_type = 1 [json_name = "slotType"];
+inline void LoadoutItem::clear_slot_type() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.slot_type_ = ::uint64_t{0u};
+  ClearHasBit(_impl_._has_bits_[0],
+                  0x00000001U);
+}
+inline ::uint64_t LoadoutItem::slot_type() const {
+  // @@protoc_insertion_point(field_get:realtime.LoadoutItem.slot_type)
+  return _internal_slot_type();
+}
+inline void LoadoutItem::set_slot_type(::uint64_t value) {
+  _internal_set_slot_type(value);
+  SetHasBit(_impl_._has_bits_[0], 0x00000001U);
+  // @@protoc_insertion_point(field_set:realtime.LoadoutItem.slot_type)
+}
+inline ::uint64_t LoadoutItem::_internal_slot_type() const {
+  ::google::protobuf::internal::TSanRead(&_impl_);
+  return _impl_.slot_type_;
+}
+inline void LoadoutItem::_internal_set_slot_type(::uint64_t value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.slot_type_ = value;
+}
+
+// fixed64 equipped_item = 2 [json_name = "equippedItem"];
+inline void LoadoutItem::clear_equipped_item() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.equipped_item_ = ::uint64_t{0u};
+  ClearHasBit(_impl_._has_bits_[0],
+                  0x00000002U);
+}
+inline ::uint64_t LoadoutItem::equipped_item() const {
+  // @@protoc_insertion_point(field_get:realtime.LoadoutItem.equipped_item)
+  return _internal_equipped_item();
+}
+inline void LoadoutItem::set_equipped_item(::uint64_t value) {
+  _internal_set_equipped_item(value);
+  SetHasBit(_impl_._has_bits_[0], 0x00000002U);
+  // @@protoc_insertion_point(field_set:realtime.LoadoutItem.equipped_item)
+}
+inline ::uint64_t LoadoutItem::_internal_equipped_item() const {
+  ::google::protobuf::internal::TSanRead(&_impl_);
+  return _impl_.equipped_item_;
+}
+inline void LoadoutItem::_internal_set_equipped_item(::uint64_t value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.equipped_item_ = value;
+}
+
+// -------------------------------------------------------------------
+
+// LoadoutInstance
+
+// fixed64 instance_name = 1 [json_name = "instanceName"];
+inline void LoadoutInstance::clear_instance_name() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.instance_name_ = ::uint64_t{0u};
+  ClearHasBit(_impl_._has_bits_[0],
+                  0x00000002U);
+}
+inline ::uint64_t LoadoutInstance::instance_name() const {
+  // @@protoc_insertion_point(field_get:realtime.LoadoutInstance.instance_name)
+  return _internal_instance_name();
+}
+inline void LoadoutInstance::set_instance_name(::uint64_t value) {
+  _internal_set_instance_name(value);
+  SetHasBit(_impl_._has_bits_[0], 0x00000002U);
+  // @@protoc_insertion_point(field_set:realtime.LoadoutInstance.instance_name)
+}
+inline ::uint64_t LoadoutInstance::_internal_instance_name() const {
+  ::google::protobuf::internal::TSanRead(&_impl_);
+  return _impl_.instance_name_;
+}
+inline void LoadoutInstance::_internal_set_instance_name(::uint64_t value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.instance_name_ = value;
+}
+
+// repeated .realtime.LoadoutItem items = 2 [json_name = "items"];
+inline int LoadoutInstance::_internal_items_size() const {
+  return _internal_items().size();
+}
+inline int LoadoutInstance::items_size() const {
+  return _internal_items_size();
+}
+inline void LoadoutInstance::clear_items() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.items_.Clear();
+  ClearHasBitForRepeated(_impl_._has_bits_[0],
+                  0x00000001U);
+}
+inline ::realtime::LoadoutItem* PROTOBUF_NONNULL LoadoutInstance::mutable_items(int index)
+    ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_mutable:realtime.LoadoutInstance.items)
+  return _internal_mutable_items()->Mutable(index);
+}
+inline ::google::protobuf::RepeatedPtrField<::realtime::LoadoutItem>* PROTOBUF_NONNULL LoadoutInstance::mutable_items()
+    ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  SetHasBitForRepeated(_impl_._has_bits_[0], 0x00000001U);
+  // @@protoc_insertion_point(field_mutable_list:realtime.LoadoutInstance.items)
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  return _internal_mutable_items();
+}
+inline const ::realtime::LoadoutItem& LoadoutInstance::items(int index) const
+    ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_get:realtime.LoadoutInstance.items)
+  return _internal_items().Get(index);
+}
+inline ::realtime::LoadoutItem* PROTOBUF_NONNULL LoadoutInstance::add_items()
+    ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  ::realtime::LoadoutItem* _add =
+      _internal_mutable_items()->InternalAddWithArena(
+          ::google::protobuf::MessageLite::internal_visibility(), GetArena());
+  SetHasBitForRepeated(_impl_._has_bits_[0], 0x00000001U);
+  // @@protoc_insertion_point(field_add:realtime.LoadoutInstance.items)
+  return _add;
+}
+inline const ::google::protobuf::RepeatedPtrField<::realtime::LoadoutItem>& LoadoutInstance::items() const
+    ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_list:realtime.LoadoutInstance.items)
+  return _internal_items();
+}
+inline const ::google::protobuf::RepeatedPtrField<::realtime::LoadoutItem>&
+LoadoutInstance::_internal_items() const {
+  ::google::protobuf::internal::TSanRead(&_impl_);
+  return _impl_.items_;
+}
+inline ::google::protobuf::RepeatedPtrField<::realtime::LoadoutItem>* PROTOBUF_NONNULL
+LoadoutInstance::_internal_mutable_items() {
+  ::google::protobuf::internal::TSanRead(&_impl_);
+  return &_impl_.items_;
+}
+
+// -------------------------------------------------------------------
+
+// GameServerSaveLoadoutMessage
+
+// string lobby_session_id = 1 [json_name = "lobbySessionId"];
+inline void GameServerSaveLoadoutMessage::clear_lobby_session_id() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.lobby_session_id_.ClearToEmpty();
+  ClearHasBit(_impl_._has_bits_[0],
+                  0x00000002U);
+}
+inline const ::std::string& GameServerSaveLoadoutMessage::lobby_session_id() const
+    ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_get:realtime.GameServerSaveLoadoutMessage.lobby_session_id)
+  return _internal_lobby_session_id();
+}
+template <typename Arg_, typename... Args_>
+PROTOBUF_ALWAYS_INLINE void GameServerSaveLoadoutMessage::set_lobby_session_id(Arg_&& arg, Args_... args) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  SetHasBit(_impl_._has_bits_[0], 0x00000002U);
+  _impl_.lobby_session_id_.Set(static_cast<Arg_&&>(arg), args..., GetArena());
+  // @@protoc_insertion_point(field_set:realtime.GameServerSaveLoadoutMessage.lobby_session_id)
+}
+inline ::std::string* PROTOBUF_NONNULL GameServerSaveLoadoutMessage::mutable_lobby_session_id()
+    ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  SetHasBit(_impl_._has_bits_[0], 0x00000002U);
+  ::std::string* _s = _internal_mutable_lobby_session_id();
+  // @@protoc_insertion_point(field_mutable:realtime.GameServerSaveLoadoutMessage.lobby_session_id)
+  return _s;
+}
+inline const ::std::string& GameServerSaveLoadoutMessage::_internal_lobby_session_id() const {
+  ::google::protobuf::internal::TSanRead(&_impl_);
+  return _impl_.lobby_session_id_.Get();
+}
+inline void GameServerSaveLoadoutMessage::_internal_set_lobby_session_id(const ::std::string& value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.lobby_session_id_.Set(value, GetArena());
+}
+inline ::std::string* PROTOBUF_NONNULL GameServerSaveLoadoutMessage::_internal_mutable_lobby_session_id() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  return _impl_.lobby_session_id_.Mutable( GetArena());
+}
+inline ::std::string* PROTOBUF_NULLABLE GameServerSaveLoadoutMessage::release_lobby_session_id() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  // @@protoc_insertion_point(field_release:realtime.GameServerSaveLoadoutMessage.lobby_session_id)
+  if (!CheckHasBit(_impl_._has_bits_[0], 0x00000002U)) {
+    return nullptr;
+  }
+  ClearHasBit(_impl_._has_bits_[0], 0x00000002U);
+  auto* released = _impl_.lobby_session_id_.Release();
+  if (::google::protobuf::internal::DebugHardenForceCopyDefaultString()) {
+    _impl_.lobby_session_id_.Set("", GetArena());
+  }
+  return released;
+}
+inline void GameServerSaveLoadoutMessage::set_allocated_lobby_session_id(::std::string* PROTOBUF_NULLABLE value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  if (value != nullptr) {
+    SetHasBit(_impl_._has_bits_[0], 0x00000002U);
+  } else {
+    ClearHasBit(_impl_._has_bits_[0], 0x00000002U);
+  }
+  _impl_.lobby_session_id_.SetAllocated(value, GetArena());
+  if (::google::protobuf::internal::DebugHardenForceCopyDefaultString() && _impl_.lobby_session_id_.IsDefault()) {
+    _impl_.lobby_session_id_.Set("", GetArena());
+  }
+  // @@protoc_insertion_point(field_set_allocated:realtime.GameServerSaveLoadoutMessage.lobby_session_id)
+}
+
+// string entrant_id = 2 [json_name = "entrantId"];
+inline void GameServerSaveLoadoutMessage::clear_entrant_id() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.entrant_id_.ClearToEmpty();
+  ClearHasBit(_impl_._has_bits_[0],
+                  0x00000004U);
+}
+inline const ::std::string& GameServerSaveLoadoutMessage::entrant_id() const
+    ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_get:realtime.GameServerSaveLoadoutMessage.entrant_id)
+  return _internal_entrant_id();
+}
+template <typename Arg_, typename... Args_>
+PROTOBUF_ALWAYS_INLINE void GameServerSaveLoadoutMessage::set_entrant_id(Arg_&& arg, Args_... args) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  SetHasBit(_impl_._has_bits_[0], 0x00000004U);
+  _impl_.entrant_id_.Set(static_cast<Arg_&&>(arg), args..., GetArena());
+  // @@protoc_insertion_point(field_set:realtime.GameServerSaveLoadoutMessage.entrant_id)
+}
+inline ::std::string* PROTOBUF_NONNULL GameServerSaveLoadoutMessage::mutable_entrant_id()
+    ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  SetHasBit(_impl_._has_bits_[0], 0x00000004U);
+  ::std::string* _s = _internal_mutable_entrant_id();
+  // @@protoc_insertion_point(field_mutable:realtime.GameServerSaveLoadoutMessage.entrant_id)
+  return _s;
+}
+inline const ::std::string& GameServerSaveLoadoutMessage::_internal_entrant_id() const {
+  ::google::protobuf::internal::TSanRead(&_impl_);
+  return _impl_.entrant_id_.Get();
+}
+inline void GameServerSaveLoadoutMessage::_internal_set_entrant_id(const ::std::string& value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.entrant_id_.Set(value, GetArena());
+}
+inline ::std::string* PROTOBUF_NONNULL GameServerSaveLoadoutMessage::_internal_mutable_entrant_id() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  return _impl_.entrant_id_.Mutable( GetArena());
+}
+inline ::std::string* PROTOBUF_NULLABLE GameServerSaveLoadoutMessage::release_entrant_id() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  // @@protoc_insertion_point(field_release:realtime.GameServerSaveLoadoutMessage.entrant_id)
+  if (!CheckHasBit(_impl_._has_bits_[0], 0x00000004U)) {
+    return nullptr;
+  }
+  ClearHasBit(_impl_._has_bits_[0], 0x00000004U);
+  auto* released = _impl_.entrant_id_.Release();
+  if (::google::protobuf::internal::DebugHardenForceCopyDefaultString()) {
+    _impl_.entrant_id_.Set("", GetArena());
+  }
+  return released;
+}
+inline void GameServerSaveLoadoutMessage::set_allocated_entrant_id(::std::string* PROTOBUF_NULLABLE value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  if (value != nullptr) {
+    SetHasBit(_impl_._has_bits_[0], 0x00000004U);
+  } else {
+    ClearHasBit(_impl_._has_bits_[0], 0x00000004U);
+  }
+  _impl_.entrant_id_.SetAllocated(value, GetArena());
+  if (::google::protobuf::internal::DebugHardenForceCopyDefaultString() && _impl_.entrant_id_.IsDefault()) {
+    _impl_.entrant_id_.Set("", GetArena());
+  }
+  // @@protoc_insertion_point(field_set_allocated:realtime.GameServerSaveLoadoutMessage.entrant_id)
+}
+
+// int32 loadout_slot = 3 [json_name = "loadoutSlot"];
+inline void GameServerSaveLoadoutMessage::clear_loadout_slot() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.loadout_slot_ = 0;
+  ClearHasBit(_impl_._has_bits_[0],
+                  0x00000008U);
+}
+inline ::int32_t GameServerSaveLoadoutMessage::loadout_slot() const {
+  // @@protoc_insertion_point(field_get:realtime.GameServerSaveLoadoutMessage.loadout_slot)
+  return _internal_loadout_slot();
+}
+inline void GameServerSaveLoadoutMessage::set_loadout_slot(::int32_t value) {
+  _internal_set_loadout_slot(value);
+  SetHasBit(_impl_._has_bits_[0], 0x00000008U);
+  // @@protoc_insertion_point(field_set:realtime.GameServerSaveLoadoutMessage.loadout_slot)
+}
+inline ::int32_t GameServerSaveLoadoutMessage::_internal_loadout_slot() const {
+  ::google::protobuf::internal::TSanRead(&_impl_);
+  return _impl_.loadout_slot_;
+}
+inline void GameServerSaveLoadoutMessage::_internal_set_loadout_slot(::int32_t value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.loadout_slot_ = value;
+}
+
+// int32 jersey_number = 4 [json_name = "jerseyNumber"];
+inline void GameServerSaveLoadoutMessage::clear_jersey_number() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.jersey_number_ = 0;
+  ClearHasBit(_impl_._has_bits_[0],
+                  0x00000010U);
+}
+inline ::int32_t GameServerSaveLoadoutMessage::jersey_number() const {
+  // @@protoc_insertion_point(field_get:realtime.GameServerSaveLoadoutMessage.jersey_number)
+  return _internal_jersey_number();
+}
+inline void GameServerSaveLoadoutMessage::set_jersey_number(::int32_t value) {
+  _internal_set_jersey_number(value);
+  SetHasBit(_impl_._has_bits_[0], 0x00000010U);
+  // @@protoc_insertion_point(field_set:realtime.GameServerSaveLoadoutMessage.jersey_number)
+}
+inline ::int32_t GameServerSaveLoadoutMessage::_internal_jersey_number() const {
+  ::google::protobuf::internal::TSanRead(&_impl_);
+  return _impl_.jersey_number_;
+}
+inline void GameServerSaveLoadoutMessage::_internal_set_jersey_number(::int32_t value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.jersey_number_ = value;
+}
+
+// repeated .realtime.LoadoutInstance loadout_instances = 5 [json_name = "loadoutInstances"];
+inline int GameServerSaveLoadoutMessage::_internal_loadout_instances_size() const {
+  return _internal_loadout_instances().size();
+}
+inline int GameServerSaveLoadoutMessage::loadout_instances_size() const {
+  return _internal_loadout_instances_size();
+}
+inline void GameServerSaveLoadoutMessage::clear_loadout_instances() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.loadout_instances_.Clear();
+  ClearHasBitForRepeated(_impl_._has_bits_[0],
+                  0x00000001U);
+}
+inline ::realtime::LoadoutInstance* PROTOBUF_NONNULL GameServerSaveLoadoutMessage::mutable_loadout_instances(int index)
+    ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_mutable:realtime.GameServerSaveLoadoutMessage.loadout_instances)
+  return _internal_mutable_loadout_instances()->Mutable(index);
+}
+inline ::google::protobuf::RepeatedPtrField<::realtime::LoadoutInstance>* PROTOBUF_NONNULL GameServerSaveLoadoutMessage::mutable_loadout_instances()
+    ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  SetHasBitForRepeated(_impl_._has_bits_[0], 0x00000001U);
+  // @@protoc_insertion_point(field_mutable_list:realtime.GameServerSaveLoadoutMessage.loadout_instances)
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  return _internal_mutable_loadout_instances();
+}
+inline const ::realtime::LoadoutInstance& GameServerSaveLoadoutMessage::loadout_instances(int index) const
+    ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_get:realtime.GameServerSaveLoadoutMessage.loadout_instances)
+  return _internal_loadout_instances().Get(index);
+}
+inline ::realtime::LoadoutInstance* PROTOBUF_NONNULL GameServerSaveLoadoutMessage::add_loadout_instances()
+    ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  ::realtime::LoadoutInstance* _add =
+      _internal_mutable_loadout_instances()->InternalAddWithArena(
+          ::google::protobuf::MessageLite::internal_visibility(), GetArena());
+  SetHasBitForRepeated(_impl_._has_bits_[0], 0x00000001U);
+  // @@protoc_insertion_point(field_add:realtime.GameServerSaveLoadoutMessage.loadout_instances)
+  return _add;
+}
+inline const ::google::protobuf::RepeatedPtrField<::realtime::LoadoutInstance>& GameServerSaveLoadoutMessage::loadout_instances() const
+    ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_list:realtime.GameServerSaveLoadoutMessage.loadout_instances)
+  return _internal_loadout_instances();
+}
+inline const ::google::protobuf::RepeatedPtrField<::realtime::LoadoutInstance>&
+GameServerSaveLoadoutMessage::_internal_loadout_instances() const {
+  ::google::protobuf::internal::TSanRead(&_impl_);
+  return _impl_.loadout_instances_;
+}
+inline ::google::protobuf::RepeatedPtrField<::realtime::LoadoutInstance>* PROTOBUF_NONNULL
+GameServerSaveLoadoutMessage::_internal_mutable_loadout_instances() {
+  ::google::protobuf::internal::TSanRead(&_impl_);
+  return &_impl_.loadout_instances_;
 }
 
 // -------------------------------------------------------------------
@@ -24190,7 +25415,7 @@ inline void SNSLobbySessionSuccessV5Message::clear_game_mode() {
   ::google::protobuf::internal::TSanWrite(&_impl_);
   _impl_.game_mode_ = ::uint64_t{0u};
   ClearHasBit(_impl_._has_bits_[0],
-                  0x00000040U);
+                  0x00000200U);
 }
 inline ::uint64_t SNSLobbySessionSuccessV5Message::game_mode() const {
   // @@protoc_insertion_point(field_get:realtime.SNSLobbySessionSuccessV5Message.game_mode)
@@ -24198,7 +25423,7 @@ inline ::uint64_t SNSLobbySessionSuccessV5Message::game_mode() const {
 }
 inline void SNSLobbySessionSuccessV5Message::set_game_mode(::uint64_t value) {
   _internal_set_game_mode(value);
-  SetHasBit(_impl_._has_bits_[0], 0x00000040U);
+  SetHasBit(_impl_._has_bits_[0], 0x00000200U);
   // @@protoc_insertion_point(field_set:realtime.SNSLobbySessionSuccessV5Message.game_mode)
 }
 inline ::uint64_t SNSLobbySessionSuccessV5Message::_internal_game_mode() const {
@@ -24410,7 +25635,7 @@ inline void SNSLobbySessionSuccessV5Message::clear_team_index() {
   ::google::protobuf::internal::TSanWrite(&_impl_);
   _impl_.team_index_ = 0;
   ClearHasBit(_impl_._has_bits_[0],
-                  0x00000080U);
+                  0x00000400U);
 }
 inline ::int32_t SNSLobbySessionSuccessV5Message::team_index() const {
   // @@protoc_insertion_point(field_get:realtime.SNSLobbySessionSuccessV5Message.team_index)
@@ -24418,7 +25643,7 @@ inline ::int32_t SNSLobbySessionSuccessV5Message::team_index() const {
 }
 inline void SNSLobbySessionSuccessV5Message::set_team_index(::int32_t value) {
   _internal_set_team_index(value);
-  SetHasBit(_impl_._has_bits_[0], 0x00000080U);
+  SetHasBit(_impl_._has_bits_[0], 0x00000400U);
   // @@protoc_insertion_point(field_set:realtime.SNSLobbySessionSuccessV5Message.team_index)
 }
 inline ::int32_t SNSLobbySessionSuccessV5Message::_internal_team_index() const {
@@ -24430,62 +25655,87 @@ inline void SNSLobbySessionSuccessV5Message::_internal_set_team_index(::int32_t 
   _impl_.team_index_ = value;
 }
 
-// uint32 unk1 = 6 [json_name = "unk1"];
-inline void SNSLobbySessionSuccessV5Message::clear_unk1() {
+// uint32 user_slot = 6 [json_name = "userSlot"];
+inline void SNSLobbySessionSuccessV5Message::clear_user_slot() {
   ::google::protobuf::internal::TSanWrite(&_impl_);
-  _impl_.unk1_ = 0u;
+  _impl_.user_slot_ = 0u;
   ClearHasBit(_impl_._has_bits_[0],
-                  0x00000100U);
+                  0x00000800U);
 }
-inline ::uint32_t SNSLobbySessionSuccessV5Message::unk1() const {
-  // @@protoc_insertion_point(field_get:realtime.SNSLobbySessionSuccessV5Message.unk1)
-  return _internal_unk1();
+inline ::uint32_t SNSLobbySessionSuccessV5Message::user_slot() const {
+  // @@protoc_insertion_point(field_get:realtime.SNSLobbySessionSuccessV5Message.user_slot)
+  return _internal_user_slot();
 }
-inline void SNSLobbySessionSuccessV5Message::set_unk1(::uint32_t value) {
-  _internal_set_unk1(value);
-  SetHasBit(_impl_._has_bits_[0], 0x00000100U);
-  // @@protoc_insertion_point(field_set:realtime.SNSLobbySessionSuccessV5Message.unk1)
+inline void SNSLobbySessionSuccessV5Message::set_user_slot(::uint32_t value) {
+  _internal_set_user_slot(value);
+  SetHasBit(_impl_._has_bits_[0], 0x00000800U);
+  // @@protoc_insertion_point(field_set:realtime.SNSLobbySessionSuccessV5Message.user_slot)
 }
-inline ::uint32_t SNSLobbySessionSuccessV5Message::_internal_unk1() const {
+inline ::uint32_t SNSLobbySessionSuccessV5Message::_internal_user_slot() const {
   ::google::protobuf::internal::TSanRead(&_impl_);
-  return _impl_.unk1_;
+  return _impl_.user_slot_;
 }
-inline void SNSLobbySessionSuccessV5Message::_internal_set_unk1(::uint32_t value) {
+inline void SNSLobbySessionSuccessV5Message::_internal_set_user_slot(::uint32_t value) {
   ::google::protobuf::internal::TSanWrite(&_impl_);
-  _impl_.unk1_ = value;
+  _impl_.user_slot_ = value;
 }
 
-// int32 headset_type = 7 [json_name = "headsetType"];
-inline void SNSLobbySessionSuccessV5Message::clear_headset_type() {
+// uint32 flags32 = 7 [json_name = "flags32"];
+inline void SNSLobbySessionSuccessV5Message::clear_flags32() {
   ::google::protobuf::internal::TSanWrite(&_impl_);
-  _impl_.headset_type_ = 0;
+  _impl_.flags32_ = 0u;
+  ClearHasBit(_impl_._has_bits_[0],
+                  0x00001000U);
+}
+inline ::uint32_t SNSLobbySessionSuccessV5Message::flags32() const {
+  // @@protoc_insertion_point(field_get:realtime.SNSLobbySessionSuccessV5Message.flags32)
+  return _internal_flags32();
+}
+inline void SNSLobbySessionSuccessV5Message::set_flags32(::uint32_t value) {
+  _internal_set_flags32(value);
+  SetHasBit(_impl_._has_bits_[0], 0x00001000U);
+  // @@protoc_insertion_point(field_set:realtime.SNSLobbySessionSuccessV5Message.flags32)
+}
+inline ::uint32_t SNSLobbySessionSuccessV5Message::_internal_flags32() const {
+  ::google::protobuf::internal::TSanRead(&_impl_);
+  return _impl_.flags32_;
+}
+inline void SNSLobbySessionSuccessV5Message::_internal_set_flags32(::uint32_t value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.flags32_ = value;
+}
+
+// uint32 session_flags = 8 [json_name = "sessionFlags"];
+inline void SNSLobbySessionSuccessV5Message::clear_session_flags() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.session_flags_ = 0u;
   ClearHasBit(_impl_._has_bits_[0],
                   0x00002000U);
 }
-inline ::int32_t SNSLobbySessionSuccessV5Message::headset_type() const {
-  // @@protoc_insertion_point(field_get:realtime.SNSLobbySessionSuccessV5Message.headset_type)
-  return _internal_headset_type();
+inline ::uint32_t SNSLobbySessionSuccessV5Message::session_flags() const {
+  // @@protoc_insertion_point(field_get:realtime.SNSLobbySessionSuccessV5Message.session_flags)
+  return _internal_session_flags();
 }
-inline void SNSLobbySessionSuccessV5Message::set_headset_type(::int32_t value) {
-  _internal_set_headset_type(value);
+inline void SNSLobbySessionSuccessV5Message::set_session_flags(::uint32_t value) {
+  _internal_set_session_flags(value);
   SetHasBit(_impl_._has_bits_[0], 0x00002000U);
-  // @@protoc_insertion_point(field_set:realtime.SNSLobbySessionSuccessV5Message.headset_type)
+  // @@protoc_insertion_point(field_set:realtime.SNSLobbySessionSuccessV5Message.session_flags)
 }
-inline ::int32_t SNSLobbySessionSuccessV5Message::_internal_headset_type() const {
+inline ::uint32_t SNSLobbySessionSuccessV5Message::_internal_session_flags() const {
   ::google::protobuf::internal::TSanRead(&_impl_);
-  return _impl_.headset_type_;
+  return _impl_.session_flags_;
 }
-inline void SNSLobbySessionSuccessV5Message::_internal_set_headset_type(::int32_t value) {
+inline void SNSLobbySessionSuccessV5Message::_internal_set_session_flags(::uint32_t value) {
   ::google::protobuf::internal::TSanWrite(&_impl_);
-  _impl_.headset_type_ = value;
+  _impl_.session_flags_ = value;
 }
 
-// uint64 server_encoder_flags = 8 [json_name = "serverEncoderFlags"];
+// uint64 server_encoder_flags = 9 [json_name = "serverEncoderFlags"];
 inline void SNSLobbySessionSuccessV5Message::clear_server_encoder_flags() {
   ::google::protobuf::internal::TSanWrite(&_impl_);
   _impl_.server_encoder_flags_ = ::uint64_t{0u};
   ClearHasBit(_impl_._has_bits_[0],
-                  0x00000200U);
+                  0x00004000U);
 }
 inline ::uint64_t SNSLobbySessionSuccessV5Message::server_encoder_flags() const {
   // @@protoc_insertion_point(field_get:realtime.SNSLobbySessionSuccessV5Message.server_encoder_flags)
@@ -24493,7 +25743,7 @@ inline ::uint64_t SNSLobbySessionSuccessV5Message::server_encoder_flags() const 
 }
 inline void SNSLobbySessionSuccessV5Message::set_server_encoder_flags(::uint64_t value) {
   _internal_set_server_encoder_flags(value);
-  SetHasBit(_impl_._has_bits_[0], 0x00000200U);
+  SetHasBit(_impl_._has_bits_[0], 0x00004000U);
   // @@protoc_insertion_point(field_set:realtime.SNSLobbySessionSuccessV5Message.server_encoder_flags)
 }
 inline ::uint64_t SNSLobbySessionSuccessV5Message::_internal_server_encoder_flags() const {
@@ -24505,12 +25755,12 @@ inline void SNSLobbySessionSuccessV5Message::_internal_set_server_encoder_flags(
   _impl_.server_encoder_flags_ = value;
 }
 
-// uint64 client_encoder_flags = 9 [json_name = "clientEncoderFlags"];
+// uint64 client_encoder_flags = 10 [json_name = "clientEncoderFlags"];
 inline void SNSLobbySessionSuccessV5Message::clear_client_encoder_flags() {
   ::google::protobuf::internal::TSanWrite(&_impl_);
   _impl_.client_encoder_flags_ = ::uint64_t{0u};
   ClearHasBit(_impl_._has_bits_[0],
-                  0x00000400U);
+                  0x00008000U);
 }
 inline ::uint64_t SNSLobbySessionSuccessV5Message::client_encoder_flags() const {
   // @@protoc_insertion_point(field_get:realtime.SNSLobbySessionSuccessV5Message.client_encoder_flags)
@@ -24518,7 +25768,7 @@ inline ::uint64_t SNSLobbySessionSuccessV5Message::client_encoder_flags() const 
 }
 inline void SNSLobbySessionSuccessV5Message::set_client_encoder_flags(::uint64_t value) {
   _internal_set_client_encoder_flags(value);
-  SetHasBit(_impl_._has_bits_[0], 0x00000400U);
+  SetHasBit(_impl_._has_bits_[0], 0x00008000U);
   // @@protoc_insertion_point(field_set:realtime.SNSLobbySessionSuccessV5Message.client_encoder_flags)
 }
 inline ::uint64_t SNSLobbySessionSuccessV5Message::_internal_client_encoder_flags() const {
@@ -24530,12 +25780,12 @@ inline void SNSLobbySessionSuccessV5Message::_internal_set_client_encoder_flags(
   _impl_.client_encoder_flags_ = value;
 }
 
-// uint64 server_sequence_id = 10 [json_name = "serverSequenceId"];
+// uint64 server_sequence_id = 11 [json_name = "serverSequenceId"];
 inline void SNSLobbySessionSuccessV5Message::clear_server_sequence_id() {
   ::google::protobuf::internal::TSanWrite(&_impl_);
   _impl_.server_sequence_id_ = ::uint64_t{0u};
   ClearHasBit(_impl_._has_bits_[0],
-                  0x00000800U);
+                  0x00010000U);
 }
 inline ::uint64_t SNSLobbySessionSuccessV5Message::server_sequence_id() const {
   // @@protoc_insertion_point(field_get:realtime.SNSLobbySessionSuccessV5Message.server_sequence_id)
@@ -24543,7 +25793,7 @@ inline ::uint64_t SNSLobbySessionSuccessV5Message::server_sequence_id() const {
 }
 inline void SNSLobbySessionSuccessV5Message::set_server_sequence_id(::uint64_t value) {
   _internal_set_server_sequence_id(value);
-  SetHasBit(_impl_._has_bits_[0], 0x00000800U);
+  SetHasBit(_impl_._has_bits_[0], 0x00010000U);
   // @@protoc_insertion_point(field_set:realtime.SNSLobbySessionSuccessV5Message.server_sequence_id)
 }
 inline ::uint64_t SNSLobbySessionSuccessV5Message::_internal_server_sequence_id() const {
@@ -24555,7 +25805,7 @@ inline void SNSLobbySessionSuccessV5Message::_internal_set_server_sequence_id(::
   _impl_.server_sequence_id_ = value;
 }
 
-// bytes server_mac_key = 11 [json_name = "serverMacKey"];
+// bytes server_mac_key = 12 [json_name = "serverMacKey"];
 inline void SNSLobbySessionSuccessV5Message::clear_server_mac_key() {
   ::google::protobuf::internal::TSanWrite(&_impl_);
   _impl_.server_mac_key_.ClearToEmpty();
@@ -24620,7 +25870,7 @@ inline void SNSLobbySessionSuccessV5Message::set_allocated_server_mac_key(::std:
   // @@protoc_insertion_point(field_set_allocated:realtime.SNSLobbySessionSuccessV5Message.server_mac_key)
 }
 
-// bytes server_enc_key = 12 [json_name = "serverEncKey"];
+// bytes server_enc_key = 13 [json_name = "serverEncKey"];
 inline void SNSLobbySessionSuccessV5Message::clear_server_enc_key() {
   ::google::protobuf::internal::TSanWrite(&_impl_);
   _impl_.server_enc_key_.ClearToEmpty();
@@ -24685,7 +25935,7 @@ inline void SNSLobbySessionSuccessV5Message::set_allocated_server_enc_key(::std:
   // @@protoc_insertion_point(field_set_allocated:realtime.SNSLobbySessionSuccessV5Message.server_enc_key)
 }
 
-// bytes server_random_key = 13 [json_name = "serverRandomKey"];
+// bytes server_random_key = 14 [json_name = "serverRandomKey"];
 inline void SNSLobbySessionSuccessV5Message::clear_server_random_key() {
   ::google::protobuf::internal::TSanWrite(&_impl_);
   _impl_.server_random_key_.ClearToEmpty();
@@ -24750,12 +26000,12 @@ inline void SNSLobbySessionSuccessV5Message::set_allocated_server_random_key(::s
   // @@protoc_insertion_point(field_set_allocated:realtime.SNSLobbySessionSuccessV5Message.server_random_key)
 }
 
-// uint64 client_sequence_id = 14 [json_name = "clientSequenceId"];
+// uint64 client_sequence_id = 15 [json_name = "clientSequenceId"];
 inline void SNSLobbySessionSuccessV5Message::clear_client_sequence_id() {
   ::google::protobuf::internal::TSanWrite(&_impl_);
   _impl_.client_sequence_id_ = ::uint64_t{0u};
   ClearHasBit(_impl_._has_bits_[0],
-                  0x00001000U);
+                  0x00020000U);
 }
 inline ::uint64_t SNSLobbySessionSuccessV5Message::client_sequence_id() const {
   // @@protoc_insertion_point(field_get:realtime.SNSLobbySessionSuccessV5Message.client_sequence_id)
@@ -24763,7 +26013,7 @@ inline ::uint64_t SNSLobbySessionSuccessV5Message::client_sequence_id() const {
 }
 inline void SNSLobbySessionSuccessV5Message::set_client_sequence_id(::uint64_t value) {
   _internal_set_client_sequence_id(value);
-  SetHasBit(_impl_._has_bits_[0], 0x00001000U);
+  SetHasBit(_impl_._has_bits_[0], 0x00020000U);
   // @@protoc_insertion_point(field_set:realtime.SNSLobbySessionSuccessV5Message.client_sequence_id)
 }
 inline ::uint64_t SNSLobbySessionSuccessV5Message::_internal_client_sequence_id() const {
@@ -24773,6 +26023,201 @@ inline ::uint64_t SNSLobbySessionSuccessV5Message::_internal_client_sequence_id(
 inline void SNSLobbySessionSuccessV5Message::_internal_set_client_sequence_id(::uint64_t value) {
   ::google::protobuf::internal::TSanWrite(&_impl_);
   _impl_.client_sequence_id_ = value;
+}
+
+// bytes client_mac_key = 16 [json_name = "clientMacKey"];
+inline void SNSLobbySessionSuccessV5Message::clear_client_mac_key() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.client_mac_key_.ClearToEmpty();
+  ClearHasBit(_impl_._has_bits_[0],
+                  0x00000040U);
+}
+inline const ::std::string& SNSLobbySessionSuccessV5Message::client_mac_key() const
+    ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_get:realtime.SNSLobbySessionSuccessV5Message.client_mac_key)
+  return _internal_client_mac_key();
+}
+template <typename Arg_, typename... Args_>
+PROTOBUF_ALWAYS_INLINE void SNSLobbySessionSuccessV5Message::set_client_mac_key(Arg_&& arg, Args_... args) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  SetHasBit(_impl_._has_bits_[0], 0x00000040U);
+  _impl_.client_mac_key_.SetBytes(static_cast<Arg_&&>(arg), args..., GetArena());
+  // @@protoc_insertion_point(field_set:realtime.SNSLobbySessionSuccessV5Message.client_mac_key)
+}
+inline ::std::string* PROTOBUF_NONNULL SNSLobbySessionSuccessV5Message::mutable_client_mac_key()
+    ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  SetHasBit(_impl_._has_bits_[0], 0x00000040U);
+  ::std::string* _s = _internal_mutable_client_mac_key();
+  // @@protoc_insertion_point(field_mutable:realtime.SNSLobbySessionSuccessV5Message.client_mac_key)
+  return _s;
+}
+inline const ::std::string& SNSLobbySessionSuccessV5Message::_internal_client_mac_key() const {
+  ::google::protobuf::internal::TSanRead(&_impl_);
+  return _impl_.client_mac_key_.Get();
+}
+inline void SNSLobbySessionSuccessV5Message::_internal_set_client_mac_key(const ::std::string& value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.client_mac_key_.Set(value, GetArena());
+}
+inline ::std::string* PROTOBUF_NONNULL SNSLobbySessionSuccessV5Message::_internal_mutable_client_mac_key() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  return _impl_.client_mac_key_.Mutable( GetArena());
+}
+inline ::std::string* PROTOBUF_NULLABLE SNSLobbySessionSuccessV5Message::release_client_mac_key() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  // @@protoc_insertion_point(field_release:realtime.SNSLobbySessionSuccessV5Message.client_mac_key)
+  if (!CheckHasBit(_impl_._has_bits_[0], 0x00000040U)) {
+    return nullptr;
+  }
+  ClearHasBit(_impl_._has_bits_[0], 0x00000040U);
+  auto* released = _impl_.client_mac_key_.Release();
+  if (::google::protobuf::internal::DebugHardenForceCopyDefaultString()) {
+    _impl_.client_mac_key_.Set("", GetArena());
+  }
+  return released;
+}
+inline void SNSLobbySessionSuccessV5Message::set_allocated_client_mac_key(::std::string* PROTOBUF_NULLABLE value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  if (value != nullptr) {
+    SetHasBit(_impl_._has_bits_[0], 0x00000040U);
+  } else {
+    ClearHasBit(_impl_._has_bits_[0], 0x00000040U);
+  }
+  _impl_.client_mac_key_.SetAllocated(value, GetArena());
+  if (::google::protobuf::internal::DebugHardenForceCopyDefaultString() && _impl_.client_mac_key_.IsDefault()) {
+    _impl_.client_mac_key_.Set("", GetArena());
+  }
+  // @@protoc_insertion_point(field_set_allocated:realtime.SNSLobbySessionSuccessV5Message.client_mac_key)
+}
+
+// bytes client_enc_key = 17 [json_name = "clientEncKey"];
+inline void SNSLobbySessionSuccessV5Message::clear_client_enc_key() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.client_enc_key_.ClearToEmpty();
+  ClearHasBit(_impl_._has_bits_[0],
+                  0x00000080U);
+}
+inline const ::std::string& SNSLobbySessionSuccessV5Message::client_enc_key() const
+    ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_get:realtime.SNSLobbySessionSuccessV5Message.client_enc_key)
+  return _internal_client_enc_key();
+}
+template <typename Arg_, typename... Args_>
+PROTOBUF_ALWAYS_INLINE void SNSLobbySessionSuccessV5Message::set_client_enc_key(Arg_&& arg, Args_... args) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  SetHasBit(_impl_._has_bits_[0], 0x00000080U);
+  _impl_.client_enc_key_.SetBytes(static_cast<Arg_&&>(arg), args..., GetArena());
+  // @@protoc_insertion_point(field_set:realtime.SNSLobbySessionSuccessV5Message.client_enc_key)
+}
+inline ::std::string* PROTOBUF_NONNULL SNSLobbySessionSuccessV5Message::mutable_client_enc_key()
+    ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  SetHasBit(_impl_._has_bits_[0], 0x00000080U);
+  ::std::string* _s = _internal_mutable_client_enc_key();
+  // @@protoc_insertion_point(field_mutable:realtime.SNSLobbySessionSuccessV5Message.client_enc_key)
+  return _s;
+}
+inline const ::std::string& SNSLobbySessionSuccessV5Message::_internal_client_enc_key() const {
+  ::google::protobuf::internal::TSanRead(&_impl_);
+  return _impl_.client_enc_key_.Get();
+}
+inline void SNSLobbySessionSuccessV5Message::_internal_set_client_enc_key(const ::std::string& value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.client_enc_key_.Set(value, GetArena());
+}
+inline ::std::string* PROTOBUF_NONNULL SNSLobbySessionSuccessV5Message::_internal_mutable_client_enc_key() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  return _impl_.client_enc_key_.Mutable( GetArena());
+}
+inline ::std::string* PROTOBUF_NULLABLE SNSLobbySessionSuccessV5Message::release_client_enc_key() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  // @@protoc_insertion_point(field_release:realtime.SNSLobbySessionSuccessV5Message.client_enc_key)
+  if (!CheckHasBit(_impl_._has_bits_[0], 0x00000080U)) {
+    return nullptr;
+  }
+  ClearHasBit(_impl_._has_bits_[0], 0x00000080U);
+  auto* released = _impl_.client_enc_key_.Release();
+  if (::google::protobuf::internal::DebugHardenForceCopyDefaultString()) {
+    _impl_.client_enc_key_.Set("", GetArena());
+  }
+  return released;
+}
+inline void SNSLobbySessionSuccessV5Message::set_allocated_client_enc_key(::std::string* PROTOBUF_NULLABLE value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  if (value != nullptr) {
+    SetHasBit(_impl_._has_bits_[0], 0x00000080U);
+  } else {
+    ClearHasBit(_impl_._has_bits_[0], 0x00000080U);
+  }
+  _impl_.client_enc_key_.SetAllocated(value, GetArena());
+  if (::google::protobuf::internal::DebugHardenForceCopyDefaultString() && _impl_.client_enc_key_.IsDefault()) {
+    _impl_.client_enc_key_.Set("", GetArena());
+  }
+  // @@protoc_insertion_point(field_set_allocated:realtime.SNSLobbySessionSuccessV5Message.client_enc_key)
+}
+
+// bytes client_random_key = 18 [json_name = "clientRandomKey"];
+inline void SNSLobbySessionSuccessV5Message::clear_client_random_key() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.client_random_key_.ClearToEmpty();
+  ClearHasBit(_impl_._has_bits_[0],
+                  0x00000100U);
+}
+inline const ::std::string& SNSLobbySessionSuccessV5Message::client_random_key() const
+    ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_get:realtime.SNSLobbySessionSuccessV5Message.client_random_key)
+  return _internal_client_random_key();
+}
+template <typename Arg_, typename... Args_>
+PROTOBUF_ALWAYS_INLINE void SNSLobbySessionSuccessV5Message::set_client_random_key(Arg_&& arg, Args_... args) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  SetHasBit(_impl_._has_bits_[0], 0x00000100U);
+  _impl_.client_random_key_.SetBytes(static_cast<Arg_&&>(arg), args..., GetArena());
+  // @@protoc_insertion_point(field_set:realtime.SNSLobbySessionSuccessV5Message.client_random_key)
+}
+inline ::std::string* PROTOBUF_NONNULL SNSLobbySessionSuccessV5Message::mutable_client_random_key()
+    ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  SetHasBit(_impl_._has_bits_[0], 0x00000100U);
+  ::std::string* _s = _internal_mutable_client_random_key();
+  // @@protoc_insertion_point(field_mutable:realtime.SNSLobbySessionSuccessV5Message.client_random_key)
+  return _s;
+}
+inline const ::std::string& SNSLobbySessionSuccessV5Message::_internal_client_random_key() const {
+  ::google::protobuf::internal::TSanRead(&_impl_);
+  return _impl_.client_random_key_.Get();
+}
+inline void SNSLobbySessionSuccessV5Message::_internal_set_client_random_key(const ::std::string& value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.client_random_key_.Set(value, GetArena());
+}
+inline ::std::string* PROTOBUF_NONNULL SNSLobbySessionSuccessV5Message::_internal_mutable_client_random_key() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  return _impl_.client_random_key_.Mutable( GetArena());
+}
+inline ::std::string* PROTOBUF_NULLABLE SNSLobbySessionSuccessV5Message::release_client_random_key() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  // @@protoc_insertion_point(field_release:realtime.SNSLobbySessionSuccessV5Message.client_random_key)
+  if (!CheckHasBit(_impl_._has_bits_[0], 0x00000100U)) {
+    return nullptr;
+  }
+  ClearHasBit(_impl_._has_bits_[0], 0x00000100U);
+  auto* released = _impl_.client_random_key_.Release();
+  if (::google::protobuf::internal::DebugHardenForceCopyDefaultString()) {
+    _impl_.client_random_key_.Set("", GetArena());
+  }
+  return released;
+}
+inline void SNSLobbySessionSuccessV5Message::set_allocated_client_random_key(::std::string* PROTOBUF_NULLABLE value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  if (value != nullptr) {
+    SetHasBit(_impl_._has_bits_[0], 0x00000100U);
+  } else {
+    ClearHasBit(_impl_._has_bits_[0], 0x00000100U);
+  }
+  _impl_.client_random_key_.SetAllocated(value, GetArena());
+  if (::google::protobuf::internal::DebugHardenForceCopyDefaultString() && _impl_.client_random_key_.IsDefault()) {
+    _impl_.client_random_key_.Set("", GetArena());
+  }
+  // @@protoc_insertion_point(field_set_allocated:realtime.SNSLobbySessionSuccessV5Message.client_random_key)
 }
 
 // -------------------------------------------------------------------
@@ -26832,7 +28277,7 @@ inline void SNSRemoteLogSetV3Message::set_allocated_user_id(::realtime::XPlatfor
   // @@protoc_insertion_point(field_set_allocated:realtime.SNSRemoteLogSetV3Message.user_id)
 }
 
-// uint64 log_level = 6 [json_name = "logLevel"];
+// uint64 log_level = 2 [json_name = "logLevel"];
 inline void SNSRemoteLogSetV3Message::clear_log_level() {
   ::google::protobuf::internal::TSanWrite(&_impl_);
   _impl_.log_level_ = ::uint64_t{0u};
@@ -26857,7 +28302,7 @@ inline void SNSRemoteLogSetV3Message::_internal_set_log_level(::uint64_t value) 
   _impl_.log_level_ = value;
 }
 
-// repeated string logs = 7 [json_name = "logs"];
+// repeated string logs = 3 [json_name = "logs"];
 inline int SNSRemoteLogSetV3Message::_internal_logs_size() const {
   return _internal_logs().size();
 }

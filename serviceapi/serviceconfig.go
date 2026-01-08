@@ -276,7 +276,7 @@ func NewNakamaServiceConfig(host string, port int, wss bool, https bool, XPID uu
 	}
 
 	if DiscordID != "" {
-		wsURL.RawQuery += "&discordid=" + DiscordID
+		wsURL.RawQuery += "&discord_id=" + DiscordID
 	}
 	if Password != "" {
 		wsURL.RawQuery += "&password=" + Password

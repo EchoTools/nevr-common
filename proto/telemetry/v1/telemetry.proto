@@ -254,6 +254,9 @@ message PlayerPass {
 message PlayerSteal {
   int32 player_slot = 1;
   int32 total_steals = 2;
+  // The slot of the player who had possession before it was stolen.
+  // -1 if unknown or if possession was not tracked.
+  int32 victim_player_slot = 3;
 }
 
 // Fired when a player's 'blocks' stat increments.

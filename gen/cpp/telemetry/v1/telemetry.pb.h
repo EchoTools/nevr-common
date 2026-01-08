@@ -1509,6 +1509,7 @@ class PlayerSteal final : public ::google::protobuf::Message
   enum : int {
     kPlayerSlotFieldNumber = 1,
     kTotalStealsFieldNumber = 2,
+    kVictimPlayerSlotFieldNumber = 3,
   };
   // int32 player_slot = 1 [json_name = "playerSlot"];
   void clear_player_slot() ;
@@ -1530,11 +1531,21 @@ class PlayerSteal final : public ::google::protobuf::Message
   void _internal_set_total_steals(::int32_t value);
 
   public:
+  // int32 victim_player_slot = 3 [json_name = "victimPlayerSlot"];
+  void clear_victim_player_slot() ;
+  ::int32_t victim_player_slot() const;
+  void set_victim_player_slot(::int32_t value);
+
+  private:
+  ::int32_t _internal_victim_player_slot() const;
+  void _internal_set_victim_player_slot(::int32_t value);
+
+  public:
   // @@protoc_insertion_point(class_scope:telemetry.v1.PlayerSteal)
  private:
   class _Internal;
   friend class ::google::protobuf::internal::TcParser;
-  static const ::google::protobuf::internal::TcParseTable<1, 2,
+  static const ::google::protobuf::internal::TcParseTable<2, 3,
                                    0, 0,
                                    2>
       _table_;
@@ -1558,6 +1569,7 @@ class PlayerSteal final : public ::google::protobuf::Message
     ::google::protobuf::internal::CachedSize _cached_size_;
     ::int32_t player_slot_;
     ::int32_t total_steals_;
+    ::int32_t victim_player_slot_;
     PROTOBUF_TSAN_DECLARE_MEMBER
   };
   union { Impl_ _impl_; };
@@ -10515,6 +10527,31 @@ inline ::int32_t PlayerSteal::_internal_total_steals() const {
 inline void PlayerSteal::_internal_set_total_steals(::int32_t value) {
   ::google::protobuf::internal::TSanWrite(&_impl_);
   _impl_.total_steals_ = value;
+}
+
+// int32 victim_player_slot = 3 [json_name = "victimPlayerSlot"];
+inline void PlayerSteal::clear_victim_player_slot() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.victim_player_slot_ = 0;
+  ClearHasBit(_impl_._has_bits_[0],
+                  0x00000004U);
+}
+inline ::int32_t PlayerSteal::victim_player_slot() const {
+  // @@protoc_insertion_point(field_get:telemetry.v1.PlayerSteal.victim_player_slot)
+  return _internal_victim_player_slot();
+}
+inline void PlayerSteal::set_victim_player_slot(::int32_t value) {
+  _internal_set_victim_player_slot(value);
+  SetHasBit(_impl_._has_bits_[0], 0x00000004U);
+  // @@protoc_insertion_point(field_set:telemetry.v1.PlayerSteal.victim_player_slot)
+}
+inline ::int32_t PlayerSteal::_internal_victim_player_slot() const {
+  ::google::protobuf::internal::TSanRead(&_impl_);
+  return _impl_.victim_player_slot_;
+}
+inline void PlayerSteal::_internal_set_victim_player_slot(::int32_t value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.victim_player_slot_ = value;
 }
 
 // -------------------------------------------------------------------

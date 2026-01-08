@@ -215,7 +215,7 @@ func (x LobbyEntrantsRejectMessage_Code) Number() protoreflect.EnumNumber {
 
 // Deprecated: Use LobbyEntrantsRejectMessage_Code.Descriptor instead.
 func (LobbyEntrantsRejectMessage_Code) EnumDescriptor() ([]byte, []int) {
-	return file_rtapi_realtime_v1_proto_rawDescGZIP(), []int{7, 0}
+	return file_rtapi_realtime_v1_proto_rawDescGZIP(), []int{10, 0}
 }
 
 type LobbyEntrantRemovedMessage_Code int32
@@ -285,7 +285,7 @@ func (x LobbyEntrantRemovedMessage_Code) Number() protoreflect.EnumNumber {
 
 // Deprecated: Use LobbyEntrantRemovedMessage_Code.Descriptor instead.
 func (LobbyEntrantRemovedMessage_Code) EnumDescriptor() ([]byte, []int) {
-	return file_rtapi_realtime_v1_proto_rawDescGZIP(), []int{8, 0}
+	return file_rtapi_realtime_v1_proto_rawDescGZIP(), []int{11, 0}
 }
 
 type LobbySessionCreateMessage_LobbyType int32
@@ -333,7 +333,7 @@ func (x LobbySessionCreateMessage_LobbyType) Number() protoreflect.EnumNumber {
 
 // Deprecated: Use LobbySessionCreateMessage_LobbyType.Descriptor instead.
 func (LobbySessionCreateMessage_LobbyType) EnumDescriptor() ([]byte, []int) {
-	return file_rtapi_realtime_v1_proto_rawDescGZIP(), []int{9, 0}
+	return file_rtapi_realtime_v1_proto_rawDescGZIP(), []int{12, 0}
 }
 
 type Envelope struct {
@@ -392,6 +392,7 @@ type Envelope struct {
 	//	*Envelope_UpdateProfileFailure
 	//	*Envelope_UserServerProfileUpdateRequest
 	//	*Envelope_UserServerProfileUpdateSuccess
+	//	*Envelope_GameServerSaveLoadout
 	Message       isEnvelope_Message `protobuf_oneof:"message"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
@@ -900,6 +901,15 @@ func (x *Envelope) GetUserServerProfileUpdateSuccess() *SNSUserServerProfileUpda
 	return nil
 }
 
+func (x *Envelope) GetGameServerSaveLoadout() *GameServerSaveLoadoutMessage {
+	if x != nil {
+		if x, ok := x.Message.(*Envelope_GameServerSaveLoadout); ok {
+			return x.GameServerSaveLoadout
+		}
+	}
+	return nil
+}
+
 type isEnvelope_Message interface {
 	isEnvelope_Message()
 }
@@ -1151,6 +1161,11 @@ type Envelope_UserServerProfileUpdateSuccess struct {
 	UserServerProfileUpdateSuccess *SNSUserServerProfileUpdateSuccessMessage `protobuf:"bytes,52,opt,name=user_server_profile_update_success,json=userServerProfileUpdateSuccess,proto3,oneof"`
 }
 
+type Envelope_GameServerSaveLoadout struct {
+	// Game server requests to save a player's loadout.
+	GameServerSaveLoadout *GameServerSaveLoadoutMessage `protobuf:"bytes,53,opt,name=game_server_save_loadout,json=gameServerSaveLoadout,proto3,oneof"`
+}
+
 func (*Envelope_Error) isEnvelope_Message() {}
 
 func (*Envelope_LobbySessionState) isEnvelope_Message() {}
@@ -1252,6 +1267,8 @@ func (*Envelope_UpdateProfileFailure) isEnvelope_Message() {}
 func (*Envelope_UserServerProfileUpdateRequest) isEnvelope_Message() {}
 
 func (*Envelope_UserServerProfileUpdateSuccess) isEnvelope_Message() {}
+
+func (*Envelope_GameServerSaveLoadout) isEnvelope_Message() {}
 
 // A logical error which may occur on the server.
 type Error struct {
@@ -1524,6 +1541,189 @@ func (x *GameServerRegistrationSuccessMessage) GetExternalIpAddress() string {
 	return ""
 }
 
+// Loadout item slot mapping (slot type hash to equipped item hash)
+type LoadoutItem struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	SlotType      uint64                 `protobuf:"fixed64,1,opt,name=slot_type,json=slotType,proto3" json:"slot_type,omitempty"`             // SymbolId hash of the slot (e.g., tint_body, bracer)
+	EquippedItem  uint64                 `protobuf:"fixed64,2,opt,name=equipped_item,json=equippedItem,proto3" json:"equipped_item,omitempty"` // SymbolId hash of the equipped item
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *LoadoutItem) Reset() {
+	*x = LoadoutItem{}
+	mi := &file_rtapi_realtime_v1_proto_msgTypes[5]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *LoadoutItem) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*LoadoutItem) ProtoMessage() {}
+
+func (x *LoadoutItem) ProtoReflect() protoreflect.Message {
+	mi := &file_rtapi_realtime_v1_proto_msgTypes[5]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use LoadoutItem.ProtoReflect.Descriptor instead.
+func (*LoadoutItem) Descriptor() ([]byte, []int) {
+	return file_rtapi_realtime_v1_proto_rawDescGZIP(), []int{5}
+}
+
+func (x *LoadoutItem) GetSlotType() uint64 {
+	if x != nil {
+		return x.SlotType
+	}
+	return 0
+}
+
+func (x *LoadoutItem) GetEquippedItem() uint64 {
+	if x != nil {
+		return x.EquippedItem
+	}
+	return 0
+}
+
+// A loadout instance within a player's loadout
+type LoadoutInstance struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	InstanceName  uint64                 `protobuf:"fixed64,1,opt,name=instance_name,json=instanceName,proto3" json:"instance_name,omitempty"` // SymbolId hash of the instance name
+	Items         []*LoadoutItem         `protobuf:"bytes,2,rep,name=items,proto3" json:"items,omitempty"`                                     // Items in this instance
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *LoadoutInstance) Reset() {
+	*x = LoadoutInstance{}
+	mi := &file_rtapi_realtime_v1_proto_msgTypes[6]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *LoadoutInstance) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*LoadoutInstance) ProtoMessage() {}
+
+func (x *LoadoutInstance) ProtoReflect() protoreflect.Message {
+	mi := &file_rtapi_realtime_v1_proto_msgTypes[6]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use LoadoutInstance.ProtoReflect.Descriptor instead.
+func (*LoadoutInstance) Descriptor() ([]byte, []int) {
+	return file_rtapi_realtime_v1_proto_rawDescGZIP(), []int{6}
+}
+
+func (x *LoadoutInstance) GetInstanceName() uint64 {
+	if x != nil {
+		return x.InstanceName
+	}
+	return 0
+}
+
+func (x *LoadoutInstance) GetItems() []*LoadoutItem {
+	if x != nil {
+		return x.Items
+	}
+	return nil
+}
+
+// Save loadout message is sent from the game server to the service.
+type GameServerSaveLoadoutMessage struct {
+	state            protoimpl.MessageState `protogen:"open.v1"`
+	LobbySessionId   string                 `protobuf:"bytes,1,opt,name=lobby_session_id,json=lobbySessionId,proto3" json:"lobby_session_id,omitempty"`     // The lobby session this loadout belongs to
+	EntrantId        string                 `protobuf:"bytes,2,opt,name=entrant_id,json=entrantId,proto3" json:"entrant_id,omitempty"`                      // The entrant UUID who saved the loadout
+	LoadoutSlot      int32                  `protobuf:"varint,3,opt,name=loadout_slot,json=loadoutSlot,proto3" json:"loadout_slot,omitempty"`               // Which loadout slot (0-based)
+	JerseyNumber     int32                  `protobuf:"varint,4,opt,name=jersey_number,json=jerseyNumber,proto3" json:"jersey_number,omitempty"`            // Player's jersey number
+	LoadoutInstances []*LoadoutInstance     `protobuf:"bytes,5,rep,name=loadout_instances,json=loadoutInstances,proto3" json:"loadout_instances,omitempty"` // The loadout data
+	unknownFields    protoimpl.UnknownFields
+	sizeCache        protoimpl.SizeCache
+}
+
+func (x *GameServerSaveLoadoutMessage) Reset() {
+	*x = GameServerSaveLoadoutMessage{}
+	mi := &file_rtapi_realtime_v1_proto_msgTypes[7]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *GameServerSaveLoadoutMessage) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*GameServerSaveLoadoutMessage) ProtoMessage() {}
+
+func (x *GameServerSaveLoadoutMessage) ProtoReflect() protoreflect.Message {
+	mi := &file_rtapi_realtime_v1_proto_msgTypes[7]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use GameServerSaveLoadoutMessage.ProtoReflect.Descriptor instead.
+func (*GameServerSaveLoadoutMessage) Descriptor() ([]byte, []int) {
+	return file_rtapi_realtime_v1_proto_rawDescGZIP(), []int{7}
+}
+
+func (x *GameServerSaveLoadoutMessage) GetLobbySessionId() string {
+	if x != nil {
+		return x.LobbySessionId
+	}
+	return ""
+}
+
+func (x *GameServerSaveLoadoutMessage) GetEntrantId() string {
+	if x != nil {
+		return x.EntrantId
+	}
+	return ""
+}
+
+func (x *GameServerSaveLoadoutMessage) GetLoadoutSlot() int32 {
+	if x != nil {
+		return x.LoadoutSlot
+	}
+	return 0
+}
+
+func (x *GameServerSaveLoadoutMessage) GetJerseyNumber() int32 {
+	if x != nil {
+		return x.JerseyNumber
+	}
+	return 0
+}
+
+func (x *GameServerSaveLoadoutMessage) GetLoadoutInstances() []*LoadoutInstance {
+	if x != nil {
+		return x.LoadoutInstances
+	}
+	return nil
+}
+
 // Entrant connect message is sent from the server to the service.
 type LobbyEntrantsConnectedMessage struct {
 	state          protoimpl.MessageState `protogen:"open.v1"`
@@ -1535,7 +1735,7 @@ type LobbyEntrantsConnectedMessage struct {
 
 func (x *LobbyEntrantsConnectedMessage) Reset() {
 	*x = LobbyEntrantsConnectedMessage{}
-	mi := &file_rtapi_realtime_v1_proto_msgTypes[5]
+	mi := &file_rtapi_realtime_v1_proto_msgTypes[8]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1547,7 +1747,7 @@ func (x *LobbyEntrantsConnectedMessage) String() string {
 func (*LobbyEntrantsConnectedMessage) ProtoMessage() {}
 
 func (x *LobbyEntrantsConnectedMessage) ProtoReflect() protoreflect.Message {
-	mi := &file_rtapi_realtime_v1_proto_msgTypes[5]
+	mi := &file_rtapi_realtime_v1_proto_msgTypes[8]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1560,7 +1760,7 @@ func (x *LobbyEntrantsConnectedMessage) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use LobbyEntrantsConnectedMessage.ProtoReflect.Descriptor instead.
 func (*LobbyEntrantsConnectedMessage) Descriptor() ([]byte, []int) {
-	return file_rtapi_realtime_v1_proto_rawDescGZIP(), []int{5}
+	return file_rtapi_realtime_v1_proto_rawDescGZIP(), []int{8}
 }
 
 func (x *LobbyEntrantsConnectedMessage) GetLobbySessionId() string {
@@ -1587,7 +1787,7 @@ type LobbyEntrantsAcceptMessage struct {
 
 func (x *LobbyEntrantsAcceptMessage) Reset() {
 	*x = LobbyEntrantsAcceptMessage{}
-	mi := &file_rtapi_realtime_v1_proto_msgTypes[6]
+	mi := &file_rtapi_realtime_v1_proto_msgTypes[9]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1599,7 +1799,7 @@ func (x *LobbyEntrantsAcceptMessage) String() string {
 func (*LobbyEntrantsAcceptMessage) ProtoMessage() {}
 
 func (x *LobbyEntrantsAcceptMessage) ProtoReflect() protoreflect.Message {
-	mi := &file_rtapi_realtime_v1_proto_msgTypes[6]
+	mi := &file_rtapi_realtime_v1_proto_msgTypes[9]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1612,7 +1812,7 @@ func (x *LobbyEntrantsAcceptMessage) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use LobbyEntrantsAcceptMessage.ProtoReflect.Descriptor instead.
 func (*LobbyEntrantsAcceptMessage) Descriptor() ([]byte, []int) {
-	return file_rtapi_realtime_v1_proto_rawDescGZIP(), []int{6}
+	return file_rtapi_realtime_v1_proto_rawDescGZIP(), []int{9}
 }
 
 func (x *LobbyEntrantsAcceptMessage) GetEntrantIds() []string {
@@ -1633,7 +1833,7 @@ type LobbyEntrantsRejectMessage struct {
 
 func (x *LobbyEntrantsRejectMessage) Reset() {
 	*x = LobbyEntrantsRejectMessage{}
-	mi := &file_rtapi_realtime_v1_proto_msgTypes[7]
+	mi := &file_rtapi_realtime_v1_proto_msgTypes[10]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1645,7 +1845,7 @@ func (x *LobbyEntrantsRejectMessage) String() string {
 func (*LobbyEntrantsRejectMessage) ProtoMessage() {}
 
 func (x *LobbyEntrantsRejectMessage) ProtoReflect() protoreflect.Message {
-	mi := &file_rtapi_realtime_v1_proto_msgTypes[7]
+	mi := &file_rtapi_realtime_v1_proto_msgTypes[10]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1658,7 +1858,7 @@ func (x *LobbyEntrantsRejectMessage) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use LobbyEntrantsRejectMessage.ProtoReflect.Descriptor instead.
 func (*LobbyEntrantsRejectMessage) Descriptor() ([]byte, []int) {
-	return file_rtapi_realtime_v1_proto_rawDescGZIP(), []int{7}
+	return file_rtapi_realtime_v1_proto_rawDescGZIP(), []int{10}
 }
 
 func (x *LobbyEntrantsRejectMessage) GetEntrantIds() []string {
@@ -1687,7 +1887,7 @@ type LobbyEntrantRemovedMessage struct {
 
 func (x *LobbyEntrantRemovedMessage) Reset() {
 	*x = LobbyEntrantRemovedMessage{}
-	mi := &file_rtapi_realtime_v1_proto_msgTypes[8]
+	mi := &file_rtapi_realtime_v1_proto_msgTypes[11]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1699,7 +1899,7 @@ func (x *LobbyEntrantRemovedMessage) String() string {
 func (*LobbyEntrantRemovedMessage) ProtoMessage() {}
 
 func (x *LobbyEntrantRemovedMessage) ProtoReflect() protoreflect.Message {
-	mi := &file_rtapi_realtime_v1_proto_msgTypes[8]
+	mi := &file_rtapi_realtime_v1_proto_msgTypes[11]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1712,7 +1912,7 @@ func (x *LobbyEntrantRemovedMessage) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use LobbyEntrantRemovedMessage.ProtoReflect.Descriptor instead.
 func (*LobbyEntrantRemovedMessage) Descriptor() ([]byte, []int) {
-	return file_rtapi_realtime_v1_proto_rawDescGZIP(), []int{8}
+	return file_rtapi_realtime_v1_proto_rawDescGZIP(), []int{11}
 }
 
 func (x *LobbyEntrantRemovedMessage) GetLobbySessionId() string {
@@ -1751,7 +1951,7 @@ type LobbySessionCreateMessage struct {
 
 func (x *LobbySessionCreateMessage) Reset() {
 	*x = LobbySessionCreateMessage{}
-	mi := &file_rtapi_realtime_v1_proto_msgTypes[9]
+	mi := &file_rtapi_realtime_v1_proto_msgTypes[12]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1763,7 +1963,7 @@ func (x *LobbySessionCreateMessage) String() string {
 func (*LobbySessionCreateMessage) ProtoMessage() {}
 
 func (x *LobbySessionCreateMessage) ProtoReflect() protoreflect.Message {
-	mi := &file_rtapi_realtime_v1_proto_msgTypes[9]
+	mi := &file_rtapi_realtime_v1_proto_msgTypes[12]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1776,7 +1976,7 @@ func (x *LobbySessionCreateMessage) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use LobbySessionCreateMessage.ProtoReflect.Descriptor instead.
 func (*LobbySessionCreateMessage) Descriptor() ([]byte, []int) {
-	return file_rtapi_realtime_v1_proto_rawDescGZIP(), []int{9}
+	return file_rtapi_realtime_v1_proto_rawDescGZIP(), []int{12}
 }
 
 func (x *LobbySessionCreateMessage) GetLobbySessionId() string {
@@ -1843,7 +2043,7 @@ type LobbySessionStateMessage struct {
 
 func (x *LobbySessionStateMessage) Reset() {
 	*x = LobbySessionStateMessage{}
-	mi := &file_rtapi_realtime_v1_proto_msgTypes[10]
+	mi := &file_rtapi_realtime_v1_proto_msgTypes[13]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1855,7 +2055,7 @@ func (x *LobbySessionStateMessage) String() string {
 func (*LobbySessionStateMessage) ProtoMessage() {}
 
 func (x *LobbySessionStateMessage) ProtoReflect() protoreflect.Message {
-	mi := &file_rtapi_realtime_v1_proto_msgTypes[10]
+	mi := &file_rtapi_realtime_v1_proto_msgTypes[13]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1868,7 +2068,7 @@ func (x *LobbySessionStateMessage) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use LobbySessionStateMessage.ProtoReflect.Descriptor instead.
 func (*LobbySessionStateMessage) Descriptor() ([]byte, []int) {
-	return file_rtapi_realtime_v1_proto_rawDescGZIP(), []int{10}
+	return file_rtapi_realtime_v1_proto_rawDescGZIP(), []int{13}
 }
 
 func (x *LobbySessionStateMessage) GetTimeStepUsecs() uint32 {
@@ -1938,7 +2138,7 @@ type LobbySessionStateRawMessage struct {
 
 func (x *LobbySessionStateRawMessage) Reset() {
 	*x = LobbySessionStateRawMessage{}
-	mi := &file_rtapi_realtime_v1_proto_msgTypes[11]
+	mi := &file_rtapi_realtime_v1_proto_msgTypes[14]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1950,7 +2150,7 @@ func (x *LobbySessionStateRawMessage) String() string {
 func (*LobbySessionStateRawMessage) ProtoMessage() {}
 
 func (x *LobbySessionStateRawMessage) ProtoReflect() protoreflect.Message {
-	mi := &file_rtapi_realtime_v1_proto_msgTypes[11]
+	mi := &file_rtapi_realtime_v1_proto_msgTypes[14]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1963,7 +2163,7 @@ func (x *LobbySessionStateRawMessage) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use LobbySessionStateRawMessage.ProtoReflect.Descriptor instead.
 func (*LobbySessionStateRawMessage) Descriptor() ([]byte, []int) {
-	return file_rtapi_realtime_v1_proto_rawDescGZIP(), []int{11}
+	return file_rtapi_realtime_v1_proto_rawDescGZIP(), []int{14}
 }
 
 func (x *LobbySessionStateRawMessage) GetTimestamp() *timestamppb.Timestamp {
@@ -2003,7 +2203,7 @@ type ConnectivityStatisticsMessage struct {
 
 func (x *ConnectivityStatisticsMessage) Reset() {
 	*x = ConnectivityStatisticsMessage{}
-	mi := &file_rtapi_realtime_v1_proto_msgTypes[12]
+	mi := &file_rtapi_realtime_v1_proto_msgTypes[15]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -2015,7 +2215,7 @@ func (x *ConnectivityStatisticsMessage) String() string {
 func (*ConnectivityStatisticsMessage) ProtoMessage() {}
 
 func (x *ConnectivityStatisticsMessage) ProtoReflect() protoreflect.Message {
-	mi := &file_rtapi_realtime_v1_proto_msgTypes[12]
+	mi := &file_rtapi_realtime_v1_proto_msgTypes[15]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2028,7 +2228,7 @@ func (x *ConnectivityStatisticsMessage) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ConnectivityStatisticsMessage.ProtoReflect.Descriptor instead.
 func (*ConnectivityStatisticsMessage) Descriptor() ([]byte, []int) {
-	return file_rtapi_realtime_v1_proto_rawDescGZIP(), []int{12}
+	return file_rtapi_realtime_v1_proto_rawDescGZIP(), []int{15}
 }
 
 func (x *ConnectivityStatisticsMessage) GetPacketLossRatio() float32 {
@@ -2090,7 +2290,7 @@ type SymbolHash struct {
 
 func (x *SymbolHash) Reset() {
 	*x = SymbolHash{}
-	mi := &file_rtapi_realtime_v1_proto_msgTypes[13]
+	mi := &file_rtapi_realtime_v1_proto_msgTypes[16]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -2102,7 +2302,7 @@ func (x *SymbolHash) String() string {
 func (*SymbolHash) ProtoMessage() {}
 
 func (x *SymbolHash) ProtoReflect() protoreflect.Message {
-	mi := &file_rtapi_realtime_v1_proto_msgTypes[13]
+	mi := &file_rtapi_realtime_v1_proto_msgTypes[16]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2115,7 +2315,7 @@ func (x *SymbolHash) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use SymbolHash.ProtoReflect.Descriptor instead.
 func (*SymbolHash) Descriptor() ([]byte, []int) {
-	return file_rtapi_realtime_v1_proto_rawDescGZIP(), []int{13}
+	return file_rtapi_realtime_v1_proto_rawDescGZIP(), []int{16}
 }
 
 func (x *SymbolHash) GetValue() uint64 {
@@ -2136,7 +2336,7 @@ type XPlatformID struct {
 
 func (x *XPlatformID) Reset() {
 	*x = XPlatformID{}
-	mi := &file_rtapi_realtime_v1_proto_msgTypes[14]
+	mi := &file_rtapi_realtime_v1_proto_msgTypes[17]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -2148,7 +2348,7 @@ func (x *XPlatformID) String() string {
 func (*XPlatformID) ProtoMessage() {}
 
 func (x *XPlatformID) ProtoReflect() protoreflect.Message {
-	mi := &file_rtapi_realtime_v1_proto_msgTypes[14]
+	mi := &file_rtapi_realtime_v1_proto_msgTypes[17]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2161,7 +2361,7 @@ func (x *XPlatformID) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use XPlatformID.ProtoReflect.Descriptor instead.
 func (*XPlatformID) Descriptor() ([]byte, []int) {
-	return file_rtapi_realtime_v1_proto_rawDescGZIP(), []int{14}
+	return file_rtapi_realtime_v1_proto_rawDescGZIP(), []int{17}
 }
 
 func (x *XPlatformID) GetId() string {
@@ -2183,7 +2383,7 @@ type SNSUnknownMessage struct {
 
 func (x *SNSUnknownMessage) Reset() {
 	*x = SNSUnknownMessage{}
-	mi := &file_rtapi_realtime_v1_proto_msgTypes[15]
+	mi := &file_rtapi_realtime_v1_proto_msgTypes[18]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -2195,7 +2395,7 @@ func (x *SNSUnknownMessage) String() string {
 func (*SNSUnknownMessage) ProtoMessage() {}
 
 func (x *SNSUnknownMessage) ProtoReflect() protoreflect.Message {
-	mi := &file_rtapi_realtime_v1_proto_msgTypes[15]
+	mi := &file_rtapi_realtime_v1_proto_msgTypes[18]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2208,7 +2408,7 @@ func (x *SNSUnknownMessage) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use SNSUnknownMessage.ProtoReflect.Descriptor instead.
 func (*SNSUnknownMessage) Descriptor() ([]byte, []int) {
-	return file_rtapi_realtime_v1_proto_rawDescGZIP(), []int{15}
+	return file_rtapi_realtime_v1_proto_rawDescGZIP(), []int{18}
 }
 
 func (x *SNSUnknownMessage) GetType() *SymbolHash {
@@ -2235,7 +2435,7 @@ type STCPConnectionRequireEvent struct {
 
 func (x *STCPConnectionRequireEvent) Reset() {
 	*x = STCPConnectionRequireEvent{}
-	mi := &file_rtapi_realtime_v1_proto_msgTypes[16]
+	mi := &file_rtapi_realtime_v1_proto_msgTypes[19]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -2247,7 +2447,7 @@ func (x *STCPConnectionRequireEvent) String() string {
 func (*STCPConnectionRequireEvent) ProtoMessage() {}
 
 func (x *STCPConnectionRequireEvent) ProtoReflect() protoreflect.Message {
-	mi := &file_rtapi_realtime_v1_proto_msgTypes[16]
+	mi := &file_rtapi_realtime_v1_proto_msgTypes[19]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2260,7 +2460,7 @@ func (x *STCPConnectionRequireEvent) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use STCPConnectionRequireEvent.ProtoReflect.Descriptor instead.
 func (*STCPConnectionRequireEvent) Descriptor() ([]byte, []int) {
-	return file_rtapi_realtime_v1_proto_rawDescGZIP(), []int{16}
+	return file_rtapi_realtime_v1_proto_rawDescGZIP(), []int{19}
 }
 
 // A message originating from either party,
@@ -2273,7 +2473,7 @@ type STCPConnectionUnrequireEvent struct {
 
 func (x *STCPConnectionUnrequireEvent) Reset() {
 	*x = STCPConnectionUnrequireEvent{}
-	mi := &file_rtapi_realtime_v1_proto_msgTypes[17]
+	mi := &file_rtapi_realtime_v1_proto_msgTypes[20]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -2285,7 +2485,7 @@ func (x *STCPConnectionUnrequireEvent) String() string {
 func (*STCPConnectionUnrequireEvent) ProtoMessage() {}
 
 func (x *STCPConnectionUnrequireEvent) ProtoReflect() protoreflect.Message {
-	mi := &file_rtapi_realtime_v1_proto_msgTypes[17]
+	mi := &file_rtapi_realtime_v1_proto_msgTypes[20]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2298,7 +2498,7 @@ func (x *STCPConnectionUnrequireEvent) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use STCPConnectionUnrequireEvent.ProtoReflect.Descriptor instead.
 func (*STCPConnectionUnrequireEvent) Descriptor() ([]byte, []int) {
-	return file_rtapi_realtime_v1_proto_rawDescGZIP(), []int{17}
+	return file_rtapi_realtime_v1_proto_rawDescGZIP(), []int{20}
 }
 
 // ConfigRequestv2: client to server requesting a specific
@@ -2312,7 +2512,7 @@ type SNSConfigRequestV2Message struct {
 
 func (x *SNSConfigRequestV2Message) Reset() {
 	*x = SNSConfigRequestV2Message{}
-	mi := &file_rtapi_realtime_v1_proto_msgTypes[18]
+	mi := &file_rtapi_realtime_v1_proto_msgTypes[21]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -2324,7 +2524,7 @@ func (x *SNSConfigRequestV2Message) String() string {
 func (*SNSConfigRequestV2Message) ProtoMessage() {}
 
 func (x *SNSConfigRequestV2Message) ProtoReflect() protoreflect.Message {
-	mi := &file_rtapi_realtime_v1_proto_msgTypes[18]
+	mi := &file_rtapi_realtime_v1_proto_msgTypes[21]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2337,7 +2537,7 @@ func (x *SNSConfigRequestV2Message) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use SNSConfigRequestV2Message.ProtoReflect.Descriptor instead.
 func (*SNSConfigRequestV2Message) Descriptor() ([]byte, []int) {
-	return file_rtapi_realtime_v1_proto_rawDescGZIP(), []int{18}
+	return file_rtapi_realtime_v1_proto_rawDescGZIP(), []int{21}
 }
 
 func (x *SNSConfigRequestV2Message) GetRequestJson() string {
@@ -2361,7 +2561,7 @@ type SNSConfigSuccessV2Message struct {
 
 func (x *SNSConfigSuccessV2Message) Reset() {
 	*x = SNSConfigSuccessV2Message{}
-	mi := &file_rtapi_realtime_v1_proto_msgTypes[19]
+	mi := &file_rtapi_realtime_v1_proto_msgTypes[22]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -2373,7 +2573,7 @@ func (x *SNSConfigSuccessV2Message) String() string {
 func (*SNSConfigSuccessV2Message) ProtoMessage() {}
 
 func (x *SNSConfigSuccessV2Message) ProtoReflect() protoreflect.Message {
-	mi := &file_rtapi_realtime_v1_proto_msgTypes[19]
+	mi := &file_rtapi_realtime_v1_proto_msgTypes[22]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2386,7 +2586,7 @@ func (x *SNSConfigSuccessV2Message) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use SNSConfigSuccessV2Message.ProtoReflect.Descriptor instead.
 func (*SNSConfigSuccessV2Message) Descriptor() ([]byte, []int) {
-	return file_rtapi_realtime_v1_proto_rawDescGZIP(), []int{19}
+	return file_rtapi_realtime_v1_proto_rawDescGZIP(), []int{22}
 }
 
 func (x *SNSConfigSuccessV2Message) GetType() *SymbolHash {
@@ -2421,7 +2621,7 @@ type SNSConfigFailureV2Message struct {
 
 func (x *SNSConfigFailureV2Message) Reset() {
 	*x = SNSConfigFailureV2Message{}
-	mi := &file_rtapi_realtime_v1_proto_msgTypes[20]
+	mi := &file_rtapi_realtime_v1_proto_msgTypes[23]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -2433,7 +2633,7 @@ func (x *SNSConfigFailureV2Message) String() string {
 func (*SNSConfigFailureV2Message) ProtoMessage() {}
 
 func (x *SNSConfigFailureV2Message) ProtoReflect() protoreflect.Message {
-	mi := &file_rtapi_realtime_v1_proto_msgTypes[20]
+	mi := &file_rtapi_realtime_v1_proto_msgTypes[23]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2446,7 +2646,7 @@ func (x *SNSConfigFailureV2Message) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use SNSConfigFailureV2Message.ProtoReflect.Descriptor instead.
 func (*SNSConfigFailureV2Message) Descriptor() ([]byte, []int) {
-	return file_rtapi_realtime_v1_proto_rawDescGZIP(), []int{20}
+	return file_rtapi_realtime_v1_proto_rawDescGZIP(), []int{23}
 }
 
 func (x *SNSConfigFailureV2Message) GetError() string {
@@ -2467,7 +2667,7 @@ type SNSReconcileIAPMessage struct {
 
 func (x *SNSReconcileIAPMessage) Reset() {
 	*x = SNSReconcileIAPMessage{}
-	mi := &file_rtapi_realtime_v1_proto_msgTypes[21]
+	mi := &file_rtapi_realtime_v1_proto_msgTypes[24]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -2479,7 +2679,7 @@ func (x *SNSReconcileIAPMessage) String() string {
 func (*SNSReconcileIAPMessage) ProtoMessage() {}
 
 func (x *SNSReconcileIAPMessage) ProtoReflect() protoreflect.Message {
-	mi := &file_rtapi_realtime_v1_proto_msgTypes[21]
+	mi := &file_rtapi_realtime_v1_proto_msgTypes[24]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2492,7 +2692,7 @@ func (x *SNSReconcileIAPMessage) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use SNSReconcileIAPMessage.ProtoReflect.Descriptor instead.
 func (*SNSReconcileIAPMessage) Descriptor() ([]byte, []int) {
-	return file_rtapi_realtime_v1_proto_rawDescGZIP(), []int{21}
+	return file_rtapi_realtime_v1_proto_rawDescGZIP(), []int{24}
 }
 
 func (x *SNSReconcileIAPMessage) GetSessionId() string {
@@ -2519,7 +2719,7 @@ type SNSChannelInfoRequestMessage struct {
 
 func (x *SNSChannelInfoRequestMessage) Reset() {
 	*x = SNSChannelInfoRequestMessage{}
-	mi := &file_rtapi_realtime_v1_proto_msgTypes[22]
+	mi := &file_rtapi_realtime_v1_proto_msgTypes[25]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -2531,7 +2731,7 @@ func (x *SNSChannelInfoRequestMessage) String() string {
 func (*SNSChannelInfoRequestMessage) ProtoMessage() {}
 
 func (x *SNSChannelInfoRequestMessage) ProtoReflect() protoreflect.Message {
-	mi := &file_rtapi_realtime_v1_proto_msgTypes[22]
+	mi := &file_rtapi_realtime_v1_proto_msgTypes[25]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2544,7 +2744,7 @@ func (x *SNSChannelInfoRequestMessage) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use SNSChannelInfoRequestMessage.ProtoReflect.Descriptor instead.
 func (*SNSChannelInfoRequestMessage) Descriptor() ([]byte, []int) {
-	return file_rtapi_realtime_v1_proto_rawDescGZIP(), []int{22}
+	return file_rtapi_realtime_v1_proto_rawDescGZIP(), []int{25}
 }
 
 // server to client, providing the in-game
@@ -2558,7 +2758,7 @@ type SNSChannelInfoResponseMessage struct {
 
 func (x *SNSChannelInfoResponseMessage) Reset() {
 	*x = SNSChannelInfoResponseMessage{}
-	mi := &file_rtapi_realtime_v1_proto_msgTypes[23]
+	mi := &file_rtapi_realtime_v1_proto_msgTypes[26]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -2570,7 +2770,7 @@ func (x *SNSChannelInfoResponseMessage) String() string {
 func (*SNSChannelInfoResponseMessage) ProtoMessage() {}
 
 func (x *SNSChannelInfoResponseMessage) ProtoReflect() protoreflect.Message {
-	mi := &file_rtapi_realtime_v1_proto_msgTypes[23]
+	mi := &file_rtapi_realtime_v1_proto_msgTypes[26]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2583,7 +2783,7 @@ func (x *SNSChannelInfoResponseMessage) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use SNSChannelInfoResponseMessage.ProtoReflect.Descriptor instead.
 func (*SNSChannelInfoResponseMessage) Descriptor() ([]byte, []int) {
-	return file_rtapi_realtime_v1_proto_rawDescGZIP(), []int{23}
+	return file_rtapi_realtime_v1_proto_rawDescGZIP(), []int{26}
 }
 
 func (x *SNSChannelInfoResponseMessage) GetChannelInfo() string {
@@ -2605,7 +2805,7 @@ type SNSDocumentRequestV2Message struct {
 
 func (x *SNSDocumentRequestV2Message) Reset() {
 	*x = SNSDocumentRequestV2Message{}
-	mi := &file_rtapi_realtime_v1_proto_msgTypes[24]
+	mi := &file_rtapi_realtime_v1_proto_msgTypes[27]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -2617,7 +2817,7 @@ func (x *SNSDocumentRequestV2Message) String() string {
 func (*SNSDocumentRequestV2Message) ProtoMessage() {}
 
 func (x *SNSDocumentRequestV2Message) ProtoReflect() protoreflect.Message {
-	mi := &file_rtapi_realtime_v1_proto_msgTypes[24]
+	mi := &file_rtapi_realtime_v1_proto_msgTypes[27]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2630,7 +2830,7 @@ func (x *SNSDocumentRequestV2Message) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use SNSDocumentRequestV2Message.ProtoReflect.Descriptor instead.
 func (*SNSDocumentRequestV2Message) Descriptor() ([]byte, []int) {
-	return file_rtapi_realtime_v1_proto_rawDescGZIP(), []int{24}
+	return file_rtapi_realtime_v1_proto_rawDescGZIP(), []int{27}
 }
 
 func (x *SNSDocumentRequestV2Message) GetLanguage() string {
@@ -2659,7 +2859,7 @@ type SNSDocumentSuccessMessage struct {
 
 func (x *SNSDocumentSuccessMessage) Reset() {
 	*x = SNSDocumentSuccessMessage{}
-	mi := &file_rtapi_realtime_v1_proto_msgTypes[25]
+	mi := &file_rtapi_realtime_v1_proto_msgTypes[28]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -2671,7 +2871,7 @@ func (x *SNSDocumentSuccessMessage) String() string {
 func (*SNSDocumentSuccessMessage) ProtoMessage() {}
 
 func (x *SNSDocumentSuccessMessage) ProtoReflect() protoreflect.Message {
-	mi := &file_rtapi_realtime_v1_proto_msgTypes[25]
+	mi := &file_rtapi_realtime_v1_proto_msgTypes[28]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2684,7 +2884,7 @@ func (x *SNSDocumentSuccessMessage) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use SNSDocumentSuccessMessage.ProtoReflect.Descriptor instead.
 func (*SNSDocumentSuccessMessage) Descriptor() ([]byte, []int) {
-	return file_rtapi_realtime_v1_proto_rawDescGZIP(), []int{25}
+	return file_rtapi_realtime_v1_proto_rawDescGZIP(), []int{28}
 }
 
 func (x *SNSDocumentSuccessMessage) GetDocumentJson() string {
@@ -2705,7 +2905,7 @@ type SNSDocumentFailureMessage struct {
 
 func (x *SNSDocumentFailureMessage) Reset() {
 	*x = SNSDocumentFailureMessage{}
-	mi := &file_rtapi_realtime_v1_proto_msgTypes[26]
+	mi := &file_rtapi_realtime_v1_proto_msgTypes[29]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -2717,7 +2917,7 @@ func (x *SNSDocumentFailureMessage) String() string {
 func (*SNSDocumentFailureMessage) ProtoMessage() {}
 
 func (x *SNSDocumentFailureMessage) ProtoReflect() protoreflect.Message {
-	mi := &file_rtapi_realtime_v1_proto_msgTypes[26]
+	mi := &file_rtapi_realtime_v1_proto_msgTypes[29]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2730,7 +2930,7 @@ func (x *SNSDocumentFailureMessage) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use SNSDocumentFailureMessage.ProtoReflect.Descriptor instead.
 func (*SNSDocumentFailureMessage) Descriptor() ([]byte, []int) {
-	return file_rtapi_realtime_v1_proto_rawDescGZIP(), []int{26}
+	return file_rtapi_realtime_v1_proto_rawDescGZIP(), []int{29}
 }
 
 func (x *SNSDocumentFailureMessage) GetMessage() string {
@@ -2758,7 +2958,7 @@ type SNSLobbyCreateSessionRequestV9Message struct {
 
 func (x *SNSLobbyCreateSessionRequestV9Message) Reset() {
 	*x = SNSLobbyCreateSessionRequestV9Message{}
-	mi := &file_rtapi_realtime_v1_proto_msgTypes[27]
+	mi := &file_rtapi_realtime_v1_proto_msgTypes[30]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -2770,7 +2970,7 @@ func (x *SNSLobbyCreateSessionRequestV9Message) String() string {
 func (*SNSLobbyCreateSessionRequestV9Message) ProtoMessage() {}
 
 func (x *SNSLobbyCreateSessionRequestV9Message) ProtoReflect() protoreflect.Message {
-	mi := &file_rtapi_realtime_v1_proto_msgTypes[27]
+	mi := &file_rtapi_realtime_v1_proto_msgTypes[30]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2783,7 +2983,7 @@ func (x *SNSLobbyCreateSessionRequestV9Message) ProtoReflect() protoreflect.Mess
 
 // Deprecated: Use SNSLobbyCreateSessionRequestV9Message.ProtoReflect.Descriptor instead.
 func (*SNSLobbyCreateSessionRequestV9Message) Descriptor() ([]byte, []int) {
-	return file_rtapi_realtime_v1_proto_rawDescGZIP(), []int{27}
+	return file_rtapi_realtime_v1_proto_rawDescGZIP(), []int{30}
 }
 
 func (x *SNSLobbyCreateSessionRequestV9Message) GetRegion() *SymbolHash {
@@ -2862,7 +3062,7 @@ type SNSLobbyFindSessionRequestv11Message struct {
 
 func (x *SNSLobbyFindSessionRequestv11Message) Reset() {
 	*x = SNSLobbyFindSessionRequestv11Message{}
-	mi := &file_rtapi_realtime_v1_proto_msgTypes[28]
+	mi := &file_rtapi_realtime_v1_proto_msgTypes[31]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -2874,7 +3074,7 @@ func (x *SNSLobbyFindSessionRequestv11Message) String() string {
 func (*SNSLobbyFindSessionRequestv11Message) ProtoMessage() {}
 
 func (x *SNSLobbyFindSessionRequestv11Message) ProtoReflect() protoreflect.Message {
-	mi := &file_rtapi_realtime_v1_proto_msgTypes[28]
+	mi := &file_rtapi_realtime_v1_proto_msgTypes[31]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2887,7 +3087,7 @@ func (x *SNSLobbyFindSessionRequestv11Message) ProtoReflect() protoreflect.Messa
 
 // Deprecated: Use SNSLobbyFindSessionRequestv11Message.ProtoReflect.Descriptor instead.
 func (*SNSLobbyFindSessionRequestv11Message) Descriptor() ([]byte, []int) {
-	return file_rtapi_realtime_v1_proto_rawDescGZIP(), []int{28}
+	return file_rtapi_realtime_v1_proto_rawDescGZIP(), []int{31}
 }
 
 func (x *SNSLobbyFindSessionRequestv11Message) GetVersionLock() *SymbolHash {
@@ -2968,7 +3168,7 @@ type SNSLobbyJoinSessionRequestV7Message struct {
 
 func (x *SNSLobbyJoinSessionRequestV7Message) Reset() {
 	*x = SNSLobbyJoinSessionRequestV7Message{}
-	mi := &file_rtapi_realtime_v1_proto_msgTypes[29]
+	mi := &file_rtapi_realtime_v1_proto_msgTypes[32]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -2980,7 +3180,7 @@ func (x *SNSLobbyJoinSessionRequestV7Message) String() string {
 func (*SNSLobbyJoinSessionRequestV7Message) ProtoMessage() {}
 
 func (x *SNSLobbyJoinSessionRequestV7Message) ProtoReflect() protoreflect.Message {
-	mi := &file_rtapi_realtime_v1_proto_msgTypes[29]
+	mi := &file_rtapi_realtime_v1_proto_msgTypes[32]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2993,7 +3193,7 @@ func (x *SNSLobbyJoinSessionRequestV7Message) ProtoReflect() protoreflect.Messag
 
 // Deprecated: Use SNSLobbyJoinSessionRequestV7Message.ProtoReflect.Descriptor instead.
 func (*SNSLobbyJoinSessionRequestV7Message) Descriptor() ([]byte, []int) {
-	return file_rtapi_realtime_v1_proto_rawDescGZIP(), []int{29}
+	return file_rtapi_realtime_v1_proto_rawDescGZIP(), []int{32}
 }
 
 func (x *SNSLobbyJoinSessionRequestV7Message) GetLobbyId() string {
@@ -3042,7 +3242,7 @@ type SNSLobbyMatchmakerStatusMessage struct {
 
 func (x *SNSLobbyMatchmakerStatusMessage) Reset() {
 	*x = SNSLobbyMatchmakerStatusMessage{}
-	mi := &file_rtapi_realtime_v1_proto_msgTypes[30]
+	mi := &file_rtapi_realtime_v1_proto_msgTypes[33]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -3054,7 +3254,7 @@ func (x *SNSLobbyMatchmakerStatusMessage) String() string {
 func (*SNSLobbyMatchmakerStatusMessage) ProtoMessage() {}
 
 func (x *SNSLobbyMatchmakerStatusMessage) ProtoReflect() protoreflect.Message {
-	mi := &file_rtapi_realtime_v1_proto_msgTypes[30]
+	mi := &file_rtapi_realtime_v1_proto_msgTypes[33]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -3067,7 +3267,7 @@ func (x *SNSLobbyMatchmakerStatusMessage) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use SNSLobbyMatchmakerStatusMessage.ProtoReflect.Descriptor instead.
 func (*SNSLobbyMatchmakerStatusMessage) Descriptor() ([]byte, []int) {
-	return file_rtapi_realtime_v1_proto_rawDescGZIP(), []int{30}
+	return file_rtapi_realtime_v1_proto_rawDescGZIP(), []int{33}
 }
 
 func (x *SNSLobbyMatchmakerStatusMessage) GetStatusCode() uint32 {
@@ -3090,7 +3290,7 @@ type SNSLobbyMatchmakerStatusRequestMessage struct {
 
 func (x *SNSLobbyMatchmakerStatusRequestMessage) Reset() {
 	*x = SNSLobbyMatchmakerStatusRequestMessage{}
-	mi := &file_rtapi_realtime_v1_proto_msgTypes[31]
+	mi := &file_rtapi_realtime_v1_proto_msgTypes[34]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -3102,7 +3302,7 @@ func (x *SNSLobbyMatchmakerStatusRequestMessage) String() string {
 func (*SNSLobbyMatchmakerStatusRequestMessage) ProtoMessage() {}
 
 func (x *SNSLobbyMatchmakerStatusRequestMessage) ProtoReflect() protoreflect.Message {
-	mi := &file_rtapi_realtime_v1_proto_msgTypes[31]
+	mi := &file_rtapi_realtime_v1_proto_msgTypes[34]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -3115,7 +3315,7 @@ func (x *SNSLobbyMatchmakerStatusRequestMessage) ProtoReflect() protoreflect.Mes
 
 // Deprecated: Use SNSLobbyMatchmakerStatusRequestMessage.ProtoReflect.Descriptor instead.
 func (*SNSLobbyMatchmakerStatusRequestMessage) Descriptor() ([]byte, []int) {
-	return file_rtapi_realtime_v1_proto_rawDescGZIP(), []int{31}
+	return file_rtapi_realtime_v1_proto_rawDescGZIP(), []int{34}
 }
 
 func (x *SNSLobbyMatchmakerStatusRequestMessage) GetUnk0() uint32 {
@@ -3150,7 +3350,7 @@ type SNSLobbyPendingSessionCancelV2Message struct {
 
 func (x *SNSLobbyPendingSessionCancelV2Message) Reset() {
 	*x = SNSLobbyPendingSessionCancelV2Message{}
-	mi := &file_rtapi_realtime_v1_proto_msgTypes[32]
+	mi := &file_rtapi_realtime_v1_proto_msgTypes[35]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -3162,7 +3362,7 @@ func (x *SNSLobbyPendingSessionCancelV2Message) String() string {
 func (*SNSLobbyPendingSessionCancelV2Message) ProtoMessage() {}
 
 func (x *SNSLobbyPendingSessionCancelV2Message) ProtoReflect() protoreflect.Message {
-	mi := &file_rtapi_realtime_v1_proto_msgTypes[32]
+	mi := &file_rtapi_realtime_v1_proto_msgTypes[35]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -3175,7 +3375,7 @@ func (x *SNSLobbyPendingSessionCancelV2Message) ProtoReflect() protoreflect.Mess
 
 // Deprecated: Use SNSLobbyPendingSessionCancelV2Message.ProtoReflect.Descriptor instead.
 func (*SNSLobbyPendingSessionCancelV2Message) Descriptor() ([]byte, []int) {
-	return file_rtapi_realtime_v1_proto_rawDescGZIP(), []int{32}
+	return file_rtapi_realtime_v1_proto_rawDescGZIP(), []int{35}
 }
 
 func (x *SNSLobbyPendingSessionCancelV2Message) GetSessionId() string {
@@ -3199,7 +3399,7 @@ type SNSLobbyPingRequestV3Message struct {
 
 func (x *SNSLobbyPingRequestV3Message) Reset() {
 	*x = SNSLobbyPingRequestV3Message{}
-	mi := &file_rtapi_realtime_v1_proto_msgTypes[33]
+	mi := &file_rtapi_realtime_v1_proto_msgTypes[36]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -3211,7 +3411,7 @@ func (x *SNSLobbyPingRequestV3Message) String() string {
 func (*SNSLobbyPingRequestV3Message) ProtoMessage() {}
 
 func (x *SNSLobbyPingRequestV3Message) ProtoReflect() protoreflect.Message {
-	mi := &file_rtapi_realtime_v1_proto_msgTypes[33]
+	mi := &file_rtapi_realtime_v1_proto_msgTypes[36]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -3224,7 +3424,7 @@ func (x *SNSLobbyPingRequestV3Message) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use SNSLobbyPingRequestV3Message.ProtoReflect.Descriptor instead.
 func (*SNSLobbyPingRequestV3Message) Descriptor() ([]byte, []int) {
-	return file_rtapi_realtime_v1_proto_rawDescGZIP(), []int{33}
+	return file_rtapi_realtime_v1_proto_rawDescGZIP(), []int{36}
 }
 
 func (x *SNSLobbyPingRequestV3Message) GetUnk0() uint32 {
@@ -3267,7 +3467,7 @@ type SNSLobbyPingResponseMessage struct {
 
 func (x *SNSLobbyPingResponseMessage) Reset() {
 	*x = SNSLobbyPingResponseMessage{}
-	mi := &file_rtapi_realtime_v1_proto_msgTypes[34]
+	mi := &file_rtapi_realtime_v1_proto_msgTypes[37]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -3279,7 +3479,7 @@ func (x *SNSLobbyPingResponseMessage) String() string {
 func (*SNSLobbyPingResponseMessage) ProtoMessage() {}
 
 func (x *SNSLobbyPingResponseMessage) ProtoReflect() protoreflect.Message {
-	mi := &file_rtapi_realtime_v1_proto_msgTypes[34]
+	mi := &file_rtapi_realtime_v1_proto_msgTypes[37]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -3292,7 +3492,7 @@ func (x *SNSLobbyPingResponseMessage) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use SNSLobbyPingResponseMessage.ProtoReflect.Descriptor instead.
 func (*SNSLobbyPingResponseMessage) Descriptor() ([]byte, []int) {
-	return file_rtapi_realtime_v1_proto_rawDescGZIP(), []int{34}
+	return file_rtapi_realtime_v1_proto_rawDescGZIP(), []int{37}
 }
 
 func (x *SNSLobbyPingResponseMessage) GetResults() []string {
@@ -3317,7 +3517,7 @@ type SNSLobbyPlayerSessionsRequestV5Message struct {
 
 func (x *SNSLobbyPlayerSessionsRequestV5Message) Reset() {
 	*x = SNSLobbyPlayerSessionsRequestV5Message{}
-	mi := &file_rtapi_realtime_v1_proto_msgTypes[35]
+	mi := &file_rtapi_realtime_v1_proto_msgTypes[38]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -3329,7 +3529,7 @@ func (x *SNSLobbyPlayerSessionsRequestV5Message) String() string {
 func (*SNSLobbyPlayerSessionsRequestV5Message) ProtoMessage() {}
 
 func (x *SNSLobbyPlayerSessionsRequestV5Message) ProtoReflect() protoreflect.Message {
-	mi := &file_rtapi_realtime_v1_proto_msgTypes[35]
+	mi := &file_rtapi_realtime_v1_proto_msgTypes[38]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -3342,7 +3542,7 @@ func (x *SNSLobbyPlayerSessionsRequestV5Message) ProtoReflect() protoreflect.Mes
 
 // Deprecated: Use SNSLobbyPlayerSessionsRequestV5Message.ProtoReflect.Descriptor instead.
 func (*SNSLobbyPlayerSessionsRequestV5Message) Descriptor() ([]byte, []int) {
-	return file_rtapi_realtime_v1_proto_rawDescGZIP(), []int{35}
+	return file_rtapi_realtime_v1_proto_rawDescGZIP(), []int{38}
 }
 
 func (x *SNSLobbyPlayerSessionsRequestV5Message) GetLoginSessionId() string {
@@ -3392,7 +3592,7 @@ type SNSLobbySessionFailureV4Message struct {
 
 func (x *SNSLobbySessionFailureV4Message) Reset() {
 	*x = SNSLobbySessionFailureV4Message{}
-	mi := &file_rtapi_realtime_v1_proto_msgTypes[36]
+	mi := &file_rtapi_realtime_v1_proto_msgTypes[39]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -3404,7 +3604,7 @@ func (x *SNSLobbySessionFailureV4Message) String() string {
 func (*SNSLobbySessionFailureV4Message) ProtoMessage() {}
 
 func (x *SNSLobbySessionFailureV4Message) ProtoReflect() protoreflect.Message {
-	mi := &file_rtapi_realtime_v1_proto_msgTypes[36]
+	mi := &file_rtapi_realtime_v1_proto_msgTypes[39]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -3417,7 +3617,7 @@ func (x *SNSLobbySessionFailureV4Message) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use SNSLobbySessionFailureV4Message.ProtoReflect.Descriptor instead.
 func (*SNSLobbySessionFailureV4Message) Descriptor() ([]byte, []int) {
-	return file_rtapi_realtime_v1_proto_rawDescGZIP(), []int{36}
+	return file_rtapi_realtime_v1_proto_rawDescGZIP(), []int{39}
 }
 
 func (x *SNSLobbySessionFailureV4Message) GetErrorCode() uint32 {
@@ -3443,22 +3643,26 @@ type SNSLobbySessionSuccessV5Message struct {
 	GroupId            string                 `protobuf:"bytes,3,opt,name=group_id,json=groupId,proto3" json:"group_id,omitempty"`
 	Endpoint           string                 `protobuf:"bytes,4,opt,name=endpoint,proto3" json:"endpoint,omitempty"`
 	TeamIndex          int32                  `protobuf:"varint,5,opt,name=team_index,json=teamIndex,proto3" json:"team_index,omitempty"`
-	Unk1               uint32                 `protobuf:"varint,6,opt,name=unk1,proto3" json:"unk1,omitempty"`
-	HeadsetType        int32                  `protobuf:"varint,7,opt,name=headset_type,json=headsetType,proto3" json:"headset_type,omitempty"`
-	ServerEncoderFlags uint64                 `protobuf:"varint,8,opt,name=server_encoder_flags,json=serverEncoderFlags,proto3" json:"server_encoder_flags,omitempty"`
-	ClientEncoderFlags uint64                 `protobuf:"varint,9,opt,name=client_encoder_flags,json=clientEncoderFlags,proto3" json:"client_encoder_flags,omitempty"`
-	ServerSequenceId   uint64                 `protobuf:"varint,10,opt,name=server_sequence_id,json=serverSequenceId,proto3" json:"server_sequence_id,omitempty"`
-	ServerMacKey       []byte                 `protobuf:"bytes,11,opt,name=server_mac_key,json=serverMacKey,proto3" json:"server_mac_key,omitempty"`
-	ServerEncKey       []byte                 `protobuf:"bytes,12,opt,name=server_enc_key,json=serverEncKey,proto3" json:"server_enc_key,omitempty"`
-	ServerRandomKey    []byte                 `protobuf:"bytes,13,opt,name=server_random_key,json=serverRandomKey,proto3" json:"server_random_key,omitempty"`
-	ClientSequenceId   uint64                 `protobuf:"varint,14,opt,name=client_sequence_id,json=clientSequenceId,proto3" json:"client_sequence_id,omitempty"`
+	UserSlot           uint32                 `protobuf:"varint,6,opt,name=user_slot,json=userSlot,proto3" json:"user_slot,omitempty"`
+	Flags32            uint32                 `protobuf:"varint,7,opt,name=flags32,proto3" json:"flags32,omitempty"`
+	SessionFlags       uint32                 `protobuf:"varint,8,opt,name=session_flags,json=sessionFlags,proto3" json:"session_flags,omitempty"`
+	ServerEncoderFlags uint64                 `protobuf:"varint,9,opt,name=server_encoder_flags,json=serverEncoderFlags,proto3" json:"server_encoder_flags,omitempty"`
+	ClientEncoderFlags uint64                 `protobuf:"varint,10,opt,name=client_encoder_flags,json=clientEncoderFlags,proto3" json:"client_encoder_flags,omitempty"`
+	ServerSequenceId   uint64                 `protobuf:"varint,11,opt,name=server_sequence_id,json=serverSequenceId,proto3" json:"server_sequence_id,omitempty"`
+	ServerMacKey       []byte                 `protobuf:"bytes,12,opt,name=server_mac_key,json=serverMacKey,proto3" json:"server_mac_key,omitempty"`
+	ServerEncKey       []byte                 `protobuf:"bytes,13,opt,name=server_enc_key,json=serverEncKey,proto3" json:"server_enc_key,omitempty"`
+	ServerRandomKey    []byte                 `protobuf:"bytes,14,opt,name=server_random_key,json=serverRandomKey,proto3" json:"server_random_key,omitempty"`
+	ClientSequenceId   uint64                 `protobuf:"varint,15,opt,name=client_sequence_id,json=clientSequenceId,proto3" json:"client_sequence_id,omitempty"`
+	ClientMacKey       []byte                 `protobuf:"bytes,16,opt,name=client_mac_key,json=clientMacKey,proto3" json:"client_mac_key,omitempty"`
+	ClientEncKey       []byte                 `protobuf:"bytes,17,opt,name=client_enc_key,json=clientEncKey,proto3" json:"client_enc_key,omitempty"`
+	ClientRandomKey    []byte                 `protobuf:"bytes,18,opt,name=client_random_key,json=clientRandomKey,proto3" json:"client_random_key,omitempty"`
 	unknownFields      protoimpl.UnknownFields
 	sizeCache          protoimpl.SizeCache
 }
 
 func (x *SNSLobbySessionSuccessV5Message) Reset() {
 	*x = SNSLobbySessionSuccessV5Message{}
-	mi := &file_rtapi_realtime_v1_proto_msgTypes[37]
+	mi := &file_rtapi_realtime_v1_proto_msgTypes[40]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -3470,7 +3674,7 @@ func (x *SNSLobbySessionSuccessV5Message) String() string {
 func (*SNSLobbySessionSuccessV5Message) ProtoMessage() {}
 
 func (x *SNSLobbySessionSuccessV5Message) ProtoReflect() protoreflect.Message {
-	mi := &file_rtapi_realtime_v1_proto_msgTypes[37]
+	mi := &file_rtapi_realtime_v1_proto_msgTypes[40]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -3483,7 +3687,7 @@ func (x *SNSLobbySessionSuccessV5Message) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use SNSLobbySessionSuccessV5Message.ProtoReflect.Descriptor instead.
 func (*SNSLobbySessionSuccessV5Message) Descriptor() ([]byte, []int) {
-	return file_rtapi_realtime_v1_proto_rawDescGZIP(), []int{37}
+	return file_rtapi_realtime_v1_proto_rawDescGZIP(), []int{40}
 }
 
 func (x *SNSLobbySessionSuccessV5Message) GetGameMode() uint64 {
@@ -3521,16 +3725,23 @@ func (x *SNSLobbySessionSuccessV5Message) GetTeamIndex() int32 {
 	return 0
 }
 
-func (x *SNSLobbySessionSuccessV5Message) GetUnk1() uint32 {
+func (x *SNSLobbySessionSuccessV5Message) GetUserSlot() uint32 {
 	if x != nil {
-		return x.Unk1
+		return x.UserSlot
 	}
 	return 0
 }
 
-func (x *SNSLobbySessionSuccessV5Message) GetHeadsetType() int32 {
+func (x *SNSLobbySessionSuccessV5Message) GetFlags32() uint32 {
 	if x != nil {
-		return x.HeadsetType
+		return x.Flags32
+	}
+	return 0
+}
+
+func (x *SNSLobbySessionSuccessV5Message) GetSessionFlags() uint32 {
+	if x != nil {
+		return x.SessionFlags
 	}
 	return 0
 }
@@ -3584,6 +3795,27 @@ func (x *SNSLobbySessionSuccessV5Message) GetClientSequenceId() uint64 {
 	return 0
 }
 
+func (x *SNSLobbySessionSuccessV5Message) GetClientMacKey() []byte {
+	if x != nil {
+		return x.ClientMacKey
+	}
+	return nil
+}
+
+func (x *SNSLobbySessionSuccessV5Message) GetClientEncKey() []byte {
+	if x != nil {
+		return x.ClientEncKey
+	}
+	return nil
+}
+
+func (x *SNSLobbySessionSuccessV5Message) GetClientRandomKey() []byte {
+	if x != nil {
+		return x.ClientRandomKey
+	}
+	return nil
+}
+
 // server to client indicating their
 // LoggedInUserProfileRequest failed.
 type SNSLoggedInUserProfileFailureMessage struct {
@@ -3597,7 +3829,7 @@ type SNSLoggedInUserProfileFailureMessage struct {
 
 func (x *SNSLoggedInUserProfileFailureMessage) Reset() {
 	*x = SNSLoggedInUserProfileFailureMessage{}
-	mi := &file_rtapi_realtime_v1_proto_msgTypes[38]
+	mi := &file_rtapi_realtime_v1_proto_msgTypes[41]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -3609,7 +3841,7 @@ func (x *SNSLoggedInUserProfileFailureMessage) String() string {
 func (*SNSLoggedInUserProfileFailureMessage) ProtoMessage() {}
 
 func (x *SNSLoggedInUserProfileFailureMessage) ProtoReflect() protoreflect.Message {
-	mi := &file_rtapi_realtime_v1_proto_msgTypes[38]
+	mi := &file_rtapi_realtime_v1_proto_msgTypes[41]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -3622,7 +3854,7 @@ func (x *SNSLoggedInUserProfileFailureMessage) ProtoReflect() protoreflect.Messa
 
 // Deprecated: Use SNSLoggedInUserProfileFailureMessage.ProtoReflect.Descriptor instead.
 func (*SNSLoggedInUserProfileFailureMessage) Descriptor() ([]byte, []int) {
-	return file_rtapi_realtime_v1_proto_rawDescGZIP(), []int{38}
+	return file_rtapi_realtime_v1_proto_rawDescGZIP(), []int{41}
 }
 
 func (x *SNSLoggedInUserProfileFailureMessage) GetUserId() *XPlatformID {
@@ -3659,7 +3891,7 @@ type SNSLoggedInUserProfileRequestMessage struct {
 
 func (x *SNSLoggedInUserProfileRequestMessage) Reset() {
 	*x = SNSLoggedInUserProfileRequestMessage{}
-	mi := &file_rtapi_realtime_v1_proto_msgTypes[39]
+	mi := &file_rtapi_realtime_v1_proto_msgTypes[42]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -3671,7 +3903,7 @@ func (x *SNSLoggedInUserProfileRequestMessage) String() string {
 func (*SNSLoggedInUserProfileRequestMessage) ProtoMessage() {}
 
 func (x *SNSLoggedInUserProfileRequestMessage) ProtoReflect() protoreflect.Message {
-	mi := &file_rtapi_realtime_v1_proto_msgTypes[39]
+	mi := &file_rtapi_realtime_v1_proto_msgTypes[42]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -3684,7 +3916,7 @@ func (x *SNSLoggedInUserProfileRequestMessage) ProtoReflect() protoreflect.Messa
 
 // Deprecated: Use SNSLoggedInUserProfileRequestMessage.ProtoReflect.Descriptor instead.
 func (*SNSLoggedInUserProfileRequestMessage) Descriptor() ([]byte, []int) {
-	return file_rtapi_realtime_v1_proto_rawDescGZIP(), []int{39}
+	return file_rtapi_realtime_v1_proto_rawDescGZIP(), []int{42}
 }
 
 func (x *SNSLoggedInUserProfileRequestMessage) GetSessionId() string {
@@ -3721,7 +3953,7 @@ type SNSLoggedInUserProfileSuccessMessage struct {
 
 func (x *SNSLoggedInUserProfileSuccessMessage) Reset() {
 	*x = SNSLoggedInUserProfileSuccessMessage{}
-	mi := &file_rtapi_realtime_v1_proto_msgTypes[40]
+	mi := &file_rtapi_realtime_v1_proto_msgTypes[43]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -3733,7 +3965,7 @@ func (x *SNSLoggedInUserProfileSuccessMessage) String() string {
 func (*SNSLoggedInUserProfileSuccessMessage) ProtoMessage() {}
 
 func (x *SNSLoggedInUserProfileSuccessMessage) ProtoReflect() protoreflect.Message {
-	mi := &file_rtapi_realtime_v1_proto_msgTypes[40]
+	mi := &file_rtapi_realtime_v1_proto_msgTypes[43]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -3746,7 +3978,7 @@ func (x *SNSLoggedInUserProfileSuccessMessage) ProtoReflect() protoreflect.Messa
 
 // Deprecated: Use SNSLoggedInUserProfileSuccessMessage.ProtoReflect.Descriptor instead.
 func (*SNSLoggedInUserProfileSuccessMessage) Descriptor() ([]byte, []int) {
-	return file_rtapi_realtime_v1_proto_rawDescGZIP(), []int{40}
+	return file_rtapi_realtime_v1_proto_rawDescGZIP(), []int{43}
 }
 
 func (x *SNSLoggedInUserProfileSuccessMessage) GetUserId() *XPlatformID {
@@ -3776,7 +4008,7 @@ type SNSLogInFailureMessage struct {
 
 func (x *SNSLogInFailureMessage) Reset() {
 	*x = SNSLogInFailureMessage{}
-	mi := &file_rtapi_realtime_v1_proto_msgTypes[41]
+	mi := &file_rtapi_realtime_v1_proto_msgTypes[44]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -3788,7 +4020,7 @@ func (x *SNSLogInFailureMessage) String() string {
 func (*SNSLogInFailureMessage) ProtoMessage() {}
 
 func (x *SNSLogInFailureMessage) ProtoReflect() protoreflect.Message {
-	mi := &file_rtapi_realtime_v1_proto_msgTypes[41]
+	mi := &file_rtapi_realtime_v1_proto_msgTypes[44]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -3801,7 +4033,7 @@ func (x *SNSLogInFailureMessage) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use SNSLogInFailureMessage.ProtoReflect.Descriptor instead.
 func (*SNSLogInFailureMessage) Descriptor() ([]byte, []int) {
-	return file_rtapi_realtime_v1_proto_rawDescGZIP(), []int{41}
+	return file_rtapi_realtime_v1_proto_rawDescGZIP(), []int{44}
 }
 
 func (x *SNSLogInFailureMessage) GetUserId() *XPlatformID {
@@ -3837,7 +4069,7 @@ type SNSLogInRequestV2Message struct {
 
 func (x *SNSLogInRequestV2Message) Reset() {
 	*x = SNSLogInRequestV2Message{}
-	mi := &file_rtapi_realtime_v1_proto_msgTypes[42]
+	mi := &file_rtapi_realtime_v1_proto_msgTypes[45]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -3849,7 +4081,7 @@ func (x *SNSLogInRequestV2Message) String() string {
 func (*SNSLogInRequestV2Message) ProtoMessage() {}
 
 func (x *SNSLogInRequestV2Message) ProtoReflect() protoreflect.Message {
-	mi := &file_rtapi_realtime_v1_proto_msgTypes[42]
+	mi := &file_rtapi_realtime_v1_proto_msgTypes[45]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -3862,7 +4094,7 @@ func (x *SNSLogInRequestV2Message) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use SNSLogInRequestV2Message.ProtoReflect.Descriptor instead.
 func (*SNSLogInRequestV2Message) Descriptor() ([]byte, []int) {
-	return file_rtapi_realtime_v1_proto_rawDescGZIP(), []int{42}
+	return file_rtapi_realtime_v1_proto_rawDescGZIP(), []int{45}
 }
 
 func (x *SNSLogInRequestV2Message) GetPreviousSessionId() string {
@@ -3897,7 +4129,7 @@ type SNSLoginSettingsMessage struct {
 
 func (x *SNSLoginSettingsMessage) Reset() {
 	*x = SNSLoginSettingsMessage{}
-	mi := &file_rtapi_realtime_v1_proto_msgTypes[43]
+	mi := &file_rtapi_realtime_v1_proto_msgTypes[46]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -3909,7 +4141,7 @@ func (x *SNSLoginSettingsMessage) String() string {
 func (*SNSLoginSettingsMessage) ProtoMessage() {}
 
 func (x *SNSLoginSettingsMessage) ProtoReflect() protoreflect.Message {
-	mi := &file_rtapi_realtime_v1_proto_msgTypes[43]
+	mi := &file_rtapi_realtime_v1_proto_msgTypes[46]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -3922,7 +4154,7 @@ func (x *SNSLoginSettingsMessage) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use SNSLoginSettingsMessage.ProtoReflect.Descriptor instead.
 func (*SNSLoginSettingsMessage) Descriptor() ([]byte, []int) {
-	return file_rtapi_realtime_v1_proto_rawDescGZIP(), []int{43}
+	return file_rtapi_realtime_v1_proto_rawDescGZIP(), []int{46}
 }
 
 func (x *SNSLoginSettingsMessage) GetConfigData() string {
@@ -3944,7 +4176,7 @@ type SNSLogInSuccessMessage struct {
 
 func (x *SNSLogInSuccessMessage) Reset() {
 	*x = SNSLogInSuccessMessage{}
-	mi := &file_rtapi_realtime_v1_proto_msgTypes[44]
+	mi := &file_rtapi_realtime_v1_proto_msgTypes[47]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -3956,7 +4188,7 @@ func (x *SNSLogInSuccessMessage) String() string {
 func (*SNSLogInSuccessMessage) ProtoMessage() {}
 
 func (x *SNSLogInSuccessMessage) ProtoReflect() protoreflect.Message {
-	mi := &file_rtapi_realtime_v1_proto_msgTypes[44]
+	mi := &file_rtapi_realtime_v1_proto_msgTypes[47]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -3969,7 +4201,7 @@ func (x *SNSLogInSuccessMessage) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use SNSLogInSuccessMessage.ProtoReflect.Descriptor instead.
 func (*SNSLogInSuccessMessage) Descriptor() ([]byte, []int) {
-	return file_rtapi_realtime_v1_proto_rawDescGZIP(), []int{44}
+	return file_rtapi_realtime_v1_proto_rawDescGZIP(), []int{47}
 }
 
 func (x *SNSLogInSuccessMessage) GetSessionId() string {
@@ -3999,7 +4231,7 @@ type SNSOtherUserProfileFailureMessage struct {
 
 func (x *SNSOtherUserProfileFailureMessage) Reset() {
 	*x = SNSOtherUserProfileFailureMessage{}
-	mi := &file_rtapi_realtime_v1_proto_msgTypes[45]
+	mi := &file_rtapi_realtime_v1_proto_msgTypes[48]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -4011,7 +4243,7 @@ func (x *SNSOtherUserProfileFailureMessage) String() string {
 func (*SNSOtherUserProfileFailureMessage) ProtoMessage() {}
 
 func (x *SNSOtherUserProfileFailureMessage) ProtoReflect() protoreflect.Message {
-	mi := &file_rtapi_realtime_v1_proto_msgTypes[45]
+	mi := &file_rtapi_realtime_v1_proto_msgTypes[48]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -4024,7 +4256,7 @@ func (x *SNSOtherUserProfileFailureMessage) ProtoReflect() protoreflect.Message 
 
 // Deprecated: Use SNSOtherUserProfileFailureMessage.ProtoReflect.Descriptor instead.
 func (*SNSOtherUserProfileFailureMessage) Descriptor() ([]byte, []int) {
-	return file_rtapi_realtime_v1_proto_rawDescGZIP(), []int{45}
+	return file_rtapi_realtime_v1_proto_rawDescGZIP(), []int{48}
 }
 
 func (x *SNSOtherUserProfileFailureMessage) GetUserId() *XPlatformID {
@@ -4060,7 +4292,7 @@ type SNSOtherUserProfileRequestMessage struct {
 
 func (x *SNSOtherUserProfileRequestMessage) Reset() {
 	*x = SNSOtherUserProfileRequestMessage{}
-	mi := &file_rtapi_realtime_v1_proto_msgTypes[46]
+	mi := &file_rtapi_realtime_v1_proto_msgTypes[49]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -4072,7 +4304,7 @@ func (x *SNSOtherUserProfileRequestMessage) String() string {
 func (*SNSOtherUserProfileRequestMessage) ProtoMessage() {}
 
 func (x *SNSOtherUserProfileRequestMessage) ProtoReflect() protoreflect.Message {
-	mi := &file_rtapi_realtime_v1_proto_msgTypes[46]
+	mi := &file_rtapi_realtime_v1_proto_msgTypes[49]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -4085,7 +4317,7 @@ func (x *SNSOtherUserProfileRequestMessage) ProtoReflect() protoreflect.Message 
 
 // Deprecated: Use SNSOtherUserProfileRequestMessage.ProtoReflect.Descriptor instead.
 func (*SNSOtherUserProfileRequestMessage) Descriptor() ([]byte, []int) {
-	return file_rtapi_realtime_v1_proto_rawDescGZIP(), []int{46}
+	return file_rtapi_realtime_v1_proto_rawDescGZIP(), []int{49}
 }
 
 func (x *SNSOtherUserProfileRequestMessage) GetUserId() *XPlatformID {
@@ -4115,7 +4347,7 @@ type SNSOtherUserProfileSuccessMessage struct {
 
 func (x *SNSOtherUserProfileSuccessMessage) Reset() {
 	*x = SNSOtherUserProfileSuccessMessage{}
-	mi := &file_rtapi_realtime_v1_proto_msgTypes[47]
+	mi := &file_rtapi_realtime_v1_proto_msgTypes[50]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -4127,7 +4359,7 @@ func (x *SNSOtherUserProfileSuccessMessage) String() string {
 func (*SNSOtherUserProfileSuccessMessage) ProtoMessage() {}
 
 func (x *SNSOtherUserProfileSuccessMessage) ProtoReflect() protoreflect.Message {
-	mi := &file_rtapi_realtime_v1_proto_msgTypes[47]
+	mi := &file_rtapi_realtime_v1_proto_msgTypes[50]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -4140,7 +4372,7 @@ func (x *SNSOtherUserProfileSuccessMessage) ProtoReflect() protoreflect.Message 
 
 // Deprecated: Use SNSOtherUserProfileSuccessMessage.ProtoReflect.Descriptor instead.
 func (*SNSOtherUserProfileSuccessMessage) Descriptor() ([]byte, []int) {
-	return file_rtapi_realtime_v1_proto_rawDescGZIP(), []int{47}
+	return file_rtapi_realtime_v1_proto_rawDescGZIP(), []int{50}
 }
 
 func (x *SNSOtherUserProfileSuccessMessage) GetUserId() *XPlatformID {
@@ -4168,7 +4400,7 @@ type SNSReconcileIAPResultMessage struct {
 
 func (x *SNSReconcileIAPResultMessage) Reset() {
 	*x = SNSReconcileIAPResultMessage{}
-	mi := &file_rtapi_realtime_v1_proto_msgTypes[48]
+	mi := &file_rtapi_realtime_v1_proto_msgTypes[51]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -4180,7 +4412,7 @@ func (x *SNSReconcileIAPResultMessage) String() string {
 func (*SNSReconcileIAPResultMessage) ProtoMessage() {}
 
 func (x *SNSReconcileIAPResultMessage) ProtoReflect() protoreflect.Message {
-	mi := &file_rtapi_realtime_v1_proto_msgTypes[48]
+	mi := &file_rtapi_realtime_v1_proto_msgTypes[51]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -4193,7 +4425,7 @@ func (x *SNSReconcileIAPResultMessage) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use SNSReconcileIAPResultMessage.ProtoReflect.Descriptor instead.
 func (*SNSReconcileIAPResultMessage) Descriptor() ([]byte, []int) {
-	return file_rtapi_realtime_v1_proto_rawDescGZIP(), []int{48}
+	return file_rtapi_realtime_v1_proto_rawDescGZIP(), []int{51}
 }
 
 func (x *SNSReconcileIAPResultMessage) GetUserId() *XPlatformID {
@@ -4217,15 +4449,15 @@ func (x *SNSReconcileIAPResultMessage) GetIapData() string {
 type SNSRemoteLogSetV3Message struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	UserId        *XPlatformID           `protobuf:"bytes,1,opt,name=user_id,json=userId,proto3" json:"user_id,omitempty"`
-	LogLevel      uint64                 `protobuf:"varint,6,opt,name=log_level,json=logLevel,proto3" json:"log_level,omitempty"`
-	Logs          []string               `protobuf:"bytes,7,rep,name=logs,proto3" json:"logs,omitempty"`
+	LogLevel      uint64                 `protobuf:"varint,2,opt,name=log_level,json=logLevel,proto3" json:"log_level,omitempty"`
+	Logs          []string               `protobuf:"bytes,3,rep,name=logs,proto3" json:"logs,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
 
 func (x *SNSRemoteLogSetV3Message) Reset() {
 	*x = SNSRemoteLogSetV3Message{}
-	mi := &file_rtapi_realtime_v1_proto_msgTypes[49]
+	mi := &file_rtapi_realtime_v1_proto_msgTypes[52]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -4237,7 +4469,7 @@ func (x *SNSRemoteLogSetV3Message) String() string {
 func (*SNSRemoteLogSetV3Message) ProtoMessage() {}
 
 func (x *SNSRemoteLogSetV3Message) ProtoReflect() protoreflect.Message {
-	mi := &file_rtapi_realtime_v1_proto_msgTypes[49]
+	mi := &file_rtapi_realtime_v1_proto_msgTypes[52]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -4250,7 +4482,7 @@ func (x *SNSRemoteLogSetV3Message) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use SNSRemoteLogSetV3Message.ProtoReflect.Descriptor instead.
 func (*SNSRemoteLogSetV3Message) Descriptor() ([]byte, []int) {
-	return file_rtapi_realtime_v1_proto_rawDescGZIP(), []int{49}
+	return file_rtapi_realtime_v1_proto_rawDescGZIP(), []int{52}
 }
 
 func (x *SNSRemoteLogSetV3Message) GetUserId() *XPlatformID {
@@ -4287,7 +4519,7 @@ type SNSUpdateProfileMessage struct {
 
 func (x *SNSUpdateProfileMessage) Reset() {
 	*x = SNSUpdateProfileMessage{}
-	mi := &file_rtapi_realtime_v1_proto_msgTypes[50]
+	mi := &file_rtapi_realtime_v1_proto_msgTypes[53]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -4299,7 +4531,7 @@ func (x *SNSUpdateProfileMessage) String() string {
 func (*SNSUpdateProfileMessage) ProtoMessage() {}
 
 func (x *SNSUpdateProfileMessage) ProtoReflect() protoreflect.Message {
-	mi := &file_rtapi_realtime_v1_proto_msgTypes[50]
+	mi := &file_rtapi_realtime_v1_proto_msgTypes[53]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -4312,7 +4544,7 @@ func (x *SNSUpdateProfileMessage) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use SNSUpdateProfileMessage.ProtoReflect.Descriptor instead.
 func (*SNSUpdateProfileMessage) Descriptor() ([]byte, []int) {
-	return file_rtapi_realtime_v1_proto_rawDescGZIP(), []int{50}
+	return file_rtapi_realtime_v1_proto_rawDescGZIP(), []int{53}
 }
 
 func (x *SNSUpdateProfileMessage) GetLoginSessionId() string {
@@ -4347,7 +4579,7 @@ type SNSUpdateProfileSuccessMessage struct {
 
 func (x *SNSUpdateProfileSuccessMessage) Reset() {
 	*x = SNSUpdateProfileSuccessMessage{}
-	mi := &file_rtapi_realtime_v1_proto_msgTypes[51]
+	mi := &file_rtapi_realtime_v1_proto_msgTypes[54]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -4359,7 +4591,7 @@ func (x *SNSUpdateProfileSuccessMessage) String() string {
 func (*SNSUpdateProfileSuccessMessage) ProtoMessage() {}
 
 func (x *SNSUpdateProfileSuccessMessage) ProtoReflect() protoreflect.Message {
-	mi := &file_rtapi_realtime_v1_proto_msgTypes[51]
+	mi := &file_rtapi_realtime_v1_proto_msgTypes[54]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -4372,7 +4604,7 @@ func (x *SNSUpdateProfileSuccessMessage) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use SNSUpdateProfileSuccessMessage.ProtoReflect.Descriptor instead.
 func (*SNSUpdateProfileSuccessMessage) Descriptor() ([]byte, []int) {
-	return file_rtapi_realtime_v1_proto_rawDescGZIP(), []int{51}
+	return file_rtapi_realtime_v1_proto_rawDescGZIP(), []int{54}
 }
 
 func (x *SNSUpdateProfileSuccessMessage) GetUserId() *XPlatformID {
@@ -4395,7 +4627,7 @@ type SNSUpdateProfileFailureMessage struct {
 
 func (x *SNSUpdateProfileFailureMessage) Reset() {
 	*x = SNSUpdateProfileFailureMessage{}
-	mi := &file_rtapi_realtime_v1_proto_msgTypes[52]
+	mi := &file_rtapi_realtime_v1_proto_msgTypes[55]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -4407,7 +4639,7 @@ func (x *SNSUpdateProfileFailureMessage) String() string {
 func (*SNSUpdateProfileFailureMessage) ProtoMessage() {}
 
 func (x *SNSUpdateProfileFailureMessage) ProtoReflect() protoreflect.Message {
-	mi := &file_rtapi_realtime_v1_proto_msgTypes[52]
+	mi := &file_rtapi_realtime_v1_proto_msgTypes[55]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -4420,7 +4652,7 @@ func (x *SNSUpdateProfileFailureMessage) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use SNSUpdateProfileFailureMessage.ProtoReflect.Descriptor instead.
 func (*SNSUpdateProfileFailureMessage) Descriptor() ([]byte, []int) {
-	return file_rtapi_realtime_v1_proto_rawDescGZIP(), []int{52}
+	return file_rtapi_realtime_v1_proto_rawDescGZIP(), []int{55}
 }
 
 func (x *SNSUpdateProfileFailureMessage) GetUserId() *XPlatformID {
@@ -4456,7 +4688,7 @@ type SNSUserServerProfileUpdateRequestMessage struct {
 
 func (x *SNSUserServerProfileUpdateRequestMessage) Reset() {
 	*x = SNSUserServerProfileUpdateRequestMessage{}
-	mi := &file_rtapi_realtime_v1_proto_msgTypes[53]
+	mi := &file_rtapi_realtime_v1_proto_msgTypes[56]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -4468,7 +4700,7 @@ func (x *SNSUserServerProfileUpdateRequestMessage) String() string {
 func (*SNSUserServerProfileUpdateRequestMessage) ProtoMessage() {}
 
 func (x *SNSUserServerProfileUpdateRequestMessage) ProtoReflect() protoreflect.Message {
-	mi := &file_rtapi_realtime_v1_proto_msgTypes[53]
+	mi := &file_rtapi_realtime_v1_proto_msgTypes[56]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -4481,7 +4713,7 @@ func (x *SNSUserServerProfileUpdateRequestMessage) ProtoReflect() protoreflect.M
 
 // Deprecated: Use SNSUserServerProfileUpdateRequestMessage.ProtoReflect.Descriptor instead.
 func (*SNSUserServerProfileUpdateRequestMessage) Descriptor() ([]byte, []int) {
-	return file_rtapi_realtime_v1_proto_rawDescGZIP(), []int{53}
+	return file_rtapi_realtime_v1_proto_rawDescGZIP(), []int{56}
 }
 
 func (x *SNSUserServerProfileUpdateRequestMessage) GetUserId() *XPlatformID {
@@ -4509,7 +4741,7 @@ type SNSUserServerProfileUpdateSuccessMessage struct {
 
 func (x *SNSUserServerProfileUpdateSuccessMessage) Reset() {
 	*x = SNSUserServerProfileUpdateSuccessMessage{}
-	mi := &file_rtapi_realtime_v1_proto_msgTypes[54]
+	mi := &file_rtapi_realtime_v1_proto_msgTypes[57]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -4521,7 +4753,7 @@ func (x *SNSUserServerProfileUpdateSuccessMessage) String() string {
 func (*SNSUserServerProfileUpdateSuccessMessage) ProtoMessage() {}
 
 func (x *SNSUserServerProfileUpdateSuccessMessage) ProtoReflect() protoreflect.Message {
-	mi := &file_rtapi_realtime_v1_proto_msgTypes[54]
+	mi := &file_rtapi_realtime_v1_proto_msgTypes[57]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -4534,7 +4766,7 @@ func (x *SNSUserServerProfileUpdateSuccessMessage) ProtoReflect() protoreflect.M
 
 // Deprecated: Use SNSUserServerProfileUpdateSuccessMessage.ProtoReflect.Descriptor instead.
 func (*SNSUserServerProfileUpdateSuccessMessage) Descriptor() ([]byte, []int) {
-	return file_rtapi_realtime_v1_proto_rawDescGZIP(), []int{54}
+	return file_rtapi_realtime_v1_proto_rawDescGZIP(), []int{57}
 }
 
 func (x *SNSUserServerProfileUpdateSuccessMessage) GetUserId() *XPlatformID {
@@ -4548,7 +4780,7 @@ var File_rtapi_realtime_v1_proto protoreflect.FileDescriptor
 
 const file_rtapi_realtime_v1_proto_rawDesc = "" +
 	"\n" +
-	"\x17rtapi/realtime_v1.proto\x12\brealtime\x1a\x1fgoogle/protobuf/timestamp.proto\x1a\x1ctelemetry/v1/telemetry.proto\"\xfb&\n" +
+	"\x17rtapi/realtime_v1.proto\x12\brealtime\x1a\x1fgoogle/protobuf/timestamp.proto\x1a\x1ctelemetry/v1/telemetry.proto\"\xde'\n" +
 	"\bEnvelope\x12\x10\n" +
 	"\x03cid\x18\x01 \x01(\tR\x03cid\x12'\n" +
 	"\x05error\x18\x02 \x01(\v2\x0f.realtime.ErrorH\x00R\x05error\x12T\n" +
@@ -4602,7 +4834,8 @@ const file_rtapi_realtime_v1_proto_rawDesc = "" +
 	"\x16update_profile_success\x181 \x01(\v2(.realtime.SNSUpdateProfileSuccessMessageH\x00R\x14updateProfileSuccess\x12`\n" +
 	"\x16update_profile_failure\x182 \x01(\v2(.realtime.SNSUpdateProfileFailureMessageH\x00R\x14updateProfileFailure\x12\x80\x01\n" +
 	"\"user_server_profile_update_request\x183 \x01(\v22.realtime.SNSUserServerProfileUpdateRequestMessageH\x00R\x1euserServerProfileUpdateRequest\x12\x80\x01\n" +
-	"\"user_server_profile_update_success\x184 \x01(\v22.realtime.SNSUserServerProfileUpdateSuccessMessageH\x00R\x1euserServerProfileUpdateSuccessB\t\n" +
+	"\"user_server_profile_update_success\x184 \x01(\v22.realtime.SNSUserServerProfileUpdateSuccessMessageH\x00R\x1euserServerProfileUpdateSuccess\x12a\n" +
+	"\x18game_server_save_loadout\x185 \x01(\v2&.realtime.GameServerSaveLoadoutMessageH\x00R\x15gameServerSaveLoadoutB\t\n" +
 	"\amessage\"\xe7\x02\n" +
 	"\x05Error\x12\x12\n" +
 	"\x04code\x18\x01 \x01(\x05R\x04code\x12\x18\n" +
@@ -4639,7 +4872,20 @@ const file_rtapi_realtime_v1_proto_rawDesc = "" +
 	"\aversion\x18\b \x01(\tR\aversion\"s\n" +
 	"$GameServerRegistrationSuccessMessage\x12\x1b\n" +
 	"\tserver_id\x18\x01 \x01(\x04R\bserverId\x12.\n" +
-	"\x13external_ip_address\x18\x02 \x01(\tR\x11externalIpAddress\"j\n" +
+	"\x13external_ip_address\x18\x02 \x01(\tR\x11externalIpAddress\"O\n" +
+	"\vLoadoutItem\x12\x1b\n" +
+	"\tslot_type\x18\x01 \x01(\x06R\bslotType\x12#\n" +
+	"\requipped_item\x18\x02 \x01(\x06R\fequippedItem\"c\n" +
+	"\x0fLoadoutInstance\x12#\n" +
+	"\rinstance_name\x18\x01 \x01(\x06R\finstanceName\x12+\n" +
+	"\x05items\x18\x02 \x03(\v2\x15.realtime.LoadoutItemR\x05items\"\xf7\x01\n" +
+	"\x1cGameServerSaveLoadoutMessage\x12(\n" +
+	"\x10lobby_session_id\x18\x01 \x01(\tR\x0elobbySessionId\x12\x1d\n" +
+	"\n" +
+	"entrant_id\x18\x02 \x01(\tR\tentrantId\x12!\n" +
+	"\floadout_slot\x18\x03 \x01(\x05R\vloadoutSlot\x12#\n" +
+	"\rjersey_number\x18\x04 \x01(\x05R\fjerseyNumber\x12F\n" +
+	"\x11loadout_instances\x18\x05 \x03(\v2\x19.realtime.LoadoutInstanceR\x10loadoutInstances\"j\n" +
 	"\x1dLobbyEntrantsConnectedMessage\x12(\n" +
 	"\x10lobby_session_id\x18\x01 \x01(\tR\x0elobbySessionId\x12\x1f\n" +
 	"\ventrant_ids\x18\x02 \x03(\tR\n" +
@@ -4794,24 +5040,28 @@ const file_rtapi_realtime_v1_proto_rawDesc = "" +
 	"\x1fSNSLobbySessionFailureV4Message\x12\x1d\n" +
 	"\n" +
 	"error_code\x18\x01 \x01(\rR\terrorCode\x12\x18\n" +
-	"\amessage\x18\x02 \x01(\tR\amessage\"\x9e\x04\n" +
+	"\amessage\x18\x02 \x01(\tR\amessage\"\xbb\x05\n" +
 	"\x1fSNSLobbySessionSuccessV5Message\x12\x1b\n" +
 	"\tgame_mode\x18\x01 \x01(\x06R\bgameMode\x12\x19\n" +
 	"\blobby_id\x18\x02 \x01(\tR\alobbyId\x12\x19\n" +
 	"\bgroup_id\x18\x03 \x01(\tR\agroupId\x12\x1a\n" +
 	"\bendpoint\x18\x04 \x01(\tR\bendpoint\x12\x1d\n" +
 	"\n" +
-	"team_index\x18\x05 \x01(\x05R\tteamIndex\x12\x12\n" +
-	"\x04unk1\x18\x06 \x01(\rR\x04unk1\x12!\n" +
-	"\fheadset_type\x18\a \x01(\x05R\vheadsetType\x120\n" +
-	"\x14server_encoder_flags\x18\b \x01(\x04R\x12serverEncoderFlags\x120\n" +
-	"\x14client_encoder_flags\x18\t \x01(\x04R\x12clientEncoderFlags\x12,\n" +
-	"\x12server_sequence_id\x18\n" +
-	" \x01(\x04R\x10serverSequenceId\x12$\n" +
-	"\x0eserver_mac_key\x18\v \x01(\fR\fserverMacKey\x12$\n" +
-	"\x0eserver_enc_key\x18\f \x01(\fR\fserverEncKey\x12*\n" +
-	"\x11server_random_key\x18\r \x01(\fR\x0fserverRandomKey\x12,\n" +
-	"\x12client_sequence_id\x18\x0e \x01(\x04R\x10clientSequenceId\"\x9c\x01\n" +
+	"team_index\x18\x05 \x01(\x05R\tteamIndex\x12\x1b\n" +
+	"\tuser_slot\x18\x06 \x01(\rR\buserSlot\x12\x18\n" +
+	"\aflags32\x18\a \x01(\rR\aflags32\x12#\n" +
+	"\rsession_flags\x18\b \x01(\rR\fsessionFlags\x120\n" +
+	"\x14server_encoder_flags\x18\t \x01(\x04R\x12serverEncoderFlags\x120\n" +
+	"\x14client_encoder_flags\x18\n" +
+	" \x01(\x04R\x12clientEncoderFlags\x12,\n" +
+	"\x12server_sequence_id\x18\v \x01(\x04R\x10serverSequenceId\x12$\n" +
+	"\x0eserver_mac_key\x18\f \x01(\fR\fserverMacKey\x12$\n" +
+	"\x0eserver_enc_key\x18\r \x01(\fR\fserverEncKey\x12*\n" +
+	"\x11server_random_key\x18\x0e \x01(\fR\x0fserverRandomKey\x12,\n" +
+	"\x12client_sequence_id\x18\x0f \x01(\x04R\x10clientSequenceId\x12$\n" +
+	"\x0eclient_mac_key\x18\x10 \x01(\fR\fclientMacKey\x12$\n" +
+	"\x0eclient_enc_key\x18\x11 \x01(\fR\fclientEncKey\x12*\n" +
+	"\x11client_random_key\x18\x12 \x01(\fR\x0fclientRandomKey\"\x9c\x01\n" +
 	"$SNSLoggedInUserProfileFailureMessage\x12.\n" +
 	"\auser_id\x18\x01 \x01(\v2\x15.realtime.XPlatformIDR\x06userId\x12\x1f\n" +
 	"\vstatus_code\x18\x02 \x01(\x04R\n" +
@@ -4857,8 +5107,8 @@ const file_rtapi_realtime_v1_proto_rawDesc = "" +
 	"\biap_data\x18\x02 \x01(\tR\aiapData\"{\n" +
 	"\x18SNSRemoteLogSetV3Message\x12.\n" +
 	"\auser_id\x18\x01 \x01(\v2\x15.realtime.XPlatformIDR\x06userId\x12\x1b\n" +
-	"\tlog_level\x18\x06 \x01(\x04R\blogLevel\x12\x12\n" +
-	"\x04logs\x18\a \x03(\tR\x04logs\"\x8d\x01\n" +
+	"\tlog_level\x18\x02 \x01(\x04R\blogLevel\x12\x12\n" +
+	"\x04logs\x18\x03 \x03(\tR\x04logs\"\x8d\x01\n" +
 	"\x17SNSUpdateProfileMessage\x12(\n" +
 	"\x10login_session_id\x18\x01 \x01(\tR\x0eloginSessionId\x12.\n" +
 	"\auser_id\x18\x02 \x01(\v2\x15.realtime.XPlatformIDR\x06userId\x12\x18\n" +
@@ -4890,7 +5140,7 @@ func file_rtapi_realtime_v1_proto_rawDescGZIP() []byte {
 }
 
 var file_rtapi_realtime_v1_proto_enumTypes = make([]protoimpl.EnumInfo, 5)
-var file_rtapi_realtime_v1_proto_msgTypes = make([]protoimpl.MessageInfo, 56)
+var file_rtapi_realtime_v1_proto_msgTypes = make([]protoimpl.MessageInfo, 59)
 var file_rtapi_realtime_v1_proto_goTypes = []any{
 	(Error_Code)(0),                                  // 0: realtime.Error.Code
 	(LobbySessionEventMessage_Code)(0),               // 1: realtime.LobbySessionEventMessage.Code
@@ -4902,157 +5152,163 @@ var file_rtapi_realtime_v1_proto_goTypes = []any{
 	(*LobbySessionEventMessage)(nil),                 // 7: realtime.LobbySessionEventMessage
 	(*GameServerRegistrationMessage)(nil),            // 8: realtime.GameServerRegistrationMessage
 	(*GameServerRegistrationSuccessMessage)(nil),     // 9: realtime.GameServerRegistrationSuccessMessage
-	(*LobbyEntrantsConnectedMessage)(nil),            // 10: realtime.LobbyEntrantsConnectedMessage
-	(*LobbyEntrantsAcceptMessage)(nil),               // 11: realtime.LobbyEntrantsAcceptMessage
-	(*LobbyEntrantsRejectMessage)(nil),               // 12: realtime.LobbyEntrantsRejectMessage
-	(*LobbyEntrantRemovedMessage)(nil),               // 13: realtime.LobbyEntrantRemovedMessage
-	(*LobbySessionCreateMessage)(nil),                // 14: realtime.LobbySessionCreateMessage
-	(*LobbySessionStateMessage)(nil),                 // 15: realtime.LobbySessionStateMessage
-	(*LobbySessionStateRawMessage)(nil),              // 16: realtime.LobbySessionStateRawMessage
-	(*ConnectivityStatisticsMessage)(nil),            // 17: realtime.ConnectivityStatisticsMessage
-	(*SymbolHash)(nil),                               // 18: realtime.SymbolHash
-	(*XPlatformID)(nil),                              // 19: realtime.XPlatformID
-	(*SNSUnknownMessage)(nil),                        // 20: realtime.SNSUnknownMessage
-	(*STCPConnectionRequireEvent)(nil),               // 21: realtime.STCPConnectionRequireEvent
-	(*STCPConnectionUnrequireEvent)(nil),             // 22: realtime.STCPConnectionUnrequireEvent
-	(*SNSConfigRequestV2Message)(nil),                // 23: realtime.SNSConfigRequestV2Message
-	(*SNSConfigSuccessV2Message)(nil),                // 24: realtime.SNSConfigSuccessV2Message
-	(*SNSConfigFailureV2Message)(nil),                // 25: realtime.SNSConfigFailureV2Message
-	(*SNSReconcileIAPMessage)(nil),                   // 26: realtime.SNSReconcileIAPMessage
-	(*SNSChannelInfoRequestMessage)(nil),             // 27: realtime.SNSChannelInfoRequestMessage
-	(*SNSChannelInfoResponseMessage)(nil),            // 28: realtime.SNSChannelInfoResponseMessage
-	(*SNSDocumentRequestV2Message)(nil),              // 29: realtime.SNSDocumentRequestV2Message
-	(*SNSDocumentSuccessMessage)(nil),                // 30: realtime.SNSDocumentSuccessMessage
-	(*SNSDocumentFailureMessage)(nil),                // 31: realtime.SNSDocumentFailureMessage
-	(*SNSLobbyCreateSessionRequestV9Message)(nil),    // 32: realtime.SNSLobbyCreateSessionRequestV9Message
-	(*SNSLobbyFindSessionRequestv11Message)(nil),     // 33: realtime.SNSLobbyFindSessionRequestv11Message
-	(*SNSLobbyJoinSessionRequestV7Message)(nil),      // 34: realtime.SNSLobbyJoinSessionRequestV7Message
-	(*SNSLobbyMatchmakerStatusMessage)(nil),          // 35: realtime.SNSLobbyMatchmakerStatusMessage
-	(*SNSLobbyMatchmakerStatusRequestMessage)(nil),   // 36: realtime.SNSLobbyMatchmakerStatusRequestMessage
-	(*SNSLobbyPendingSessionCancelV2Message)(nil),    // 37: realtime.SNSLobbyPendingSessionCancelV2Message
-	(*SNSLobbyPingRequestV3Message)(nil),             // 38: realtime.SNSLobbyPingRequestV3Message
-	(*SNSLobbyPingResponseMessage)(nil),              // 39: realtime.SNSLobbyPingResponseMessage
-	(*SNSLobbyPlayerSessionsRequestV5Message)(nil),   // 40: realtime.SNSLobbyPlayerSessionsRequestV5Message
-	(*SNSLobbySessionFailureV4Message)(nil),          // 41: realtime.SNSLobbySessionFailureV4Message
-	(*SNSLobbySessionSuccessV5Message)(nil),          // 42: realtime.SNSLobbySessionSuccessV5Message
-	(*SNSLoggedInUserProfileFailureMessage)(nil),     // 43: realtime.SNSLoggedInUserProfileFailureMessage
-	(*SNSLoggedInUserProfileRequestMessage)(nil),     // 44: realtime.SNSLoggedInUserProfileRequestMessage
-	(*SNSLoggedInUserProfileSuccessMessage)(nil),     // 45: realtime.SNSLoggedInUserProfileSuccessMessage
-	(*SNSLogInFailureMessage)(nil),                   // 46: realtime.SNSLogInFailureMessage
-	(*SNSLogInRequestV2Message)(nil),                 // 47: realtime.SNSLogInRequestV2Message
-	(*SNSLoginSettingsMessage)(nil),                  // 48: realtime.SNSLoginSettingsMessage
-	(*SNSLogInSuccessMessage)(nil),                   // 49: realtime.SNSLogInSuccessMessage
-	(*SNSOtherUserProfileFailureMessage)(nil),        // 50: realtime.SNSOtherUserProfileFailureMessage
-	(*SNSOtherUserProfileRequestMessage)(nil),        // 51: realtime.SNSOtherUserProfileRequestMessage
-	(*SNSOtherUserProfileSuccessMessage)(nil),        // 52: realtime.SNSOtherUserProfileSuccessMessage
-	(*SNSReconcileIAPResultMessage)(nil),             // 53: realtime.SNSReconcileIAPResultMessage
-	(*SNSRemoteLogSetV3Message)(nil),                 // 54: realtime.SNSRemoteLogSetV3Message
-	(*SNSUpdateProfileMessage)(nil),                  // 55: realtime.SNSUpdateProfileMessage
-	(*SNSUpdateProfileSuccessMessage)(nil),           // 56: realtime.SNSUpdateProfileSuccessMessage
-	(*SNSUpdateProfileFailureMessage)(nil),           // 57: realtime.SNSUpdateProfileFailureMessage
-	(*SNSUserServerProfileUpdateRequestMessage)(nil), // 58: realtime.SNSUserServerProfileUpdateRequestMessage
-	(*SNSUserServerProfileUpdateSuccessMessage)(nil), // 59: realtime.SNSUserServerProfileUpdateSuccessMessage
-	nil,                               // 60: realtime.Error.ContextEntry
-	(*v1.LobbySessionStateFrame)(nil), // 61: telemetry.v1.LobbySessionStateFrame
-	(*timestamppb.Timestamp)(nil),     // 62: google.protobuf.Timestamp
+	(*LoadoutItem)(nil),                              // 10: realtime.LoadoutItem
+	(*LoadoutInstance)(nil),                          // 11: realtime.LoadoutInstance
+	(*GameServerSaveLoadoutMessage)(nil),             // 12: realtime.GameServerSaveLoadoutMessage
+	(*LobbyEntrantsConnectedMessage)(nil),            // 13: realtime.LobbyEntrantsConnectedMessage
+	(*LobbyEntrantsAcceptMessage)(nil),               // 14: realtime.LobbyEntrantsAcceptMessage
+	(*LobbyEntrantsRejectMessage)(nil),               // 15: realtime.LobbyEntrantsRejectMessage
+	(*LobbyEntrantRemovedMessage)(nil),               // 16: realtime.LobbyEntrantRemovedMessage
+	(*LobbySessionCreateMessage)(nil),                // 17: realtime.LobbySessionCreateMessage
+	(*LobbySessionStateMessage)(nil),                 // 18: realtime.LobbySessionStateMessage
+	(*LobbySessionStateRawMessage)(nil),              // 19: realtime.LobbySessionStateRawMessage
+	(*ConnectivityStatisticsMessage)(nil),            // 20: realtime.ConnectivityStatisticsMessage
+	(*SymbolHash)(nil),                               // 21: realtime.SymbolHash
+	(*XPlatformID)(nil),                              // 22: realtime.XPlatformID
+	(*SNSUnknownMessage)(nil),                        // 23: realtime.SNSUnknownMessage
+	(*STCPConnectionRequireEvent)(nil),               // 24: realtime.STCPConnectionRequireEvent
+	(*STCPConnectionUnrequireEvent)(nil),             // 25: realtime.STCPConnectionUnrequireEvent
+	(*SNSConfigRequestV2Message)(nil),                // 26: realtime.SNSConfigRequestV2Message
+	(*SNSConfigSuccessV2Message)(nil),                // 27: realtime.SNSConfigSuccessV2Message
+	(*SNSConfigFailureV2Message)(nil),                // 28: realtime.SNSConfigFailureV2Message
+	(*SNSReconcileIAPMessage)(nil),                   // 29: realtime.SNSReconcileIAPMessage
+	(*SNSChannelInfoRequestMessage)(nil),             // 30: realtime.SNSChannelInfoRequestMessage
+	(*SNSChannelInfoResponseMessage)(nil),            // 31: realtime.SNSChannelInfoResponseMessage
+	(*SNSDocumentRequestV2Message)(nil),              // 32: realtime.SNSDocumentRequestV2Message
+	(*SNSDocumentSuccessMessage)(nil),                // 33: realtime.SNSDocumentSuccessMessage
+	(*SNSDocumentFailureMessage)(nil),                // 34: realtime.SNSDocumentFailureMessage
+	(*SNSLobbyCreateSessionRequestV9Message)(nil),    // 35: realtime.SNSLobbyCreateSessionRequestV9Message
+	(*SNSLobbyFindSessionRequestv11Message)(nil),     // 36: realtime.SNSLobbyFindSessionRequestv11Message
+	(*SNSLobbyJoinSessionRequestV7Message)(nil),      // 37: realtime.SNSLobbyJoinSessionRequestV7Message
+	(*SNSLobbyMatchmakerStatusMessage)(nil),          // 38: realtime.SNSLobbyMatchmakerStatusMessage
+	(*SNSLobbyMatchmakerStatusRequestMessage)(nil),   // 39: realtime.SNSLobbyMatchmakerStatusRequestMessage
+	(*SNSLobbyPendingSessionCancelV2Message)(nil),    // 40: realtime.SNSLobbyPendingSessionCancelV2Message
+	(*SNSLobbyPingRequestV3Message)(nil),             // 41: realtime.SNSLobbyPingRequestV3Message
+	(*SNSLobbyPingResponseMessage)(nil),              // 42: realtime.SNSLobbyPingResponseMessage
+	(*SNSLobbyPlayerSessionsRequestV5Message)(nil),   // 43: realtime.SNSLobbyPlayerSessionsRequestV5Message
+	(*SNSLobbySessionFailureV4Message)(nil),          // 44: realtime.SNSLobbySessionFailureV4Message
+	(*SNSLobbySessionSuccessV5Message)(nil),          // 45: realtime.SNSLobbySessionSuccessV5Message
+	(*SNSLoggedInUserProfileFailureMessage)(nil),     // 46: realtime.SNSLoggedInUserProfileFailureMessage
+	(*SNSLoggedInUserProfileRequestMessage)(nil),     // 47: realtime.SNSLoggedInUserProfileRequestMessage
+	(*SNSLoggedInUserProfileSuccessMessage)(nil),     // 48: realtime.SNSLoggedInUserProfileSuccessMessage
+	(*SNSLogInFailureMessage)(nil),                   // 49: realtime.SNSLogInFailureMessage
+	(*SNSLogInRequestV2Message)(nil),                 // 50: realtime.SNSLogInRequestV2Message
+	(*SNSLoginSettingsMessage)(nil),                  // 51: realtime.SNSLoginSettingsMessage
+	(*SNSLogInSuccessMessage)(nil),                   // 52: realtime.SNSLogInSuccessMessage
+	(*SNSOtherUserProfileFailureMessage)(nil),        // 53: realtime.SNSOtherUserProfileFailureMessage
+	(*SNSOtherUserProfileRequestMessage)(nil),        // 54: realtime.SNSOtherUserProfileRequestMessage
+	(*SNSOtherUserProfileSuccessMessage)(nil),        // 55: realtime.SNSOtherUserProfileSuccessMessage
+	(*SNSReconcileIAPResultMessage)(nil),             // 56: realtime.SNSReconcileIAPResultMessage
+	(*SNSRemoteLogSetV3Message)(nil),                 // 57: realtime.SNSRemoteLogSetV3Message
+	(*SNSUpdateProfileMessage)(nil),                  // 58: realtime.SNSUpdateProfileMessage
+	(*SNSUpdateProfileSuccessMessage)(nil),           // 59: realtime.SNSUpdateProfileSuccessMessage
+	(*SNSUpdateProfileFailureMessage)(nil),           // 60: realtime.SNSUpdateProfileFailureMessage
+	(*SNSUserServerProfileUpdateRequestMessage)(nil), // 61: realtime.SNSUserServerProfileUpdateRequestMessage
+	(*SNSUserServerProfileUpdateSuccessMessage)(nil), // 62: realtime.SNSUserServerProfileUpdateSuccessMessage
+	nil,                               // 63: realtime.Error.ContextEntry
+	(*v1.LobbySessionStateFrame)(nil), // 64: telemetry.v1.LobbySessionStateFrame
+	(*timestamppb.Timestamp)(nil),     // 65: google.protobuf.Timestamp
 }
 var file_rtapi_realtime_v1_proto_depIdxs = []int32{
 	6,  // 0: realtime.Envelope.error:type_name -> realtime.Error
-	15, // 1: realtime.Envelope.lobby_session_state:type_name -> realtime.LobbySessionStateMessage
-	17, // 2: realtime.Envelope.connectivity_statistics:type_name -> realtime.ConnectivityStatisticsMessage
+	18, // 1: realtime.Envelope.lobby_session_state:type_name -> realtime.LobbySessionStateMessage
+	20, // 2: realtime.Envelope.connectivity_statistics:type_name -> realtime.ConnectivityStatisticsMessage
 	8,  // 3: realtime.Envelope.game_server_registration:type_name -> realtime.GameServerRegistrationMessage
 	9,  // 4: realtime.Envelope.game_server_registration_success:type_name -> realtime.GameServerRegistrationSuccessMessage
-	14, // 5: realtime.Envelope.lobby_session_create:type_name -> realtime.LobbySessionCreateMessage
+	17, // 5: realtime.Envelope.lobby_session_create:type_name -> realtime.LobbySessionCreateMessage
 	7,  // 6: realtime.Envelope.lobby_session_event:type_name -> realtime.LobbySessionEventMessage
-	10, // 7: realtime.Envelope.lobby_entrant_connected:type_name -> realtime.LobbyEntrantsConnectedMessage
-	11, // 8: realtime.Envelope.lobby_entrants_accept:type_name -> realtime.LobbyEntrantsAcceptMessage
-	12, // 9: realtime.Envelope.lobby_entrant_reject:type_name -> realtime.LobbyEntrantsRejectMessage
-	13, // 10: realtime.Envelope.lobby_entrant_removed:type_name -> realtime.LobbyEntrantRemovedMessage
-	20, // 11: realtime.Envelope.unknown_message:type_name -> realtime.SNSUnknownMessage
-	21, // 12: realtime.Envelope.tcp_connection_require_event:type_name -> realtime.STCPConnectionRequireEvent
-	22, // 13: realtime.Envelope.tcp_connection_unrequire_event:type_name -> realtime.STCPConnectionUnrequireEvent
-	23, // 14: realtime.Envelope.config_request_v2:type_name -> realtime.SNSConfigRequestV2Message
-	24, // 15: realtime.Envelope.config_success_v2:type_name -> realtime.SNSConfigSuccessV2Message
-	25, // 16: realtime.Envelope.config_failure_v2:type_name -> realtime.SNSConfigFailureV2Message
-	26, // 17: realtime.Envelope.reconcile_iap:type_name -> realtime.SNSReconcileIAPMessage
-	27, // 18: realtime.Envelope.channel_info_request:type_name -> realtime.SNSChannelInfoRequestMessage
-	28, // 19: realtime.Envelope.channel_info_response:type_name -> realtime.SNSChannelInfoResponseMessage
-	29, // 20: realtime.Envelope.document_request_v2:type_name -> realtime.SNSDocumentRequestV2Message
-	30, // 21: realtime.Envelope.document_success:type_name -> realtime.SNSDocumentSuccessMessage
-	31, // 22: realtime.Envelope.document_failure:type_name -> realtime.SNSDocumentFailureMessage
-	32, // 23: realtime.Envelope.lobby_create_session_request_v9:type_name -> realtime.SNSLobbyCreateSessionRequestV9Message
-	33, // 24: realtime.Envelope.lobby_find_session_request_v11:type_name -> realtime.SNSLobbyFindSessionRequestv11Message
-	34, // 25: realtime.Envelope.lobby_join_session_request_v7:type_name -> realtime.SNSLobbyJoinSessionRequestV7Message
-	35, // 26: realtime.Envelope.lobby_matchmaker_status:type_name -> realtime.SNSLobbyMatchmakerStatusMessage
-	36, // 27: realtime.Envelope.lobby_matchmaker_status_request:type_name -> realtime.SNSLobbyMatchmakerStatusRequestMessage
-	37, // 28: realtime.Envelope.lobby_pending_session_cancel_v2:type_name -> realtime.SNSLobbyPendingSessionCancelV2Message
-	38, // 29: realtime.Envelope.lobby_ping_request_v3:type_name -> realtime.SNSLobbyPingRequestV3Message
-	39, // 30: realtime.Envelope.lobby_ping_response:type_name -> realtime.SNSLobbyPingResponseMessage
-	40, // 31: realtime.Envelope.lobby_player_sessions_request_v5:type_name -> realtime.SNSLobbyPlayerSessionsRequestV5Message
-	41, // 32: realtime.Envelope.lobby_session_failure_v4:type_name -> realtime.SNSLobbySessionFailureV4Message
-	42, // 33: realtime.Envelope.lobby_session_success_v5:type_name -> realtime.SNSLobbySessionSuccessV5Message
-	43, // 34: realtime.Envelope.logged_in_user_profile_failure:type_name -> realtime.SNSLoggedInUserProfileFailureMessage
-	44, // 35: realtime.Envelope.logged_in_user_profile_request:type_name -> realtime.SNSLoggedInUserProfileRequestMessage
-	45, // 36: realtime.Envelope.logged_in_user_profile_success:type_name -> realtime.SNSLoggedInUserProfileSuccessMessage
-	46, // 37: realtime.Envelope.log_in_failure:type_name -> realtime.SNSLogInFailureMessage
-	47, // 38: realtime.Envelope.log_in_request_v2:type_name -> realtime.SNSLogInRequestV2Message
-	48, // 39: realtime.Envelope.login_settings:type_name -> realtime.SNSLoginSettingsMessage
-	49, // 40: realtime.Envelope.log_in_success:type_name -> realtime.SNSLogInSuccessMessage
-	50, // 41: realtime.Envelope.other_user_profile_failure:type_name -> realtime.SNSOtherUserProfileFailureMessage
-	51, // 42: realtime.Envelope.other_user_profile_request:type_name -> realtime.SNSOtherUserProfileRequestMessage
-	52, // 43: realtime.Envelope.other_user_profile_success:type_name -> realtime.SNSOtherUserProfileSuccessMessage
-	53, // 44: realtime.Envelope.reconcile_iap_result:type_name -> realtime.SNSReconcileIAPResultMessage
-	54, // 45: realtime.Envelope.remote_log_set_v3:type_name -> realtime.SNSRemoteLogSetV3Message
-	55, // 46: realtime.Envelope.update_profile:type_name -> realtime.SNSUpdateProfileMessage
-	56, // 47: realtime.Envelope.update_profile_success:type_name -> realtime.SNSUpdateProfileSuccessMessage
-	57, // 48: realtime.Envelope.update_profile_failure:type_name -> realtime.SNSUpdateProfileFailureMessage
-	58, // 49: realtime.Envelope.user_server_profile_update_request:type_name -> realtime.SNSUserServerProfileUpdateRequestMessage
-	59, // 50: realtime.Envelope.user_server_profile_update_success:type_name -> realtime.SNSUserServerProfileUpdateSuccessMessage
-	60, // 51: realtime.Error.context:type_name -> realtime.Error.ContextEntry
-	16, // 52: realtime.LobbySessionStateMessage.session_state_raw:type_name -> realtime.LobbySessionStateRawMessage
-	61, // 53: realtime.LobbySessionStateMessage.session_state:type_name -> telemetry.v1.LobbySessionStateFrame
-	62, // 54: realtime.LobbySessionStateRawMessage.timestamp:type_name -> google.protobuf.Timestamp
-	18, // 55: realtime.SNSUnknownMessage.type:type_name -> realtime.SymbolHash
-	18, // 56: realtime.SNSConfigSuccessV2Message.type:type_name -> realtime.SymbolHash
-	18, // 57: realtime.SNSConfigSuccessV2Message.id:type_name -> realtime.SymbolHash
-	19, // 58: realtime.SNSReconcileIAPMessage.user_id:type_name -> realtime.XPlatformID
-	18, // 59: realtime.SNSLobbyCreateSessionRequestV9Message.region:type_name -> realtime.SymbolHash
-	18, // 60: realtime.SNSLobbyCreateSessionRequestV9Message.version_lock:type_name -> realtime.SymbolHash
-	18, // 61: realtime.SNSLobbyCreateSessionRequestV9Message.mode:type_name -> realtime.SymbolHash
-	18, // 62: realtime.SNSLobbyCreateSessionRequestV9Message.level:type_name -> realtime.SymbolHash
-	18, // 63: realtime.SNSLobbyCreateSessionRequestV9Message.platform:type_name -> realtime.SymbolHash
-	19, // 64: realtime.SNSLobbyCreateSessionRequestV9Message.entrants:type_name -> realtime.XPlatformID
-	18, // 65: realtime.SNSLobbyFindSessionRequestv11Message.version_lock:type_name -> realtime.SymbolHash
-	18, // 66: realtime.SNSLobbyFindSessionRequestv11Message.mode:type_name -> realtime.SymbolHash
-	18, // 67: realtime.SNSLobbyFindSessionRequestv11Message.level:type_name -> realtime.SymbolHash
-	18, // 68: realtime.SNSLobbyFindSessionRequestv11Message.platform:type_name -> realtime.SymbolHash
-	19, // 69: realtime.SNSLobbyFindSessionRequestv11Message.entrants:type_name -> realtime.XPlatformID
-	18, // 70: realtime.SNSLobbyJoinSessionRequestV7Message.version_lock:type_name -> realtime.SymbolHash
-	18, // 71: realtime.SNSLobbyJoinSessionRequestV7Message.platform:type_name -> realtime.SymbolHash
-	19, // 72: realtime.SNSLobbyPlayerSessionsRequestV5Message.user_id:type_name -> realtime.XPlatformID
-	18, // 73: realtime.SNSLobbyPlayerSessionsRequestV5Message.platform:type_name -> realtime.SymbolHash
-	19, // 74: realtime.SNSLobbyPlayerSessionsRequestV5Message.player_xpids:type_name -> realtime.XPlatformID
-	19, // 75: realtime.SNSLoggedInUserProfileFailureMessage.user_id:type_name -> realtime.XPlatformID
-	19, // 76: realtime.SNSLoggedInUserProfileRequestMessage.user_id:type_name -> realtime.XPlatformID
-	19, // 77: realtime.SNSLoggedInUserProfileSuccessMessage.user_id:type_name -> realtime.XPlatformID
-	19, // 78: realtime.SNSLogInFailureMessage.user_id:type_name -> realtime.XPlatformID
-	19, // 79: realtime.SNSLogInRequestV2Message.user_id:type_name -> realtime.XPlatformID
-	19, // 80: realtime.SNSLogInSuccessMessage.user_id:type_name -> realtime.XPlatformID
-	19, // 81: realtime.SNSOtherUserProfileFailureMessage.user_id:type_name -> realtime.XPlatformID
-	19, // 82: realtime.SNSOtherUserProfileRequestMessage.user_id:type_name -> realtime.XPlatformID
-	19, // 83: realtime.SNSOtherUserProfileSuccessMessage.user_id:type_name -> realtime.XPlatformID
-	19, // 84: realtime.SNSReconcileIAPResultMessage.user_id:type_name -> realtime.XPlatformID
-	19, // 85: realtime.SNSRemoteLogSetV3Message.user_id:type_name -> realtime.XPlatformID
-	19, // 86: realtime.SNSUpdateProfileMessage.user_id:type_name -> realtime.XPlatformID
-	19, // 87: realtime.SNSUpdateProfileSuccessMessage.user_id:type_name -> realtime.XPlatformID
-	19, // 88: realtime.SNSUpdateProfileFailureMessage.user_id:type_name -> realtime.XPlatformID
-	19, // 89: realtime.SNSUserServerProfileUpdateRequestMessage.user_id:type_name -> realtime.XPlatformID
-	19, // 90: realtime.SNSUserServerProfileUpdateSuccessMessage.user_id:type_name -> realtime.XPlatformID
-	91, // [91:91] is the sub-list for method output_type
-	91, // [91:91] is the sub-list for method input_type
-	91, // [91:91] is the sub-list for extension type_name
-	91, // [91:91] is the sub-list for extension extendee
-	0,  // [0:91] is the sub-list for field type_name
+	13, // 7: realtime.Envelope.lobby_entrant_connected:type_name -> realtime.LobbyEntrantsConnectedMessage
+	14, // 8: realtime.Envelope.lobby_entrants_accept:type_name -> realtime.LobbyEntrantsAcceptMessage
+	15, // 9: realtime.Envelope.lobby_entrant_reject:type_name -> realtime.LobbyEntrantsRejectMessage
+	16, // 10: realtime.Envelope.lobby_entrant_removed:type_name -> realtime.LobbyEntrantRemovedMessage
+	23, // 11: realtime.Envelope.unknown_message:type_name -> realtime.SNSUnknownMessage
+	24, // 12: realtime.Envelope.tcp_connection_require_event:type_name -> realtime.STCPConnectionRequireEvent
+	25, // 13: realtime.Envelope.tcp_connection_unrequire_event:type_name -> realtime.STCPConnectionUnrequireEvent
+	26, // 14: realtime.Envelope.config_request_v2:type_name -> realtime.SNSConfigRequestV2Message
+	27, // 15: realtime.Envelope.config_success_v2:type_name -> realtime.SNSConfigSuccessV2Message
+	28, // 16: realtime.Envelope.config_failure_v2:type_name -> realtime.SNSConfigFailureV2Message
+	29, // 17: realtime.Envelope.reconcile_iap:type_name -> realtime.SNSReconcileIAPMessage
+	30, // 18: realtime.Envelope.channel_info_request:type_name -> realtime.SNSChannelInfoRequestMessage
+	31, // 19: realtime.Envelope.channel_info_response:type_name -> realtime.SNSChannelInfoResponseMessage
+	32, // 20: realtime.Envelope.document_request_v2:type_name -> realtime.SNSDocumentRequestV2Message
+	33, // 21: realtime.Envelope.document_success:type_name -> realtime.SNSDocumentSuccessMessage
+	34, // 22: realtime.Envelope.document_failure:type_name -> realtime.SNSDocumentFailureMessage
+	35, // 23: realtime.Envelope.lobby_create_session_request_v9:type_name -> realtime.SNSLobbyCreateSessionRequestV9Message
+	36, // 24: realtime.Envelope.lobby_find_session_request_v11:type_name -> realtime.SNSLobbyFindSessionRequestv11Message
+	37, // 25: realtime.Envelope.lobby_join_session_request_v7:type_name -> realtime.SNSLobbyJoinSessionRequestV7Message
+	38, // 26: realtime.Envelope.lobby_matchmaker_status:type_name -> realtime.SNSLobbyMatchmakerStatusMessage
+	39, // 27: realtime.Envelope.lobby_matchmaker_status_request:type_name -> realtime.SNSLobbyMatchmakerStatusRequestMessage
+	40, // 28: realtime.Envelope.lobby_pending_session_cancel_v2:type_name -> realtime.SNSLobbyPendingSessionCancelV2Message
+	41, // 29: realtime.Envelope.lobby_ping_request_v3:type_name -> realtime.SNSLobbyPingRequestV3Message
+	42, // 30: realtime.Envelope.lobby_ping_response:type_name -> realtime.SNSLobbyPingResponseMessage
+	43, // 31: realtime.Envelope.lobby_player_sessions_request_v5:type_name -> realtime.SNSLobbyPlayerSessionsRequestV5Message
+	44, // 32: realtime.Envelope.lobby_session_failure_v4:type_name -> realtime.SNSLobbySessionFailureV4Message
+	45, // 33: realtime.Envelope.lobby_session_success_v5:type_name -> realtime.SNSLobbySessionSuccessV5Message
+	46, // 34: realtime.Envelope.logged_in_user_profile_failure:type_name -> realtime.SNSLoggedInUserProfileFailureMessage
+	47, // 35: realtime.Envelope.logged_in_user_profile_request:type_name -> realtime.SNSLoggedInUserProfileRequestMessage
+	48, // 36: realtime.Envelope.logged_in_user_profile_success:type_name -> realtime.SNSLoggedInUserProfileSuccessMessage
+	49, // 37: realtime.Envelope.log_in_failure:type_name -> realtime.SNSLogInFailureMessage
+	50, // 38: realtime.Envelope.log_in_request_v2:type_name -> realtime.SNSLogInRequestV2Message
+	51, // 39: realtime.Envelope.login_settings:type_name -> realtime.SNSLoginSettingsMessage
+	52, // 40: realtime.Envelope.log_in_success:type_name -> realtime.SNSLogInSuccessMessage
+	53, // 41: realtime.Envelope.other_user_profile_failure:type_name -> realtime.SNSOtherUserProfileFailureMessage
+	54, // 42: realtime.Envelope.other_user_profile_request:type_name -> realtime.SNSOtherUserProfileRequestMessage
+	55, // 43: realtime.Envelope.other_user_profile_success:type_name -> realtime.SNSOtherUserProfileSuccessMessage
+	56, // 44: realtime.Envelope.reconcile_iap_result:type_name -> realtime.SNSReconcileIAPResultMessage
+	57, // 45: realtime.Envelope.remote_log_set_v3:type_name -> realtime.SNSRemoteLogSetV3Message
+	58, // 46: realtime.Envelope.update_profile:type_name -> realtime.SNSUpdateProfileMessage
+	59, // 47: realtime.Envelope.update_profile_success:type_name -> realtime.SNSUpdateProfileSuccessMessage
+	60, // 48: realtime.Envelope.update_profile_failure:type_name -> realtime.SNSUpdateProfileFailureMessage
+	61, // 49: realtime.Envelope.user_server_profile_update_request:type_name -> realtime.SNSUserServerProfileUpdateRequestMessage
+	62, // 50: realtime.Envelope.user_server_profile_update_success:type_name -> realtime.SNSUserServerProfileUpdateSuccessMessage
+	12, // 51: realtime.Envelope.game_server_save_loadout:type_name -> realtime.GameServerSaveLoadoutMessage
+	63, // 52: realtime.Error.context:type_name -> realtime.Error.ContextEntry
+	10, // 53: realtime.LoadoutInstance.items:type_name -> realtime.LoadoutItem
+	11, // 54: realtime.GameServerSaveLoadoutMessage.loadout_instances:type_name -> realtime.LoadoutInstance
+	19, // 55: realtime.LobbySessionStateMessage.session_state_raw:type_name -> realtime.LobbySessionStateRawMessage
+	64, // 56: realtime.LobbySessionStateMessage.session_state:type_name -> telemetry.v1.LobbySessionStateFrame
+	65, // 57: realtime.LobbySessionStateRawMessage.timestamp:type_name -> google.protobuf.Timestamp
+	21, // 58: realtime.SNSUnknownMessage.type:type_name -> realtime.SymbolHash
+	21, // 59: realtime.SNSConfigSuccessV2Message.type:type_name -> realtime.SymbolHash
+	21, // 60: realtime.SNSConfigSuccessV2Message.id:type_name -> realtime.SymbolHash
+	22, // 61: realtime.SNSReconcileIAPMessage.user_id:type_name -> realtime.XPlatformID
+	21, // 62: realtime.SNSLobbyCreateSessionRequestV9Message.region:type_name -> realtime.SymbolHash
+	21, // 63: realtime.SNSLobbyCreateSessionRequestV9Message.version_lock:type_name -> realtime.SymbolHash
+	21, // 64: realtime.SNSLobbyCreateSessionRequestV9Message.mode:type_name -> realtime.SymbolHash
+	21, // 65: realtime.SNSLobbyCreateSessionRequestV9Message.level:type_name -> realtime.SymbolHash
+	21, // 66: realtime.SNSLobbyCreateSessionRequestV9Message.platform:type_name -> realtime.SymbolHash
+	22, // 67: realtime.SNSLobbyCreateSessionRequestV9Message.entrants:type_name -> realtime.XPlatformID
+	21, // 68: realtime.SNSLobbyFindSessionRequestv11Message.version_lock:type_name -> realtime.SymbolHash
+	21, // 69: realtime.SNSLobbyFindSessionRequestv11Message.mode:type_name -> realtime.SymbolHash
+	21, // 70: realtime.SNSLobbyFindSessionRequestv11Message.level:type_name -> realtime.SymbolHash
+	21, // 71: realtime.SNSLobbyFindSessionRequestv11Message.platform:type_name -> realtime.SymbolHash
+	22, // 72: realtime.SNSLobbyFindSessionRequestv11Message.entrants:type_name -> realtime.XPlatformID
+	21, // 73: realtime.SNSLobbyJoinSessionRequestV7Message.version_lock:type_name -> realtime.SymbolHash
+	21, // 74: realtime.SNSLobbyJoinSessionRequestV7Message.platform:type_name -> realtime.SymbolHash
+	22, // 75: realtime.SNSLobbyPlayerSessionsRequestV5Message.user_id:type_name -> realtime.XPlatformID
+	21, // 76: realtime.SNSLobbyPlayerSessionsRequestV5Message.platform:type_name -> realtime.SymbolHash
+	22, // 77: realtime.SNSLobbyPlayerSessionsRequestV5Message.player_xpids:type_name -> realtime.XPlatformID
+	22, // 78: realtime.SNSLoggedInUserProfileFailureMessage.user_id:type_name -> realtime.XPlatformID
+	22, // 79: realtime.SNSLoggedInUserProfileRequestMessage.user_id:type_name -> realtime.XPlatformID
+	22, // 80: realtime.SNSLoggedInUserProfileSuccessMessage.user_id:type_name -> realtime.XPlatformID
+	22, // 81: realtime.SNSLogInFailureMessage.user_id:type_name -> realtime.XPlatformID
+	22, // 82: realtime.SNSLogInRequestV2Message.user_id:type_name -> realtime.XPlatformID
+	22, // 83: realtime.SNSLogInSuccessMessage.user_id:type_name -> realtime.XPlatformID
+	22, // 84: realtime.SNSOtherUserProfileFailureMessage.user_id:type_name -> realtime.XPlatformID
+	22, // 85: realtime.SNSOtherUserProfileRequestMessage.user_id:type_name -> realtime.XPlatformID
+	22, // 86: realtime.SNSOtherUserProfileSuccessMessage.user_id:type_name -> realtime.XPlatformID
+	22, // 87: realtime.SNSReconcileIAPResultMessage.user_id:type_name -> realtime.XPlatformID
+	22, // 88: realtime.SNSRemoteLogSetV3Message.user_id:type_name -> realtime.XPlatformID
+	22, // 89: realtime.SNSUpdateProfileMessage.user_id:type_name -> realtime.XPlatformID
+	22, // 90: realtime.SNSUpdateProfileSuccessMessage.user_id:type_name -> realtime.XPlatformID
+	22, // 91: realtime.SNSUpdateProfileFailureMessage.user_id:type_name -> realtime.XPlatformID
+	22, // 92: realtime.SNSUserServerProfileUpdateRequestMessage.user_id:type_name -> realtime.XPlatformID
+	22, // 93: realtime.SNSUserServerProfileUpdateSuccessMessage.user_id:type_name -> realtime.XPlatformID
+	94, // [94:94] is the sub-list for method output_type
+	94, // [94:94] is the sub-list for method input_type
+	94, // [94:94] is the sub-list for extension type_name
+	94, // [94:94] is the sub-list for extension extendee
+	0,  // [0:94] is the sub-list for field type_name
 }
 
 func init() { file_rtapi_realtime_v1_proto_init() }
@@ -5112,8 +5368,9 @@ func file_rtapi_realtime_v1_proto_init() {
 		(*Envelope_UpdateProfileFailure)(nil),
 		(*Envelope_UserServerProfileUpdateRequest)(nil),
 		(*Envelope_UserServerProfileUpdateSuccess)(nil),
+		(*Envelope_GameServerSaveLoadout)(nil),
 	}
-	file_rtapi_realtime_v1_proto_msgTypes[10].OneofWrappers = []any{
+	file_rtapi_realtime_v1_proto_msgTypes[13].OneofWrappers = []any{
 		(*LobbySessionStateMessage_SessionStateRaw)(nil),
 		(*LobbySessionStateMessage_SessionState)(nil),
 	}
@@ -5123,7 +5380,7 @@ func file_rtapi_realtime_v1_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_rtapi_realtime_v1_proto_rawDesc), len(file_rtapi_realtime_v1_proto_rawDesc)),
 			NumEnums:      5,
-			NumMessages:   56,
+			NumMessages:   59,
 			NumExtensions: 0,
 			NumServices:   0,
 		},

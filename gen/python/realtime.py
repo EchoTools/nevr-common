@@ -255,6 +255,10 @@ class Envelope(betterproto.Message):
     user_server_profile_update_success: "SNSUserServerProfileUpdateSuccessMessage" = (
         betterproto.message_field(52, group="message")
     )
+    # Game server requests to save a player's loadout.
+    game_server_save_loadout: "GameServerSaveLoadoutMessage" = (
+        betterproto.message_field(53, group="message")
+    )
 
 
 @dataclass
@@ -301,6 +305,33 @@ class GameServerRegistrationSuccessMessage(betterproto.Message):
 
     server_id: int = betterproto.uint64_field(1)
     external_ip_address: str = betterproto.string_field(2)
+
+
+@dataclass
+class LoadoutItem(betterproto.Message):
+    """Loadout item slot mapping (slot type hash to equipped item hash)"""
+
+    slot_type: float = betterproto.fixed64_field(1)
+    equipped_item: float = betterproto.fixed64_field(2)
+
+
+@dataclass
+class LoadoutInstance(betterproto.Message):
+    """A loadout instance within a player's loadout"""
+
+    instance_name: float = betterproto.fixed64_field(1)
+    items: List["LoadoutItem"] = betterproto.message_field(2)
+
+
+@dataclass
+class GameServerSaveLoadoutMessage(betterproto.Message):
+    """Save loadout message is sent from the game server to the service."""
+
+    lobby_session_id: str = betterproto.string_field(1)
+    entrant_id: str = betterproto.string_field(2)
+    loadout_slot: int = betterproto.int32_field(3)
+    jersey_number: int = betterproto.int32_field(4)
+    loadout_instances: List["LoadoutInstance"] = betterproto.message_field(5)
 
 
 @dataclass
@@ -651,15 +682,19 @@ class SNSLobbySessionSuccessV5Message(betterproto.Message):
     group_id: str = betterproto.string_field(3)
     endpoint: str = betterproto.string_field(4)
     team_index: int = betterproto.int32_field(5)
-    unk1: int = betterproto.uint32_field(6)
-    headset_type: int = betterproto.int32_field(7)
-    server_encoder_flags: int = betterproto.uint64_field(8)
-    client_encoder_flags: int = betterproto.uint64_field(9)
-    server_sequence_id: int = betterproto.uint64_field(10)
-    server_mac_key: bytes = betterproto.bytes_field(11)
-    server_enc_key: bytes = betterproto.bytes_field(12)
-    server_random_key: bytes = betterproto.bytes_field(13)
-    client_sequence_id: int = betterproto.uint64_field(14)
+    user_slot: int = betterproto.uint32_field(6)
+    flags32: int = betterproto.uint32_field(7)
+    session_flags: int = betterproto.uint32_field(8)
+    server_encoder_flags: int = betterproto.uint64_field(9)
+    client_encoder_flags: int = betterproto.uint64_field(10)
+    server_sequence_id: int = betterproto.uint64_field(11)
+    server_mac_key: bytes = betterproto.bytes_field(12)
+    server_enc_key: bytes = betterproto.bytes_field(13)
+    server_random_key: bytes = betterproto.bytes_field(14)
+    client_sequence_id: int = betterproto.uint64_field(15)
+    client_mac_key: bytes = betterproto.bytes_field(16)
+    client_enc_key: bytes = betterproto.bytes_field(17)
+    client_random_key: bytes = betterproto.bytes_field(18)
 
 
 @dataclass
@@ -777,8 +812,8 @@ class SNSRemoteLogSetV3Message(betterproto.Message):
     """
 
     user_id: "XPlatformID" = betterproto.message_field(1)
-    log_level: int = betterproto.uint64_field(6)
-    logs: List[str] = betterproto.string_field(7)
+    log_level: int = betterproto.uint64_field(2)
+    logs: List[str] = betterproto.string_field(3)
 
 
 @dataclass

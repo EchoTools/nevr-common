@@ -1751,11 +1751,14 @@ func (x *PlayerPass) GetTotalPasses() int32 {
 
 // Fired when a player's 'steals' stat increments.
 type PlayerSteal struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	PlayerSlot    int32                  `protobuf:"varint,1,opt,name=player_slot,json=playerSlot,proto3" json:"player_slot,omitempty"`
-	TotalSteals   int32                  `protobuf:"varint,2,opt,name=total_steals,json=totalSteals,proto3" json:"total_steals,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
+	state       protoimpl.MessageState `protogen:"open.v1"`
+	PlayerSlot  int32                  `protobuf:"varint,1,opt,name=player_slot,json=playerSlot,proto3" json:"player_slot,omitempty"`
+	TotalSteals int32                  `protobuf:"varint,2,opt,name=total_steals,json=totalSteals,proto3" json:"total_steals,omitempty"`
+	// The slot of the player who had possession before it was stolen.
+	// -1 if unknown or if possession was not tracked.
+	VictimPlayerSlot int32 `protobuf:"varint,3,opt,name=victim_player_slot,json=victimPlayerSlot,proto3" json:"victim_player_slot,omitempty"`
+	unknownFields    protoimpl.UnknownFields
+	sizeCache        protoimpl.SizeCache
 }
 
 func (x *PlayerSteal) Reset() {
@@ -1798,6 +1801,13 @@ func (x *PlayerSteal) GetPlayerSlot() int32 {
 func (x *PlayerSteal) GetTotalSteals() int32 {
 	if x != nil {
 		return x.TotalSteals
+	}
+	return 0
+}
+
+func (x *PlayerSteal) GetVictimPlayerSlot() int32 {
+	if x != nil {
+		return x.VictimPlayerSlot
 	}
 	return 0
 }
@@ -2157,11 +2167,12 @@ const file_telemetry_v1_telemetry_proto_rawDesc = "" +
 	"PlayerPass\x12\x1f\n" +
 	"\vplayer_slot\x18\x01 \x01(\x05R\n" +
 	"playerSlot\x12!\n" +
-	"\ftotal_passes\x18\x02 \x01(\x05R\vtotalPasses\"Q\n" +
+	"\ftotal_passes\x18\x02 \x01(\x05R\vtotalPasses\"\x7f\n" +
 	"\vPlayerSteal\x12\x1f\n" +
 	"\vplayer_slot\x18\x01 \x01(\x05R\n" +
 	"playerSlot\x12!\n" +
-	"\ftotal_steals\x18\x02 \x01(\x05R\vtotalSteals\"Q\n" +
+	"\ftotal_steals\x18\x02 \x01(\x05R\vtotalSteals\x12,\n" +
+	"\x12victim_player_slot\x18\x03 \x01(\x05R\x10victimPlayerSlot\"Q\n" +
 	"\vPlayerBlock\x12\x1f\n" +
 	"\vplayer_slot\x18\x01 \x01(\x05R\n" +
 	"playerSlot\x12!\n" +

@@ -26,7 +26,7 @@ namespace Nevr.Protobuf {
           string.Concat(
             "ChdydGFwaS9yZWFsdGltZV92MS5wcm90bxIIcmVhbHRpbWUaH2dvb2dsZS9w",
             "cm90b2J1Zi90aW1lc3RhbXAucHJvdG8aHHRlbGVtZXRyeS92MS90ZWxlbWV0",
-            "cnkucHJvdG8i+yYKCEVudmVsb3BlEhAKA2NpZBgBIAEoCVIDY2lkEicKBWVy",
+            "cnkucHJvdG8i3icKCEVudmVsb3BlEhAKA2NpZBgBIAEoCVIDY2lkEicKBWVy",
             "cm9yGAIgASgLMg8ucmVhbHRpbWUuRXJyb3JIAFIFZXJyb3ISVAoTbG9iYnlf",
             "c2Vzc2lvbl9zdGF0ZRgDIAEoCzIiLnJlYWx0aW1lLkxvYmJ5U2Vzc2lvblN0",
             "YXRlTWVzc2FnZUgAUhFsb2JieVNlc3Npb25TdGF0ZRJiChdjb25uZWN0aXZp",
@@ -136,202 +136,221 @@ namespace Nevr.Protobuf {
             "TWVzc2FnZUgAUh51c2VyU2VydmVyUHJvZmlsZVVwZGF0ZVJlcXVlc3QSgAEK",
             "InVzZXJfc2VydmVyX3Byb2ZpbGVfdXBkYXRlX3N1Y2Nlc3MYNCABKAsyMi5y",
             "ZWFsdGltZS5TTlNVc2VyU2VydmVyUHJvZmlsZVVwZGF0ZVN1Y2Nlc3NNZXNz",
-            "YWdlSABSHnVzZXJTZXJ2ZXJQcm9maWxlVXBkYXRlU3VjY2Vzc0IJCgdtZXNz",
-            "YWdlIucCCgVFcnJvchISCgRjb2RlGAEgASgFUgRjb2RlEhgKB21lc3NhZ2UY",
-            "AiABKAlSB21lc3NhZ2USNgoHY29udGV4dBgDIAMoCzIcLnJlYWx0aW1lLkVy",
-            "cm9yLkNvbnRleHRFbnRyeVIHY29udGV4dBo6CgxDb250ZXh0RW50cnkSEAoD",
-            "a2V5GAEgASgJUgNrZXkSFAoFdmFsdWUYAiABKAlSBXZhbHVlOgI4ASK7AQoE",
-            "Q29kZRImCiJDT0RFX1JVTlRJTUVfRVhDRVBUSU9OX1VOU1BFQ0lGSUVEEAAS",
-            "HQoZQ09ERV9VTlJFQ09HTklaRURfUEFZTE9BRBABEhgKFENPREVfTUlTU0lO",
-            "R19QQVlMT0FEEAISEgoOQ09ERV9CQURfSU5QVVQQAxIcChhDT0RFX1JFR0lT",
-            "VFJBVElPTl9GQUlMRUQQBBIgChxDT0RFX0xPQkJZX1NFU1NJT05fTk9UX0ZP",
-            "VU5EEAUivAEKGExvYmJ5U2Vzc2lvbkV2ZW50TWVzc2FnZRIoChBsb2JieV9z",
-            "ZXNzaW9uX2lkGAEgASgJUg5sb2JieVNlc3Npb25JZBISCgRjb2RlGAIgASgF",
-            "UgRjb2RlImIKBENvZGUSFAoQQ09ERV9VTlNQRUNJRklFRBAAEhAKDENPREVf",
-            "U1RBUlRFRBABEg4KCkNPREVfRU5ERUQQAhIPCgtDT0RFX0xPQ0tFRBADEhEK",
-            "DUNPREVfVU5MT0NLRUQQBCKnAgodR2FtZVNlcnZlclJlZ2lzdHJhdGlvbk1l",
-            "c3NhZ2USKAoQbG9naW5fc2Vzc2lvbl9pZBgBIAEoCVIObG9naW5TZXNzaW9u",
-            "SWQSGwoJc2VydmVyX2lkGAIgASgEUghzZXJ2ZXJJZBIuChNpbnRlcm5hbF9p",
-            "cF9hZGRyZXNzGAMgASgJUhFpbnRlcm5hbElwQWRkcmVzcxISCgRwb3J0GAQg",
-            "ASgNUgRwb3J0EhYKBnJlZ2lvbhgFIAEoBFIGcmVnaW9uEiEKDHZlcnNpb25f",
-            "bG9jaxgGIAEoBFILdmVyc2lvbkxvY2sSJgoPdGltZV9zdGVwX3VzZWNzGAcg",
-            "ASgNUg10aW1lU3RlcFVzZWNzEhgKB3ZlcnNpb24YCCABKAlSB3ZlcnNpb24i",
-            "cwokR2FtZVNlcnZlclJlZ2lzdHJhdGlvblN1Y2Nlc3NNZXNzYWdlEhsKCXNl",
-            "cnZlcl9pZBgBIAEoBFIIc2VydmVySWQSLgoTZXh0ZXJuYWxfaXBfYWRkcmVz",
-            "cxgCIAEoCVIRZXh0ZXJuYWxJcEFkZHJlc3MiagodTG9iYnlFbnRyYW50c0Nv",
-            "bm5lY3RlZE1lc3NhZ2USKAoQbG9iYnlfc2Vzc2lvbl9pZBgBIAEoCVIObG9i",
-            "YnlTZXNzaW9uSWQSHwoLZW50cmFudF9pZHMYAiADKAlSCmVudHJhbnRJZHMi",
-            "PQoaTG9iYnlFbnRyYW50c0FjY2VwdE1lc3NhZ2USHwoLZW50cmFudF9pZHMY",
-            "ASADKAlSCmVudHJhbnRJZHMiuwIKGkxvYmJ5RW50cmFudHNSZWplY3RNZXNz",
-            "YWdlEh8KC2VudHJhbnRfaWRzGAEgAygJUgplbnRyYW50SWRzEhIKBGNvZGUY",
-            "AiABKAVSBGNvZGUi5wEKBENvZGUSHQoZQ09ERV9JTlRFUk5BTF9VTlNQRUNJ",
-            "RklFRBAAEhQKEENPREVfQkFEX1JFUVVFU1QQARIQCgxDT0RFX1RJTUVPVVQQ",
-            "AhIaChZDT0RFX0RVUExJQ0FURV9VU0VSX0lEEAMSFQoRQ09ERV9MT0JCWV9M",
-            "T0NLRUQQBBITCg9DT0RFX0xPQkJZX0ZVTEwQBRIVChFDT0RFX0xPQkJZX0VO",
-            "RElORxAGEg8KC0NPREVfS0lDS0VEEAcSFQoRQ09ERV9ESVNDT05ORUNURUQQ",
-            "CBIRCg1DT0RFX0lOQUNUSVZFEAki4wIKGkxvYmJ5RW50cmFudFJlbW92ZWRN",
-            "ZXNzYWdlEigKEGxvYmJ5X3Nlc3Npb25faWQYASABKAlSDmxvYmJ5U2Vzc2lv",
-            "bklkEh0KCmVudHJhbnRfaWQYAiABKAlSCWVudHJhbnRJZBISCgRjb2RlGAMg",
-            "ASgFUgRjb2RlIucBCgRDb2RlEh0KGUNPREVfSU5URVJOQUxfVU5TUEVDSUZJ",
-            "RUQQABIUChBDT0RFX0JBRF9SRVFVRVNUEAESEAoMQ09ERV9USU1FT1VUEAIS",
-            "GgoWQ09ERV9EVVBMSUNBVEVfVVNFUl9JRBADEhUKEUNPREVfTE9CQllfTE9D",
-            "S0VEEAQSEwoPQ09ERV9MT0JCWV9GVUxMEAUSFQoRQ09ERV9MT0JCWV9FTkRJ",
-            "TkcQBhIPCgtDT0RFX0tJQ0tFRBAHEhUKEUNPREVfRElTQ09OTkVDVEVEEAgS",
-            "EQoNQ09ERV9JTkFDVElWRRAJItMCChlMb2JieVNlc3Npb25DcmVhdGVNZXNz",
-            "YWdlEigKEGxvYmJ5X3Nlc3Npb25faWQYASABKAlSDmxvYmJ5U2Vzc2lvbklk",
-            "Eh0KCmxvYmJ5X3R5cGUYAiABKAVSCWxvYmJ5VHlwZRIZCghncm91cF9pZBgD",
-            "IAEoCVIHZ3JvdXBJZBIhCgxtYXhfZW50cmFudHMYBCABKAVSC21heEVudHJh",
-            "bnRzEiMKDXNldHRpbmdzX2pzb24YBSABKAlSDHNldHRpbmdzSnNvbhIaCghm",
-            "ZWF0dXJlcxgGIAMoCVIIZmVhdHVyZXMSJgoPdGltZV9zdGVwX3VzZWNzGAcg",
-            "ASgNUg10aW1lU3RlcFVzZWNzIkYKCUxvYmJ5VHlwZRIhCh1MT0JCWV9UWVBF",
-            "X1BVQkxJQ19VTlNQRUNJRklFRBAAEhYKEkxPQkJZX1RZUEVfUFJJVkFURRAB",
-            "IowCChhMb2JieVNlc3Npb25TdGF0ZU1lc3NhZ2USJgoPdGltZV9zdGVwX3Vz",
-            "ZWNzGAEgASgNUg10aW1lU3RlcFVzZWNzEh0KCnRpY2tfY291bnQYAiABKARS",
-            "CXRpY2tDb3VudBJTChFzZXNzaW9uX3N0YXRlX3JhdxgDIAEoCzIlLnJlYWx0",
-            "aW1lLkxvYmJ5U2Vzc2lvblN0YXRlUmF3TWVzc2FnZUgAUg9zZXNzaW9uU3Rh",
-            "dGVSYXcSSwoNc2Vzc2lvbl9zdGF0ZRgEIAEoCzIkLnRlbGVtZXRyeS52MS5M",
-            "b2JieVNlc3Npb25TdGF0ZUZyYW1lSABSDHNlc3Npb25TdGF0ZUIHCgVzdGF0",
-            "ZSKuAQobTG9iYnlTZXNzaW9uU3RhdGVSYXdNZXNzYWdlEjgKCXRpbWVzdGFt",
-            "cBgBIAEoCzIaLmdvb2dsZS5wcm90b2J1Zi5UaW1lc3RhbXBSCXRpbWVzdGFt",
-            "cBInCg9zZXNzaW9uX3BheWxvYWQYAiABKAxSDnNlc3Npb25QYXlsb2FkEiwK",
-            "EnVzZXJfYm9uZXNfcGF5bG9hZBgDIAEoDFIQdXNlckJvbmVzUGF5bG9hZCKy",
-            "AgodQ29ubmVjdGl2aXR5U3RhdGlzdGljc01lc3NhZ2USKgoRcGFja2V0X2xv",
-            "c3NfcmF0aW8YASABKAJSD3BhY2tldExvc3NSYXRpbxIrChFwcmVkaWN0aW9u",
-            "X29mZnNldBgCIAEoBFIQcHJlZGljdGlvbk9mZnNldBIWCgZ0YXJnZXQYAyAB",
-            "KARSBnRhcmdldBIdCgpsb2NhbF90aW1lGAQgASgEUglsb2NhbFRpbWUSHwoL",
-            "c2VydmVyX3RpbWUYBSABKARSCnNlcnZlclRpbWUSMAoUcGVuZGluZ19zZXJ2",
-            "ZXJfZGVsdGEYBiABKANSEnBlbmRpbmdTZXJ2ZXJEZWx0YRIuChNkaXNjYXJk",
-            "ZWRfZnJhbWVfcGN0GAcgASgCUhFkaXNjYXJkZWRGcmFtZVBjdCIiCgpTeW1i",
-            "b2xIYXNoEhQKBXZhbHVlGAEgASgGUgV2YWx1ZSIdCgtYUGxhdGZvcm1JRBIO",
-            "CgJpZBgBIAEoCVICaWQiUQoRU05TVW5rbm93bk1lc3NhZ2USKAoEdHlwZRgB",
-            "IAEoCzIULnJlYWx0aW1lLlN5bWJvbEhhc2hSBHR5cGUSEgoEZGF0YRgCIAEo",
-            "DFIEZGF0YSIcChpTVENQQ29ubmVjdGlvblJlcXVpcmVFdmVudCIeChxTVENQ",
-            "Q29ubmVjdGlvblVucmVxdWlyZUV2ZW50Ij4KGVNOU0NvbmZpZ1JlcXVlc3RW",
-            "Mk1lc3NhZ2USIQoMcmVxdWVzdF9qc29uGAEgASgJUgtyZXF1ZXN0SnNvbiJ/",
-            "ChlTTlNDb25maWdTdWNjZXNzVjJNZXNzYWdlEigKBHR5cGUYASABKAsyFC5y",
-            "ZWFsdGltZS5TeW1ib2xIYXNoUgR0eXBlEiQKAmlkGAIgASgLMhQucmVhbHRp",
-            "bWUuU3ltYm9sSGFzaFICaWQSEgoEZGF0YRgDIAEoCVIEZGF0YSIxChlTTlND",
-            "b25maWdGYWlsdXJlVjJNZXNzYWdlEhQKBWVycm9yGAEgASgJUgVlcnJvciJn",
-            "ChZTTlNSZWNvbmNpbGVJQVBNZXNzYWdlEh0KCnNlc3Npb25faWQYASABKAlS",
-            "CXNlc3Npb25JZBIuCgd1c2VyX2lkGAIgASgLMhUucmVhbHRpbWUuWFBsYXRm",
-            "b3JtSURSBnVzZXJJZCIeChxTTlNDaGFubmVsSW5mb1JlcXVlc3RNZXNzYWdl",
-            "IkIKHVNOU0NoYW5uZWxJbmZvUmVzcG9uc2VNZXNzYWdlEiEKDGNoYW5uZWxf",
-            "aW5mbxgBIAEoCVILY2hhbm5lbEluZm8iTQobU05TRG9jdW1lbnRSZXF1ZXN0",
-            "VjJNZXNzYWdlEhoKCGxhbmd1YWdlGAEgASgJUghsYW5ndWFnZRISCgR0eXBl",
-            "GAIgASgJUgR0eXBlIkAKGVNOU0RvY3VtZW50U3VjY2Vzc01lc3NhZ2USIwoN",
-            "ZG9jdW1lbnRfanNvbhgBIAEoCVIMZG9jdW1lbnRKc29uIjUKGVNOU0RvY3Vt",
-            "ZW50RmFpbHVyZU1lc3NhZ2USGAoHbWVzc2FnZRgDIAEoCVIHbWVzc2FnZSKe",
-            "AwolU05TTG9iYnlDcmVhdGVTZXNzaW9uUmVxdWVzdFY5TWVzc2FnZRIsCgZy",
-            "ZWdpb24YASABKAsyFC5yZWFsdGltZS5TeW1ib2xIYXNoUgZyZWdpb24SNwoM",
-            "dmVyc2lvbl9sb2NrGAIgASgLMhQucmVhbHRpbWUuU3ltYm9sSGFzaFILdmVy",
-            "c2lvbkxvY2sSKAoEbW9kZRgDIAEoCzIULnJlYWx0aW1lLlN5bWJvbEhhc2hS",
-            "BG1vZGUSKgoFbGV2ZWwYBCABKAsyFC5yZWFsdGltZS5TeW1ib2xIYXNoUgVs",
-            "ZXZlbBIwCghwbGF0Zm9ybRgFIAEoCzIULnJlYWx0aW1lLlN5bWJvbEhhc2hS",
-            "CHBsYXRmb3JtEigKEGxvZ2luX3Nlc3Npb25faWQYBiABKAlSDmxvZ2luU2Vz",
-            "c2lvbklkEjEKCGVudHJhbnRzGAcgAygLMhUucmVhbHRpbWUuWFBsYXRmb3Jt",
-            "SURSCGVudHJhbnRzEikKEHNlc3Npb25fc2V0dGluZ3MYCCABKAlSD3Nlc3Np",
-            "b25TZXR0aW5ncyK0AwokU05TTG9iYnlGaW5kU2Vzc2lvblJlcXVlc3R2MTFN",
-            "ZXNzYWdlEjcKDHZlcnNpb25fbG9jaxgBIAEoCzIULnJlYWx0aW1lLlN5bWJv",
-            "bEhhc2hSC3ZlcnNpb25Mb2NrEigKBG1vZGUYAiABKAsyFC5yZWFsdGltZS5T",
-            "eW1ib2xIYXNoUgRtb2RlEioKBWxldmVsGAMgASgLMhQucmVhbHRpbWUuU3lt",
-            "Ym9sSGFzaFIFbGV2ZWwSMAoIcGxhdGZvcm0YBCABKAsyFC5yZWFsdGltZS5T",
-            "eW1ib2xIYXNoUghwbGF0Zm9ybRIoChBsb2dpbl9zZXNzaW9uX2lkGAUgASgJ",
-            "Ug5sb2dpblNlc3Npb25JZBIoChBjdXJyZW50X2xvYmJ5X2lkGAYgASgJUg5j",
-            "dXJyZW50TG9iYnlJZBIZCghncm91cF9pZBgHIAEoCVIHZ3JvdXBJZBIpChBz",
-            "ZXNzaW9uX3NldHRpbmdzGAggASgJUg9zZXNzaW9uU2V0dGluZ3MSMQoIZW50",
-            "cmFudHMYCSADKAsyFS5yZWFsdGltZS5YUGxhdGZvcm1JRFIIZW50cmFudHMi",
-            "6wEKI1NOU0xvYmJ5Sm9pblNlc3Npb25SZXF1ZXN0VjdNZXNzYWdlEhkKCGxv",
-            "YmJ5X2lkGAEgASgJUgdsb2JieUlkEjcKDHZlcnNpb25fbG9jaxgCIAEoCzIU",
-            "LnJlYWx0aW1lLlN5bWJvbEhhc2hSC3ZlcnNpb25Mb2NrEjAKCHBsYXRmb3Jt",
-            "GAMgASgLMhQucmVhbHRpbWUuU3ltYm9sSGFzaFIIcGxhdGZvcm0SKAoQbG9n",
-            "aW5fc2Vzc2lvbl9pZBgEIAEoCVIObG9naW5TZXNzaW9uSWQSFAoFZmxhZ3MY",
-            "BSABKARSBWZsYWdzIkIKH1NOU0xvYmJ5TWF0Y2htYWtlclN0YXR1c01lc3Nh",
-            "Z2USHwoLc3RhdHVzX2NvZGUYASABKA1SCnN0YXR1c0NvZGUiZAomU05TTG9i",
-            "YnlNYXRjaG1ha2VyU3RhdHVzUmVxdWVzdE1lc3NhZ2USEgoEdW5rMBgBIAEo",
-            "DVIEdW5rMBISCgR1bmsxGAIgASgNUgR1bmsxEhIKBHVuazIYAyABKA1SBHVu",
-            "azIiRgolU05TTG9iYnlQZW5kaW5nU2Vzc2lvbkNhbmNlbFYyTWVzc2FnZRId",
-            "CgpzZXNzaW9uX2lkGAEgASgJUglzZXNzaW9uSWQifQocU05TTG9iYnlQaW5n",
-            "UmVxdWVzdFYzTWVzc2FnZRISCgR1bmswGAEgASgNUgR1bmswEhIKBHVuazEY",
-            "AiABKA1SBHVuazESFwoHcnR0X21heBgDIAEoDVIGcnR0TWF4EhwKCWVuZHBv",
-            "aW50cxgEIAMoCVIJZW5kcG9pbnRzIjcKG1NOU0xvYmJ5UGluZ1Jlc3BvbnNl",
-            "TWVzc2FnZRIYCgdyZXN1bHRzGAEgAygJUgdyZXN1bHRzIokCCiZTTlNMb2Ji",
-            "eVBsYXllclNlc3Npb25zUmVxdWVzdFY1TWVzc2FnZRIoChBsb2dpbl9zZXNz",
-            "aW9uX2lkGAEgASgJUg5sb2dpblNlc3Npb25JZBIuCgd1c2VyX2lkGAIgASgL",
-            "MhUucmVhbHRpbWUuWFBsYXRmb3JtSURSBnVzZXJJZBIZCghsb2JieV9pZBgD",
-            "IAEoCVIHbG9iYnlJZBIwCghwbGF0Zm9ybRgEIAEoCzIULnJlYWx0aW1lLlN5",
-            "bWJvbEhhc2hSCHBsYXRmb3JtEjgKDHBsYXllcl94cGlkcxgFIAMoCzIVLnJl",
-            "YWx0aW1lLlhQbGF0Zm9ybUlEUgtwbGF5ZXJYcGlkcyJaCh9TTlNMb2JieVNl",
-            "c3Npb25GYWlsdXJlVjRNZXNzYWdlEh0KCmVycm9yX2NvZGUYASABKA1SCWVy",
-            "cm9yQ29kZRIYCgdtZXNzYWdlGAIgASgJUgdtZXNzYWdlIp4ECh9TTlNMb2Ji",
-            "eVNlc3Npb25TdWNjZXNzVjVNZXNzYWdlEhsKCWdhbWVfbW9kZRgBIAEoBlII",
-            "Z2FtZU1vZGUSGQoIbG9iYnlfaWQYAiABKAlSB2xvYmJ5SWQSGQoIZ3JvdXBf",
-            "aWQYAyABKAlSB2dyb3VwSWQSGgoIZW5kcG9pbnQYBCABKAlSCGVuZHBvaW50",
-            "Eh0KCnRlYW1faW5kZXgYBSABKAVSCXRlYW1JbmRleBISCgR1bmsxGAYgASgN",
-            "UgR1bmsxEiEKDGhlYWRzZXRfdHlwZRgHIAEoBVILaGVhZHNldFR5cGUSMAoU",
-            "c2VydmVyX2VuY29kZXJfZmxhZ3MYCCABKARSEnNlcnZlckVuY29kZXJGbGFn",
-            "cxIwChRjbGllbnRfZW5jb2Rlcl9mbGFncxgJIAEoBFISY2xpZW50RW5jb2Rl",
-            "ckZsYWdzEiwKEnNlcnZlcl9zZXF1ZW5jZV9pZBgKIAEoBFIQc2VydmVyU2Vx",
-            "dWVuY2VJZBIkCg5zZXJ2ZXJfbWFjX2tleRgLIAEoDFIMc2VydmVyTWFjS2V5",
-            "EiQKDnNlcnZlcl9lbmNfa2V5GAwgASgMUgxzZXJ2ZXJFbmNLZXkSKgoRc2Vy",
-            "dmVyX3JhbmRvbV9rZXkYDSABKAxSD3NlcnZlclJhbmRvbUtleRIsChJjbGll",
-            "bnRfc2VxdWVuY2VfaWQYDiABKARSEGNsaWVudFNlcXVlbmNlSWQinAEKJFNO",
-            "U0xvZ2dlZEluVXNlclByb2ZpbGVGYWlsdXJlTWVzc2FnZRIuCgd1c2VyX2lk",
-            "GAEgASgLMhUucmVhbHRpbWUuWFBsYXRmb3JtSURSBnVzZXJJZBIfCgtzdGF0",
-            "dXNfY29kZRgCIAEoBFIKc3RhdHVzQ29kZRIjCg1lcnJvcl9tZXNzYWdlGAMg",
-            "ASgJUgxlcnJvck1lc3NhZ2UipwEKJFNOU0xvZ2dlZEluVXNlclByb2ZpbGVS",
-            "ZXF1ZXN0TWVzc2FnZRIdCgpzZXNzaW9uX2lkGAEgASgJUglzZXNzaW9uSWQS",
-            "LgoHdXNlcl9pZBgCIAEoCzIVLnJlYWx0aW1lLlhQbGF0Zm9ybUlEUgZ1c2Vy",
-            "SWQSMAoUcHJvZmlsZV9yZXF1ZXN0X2RhdGEYAyABKAlSEnByb2ZpbGVSZXF1",
-            "ZXN0RGF0YSJwCiRTTlNMb2dnZWRJblVzZXJQcm9maWxlU3VjY2Vzc01lc3Nh",
+            "YWdlSABSHnVzZXJTZXJ2ZXJQcm9maWxlVXBkYXRlU3VjY2VzcxJhChhnYW1l",
+            "X3NlcnZlcl9zYXZlX2xvYWRvdXQYNSABKAsyJi5yZWFsdGltZS5HYW1lU2Vy",
+            "dmVyU2F2ZUxvYWRvdXRNZXNzYWdlSABSFWdhbWVTZXJ2ZXJTYXZlTG9hZG91",
+            "dEIJCgdtZXNzYWdlIucCCgVFcnJvchISCgRjb2RlGAEgASgFUgRjb2RlEhgK",
+            "B21lc3NhZ2UYAiABKAlSB21lc3NhZ2USNgoHY29udGV4dBgDIAMoCzIcLnJl",
+            "YWx0aW1lLkVycm9yLkNvbnRleHRFbnRyeVIHY29udGV4dBo6CgxDb250ZXh0",
+            "RW50cnkSEAoDa2V5GAEgASgJUgNrZXkSFAoFdmFsdWUYAiABKAlSBXZhbHVl",
+            "OgI4ASK7AQoEQ29kZRImCiJDT0RFX1JVTlRJTUVfRVhDRVBUSU9OX1VOU1BF",
+            "Q0lGSUVEEAASHQoZQ09ERV9VTlJFQ09HTklaRURfUEFZTE9BRBABEhgKFENP",
+            "REVfTUlTU0lOR19QQVlMT0FEEAISEgoOQ09ERV9CQURfSU5QVVQQAxIcChhD",
+            "T0RFX1JFR0lTVFJBVElPTl9GQUlMRUQQBBIgChxDT0RFX0xPQkJZX1NFU1NJ",
+            "T05fTk9UX0ZPVU5EEAUivAEKGExvYmJ5U2Vzc2lvbkV2ZW50TWVzc2FnZRIo",
+            "ChBsb2JieV9zZXNzaW9uX2lkGAEgASgJUg5sb2JieVNlc3Npb25JZBISCgRj",
+            "b2RlGAIgASgFUgRjb2RlImIKBENvZGUSFAoQQ09ERV9VTlNQRUNJRklFRBAA",
+            "EhAKDENPREVfU1RBUlRFRBABEg4KCkNPREVfRU5ERUQQAhIPCgtDT0RFX0xP",
+            "Q0tFRBADEhEKDUNPREVfVU5MT0NLRUQQBCKnAgodR2FtZVNlcnZlclJlZ2lz",
+            "dHJhdGlvbk1lc3NhZ2USKAoQbG9naW5fc2Vzc2lvbl9pZBgBIAEoCVIObG9n",
+            "aW5TZXNzaW9uSWQSGwoJc2VydmVyX2lkGAIgASgEUghzZXJ2ZXJJZBIuChNp",
+            "bnRlcm5hbF9pcF9hZGRyZXNzGAMgASgJUhFpbnRlcm5hbElwQWRkcmVzcxIS",
+            "CgRwb3J0GAQgASgNUgRwb3J0EhYKBnJlZ2lvbhgFIAEoBFIGcmVnaW9uEiEK",
+            "DHZlcnNpb25fbG9jaxgGIAEoBFILdmVyc2lvbkxvY2sSJgoPdGltZV9zdGVw",
+            "X3VzZWNzGAcgASgNUg10aW1lU3RlcFVzZWNzEhgKB3ZlcnNpb24YCCABKAlS",
+            "B3ZlcnNpb24icwokR2FtZVNlcnZlclJlZ2lzdHJhdGlvblN1Y2Nlc3NNZXNz",
+            "YWdlEhsKCXNlcnZlcl9pZBgBIAEoBFIIc2VydmVySWQSLgoTZXh0ZXJuYWxf",
+            "aXBfYWRkcmVzcxgCIAEoCVIRZXh0ZXJuYWxJcEFkZHJlc3MiTwoLTG9hZG91",
+            "dEl0ZW0SGwoJc2xvdF90eXBlGAEgASgGUghzbG90VHlwZRIjCg1lcXVpcHBl",
+            "ZF9pdGVtGAIgASgGUgxlcXVpcHBlZEl0ZW0iYwoPTG9hZG91dEluc3RhbmNl",
+            "EiMKDWluc3RhbmNlX25hbWUYASABKAZSDGluc3RhbmNlTmFtZRIrCgVpdGVt",
+            "cxgCIAMoCzIVLnJlYWx0aW1lLkxvYWRvdXRJdGVtUgVpdGVtcyL3AQocR2Ft",
+            "ZVNlcnZlclNhdmVMb2Fkb3V0TWVzc2FnZRIoChBsb2JieV9zZXNzaW9uX2lk",
+            "GAEgASgJUg5sb2JieVNlc3Npb25JZBIdCgplbnRyYW50X2lkGAIgASgJUgll",
+            "bnRyYW50SWQSIQoMbG9hZG91dF9zbG90GAMgASgFUgtsb2Fkb3V0U2xvdBIj",
+            "Cg1qZXJzZXlfbnVtYmVyGAQgASgFUgxqZXJzZXlOdW1iZXISRgoRbG9hZG91",
+            "dF9pbnN0YW5jZXMYBSADKAsyGS5yZWFsdGltZS5Mb2Fkb3V0SW5zdGFuY2VS",
+            "EGxvYWRvdXRJbnN0YW5jZXMiagodTG9iYnlFbnRyYW50c0Nvbm5lY3RlZE1l",
+            "c3NhZ2USKAoQbG9iYnlfc2Vzc2lvbl9pZBgBIAEoCVIObG9iYnlTZXNzaW9u",
+            "SWQSHwoLZW50cmFudF9pZHMYAiADKAlSCmVudHJhbnRJZHMiPQoaTG9iYnlF",
+            "bnRyYW50c0FjY2VwdE1lc3NhZ2USHwoLZW50cmFudF9pZHMYASADKAlSCmVu",
+            "dHJhbnRJZHMiuwIKGkxvYmJ5RW50cmFudHNSZWplY3RNZXNzYWdlEh8KC2Vu",
+            "dHJhbnRfaWRzGAEgAygJUgplbnRyYW50SWRzEhIKBGNvZGUYAiABKAVSBGNv",
+            "ZGUi5wEKBENvZGUSHQoZQ09ERV9JTlRFUk5BTF9VTlNQRUNJRklFRBAAEhQK",
+            "EENPREVfQkFEX1JFUVVFU1QQARIQCgxDT0RFX1RJTUVPVVQQAhIaChZDT0RF",
+            "X0RVUExJQ0FURV9VU0VSX0lEEAMSFQoRQ09ERV9MT0JCWV9MT0NLRUQQBBIT",
+            "Cg9DT0RFX0xPQkJZX0ZVTEwQBRIVChFDT0RFX0xPQkJZX0VORElORxAGEg8K",
+            "C0NPREVfS0lDS0VEEAcSFQoRQ09ERV9ESVNDT05ORUNURUQQCBIRCg1DT0RF",
+            "X0lOQUNUSVZFEAki4wIKGkxvYmJ5RW50cmFudFJlbW92ZWRNZXNzYWdlEigK",
+            "EGxvYmJ5X3Nlc3Npb25faWQYASABKAlSDmxvYmJ5U2Vzc2lvbklkEh0KCmVu",
+            "dHJhbnRfaWQYAiABKAlSCWVudHJhbnRJZBISCgRjb2RlGAMgASgFUgRjb2Rl",
+            "IucBCgRDb2RlEh0KGUNPREVfSU5URVJOQUxfVU5TUEVDSUZJRUQQABIUChBD",
+            "T0RFX0JBRF9SRVFVRVNUEAESEAoMQ09ERV9USU1FT1VUEAISGgoWQ09ERV9E",
+            "VVBMSUNBVEVfVVNFUl9JRBADEhUKEUNPREVfTE9CQllfTE9DS0VEEAQSEwoP",
+            "Q09ERV9MT0JCWV9GVUxMEAUSFQoRQ09ERV9MT0JCWV9FTkRJTkcQBhIPCgtD",
+            "T0RFX0tJQ0tFRBAHEhUKEUNPREVfRElTQ09OTkVDVEVEEAgSEQoNQ09ERV9J",
+            "TkFDVElWRRAJItMCChlMb2JieVNlc3Npb25DcmVhdGVNZXNzYWdlEigKEGxv",
+            "YmJ5X3Nlc3Npb25faWQYASABKAlSDmxvYmJ5U2Vzc2lvbklkEh0KCmxvYmJ5",
+            "X3R5cGUYAiABKAVSCWxvYmJ5VHlwZRIZCghncm91cF9pZBgDIAEoCVIHZ3Jv",
+            "dXBJZBIhCgxtYXhfZW50cmFudHMYBCABKAVSC21heEVudHJhbnRzEiMKDXNl",
+            "dHRpbmdzX2pzb24YBSABKAlSDHNldHRpbmdzSnNvbhIaCghmZWF0dXJlcxgG",
+            "IAMoCVIIZmVhdHVyZXMSJgoPdGltZV9zdGVwX3VzZWNzGAcgASgNUg10aW1l",
+            "U3RlcFVzZWNzIkYKCUxvYmJ5VHlwZRIhCh1MT0JCWV9UWVBFX1BVQkxJQ19V",
+            "TlNQRUNJRklFRBAAEhYKEkxPQkJZX1RZUEVfUFJJVkFURRABIowCChhMb2Ji",
+            "eVNlc3Npb25TdGF0ZU1lc3NhZ2USJgoPdGltZV9zdGVwX3VzZWNzGAEgASgN",
+            "Ug10aW1lU3RlcFVzZWNzEh0KCnRpY2tfY291bnQYAiABKARSCXRpY2tDb3Vu",
+            "dBJTChFzZXNzaW9uX3N0YXRlX3JhdxgDIAEoCzIlLnJlYWx0aW1lLkxvYmJ5",
+            "U2Vzc2lvblN0YXRlUmF3TWVzc2FnZUgAUg9zZXNzaW9uU3RhdGVSYXcSSwoN",
+            "c2Vzc2lvbl9zdGF0ZRgEIAEoCzIkLnRlbGVtZXRyeS52MS5Mb2JieVNlc3Np",
+            "b25TdGF0ZUZyYW1lSABSDHNlc3Npb25TdGF0ZUIHCgVzdGF0ZSKuAQobTG9i",
+            "YnlTZXNzaW9uU3RhdGVSYXdNZXNzYWdlEjgKCXRpbWVzdGFtcBgBIAEoCzIa",
+            "Lmdvb2dsZS5wcm90b2J1Zi5UaW1lc3RhbXBSCXRpbWVzdGFtcBInCg9zZXNz",
+            "aW9uX3BheWxvYWQYAiABKAxSDnNlc3Npb25QYXlsb2FkEiwKEnVzZXJfYm9u",
+            "ZXNfcGF5bG9hZBgDIAEoDFIQdXNlckJvbmVzUGF5bG9hZCKyAgodQ29ubmVj",
+            "dGl2aXR5U3RhdGlzdGljc01lc3NhZ2USKgoRcGFja2V0X2xvc3NfcmF0aW8Y",
+            "ASABKAJSD3BhY2tldExvc3NSYXRpbxIrChFwcmVkaWN0aW9uX29mZnNldBgC",
+            "IAEoBFIQcHJlZGljdGlvbk9mZnNldBIWCgZ0YXJnZXQYAyABKARSBnRhcmdl",
+            "dBIdCgpsb2NhbF90aW1lGAQgASgEUglsb2NhbFRpbWUSHwoLc2VydmVyX3Rp",
+            "bWUYBSABKARSCnNlcnZlclRpbWUSMAoUcGVuZGluZ19zZXJ2ZXJfZGVsdGEY",
+            "BiABKANSEnBlbmRpbmdTZXJ2ZXJEZWx0YRIuChNkaXNjYXJkZWRfZnJhbWVf",
+            "cGN0GAcgASgCUhFkaXNjYXJkZWRGcmFtZVBjdCIiCgpTeW1ib2xIYXNoEhQK",
+            "BXZhbHVlGAEgASgGUgV2YWx1ZSIdCgtYUGxhdGZvcm1JRBIOCgJpZBgBIAEo",
+            "CVICaWQiUQoRU05TVW5rbm93bk1lc3NhZ2USKAoEdHlwZRgBIAEoCzIULnJl",
+            "YWx0aW1lLlN5bWJvbEhhc2hSBHR5cGUSEgoEZGF0YRgCIAEoDFIEZGF0YSIc",
+            "ChpTVENQQ29ubmVjdGlvblJlcXVpcmVFdmVudCIeChxTVENQQ29ubmVjdGlv",
+            "blVucmVxdWlyZUV2ZW50Ij4KGVNOU0NvbmZpZ1JlcXVlc3RWMk1lc3NhZ2US",
+            "IQoMcmVxdWVzdF9qc29uGAEgASgJUgtyZXF1ZXN0SnNvbiJ/ChlTTlNDb25m",
+            "aWdTdWNjZXNzVjJNZXNzYWdlEigKBHR5cGUYASABKAsyFC5yZWFsdGltZS5T",
+            "eW1ib2xIYXNoUgR0eXBlEiQKAmlkGAIgASgLMhQucmVhbHRpbWUuU3ltYm9s",
+            "SGFzaFICaWQSEgoEZGF0YRgDIAEoCVIEZGF0YSIxChlTTlNDb25maWdGYWls",
+            "dXJlVjJNZXNzYWdlEhQKBWVycm9yGAEgASgJUgVlcnJvciJnChZTTlNSZWNv",
+            "bmNpbGVJQVBNZXNzYWdlEh0KCnNlc3Npb25faWQYASABKAlSCXNlc3Npb25J",
+            "ZBIuCgd1c2VyX2lkGAIgASgLMhUucmVhbHRpbWUuWFBsYXRmb3JtSURSBnVz",
+            "ZXJJZCIeChxTTlNDaGFubmVsSW5mb1JlcXVlc3RNZXNzYWdlIkIKHVNOU0No",
+            "YW5uZWxJbmZvUmVzcG9uc2VNZXNzYWdlEiEKDGNoYW5uZWxfaW5mbxgBIAEo",
+            "CVILY2hhbm5lbEluZm8iTQobU05TRG9jdW1lbnRSZXF1ZXN0VjJNZXNzYWdl",
+            "EhoKCGxhbmd1YWdlGAEgASgJUghsYW5ndWFnZRISCgR0eXBlGAIgASgJUgR0",
+            "eXBlIkAKGVNOU0RvY3VtZW50U3VjY2Vzc01lc3NhZ2USIwoNZG9jdW1lbnRf",
+            "anNvbhgBIAEoCVIMZG9jdW1lbnRKc29uIjUKGVNOU0RvY3VtZW50RmFpbHVy",
+            "ZU1lc3NhZ2USGAoHbWVzc2FnZRgDIAEoCVIHbWVzc2FnZSKeAwolU05TTG9i",
+            "YnlDcmVhdGVTZXNzaW9uUmVxdWVzdFY5TWVzc2FnZRIsCgZyZWdpb24YASAB",
+            "KAsyFC5yZWFsdGltZS5TeW1ib2xIYXNoUgZyZWdpb24SNwoMdmVyc2lvbl9s",
+            "b2NrGAIgASgLMhQucmVhbHRpbWUuU3ltYm9sSGFzaFILdmVyc2lvbkxvY2sS",
+            "KAoEbW9kZRgDIAEoCzIULnJlYWx0aW1lLlN5bWJvbEhhc2hSBG1vZGUSKgoF",
+            "bGV2ZWwYBCABKAsyFC5yZWFsdGltZS5TeW1ib2xIYXNoUgVsZXZlbBIwCghw",
+            "bGF0Zm9ybRgFIAEoCzIULnJlYWx0aW1lLlN5bWJvbEhhc2hSCHBsYXRmb3Jt",
+            "EigKEGxvZ2luX3Nlc3Npb25faWQYBiABKAlSDmxvZ2luU2Vzc2lvbklkEjEK",
+            "CGVudHJhbnRzGAcgAygLMhUucmVhbHRpbWUuWFBsYXRmb3JtSURSCGVudHJh",
+            "bnRzEikKEHNlc3Npb25fc2V0dGluZ3MYCCABKAlSD3Nlc3Npb25TZXR0aW5n",
+            "cyK0AwokU05TTG9iYnlGaW5kU2Vzc2lvblJlcXVlc3R2MTFNZXNzYWdlEjcK",
+            "DHZlcnNpb25fbG9jaxgBIAEoCzIULnJlYWx0aW1lLlN5bWJvbEhhc2hSC3Zl",
+            "cnNpb25Mb2NrEigKBG1vZGUYAiABKAsyFC5yZWFsdGltZS5TeW1ib2xIYXNo",
+            "UgRtb2RlEioKBWxldmVsGAMgASgLMhQucmVhbHRpbWUuU3ltYm9sSGFzaFIF",
+            "bGV2ZWwSMAoIcGxhdGZvcm0YBCABKAsyFC5yZWFsdGltZS5TeW1ib2xIYXNo",
+            "UghwbGF0Zm9ybRIoChBsb2dpbl9zZXNzaW9uX2lkGAUgASgJUg5sb2dpblNl",
+            "c3Npb25JZBIoChBjdXJyZW50X2xvYmJ5X2lkGAYgASgJUg5jdXJyZW50TG9i",
+            "YnlJZBIZCghncm91cF9pZBgHIAEoCVIHZ3JvdXBJZBIpChBzZXNzaW9uX3Nl",
+            "dHRpbmdzGAggASgJUg9zZXNzaW9uU2V0dGluZ3MSMQoIZW50cmFudHMYCSAD",
+            "KAsyFS5yZWFsdGltZS5YUGxhdGZvcm1JRFIIZW50cmFudHMi6wEKI1NOU0xv",
+            "YmJ5Sm9pblNlc3Npb25SZXF1ZXN0VjdNZXNzYWdlEhkKCGxvYmJ5X2lkGAEg",
+            "ASgJUgdsb2JieUlkEjcKDHZlcnNpb25fbG9jaxgCIAEoCzIULnJlYWx0aW1l",
+            "LlN5bWJvbEhhc2hSC3ZlcnNpb25Mb2NrEjAKCHBsYXRmb3JtGAMgASgLMhQu",
+            "cmVhbHRpbWUuU3ltYm9sSGFzaFIIcGxhdGZvcm0SKAoQbG9naW5fc2Vzc2lv",
+            "bl9pZBgEIAEoCVIObG9naW5TZXNzaW9uSWQSFAoFZmxhZ3MYBSABKARSBWZs",
+            "YWdzIkIKH1NOU0xvYmJ5TWF0Y2htYWtlclN0YXR1c01lc3NhZ2USHwoLc3Rh",
+            "dHVzX2NvZGUYASABKA1SCnN0YXR1c0NvZGUiZAomU05TTG9iYnlNYXRjaG1h",
+            "a2VyU3RhdHVzUmVxdWVzdE1lc3NhZ2USEgoEdW5rMBgBIAEoDVIEdW5rMBIS",
+            "CgR1bmsxGAIgASgNUgR1bmsxEhIKBHVuazIYAyABKA1SBHVuazIiRgolU05T",
+            "TG9iYnlQZW5kaW5nU2Vzc2lvbkNhbmNlbFYyTWVzc2FnZRIdCgpzZXNzaW9u",
+            "X2lkGAEgASgJUglzZXNzaW9uSWQifQocU05TTG9iYnlQaW5nUmVxdWVzdFYz",
+            "TWVzc2FnZRISCgR1bmswGAEgASgNUgR1bmswEhIKBHVuazEYAiABKA1SBHVu",
+            "azESFwoHcnR0X21heBgDIAEoDVIGcnR0TWF4EhwKCWVuZHBvaW50cxgEIAMo",
+            "CVIJZW5kcG9pbnRzIjcKG1NOU0xvYmJ5UGluZ1Jlc3BvbnNlTWVzc2FnZRIY",
+            "CgdyZXN1bHRzGAEgAygJUgdyZXN1bHRzIokCCiZTTlNMb2JieVBsYXllclNl",
+            "c3Npb25zUmVxdWVzdFY1TWVzc2FnZRIoChBsb2dpbl9zZXNzaW9uX2lkGAEg",
+            "ASgJUg5sb2dpblNlc3Npb25JZBIuCgd1c2VyX2lkGAIgASgLMhUucmVhbHRp",
+            "bWUuWFBsYXRmb3JtSURSBnVzZXJJZBIZCghsb2JieV9pZBgDIAEoCVIHbG9i",
+            "YnlJZBIwCghwbGF0Zm9ybRgEIAEoCzIULnJlYWx0aW1lLlN5bWJvbEhhc2hS",
+            "CHBsYXRmb3JtEjgKDHBsYXllcl94cGlkcxgFIAMoCzIVLnJlYWx0aW1lLlhQ",
+            "bGF0Zm9ybUlEUgtwbGF5ZXJYcGlkcyJaCh9TTlNMb2JieVNlc3Npb25GYWls",
+            "dXJlVjRNZXNzYWdlEh0KCmVycm9yX2NvZGUYASABKA1SCWVycm9yQ29kZRIY",
+            "CgdtZXNzYWdlGAIgASgJUgdtZXNzYWdlIrsFCh9TTlNMb2JieVNlc3Npb25T",
+            "dWNjZXNzVjVNZXNzYWdlEhsKCWdhbWVfbW9kZRgBIAEoBlIIZ2FtZU1vZGUS",
+            "GQoIbG9iYnlfaWQYAiABKAlSB2xvYmJ5SWQSGQoIZ3JvdXBfaWQYAyABKAlS",
+            "B2dyb3VwSWQSGgoIZW5kcG9pbnQYBCABKAlSCGVuZHBvaW50Eh0KCnRlYW1f",
+            "aW5kZXgYBSABKAVSCXRlYW1JbmRleBIbCgl1c2VyX3Nsb3QYBiABKA1SCHVz",
+            "ZXJTbG90EhgKB2ZsYWdzMzIYByABKA1SB2ZsYWdzMzISIwoNc2Vzc2lvbl9m",
+            "bGFncxgIIAEoDVIMc2Vzc2lvbkZsYWdzEjAKFHNlcnZlcl9lbmNvZGVyX2Zs",
+            "YWdzGAkgASgEUhJzZXJ2ZXJFbmNvZGVyRmxhZ3MSMAoUY2xpZW50X2VuY29k",
+            "ZXJfZmxhZ3MYCiABKARSEmNsaWVudEVuY29kZXJGbGFncxIsChJzZXJ2ZXJf",
+            "c2VxdWVuY2VfaWQYCyABKARSEHNlcnZlclNlcXVlbmNlSWQSJAoOc2VydmVy",
+            "X21hY19rZXkYDCABKAxSDHNlcnZlck1hY0tleRIkCg5zZXJ2ZXJfZW5jX2tl",
+            "eRgNIAEoDFIMc2VydmVyRW5jS2V5EioKEXNlcnZlcl9yYW5kb21fa2V5GA4g",
+            "ASgMUg9zZXJ2ZXJSYW5kb21LZXkSLAoSY2xpZW50X3NlcXVlbmNlX2lkGA8g",
+            "ASgEUhBjbGllbnRTZXF1ZW5jZUlkEiQKDmNsaWVudF9tYWNfa2V5GBAgASgM",
+            "UgxjbGllbnRNYWNLZXkSJAoOY2xpZW50X2VuY19rZXkYESABKAxSDGNsaWVu",
+            "dEVuY0tleRIqChFjbGllbnRfcmFuZG9tX2tleRgSIAEoDFIPY2xpZW50UmFu",
+            "ZG9tS2V5IpwBCiRTTlNMb2dnZWRJblVzZXJQcm9maWxlRmFpbHVyZU1lc3Nh",
             "Z2USLgoHdXNlcl9pZBgBIAEoCzIVLnJlYWx0aW1lLlhQbGF0Zm9ybUlEUgZ1",
-            "c2VySWQSGAoHcGF5bG9hZBgCIAEoCVIHcGF5bG9hZCKOAQoWU05TTG9nSW5G",
-            "YWlsdXJlTWVzc2FnZRIuCgd1c2VyX2lkGAEgASgLMhUucmVhbHRpbWUuWFBs",
-            "YXRmb3JtSURSBnVzZXJJZBIfCgtzdGF0dXNfY29kZRgCIAEoBFIKc3RhdHVz",
-            "Q29kZRIjCg1lcnJvcl9tZXNzYWdlGAMgASgJUgxlcnJvck1lc3NhZ2UilAEK",
-            "GFNOU0xvZ0luUmVxdWVzdFYyTWVzc2FnZRIuChNwcmV2aW91c19zZXNzaW9u",
-            "X2lkGAEgASgJUhFwcmV2aW91c1Nlc3Npb25JZBIuCgd1c2VyX2lkGAIgASgL",
-            "MhUucmVhbHRpbWUuWFBsYXRmb3JtSURSBnVzZXJJZBIYCgdwYXlsb2FkGAMg",
-            "ASgJUgdwYXlsb2FkIjoKF1NOU0xvZ2luU2V0dGluZ3NNZXNzYWdlEh8KC2Nv",
-            "bmZpZ19kYXRhGAEgASgJUgpjb25maWdEYXRhImcKFlNOU0xvZ0luU3VjY2Vz",
-            "c01lc3NhZ2USHQoKc2Vzc2lvbl9pZBgBIAEoCVIJc2Vzc2lvbklkEi4KB3Vz",
-            "ZXJfaWQYAiABKAsyFS5yZWFsdGltZS5YUGxhdGZvcm1JRFIGdXNlcklkIo4B",
-            "CiFTTlNPdGhlclVzZXJQcm9maWxlRmFpbHVyZU1lc3NhZ2USLgoHdXNlcl9p",
-            "ZBgBIAEoCzIVLnJlYWx0aW1lLlhQbGF0Zm9ybUlEUgZ1c2VySWQSHwoLc3Rh",
-            "dHVzX2NvZGUYAiABKARSCnN0YXR1c0NvZGUSGAoHbWVzc2FnZRgDIAEoCVIH",
-            "bWVzc2FnZSJnCiFTTlNPdGhlclVzZXJQcm9maWxlUmVxdWVzdE1lc3NhZ2US",
-            "LgoHdXNlcl9pZBgBIAEoCzIVLnJlYWx0aW1lLlhQbGF0Zm9ybUlEUgZ1c2Vy",
-            "SWQSEgoEZGF0YRgCIAEoCVIEZGF0YSJtCiFTTlNPdGhlclVzZXJQcm9maWxl",
-            "U3VjY2Vzc01lc3NhZ2USLgoHdXNlcl9pZBgBIAEoCzIVLnJlYWx0aW1lLlhQ",
-            "bGF0Zm9ybUlEUgZ1c2VySWQSGAoHcHJvZmlsZRgCIAEoCVIHcHJvZmlsZSJp",
-            "ChxTTlNSZWNvbmNpbGVJQVBSZXN1bHRNZXNzYWdlEi4KB3VzZXJfaWQYASAB",
-            "KAsyFS5yZWFsdGltZS5YUGxhdGZvcm1JRFIGdXNlcklkEhkKCGlhcF9kYXRh",
-            "GAIgASgJUgdpYXBEYXRhInsKGFNOU1JlbW90ZUxvZ1NldFYzTWVzc2FnZRIu",
-            "Cgd1c2VyX2lkGAEgASgLMhUucmVhbHRpbWUuWFBsYXRmb3JtSURSBnVzZXJJ",
-            "ZBIbCglsb2dfbGV2ZWwYBiABKARSCGxvZ0xldmVsEhIKBGxvZ3MYByADKAlS",
-            "BGxvZ3MijQEKF1NOU1VwZGF0ZVByb2ZpbGVNZXNzYWdlEigKEGxvZ2luX3Nl",
-            "c3Npb25faWQYASABKAlSDmxvZ2luU2Vzc2lvbklkEi4KB3VzZXJfaWQYAiAB",
-            "KAsyFS5yZWFsdGltZS5YUGxhdGZvcm1JRFIGdXNlcklkEhgKB3BheWxvYWQY",
-            "AyABKAlSB3BheWxvYWQiUAoeU05TVXBkYXRlUHJvZmlsZVN1Y2Nlc3NNZXNz",
+            "c2VySWQSHwoLc3RhdHVzX2NvZGUYAiABKARSCnN0YXR1c0NvZGUSIwoNZXJy",
+            "b3JfbWVzc2FnZRgDIAEoCVIMZXJyb3JNZXNzYWdlIqcBCiRTTlNMb2dnZWRJ",
+            "blVzZXJQcm9maWxlUmVxdWVzdE1lc3NhZ2USHQoKc2Vzc2lvbl9pZBgBIAEo",
+            "CVIJc2Vzc2lvbklkEi4KB3VzZXJfaWQYAiABKAsyFS5yZWFsdGltZS5YUGxh",
+            "dGZvcm1JRFIGdXNlcklkEjAKFHByb2ZpbGVfcmVxdWVzdF9kYXRhGAMgASgJ",
+            "UhJwcm9maWxlUmVxdWVzdERhdGEicAokU05TTG9nZ2VkSW5Vc2VyUHJvZmls",
+            "ZVN1Y2Nlc3NNZXNzYWdlEi4KB3VzZXJfaWQYASABKAsyFS5yZWFsdGltZS5Y",
+            "UGxhdGZvcm1JRFIGdXNlcklkEhgKB3BheWxvYWQYAiABKAlSB3BheWxvYWQi",
+            "jgEKFlNOU0xvZ0luRmFpbHVyZU1lc3NhZ2USLgoHdXNlcl9pZBgBIAEoCzIV",
+            "LnJlYWx0aW1lLlhQbGF0Zm9ybUlEUgZ1c2VySWQSHwoLc3RhdHVzX2NvZGUY",
+            "AiABKARSCnN0YXR1c0NvZGUSIwoNZXJyb3JfbWVzc2FnZRgDIAEoCVIMZXJy",
+            "b3JNZXNzYWdlIpQBChhTTlNMb2dJblJlcXVlc3RWMk1lc3NhZ2USLgoTcHJl",
+            "dmlvdXNfc2Vzc2lvbl9pZBgBIAEoCVIRcHJldmlvdXNTZXNzaW9uSWQSLgoH",
+            "dXNlcl9pZBgCIAEoCzIVLnJlYWx0aW1lLlhQbGF0Zm9ybUlEUgZ1c2VySWQS",
+            "GAoHcGF5bG9hZBgDIAEoCVIHcGF5bG9hZCI6ChdTTlNMb2dpblNldHRpbmdz",
+            "TWVzc2FnZRIfCgtjb25maWdfZGF0YRgBIAEoCVIKY29uZmlnRGF0YSJnChZT",
+            "TlNMb2dJblN1Y2Nlc3NNZXNzYWdlEh0KCnNlc3Npb25faWQYASABKAlSCXNl",
+            "c3Npb25JZBIuCgd1c2VyX2lkGAIgASgLMhUucmVhbHRpbWUuWFBsYXRmb3Jt",
+            "SURSBnVzZXJJZCKOAQohU05TT3RoZXJVc2VyUHJvZmlsZUZhaWx1cmVNZXNz",
             "YWdlEi4KB3VzZXJfaWQYASABKAsyFS5yZWFsdGltZS5YUGxhdGZvcm1JRFIG",
-            "dXNlcklkIosBCh5TTlNVcGRhdGVQcm9maWxlRmFpbHVyZU1lc3NhZ2USLgoH",
-            "dXNlcl9pZBgBIAEoCzIVLnJlYWx0aW1lLlhQbGF0Zm9ybUlEUgZ1c2VySWQS",
-            "HwoLc3RhdHVzX2NvZGUYAiABKARSCnN0YXR1c0NvZGUSGAoHbWVzc2FnZRgD",
-            "IAEoCVIHbWVzc2FnZSJ0CihTTlNVc2VyU2VydmVyUHJvZmlsZVVwZGF0ZVJl",
+            "dXNlcklkEh8KC3N0YXR1c19jb2RlGAIgASgEUgpzdGF0dXNDb2RlEhgKB21l",
+            "c3NhZ2UYAyABKAlSB21lc3NhZ2UiZwohU05TT3RoZXJVc2VyUHJvZmlsZVJl",
             "cXVlc3RNZXNzYWdlEi4KB3VzZXJfaWQYASABKAsyFS5yZWFsdGltZS5YUGxh",
-            "dGZvcm1JRFIGdXNlcklkEhgKB3BheWxvYWQYAiABKAlSB3BheWxvYWQiWgoo",
-            "U05TVXNlclNlcnZlclByb2ZpbGVVcGRhdGVTdWNjZXNzTWVzc2FnZRIuCgd1",
-            "c2VyX2lkGAEgASgLMhUucmVhbHRpbWUuWFBsYXRmb3JtSURSBnVzZXJJZEJz",
-            "Ch9jb20uZ2l0aHViLmVjaG90b29scy5uZXZyLnJ0YXBpQgxOZXZyUmVhbHRp",
-            "bWVQAVowZ2l0aHViLmNvbS9lY2hvdG9vbHMvbmV2ci1jb21tb24vdjQvZ2Vu",
-            "L2dvL3J0YXBpqgINTmV2ci5Qcm90b2J1ZmIGcHJvdG8z"));
+            "dGZvcm1JRFIGdXNlcklkEhIKBGRhdGEYAiABKAlSBGRhdGEibQohU05TT3Ro",
+            "ZXJVc2VyUHJvZmlsZVN1Y2Nlc3NNZXNzYWdlEi4KB3VzZXJfaWQYASABKAsy",
+            "FS5yZWFsdGltZS5YUGxhdGZvcm1JRFIGdXNlcklkEhgKB3Byb2ZpbGUYAiAB",
+            "KAlSB3Byb2ZpbGUiaQocU05TUmVjb25jaWxlSUFQUmVzdWx0TWVzc2FnZRIu",
+            "Cgd1c2VyX2lkGAEgASgLMhUucmVhbHRpbWUuWFBsYXRmb3JtSURSBnVzZXJJ",
+            "ZBIZCghpYXBfZGF0YRgCIAEoCVIHaWFwRGF0YSJ7ChhTTlNSZW1vdGVMb2dT",
+            "ZXRWM01lc3NhZ2USLgoHdXNlcl9pZBgBIAEoCzIVLnJlYWx0aW1lLlhQbGF0",
+            "Zm9ybUlEUgZ1c2VySWQSGwoJbG9nX2xldmVsGAIgASgEUghsb2dMZXZlbBIS",
+            "CgRsb2dzGAMgAygJUgRsb2dzIo0BChdTTlNVcGRhdGVQcm9maWxlTWVzc2Fn",
+            "ZRIoChBsb2dpbl9zZXNzaW9uX2lkGAEgASgJUg5sb2dpblNlc3Npb25JZBIu",
+            "Cgd1c2VyX2lkGAIgASgLMhUucmVhbHRpbWUuWFBsYXRmb3JtSURSBnVzZXJJ",
+            "ZBIYCgdwYXlsb2FkGAMgASgJUgdwYXlsb2FkIlAKHlNOU1VwZGF0ZVByb2Zp",
+            "bGVTdWNjZXNzTWVzc2FnZRIuCgd1c2VyX2lkGAEgASgLMhUucmVhbHRpbWUu",
+            "WFBsYXRmb3JtSURSBnVzZXJJZCKLAQoeU05TVXBkYXRlUHJvZmlsZUZhaWx1",
+            "cmVNZXNzYWdlEi4KB3VzZXJfaWQYASABKAsyFS5yZWFsdGltZS5YUGxhdGZv",
+            "cm1JRFIGdXNlcklkEh8KC3N0YXR1c19jb2RlGAIgASgEUgpzdGF0dXNDb2Rl",
+            "EhgKB21lc3NhZ2UYAyABKAlSB21lc3NhZ2UidAooU05TVXNlclNlcnZlclBy",
+            "b2ZpbGVVcGRhdGVSZXF1ZXN0TWVzc2FnZRIuCgd1c2VyX2lkGAEgASgLMhUu",
+            "cmVhbHRpbWUuWFBsYXRmb3JtSURSBnVzZXJJZBIYCgdwYXlsb2FkGAIgASgJ",
+            "UgdwYXlsb2FkIloKKFNOU1VzZXJTZXJ2ZXJQcm9maWxlVXBkYXRlU3VjY2Vz",
+            "c01lc3NhZ2USLgoHdXNlcl9pZBgBIAEoCzIVLnJlYWx0aW1lLlhQbGF0Zm9y",
+            "bUlEUgZ1c2VySWRCcwofY29tLmdpdGh1Yi5lY2hvdG9vbHMubmV2ci5ydGFw",
+            "aUIMTmV2clJlYWx0aW1lUAFaMGdpdGh1Yi5jb20vZWNob3Rvb2xzL25ldnIt",
+            "Y29tbW9uL3Y0L2dlbi9nby9ydGFwaaoCDU5ldnIuUHJvdG9idWZiBnByb3Rv",
+            "Mw=="));
       descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
           new pbr::FileDescriptor[] { global::Google.Protobuf.WellKnownTypes.TimestampReflection.Descriptor, global::Nevr.Telemetry.Protobuf.TelemetryReflection.Descriptor, },
           new pbr::GeneratedClrTypeInfo(null, null, new pbr::GeneratedClrTypeInfo[] {
-            new pbr::GeneratedClrTypeInfo(typeof(global::Nevr.Protobuf.Envelope), global::Nevr.Protobuf.Envelope.Parser, new[]{ "Cid", "Error", "LobbySessionState", "ConnectivityStatistics", "GameServerRegistration", "GameServerRegistrationSuccess", "LobbySessionCreate", "LobbySessionEvent", "LobbyEntrantConnected", "LobbyEntrantsAccept", "LobbyEntrantReject", "LobbyEntrantRemoved", "UnknownMessage", "TcpConnectionRequireEvent", "TcpConnectionUnrequireEvent", "ConfigRequestV2", "ConfigSuccessV2", "ConfigFailureV2", "ReconcileIap", "ChannelInfoRequest", "ChannelInfoResponse", "DocumentRequestV2", "DocumentSuccess", "DocumentFailure", "LobbyCreateSessionRequestV9", "LobbyFindSessionRequestV11", "LobbyJoinSessionRequestV7", "LobbyMatchmakerStatus", "LobbyMatchmakerStatusRequest", "LobbyPendingSessionCancelV2", "LobbyPingRequestV3", "LobbyPingResponse", "LobbyPlayerSessionsRequestV5", "LobbySessionFailureV4", "LobbySessionSuccessV5", "LoggedInUserProfileFailure", "LoggedInUserProfileRequest", "LoggedInUserProfileSuccess", "LogInFailure", "LogInRequestV2", "LoginSettings", "LogInSuccess", "OtherUserProfileFailure", "OtherUserProfileRequest", "OtherUserProfileSuccess", "ReconcileIapResult", "RemoteLogSetV3", "UpdateProfile", "UpdateProfileSuccess", "UpdateProfileFailure", "UserServerProfileUpdateRequest", "UserServerProfileUpdateSuccess" }, new[]{ "Message" }, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::Nevr.Protobuf.Envelope), global::Nevr.Protobuf.Envelope.Parser, new[]{ "Cid", "Error", "LobbySessionState", "ConnectivityStatistics", "GameServerRegistration", "GameServerRegistrationSuccess", "LobbySessionCreate", "LobbySessionEvent", "LobbyEntrantConnected", "LobbyEntrantsAccept", "LobbyEntrantReject", "LobbyEntrantRemoved", "UnknownMessage", "TcpConnectionRequireEvent", "TcpConnectionUnrequireEvent", "ConfigRequestV2", "ConfigSuccessV2", "ConfigFailureV2", "ReconcileIap", "ChannelInfoRequest", "ChannelInfoResponse", "DocumentRequestV2", "DocumentSuccess", "DocumentFailure", "LobbyCreateSessionRequestV9", "LobbyFindSessionRequestV11", "LobbyJoinSessionRequestV7", "LobbyMatchmakerStatus", "LobbyMatchmakerStatusRequest", "LobbyPendingSessionCancelV2", "LobbyPingRequestV3", "LobbyPingResponse", "LobbyPlayerSessionsRequestV5", "LobbySessionFailureV4", "LobbySessionSuccessV5", "LoggedInUserProfileFailure", "LoggedInUserProfileRequest", "LoggedInUserProfileSuccess", "LogInFailure", "LogInRequestV2", "LoginSettings", "LogInSuccess", "OtherUserProfileFailure", "OtherUserProfileRequest", "OtherUserProfileSuccess", "ReconcileIapResult", "RemoteLogSetV3", "UpdateProfile", "UpdateProfileSuccess", "UpdateProfileFailure", "UserServerProfileUpdateRequest", "UserServerProfileUpdateSuccess", "GameServerSaveLoadout" }, new[]{ "Message" }, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Nevr.Protobuf.Error), global::Nevr.Protobuf.Error.Parser, new[]{ "Code", "Message", "Context" }, null, new[]{ typeof(global::Nevr.Protobuf.Error.Types.Code) }, null, new pbr::GeneratedClrTypeInfo[] { null, }),
             new pbr::GeneratedClrTypeInfo(typeof(global::Nevr.Protobuf.LobbySessionEventMessage), global::Nevr.Protobuf.LobbySessionEventMessage.Parser, new[]{ "LobbySessionId", "Code" }, null, new[]{ typeof(global::Nevr.Protobuf.LobbySessionEventMessage.Types.Code) }, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Nevr.Protobuf.GameServerRegistrationMessage), global::Nevr.Protobuf.GameServerRegistrationMessage.Parser, new[]{ "LoginSessionId", "ServerId", "InternalIpAddress", "Port", "Region", "VersionLock", "TimeStepUsecs", "Version" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Nevr.Protobuf.GameServerRegistrationSuccessMessage), global::Nevr.Protobuf.GameServerRegistrationSuccessMessage.Parser, new[]{ "ServerId", "ExternalIpAddress" }, null, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::Nevr.Protobuf.LoadoutItem), global::Nevr.Protobuf.LoadoutItem.Parser, new[]{ "SlotType", "EquippedItem" }, null, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::Nevr.Protobuf.LoadoutInstance), global::Nevr.Protobuf.LoadoutInstance.Parser, new[]{ "InstanceName", "Items" }, null, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::Nevr.Protobuf.GameServerSaveLoadoutMessage), global::Nevr.Protobuf.GameServerSaveLoadoutMessage.Parser, new[]{ "LobbySessionId", "EntrantId", "LoadoutSlot", "JerseyNumber", "LoadoutInstances" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Nevr.Protobuf.LobbyEntrantsConnectedMessage), global::Nevr.Protobuf.LobbyEntrantsConnectedMessage.Parser, new[]{ "LobbySessionId", "EntrantIds" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Nevr.Protobuf.LobbyEntrantsAcceptMessage), global::Nevr.Protobuf.LobbyEntrantsAcceptMessage.Parser, new[]{ "EntrantIds" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Nevr.Protobuf.LobbyEntrantsRejectMessage), global::Nevr.Protobuf.LobbyEntrantsRejectMessage.Parser, new[]{ "EntrantIds", "Code" }, null, new[]{ typeof(global::Nevr.Protobuf.LobbyEntrantsRejectMessage.Types.Code) }, null, null),
@@ -364,7 +383,7 @@ namespace Nevr.Protobuf {
             new pbr::GeneratedClrTypeInfo(typeof(global::Nevr.Protobuf.SNSLobbyPingResponseMessage), global::Nevr.Protobuf.SNSLobbyPingResponseMessage.Parser, new[]{ "Results" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Nevr.Protobuf.SNSLobbyPlayerSessionsRequestV5Message), global::Nevr.Protobuf.SNSLobbyPlayerSessionsRequestV5Message.Parser, new[]{ "LoginSessionId", "UserId", "LobbyId", "Platform", "PlayerXpids" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Nevr.Protobuf.SNSLobbySessionFailureV4Message), global::Nevr.Protobuf.SNSLobbySessionFailureV4Message.Parser, new[]{ "ErrorCode", "Message" }, null, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::Nevr.Protobuf.SNSLobbySessionSuccessV5Message), global::Nevr.Protobuf.SNSLobbySessionSuccessV5Message.Parser, new[]{ "GameMode", "LobbyId", "GroupId", "Endpoint", "TeamIndex", "Unk1", "HeadsetType", "ServerEncoderFlags", "ClientEncoderFlags", "ServerSequenceId", "ServerMacKey", "ServerEncKey", "ServerRandomKey", "ClientSequenceId" }, null, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::Nevr.Protobuf.SNSLobbySessionSuccessV5Message), global::Nevr.Protobuf.SNSLobbySessionSuccessV5Message.Parser, new[]{ "GameMode", "LobbyId", "GroupId", "Endpoint", "TeamIndex", "UserSlot", "Flags32", "SessionFlags", "ServerEncoderFlags", "ClientEncoderFlags", "ServerSequenceId", "ServerMacKey", "ServerEncKey", "ServerRandomKey", "ClientSequenceId", "ClientMacKey", "ClientEncKey", "ClientRandomKey" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Nevr.Protobuf.SNSLoggedInUserProfileFailureMessage), global::Nevr.Protobuf.SNSLoggedInUserProfileFailureMessage.Parser, new[]{ "UserId", "StatusCode", "ErrorMessage" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Nevr.Protobuf.SNSLoggedInUserProfileRequestMessage), global::Nevr.Protobuf.SNSLoggedInUserProfileRequestMessage.Parser, new[]{ "SessionId", "UserId", "ProfileRequestData" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Nevr.Protobuf.SNSLoggedInUserProfileSuccessMessage), global::Nevr.Protobuf.SNSLoggedInUserProfileSuccessMessage.Parser, new[]{ "UserId", "Payload" }, null, null, null, null),
@@ -577,6 +596,9 @@ namespace Nevr.Protobuf {
           break;
         case MessageOneofCase.UserServerProfileUpdateSuccess:
           UserServerProfileUpdateSuccess = other.UserServerProfileUpdateSuccess.Clone();
+          break;
+        case MessageOneofCase.GameServerSaveLoadout:
+          GameServerSaveLoadout = other.GameServerSaveLoadout.Clone();
           break;
       }
 
@@ -1342,6 +1364,21 @@ namespace Nevr.Protobuf {
       }
     }
 
+    /// <summary>Field number for the "game_server_save_loadout" field.</summary>
+    public const int GameServerSaveLoadoutFieldNumber = 53;
+    /// <summary>
+    /// Game server requests to save a player's loadout.
+    /// </summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public global::Nevr.Protobuf.GameServerSaveLoadoutMessage GameServerSaveLoadout {
+      get { return messageCase_ == MessageOneofCase.GameServerSaveLoadout ? (global::Nevr.Protobuf.GameServerSaveLoadoutMessage) message_ : null; }
+      set {
+        message_ = value;
+        messageCase_ = value == null ? MessageOneofCase.None : MessageOneofCase.GameServerSaveLoadout;
+      }
+    }
+
     private object message_;
     /// <summary>Enum of possible cases for the "message" oneof.</summary>
     public enum MessageOneofCase {
@@ -1397,6 +1434,7 @@ namespace Nevr.Protobuf {
       UpdateProfileFailure = 50,
       UserServerProfileUpdateRequest = 51,
       UserServerProfileUpdateSuccess = 52,
+      GameServerSaveLoadout = 53,
     }
     private MessageOneofCase messageCase_ = MessageOneofCase.None;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -1479,6 +1517,7 @@ namespace Nevr.Protobuf {
       if (!object.Equals(UpdateProfileFailure, other.UpdateProfileFailure)) return false;
       if (!object.Equals(UserServerProfileUpdateRequest, other.UserServerProfileUpdateRequest)) return false;
       if (!object.Equals(UserServerProfileUpdateSuccess, other.UserServerProfileUpdateSuccess)) return false;
+      if (!object.Equals(GameServerSaveLoadout, other.GameServerSaveLoadout)) return false;
       if (MessageCase != other.MessageCase) return false;
       return Equals(_unknownFields, other._unknownFields);
     }
@@ -1539,6 +1578,7 @@ namespace Nevr.Protobuf {
       if (messageCase_ == MessageOneofCase.UpdateProfileFailure) hash ^= UpdateProfileFailure.GetHashCode();
       if (messageCase_ == MessageOneofCase.UserServerProfileUpdateRequest) hash ^= UserServerProfileUpdateRequest.GetHashCode();
       if (messageCase_ == MessageOneofCase.UserServerProfileUpdateSuccess) hash ^= UserServerProfileUpdateSuccess.GetHashCode();
+      if (messageCase_ == MessageOneofCase.GameServerSaveLoadout) hash ^= GameServerSaveLoadout.GetHashCode();
       hash ^= (int) messageCase_;
       if (_unknownFields != null) {
         hash ^= _unknownFields.GetHashCode();
@@ -1766,6 +1806,10 @@ namespace Nevr.Protobuf {
         output.WriteRawTag(162, 3);
         output.WriteMessage(UserServerProfileUpdateSuccess);
       }
+      if (messageCase_ == MessageOneofCase.GameServerSaveLoadout) {
+        output.WriteRawTag(170, 3);
+        output.WriteMessage(GameServerSaveLoadout);
+      }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(output);
       }
@@ -1984,6 +2028,10 @@ namespace Nevr.Protobuf {
         output.WriteRawTag(162, 3);
         output.WriteMessage(UserServerProfileUpdateSuccess);
       }
+      if (messageCase_ == MessageOneofCase.GameServerSaveLoadout) {
+        output.WriteRawTag(170, 3);
+        output.WriteMessage(GameServerSaveLoadout);
+      }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(ref output);
       }
@@ -2149,6 +2197,9 @@ namespace Nevr.Protobuf {
       }
       if (messageCase_ == MessageOneofCase.UserServerProfileUpdateSuccess) {
         size += 2 + pb::CodedOutputStream.ComputeMessageSize(UserServerProfileUpdateSuccess);
+      }
+      if (messageCase_ == MessageOneofCase.GameServerSaveLoadout) {
+        size += 2 + pb::CodedOutputStream.ComputeMessageSize(GameServerSaveLoadout);
       }
       if (_unknownFields != null) {
         size += _unknownFields.CalculateSize();
@@ -2471,6 +2522,12 @@ namespace Nevr.Protobuf {
             UserServerProfileUpdateSuccess = new global::Nevr.Protobuf.SNSUserServerProfileUpdateSuccessMessage();
           }
           UserServerProfileUpdateSuccess.MergeFrom(other.UserServerProfileUpdateSuccess);
+          break;
+        case MessageOneofCase.GameServerSaveLoadout:
+          if (GameServerSaveLoadout == null) {
+            GameServerSaveLoadout = new global::Nevr.Protobuf.GameServerSaveLoadoutMessage();
+          }
+          GameServerSaveLoadout.MergeFrom(other.GameServerSaveLoadout);
           break;
       }
 
@@ -2956,6 +3013,15 @@ namespace Nevr.Protobuf {
             UserServerProfileUpdateSuccess = subBuilder;
             break;
           }
+          case 426: {
+            global::Nevr.Protobuf.GameServerSaveLoadoutMessage subBuilder = new global::Nevr.Protobuf.GameServerSaveLoadoutMessage();
+            if (messageCase_ == MessageOneofCase.GameServerSaveLoadout) {
+              subBuilder.MergeFrom(GameServerSaveLoadout);
+            }
+            input.ReadMessage(subBuilder);
+            GameServerSaveLoadout = subBuilder;
+            break;
+          }
         }
       }
     #endif
@@ -3436,6 +3502,15 @@ namespace Nevr.Protobuf {
             }
             input.ReadMessage(subBuilder);
             UserServerProfileUpdateSuccess = subBuilder;
+            break;
+          }
+          case 426: {
+            global::Nevr.Protobuf.GameServerSaveLoadoutMessage subBuilder = new global::Nevr.Protobuf.GameServerSaveLoadoutMessage();
+            if (messageCase_ == MessageOneofCase.GameServerSaveLoadout) {
+              subBuilder.MergeFrom(GameServerSaveLoadout);
+            }
+            input.ReadMessage(subBuilder);
+            GameServerSaveLoadout = subBuilder;
             break;
           }
         }
@@ -4730,6 +4805,836 @@ namespace Nevr.Protobuf {
   }
 
   /// <summary>
+  /// Loadout item slot mapping (slot type hash to equipped item hash)
+  /// </summary>
+  [global::System.Diagnostics.DebuggerDisplayAttribute("{ToString(),nq}")]
+  public sealed partial class LoadoutItem : pb::IMessage<LoadoutItem>
+  #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+      , pb::IBufferMessage
+  #endif
+  {
+    private static readonly pb::MessageParser<LoadoutItem> _parser = new pb::MessageParser<LoadoutItem>(() => new LoadoutItem());
+    private pb::UnknownFieldSet _unknownFields;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public static pb::MessageParser<LoadoutItem> Parser { get { return _parser; } }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public static pbr::MessageDescriptor Descriptor {
+      get { return global::Nevr.Protobuf.RealtimeV1Reflection.Descriptor.MessageTypes[5]; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    pbr::MessageDescriptor pb::IMessage.Descriptor {
+      get { return Descriptor; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public LoadoutItem() {
+      OnConstruction();
+    }
+
+    partial void OnConstruction();
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public LoadoutItem(LoadoutItem other) : this() {
+      slotType_ = other.slotType_;
+      equippedItem_ = other.equippedItem_;
+      _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public LoadoutItem Clone() {
+      return new LoadoutItem(this);
+    }
+
+    /// <summary>Field number for the "slot_type" field.</summary>
+    public const int SlotTypeFieldNumber = 1;
+    private ulong slotType_;
+    /// <summary>
+    /// SymbolId hash of the slot (e.g., tint_body, bracer)
+    /// </summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public ulong SlotType {
+      get { return slotType_; }
+      set {
+        slotType_ = value;
+      }
+    }
+
+    /// <summary>Field number for the "equipped_item" field.</summary>
+    public const int EquippedItemFieldNumber = 2;
+    private ulong equippedItem_;
+    /// <summary>
+    /// SymbolId hash of the equipped item
+    /// </summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public ulong EquippedItem {
+      get { return equippedItem_; }
+      set {
+        equippedItem_ = value;
+      }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public override bool Equals(object other) {
+      return Equals(other as LoadoutItem);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public bool Equals(LoadoutItem other) {
+      if (ReferenceEquals(other, null)) {
+        return false;
+      }
+      if (ReferenceEquals(other, this)) {
+        return true;
+      }
+      if (SlotType != other.SlotType) return false;
+      if (EquippedItem != other.EquippedItem) return false;
+      return Equals(_unknownFields, other._unknownFields);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public override int GetHashCode() {
+      int hash = 1;
+      if (SlotType != 0UL) hash ^= SlotType.GetHashCode();
+      if (EquippedItem != 0UL) hash ^= EquippedItem.GetHashCode();
+      if (_unknownFields != null) {
+        hash ^= _unknownFields.GetHashCode();
+      }
+      return hash;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public override string ToString() {
+      return pb::JsonFormatter.ToDiagnosticString(this);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public void WriteTo(pb::CodedOutputStream output) {
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+      output.WriteRawMessage(this);
+    #else
+      if (SlotType != 0UL) {
+        output.WriteRawTag(9);
+        output.WriteFixed64(SlotType);
+      }
+      if (EquippedItem != 0UL) {
+        output.WriteRawTag(17);
+        output.WriteFixed64(EquippedItem);
+      }
+      if (_unknownFields != null) {
+        _unknownFields.WriteTo(output);
+      }
+    #endif
+    }
+
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    void pb::IBufferMessage.InternalWriteTo(ref pb::WriteContext output) {
+      if (SlotType != 0UL) {
+        output.WriteRawTag(9);
+        output.WriteFixed64(SlotType);
+      }
+      if (EquippedItem != 0UL) {
+        output.WriteRawTag(17);
+        output.WriteFixed64(EquippedItem);
+      }
+      if (_unknownFields != null) {
+        _unknownFields.WriteTo(ref output);
+      }
+    }
+    #endif
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public int CalculateSize() {
+      int size = 0;
+      if (SlotType != 0UL) {
+        size += 1 + 8;
+      }
+      if (EquippedItem != 0UL) {
+        size += 1 + 8;
+      }
+      if (_unknownFields != null) {
+        size += _unknownFields.CalculateSize();
+      }
+      return size;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public void MergeFrom(LoadoutItem other) {
+      if (other == null) {
+        return;
+      }
+      if (other.SlotType != 0UL) {
+        SlotType = other.SlotType;
+      }
+      if (other.EquippedItem != 0UL) {
+        EquippedItem = other.EquippedItem;
+      }
+      _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public void MergeFrom(pb::CodedInputStream input) {
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+      input.ReadRawMessage(this);
+    #else
+      uint tag;
+      while ((tag = input.ReadTag()) != 0) {
+      if ((tag & 7) == 4) {
+        // Abort on any end group tag.
+        return;
+      }
+      switch(tag) {
+          default:
+            _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
+            break;
+          case 9: {
+            SlotType = input.ReadFixed64();
+            break;
+          }
+          case 17: {
+            EquippedItem = input.ReadFixed64();
+            break;
+          }
+        }
+      }
+    #endif
+    }
+
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    void pb::IBufferMessage.InternalMergeFrom(ref pb::ParseContext input) {
+      uint tag;
+      while ((tag = input.ReadTag()) != 0) {
+      if ((tag & 7) == 4) {
+        // Abort on any end group tag.
+        return;
+      }
+      switch(tag) {
+          default:
+            _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, ref input);
+            break;
+          case 9: {
+            SlotType = input.ReadFixed64();
+            break;
+          }
+          case 17: {
+            EquippedItem = input.ReadFixed64();
+            break;
+          }
+        }
+      }
+    }
+    #endif
+
+  }
+
+  /// <summary>
+  /// A loadout instance within a player's loadout
+  /// </summary>
+  [global::System.Diagnostics.DebuggerDisplayAttribute("{ToString(),nq}")]
+  public sealed partial class LoadoutInstance : pb::IMessage<LoadoutInstance>
+  #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+      , pb::IBufferMessage
+  #endif
+  {
+    private static readonly pb::MessageParser<LoadoutInstance> _parser = new pb::MessageParser<LoadoutInstance>(() => new LoadoutInstance());
+    private pb::UnknownFieldSet _unknownFields;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public static pb::MessageParser<LoadoutInstance> Parser { get { return _parser; } }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public static pbr::MessageDescriptor Descriptor {
+      get { return global::Nevr.Protobuf.RealtimeV1Reflection.Descriptor.MessageTypes[6]; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    pbr::MessageDescriptor pb::IMessage.Descriptor {
+      get { return Descriptor; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public LoadoutInstance() {
+      OnConstruction();
+    }
+
+    partial void OnConstruction();
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public LoadoutInstance(LoadoutInstance other) : this() {
+      instanceName_ = other.instanceName_;
+      items_ = other.items_.Clone();
+      _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public LoadoutInstance Clone() {
+      return new LoadoutInstance(this);
+    }
+
+    /// <summary>Field number for the "instance_name" field.</summary>
+    public const int InstanceNameFieldNumber = 1;
+    private ulong instanceName_;
+    /// <summary>
+    /// SymbolId hash of the instance name
+    /// </summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public ulong InstanceName {
+      get { return instanceName_; }
+      set {
+        instanceName_ = value;
+      }
+    }
+
+    /// <summary>Field number for the "items" field.</summary>
+    public const int ItemsFieldNumber = 2;
+    private static readonly pb::FieldCodec<global::Nevr.Protobuf.LoadoutItem> _repeated_items_codec
+        = pb::FieldCodec.ForMessage(18, global::Nevr.Protobuf.LoadoutItem.Parser);
+    private readonly pbc::RepeatedField<global::Nevr.Protobuf.LoadoutItem> items_ = new pbc::RepeatedField<global::Nevr.Protobuf.LoadoutItem>();
+    /// <summary>
+    /// Items in this instance
+    /// </summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public pbc::RepeatedField<global::Nevr.Protobuf.LoadoutItem> Items {
+      get { return items_; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public override bool Equals(object other) {
+      return Equals(other as LoadoutInstance);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public bool Equals(LoadoutInstance other) {
+      if (ReferenceEquals(other, null)) {
+        return false;
+      }
+      if (ReferenceEquals(other, this)) {
+        return true;
+      }
+      if (InstanceName != other.InstanceName) return false;
+      if(!items_.Equals(other.items_)) return false;
+      return Equals(_unknownFields, other._unknownFields);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public override int GetHashCode() {
+      int hash = 1;
+      if (InstanceName != 0UL) hash ^= InstanceName.GetHashCode();
+      hash ^= items_.GetHashCode();
+      if (_unknownFields != null) {
+        hash ^= _unknownFields.GetHashCode();
+      }
+      return hash;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public override string ToString() {
+      return pb::JsonFormatter.ToDiagnosticString(this);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public void WriteTo(pb::CodedOutputStream output) {
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+      output.WriteRawMessage(this);
+    #else
+      if (InstanceName != 0UL) {
+        output.WriteRawTag(9);
+        output.WriteFixed64(InstanceName);
+      }
+      items_.WriteTo(output, _repeated_items_codec);
+      if (_unknownFields != null) {
+        _unknownFields.WriteTo(output);
+      }
+    #endif
+    }
+
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    void pb::IBufferMessage.InternalWriteTo(ref pb::WriteContext output) {
+      if (InstanceName != 0UL) {
+        output.WriteRawTag(9);
+        output.WriteFixed64(InstanceName);
+      }
+      items_.WriteTo(ref output, _repeated_items_codec);
+      if (_unknownFields != null) {
+        _unknownFields.WriteTo(ref output);
+      }
+    }
+    #endif
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public int CalculateSize() {
+      int size = 0;
+      if (InstanceName != 0UL) {
+        size += 1 + 8;
+      }
+      size += items_.CalculateSize(_repeated_items_codec);
+      if (_unknownFields != null) {
+        size += _unknownFields.CalculateSize();
+      }
+      return size;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public void MergeFrom(LoadoutInstance other) {
+      if (other == null) {
+        return;
+      }
+      if (other.InstanceName != 0UL) {
+        InstanceName = other.InstanceName;
+      }
+      items_.Add(other.items_);
+      _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public void MergeFrom(pb::CodedInputStream input) {
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+      input.ReadRawMessage(this);
+    #else
+      uint tag;
+      while ((tag = input.ReadTag()) != 0) {
+      if ((tag & 7) == 4) {
+        // Abort on any end group tag.
+        return;
+      }
+      switch(tag) {
+          default:
+            _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
+            break;
+          case 9: {
+            InstanceName = input.ReadFixed64();
+            break;
+          }
+          case 18: {
+            items_.AddEntriesFrom(input, _repeated_items_codec);
+            break;
+          }
+        }
+      }
+    #endif
+    }
+
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    void pb::IBufferMessage.InternalMergeFrom(ref pb::ParseContext input) {
+      uint tag;
+      while ((tag = input.ReadTag()) != 0) {
+      if ((tag & 7) == 4) {
+        // Abort on any end group tag.
+        return;
+      }
+      switch(tag) {
+          default:
+            _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, ref input);
+            break;
+          case 9: {
+            InstanceName = input.ReadFixed64();
+            break;
+          }
+          case 18: {
+            items_.AddEntriesFrom(ref input, _repeated_items_codec);
+            break;
+          }
+        }
+      }
+    }
+    #endif
+
+  }
+
+  /// <summary>
+  /// Save loadout message is sent from the game server to the service.
+  /// </summary>
+  [global::System.Diagnostics.DebuggerDisplayAttribute("{ToString(),nq}")]
+  public sealed partial class GameServerSaveLoadoutMessage : pb::IMessage<GameServerSaveLoadoutMessage>
+  #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+      , pb::IBufferMessage
+  #endif
+  {
+    private static readonly pb::MessageParser<GameServerSaveLoadoutMessage> _parser = new pb::MessageParser<GameServerSaveLoadoutMessage>(() => new GameServerSaveLoadoutMessage());
+    private pb::UnknownFieldSet _unknownFields;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public static pb::MessageParser<GameServerSaveLoadoutMessage> Parser { get { return _parser; } }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public static pbr::MessageDescriptor Descriptor {
+      get { return global::Nevr.Protobuf.RealtimeV1Reflection.Descriptor.MessageTypes[7]; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    pbr::MessageDescriptor pb::IMessage.Descriptor {
+      get { return Descriptor; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public GameServerSaveLoadoutMessage() {
+      OnConstruction();
+    }
+
+    partial void OnConstruction();
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public GameServerSaveLoadoutMessage(GameServerSaveLoadoutMessage other) : this() {
+      lobbySessionId_ = other.lobbySessionId_;
+      entrantId_ = other.entrantId_;
+      loadoutSlot_ = other.loadoutSlot_;
+      jerseyNumber_ = other.jerseyNumber_;
+      loadoutInstances_ = other.loadoutInstances_.Clone();
+      _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public GameServerSaveLoadoutMessage Clone() {
+      return new GameServerSaveLoadoutMessage(this);
+    }
+
+    /// <summary>Field number for the "lobby_session_id" field.</summary>
+    public const int LobbySessionIdFieldNumber = 1;
+    private string lobbySessionId_ = "";
+    /// <summary>
+    /// The lobby session this loadout belongs to
+    /// </summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public string LobbySessionId {
+      get { return lobbySessionId_; }
+      set {
+        lobbySessionId_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
+      }
+    }
+
+    /// <summary>Field number for the "entrant_id" field.</summary>
+    public const int EntrantIdFieldNumber = 2;
+    private string entrantId_ = "";
+    /// <summary>
+    /// The entrant UUID who saved the loadout
+    /// </summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public string EntrantId {
+      get { return entrantId_; }
+      set {
+        entrantId_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
+      }
+    }
+
+    /// <summary>Field number for the "loadout_slot" field.</summary>
+    public const int LoadoutSlotFieldNumber = 3;
+    private int loadoutSlot_;
+    /// <summary>
+    /// Which loadout slot (0-based)
+    /// </summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public int LoadoutSlot {
+      get { return loadoutSlot_; }
+      set {
+        loadoutSlot_ = value;
+      }
+    }
+
+    /// <summary>Field number for the "jersey_number" field.</summary>
+    public const int JerseyNumberFieldNumber = 4;
+    private int jerseyNumber_;
+    /// <summary>
+    /// Player's jersey number
+    /// </summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public int JerseyNumber {
+      get { return jerseyNumber_; }
+      set {
+        jerseyNumber_ = value;
+      }
+    }
+
+    /// <summary>Field number for the "loadout_instances" field.</summary>
+    public const int LoadoutInstancesFieldNumber = 5;
+    private static readonly pb::FieldCodec<global::Nevr.Protobuf.LoadoutInstance> _repeated_loadoutInstances_codec
+        = pb::FieldCodec.ForMessage(42, global::Nevr.Protobuf.LoadoutInstance.Parser);
+    private readonly pbc::RepeatedField<global::Nevr.Protobuf.LoadoutInstance> loadoutInstances_ = new pbc::RepeatedField<global::Nevr.Protobuf.LoadoutInstance>();
+    /// <summary>
+    /// The loadout data
+    /// </summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public pbc::RepeatedField<global::Nevr.Protobuf.LoadoutInstance> LoadoutInstances {
+      get { return loadoutInstances_; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public override bool Equals(object other) {
+      return Equals(other as GameServerSaveLoadoutMessage);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public bool Equals(GameServerSaveLoadoutMessage other) {
+      if (ReferenceEquals(other, null)) {
+        return false;
+      }
+      if (ReferenceEquals(other, this)) {
+        return true;
+      }
+      if (LobbySessionId != other.LobbySessionId) return false;
+      if (EntrantId != other.EntrantId) return false;
+      if (LoadoutSlot != other.LoadoutSlot) return false;
+      if (JerseyNumber != other.JerseyNumber) return false;
+      if(!loadoutInstances_.Equals(other.loadoutInstances_)) return false;
+      return Equals(_unknownFields, other._unknownFields);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public override int GetHashCode() {
+      int hash = 1;
+      if (LobbySessionId.Length != 0) hash ^= LobbySessionId.GetHashCode();
+      if (EntrantId.Length != 0) hash ^= EntrantId.GetHashCode();
+      if (LoadoutSlot != 0) hash ^= LoadoutSlot.GetHashCode();
+      if (JerseyNumber != 0) hash ^= JerseyNumber.GetHashCode();
+      hash ^= loadoutInstances_.GetHashCode();
+      if (_unknownFields != null) {
+        hash ^= _unknownFields.GetHashCode();
+      }
+      return hash;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public override string ToString() {
+      return pb::JsonFormatter.ToDiagnosticString(this);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public void WriteTo(pb::CodedOutputStream output) {
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+      output.WriteRawMessage(this);
+    #else
+      if (LobbySessionId.Length != 0) {
+        output.WriteRawTag(10);
+        output.WriteString(LobbySessionId);
+      }
+      if (EntrantId.Length != 0) {
+        output.WriteRawTag(18);
+        output.WriteString(EntrantId);
+      }
+      if (LoadoutSlot != 0) {
+        output.WriteRawTag(24);
+        output.WriteInt32(LoadoutSlot);
+      }
+      if (JerseyNumber != 0) {
+        output.WriteRawTag(32);
+        output.WriteInt32(JerseyNumber);
+      }
+      loadoutInstances_.WriteTo(output, _repeated_loadoutInstances_codec);
+      if (_unknownFields != null) {
+        _unknownFields.WriteTo(output);
+      }
+    #endif
+    }
+
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    void pb::IBufferMessage.InternalWriteTo(ref pb::WriteContext output) {
+      if (LobbySessionId.Length != 0) {
+        output.WriteRawTag(10);
+        output.WriteString(LobbySessionId);
+      }
+      if (EntrantId.Length != 0) {
+        output.WriteRawTag(18);
+        output.WriteString(EntrantId);
+      }
+      if (LoadoutSlot != 0) {
+        output.WriteRawTag(24);
+        output.WriteInt32(LoadoutSlot);
+      }
+      if (JerseyNumber != 0) {
+        output.WriteRawTag(32);
+        output.WriteInt32(JerseyNumber);
+      }
+      loadoutInstances_.WriteTo(ref output, _repeated_loadoutInstances_codec);
+      if (_unknownFields != null) {
+        _unknownFields.WriteTo(ref output);
+      }
+    }
+    #endif
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public int CalculateSize() {
+      int size = 0;
+      if (LobbySessionId.Length != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeStringSize(LobbySessionId);
+      }
+      if (EntrantId.Length != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeStringSize(EntrantId);
+      }
+      if (LoadoutSlot != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeInt32Size(LoadoutSlot);
+      }
+      if (JerseyNumber != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeInt32Size(JerseyNumber);
+      }
+      size += loadoutInstances_.CalculateSize(_repeated_loadoutInstances_codec);
+      if (_unknownFields != null) {
+        size += _unknownFields.CalculateSize();
+      }
+      return size;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public void MergeFrom(GameServerSaveLoadoutMessage other) {
+      if (other == null) {
+        return;
+      }
+      if (other.LobbySessionId.Length != 0) {
+        LobbySessionId = other.LobbySessionId;
+      }
+      if (other.EntrantId.Length != 0) {
+        EntrantId = other.EntrantId;
+      }
+      if (other.LoadoutSlot != 0) {
+        LoadoutSlot = other.LoadoutSlot;
+      }
+      if (other.JerseyNumber != 0) {
+        JerseyNumber = other.JerseyNumber;
+      }
+      loadoutInstances_.Add(other.loadoutInstances_);
+      _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public void MergeFrom(pb::CodedInputStream input) {
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+      input.ReadRawMessage(this);
+    #else
+      uint tag;
+      while ((tag = input.ReadTag()) != 0) {
+      if ((tag & 7) == 4) {
+        // Abort on any end group tag.
+        return;
+      }
+      switch(tag) {
+          default:
+            _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
+            break;
+          case 10: {
+            LobbySessionId = input.ReadString();
+            break;
+          }
+          case 18: {
+            EntrantId = input.ReadString();
+            break;
+          }
+          case 24: {
+            LoadoutSlot = input.ReadInt32();
+            break;
+          }
+          case 32: {
+            JerseyNumber = input.ReadInt32();
+            break;
+          }
+          case 42: {
+            loadoutInstances_.AddEntriesFrom(input, _repeated_loadoutInstances_codec);
+            break;
+          }
+        }
+      }
+    #endif
+    }
+
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    void pb::IBufferMessage.InternalMergeFrom(ref pb::ParseContext input) {
+      uint tag;
+      while ((tag = input.ReadTag()) != 0) {
+      if ((tag & 7) == 4) {
+        // Abort on any end group tag.
+        return;
+      }
+      switch(tag) {
+          default:
+            _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, ref input);
+            break;
+          case 10: {
+            LobbySessionId = input.ReadString();
+            break;
+          }
+          case 18: {
+            EntrantId = input.ReadString();
+            break;
+          }
+          case 24: {
+            LoadoutSlot = input.ReadInt32();
+            break;
+          }
+          case 32: {
+            JerseyNumber = input.ReadInt32();
+            break;
+          }
+          case 42: {
+            loadoutInstances_.AddEntriesFrom(ref input, _repeated_loadoutInstances_codec);
+            break;
+          }
+        }
+      }
+    }
+    #endif
+
+  }
+
+  /// <summary>
   /// Entrant connect message is sent from the server to the service.
   /// </summary>
   [global::System.Diagnostics.DebuggerDisplayAttribute("{ToString(),nq}")]
@@ -4747,7 +5652,7 @@ namespace Nevr.Protobuf {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Nevr.Protobuf.RealtimeV1Reflection.Descriptor.MessageTypes[5]; }
+      get { return global::Nevr.Protobuf.RealtimeV1Reflection.Descriptor.MessageTypes[8]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -4974,7 +5879,7 @@ namespace Nevr.Protobuf {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Nevr.Protobuf.RealtimeV1Reflection.Descriptor.MessageTypes[6]; }
+      get { return global::Nevr.Protobuf.RealtimeV1Reflection.Descriptor.MessageTypes[9]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -5164,7 +6069,7 @@ namespace Nevr.Protobuf {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Nevr.Protobuf.RealtimeV1Reflection.Descriptor.MessageTypes[7]; }
+      get { return global::Nevr.Protobuf.RealtimeV1Reflection.Descriptor.MessageTypes[10]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -5445,7 +6350,7 @@ namespace Nevr.Protobuf {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Nevr.Protobuf.RealtimeV1Reflection.Descriptor.MessageTypes[8]; }
+      get { return global::Nevr.Protobuf.RealtimeV1Reflection.Descriptor.MessageTypes[11]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -5771,7 +6676,7 @@ namespace Nevr.Protobuf {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Nevr.Protobuf.RealtimeV1Reflection.Descriptor.MessageTypes[9]; }
+      get { return global::Nevr.Protobuf.RealtimeV1Reflection.Descriptor.MessageTypes[12]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -6199,7 +7104,7 @@ namespace Nevr.Protobuf {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Nevr.Protobuf.RealtimeV1Reflection.Descriptor.MessageTypes[10]; }
+      get { return global::Nevr.Protobuf.RealtimeV1Reflection.Descriptor.MessageTypes[13]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -6570,7 +7475,7 @@ namespace Nevr.Protobuf {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Nevr.Protobuf.RealtimeV1Reflection.Descriptor.MessageTypes[11]; }
+      get { return global::Nevr.Protobuf.RealtimeV1Reflection.Descriptor.MessageTypes[14]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -6854,7 +7759,7 @@ namespace Nevr.Protobuf {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Nevr.Protobuf.RealtimeV1Reflection.Descriptor.MessageTypes[12]; }
+      get { return global::Nevr.Protobuf.RealtimeV1Reflection.Descriptor.MessageTypes[15]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -7277,7 +8182,7 @@ namespace Nevr.Protobuf {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Nevr.Protobuf.RealtimeV1Reflection.Descriptor.MessageTypes[13]; }
+      get { return global::Nevr.Protobuf.RealtimeV1Reflection.Descriptor.MessageTypes[16]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -7478,7 +8383,7 @@ namespace Nevr.Protobuf {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Nevr.Protobuf.RealtimeV1Reflection.Descriptor.MessageTypes[14]; }
+      get { return global::Nevr.Protobuf.RealtimeV1Reflection.Descriptor.MessageTypes[17]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -7682,7 +8587,7 @@ namespace Nevr.Protobuf {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Nevr.Protobuf.RealtimeV1Reflection.Descriptor.MessageTypes[15]; }
+      get { return global::Nevr.Protobuf.RealtimeV1Reflection.Descriptor.MessageTypes[18]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -7933,7 +8838,7 @@ namespace Nevr.Protobuf {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Nevr.Protobuf.RealtimeV1Reflection.Descriptor.MessageTypes[16]; }
+      get { return global::Nevr.Protobuf.RealtimeV1Reflection.Descriptor.MessageTypes[19]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -8098,7 +9003,7 @@ namespace Nevr.Protobuf {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Nevr.Protobuf.RealtimeV1Reflection.Descriptor.MessageTypes[17]; }
+      get { return global::Nevr.Protobuf.RealtimeV1Reflection.Descriptor.MessageTypes[20]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -8263,7 +9168,7 @@ namespace Nevr.Protobuf {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Nevr.Protobuf.RealtimeV1Reflection.Descriptor.MessageTypes[18]; }
+      get { return global::Nevr.Protobuf.RealtimeV1Reflection.Descriptor.MessageTypes[21]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -8466,7 +9371,7 @@ namespace Nevr.Protobuf {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Nevr.Protobuf.RealtimeV1Reflection.Descriptor.MessageTypes[19]; }
+      get { return global::Nevr.Protobuf.RealtimeV1Reflection.Descriptor.MessageTypes[22]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -8760,7 +9665,7 @@ namespace Nevr.Protobuf {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Nevr.Protobuf.RealtimeV1Reflection.Descriptor.MessageTypes[20]; }
+      get { return global::Nevr.Protobuf.RealtimeV1Reflection.Descriptor.MessageTypes[23]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -8961,7 +9866,7 @@ namespace Nevr.Protobuf {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Nevr.Protobuf.RealtimeV1Reflection.Descriptor.MessageTypes[21]; }
+      get { return global::Nevr.Protobuf.RealtimeV1Reflection.Descriptor.MessageTypes[24]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -9209,7 +10114,7 @@ namespace Nevr.Protobuf {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Nevr.Protobuf.RealtimeV1Reflection.Descriptor.MessageTypes[22]; }
+      get { return global::Nevr.Protobuf.RealtimeV1Reflection.Descriptor.MessageTypes[25]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -9374,7 +10279,7 @@ namespace Nevr.Protobuf {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Nevr.Protobuf.RealtimeV1Reflection.Descriptor.MessageTypes[23]; }
+      get { return global::Nevr.Protobuf.RealtimeV1Reflection.Descriptor.MessageTypes[26]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -9576,7 +10481,7 @@ namespace Nevr.Protobuf {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Nevr.Protobuf.RealtimeV1Reflection.Descriptor.MessageTypes[24]; }
+      get { return global::Nevr.Protobuf.RealtimeV1Reflection.Descriptor.MessageTypes[27]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -9816,7 +10721,7 @@ namespace Nevr.Protobuf {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Nevr.Protobuf.RealtimeV1Reflection.Descriptor.MessageTypes[25]; }
+      get { return global::Nevr.Protobuf.RealtimeV1Reflection.Descriptor.MessageTypes[28]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -10018,7 +10923,7 @@ namespace Nevr.Protobuf {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Nevr.Protobuf.RealtimeV1Reflection.Descriptor.MessageTypes[26]; }
+      get { return global::Nevr.Protobuf.RealtimeV1Reflection.Descriptor.MessageTypes[29]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -10220,7 +11125,7 @@ namespace Nevr.Protobuf {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Nevr.Protobuf.RealtimeV1Reflection.Descriptor.MessageTypes[27]; }
+      get { return global::Nevr.Protobuf.RealtimeV1Reflection.Descriptor.MessageTypes[30]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -10716,7 +11621,7 @@ namespace Nevr.Protobuf {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Nevr.Protobuf.RealtimeV1Reflection.Descriptor.MessageTypes[28]; }
+      get { return global::Nevr.Protobuf.RealtimeV1Reflection.Descriptor.MessageTypes[31]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -11239,7 +12144,7 @@ namespace Nevr.Protobuf {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Nevr.Protobuf.RealtimeV1Reflection.Descriptor.MessageTypes[29]; }
+      get { return global::Nevr.Protobuf.RealtimeV1Reflection.Descriptor.MessageTypes[32]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -11607,7 +12512,7 @@ namespace Nevr.Protobuf {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Nevr.Protobuf.RealtimeV1Reflection.Descriptor.MessageTypes[30]; }
+      get { return global::Nevr.Protobuf.RealtimeV1Reflection.Descriptor.MessageTypes[33]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -11809,7 +12714,7 @@ namespace Nevr.Protobuf {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Nevr.Protobuf.RealtimeV1Reflection.Descriptor.MessageTypes[31]; }
+      get { return global::Nevr.Protobuf.RealtimeV1Reflection.Descriptor.MessageTypes[34]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -12085,7 +12990,7 @@ namespace Nevr.Protobuf {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Nevr.Protobuf.RealtimeV1Reflection.Descriptor.MessageTypes[32]; }
+      get { return global::Nevr.Protobuf.RealtimeV1Reflection.Descriptor.MessageTypes[35]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -12287,7 +13192,7 @@ namespace Nevr.Protobuf {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Nevr.Protobuf.RealtimeV1Reflection.Descriptor.MessageTypes[33]; }
+      get { return global::Nevr.Protobuf.RealtimeV1Reflection.Descriptor.MessageTypes[36]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -12590,7 +13495,7 @@ namespace Nevr.Protobuf {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Nevr.Protobuf.RealtimeV1Reflection.Descriptor.MessageTypes[34]; }
+      get { return global::Nevr.Protobuf.RealtimeV1Reflection.Descriptor.MessageTypes[37]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -12781,7 +13686,7 @@ namespace Nevr.Protobuf {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Nevr.Protobuf.RealtimeV1Reflection.Descriptor.MessageTypes[35]; }
+      get { return global::Nevr.Protobuf.RealtimeV1Reflection.Descriptor.MessageTypes[38]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -13138,7 +14043,7 @@ namespace Nevr.Protobuf {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Nevr.Protobuf.RealtimeV1Reflection.Descriptor.MessageTypes[36]; }
+      get { return global::Nevr.Protobuf.RealtimeV1Reflection.Descriptor.MessageTypes[39]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -13377,7 +14282,7 @@ namespace Nevr.Protobuf {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Nevr.Protobuf.RealtimeV1Reflection.Descriptor.MessageTypes[37]; }
+      get { return global::Nevr.Protobuf.RealtimeV1Reflection.Descriptor.MessageTypes[40]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -13402,8 +14307,9 @@ namespace Nevr.Protobuf {
       groupId_ = other.groupId_;
       endpoint_ = other.endpoint_;
       teamIndex_ = other.teamIndex_;
-      unk1_ = other.unk1_;
-      headsetType_ = other.headsetType_;
+      userSlot_ = other.userSlot_;
+      flags32_ = other.flags32_;
+      sessionFlags_ = other.sessionFlags_;
       serverEncoderFlags_ = other.serverEncoderFlags_;
       clientEncoderFlags_ = other.clientEncoderFlags_;
       serverSequenceId_ = other.serverSequenceId_;
@@ -13411,6 +14317,9 @@ namespace Nevr.Protobuf {
       serverEncKey_ = other.serverEncKey_;
       serverRandomKey_ = other.serverRandomKey_;
       clientSequenceId_ = other.clientSequenceId_;
+      clientMacKey_ = other.clientMacKey_;
+      clientEncKey_ = other.clientEncKey_;
+      clientRandomKey_ = other.clientRandomKey_;
       _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
     }
 
@@ -13480,32 +14389,44 @@ namespace Nevr.Protobuf {
       }
     }
 
-    /// <summary>Field number for the "unk1" field.</summary>
-    public const int Unk1FieldNumber = 6;
-    private uint unk1_;
+    /// <summary>Field number for the "user_slot" field.</summary>
+    public const int UserSlotFieldNumber = 6;
+    private uint userSlot_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public uint Unk1 {
-      get { return unk1_; }
+    public uint UserSlot {
+      get { return userSlot_; }
       set {
-        unk1_ = value;
+        userSlot_ = value;
       }
     }
 
-    /// <summary>Field number for the "headset_type" field.</summary>
-    public const int HeadsetTypeFieldNumber = 7;
-    private int headsetType_;
+    /// <summary>Field number for the "flags32" field.</summary>
+    public const int Flags32FieldNumber = 7;
+    private uint flags32_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public int HeadsetType {
-      get { return headsetType_; }
+    public uint Flags32 {
+      get { return flags32_; }
       set {
-        headsetType_ = value;
+        flags32_ = value;
+      }
+    }
+
+    /// <summary>Field number for the "session_flags" field.</summary>
+    public const int SessionFlagsFieldNumber = 8;
+    private uint sessionFlags_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public uint SessionFlags {
+      get { return sessionFlags_; }
+      set {
+        sessionFlags_ = value;
       }
     }
 
     /// <summary>Field number for the "server_encoder_flags" field.</summary>
-    public const int ServerEncoderFlagsFieldNumber = 8;
+    public const int ServerEncoderFlagsFieldNumber = 9;
     private ulong serverEncoderFlags_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
@@ -13517,7 +14438,7 @@ namespace Nevr.Protobuf {
     }
 
     /// <summary>Field number for the "client_encoder_flags" field.</summary>
-    public const int ClientEncoderFlagsFieldNumber = 9;
+    public const int ClientEncoderFlagsFieldNumber = 10;
     private ulong clientEncoderFlags_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
@@ -13529,7 +14450,7 @@ namespace Nevr.Protobuf {
     }
 
     /// <summary>Field number for the "server_sequence_id" field.</summary>
-    public const int ServerSequenceIdFieldNumber = 10;
+    public const int ServerSequenceIdFieldNumber = 11;
     private ulong serverSequenceId_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
@@ -13541,7 +14462,7 @@ namespace Nevr.Protobuf {
     }
 
     /// <summary>Field number for the "server_mac_key" field.</summary>
-    public const int ServerMacKeyFieldNumber = 11;
+    public const int ServerMacKeyFieldNumber = 12;
     private pb::ByteString serverMacKey_ = pb::ByteString.Empty;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
@@ -13553,7 +14474,7 @@ namespace Nevr.Protobuf {
     }
 
     /// <summary>Field number for the "server_enc_key" field.</summary>
-    public const int ServerEncKeyFieldNumber = 12;
+    public const int ServerEncKeyFieldNumber = 13;
     private pb::ByteString serverEncKey_ = pb::ByteString.Empty;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
@@ -13565,7 +14486,7 @@ namespace Nevr.Protobuf {
     }
 
     /// <summary>Field number for the "server_random_key" field.</summary>
-    public const int ServerRandomKeyFieldNumber = 13;
+    public const int ServerRandomKeyFieldNumber = 14;
     private pb::ByteString serverRandomKey_ = pb::ByteString.Empty;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
@@ -13577,7 +14498,7 @@ namespace Nevr.Protobuf {
     }
 
     /// <summary>Field number for the "client_sequence_id" field.</summary>
-    public const int ClientSequenceIdFieldNumber = 14;
+    public const int ClientSequenceIdFieldNumber = 15;
     private ulong clientSequenceId_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
@@ -13585,6 +14506,42 @@ namespace Nevr.Protobuf {
       get { return clientSequenceId_; }
       set {
         clientSequenceId_ = value;
+      }
+    }
+
+    /// <summary>Field number for the "client_mac_key" field.</summary>
+    public const int ClientMacKeyFieldNumber = 16;
+    private pb::ByteString clientMacKey_ = pb::ByteString.Empty;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public pb::ByteString ClientMacKey {
+      get { return clientMacKey_; }
+      set {
+        clientMacKey_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
+      }
+    }
+
+    /// <summary>Field number for the "client_enc_key" field.</summary>
+    public const int ClientEncKeyFieldNumber = 17;
+    private pb::ByteString clientEncKey_ = pb::ByteString.Empty;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public pb::ByteString ClientEncKey {
+      get { return clientEncKey_; }
+      set {
+        clientEncKey_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
+      }
+    }
+
+    /// <summary>Field number for the "client_random_key" field.</summary>
+    public const int ClientRandomKeyFieldNumber = 18;
+    private pb::ByteString clientRandomKey_ = pb::ByteString.Empty;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public pb::ByteString ClientRandomKey {
+      get { return clientRandomKey_; }
+      set {
+        clientRandomKey_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
       }
     }
 
@@ -13608,8 +14565,9 @@ namespace Nevr.Protobuf {
       if (GroupId != other.GroupId) return false;
       if (Endpoint != other.Endpoint) return false;
       if (TeamIndex != other.TeamIndex) return false;
-      if (Unk1 != other.Unk1) return false;
-      if (HeadsetType != other.HeadsetType) return false;
+      if (UserSlot != other.UserSlot) return false;
+      if (Flags32 != other.Flags32) return false;
+      if (SessionFlags != other.SessionFlags) return false;
       if (ServerEncoderFlags != other.ServerEncoderFlags) return false;
       if (ClientEncoderFlags != other.ClientEncoderFlags) return false;
       if (ServerSequenceId != other.ServerSequenceId) return false;
@@ -13617,6 +14575,9 @@ namespace Nevr.Protobuf {
       if (ServerEncKey != other.ServerEncKey) return false;
       if (ServerRandomKey != other.ServerRandomKey) return false;
       if (ClientSequenceId != other.ClientSequenceId) return false;
+      if (ClientMacKey != other.ClientMacKey) return false;
+      if (ClientEncKey != other.ClientEncKey) return false;
+      if (ClientRandomKey != other.ClientRandomKey) return false;
       return Equals(_unknownFields, other._unknownFields);
     }
 
@@ -13629,8 +14590,9 @@ namespace Nevr.Protobuf {
       if (GroupId.Length != 0) hash ^= GroupId.GetHashCode();
       if (Endpoint.Length != 0) hash ^= Endpoint.GetHashCode();
       if (TeamIndex != 0) hash ^= TeamIndex.GetHashCode();
-      if (Unk1 != 0) hash ^= Unk1.GetHashCode();
-      if (HeadsetType != 0) hash ^= HeadsetType.GetHashCode();
+      if (UserSlot != 0) hash ^= UserSlot.GetHashCode();
+      if (Flags32 != 0) hash ^= Flags32.GetHashCode();
+      if (SessionFlags != 0) hash ^= SessionFlags.GetHashCode();
       if (ServerEncoderFlags != 0UL) hash ^= ServerEncoderFlags.GetHashCode();
       if (ClientEncoderFlags != 0UL) hash ^= ClientEncoderFlags.GetHashCode();
       if (ServerSequenceId != 0UL) hash ^= ServerSequenceId.GetHashCode();
@@ -13638,6 +14600,9 @@ namespace Nevr.Protobuf {
       if (ServerEncKey.Length != 0) hash ^= ServerEncKey.GetHashCode();
       if (ServerRandomKey.Length != 0) hash ^= ServerRandomKey.GetHashCode();
       if (ClientSequenceId != 0UL) hash ^= ClientSequenceId.GetHashCode();
+      if (ClientMacKey.Length != 0) hash ^= ClientMacKey.GetHashCode();
+      if (ClientEncKey.Length != 0) hash ^= ClientEncKey.GetHashCode();
+      if (ClientRandomKey.Length != 0) hash ^= ClientRandomKey.GetHashCode();
       if (_unknownFields != null) {
         hash ^= _unknownFields.GetHashCode();
       }
@@ -13676,41 +14641,57 @@ namespace Nevr.Protobuf {
         output.WriteRawTag(40);
         output.WriteInt32(TeamIndex);
       }
-      if (Unk1 != 0) {
+      if (UserSlot != 0) {
         output.WriteRawTag(48);
-        output.WriteUInt32(Unk1);
+        output.WriteUInt32(UserSlot);
       }
-      if (HeadsetType != 0) {
+      if (Flags32 != 0) {
         output.WriteRawTag(56);
-        output.WriteInt32(HeadsetType);
+        output.WriteUInt32(Flags32);
+      }
+      if (SessionFlags != 0) {
+        output.WriteRawTag(64);
+        output.WriteUInt32(SessionFlags);
       }
       if (ServerEncoderFlags != 0UL) {
-        output.WriteRawTag(64);
+        output.WriteRawTag(72);
         output.WriteUInt64(ServerEncoderFlags);
       }
       if (ClientEncoderFlags != 0UL) {
-        output.WriteRawTag(72);
+        output.WriteRawTag(80);
         output.WriteUInt64(ClientEncoderFlags);
       }
       if (ServerSequenceId != 0UL) {
-        output.WriteRawTag(80);
+        output.WriteRawTag(88);
         output.WriteUInt64(ServerSequenceId);
       }
       if (ServerMacKey.Length != 0) {
-        output.WriteRawTag(90);
+        output.WriteRawTag(98);
         output.WriteBytes(ServerMacKey);
       }
       if (ServerEncKey.Length != 0) {
-        output.WriteRawTag(98);
+        output.WriteRawTag(106);
         output.WriteBytes(ServerEncKey);
       }
       if (ServerRandomKey.Length != 0) {
-        output.WriteRawTag(106);
+        output.WriteRawTag(114);
         output.WriteBytes(ServerRandomKey);
       }
       if (ClientSequenceId != 0UL) {
-        output.WriteRawTag(112);
+        output.WriteRawTag(120);
         output.WriteUInt64(ClientSequenceId);
+      }
+      if (ClientMacKey.Length != 0) {
+        output.WriteRawTag(130, 1);
+        output.WriteBytes(ClientMacKey);
+      }
+      if (ClientEncKey.Length != 0) {
+        output.WriteRawTag(138, 1);
+        output.WriteBytes(ClientEncKey);
+      }
+      if (ClientRandomKey.Length != 0) {
+        output.WriteRawTag(146, 1);
+        output.WriteBytes(ClientRandomKey);
       }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(output);
@@ -13742,41 +14723,57 @@ namespace Nevr.Protobuf {
         output.WriteRawTag(40);
         output.WriteInt32(TeamIndex);
       }
-      if (Unk1 != 0) {
+      if (UserSlot != 0) {
         output.WriteRawTag(48);
-        output.WriteUInt32(Unk1);
+        output.WriteUInt32(UserSlot);
       }
-      if (HeadsetType != 0) {
+      if (Flags32 != 0) {
         output.WriteRawTag(56);
-        output.WriteInt32(HeadsetType);
+        output.WriteUInt32(Flags32);
+      }
+      if (SessionFlags != 0) {
+        output.WriteRawTag(64);
+        output.WriteUInt32(SessionFlags);
       }
       if (ServerEncoderFlags != 0UL) {
-        output.WriteRawTag(64);
+        output.WriteRawTag(72);
         output.WriteUInt64(ServerEncoderFlags);
       }
       if (ClientEncoderFlags != 0UL) {
-        output.WriteRawTag(72);
+        output.WriteRawTag(80);
         output.WriteUInt64(ClientEncoderFlags);
       }
       if (ServerSequenceId != 0UL) {
-        output.WriteRawTag(80);
+        output.WriteRawTag(88);
         output.WriteUInt64(ServerSequenceId);
       }
       if (ServerMacKey.Length != 0) {
-        output.WriteRawTag(90);
+        output.WriteRawTag(98);
         output.WriteBytes(ServerMacKey);
       }
       if (ServerEncKey.Length != 0) {
-        output.WriteRawTag(98);
+        output.WriteRawTag(106);
         output.WriteBytes(ServerEncKey);
       }
       if (ServerRandomKey.Length != 0) {
-        output.WriteRawTag(106);
+        output.WriteRawTag(114);
         output.WriteBytes(ServerRandomKey);
       }
       if (ClientSequenceId != 0UL) {
-        output.WriteRawTag(112);
+        output.WriteRawTag(120);
         output.WriteUInt64(ClientSequenceId);
+      }
+      if (ClientMacKey.Length != 0) {
+        output.WriteRawTag(130, 1);
+        output.WriteBytes(ClientMacKey);
+      }
+      if (ClientEncKey.Length != 0) {
+        output.WriteRawTag(138, 1);
+        output.WriteBytes(ClientEncKey);
+      }
+      if (ClientRandomKey.Length != 0) {
+        output.WriteRawTag(146, 1);
+        output.WriteBytes(ClientRandomKey);
       }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(ref output);
@@ -13803,11 +14800,14 @@ namespace Nevr.Protobuf {
       if (TeamIndex != 0) {
         size += 1 + pb::CodedOutputStream.ComputeInt32Size(TeamIndex);
       }
-      if (Unk1 != 0) {
-        size += 1 + pb::CodedOutputStream.ComputeUInt32Size(Unk1);
+      if (UserSlot != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeUInt32Size(UserSlot);
       }
-      if (HeadsetType != 0) {
-        size += 1 + pb::CodedOutputStream.ComputeInt32Size(HeadsetType);
+      if (Flags32 != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeUInt32Size(Flags32);
+      }
+      if (SessionFlags != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeUInt32Size(SessionFlags);
       }
       if (ServerEncoderFlags != 0UL) {
         size += 1 + pb::CodedOutputStream.ComputeUInt64Size(ServerEncoderFlags);
@@ -13829,6 +14829,15 @@ namespace Nevr.Protobuf {
       }
       if (ClientSequenceId != 0UL) {
         size += 1 + pb::CodedOutputStream.ComputeUInt64Size(ClientSequenceId);
+      }
+      if (ClientMacKey.Length != 0) {
+        size += 2 + pb::CodedOutputStream.ComputeBytesSize(ClientMacKey);
+      }
+      if (ClientEncKey.Length != 0) {
+        size += 2 + pb::CodedOutputStream.ComputeBytesSize(ClientEncKey);
+      }
+      if (ClientRandomKey.Length != 0) {
+        size += 2 + pb::CodedOutputStream.ComputeBytesSize(ClientRandomKey);
       }
       if (_unknownFields != null) {
         size += _unknownFields.CalculateSize();
@@ -13857,11 +14866,14 @@ namespace Nevr.Protobuf {
       if (other.TeamIndex != 0) {
         TeamIndex = other.TeamIndex;
       }
-      if (other.Unk1 != 0) {
-        Unk1 = other.Unk1;
+      if (other.UserSlot != 0) {
+        UserSlot = other.UserSlot;
       }
-      if (other.HeadsetType != 0) {
-        HeadsetType = other.HeadsetType;
+      if (other.Flags32 != 0) {
+        Flags32 = other.Flags32;
+      }
+      if (other.SessionFlags != 0) {
+        SessionFlags = other.SessionFlags;
       }
       if (other.ServerEncoderFlags != 0UL) {
         ServerEncoderFlags = other.ServerEncoderFlags;
@@ -13883,6 +14895,15 @@ namespace Nevr.Protobuf {
       }
       if (other.ClientSequenceId != 0UL) {
         ClientSequenceId = other.ClientSequenceId;
+      }
+      if (other.ClientMacKey.Length != 0) {
+        ClientMacKey = other.ClientMacKey;
+      }
+      if (other.ClientEncKey.Length != 0) {
+        ClientEncKey = other.ClientEncKey;
+      }
+      if (other.ClientRandomKey.Length != 0) {
+        ClientRandomKey = other.ClientRandomKey;
       }
       _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
     }
@@ -13924,39 +14945,55 @@ namespace Nevr.Protobuf {
             break;
           }
           case 48: {
-            Unk1 = input.ReadUInt32();
+            UserSlot = input.ReadUInt32();
             break;
           }
           case 56: {
-            HeadsetType = input.ReadInt32();
+            Flags32 = input.ReadUInt32();
             break;
           }
           case 64: {
-            ServerEncoderFlags = input.ReadUInt64();
+            SessionFlags = input.ReadUInt32();
             break;
           }
           case 72: {
-            ClientEncoderFlags = input.ReadUInt64();
+            ServerEncoderFlags = input.ReadUInt64();
             break;
           }
           case 80: {
+            ClientEncoderFlags = input.ReadUInt64();
+            break;
+          }
+          case 88: {
             ServerSequenceId = input.ReadUInt64();
             break;
           }
-          case 90: {
+          case 98: {
             ServerMacKey = input.ReadBytes();
             break;
           }
-          case 98: {
+          case 106: {
             ServerEncKey = input.ReadBytes();
             break;
           }
-          case 106: {
+          case 114: {
             ServerRandomKey = input.ReadBytes();
             break;
           }
-          case 112: {
+          case 120: {
             ClientSequenceId = input.ReadUInt64();
+            break;
+          }
+          case 130: {
+            ClientMacKey = input.ReadBytes();
+            break;
+          }
+          case 138: {
+            ClientEncKey = input.ReadBytes();
+            break;
+          }
+          case 146: {
+            ClientRandomKey = input.ReadBytes();
             break;
           }
         }
@@ -13999,39 +15036,55 @@ namespace Nevr.Protobuf {
             break;
           }
           case 48: {
-            Unk1 = input.ReadUInt32();
+            UserSlot = input.ReadUInt32();
             break;
           }
           case 56: {
-            HeadsetType = input.ReadInt32();
+            Flags32 = input.ReadUInt32();
             break;
           }
           case 64: {
-            ServerEncoderFlags = input.ReadUInt64();
+            SessionFlags = input.ReadUInt32();
             break;
           }
           case 72: {
-            ClientEncoderFlags = input.ReadUInt64();
+            ServerEncoderFlags = input.ReadUInt64();
             break;
           }
           case 80: {
+            ClientEncoderFlags = input.ReadUInt64();
+            break;
+          }
+          case 88: {
             ServerSequenceId = input.ReadUInt64();
             break;
           }
-          case 90: {
+          case 98: {
             ServerMacKey = input.ReadBytes();
             break;
           }
-          case 98: {
+          case 106: {
             ServerEncKey = input.ReadBytes();
             break;
           }
-          case 106: {
+          case 114: {
             ServerRandomKey = input.ReadBytes();
             break;
           }
-          case 112: {
+          case 120: {
             ClientSequenceId = input.ReadUInt64();
+            break;
+          }
+          case 130: {
+            ClientMacKey = input.ReadBytes();
+            break;
+          }
+          case 138: {
+            ClientEncKey = input.ReadBytes();
+            break;
+          }
+          case 146: {
+            ClientRandomKey = input.ReadBytes();
             break;
           }
         }
@@ -14060,7 +15113,7 @@ namespace Nevr.Protobuf {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Nevr.Protobuf.RealtimeV1Reflection.Descriptor.MessageTypes[38]; }
+      get { return global::Nevr.Protobuf.RealtimeV1Reflection.Descriptor.MessageTypes[41]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -14345,7 +15398,7 @@ namespace Nevr.Protobuf {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Nevr.Protobuf.RealtimeV1Reflection.Descriptor.MessageTypes[39]; }
+      get { return global::Nevr.Protobuf.RealtimeV1Reflection.Descriptor.MessageTypes[42]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -14631,7 +15684,7 @@ namespace Nevr.Protobuf {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Nevr.Protobuf.RealtimeV1Reflection.Descriptor.MessageTypes[40]; }
+      get { return global::Nevr.Protobuf.RealtimeV1Reflection.Descriptor.MessageTypes[43]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -14879,7 +15932,7 @@ namespace Nevr.Protobuf {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Nevr.Protobuf.RealtimeV1Reflection.Descriptor.MessageTypes[41]; }
+      get { return global::Nevr.Protobuf.RealtimeV1Reflection.Descriptor.MessageTypes[44]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -15163,7 +16216,7 @@ namespace Nevr.Protobuf {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Nevr.Protobuf.RealtimeV1Reflection.Descriptor.MessageTypes[42]; }
+      get { return global::Nevr.Protobuf.RealtimeV1Reflection.Descriptor.MessageTypes[45]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -15448,7 +16501,7 @@ namespace Nevr.Protobuf {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Nevr.Protobuf.RealtimeV1Reflection.Descriptor.MessageTypes[43]; }
+      get { return global::Nevr.Protobuf.RealtimeV1Reflection.Descriptor.MessageTypes[46]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -15650,7 +16703,7 @@ namespace Nevr.Protobuf {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Nevr.Protobuf.RealtimeV1Reflection.Descriptor.MessageTypes[44]; }
+      get { return global::Nevr.Protobuf.RealtimeV1Reflection.Descriptor.MessageTypes[47]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -15898,7 +16951,7 @@ namespace Nevr.Protobuf {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Nevr.Protobuf.RealtimeV1Reflection.Descriptor.MessageTypes[45]; }
+      get { return global::Nevr.Protobuf.RealtimeV1Reflection.Descriptor.MessageTypes[48]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -16183,7 +17236,7 @@ namespace Nevr.Protobuf {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Nevr.Protobuf.RealtimeV1Reflection.Descriptor.MessageTypes[46]; }
+      get { return global::Nevr.Protobuf.RealtimeV1Reflection.Descriptor.MessageTypes[49]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -16432,7 +17485,7 @@ namespace Nevr.Protobuf {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Nevr.Protobuf.RealtimeV1Reflection.Descriptor.MessageTypes[47]; }
+      get { return global::Nevr.Protobuf.RealtimeV1Reflection.Descriptor.MessageTypes[50]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -16679,7 +17732,7 @@ namespace Nevr.Protobuf {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Nevr.Protobuf.RealtimeV1Reflection.Descriptor.MessageTypes[48]; }
+      get { return global::Nevr.Protobuf.RealtimeV1Reflection.Descriptor.MessageTypes[51]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -16929,7 +17982,7 @@ namespace Nevr.Protobuf {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Nevr.Protobuf.RealtimeV1Reflection.Descriptor.MessageTypes[49]; }
+      get { return global::Nevr.Protobuf.RealtimeV1Reflection.Descriptor.MessageTypes[52]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -16974,7 +18027,7 @@ namespace Nevr.Protobuf {
     }
 
     /// <summary>Field number for the "log_level" field.</summary>
-    public const int LogLevelFieldNumber = 6;
+    public const int LogLevelFieldNumber = 2;
     private ulong logLevel_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
@@ -16986,9 +18039,9 @@ namespace Nevr.Protobuf {
     }
 
     /// <summary>Field number for the "logs" field.</summary>
-    public const int LogsFieldNumber = 7;
+    public const int LogsFieldNumber = 3;
     private static readonly pb::FieldCodec<string> _repeated_logs_codec
-        = pb::FieldCodec.ForString(58);
+        = pb::FieldCodec.ForString(26);
     private readonly pbc::RepeatedField<string> logs_ = new pbc::RepeatedField<string>();
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
@@ -17047,7 +18100,7 @@ namespace Nevr.Protobuf {
         output.WriteMessage(UserId);
       }
       if (LogLevel != 0UL) {
-        output.WriteRawTag(48);
+        output.WriteRawTag(16);
         output.WriteUInt64(LogLevel);
       }
       logs_.WriteTo(output, _repeated_logs_codec);
@@ -17066,7 +18119,7 @@ namespace Nevr.Protobuf {
         output.WriteMessage(UserId);
       }
       if (LogLevel != 0UL) {
-        output.WriteRawTag(48);
+        output.WriteRawTag(16);
         output.WriteUInt64(LogLevel);
       }
       logs_.WriteTo(ref output, _repeated_logs_codec);
@@ -17135,11 +18188,11 @@ namespace Nevr.Protobuf {
             input.ReadMessage(UserId);
             break;
           }
-          case 48: {
+          case 16: {
             LogLevel = input.ReadUInt64();
             break;
           }
-          case 58: {
+          case 26: {
             logs_.AddEntriesFrom(input, _repeated_logs_codec);
             break;
           }
@@ -17169,11 +18222,11 @@ namespace Nevr.Protobuf {
             input.ReadMessage(UserId);
             break;
           }
-          case 48: {
+          case 16: {
             LogLevel = input.ReadUInt64();
             break;
           }
-          case 58: {
+          case 26: {
             logs_.AddEntriesFrom(ref input, _repeated_logs_codec);
             break;
           }
@@ -17203,7 +18256,7 @@ namespace Nevr.Protobuf {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Nevr.Protobuf.RealtimeV1Reflection.Descriptor.MessageTypes[50]; }
+      get { return global::Nevr.Protobuf.RealtimeV1Reflection.Descriptor.MessageTypes[53]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -17488,7 +18541,7 @@ namespace Nevr.Protobuf {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Nevr.Protobuf.RealtimeV1Reflection.Descriptor.MessageTypes[51]; }
+      get { return global::Nevr.Protobuf.RealtimeV1Reflection.Descriptor.MessageTypes[54]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -17699,7 +18752,7 @@ namespace Nevr.Protobuf {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Nevr.Protobuf.RealtimeV1Reflection.Descriptor.MessageTypes[52]; }
+      get { return global::Nevr.Protobuf.RealtimeV1Reflection.Descriptor.MessageTypes[55]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -17984,7 +19037,7 @@ namespace Nevr.Protobuf {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Nevr.Protobuf.RealtimeV1Reflection.Descriptor.MessageTypes[53]; }
+      get { return global::Nevr.Protobuf.RealtimeV1Reflection.Descriptor.MessageTypes[56]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -18232,7 +19285,7 @@ namespace Nevr.Protobuf {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Nevr.Protobuf.RealtimeV1Reflection.Descriptor.MessageTypes[54]; }
+      get { return global::Nevr.Protobuf.RealtimeV1Reflection.Descriptor.MessageTypes[57]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]

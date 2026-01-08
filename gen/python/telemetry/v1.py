@@ -271,6 +271,9 @@ class PlayerSteal(betterproto.Message):
 
     player_slot: int = betterproto.int32_field(1)
     total_steals: int = betterproto.int32_field(2)
+    # The slot of the player who had possession before it was stolen. -1 if
+    # unknown or if possession was not tracked.
+    victim_player_slot: int = betterproto.int32_field(3)
 
 
 @dataclass

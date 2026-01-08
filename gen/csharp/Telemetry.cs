@@ -117,23 +117,24 @@ namespace Nevr.Telemetry.Protobuf {
             "HwoLcGxheWVyX3Nsb3QYASABKAVSCnBsYXllclNsb3QSHwoLdG90YWxfc3R1",
             "bnMYAiABKAVSCnRvdGFsU3R1bnMiUAoKUGxheWVyUGFzcxIfCgtwbGF5ZXJf",
             "c2xvdBgBIAEoBVIKcGxheWVyU2xvdBIhCgx0b3RhbF9wYXNzZXMYAiABKAVS",
-            "C3RvdGFsUGFzc2VzIlEKC1BsYXllclN0ZWFsEh8KC3BsYXllcl9zbG90GAEg",
+            "C3RvdGFsUGFzc2VzIn8KC1BsYXllclN0ZWFsEh8KC3BsYXllcl9zbG90GAEg",
             "ASgFUgpwbGF5ZXJTbG90EiEKDHRvdGFsX3N0ZWFscxgCIAEoBVILdG90YWxT",
-            "dGVhbHMiUQoLUGxheWVyQmxvY2sSHwoLcGxheWVyX3Nsb3QYASABKAVSCnBs",
-            "YXllclNsb3QSIQoMdG90YWxfYmxvY2tzGAIgASgFUgt0b3RhbEJsb2NrcyJm",
-            "ChJQbGF5ZXJJbnRlcmNlcHRpb24SHwoLcGxheWVyX3Nsb3QYASABKAVSCnBs",
-            "YXllclNsb3QSLwoTdG90YWxfaW50ZXJjZXB0aW9ucxgCIAEoBVISdG90YWxJ",
-            "bnRlcmNlcHRpb25zIlQKDFBsYXllckFzc2lzdBIfCgtwbGF5ZXJfc2xvdBgB",
-            "IAEoBVIKcGxheWVyU2xvdBIjCg10b3RhbF9hc3Npc3RzGAIgASgFUgx0b3Rh",
-            "bEFzc2lzdHMiUwoPUGxheWVyU2hvdFRha2VuEh8KC3BsYXllcl9zbG90GAEg",
-            "ASgFUgpwbGF5ZXJTbG90Eh8KC3RvdGFsX3Nob3RzGAIgASgFUgp0b3RhbFNo",
-            "b3RzKosBCgRSb2xlEhQKEFJPTEVfVU5TUEVDSUZJRUQQABISCg5ST0xFX0JM",
-            "VUVfVEVBTRABEhQKEFJPTEVfT1JBTkdFX1RFQU0QAhISCg5ST0xFX1NQRUNU",
-            "QVRPUhADEhsKF1JPTEVfU09DSUFMX1BBUlRJQ0lQQU5UEAQSEgoOUk9MRV9N",
-            "T0RFUkFUT1IQBUKPAQofY29tLmVjaG90b29scy5uZXZyLnRlbGVtZXRyeS52",
-            "MUINTmV2clRlbGVtZXRyeVABWkFnaXRodWIuY29tL2VjaG90b29scy9uZXZy",
-            "LWNvbW1vbi92NC9nZW4vZ28vdGVsZW1ldHJ5L3YxO3RlbGVtZXRyeaoCF05l",
-            "dnIuVGVsZW1ldHJ5LlByb3RvYnVmYgZwcm90bzM="));
+            "dGVhbHMSLAoSdmljdGltX3BsYXllcl9zbG90GAMgASgFUhB2aWN0aW1QbGF5",
+            "ZXJTbG90IlEKC1BsYXllckJsb2NrEh8KC3BsYXllcl9zbG90GAEgASgFUgpw",
+            "bGF5ZXJTbG90EiEKDHRvdGFsX2Jsb2NrcxgCIAEoBVILdG90YWxCbG9ja3Mi",
+            "ZgoSUGxheWVySW50ZXJjZXB0aW9uEh8KC3BsYXllcl9zbG90GAEgASgFUgpw",
+            "bGF5ZXJTbG90Ei8KE3RvdGFsX2ludGVyY2VwdGlvbnMYAiABKAVSEnRvdGFs",
+            "SW50ZXJjZXB0aW9ucyJUCgxQbGF5ZXJBc3Npc3QSHwoLcGxheWVyX3Nsb3QY",
+            "ASABKAVSCnBsYXllclNsb3QSIwoNdG90YWxfYXNzaXN0cxgCIAEoBVIMdG90",
+            "YWxBc3Npc3RzIlMKD1BsYXllclNob3RUYWtlbhIfCgtwbGF5ZXJfc2xvdBgB",
+            "IAEoBVIKcGxheWVyU2xvdBIfCgt0b3RhbF9zaG90cxgCIAEoBVIKdG90YWxT",
+            "aG90cyqLAQoEUm9sZRIUChBST0xFX1VOU1BFQ0lGSUVEEAASEgoOUk9MRV9C",
+            "TFVFX1RFQU0QARIUChBST0xFX09SQU5HRV9URUFNEAISEgoOUk9MRV9TUEVD",
+            "VEFUT1IQAxIbChdST0xFX1NPQ0lBTF9QQVJUSUNJUEFOVBAEEhIKDlJPTEVf",
+            "TU9ERVJBVE9SEAVCjwEKH2NvbS5lY2hvdG9vbHMubmV2ci50ZWxlbWV0cnku",
+            "djFCDU5ldnJUZWxlbWV0cnlQAVpBZ2l0aHViLmNvbS9lY2hvdG9vbHMvbmV2",
+            "ci1jb21tb24vdjQvZ2VuL2dvL3RlbGVtZXRyeS92MTt0ZWxlbWV0cnmqAhdO",
+            "ZXZyLlRlbGVtZXRyeS5Qcm90b2J1ZmIGcHJvdG8z"));
       descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
           new pbr::FileDescriptor[] { global::Nevr.Engine.Http.V1.HttpV1Reflection.Descriptor, global::Google.Protobuf.WellKnownTypes.TimestampReflection.Descriptor, },
           new pbr::GeneratedClrTypeInfo(new[] {typeof(global::Nevr.Telemetry.Protobuf.Role), }, null, new pbr::GeneratedClrTypeInfo[] {
@@ -159,7 +160,7 @@ namespace Nevr.Telemetry.Protobuf {
             new pbr::GeneratedClrTypeInfo(typeof(global::Nevr.Telemetry.Protobuf.PlayerSave), global::Nevr.Telemetry.Protobuf.PlayerSave.Parser, new[]{ "PlayerSlot", "TotalSaves" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Nevr.Telemetry.Protobuf.PlayerStun), global::Nevr.Telemetry.Protobuf.PlayerStun.Parser, new[]{ "PlayerSlot", "TotalStuns" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Nevr.Telemetry.Protobuf.PlayerPass), global::Nevr.Telemetry.Protobuf.PlayerPass.Parser, new[]{ "PlayerSlot", "TotalPasses" }, null, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::Nevr.Telemetry.Protobuf.PlayerSteal), global::Nevr.Telemetry.Protobuf.PlayerSteal.Parser, new[]{ "PlayerSlot", "TotalSteals" }, null, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::Nevr.Telemetry.Protobuf.PlayerSteal), global::Nevr.Telemetry.Protobuf.PlayerSteal.Parser, new[]{ "PlayerSlot", "TotalSteals", "VictimPlayerSlot" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Nevr.Telemetry.Protobuf.PlayerBlock), global::Nevr.Telemetry.Protobuf.PlayerBlock.Parser, new[]{ "PlayerSlot", "TotalBlocks" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Nevr.Telemetry.Protobuf.PlayerInterception), global::Nevr.Telemetry.Protobuf.PlayerInterception.Parser, new[]{ "PlayerSlot", "TotalInterceptions" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Nevr.Telemetry.Protobuf.PlayerAssist), global::Nevr.Telemetry.Protobuf.PlayerAssist.Parser, new[]{ "PlayerSlot", "TotalAssists" }, null, null, null, null),
@@ -6936,6 +6937,7 @@ namespace Nevr.Telemetry.Protobuf {
     public PlayerSteal(PlayerSteal other) : this() {
       playerSlot_ = other.playerSlot_;
       totalSteals_ = other.totalSteals_;
+      victimPlayerSlot_ = other.victimPlayerSlot_;
       _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
     }
 
@@ -6969,6 +6971,22 @@ namespace Nevr.Telemetry.Protobuf {
       }
     }
 
+    /// <summary>Field number for the "victim_player_slot" field.</summary>
+    public const int VictimPlayerSlotFieldNumber = 3;
+    private int victimPlayerSlot_;
+    /// <summary>
+    /// The slot of the player who had possession before it was stolen.
+    /// -1 if unknown or if possession was not tracked.
+    /// </summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public int VictimPlayerSlot {
+      get { return victimPlayerSlot_; }
+      set {
+        victimPlayerSlot_ = value;
+      }
+    }
+
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public override bool Equals(object other) {
@@ -6986,6 +7004,7 @@ namespace Nevr.Telemetry.Protobuf {
       }
       if (PlayerSlot != other.PlayerSlot) return false;
       if (TotalSteals != other.TotalSteals) return false;
+      if (VictimPlayerSlot != other.VictimPlayerSlot) return false;
       return Equals(_unknownFields, other._unknownFields);
     }
 
@@ -6995,6 +7014,7 @@ namespace Nevr.Telemetry.Protobuf {
       int hash = 1;
       if (PlayerSlot != 0) hash ^= PlayerSlot.GetHashCode();
       if (TotalSteals != 0) hash ^= TotalSteals.GetHashCode();
+      if (VictimPlayerSlot != 0) hash ^= VictimPlayerSlot.GetHashCode();
       if (_unknownFields != null) {
         hash ^= _unknownFields.GetHashCode();
       }
@@ -7021,6 +7041,10 @@ namespace Nevr.Telemetry.Protobuf {
         output.WriteRawTag(16);
         output.WriteInt32(TotalSteals);
       }
+      if (VictimPlayerSlot != 0) {
+        output.WriteRawTag(24);
+        output.WriteInt32(VictimPlayerSlot);
+      }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(output);
       }
@@ -7039,6 +7063,10 @@ namespace Nevr.Telemetry.Protobuf {
         output.WriteRawTag(16);
         output.WriteInt32(TotalSteals);
       }
+      if (VictimPlayerSlot != 0) {
+        output.WriteRawTag(24);
+        output.WriteInt32(VictimPlayerSlot);
+      }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(ref output);
       }
@@ -7054,6 +7082,9 @@ namespace Nevr.Telemetry.Protobuf {
       }
       if (TotalSteals != 0) {
         size += 1 + pb::CodedOutputStream.ComputeInt32Size(TotalSteals);
+      }
+      if (VictimPlayerSlot != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeInt32Size(VictimPlayerSlot);
       }
       if (_unknownFields != null) {
         size += _unknownFields.CalculateSize();
@@ -7072,6 +7103,9 @@ namespace Nevr.Telemetry.Protobuf {
       }
       if (other.TotalSteals != 0) {
         TotalSteals = other.TotalSteals;
+      }
+      if (other.VictimPlayerSlot != 0) {
+        VictimPlayerSlot = other.VictimPlayerSlot;
       }
       _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
     }
@@ -7100,6 +7134,10 @@ namespace Nevr.Telemetry.Protobuf {
             TotalSteals = input.ReadInt32();
             break;
           }
+          case 24: {
+            VictimPlayerSlot = input.ReadInt32();
+            break;
+          }
         }
       }
     #endif
@@ -7125,6 +7163,10 @@ namespace Nevr.Telemetry.Protobuf {
           }
           case 16: {
             TotalSteals = input.ReadInt32();
+            break;
+          }
+          case 24: {
+            VictimPlayerSlot = input.ReadInt32();
             break;
           }
         }
