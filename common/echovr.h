@@ -243,6 +243,58 @@ struct TcpBroadcaster {
 };
 
 /// <summary>
+/// LoadoutSlot contains all customizable cosmetic item IDs for a single loadout slot.
+/// Each field is a 64-bit SymbolId hash reference to a cosmetic resource.
+/// Total size: 0xA8 bytes (168 bytes)
+///
+/// Serialization functions (Ghidra addresses):
+///   - LoadoutSlot_Inspect_Deserialize: 0x140136060 (JSON → struct)
+///   - LoadoutSlot_Inspect_Serialize:   0x140136fc0 (struct → JSON)
+/// </summary>
+struct LoadoutSlot {
+  SymbolId selectionmode;     // 0x00 - JSON: "selectionmode" (int, not SymbolId)
+  SymbolId banner;            // 0x08 - JSON: "banner"
+  SymbolId booster;           // 0x10 - JSON: "booster"
+  SymbolId bracer;            // 0x18 - JSON: "bracer"
+  SymbolId chassis;           // 0x20 - JSON: "chassis"
+  SymbolId decal;             // 0x28 - JSON: "decal"
+  SymbolId decal_body;        // 0x30 - JSON: "decal_body"
+  SymbolId emissive;          // 0x38 - JSON: "emissive"
+  SymbolId emote;             // 0x40 - JSON: "emote"
+  SymbolId secondemote;       // 0x48 - JSON: "secondemote"
+  SymbolId goal_fx;           // 0x50 - JSON: "goal_fx"
+  SymbolId medal;             // 0x58 - JSON: "medal"
+  SymbolId pattern;           // 0x60 - JSON: "pattern"
+  SymbolId pattern_body;      // 0x68 - JSON: "pattern_body"
+  SymbolId pip;               // 0x70 - JSON: "pip"
+  SymbolId tag;               // 0x78 - JSON: "tag"
+  SymbolId tint;              // 0x80 - JSON: "tint"
+  SymbolId tint_alignment_a;  // 0x88 - JSON: "tint_alignment_a"
+  SymbolId tint_alignment_b;  // 0x90 - JSON: "tint_alignment_b"
+  SymbolId tint_body;         // 0x98 - JSON: "tint_body"
+  SymbolId title;             // 0xA0 - JSON: "title"
+};
+
+/// <summary>
+/// LoadoutEntry wraps a LoadoutSlot with additional metadata (body type, team, AI role).
+/// This is the parent struct serialized to JSON for loadout instances.
+/// Total size: 0xD8 bytes (216 bytes)
+///
+/// Serialization functions (Ghidra addresses):
+///   - LoadoutEntry_Inspect_Deserialize: 0x140133e50 (JSON → struct)
+///   - LoadoutEntry_Inspect_Serialize:   0x140134090 (struct → JSON)
+/// </summary>
+struct LoadoutEntry {
+  SymbolId bodytype;        // 0x00 - JSON: "bodytype" - Body type SymbolId
+  uint16_t teamid;          // 0x08 - JSON: "teamid"
+  uint16_t airole;          // 0x0A - JSON: "airole" - AI role ID
+  uint8_t _padding[4];      // 0x0C - Alignment padding
+  SymbolId xf;              // 0x10 - JSON: "xf" - Unknown purpose (possibly effects)
+  uint8_t _reserved[0x18];  // 0x18 - Reserved/unknown (24 bytes)
+  LoadoutSlot loadout;      // 0x30 - JSON: "loadout" - Nested LoadoutSlot (0xA8 bytes)
+};
+
+/// <summary>
 /// Lobby type describes the privacy-access level of a game session.
 /// </summary>
 enum class LobbyType : INT8 {
