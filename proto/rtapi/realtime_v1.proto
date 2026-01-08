@@ -181,6 +181,40 @@ message LoadoutItem {
   fixed64 equipped_item = 2; // SymbolId hash of the equipped item
 }
 
+// A loadout slot containing all cosmetic item selections (SymbolId hashes)
+message LoadoutSlot {
+  fixed64 selectionmode    = 1;
+  fixed64 banner           = 2;
+  fixed64 booster          = 3;
+  fixed64 bracer           = 4;
+  fixed64 chassis          = 5;
+  fixed64 decal            = 6;
+  fixed64 decal_body       = 7;
+  fixed64 emissive         = 8;
+  fixed64 emote            = 9;
+  fixed64 secondemote      = 10;
+  fixed64 goal_fx          = 11;
+  fixed64 medal            = 12;
+  fixed64 pattern          = 13;
+  fixed64 pattern_body     = 14;
+  fixed64 pip              = 15;
+  fixed64 tag              = 16;
+  fixed64 tint             = 17;
+  fixed64 tint_alignment_a = 18;
+  fixed64 tint_alignment_b = 19;
+  fixed64 tint_body        = 20;
+  fixed64 title            = 21;
+}
+
+// A loadout entry containing body type, team, and the loadout slot
+message LoadoutEntry {
+  fixed64     bodytype = 1;
+  uint32      teamid   = 2;
+  uint32      airole   = 3;
+  fixed64     xf       = 4;
+  LoadoutSlot loadout  = 5;
+}
+
 // A loadout instance within a player's loadout
 message LoadoutInstance {
   fixed64              instance_name = 1; // SymbolId hash of the instance name
@@ -193,7 +227,8 @@ message GameServerSaveLoadoutMessage {
   string                   entrant_id        = 2; // The entrant UUID who saved the loadout
   int32                    loadout_slot      = 3; // Which loadout slot (0-based)
   int32                    jersey_number     = 4; // Player's jersey number
-  repeated LoadoutInstance loadout_instances = 5; // The loadout data
+  repeated LoadoutInstance loadout_instances = 5; // The loadout data (raw instances)
+  LoadoutEntry             loadout_entry     = 6; // The structured loadout entry
 }
 
 // Entrant connect message is sent from the server to the service.
