@@ -57,10 +57,11 @@ struct HeapArray {
 };
 
 /// <summary>
-/// TODO: A structure which tracks address info, often represented as a padded sockaddr_in struct.
+/// A structure which tracks address info, often represented as a padded sockaddr_in struct.
 /// </summary>
 struct AddressInfo {
-  // This can be interpreted as a sockaddr_in struct at the start, the rest is padded.
+  // This can be interpreted as a sockaddr_storage struct at the start, the rest is padded.
+  // The size of this array is 128 bytes, which is the size of sockaddr_storage.
   UINT64 raw[16];
 };
 
