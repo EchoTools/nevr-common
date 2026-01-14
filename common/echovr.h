@@ -337,23 +337,29 @@ enum class NetGameState : INT32 {
 struct Lobby {
   /// <summary>
   /// Information for each entrant/player in the game server.
+  /// Size: 0x250 (592) bytes - verified via Ghidra analysis.
   /// </summary>
   struct EntrantData {
-    XPlatformId userId;
-    SymbolId platformId;
-    CHAR uniqueName[36];
-    CHAR displayName[36];
-    CHAR sfwDisplayName[36];
-    INT32 censored;
-    UINT16 owned : 1;
+    XPlatformId userId;       // 0x00: User's platform identifier (16 bytes)
+    SymbolId platformId;      // 0x10: Platform symbol ID (8 bytes)
+    CHAR uniqueName[36];      // 0x18: Unique username (36 bytes)
+    CHAR displayName[36];     // 0x3C: Display name (36 bytes)
+    CHAR sfwDisplayName[36];  // 0x60: Safe-for-work display name (36 bytes)
+    INT32 censored;           // 0x84: Censorship flag (4 bytes)
+    UINT16 owned : 1;         // 0x88: Ownership flags (bitfield)
     UINT16 dirty : 1;
     UINT16 crossplayEnabled : 1;
     UINT16 unused : 13;
-    UINT16 ping;
-    UINT16 genIndex;
-    UINT16 teamIndex;
-    Json json;
+    UINT16 ping;       // 0x8A: Player ping (2 bytes)
+    UINT16 genIndex;   // 0x8C: Generation index (2 bytes)
+    UINT16 teamIndex;  // 0x8E: Team index (2 bytes)
+    Json json;         // 0x90: JSON data (16 bytes)
+    // Unknown fields from 0xA0 to 0x250 - padding to match actual struct size
+    CHAR _unknown_padding[0x1B0];  // 432 bytes padding to reach 0x250 total
   };
+
+  // Verify EntrantData size matches Ghidra analysis
+  static_assert(sizeof(EntrantData) == 0x250, "EntrantData must be 0x250 (592) bytes");
 
   /// <summary>
   /// Information for each local entrant on this machine, in the game server.
