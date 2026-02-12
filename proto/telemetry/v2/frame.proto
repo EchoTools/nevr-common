@@ -1,0 +1,258 @@
+/**
+ * Optimized telemetry v2 format for streaming game session data.
+ * 
+ * Key improvements over v1:
+ * - Session-scoped constants moved to CaptureHeader (written once)
+ * - Timestamp deltas instead of full google.protobuf.Timestamp
+ * - float32 instead of float64 for spatial data
+ * - Quaternions instead of 3×3 rotation matrices (36 bytes → 16 bytes)
+ * - Packed bytes for bone data (zero-copy from C++ memory)
+ * - Proto enums instead of string enums
+ * - Bitmask for boolean flags (5 bools × 2 bytes → 2 bytes)
+ * - Removed per-frame stats (derivable from events)
+ * - Removed redundant fields
+ * 
+ * Wire size reduction: 73.5% per frame at 10 players (5,109 bytes → 1,354 bytes).
+ */
+syntax = "proto3";
+
+package telemetry.v2;
+
+import "spatial/v1/types.proto";
+import "telemetry/v1/telemetry.proto";
+import "google/protobuf/timestamp.proto";
+
+option csharp_namespace = "Nevr.Telemetry.V2";
+option go_package = "github.com/echotools/nevr-common/v4/gen/go/telemetry/v2;telemetryv2";
+option java_multiple_files = true;
+option java_outer_classname = "TelemetryV2Proto";
+option java_package = "com.echotools.nevr.telemetry.v2";
+
+/**
+ * Game status enumeration.
+ * Replaces the string field "game_status" from v1.
+ */
+enum GameStatus {
+  GAME_STATUS_UNSPECIFIED = 0;
+  GAME_STATUS_PRE_MATCH = 1;
+  GAME_STATUS_ROUND_START = 2;
+  GAME_STATUS_PLAYING = 3;
+  GAME_STATUS_SCORE = 4;
+  GAME_STATUS_ROUND_OVER = 5;
+  GAME_STATUS_POST_MATCH = 6;
+  GAME_STATUS_PRE_SUDDEN_DEATH = 7;
+  GAME_STATUS_SUDDEN_DEATH = 8;
+  GAME_STATUS_POST_SUDDEN_DEATH = 9;
+}
+
+/**
+ * Match type enumeration.
+ * Replaces the string field "match_type" from v1.
+ */
+enum MatchType {
+  MATCH_TYPE_UNSPECIFIED = 0;
+  MATCH_TYPE_SOCIAL_PUBLIC = 1;
+  MATCH_TYPE_SOCIAL_PRIVATE = 2;
+  MATCH_TYPE_ARENA = 3;
+  MATCH_TYPE_COMBAT = 4;
+  MATCH_TYPE_ECHO_PASS = 5;
+  MATCH_TYPE_FFA = 6;
+  MATCH_TYPE_PRIVATE = 7;
+  MATCH_TYPE_TOURNAMENT = 8;
+}
+
+/**
+ * Pause state enumeration.
+ * Replaces the string field "paused_state" from v1.
+ */
+enum PauseState {
+  PAUSE_STATE_UNSPECIFIED = 0;
+  PAUSE_STATE_NOT_PAUSED = 1;
+  PAUSE_STATE_PAUSED = 2;
+  PAUSE_STATE_UNPAUSING = 3;
+  PAUSE_STATE_AUTOPAUSE_REPLAY = 4;
+}
+
+/**
+ * Session-scoped capture metadata.
+ * Written once at the start of the stream.
+ * Contains all constants that don't change during the session.
+ */
+message CaptureHeader {
+  // Unique identifier for the capture (e.g., UUID).
+  string capture_id = 1;
+  
+  // Unix epoch timestamp (seconds since 1970-01-01T00:00:00Z).
+  // Used as the base for frame timestamp_offset_ms deltas.
+  google.protobuf.Timestamp created_at = 2;
+  
+  // Unique session identifier from the game server.
+  string session_id = 3;
+  
+  // Map name (e.g., "mpl_arena_a", "mpl_lobby_b2").
+  string map_name = 4;
+  
+  // Match type (Arena, Social, Combat, etc.).
+  MatchType match_type = 5;
+  
+  // Client name (e.g., "nevr-agent 1.2.3").
+  string client_name = 6;
+  
+  // True if this is a private match.
+  bool private_match = 7;
+  
+  // True if this is a tournament match.
+  bool tournament_match = 8;
+  
+  // Total number of rounds in the match (e.g., best of 3 = 3 rounds).
+  int32 total_round_count = 9;
+  
+  // Initial player roster at capture start.
+  // Updated via PlayerJoined/PlayerLeft events during the match.
+  repeated PlayerInfo initial_roster = 10;
+  
+  // Arbitrary key-value metadata (game version, server IP, etc.).
+  map<string, string> metadata = 11;
+}
+
+/**
+ * Basic player information for the roster.
+ */
+message PlayerInfo {
+  int32 slot = 1;
+  uint64 account_number = 2;
+  string display_name = 3;
+  telemetry.v1.Role role = 4;
+}
+
+/**
+ * Disc state snapshot.
+ * Wire size: ~52 bytes (28 + 12 + 4 + varint overhead).
+ */
+message DiscState {
+  spatial.v1.Pose pose = 1;
+  spatial.v1.Vec3 velocity = 2;
+  uint32 bounce_count = 3;
+}
+
+/**
+ * Player state snapshot.
+ * Uses a flags bitmask to pack boolean states efficiently.
+ * Wire size: ~140 bytes (4×28 + 12 + 2 + 2 = 126 + varint overhead).
+ */
+message PlayerState {
+  // Player slot number (0-based index).
+  int32 slot = 1;
+  
+  // Rigid body poses for head, body, left hand, right hand.
+  spatial.v1.Pose head = 2;
+  spatial.v1.Pose body = 3;
+  spatial.v1.Pose left_hand = 4;
+  spatial.v1.Pose right_hand = 5;
+  
+  // Body velocity.
+  spatial.v1.Vec3 velocity = 6;
+  
+  // Packed boolean flags:
+  // Bit 0: stunned
+  // Bit 1: invulnerable
+  // Bit 2: blocking
+  // Bit 3: possession
+  // Bit 4: is_emote_playing
+  // Bits 5-31: reserved
+  uint32 flags = 7;
+  
+  // Network latency in milliseconds.
+  uint32 ping = 8;
+}
+
+/**
+ * Player bone data.
+ * Bone transforms stored as raw bytes for zero-copy serialization.
+ * 
+ * Layout (little-endian, matching C++ structs):
+ * - transforms: 22 bones × 3 floats (x,y,z) = 66 floats = 264 bytes
+ * - orientations: 22 bones × 4 floats (quat x,y,z,w) = 88 floats = 352 bytes
+ * 
+ * C++ zero-copy example:
+ *   float bone_positions[22][3];
+ *   player_bones.set_transforms(bone_positions, 264);
+ */
+message PlayerBones {
+  // Player slot number.
+  int32 slot = 1;
+  
+  // Bone translation data (264 bytes).
+  // Stride: 12 bytes per bone (3 × float32).
+  bytes transforms = 2;
+  
+  // Bone rotation data (352 bytes).
+  // Stride: 16 bytes per bone (4 × float32 quaternion).
+  bytes orientations = 3;
+}
+
+/**
+ * A single frame of game state.
+ * Follows the CaptureHeader in a stream.
+ * Wire size: ~324 bytes (2 players) to ~1,354 bytes (10 players).
+ */
+message Frame {
+  // Sequential frame index, starting from 0.
+  uint32 frame_index = 1;
+  
+  // Milliseconds since CaptureHeader.created_at.
+  // Reduces 12-byte Timestamp to 1-5 byte varint.
+  uint32 timestamp_offset_ms = 2;
+  
+  // Current game status.
+  GameStatus game_status = 3;
+  
+  // Game clock in seconds (counts down during rounds).
+  float game_clock = 4;
+  
+  // Disc state.
+  DiscState disc = 5;
+  
+  // Player states (head, body, hands, velocity, flags).
+  repeated PlayerState players = 6;
+  
+  // Player bone data (optional, high bandwidth).
+  repeated PlayerBones player_bones = 7;
+  
+  // Events that occurred during this frame.
+  repeated telemetry.v1.LobbySessionEvent events = 8;
+  
+  // Slot of the player holding the disc (-1 if free).
+  int32 disc_holder_slot = 9;
+  
+  // VR root pose (player's real-world tracking origin).
+  spatial.v1.Pose vr_root = 10;
+  
+  // Blue team's score.
+  int32 blue_points = 11;
+  
+  // Orange team's score.
+  int32 orange_points = 12;
+  
+  // Current round number (0-based).
+  int32 round_number = 13;
+  
+  // Pause state.
+  PauseState pause_state = 14;
+}
+
+/**
+ * Envelope for streaming v2 telemetry data.
+ * Supports both v1 and v2 frames for backward compatibility.
+ */
+message EnvelopeV2 {
+  oneof message {
+    // V2 messages.
+    CaptureHeader header_v2 = 1;
+    Frame frame_v2 = 2;
+    
+    // V1 messages (for backward compatibility).
+    telemetry.v1.TelemetryHeader header_v1 = 10;
+    telemetry.v1.LobbySessionStateFrame frame_v1 = 11;
+  }
+}

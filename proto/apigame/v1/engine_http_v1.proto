@@ -1,30 +1,45 @@
 /**
  * EchoVR Engine HTTP API.
- * Surface: HTTP JSON on /session and /user_bones
+ * Surface: HTTP JSON on /session and /player_bones
  */
 syntax = "proto3";
 
-package enginehttp;
+package apigame.v1;
 
 import "google/api/annotations.proto";
-import "google/protobuf/empty.proto";
 
 option csharp_namespace = "Nevr.Engine.Http.V1";
-option go_package = "github.com/echotools/nevr-common/v4/gen/go/apigame";
+option go_package = "github.com/echotools/nevr-common/v4/gen/go/apigame/v1;apigamev1";
 option java_multiple_files = true;
 option java_outer_classname = "EngineHttpProto";
 option java_package = "com.github.echotools.nevr.engine.http.v1";
 
+// Request message for GetSession RPC.
+message GetSessionRequest {}
+
+// Request message for GetPlayerBones RPC.
+message GetPlayerBonesRequest {}
+
+// Response message for GetSession RPC.
+message GetSessionResponse {
+  SessionResponse session = 1;
+}
+
+// Response message for GetPlayerBones RPC.
+message GetPlayerBonesResponse {
+  PlayerBonesResponse player_bones = 1;
+}
+
 // HTTP surface that maps to the engine's existing JSON endpoints.
 service EngineHttpService {
   // GET /session -> returns the current session state as JSON.
-  rpc GetSession(google.protobuf.Empty) returns (SessionResponse) {
+  rpc GetSession(GetSessionRequest) returns (GetSessionResponse) {
     option (google.api.http) = {get: "/session"};
   }
 
-  // GET /user_bones -> returns the current user bones payload as JSON.
-  rpc GetPlayerBones(google.protobuf.Empty) returns (PlayerBonesResponse) {
-    option (google.api.http) = {get: "/user_bones"};
+  // GET /player_bones -> returns the current user bones payload as JSON.
+  rpc GetPlayerBones(GetPlayerBonesRequest) returns (GetPlayerBonesResponse) {
+    option (google.api.http) = {get: "/player_bones"};
   }
 }
 
@@ -244,8 +259,8 @@ message SessionResponse {
   int32 err_code = 40 [json_name = "err_code"];
 }
 
-// endpoint: /user_bones
-// Represents the user_bones API response structure.
+// endpoint: /player_bones
+// Represents the player_bones API response structure.
 
 // Represents bone data for a single player.
 message UserBones {

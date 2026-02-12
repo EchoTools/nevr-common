@@ -7,18 +7,19 @@
 #ifndef PCH_H
 #define PCH_H
 
+#ifdef _WIN32
 #define _WINSOCK_DEPRECATED_NO_WARNINGS
 #pragma comment(lib, "Ws2_32.lib")
 
-#include <cstdio>
-#include <iostream>
-#include <fstream>
 #include <winsock2.h>
 
+#include <cstdio>
+#include <fstream>
+#include <iostream>
 
 #define WIN32_LEAN_AND_MEAN
-#include <windows.h>
 #include <shellapi.h>
+#include <windows.h>
+#endif
 
-
-#endif //PCH_H
+#endif  // PCH_H

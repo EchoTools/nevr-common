@@ -3,16 +3,16 @@
  */
 syntax = "proto3";
 
-package api;
+package api.v1;
 
 import "google/protobuf/timestamp.proto";
 import "google/protobuf/wrappers.proto";
 
 option csharp_namespace = "Nevr.Protobuf";
-option go_package = "github.com/echotools/nevr-common/v4/gen/go/api";
+option go_package = "github.com/echotools/nevr-common/v4/gen/go/api/v1;apiv1";
 option java_multiple_files = true;
 option java_outer_classname = "NevrApi";
-option java_package = "com.github.echotools.nevr.api";
+option java_package = "com.github.echotools.nevr.api.v1";
 
 // List game servers.
 message ListServersRequest {
@@ -148,4 +148,14 @@ message Match {
   int32 tick_rate = 5;
   // Handler name
   string handler_name = 6;
+}
+
+// Response wrapper for ListGuildGameServers RPC.
+message ListGuildGameServersResponse {
+  GuildGameServerList result = 1;
+}
+
+// Response wrapper for LobbySessionCreate RPC.
+message LobbySessionCreateResponse {
+  Match result = 1;
 }

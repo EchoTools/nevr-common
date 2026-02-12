@@ -1,0 +1,46 @@
+/**
+ * Spatial primitives for 3D game data.
+ * Optimized for zero-copy serialization from C++ game engines.
+ */
+syntax = "proto3";
+
+package spatial.v1;
+
+option go_package = "github.com/echotools/nevr-common/v4/gen/go/spatial/v1;spatial";
+option csharp_namespace = "Nevr.Spatial.V1";
+option java_multiple_files = true;
+option java_outer_classname = "SpatialProto";
+option java_package = "com.echotools.nevr.spatial.v1";
+
+/**
+ * A 3D vector representing a position, velocity, or direction.
+ * Uses float32 for memory efficiency and alignment with game engine internals.
+ * Wire size: 12 bytes (3 × float).
+ */
+message Vec3 {
+  float x = 1;
+  float y = 2;
+  float z = 3;
+}
+
+/**
+ * A quaternion representing 3D orientation.
+ * Stores a unit quaternion (x, y, z, w) where w is the scalar component.
+ * Quaternions provide compact, gimbal-lock-free rotation representation.
+ * Wire size: 16 bytes (4 × float).
+ */
+message Quat {
+  float x = 1;
+  float y = 2;
+  float z = 3;
+  float w = 4;
+}
+
+/**
+ * A rigid body pose combining position and orientation.
+ * Wire size: 28 bytes (12 + 16).
+ */
+message Pose {
+  Vec3 position = 1;
+  Quat orientation = 2;
+}

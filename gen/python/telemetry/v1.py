@@ -7,7 +7,7 @@ from typing import Dict, List
 
 import betterproto
 
-from . import enginehttp
+from .apigame import v1
 
 
 class Role(betterproto.Enum):
@@ -73,9 +73,9 @@ class LobbySessionStateFrame(betterproto.Message):
     # A list of discrete events that occurred during this frame.
     events: List["LobbySessionEvent"] = betterproto.message_field(3)
     # The session data for this frame, including player locations.
-    session: enginehttp.SessionResponse = betterproto.message_field(4)
+    session: v1.SessionResponse = betterproto.message_field(4)
     # The user bones data for this frame.
-    player_bones: enginehttp.PlayerBonesResponse = betterproto.message_field(5)
+    player_bones: v1.PlayerBonesResponse = betterproto.message_field(5)
 
 
 @dataclass
@@ -118,6 +118,8 @@ class LobbySessionEvent(betterproto.Message):
     )
     player_assist: "PlayerAssist" = betterproto.message_field(56, group="event")
     player_shot_taken: "PlayerShotTaken" = betterproto.message_field(57, group="event")
+    # Misc Events
+    generic_event: "GenericEvent" = betterproto.message_field(60, group="event")
 
 
 @dataclass
@@ -131,14 +133,14 @@ class RoundStarted(betterproto.Message):
 class RoundPaused(betterproto.Message):
     """Fired when the game is paused."""
 
-    pause_state: enginehttp.PauseState = betterproto.message_field(1)
+    pause_state: v1.PauseState = betterproto.message_field(1)
 
 
 @dataclass
 class RoundUnpaused(betterproto.Message):
     """Fired when the game is unpaused."""
 
-    pause_state: enginehttp.PauseState = betterproto.message_field(1)
+    pause_state: v1.PauseState = betterproto.message_field(1)
 
 
 @dataclass
@@ -172,7 +174,7 @@ class PlayerJoined(betterproto.Message):
     """Fired when a new player is detected in the session."""
 
     # Contains the full initial state of the player.
-    player: enginehttp.TeamMember = betterproto.message_field(1)
+    player: v1.TeamMember = betterproto.message_field(1)
     role: "Role" = betterproto.enum_field(2)
 
 
@@ -216,7 +218,7 @@ class DiscThrown(betterproto.Message):
 
     player_slot: int = betterproto.int32_field(1)
     # Contains the detailed physics of the throw.
-    throw_details: enginehttp.LastThrowInfo = betterproto.message_field(2)
+    throw_details: v1.LastThrowInfo = betterproto.message_field(2)
 
 
 @dataclass
@@ -231,7 +233,7 @@ class GoalScored(betterproto.Message):
     """Fired when a goal is scored."""
 
     # Contains all details about the score.
-    score_details: enginehttp.LastScore = betterproto.message_field(1)
+    score_details: v1.LastScore = betterproto.message_field(1)
 
 
 @dataclass
@@ -306,3 +308,20 @@ class PlayerShotTaken(betterproto.Message):
 
     player_slot: int = betterproto.int32_field(1)
     total_shots: int = betterproto.int32_field(2)
+
+
+@dataclass
+class GenericEvent(betterproto.Message):
+    """
+    Generic event for encoding arbitrary data via string. Use for custom
+    events, debugging, or data that doesn't fit existing types.
+    """
+
+    # Event type identifier (e.g., "custom_debug", "experimental_metric")
+    event_type: str = betterproto.string_field(1)
+    # Arbitrary key-value data
+    data: Dict[str, str] = betterproto.map_field(
+        2, betterproto.TYPE_STRING, betterproto.TYPE_STRING
+    )
+    # Optional raw payload for non-structured data
+    payload: str = betterproto.string_field(3)

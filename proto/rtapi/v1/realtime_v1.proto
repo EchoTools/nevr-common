@@ -1,15 +1,15 @@
 syntax = "proto3";
 
-package realtime;
+package rtapi.v1;
 
 import "google/protobuf/timestamp.proto";
 import "telemetry/v1/telemetry.proto";
 
 option csharp_namespace = "Nevr.Protobuf";
-option go_package = "github.com/echotools/nevr-common/v4/gen/go/rtapi";
+option go_package = "github.com/echotools/nevr-common/v4/gen/go/rtapi/v1;rtapiv1";
 option java_multiple_files = true;
 option java_outer_classname = "NevrRealtime";
-option java_package = "com.github.echotools.nevr.rtapi";
+option java_package = "com.github.echotools.nevr.rtapi.v1";
 
 message Envelope {
   string cid = 1;
