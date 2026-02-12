@@ -4,7 +4,7 @@ Optimized protocol buffer format for streaming game session telemetry data.
 
 ## Overview
 
-Telemetry V2 achieves **~73% wire size reduction** compared to V1 through:
+Telemetry V2 achieves **73.5% wire size reduction** compared to V1 through:
 
 - **Session-scoped constants** moved to `CaptureHeader` (written once)
 - **Timestamp deltas** (`uint32 timestamp_offset_ms`) instead of full `google.protobuf.Timestamp`

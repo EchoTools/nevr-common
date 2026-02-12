@@ -12,7 +12,7 @@
  * - Removed per-frame stats (derivable from events)
  * - Removed redundant fields
  * 
- * Wire size reduction: ~50% per frame at 10 players (8.5 KB → 4.2 KB).
+ * Wire size reduction: 73.5% per frame at 10 players (5,109 bytes → 1,354 bytes).
  */
 syntax = "proto3";
 
@@ -206,7 +206,7 @@ message PlayerBones {
 /**
  * A single frame of game state.
  * Follows the CaptureHeader in a stream.
- * Wire size: ~1,550 bytes (2 players) to ~4,200 bytes (10 players).
+ * Wire size: ~324 bytes (2 players) to ~1,354 bytes (10 players).
  */
 message Frame {
   // Sequential frame index, starting from 0.

@@ -2154,7 +2154,7 @@ namespace Nevr.Telemetry.V2 {
   ///*
   /// A single frame of game state.
   /// Follows the CaptureHeader in a stream.
-  /// Wire size: ~1,550 bytes (2 players) to ~4,200 bytes (10 players).
+  /// Wire size: ~324 bytes (2 players) to ~1,354 bytes (10 players).
   /// </summary>
   public sealed partial class Frame : pb::IMessage<Frame>
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
