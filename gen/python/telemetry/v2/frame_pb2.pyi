@@ -18,11 +18,6 @@ GAME_STATUS_ROUND_START: GameStatus
 GAME_STATUS_SCORE: GameStatus
 GAME_STATUS_SUDDEN_DEATH: GameStatus
 GAME_STATUS_UNSPECIFIED: GameStatus
-GOAL_TYPE_BOUNCE_SHOT: GoalType
-GOAL_TYPE_INSIDE_SHOT: GoalType
-GOAL_TYPE_LONG_BOUNCE_SHOT: GoalType
-GOAL_TYPE_LONG_SHOT: GoalType
-GOAL_TYPE_UNSPECIFIED: GoalType
 MATCH_TYPE_ARENA: MatchType
 MATCH_TYPE_COMBAT: MatchType
 MATCH_TYPE_ECHO_PASS: MatchType
@@ -174,7 +169,4 @@ class MatchType(int, metaclass=_enum_type_wrapper.EnumTypeWrapper):
     __slots__ = []
 
 class PauseState(int, metaclass=_enum_type_wrapper.EnumTypeWrapper):
-    __slots__ = []
-
-class GoalType(int, metaclass=_enum_type_wrapper.EnumTypeWrapper):
     __slots__ = []

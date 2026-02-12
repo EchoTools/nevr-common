@@ -165,7 +165,7 @@ PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORIT
 }  // namespace v2
 }  // namespace telemetry
 static ::_pb::Metadata file_level_metadata_telemetry_2fv2_2fframe_2eproto[8];
-static const ::_pb::EnumDescriptor* file_level_enum_descriptors_telemetry_2fv2_2fframe_2eproto[4];
+static const ::_pb::EnumDescriptor* file_level_enum_descriptors_telemetry_2fv2_2fframe_2eproto[3];
 static constexpr ::_pb::ServiceDescriptor const** file_level_service_descriptors_telemetry_2fv2_2fframe_2eproto = nullptr;
 
 const uint32_t TableStruct_telemetry_2fv2_2fframe_2eproto::offsets[] PROTOBUF_SECTION_VARIABLE(protodesc_cold) = {
@@ -328,7 +328,7 @@ const char descriptor_table_protodef_telemetry_2fv2_2fframe_2eproto[] PROTOBUF_S
   "/\n\014player_bones\030\007 \003(\0132\031.telemetry.v2.Pla"
   "yerBones\022/\n\006events\030\010 \003(\0132\037.telemetry.v1."
   "LobbySessionEvent\022\030\n\020disc_holder_slot\030\t "
-  "\001(\021\022!\n\007vr_root\030\n \001(\0132\020.spatial.v1.Pose\022\023"
+  "\001(\005\022!\n\007vr_root\030\n \001(\0132\020.spatial.v1.Pose\022\023"
   "\n\013blue_points\030\013 \001(\005\022\025\n\rorange_points\030\014 \001"
   "(\005\022\024\n\014round_number\030\r \001(\005\022-\n\013pause_state\030"
   "\016 \001(\0162\030.telemetry.v2.PauseState\"\340\001\n\nEnve"
@@ -355,14 +355,10 @@ const char descriptor_table_protodef_telemetry_2fv2_2fframe_2eproto[] PROTOBUF_S
   "PECIFIED\020\000\022\032\n\026PAUSE_STATE_NOT_PAUSED\020\001\022\026"
   "\n\022PAUSE_STATE_PAUSED\020\002\022\031\n\025PAUSE_STATE_UN"
   "PAUSING\020\003\022 \n\034PAUSE_STATE_AUTOPAUSE_REPLA"
-  "Y\020\004*\224\001\n\010GoalType\022\031\n\025GOAL_TYPE_UNSPECIFIE"
-  "D\020\000\022\031\n\025GOAL_TYPE_INSIDE_SHOT\020\001\022\027\n\023GOAL_T"
-  "YPE_LONG_SHOT\020\002\022\031\n\025GOAL_TYPE_BOUNCE_SHOT"
-  "\020\003\022\036\n\032GOAL_TYPE_LONG_BOUNCE_SHOT\020\004B\216\001\n\037c"
-  "om.echotools.nevr.telemetry.v2B\020Telemetr"
-  "yV2ProtoP\001ZCgithub.com/echotools/nevr-co"
-  "mmon/v4/gen/go/telemetry/v2;telemetryv2\252"
-  "\002\021Nevr.Telemetry.V2b\006proto3"
+  "Y\020\004B\216\001\n\037com.echotools.nevr.telemetry.v2B"
+  "\020TelemetryV2ProtoP\001ZCgithub.com/echotool"
+  "s/nevr-common/v4/gen/go/telemetry/v2;tel"
+  "emetryv2\252\002\021Nevr.Telemetry.V2b\006proto3"
   ;
 static const ::_pbi::DescriptorTable* const descriptor_table_telemetry_2fv2_2fframe_2eproto_deps[3] = {
   &::descriptor_table_google_2fprotobuf_2ftimestamp_2eproto,
@@ -371,7 +367,7 @@ static const ::_pbi::DescriptorTable* const descriptor_table_telemetry_2fv2_2ffr
 };
 static ::_pbi::once_flag descriptor_table_telemetry_2fv2_2fframe_2eproto_once;
 const ::_pbi::DescriptorTable descriptor_table_telemetry_2fv2_2fframe_2eproto = {
-    false, false, 2787, descriptor_table_protodef_telemetry_2fv2_2fframe_2eproto,
+    false, false, 2636, descriptor_table_protodef_telemetry_2fv2_2fframe_2eproto,
     "telemetry/v2/frame.proto",
     &descriptor_table_telemetry_2fv2_2fframe_2eproto_once, descriptor_table_telemetry_2fv2_2fframe_2eproto_deps, 3, 8,
     schemas, file_default_instances, TableStruct_telemetry_2fv2_2fframe_2eproto::offsets,
@@ -434,23 +430,6 @@ const ::PROTOBUF_NAMESPACE_ID::EnumDescriptor* PauseState_descriptor() {
   return file_level_enum_descriptors_telemetry_2fv2_2fframe_2eproto[2];
 }
 bool PauseState_IsValid(int value) {
-  switch (value) {
-    case 0:
-    case 1:
-    case 2:
-    case 3:
-    case 4:
-      return true;
-    default:
-      return false;
-  }
-}
-
-const ::PROTOBUF_NAMESPACE_ID::EnumDescriptor* GoalType_descriptor() {
-  ::PROTOBUF_NAMESPACE_ID::internal::AssignDescriptors(&descriptor_table_telemetry_2fv2_2fframe_2eproto);
-  return file_level_enum_descriptors_telemetry_2fv2_2fframe_2eproto[3];
-}
-bool GoalType_IsValid(int value) {
   switch (value) {
     case 0:
     case 1:
@@ -2616,10 +2595,10 @@ const char* Frame::_InternalParse(const char* ptr, ::_pbi::ParseContext* ctx) {
         } else
           goto handle_unusual;
         continue;
-      // sint32 disc_holder_slot = 9;
+      // int32 disc_holder_slot = 9;
       case 9:
         if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 72)) {
-          _impl_.disc_holder_slot_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarintZigZag32(&ptr);
+          _impl_.disc_holder_slot_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint32(&ptr);
           CHK_(ptr);
         } else
           goto handle_unusual;
@@ -2754,10 +2733,10 @@ uint8_t* Frame::_InternalSerialize(
         InternalWriteMessage(8, repfield, repfield.GetCachedSize(), target, stream);
   }
 
-  // sint32 disc_holder_slot = 9;
+  // int32 disc_holder_slot = 9;
   if (this->_internal_disc_holder_slot() != 0) {
     target = stream->EnsureSpace(target);
-    target = ::_pbi::WireFormatLite::WriteSInt32ToArray(9, this->_internal_disc_holder_slot(), target);
+    target = ::_pbi::WireFormatLite::WriteInt32ToArray(9, this->_internal_disc_holder_slot(), target);
   }
 
   // .spatial.v1.Pose vr_root = 10;
@@ -2868,9 +2847,9 @@ size_t Frame::ByteSizeLong() const {
     total_size += 1 + 4;
   }
 
-  // sint32 disc_holder_slot = 9;
+  // int32 disc_holder_slot = 9;
   if (this->_internal_disc_holder_slot() != 0) {
-    total_size += ::_pbi::WireFormatLite::SInt32SizePlusOne(this->_internal_disc_holder_slot());
+    total_size += ::_pbi::WireFormatLite::Int32SizePlusOne(this->_internal_disc_holder_slot());
   }
 
   // int32 blue_points = 11;

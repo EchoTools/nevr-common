@@ -242,64 +242,6 @@ func (PauseState) EnumDescriptor() ([]byte, []int) {
 }
 
 // *
-// Goal type enumeration.
-// Replaces the string field "goal_type" from v1.
-type GoalType int32
-
-const (
-	GoalType_GOAL_TYPE_UNSPECIFIED      GoalType = 0
-	GoalType_GOAL_TYPE_INSIDE_SHOT      GoalType = 1
-	GoalType_GOAL_TYPE_LONG_SHOT        GoalType = 2
-	GoalType_GOAL_TYPE_BOUNCE_SHOT      GoalType = 3
-	GoalType_GOAL_TYPE_LONG_BOUNCE_SHOT GoalType = 4
-)
-
-// Enum value maps for GoalType.
-var (
-	GoalType_name = map[int32]string{
-		0: "GOAL_TYPE_UNSPECIFIED",
-		1: "GOAL_TYPE_INSIDE_SHOT",
-		2: "GOAL_TYPE_LONG_SHOT",
-		3: "GOAL_TYPE_BOUNCE_SHOT",
-		4: "GOAL_TYPE_LONG_BOUNCE_SHOT",
-	}
-	GoalType_value = map[string]int32{
-		"GOAL_TYPE_UNSPECIFIED":      0,
-		"GOAL_TYPE_INSIDE_SHOT":      1,
-		"GOAL_TYPE_LONG_SHOT":        2,
-		"GOAL_TYPE_BOUNCE_SHOT":      3,
-		"GOAL_TYPE_LONG_BOUNCE_SHOT": 4,
-	}
-)
-
-func (x GoalType) Enum() *GoalType {
-	p := new(GoalType)
-	*p = x
-	return p
-}
-
-func (x GoalType) String() string {
-	return protoimpl.X.EnumStringOf(x.Descriptor(), protoreflect.EnumNumber(x))
-}
-
-func (GoalType) Descriptor() protoreflect.EnumDescriptor {
-	return file_telemetry_v2_frame_proto_enumTypes[3].Descriptor()
-}
-
-func (GoalType) Type() protoreflect.EnumType {
-	return &file_telemetry_v2_frame_proto_enumTypes[3]
-}
-
-func (x GoalType) Number() protoreflect.EnumNumber {
-	return protoreflect.EnumNumber(x)
-}
-
-// Deprecated: Use GoalType.Descriptor instead.
-func (GoalType) EnumDescriptor() ([]byte, []int) {
-	return file_telemetry_v2_frame_proto_rawDescGZIP(), []int{3}
-}
-
-// *
 // Session-scoped capture metadata.
 // Written once at the start of the stream.
 // Contains all constants that don't change during the session.
@@ -789,7 +731,7 @@ type Frame struct {
 	// Events that occurred during this frame.
 	Events []*v1.LobbySessionEvent `protobuf:"bytes,8,rep,name=events,proto3" json:"events,omitempty"`
 	// Slot of the player holding the disc (-1 if free).
-	DiscHolderSlot int32 `protobuf:"zigzag32,9,opt,name=disc_holder_slot,json=discHolderSlot,proto3" json:"disc_holder_slot,omitempty"`
+	DiscHolderSlot int32 `protobuf:"varint,9,opt,name=disc_holder_slot,json=discHolderSlot,proto3" json:"disc_holder_slot,omitempty"`
 	// VR root pose (player's real-world tracking origin).
 	VrRoot *v11.Pose `protobuf:"bytes,10,opt,name=vr_root,json=vrRoot,proto3" json:"vr_root,omitempty"`
 	// Blue team's score.
@@ -1115,7 +1057,7 @@ const file_telemetry_v2_frame_proto_rawDesc = "" +
 	"\aplayers\x18\x06 \x03(\v2\x19.telemetry.v2.PlayerStateR\aplayers\x12<\n" +
 	"\fplayer_bones\x18\a \x03(\v2\x19.telemetry.v2.PlayerBonesR\vplayerBones\x127\n" +
 	"\x06events\x18\b \x03(\v2\x1f.telemetry.v1.LobbySessionEventR\x06events\x12(\n" +
-	"\x10disc_holder_slot\x18\t \x01(\x11R\x0ediscHolderSlot\x12)\n" +
+	"\x10disc_holder_slot\x18\t \x01(\x05R\x0ediscHolderSlot\x12)\n" +
 	"\avr_root\x18\n" +
 	" \x01(\v2\x10.spatial.v1.PoseR\x06vrRoot\x12\x1f\n" +
 	"\vblue_points\x18\v \x01(\x05R\n" +
@@ -1160,13 +1102,7 @@ const file_telemetry_v2_frame_proto_rawDesc = "" +
 	"\x16PAUSE_STATE_NOT_PAUSED\x10\x01\x12\x16\n" +
 	"\x12PAUSE_STATE_PAUSED\x10\x02\x12\x19\n" +
 	"\x15PAUSE_STATE_UNPAUSING\x10\x03\x12 \n" +
-	"\x1cPAUSE_STATE_AUTOPAUSE_REPLAY\x10\x04*\x94\x01\n" +
-	"\bGoalType\x12\x19\n" +
-	"\x15GOAL_TYPE_UNSPECIFIED\x10\x00\x12\x19\n" +
-	"\x15GOAL_TYPE_INSIDE_SHOT\x10\x01\x12\x17\n" +
-	"\x13GOAL_TYPE_LONG_SHOT\x10\x02\x12\x19\n" +
-	"\x15GOAL_TYPE_BOUNCE_SHOT\x10\x03\x12\x1e\n" +
-	"\x1aGOAL_TYPE_LONG_BOUNCE_SHOT\x10\x04B\x8e\x01\n" +
+	"\x1cPAUSE_STATE_AUTOPAUSE_REPLAY\x10\x04B\x8e\x01\n" +
 	"\x1fcom.echotools.nevr.telemetry.v2B\x10TelemetryV2ProtoP\x01ZCgithub.com/echotools/nevr-common/v4/gen/go/telemetry/v2;telemetryv2\xaa\x02\x11Nevr.Telemetry.V2b\x06proto3"
 
 var (
@@ -1181,53 +1117,52 @@ func file_telemetry_v2_frame_proto_rawDescGZIP() []byte {
 	return file_telemetry_v2_frame_proto_rawDescData
 }
 
-var file_telemetry_v2_frame_proto_enumTypes = make([]protoimpl.EnumInfo, 4)
+var file_telemetry_v2_frame_proto_enumTypes = make([]protoimpl.EnumInfo, 3)
 var file_telemetry_v2_frame_proto_msgTypes = make([]protoimpl.MessageInfo, 8)
 var file_telemetry_v2_frame_proto_goTypes = []any{
 	(GameStatus)(0),                   // 0: telemetry.v2.GameStatus
 	(MatchType)(0),                    // 1: telemetry.v2.MatchType
 	(PauseState)(0),                   // 2: telemetry.v2.PauseState
-	(GoalType)(0),                     // 3: telemetry.v2.GoalType
-	(*CaptureHeader)(nil),             // 4: telemetry.v2.CaptureHeader
-	(*PlayerInfo)(nil),                // 5: telemetry.v2.PlayerInfo
-	(*DiscState)(nil),                 // 6: telemetry.v2.DiscState
-	(*PlayerState)(nil),               // 7: telemetry.v2.PlayerState
-	(*PlayerBones)(nil),               // 8: telemetry.v2.PlayerBones
-	(*Frame)(nil),                     // 9: telemetry.v2.Frame
-	(*EnvelopeV2)(nil),                // 10: telemetry.v2.EnvelopeV2
-	nil,                               // 11: telemetry.v2.CaptureHeader.MetadataEntry
-	(*timestamppb.Timestamp)(nil),     // 12: google.protobuf.Timestamp
-	(v1.Role)(0),                      // 13: telemetry.v1.Role
-	(*v11.Pose)(nil),                  // 14: spatial.v1.Pose
-	(*v11.Vec3)(nil),                  // 15: spatial.v1.Vec3
-	(*v1.LobbySessionEvent)(nil),      // 16: telemetry.v1.LobbySessionEvent
-	(*v1.TelemetryHeader)(nil),        // 17: telemetry.v1.TelemetryHeader
-	(*v1.LobbySessionStateFrame)(nil), // 18: telemetry.v1.LobbySessionStateFrame
+	(*CaptureHeader)(nil),             // 3: telemetry.v2.CaptureHeader
+	(*PlayerInfo)(nil),                // 4: telemetry.v2.PlayerInfo
+	(*DiscState)(nil),                 // 5: telemetry.v2.DiscState
+	(*PlayerState)(nil),               // 6: telemetry.v2.PlayerState
+	(*PlayerBones)(nil),               // 7: telemetry.v2.PlayerBones
+	(*Frame)(nil),                     // 8: telemetry.v2.Frame
+	(*EnvelopeV2)(nil),                // 9: telemetry.v2.EnvelopeV2
+	nil,                               // 10: telemetry.v2.CaptureHeader.MetadataEntry
+	(*timestamppb.Timestamp)(nil),     // 11: google.protobuf.Timestamp
+	(v1.Role)(0),                      // 12: telemetry.v1.Role
+	(*v11.Pose)(nil),                  // 13: spatial.v1.Pose
+	(*v11.Vec3)(nil),                  // 14: spatial.v1.Vec3
+	(*v1.LobbySessionEvent)(nil),      // 15: telemetry.v1.LobbySessionEvent
+	(*v1.TelemetryHeader)(nil),        // 16: telemetry.v1.TelemetryHeader
+	(*v1.LobbySessionStateFrame)(nil), // 17: telemetry.v1.LobbySessionStateFrame
 }
 var file_telemetry_v2_frame_proto_depIdxs = []int32{
-	12, // 0: telemetry.v2.CaptureHeader.created_at:type_name -> google.protobuf.Timestamp
+	11, // 0: telemetry.v2.CaptureHeader.created_at:type_name -> google.protobuf.Timestamp
 	1,  // 1: telemetry.v2.CaptureHeader.match_type:type_name -> telemetry.v2.MatchType
-	5,  // 2: telemetry.v2.CaptureHeader.initial_roster:type_name -> telemetry.v2.PlayerInfo
-	11, // 3: telemetry.v2.CaptureHeader.metadata:type_name -> telemetry.v2.CaptureHeader.MetadataEntry
-	13, // 4: telemetry.v2.PlayerInfo.role:type_name -> telemetry.v1.Role
-	14, // 5: telemetry.v2.DiscState.pose:type_name -> spatial.v1.Pose
-	15, // 6: telemetry.v2.DiscState.velocity:type_name -> spatial.v1.Vec3
-	14, // 7: telemetry.v2.PlayerState.head:type_name -> spatial.v1.Pose
-	14, // 8: telemetry.v2.PlayerState.body:type_name -> spatial.v1.Pose
-	14, // 9: telemetry.v2.PlayerState.left_hand:type_name -> spatial.v1.Pose
-	14, // 10: telemetry.v2.PlayerState.right_hand:type_name -> spatial.v1.Pose
-	15, // 11: telemetry.v2.PlayerState.velocity:type_name -> spatial.v1.Vec3
+	4,  // 2: telemetry.v2.CaptureHeader.initial_roster:type_name -> telemetry.v2.PlayerInfo
+	10, // 3: telemetry.v2.CaptureHeader.metadata:type_name -> telemetry.v2.CaptureHeader.MetadataEntry
+	12, // 4: telemetry.v2.PlayerInfo.role:type_name -> telemetry.v1.Role
+	13, // 5: telemetry.v2.DiscState.pose:type_name -> spatial.v1.Pose
+	14, // 6: telemetry.v2.DiscState.velocity:type_name -> spatial.v1.Vec3
+	13, // 7: telemetry.v2.PlayerState.head:type_name -> spatial.v1.Pose
+	13, // 8: telemetry.v2.PlayerState.body:type_name -> spatial.v1.Pose
+	13, // 9: telemetry.v2.PlayerState.left_hand:type_name -> spatial.v1.Pose
+	13, // 10: telemetry.v2.PlayerState.right_hand:type_name -> spatial.v1.Pose
+	14, // 11: telemetry.v2.PlayerState.velocity:type_name -> spatial.v1.Vec3
 	0,  // 12: telemetry.v2.Frame.game_status:type_name -> telemetry.v2.GameStatus
-	6,  // 13: telemetry.v2.Frame.disc:type_name -> telemetry.v2.DiscState
-	7,  // 14: telemetry.v2.Frame.players:type_name -> telemetry.v2.PlayerState
-	8,  // 15: telemetry.v2.Frame.player_bones:type_name -> telemetry.v2.PlayerBones
-	16, // 16: telemetry.v2.Frame.events:type_name -> telemetry.v1.LobbySessionEvent
-	14, // 17: telemetry.v2.Frame.vr_root:type_name -> spatial.v1.Pose
+	5,  // 13: telemetry.v2.Frame.disc:type_name -> telemetry.v2.DiscState
+	6,  // 14: telemetry.v2.Frame.players:type_name -> telemetry.v2.PlayerState
+	7,  // 15: telemetry.v2.Frame.player_bones:type_name -> telemetry.v2.PlayerBones
+	15, // 16: telemetry.v2.Frame.events:type_name -> telemetry.v1.LobbySessionEvent
+	13, // 17: telemetry.v2.Frame.vr_root:type_name -> spatial.v1.Pose
 	2,  // 18: telemetry.v2.Frame.pause_state:type_name -> telemetry.v2.PauseState
-	4,  // 19: telemetry.v2.EnvelopeV2.header_v2:type_name -> telemetry.v2.CaptureHeader
-	9,  // 20: telemetry.v2.EnvelopeV2.frame_v2:type_name -> telemetry.v2.Frame
-	17, // 21: telemetry.v2.EnvelopeV2.header_v1:type_name -> telemetry.v1.TelemetryHeader
-	18, // 22: telemetry.v2.EnvelopeV2.frame_v1:type_name -> telemetry.v1.LobbySessionStateFrame
+	3,  // 19: telemetry.v2.EnvelopeV2.header_v2:type_name -> telemetry.v2.CaptureHeader
+	8,  // 20: telemetry.v2.EnvelopeV2.frame_v2:type_name -> telemetry.v2.Frame
+	16, // 21: telemetry.v2.EnvelopeV2.header_v1:type_name -> telemetry.v1.TelemetryHeader
+	17, // 22: telemetry.v2.EnvelopeV2.frame_v1:type_name -> telemetry.v1.LobbySessionStateFrame
 	23, // [23:23] is the sub-list for method output_type
 	23, // [23:23] is the sub-list for method input_type
 	23, // [23:23] is the sub-list for extension type_name
@@ -1251,7 +1186,7 @@ func file_telemetry_v2_frame_proto_init() {
 		File: protoimpl.DescBuilder{
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_telemetry_v2_frame_proto_rawDesc), len(file_telemetry_v2_frame_proto_rawDesc)),
-			NumEnums:      4,
+			NumEnums:      3,
 			NumMessages:   8,
 			NumExtensions: 0,
 			NumServices:   0,

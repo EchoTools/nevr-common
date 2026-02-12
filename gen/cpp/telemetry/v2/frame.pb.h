@@ -185,34 +185,6 @@ inline bool PauseState_Parse(
   return ::PROTOBUF_NAMESPACE_ID::internal::ParseNamedEnum<PauseState>(
     PauseState_descriptor(), name, value);
 }
-enum GoalType : int {
-  GOAL_TYPE_UNSPECIFIED = 0,
-  GOAL_TYPE_INSIDE_SHOT = 1,
-  GOAL_TYPE_LONG_SHOT = 2,
-  GOAL_TYPE_BOUNCE_SHOT = 3,
-  GOAL_TYPE_LONG_BOUNCE_SHOT = 4,
-  GoalType_INT_MIN_SENTINEL_DO_NOT_USE_ = std::numeric_limits<int32_t>::min(),
-  GoalType_INT_MAX_SENTINEL_DO_NOT_USE_ = std::numeric_limits<int32_t>::max()
-};
-bool GoalType_IsValid(int value);
-constexpr GoalType GoalType_MIN = GOAL_TYPE_UNSPECIFIED;
-constexpr GoalType GoalType_MAX = GOAL_TYPE_LONG_BOUNCE_SHOT;
-constexpr int GoalType_ARRAYSIZE = GoalType_MAX + 1;
-
-const ::PROTOBUF_NAMESPACE_ID::EnumDescriptor* GoalType_descriptor();
-template<typename T>
-inline const std::string& GoalType_Name(T enum_t_value) {
-  static_assert(::std::is_same<T, GoalType>::value ||
-    ::std::is_integral<T>::value,
-    "Incorrect type passed to function GoalType_Name.");
-  return ::PROTOBUF_NAMESPACE_ID::internal::NameOfEnum(
-    GoalType_descriptor(), enum_t_value);
-}
-inline bool GoalType_Parse(
-    ::PROTOBUF_NAMESPACE_ID::ConstStringParam name, GoalType* value) {
-  return ::PROTOBUF_NAMESPACE_ID::internal::ParseNamedEnum<GoalType>(
-    GoalType_descriptor(), name, value);
-}
 // ===================================================================
 
 class CaptureHeader_MetadataEntry_DoNotUse : public ::PROTOBUF_NAMESPACE_ID::internal::MapEntry<CaptureHeader_MetadataEntry_DoNotUse, 
@@ -1640,7 +1612,7 @@ class Frame final :
   void _internal_set_game_clock(float value);
   public:
 
-  // sint32 disc_holder_slot = 9;
+  // int32 disc_holder_slot = 9;
   void clear_disc_holder_slot();
   int32_t disc_holder_slot() const;
   void set_disc_holder_slot(int32_t value);
@@ -3611,7 +3583,7 @@ Frame::events() const {
   return _impl_.events_;
 }
 
-// sint32 disc_holder_slot = 9;
+// int32 disc_holder_slot = 9;
 inline void Frame::clear_disc_holder_slot() {
   _impl_.disc_holder_slot_ = 0;
 }
@@ -4128,11 +4100,6 @@ template <> struct is_proto_enum< ::telemetry::v2::PauseState> : ::std::true_typ
 template <>
 inline const EnumDescriptor* GetEnumDescriptor< ::telemetry::v2::PauseState>() {
   return ::telemetry::v2::PauseState_descriptor();
-}
-template <> struct is_proto_enum< ::telemetry::v2::GoalType> : ::std::true_type {};
-template <>
-inline const EnumDescriptor* GetEnumDescriptor< ::telemetry::v2::GoalType>() {
-  return ::telemetry::v2::GoalType_descriptor();
 }
 
 PROTOBUF_NAMESPACE_CLOSE

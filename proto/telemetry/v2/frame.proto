@@ -74,18 +74,6 @@ enum PauseState {
 }
 
 /**
- * Goal type enumeration.
- * Replaces the string field "goal_type" from v1.
- */
-enum GoalType {
-  GOAL_TYPE_UNSPECIFIED = 0;
-  GOAL_TYPE_INSIDE_SHOT = 1;
-  GOAL_TYPE_LONG_SHOT = 2;
-  GOAL_TYPE_BOUNCE_SHOT = 3;
-  GOAL_TYPE_LONG_BOUNCE_SHOT = 4;
-}
-
-/**
  * Session-scoped capture metadata.
  * Written once at the start of the stream.
  * Contains all constants that don't change during the session.
@@ -235,7 +223,7 @@ message Frame {
   repeated telemetry.v1.LobbySessionEvent events = 8;
   
   // Slot of the player holding the disc (-1 if free).
-  sint32 disc_holder_slot = 9;
+  int32 disc_holder_slot = 9;
   
   // VR root pose (player's real-world tracking origin).
   spatial.v1.Pose vr_root = 10;

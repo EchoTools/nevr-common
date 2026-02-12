@@ -55,7 +55,7 @@ namespace Nevr.Telemetry.V2 {
             "ZXRyeS52Mi5QbGF5ZXJTdGF0ZRIvCgxwbGF5ZXJfYm9uZXMYByADKAsyGS50",
             "ZWxlbWV0cnkudjIuUGxheWVyQm9uZXMSLwoGZXZlbnRzGAggAygLMh8udGVs",
             "ZW1ldHJ5LnYxLkxvYmJ5U2Vzc2lvbkV2ZW50EhgKEGRpc2NfaG9sZGVyX3Ns",
-            "b3QYCSABKBESIQoHdnJfcm9vdBgKIAEoCzIQLnNwYXRpYWwudjEuUG9zZRIT",
+            "b3QYCSABKAUSIQoHdnJfcm9vdBgKIAEoCzIQLnNwYXRpYWwudjEuUG9zZRIT",
             "CgtibHVlX3BvaW50cxgLIAEoBRIVCg1vcmFuZ2VfcG9pbnRzGAwgASgFEhQK",
             "DHJvdW5kX251bWJlchgNIAEoBRItCgtwYXVzZV9zdGF0ZRgOIAEoDjIYLnRl",
             "bGVtZXRyeS52Mi5QYXVzZVN0YXRlIuABCgpFbnZlbG9wZVYyEjAKCWhlYWRl",
@@ -79,16 +79,13 @@ namespace Nevr.Telemetry.V2 {
             "ZRIbChdQQVVTRV9TVEFURV9VTlNQRUNJRklFRBAAEhoKFlBBVVNFX1NUQVRF",
             "X05PVF9QQVVTRUQQARIWChJQQVVTRV9TVEFURV9QQVVTRUQQAhIZChVQQVVT",
             "RV9TVEFURV9VTlBBVVNJTkcQAxIgChxQQVVTRV9TVEFURV9BVVRPUEFVU0Vf",
-            "UkVQTEFZEAQqlAEKCEdvYWxUeXBlEhkKFUdPQUxfVFlQRV9VTlNQRUNJRklF",
-            "RBAAEhkKFUdPQUxfVFlQRV9JTlNJREVfU0hPVBABEhcKE0dPQUxfVFlQRV9M",
-            "T05HX1NIT1QQAhIZChVHT0FMX1RZUEVfQk9VTkNFX1NIT1QQAxIeChpHT0FM",
-            "X1RZUEVfTE9OR19CT1VOQ0VfU0hPVBAEQo4BCh9jb20uZWNob3Rvb2xzLm5l",
-            "dnIudGVsZW1ldHJ5LnYyQhBUZWxlbWV0cnlWMlByb3RvUAFaQ2dpdGh1Yi5j",
-            "b20vZWNob3Rvb2xzL25ldnItY29tbW9uL3Y0L2dlbi9nby90ZWxlbWV0cnkv",
-            "djI7dGVsZW1ldHJ5djKqAhFOZXZyLlRlbGVtZXRyeS5WMmIGcHJvdG8z"));
+            "UkVQTEFZEARCjgEKH2NvbS5lY2hvdG9vbHMubmV2ci50ZWxlbWV0cnkudjJC",
+            "EFRlbGVtZXRyeVYyUHJvdG9QAVpDZ2l0aHViLmNvbS9lY2hvdG9vbHMvbmV2",
+            "ci1jb21tb24vdjQvZ2VuL2dvL3RlbGVtZXRyeS92Mjt0ZWxlbWV0cnl2MqoC",
+            "EU5ldnIuVGVsZW1ldHJ5LlYyYgZwcm90bzM="));
       descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
           new pbr::FileDescriptor[] { global::Nevr.Spatial.V1.TypesReflection.Descriptor, global::Nevr.Telemetry.Protobuf.TelemetryReflection.Descriptor, global::Google.Protobuf.WellKnownTypes.TimestampReflection.Descriptor, },
-          new pbr::GeneratedClrTypeInfo(new[] {typeof(global::Nevr.Telemetry.V2.GameStatus), typeof(global::Nevr.Telemetry.V2.MatchType), typeof(global::Nevr.Telemetry.V2.PauseState), typeof(global::Nevr.Telemetry.V2.GoalType), }, null, new pbr::GeneratedClrTypeInfo[] {
+          new pbr::GeneratedClrTypeInfo(new[] {typeof(global::Nevr.Telemetry.V2.GameStatus), typeof(global::Nevr.Telemetry.V2.MatchType), typeof(global::Nevr.Telemetry.V2.PauseState), }, null, new pbr::GeneratedClrTypeInfo[] {
             new pbr::GeneratedClrTypeInfo(typeof(global::Nevr.Telemetry.V2.CaptureHeader), global::Nevr.Telemetry.V2.CaptureHeader.Parser, new[]{ "CaptureId", "CreatedAt", "SessionId", "MapName", "MatchType", "ClientName", "PrivateMatch", "TournamentMatch", "TotalRoundCount", "InitialRoster", "Metadata" }, null, null, null, new pbr::GeneratedClrTypeInfo[] { null, }),
             new pbr::GeneratedClrTypeInfo(typeof(global::Nevr.Telemetry.V2.PlayerInfo), global::Nevr.Telemetry.V2.PlayerInfo.Parser, new[]{ "Slot", "AccountNumber", "DisplayName", "Role" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Nevr.Telemetry.V2.DiscState), global::Nevr.Telemetry.V2.DiscState.Parser, new[]{ "Pose", "Velocity", "BounceCount" }, null, null, null, null),
@@ -148,19 +145,6 @@ namespace Nevr.Telemetry.V2 {
     [pbr::OriginalName("PAUSE_STATE_PAUSED")] Paused = 2,
     [pbr::OriginalName("PAUSE_STATE_UNPAUSING")] Unpausing = 3,
     [pbr::OriginalName("PAUSE_STATE_AUTOPAUSE_REPLAY")] AutopauseReplay = 4,
-  }
-
-  /// <summary>
-  ///*
-  /// Goal type enumeration.
-  /// Replaces the string field "goal_type" from v1.
-  /// </summary>
-  public enum GoalType {
-    [pbr::OriginalName("GOAL_TYPE_UNSPECIFIED")] Unspecified = 0,
-    [pbr::OriginalName("GOAL_TYPE_INSIDE_SHOT")] InsideShot = 1,
-    [pbr::OriginalName("GOAL_TYPE_LONG_SHOT")] LongShot = 2,
-    [pbr::OriginalName("GOAL_TYPE_BOUNCE_SHOT")] BounceShot = 3,
-    [pbr::OriginalName("GOAL_TYPE_LONG_BOUNCE_SHOT")] LongBounceShot = 4,
   }
 
   #endregion
@@ -2514,7 +2498,7 @@ namespace Nevr.Telemetry.V2 {
       events_.WriteTo(output, _repeated_events_codec);
       if (DiscHolderSlot != 0) {
         output.WriteRawTag(72);
-        output.WriteSInt32(DiscHolderSlot);
+        output.WriteInt32(DiscHolderSlot);
       }
       if (vrRoot_ != null) {
         output.WriteRawTag(82);
@@ -2571,7 +2555,7 @@ namespace Nevr.Telemetry.V2 {
       events_.WriteTo(ref output, _repeated_events_codec);
       if (DiscHolderSlot != 0) {
         output.WriteRawTag(72);
-        output.WriteSInt32(DiscHolderSlot);
+        output.WriteInt32(DiscHolderSlot);
       }
       if (vrRoot_ != null) {
         output.WriteRawTag(82);
@@ -2622,7 +2606,7 @@ namespace Nevr.Telemetry.V2 {
       size += playerBones_.CalculateSize(_repeated_playerBones_codec);
       size += events_.CalculateSize(_repeated_events_codec);
       if (DiscHolderSlot != 0) {
-        size += 1 + pb::CodedOutputStream.ComputeSInt32Size(DiscHolderSlot);
+        size += 1 + pb::CodedOutputStream.ComputeInt32Size(DiscHolderSlot);
       }
       if (vrRoot_ != null) {
         size += 1 + pb::CodedOutputStream.ComputeMessageSize(VrRoot);
@@ -2744,7 +2728,7 @@ namespace Nevr.Telemetry.V2 {
             break;
           }
           case 72: {
-            DiscHolderSlot = input.ReadSInt32();
+            DiscHolderSlot = input.ReadInt32();
             break;
           }
           case 82: {
@@ -2821,7 +2805,7 @@ namespace Nevr.Telemetry.V2 {
             break;
           }
           case 72: {
-            DiscHolderSlot = input.ReadSInt32();
+            DiscHolderSlot = input.ReadInt32();
             break;
           }
           case 82: {
