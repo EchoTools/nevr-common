@@ -1,0 +1,130 @@
+/**
+ * Core capture format for the nevrcap v2 telemetry protocol.
+ *
+ * Provides a game-agnostic timing envelope and file structure.
+ * Game-specific payloads (starting with Echo Arena) are delivered
+ * via oneof fields in CaptureHeader and Frame.
+ *
+ * Streaming format:
+ *   1. One Envelope containing CaptureHeader
+ *   2. N Envelopes containing Frame (e.g., 60 per second)
+ *   3. One Envelope containing CaptureFooter (optional, written at close)
+ *
+ * Truncated files (missing footer) are readable — footer is for seeking only.
+ */
+syntax = "proto3";
+
+package telemetry.v2;
+
+import "google/protobuf/timestamp.proto";
+import "telemetry/v2/echo_arena.proto";
+
+option csharp_namespace = "Nevr.Telemetry.V2";
+option go_package = "github.com/echotools/nevr-common/v4/gen/go/telemetry/v2;telemetryv2";
+option java_multiple_files = true;
+option java_outer_classname = "CaptureProto";
+option java_package = "com.echotools.nevr.telemetry.v2";
+
+/**
+ * Top-level envelope for streaming v2 telemetry data.
+ * Every message in a capture file/stream is wrapped in an Envelope.
+ */
+message Envelope {
+  oneof message {
+    CaptureHeader header = 1;
+    Frame frame = 2;
+    CaptureFooter footer = 3;
+  }
+}
+
+/**
+ * Session-scoped capture metadata.
+ * Written once at the start of the stream.
+ * Contains the base timestamp for frame deltas and game-specific session info.
+ */
+message CaptureHeader {
+  // Unique identifier for the capture (e.g., UUID).
+  string capture_id = 1;
+
+  // Base timestamp for frame timestamp_offset_ms deltas.
+  google.protobuf.Timestamp created_at = 2;
+
+  // Protocol format version (set to 2 for this format).
+  uint32 format_version = 3;
+
+  // Arbitrary key-value metadata (game version, server IP, etc.).
+  map<string, string> metadata = 4;
+
+  // Game-specific session metadata.
+  oneof game_header {
+    // Echo Arena session metadata.
+    EchoArenaHeader echo_arena = 10;
+    // reserved 11 to 99; // Future game headers
+  }
+  // reserved 100 to 199; // Non-game headers (annotations, debug)
+}
+
+/**
+ * A single frame in the capture stream.
+ * Pure timing envelope — all game-specific data is in the payload oneof.
+ * Core wire size: ≤ 10 bytes (frame_index + timestamp_offset_ms).
+ */
+message Frame {
+  // Sequential frame index, starting from 0.
+  uint32 frame_index = 1;
+
+  // Milliseconds since CaptureHeader.created_at.
+  // Reduces 12-byte Timestamp to 1-5 byte varint.
+  uint32 timestamp_offset_ms = 2;
+
+  // Game-specific frame data.
+  oneof payload {
+    // Echo Arena per-frame state.
+    EchoArenaFrame echo_arena = 10;
+    // reserved 11 to 99; // Future game payloads
+  }
+  // reserved 100 to 199; // Non-game payloads (annotations, debug)
+}
+
+/**
+ * Capture footer with file-level metadata and seeking indexes.
+ * Written at the end of the stream. Optional — truncated files
+ * are still readable without a footer.
+ */
+message CaptureFooter {
+  // Total number of frames in the capture.
+  uint32 frame_count = 1;
+
+  // Total capture duration in milliseconds.
+  uint32 duration_ms = 2;
+
+  // Total file size in bytes (for integrity checking).
+  uint64 total_bytes = 3;
+
+  // Keyframe index for time-based seeking.
+  repeated KeyframeEntry keyframe_index = 4;
+
+  // Event type index for event-based seeking.
+  repeated EventIndexEntry event_index = 5;
+}
+
+/**
+ * A keyframe entry for time-based seeking.
+ * Maps a frame index to a byte offset in the file.
+ */
+message KeyframeEntry {
+  uint32 frame_index = 1;
+  uint64 byte_offset = 2;
+}
+
+/**
+ * An event index entry for event-based seeking.
+ * Maps an event type to the frames that contain it.
+ */
+message EventIndexEntry {
+  // Event type identifier (e.g., "goal_scored").
+  string event_type = 1;
+
+  // Frame indices containing this event type.
+  repeated uint32 frame_indices = 2;
+}

@@ -1,0 +1,546 @@
+/**
+ * Echo Arena game-specific types for the nevrcap v2 telemetry format.
+ *
+ * Contains all Echo Arena-specific messages, enums, and events.
+ * Imported by capture.proto for use in oneof game_header and oneof payload.
+ *
+ * This file has ZERO dependencies on telemetry/v1 or apigame/v1.
+ * All types are v2-native with optimized wire representations.
+ */
+syntax = "proto3";
+
+package telemetry.v2;
+
+import "spatial/v1/types.proto";
+
+option csharp_namespace = "Nevr.Telemetry.V2";
+option go_package = "github.com/echotools/nevr-common/v4/gen/go/telemetry/v2;telemetryv2";
+option java_multiple_files = true;
+option java_outer_classname = "EchoArenaProto";
+option java_package = "com.echotools.nevr.telemetry.v2";
+
+// ---------------------------------------------------------------------------
+// Enums
+// ---------------------------------------------------------------------------
+
+/**
+ * Game status enumeration.
+ * Replaces the string field "game_status" from v1.
+ */
+enum GameStatus {
+  GAME_STATUS_UNSPECIFIED = 0;
+  GAME_STATUS_PRE_MATCH = 1;
+  GAME_STATUS_ROUND_START = 2;
+  GAME_STATUS_PLAYING = 3;
+  GAME_STATUS_SCORE = 4;
+  GAME_STATUS_ROUND_OVER = 5;
+  GAME_STATUS_POST_MATCH = 6;
+  GAME_STATUS_PRE_SUDDEN_DEATH = 7;
+  GAME_STATUS_SUDDEN_DEATH = 8;
+  GAME_STATUS_POST_SUDDEN_DEATH = 9;
+}
+
+/**
+ * Match type enumeration.
+ * Replaces the string field "match_type" from v1.
+ */
+enum MatchType {
+  MATCH_TYPE_UNSPECIFIED = 0;
+  MATCH_TYPE_SOCIAL_PUBLIC = 1;
+  MATCH_TYPE_SOCIAL_PRIVATE = 2;
+  MATCH_TYPE_ARENA = 3;
+  MATCH_TYPE_COMBAT = 4;
+  MATCH_TYPE_ECHO_PASS = 5;
+  MATCH_TYPE_FFA = 6;
+  MATCH_TYPE_PRIVATE = 7;
+  MATCH_TYPE_TOURNAMENT = 8;
+}
+
+/**
+ * Pause state enumeration.
+ * Replaces the string field "paused_state" from v1.
+ */
+enum PauseState {
+  PAUSE_STATE_UNSPECIFIED = 0;
+  PAUSE_STATE_NOT_PAUSED = 1;
+  PAUSE_STATE_PAUSED = 2;
+  PAUSE_STATE_UNPAUSING = 3;
+  PAUSE_STATE_AUTOPAUSE_REPLAY = 4;
+}
+
+/**
+ * Defines the possible roles or teams a player can be assigned to.
+ * Moved from telemetry.v1.Role — same values, v2-native definition.
+ */
+enum Role {
+  ROLE_UNSPECIFIED = 0;
+  ROLE_BLUE_TEAM = 1;
+  ROLE_ORANGE_TEAM = 2;
+  ROLE_SPECTATOR = 3;
+  ROLE_SOCIAL_PARTICIPANT = 4;
+  ROLE_MODERATOR = 5;
+}
+
+/**
+ * Goal type classification for scoring events.
+ */
+enum GoalType {
+  GOAL_TYPE_UNSPECIFIED = 0;
+  GOAL_TYPE_INSIDE_SHOT = 1;
+  GOAL_TYPE_LONG_SHOT = 2;
+  GOAL_TYPE_BOUNCE_SHOT = 3;
+  GOAL_TYPE_LONG_BOUNCE_SHOT = 4;
+  GOAL_TYPE_SELF_GOAL = 5;
+}
+
+// ---------------------------------------------------------------------------
+// Session Metadata
+// ---------------------------------------------------------------------------
+
+/**
+ * Echo Arena-specific session metadata.
+ * Stored in CaptureHeader.game_header oneof.
+ * Contains all constants that don't change during the session.
+ */
+message EchoArenaHeader {
+  // Unique session identifier from the game server.
+  string session_id = 1;
+
+  // Map name (e.g., "mpl_arena_a", "mpl_lobby_b2").
+  string map_name = 2;
+
+  // Match type (Arena, Social, Combat, etc.).
+  MatchType match_type = 3;
+
+  // Client name (e.g., "nevr-agent 1.2.3").
+  string client_name = 4;
+
+  // True if this is a private match.
+  bool private_match = 5;
+
+  // True if this is a tournament match.
+  bool tournament_match = 6;
+
+  // Total number of rounds in the match (e.g., best of 3 = 3 rounds).
+  int32 total_round_count = 7;
+
+  // Initial player roster at capture start.
+  // Updated via PlayerJoined/PlayerLeft events during the match.
+  repeated PlayerInfo initial_roster = 8;
+
+  // Default bone layout for this session.
+  SkeletonLayout skeleton = 9;
+}
+
+/**
+ * Describes the bone layout for skeleton data.
+ * Stored in EchoArenaHeader as session default;
+ * can be overridden per-player in PlayerBones.
+ */
+message SkeletonLayout {
+  // Number of bones (e.g., 22 for Echo VR).
+  uint32 bone_count = 1;
+
+  // Bytes per bone transform (e.g., 12 = 3 × float32).
+  uint32 transform_stride = 2;
+
+  // Bytes per bone orientation (e.g., 16 = 4 × float32 quaternion).
+  uint32 orientation_stride = 3;
+}
+
+/**
+ * Basic player information for the roster.
+ */
+message PlayerInfo {
+  int32 slot = 1;
+  uint64 account_number = 2;
+  string display_name = 3;
+  Role role = 4;
+}
+
+// ---------------------------------------------------------------------------
+// Per-Frame Game State
+// ---------------------------------------------------------------------------
+
+/**
+ * All per-frame Echo Arena game state.
+ * Stored in Frame.payload oneof.
+ */
+message EchoArenaFrame {
+  // Current game status.
+  GameStatus game_status = 1;
+
+  // Game clock in seconds (counts down during rounds).
+  float game_clock = 2;
+
+  // Pause state.
+  PauseState pause_state = 3;
+
+  // Disc state.
+  DiscState disc = 4;
+
+  // Player states (head, body, hands, velocity, flags).
+  repeated PlayerState players = 5;
+
+  // Player bone data (optional, high bandwidth).
+  repeated PlayerBones player_bones = 6;
+
+  // Slot of the player holding the disc.
+  // Use `optional` to distinguish player 0 from "not set".
+  // Value is -1 when the disc is free.
+  optional int32 disc_holder_slot = 7;
+
+  // VR root pose (recorder's real-world tracking origin).
+  spatial.v1.Pose vr_root = 8;
+
+  // Blue team's score.
+  int32 blue_points = 9;
+
+  // Orange team's score.
+  int32 orange_points = 10;
+
+  // Current round number (0-based).
+  int32 round_number = 11;
+
+  // Events that occurred during this frame.
+  repeated EchoEvent events = 12;
+}
+
+/**
+ * Disc state snapshot.
+ * Wire size: ~52 bytes (28 + 12 + 4 + varint overhead).
+ */
+message DiscState {
+  spatial.v1.Pose pose = 1;
+  spatial.v1.Vec3 velocity = 2;
+  uint32 bounce_count = 3;
+}
+
+/**
+ * Player state snapshot.
+ * Uses a flags bitmask to pack boolean states efficiently.
+ * Wire size: ~140 bytes (4×28 + 12 + 2 + 2 = 126 + varint overhead).
+ */
+message PlayerState {
+  // Player slot number (0-based index).
+  int32 slot = 1;
+
+  // Rigid body poses for head, body, left hand, right hand.
+  spatial.v1.Pose head = 2;
+  spatial.v1.Pose body = 3;
+  spatial.v1.Pose left_hand = 4;
+  spatial.v1.Pose right_hand = 5;
+
+  // Body velocity.
+  spatial.v1.Vec3 velocity = 6;
+
+  // Packed boolean flags:
+  // Bit 0: stunned
+  // Bit 1: invulnerable
+  // Bit 2: blocking
+  // Bit 3: possession
+  // Bit 4: is_emote_playing
+  // Bits 5-31: reserved
+  uint32 flags = 7;
+
+  // Network latency in milliseconds.
+  uint32 ping = 8;
+}
+
+/**
+ * Player bone data.
+ * Bone transforms stored as raw bytes for zero-copy serialization.
+ *
+ * Layout is defined by SkeletonLayout in EchoArenaHeader.
+ * Default for Echo VR (little-endian, matching C++ structs):
+ * - transforms: 22 bones × 3 floats (x,y,z) = 66 floats = 264 bytes
+ * - orientations: 22 bones × 4 floats (quat x,y,z,w) = 88 floats = 352 bytes
+ *
+ * C++ zero-copy example:
+ *   float bone_positions[22][3];
+ *   player_bones.set_transforms(bone_positions, 264);
+ */
+message PlayerBones {
+  // Player slot number.
+  int32 slot = 1;
+
+  // Bone translation data.
+  // Stride defined by SkeletonLayout.transform_stride.
+  bytes transforms = 2;
+
+  // Bone rotation data.
+  // Stride defined by SkeletonLayout.orientation_stride.
+  bytes orientations = 3;
+
+  // Override header default if this player has a different rig.
+  optional SkeletonLayout skeleton_override = 4;
+}
+
+// ---------------------------------------------------------------------------
+// Events
+// ---------------------------------------------------------------------------
+
+/**
+ * A wrapper for any Echo Arena event that can occur during a frame.
+ * V2-native event definitions — no v1 or apigame.v1 dependencies.
+ */
+message EchoEvent {
+  // The specific event payload.
+  oneof event {
+    // Game State Events (10-19)
+    RoundStarted round_started = 10;
+    RoundPaused round_paused = 11;
+    RoundUnpaused round_unpaused = 12;
+    RoundEnded round_ended = 13;
+    MatchEnded match_ended = 14;
+    ScoreboardUpdated scoreboard_updated = 15;
+
+    // Player Events (20-29)
+    PlayerJoined player_joined = 20;
+    PlayerLeft player_left = 21;
+    PlayerSwitchedTeam player_switched_team = 22;
+    EmotePlayed emote_played = 23;
+
+    // Disc Events (30-39)
+    DiscPossessionChanged disc_possession_changed = 30;
+    DiscThrown disc_thrown = 31;
+    DiscCaught disc_caught = 32;
+
+    // Scoring Events (40-49)
+    GoalScored goal_scored = 40;
+    PlayerGoal player_goal = 41;
+
+    // Stat Events (50-59)
+    PlayerSave player_save = 50;
+    PlayerStun player_stun = 51;
+    PlayerPass player_pass = 52;
+    PlayerSteal player_steal = 53;
+    PlayerBlock player_block = 54;
+    PlayerInterception player_interception = 55;
+    PlayerAssist player_assist = 56;
+    PlayerShotTaken player_shot_taken = 57;
+
+    // Misc Events (60-69)
+    GenericEvent generic_event = 60;
+  }
+}
+
+// ------------------------------------------------------------------
+// Game State Events
+// ------------------------------------------------------------------
+
+// Fired when the round starts.
+message RoundStarted {
+  int32 round_number = 1;
+}
+
+// Fired when the game is paused.
+message RoundPaused {
+  PauseState pause_state = 1;
+}
+
+// Fired when the game is unpaused.
+message RoundUnpaused {
+  PauseState pause_state = 1;
+}
+
+// Fired when a round finishes.
+message RoundEnded {
+  int32 round_number = 1;
+  Role winning_team = 2;
+}
+
+// Fired when the match is over.
+message MatchEnded {
+  Role winning_team = 1;
+}
+
+// Fired on any change to score or round count.
+message ScoreboardUpdated {
+  int32 blue_points = 1;
+  int32 orange_points = 2;
+  int32 blue_round_score = 3;
+  int32 orange_round_score = 4;
+  float game_clock = 5;
+}
+
+// ------------------------------------------------------------------
+// Player Events
+// ------------------------------------------------------------------
+
+// Fired when a new player is detected in the session.
+// Flat fields instead of embedded TeamMember for minimal wire size.
+message PlayerJoined {
+  int32 slot = 1;
+  uint64 account_number = 2;
+  string display_name = 3;
+  Role role = 4;
+}
+
+// Fired when a player is no longer detected in the session.
+message PlayerLeft {
+  int32 player_slot = 1;
+  string display_name = 2;
+}
+
+// Fired when a player changes teams or roles.
+message PlayerSwitchedTeam {
+  int32 player_slot = 1;
+  Role new_role = 2;
+  Role prev_role = 3;
+}
+
+// Fired when a player starts playing an emote.
+message EmotePlayed {
+  enum EmoteType {
+    EMOTE_TYPE_UNSPECIFIED = 0;
+    EMOTE_TYPE_PRIMARY = 1;
+    EMOTE_TYPE_SECONDARY = 2;
+  }
+
+  int32 player_slot = 1;
+  EmoteType emote = 2;
+}
+
+// ------------------------------------------------------------------
+// Disc Events
+// ------------------------------------------------------------------
+
+// Fired when possession of the disc changes.
+message DiscPossessionChanged {
+  // The slot of the player who now has possession.
+  // -1 if the disc is free.
+  int32 player_slot = 1;
+
+  // The slot of the player who previously had possession.
+  // -1 if the disc was previously free.
+  int32 previous_player_slot = 2;
+}
+
+// Fired when a player throws the disc.
+message DiscThrown {
+  int32 player_slot = 1;
+  // Detailed throw physics (v2-native, all float32).
+  ThrowDetails throw_details = 2;
+}
+
+// Fired when a player catches the disc.
+message DiscCaught {
+  int32 player_slot = 1;
+}
+
+/**
+ * Detailed throw physics data.
+ * Replaces apigame.v1.LastThrowInfo with all float32 fields.
+ */
+message ThrowDetails {
+  float arm_speed = 1;
+  float total_speed = 2;
+  float off_axis_spin_deg = 3;
+  float wrist_throw_penalty = 4;
+  float rot_per_sec = 5;
+  float pot_speed_from_rot = 6;
+  float speed_from_arm = 7;
+  float speed_from_movement = 8;
+  float speed_from_wrist = 9;
+  float wrist_align_to_throw_deg = 10;
+  float throw_align_to_movement_deg = 11;
+  float off_axis_penalty = 12;
+  float throw_move_penalty = 13;
+}
+
+// ------------------------------------------------------------------
+// Scoring Events
+// ------------------------------------------------------------------
+
+/**
+ * Fired when a goal is scored.
+ * Replaces apigame.v1.LastScore with enums and slot references.
+ */
+message GoalScored {
+  float disc_speed = 1;
+  Role team = 2;
+  GoalType goal_type = 3;
+  int32 point_amount = 4;
+  float distance_thrown = 5;
+  int32 scorer_slot = 6;
+  int32 assist_slot = 7;
+}
+
+// ------------------------------------------------------------------
+// Stat-based Events
+// ------------------------------------------------------------------
+
+message PlayerGoal {
+  int32 player_slot = 1;
+  int32 total_goals = 2;
+  int32 points = 3;
+}
+
+// Fired when a player's 'saves' stat increments.
+message PlayerSave {
+  int32 player_slot = 1;
+  int32 total_saves = 2;
+}
+
+// Fired when a player's 'stuns' stat increments.
+message PlayerStun {
+  int32 player_slot = 1;
+  int32 total_stuns = 2;
+}
+
+// Fired when a player's 'passes' stat increments.
+message PlayerPass {
+  int32 player_slot = 1;
+  int32 total_passes = 2;
+}
+
+// Fired when a player's 'steals' stat increments.
+message PlayerSteal {
+  int32 player_slot = 1;
+  int32 total_steals = 2;
+  // The slot of the player who had possession before it was stolen.
+  // -1 if unknown or if possession was not tracked.
+  int32 victim_player_slot = 3;
+}
+
+// Fired when a player's 'blocks' stat increments.
+message PlayerBlock {
+  int32 player_slot = 1;
+  int32 total_blocks = 2;
+}
+
+// Fired when a player's 'interceptions' stat increments.
+message PlayerInterception {
+  int32 player_slot = 1;
+  int32 total_interceptions = 2;
+}
+
+// Fired when a player's 'assists' stat increments.
+message PlayerAssist {
+  int32 player_slot = 1;
+  int32 total_assists = 2;
+}
+
+// Fired when a player's 'shots_taken' stat increments.
+message PlayerShotTaken {
+  int32 player_slot = 1;
+  int32 total_shots = 2;
+}
+
+// ------------------------------------------------------------------
+// Generic/Misc Events
+// ------------------------------------------------------------------
+
+// Generic event for encoding arbitrary data via string.
+// Use for custom events, debugging, or data that doesn't fit existing types.
+message GenericEvent {
+  // Event type identifier (e.g., "custom_debug", "experimental_metric").
+  string event_type = 1;
+
+  // Arbitrary key-value data.
+  map<string, string> data = 2;
+
+  // Optional raw payload for non-structured data.
+  string payload = 3;
+}
