@@ -5,7 +5,7 @@ import (
 "fmt"
 "time"
 
-apigame "github.com/echotools/nevr-common/v4/gen/go/apigame"
+apigamev1 "github.com/echotools/nevr-common/v4/gen/go/apigame/v1"
 spatial "github.com/echotools/nevr-common/v4/gen/go/spatial/v1"
 telemetryv1 "github.com/echotools/nevr-common/v4/gen/go/telemetry/v1"
 telemetryv2 "github.com/echotools/nevr-common/v4/gen/go/telemetry/v2"
@@ -14,7 +14,7 @@ telemetryv2 "github.com/echotools/nevr-common/v4/gen/go/telemetry/v2"
 )
 
 func main() {
-fmt.Println("=== Telemetry V2 Wire Size Comparison ===\n")
+fmt.Println("=== Telemetry V2 Wire Size Comparison ===")
 
 // Test v2 frame with 2 players
 v2Frame2 := createV2Frame(2)
@@ -110,52 +110,52 @@ return frame
 func createV1Frame(playerCount int) *telemetryv1.LobbySessionStateFrame {
 now := timestamppb.New(time.Now())
 
-teams := make([]*apigame.Team, 2)
-teams[0] = &apigame.Team{
+teams := make([]*apigamev1.Team, 2)
+teams[0] = &apigamev1.Team{
 TeamName:   "BLUE TEAM",
-Players:    make([]*apigame.TeamMember, 0),
-Stats:      &apigame.TeamStats{Points: 5},
+Players:    make([]*apigamev1.TeamMember, 0),
+Stats:      &apigamev1.TeamStats{Points: 5},
 }
-teams[1] = &apigame.Team{
+teams[1] = &apigamev1.Team{
 TeamName:   "ORANGE TEAM",
-Players:    make([]*apigame.TeamMember, 0),
-Stats:      &apigame.TeamStats{Points: 3},
+Players:    make([]*apigamev1.TeamMember, 0),
+Stats:      &apigamev1.TeamStats{Points: 3},
 }
 
 for i := 0; i < playerCount; i++ {
 teamIdx := i % 2
-player := &apigame.TeamMember{
+player := &apigamev1.TeamMember{
 SlotNumber:    int32(i),
 AccountNumber: uint64(1000000 + i),
 DisplayName:   fmt.Sprintf("Player%d", i),
 Level:         50,
 Ping:          int32(20 + i*2),
-Head: &apigame.BodyPart{
+Head: &apigamev1.BodyPart{
 Position: []float64{float64(i) * 2, 11.0, 12.0},
 Forward:  []float64{1.0, 0.0, 0.0},
 Left:     []float64{0.0, 1.0, 0.0},
 Up:       []float64{0.0, 0.0, 1.0},
 },
-Body: &apigame.BodyPart{
+Body: &apigamev1.BodyPart{
 Position: []float64{float64(i) * 2, 10.0, 12.0},
 Forward:  []float64{1.0, 0.0, 0.0},
 Left:     []float64{0.0, 1.0, 0.0},
 Up:       []float64{0.0, 0.0, 1.0},
 },
-LeftHand: &apigame.HandPart{
+LeftHand: &apigamev1.HandPart{
 Pos:     []float64{float64(i)*2 - 0.5, 10.5, 12.0},
 Forward: []float64{1.0, 0.0, 0.0},
 Left:    []float64{0.0, 1.0, 0.0},
 Up:      []float64{0.0, 0.0, 1.0},
 },
-RightHand: &apigame.HandPart{
+RightHand: &apigamev1.HandPart{
 Pos:     []float64{float64(i)*2 + 0.5, 10.5, 12.0},
 Forward: []float64{1.0, 0.0, 0.0},
 Left:    []float64{0.0, 1.0, 0.0},
 Up:      []float64{0.0, 0.0, 1.0},
 },
 Velocity:  []float64{0.1, 0.2, 0.3},
-Stats:     &apigame.PlayerStats{Points: int32(i)},
+Stats:     &apigamev1.PlayerStats{Points: int32(i)},
 IsStunned: i%5 == 0,
 }
 teams[teamIdx].Players = append(teams[teamIdx].Players, player)
@@ -164,7 +164,7 @@ teams[teamIdx].Players = append(teams[teamIdx].Players, player)
 return &telemetryv1.LobbySessionStateFrame{
 FrameIndex: 1000,
 Timestamp:  now,
-Session: &apigame.SessionResponse{
+Session: &apigamev1.SessionResponse{
 SessionId:        "0c9a3e7f-8b14-4d8a-9f2c-1e3b4a5c6d7e",
 GameStatus:       "playing",
 MatchType:        "Arena",
@@ -180,7 +180,7 @@ OrangePoints:     3,
 BlueRoundScore:   1,
 OrangeRoundScore: 0,
 Teams:            teams,
-Disc: &apigame.Disc{
+Disc: &apigamev1.Disc{
 Position:    []float64{1.0, 2.0, 3.0},
 Forward:     []float64{1.0, 0.0, 0.0},
 Left:        []float64{0.0, 1.0, 0.0},
