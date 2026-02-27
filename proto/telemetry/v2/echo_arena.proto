@@ -1,0 +1,368 @@
+/**
+ * Echo Arena-specific payload definitions for telemetry v2.
+ */
+syntax = "proto3";
+
+package telemetry.v2;
+
+import "spatial/v1/types.proto";
+
+option csharp_namespace = "Nevr.Telemetry.V2";
+option go_package = "github.com/echotools/nevr-common/v4/gen/go/telemetry/v2;telemetryv2";
+option java_multiple_files = true;
+option java_outer_classname = "EchoArenaProto";
+option java_package = "com.echotools.nevr.telemetry.v2";
+
+/**
+ * Game status enumeration.
+ */
+enum GameStatus {
+  GAME_STATUS_UNSPECIFIED = 0;
+  GAME_STATUS_PRE_MATCH = 1;
+  GAME_STATUS_ROUND_START = 2;
+  GAME_STATUS_PLAYING = 3;
+  GAME_STATUS_SCORE = 4;
+  GAME_STATUS_ROUND_OVER = 5;
+  GAME_STATUS_POST_MATCH = 6;
+  GAME_STATUS_PRE_SUDDEN_DEATH = 7;
+  GAME_STATUS_SUDDEN_DEATH = 8;
+  GAME_STATUS_POST_SUDDEN_DEATH = 9;
+}
+
+/**
+ * Match type enumeration.
+ */
+enum MatchType {
+  MATCH_TYPE_UNSPECIFIED = 0;
+  MATCH_TYPE_SOCIAL_PUBLIC = 1;
+  MATCH_TYPE_SOCIAL_PRIVATE = 2;
+  MATCH_TYPE_ARENA = 3;
+  MATCH_TYPE_COMBAT = 4;
+  MATCH_TYPE_ECHO_PASS = 5;
+  MATCH_TYPE_FFA = 6;
+  MATCH_TYPE_PRIVATE = 7;
+  MATCH_TYPE_TOURNAMENT = 8;
+}
+
+/**
+ * Pause state enumeration.
+ */
+enum PauseState {
+  PAUSE_STATE_UNSPECIFIED = 0;
+  PAUSE_STATE_NOT_PAUSED = 1;
+  PAUSE_STATE_PAUSED = 2;
+  PAUSE_STATE_UNPAUSING = 3;
+  PAUSE_STATE_AUTOPAUSE_REPLAY = 4;
+}
+
+/**
+ * Team/role assignment.
+ */
+enum Role {
+  ROLE_UNSPECIFIED = 0;
+  ROLE_BLUE_TEAM = 1;
+  ROLE_ORANGE_TEAM = 2;
+  ROLE_SPECTATOR = 3;
+  ROLE_SOCIAL_PARTICIPANT = 4;
+  ROLE_MODERATOR = 5;
+}
+
+/**
+ * Goal classification.
+ */
+enum GoalType {
+  GOAL_TYPE_UNSPECIFIED = 0;
+  GOAL_TYPE_INSIDE_SHOT = 1;
+  GOAL_TYPE_LONG_SHOT = 2;
+  GOAL_TYPE_BOUNCE_SHOT = 3;
+  GOAL_TYPE_LONG_BOUNCE_SHOT = 4;
+  GOAL_TYPE_SELF_GOAL = 5;
+}
+
+/**
+ * Echo Arena session metadata.
+ */
+message EchoArenaHeader {
+  string session_id = 1;
+  string map_name = 2;
+  MatchType match_type = 3;
+  string client_name = 4;
+  bool private_match = 5;
+  bool tournament_match = 6;
+  int32 total_round_count = 7;
+  repeated PlayerInfo initial_roster = 8;
+  SkeletonLayout skeleton = 9;
+}
+
+/**
+ * Skeleton memory layout contract.
+ */
+message SkeletonLayout {
+  uint32 bone_count = 1;
+  uint32 transform_stride = 2;
+  uint32 orientation_stride = 3;
+}
+
+/**
+ * Stable roster entry.
+ */
+message PlayerInfo {
+  int32 slot = 1;
+  uint64 account_number = 2;
+  string display_name = 3;
+  Role role = 4;
+}
+
+/**
+ * Echo Arena per-frame game state.
+ */
+message EchoArenaFrame {
+  GameStatus game_status = 1;
+  float game_clock = 2;
+  PauseState pause_state = 3;
+  DiscState disc = 4;
+  repeated PlayerState players = 5;
+  repeated PlayerBones player_bones = 6;
+  optional int32 disc_holder_slot = 7;
+  spatial.v1.Pose vr_root = 8;
+  int32 blue_points = 9;
+  int32 orange_points = 10;
+  int32 round_number = 11;
+  repeated EchoEvent events = 12;
+}
+
+/**
+ * Disc state snapshot.
+ */
+message DiscState {
+  spatial.v1.Pose pose = 1;
+  spatial.v1.Vec3 velocity = 2;
+  uint32 bounce_count = 3;
+}
+
+/**
+ * Player transform and status snapshot.
+ */
+message PlayerState {
+  int32 slot = 1;
+  spatial.v1.Pose head = 2;
+  spatial.v1.Pose body = 3;
+  spatial.v1.Pose left_hand = 4;
+  spatial.v1.Pose right_hand = 5;
+  spatial.v1.Vec3 velocity = 6;
+
+  // Packed flags: bit0=stunned, bit1=invulnerable, bit2=blocking,
+  // bit3=possession, bit4=is_emote_playing, bits5-31=reserved.
+  uint32 flags = 7;
+
+  uint32 ping = 8;
+}
+
+/**
+ * Zero-copy player bone payload.
+ *
+ * `transforms` and `orientations` are little-endian float32 byte arrays.
+ */
+message PlayerBones {
+  int32 slot = 1;
+  bytes transforms = 2;
+  bytes orientations = 3;
+  optional SkeletonLayout skeleton_override = 4;
+}
+
+/**
+ * Wrapper for all Echo Arena events.
+ */
+message EchoEvent {
+  oneof event {
+    // Game state events (10-19).
+    RoundStarted round_started = 10;
+    RoundPaused round_paused = 11;
+    RoundUnpaused round_unpaused = 12;
+    RoundEnded round_ended = 13;
+    MatchEnded match_ended = 14;
+    ScoreboardUpdated scoreboard_updated = 15;
+
+    // Player events (20-29).
+    PlayerJoined player_joined = 20;
+    PlayerLeft player_left = 21;
+    PlayerSwitchedTeam player_switched_team = 22;
+    EmotePlayed emote_played = 23;
+
+    // Disc events (30-39).
+    DiscPossessionChanged disc_possession_changed = 30;
+    DiscThrown disc_thrown = 31;
+    DiscCaught disc_caught = 32;
+
+    // Scoring events (40-49).
+    GoalScored goal_scored = 40;
+    PlayerGoal player_goal = 41;
+
+    // Stat events (50-59).
+    PlayerSave player_save = 50;
+    PlayerStun player_stun = 51;
+    PlayerPass player_pass = 52;
+    PlayerSteal player_steal = 53;
+    PlayerBlock player_block = 54;
+    PlayerInterception player_interception = 55;
+    PlayerAssist player_assist = 56;
+    PlayerShotTaken player_shot_taken = 57;
+
+    // Misc events (60-69).
+    GenericEvent generic_event = 60;
+  }
+}
+
+message RoundStarted {
+  int32 round_number = 1;
+}
+
+message RoundPaused {
+  PauseState pause_state = 1;
+}
+
+message RoundUnpaused {
+  PauseState pause_state = 1;
+}
+
+message RoundEnded {
+  int32 round_number = 1;
+  Role winning_team = 2;
+}
+
+message MatchEnded {
+  Role winning_team = 1;
+}
+
+message ScoreboardUpdated {
+  int32 blue_points = 1;
+  int32 orange_points = 2;
+  int32 blue_round_score = 3;
+  int32 orange_round_score = 4;
+  float game_clock = 5;
+}
+
+message PlayerJoined {
+  int32 slot = 1;
+  uint64 account_number = 2;
+  string display_name = 3;
+  Role role = 4;
+}
+
+message PlayerLeft {
+  int32 player_slot = 1;
+  string display_name = 2;
+}
+
+message PlayerSwitchedTeam {
+  int32 player_slot = 1;
+  Role new_role = 2;
+  Role prev_role = 3;
+}
+
+message EmotePlayed {
+  enum EmoteType {
+    EMOTE_TYPE_UNSPECIFIED = 0;
+    EMOTE_TYPE_PRIMARY = 1;
+    EMOTE_TYPE_SECONDARY = 2;
+  }
+
+  int32 player_slot = 1;
+  EmoteType emote = 2;
+}
+
+message DiscPossessionChanged {
+  // Use -1 to indicate a free disc (no player possession).
+  int32 player_slot = 1;
+
+  // Use -1 to indicate previously free disc.
+  int32 previous_player_slot = 2;
+}
+
+message DiscThrown {
+  int32 player_slot = 1;
+  ThrowDetails throw_details = 2;
+}
+
+message ThrowDetails {
+  float arm_speed = 1;
+  float total_speed = 2;
+  float off_axis_spin_deg = 3;
+  float wrist_throw_penalty = 4;
+  float rot_per_sec = 5;
+  float pot_speed_from_rot = 6;
+  float speed_from_arm = 7;
+  float speed_from_movement = 8;
+  float speed_from_wrist = 9;
+  float wrist_align_to_throw_deg = 10;
+  float throw_align_to_movement_deg = 11;
+  float off_axis_penalty = 12;
+  float throw_move_penalty = 13;
+}
+
+message DiscCaught {
+  int32 player_slot = 1;
+}
+
+message GoalScored {
+  float disc_speed = 1;
+  Role team = 2;
+  GoalType goal_type = 3;
+  int32 point_amount = 4;
+  float distance_thrown = 5;
+  int32 scorer_slot = 6;
+  int32 assist_slot = 7;
+}
+
+message PlayerGoal {
+  int32 player_slot = 1;
+  int32 total_goals = 2;
+  int32 points = 3;
+}
+
+message PlayerSave {
+  int32 player_slot = 1;
+  int32 total_saves = 2;
+}
+
+message PlayerStun {
+  int32 player_slot = 1;
+  int32 total_stuns = 2;
+}
+
+message PlayerPass {
+  int32 player_slot = 1;
+  int32 total_passes = 2;
+}
+
+message PlayerSteal {
+  int32 player_slot = 1;
+  int32 total_steals = 2;
+  int32 victim_player_slot = 3;
+}
+
+message PlayerBlock {
+  int32 player_slot = 1;
+  int32 total_blocks = 2;
+}
+
+message PlayerInterception {
+  int32 player_slot = 1;
+  int32 total_interceptions = 2;
+}
+
+message PlayerAssist {
+  int32 player_slot = 1;
+  int32 total_assists = 2;
+}
+
+message PlayerShotTaken {
+  int32 player_slot = 1;
+  int32 total_shots = 2;
+}
+
+message GenericEvent {
+  string event_type = 1;
+  map<string, string> data = 2;
+  string payload = 3;
+}
