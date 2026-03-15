@@ -29,9 +29,8 @@ Telemetry V2 achieves **73.5% wire size reduction** compared to V1 through:
 ## Package Structure
 
 ```
-proto/
-├── spatial/v1/types.proto          # Vec3, Quat, Pose primitives
-└── telemetry/v2/frame.proto        # CaptureHeader, Frame, PlayerState, etc.
+spatial/v1/types.proto          # Vec3, Quat, Pose primitives
+telemetry/v2/frame.proto        # CaptureHeader, Frame, PlayerState, etc.
 ```
 
 ## Usage
@@ -40,8 +39,8 @@ proto/
 
 ```go
 import (
-    spatial "github.com/echotools/nevr-common/v4/gen/go/spatial/v1"
-    telemetryv2 "github.com/echotools/nevr-common/v4/gen/go/telemetry/v2"
+    spatialv1 "buf.build/gen/go/echotools/nevr-api/protocolbuffers/go/spatial/v1"
+    telemetryv2 "buf.build/gen/go/echotools/nevr-api/protocolbuffers/go/telemetry/v2"
 )
 
 // Create capture header (once per session)
@@ -61,22 +60,22 @@ frame := &telemetryv2.Frame{
     GameStatus:        telemetryv2.GameStatus_GAME_STATUS_PLAYING,
     GameClock:         120.5,
     Disc: &telemetryv2.DiscState{
-        Pose: &spatial.Pose{
-            Position:    &spatial.Vec3{X: 1.0, Y: 2.0, Z: 3.0},
-            Orientation: &spatial.Quat{X: 0.0, Y: 0.0, Z: 0.0, W: 1.0},
+        Pose: &spatialv1.Pose{
+            Position:    &spatialv1.Vec3{X: 1.0, Y: 2.0, Z: 3.0},
+            Orientation: &spatialv1.Quat{X: 0.0, Y: 0.0, Z: 0.0, W: 1.0},
         },
-        Velocity:    &spatial.Vec3{X: 5.0, Y: 2.5, Z: 1.0},
+        Velocity:    &spatialv1.Vec3{X: 5.0, Y: 2.5, Z: 1.0},
         BounceCount: 3,
     },
     Players: []*telemetryv2.PlayerState{
         {
             Slot: 0,
-            Head: &spatial.Pose{
-                Position:    &spatial.Vec3{X: 10.0, Y: 11.0, Z: 12.0},
-                Orientation: &spatial.Quat{X: 0.0, Y: 0.0, Z: 0.0, W: 1.0},
+            Head: &spatialv1.Pose{
+                Position:    &spatialv1.Vec3{X: 10.0, Y: 11.0, Z: 12.0},
+                Orientation: &spatialv1.Quat{X: 0.0, Y: 0.0, Z: 0.0, W: 1.0},
             },
             // ... body, left_hand, right_hand ...
-            Velocity: &spatial.Vec3{X: 0.1, Y: 0.2, Z: 0.3},
+            Velocity: &spatialv1.Vec3{X: 0.1, Y: 0.2, Z: 0.3},
             Flags:    0b00001, // stunned
             Ping:     25,
         },
@@ -230,34 +229,6 @@ Player stats (goals, saves, stuns, etc.) are monotonically increasing counters. 
 - etc.
 
 Consumers can reconstruct stats from events, saving ~50 bytes per player per frame.
-
-## Testing
-
-Run the wire size comparison example:
-
-```bash
-go run examples/size_comparison.go
-```
-
-Output:
-```
-=== Telemetry V2 Wire Size Comparison ===
-
-V2 Frame with 2 players: 324 bytes
-V2 Frame with 10 players: 1354 bytes
-
-V1 Frame with 2 players: 1267 bytes
-V1 Frame with 10 players: 5109 bytes
-
-=== Wire Size Reduction ===
-2 players: 74.4% reduction (1267 → 324 bytes)
-10 players: 73.5% reduction (5109 → 1354 bytes)
-
-=== Bandwidth at 60 FPS (10 players) ===
-V1: 299.4 KB/s
-V2: 79.3 KB/s
-Savings: 220.0 KB/s (73.5%)
-```
 
 ## Future Work
 

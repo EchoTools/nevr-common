@@ -1,71 +1,59 @@
 ````instructions
-# GitHub Copilot Instructions for nevr-common
+# GitHub Copilot Instructions for nevr-proto
 
 ## Project Overview
 
-nevr-common is the **shared protocol buffer repository** for the NEVR telemetry ecosystem. It defines the data contracts used by:
+nevr-proto is a **proto-only repository** for the NEVR telemetry ecosystem. It defines the data contracts used by:
 - **nevr-agent**: Recording/streaming CLI
-- **nevrcap**: High-performance frame processing library  
+- **nevrcap**: High-performance frame processing library
 - **nakama**: Game server backend with EVR-specific runtime
+
+Proto definitions are distributed via the [Buf Schema Registry (BSR)](https://buf.build/echotools/nevr-api). There is no generated code in this repository.
 
 ## Architecture
 
 ```
-proto/                     # Source .proto definitions (authoritative)
-├── telemetry/v1/         # Frame, events, session data
-├── api/                  # REST API definitions  
-├── apigame/             # Game engine HTTP API (SessionResponse, PlayerBones)
-├── apigrpc/             # gRPC service definitions
-└── rtapi/               # Real-time WebSocket API
-
-gen/                      # Generated code (DO NOT EDIT MANUALLY)
-├── go/, python/, csharp/, cpp/, docs/, openapiv2/
-
-serviceapi/               # Go types for EVR binary protocol parsing
+telemetry/v1/     # Session capture: frames, events, header
+telemetry/v2/     # Optimized capture format (73.5% smaller)
+apigame/v1/       # EchoVR engine HTTP API types
+rtapi/v1/         # Real-time WebSocket API
+spatial/v1/       # 3D primitives: Vec3, Quat, Pose
+archive/          # Deprecated protos (excluded from buf module)
+common/           # C++ utilities (pending move to nevr-runtime)
 ```
 
 ## Key Patterns
 
 ### Protobuf Conventions
 - **Package naming**: `package telemetry.v1;` with v1/v2 versioning
-- **Go import path**: `github.com/echotools/nevr-common/v4/gen/go/telemetry/v1;telemetry`
+- **Go import path**: `buf.build/gen/go/echotools/nevr-api/protocolbuffers/go/telemetry/v1;telemetryv1`
 - **Event envelopes**: Use `oneof` for polymorphic event types (see `LobbySessionEvent`)
 - **Timestamps**: Always use `google.protobuf.Timestamp`, never raw int64
 
 ### Adding New Types
 
-1. Edit `.proto` files in `proto/` directory
-2. Regenerate with `buf generate` (requires buf CLI)
-3. Commit both `.proto` and generated files together
-4. Update consuming repos (nevr-agent, nevrcap, nakama) to use new types
+1. Edit `.proto` files at the repository root
+2. Run `buf lint` and `buf build` to verify
+3. Commit the `.proto` changes only (no generated code)
+4. BSR push happens automatically on merge to main
 
-### serviceapi Package
+### Consuming in Go
 
-Binary protocol parsers for EVR game traffic. These mirror protos but handle raw binary encoding:
-- `core_packet.go` - Base packet framing
-- `core_stream.go` - Stream message types
-- Files prefixed with `login_`, `match_`, `gameserver_` - Protocol message types
+```go
+import telemetryv1 "buf.build/gen/go/echotools/nevr-api/protocolbuffers/go/telemetry/v1"
+```
 
-## Code Generation
+### Consuming in C++/C#/Rust
+
+Use `buf generate buf.build/echotools/nevr-api` in consumer repos with a local `buf.gen.yaml`.
+
+## Development
 
 ```bash
-cd proto/
-buf generate              # Regenerate all targets
 buf lint                  # Check proto style
-buf breaking              # Check backward compatibility
+buf build                 # Compile check
+buf breaking --against '.git#branch=main'  # Check backward compatibility
 ```
-
-Outputs controlled by `proto/buf.gen.yaml`. Clean build enabled - regenerates from scratch.
-
-## Cross-Repo Development
-
-Use go.work for local development across repos:
-```go
-// go.work in nevr-agent or nakama
-replace github.com/echotools/nevr-common/v4 => ../nevr-common
-```
-
-Changes to protos require rebuilding in all consuming repos.
 
 ## Commit Strategy
 
