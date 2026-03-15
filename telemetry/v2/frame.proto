@@ -23,7 +23,7 @@ import "telemetry/v1/telemetry.proto";
 import "google/protobuf/timestamp.proto";
 
 option csharp_namespace = "Nevr.Telemetry.V2";
-option go_package = "github.com/echotools/nevr-common/v4/gen/go/telemetry/v2;telemetryv2";
+option go_package = "buf.build/gen/go/echotools/nevr-api/protocolbuffers/go/telemetry/v2;telemetryv2";
 option java_multiple_files = true;
 option java_outer_classname = "TelemetryV2Proto";
 option java_package = "com.echotools.nevr.telemetry.v2";

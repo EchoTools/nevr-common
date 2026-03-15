@@ -12,7 +12,7 @@ import "google/protobuf/timestamp.proto";
 
 option csharp_namespace = "Nevr.Telemetry.Protobuf";
 // --- Language-specific options ---
-option go_package = "github.com/echotools/nevr-common/v4/gen/go/telemetry/v1;telemetry";
+option go_package = "buf.build/gen/go/echotools/nevr-api/protocolbuffers/go/telemetry/v1;telemetryv1";
 option java_multiple_files = true;
 option java_outer_classname = "NevrTelemetry";
 option java_package = "com.echotools.nevr.telemetry.v1";

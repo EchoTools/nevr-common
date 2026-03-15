@@ -3,9 +3,12 @@ version: v2
 modules:
   - path: .
     name: buf.build/echotools/nevr-api
-deps:
-  - buf.build/googleapis/googleapis
-  - buf.build/grpc-ecosystem/grpc-gateway
+    excludes:
+      - archive
+      - common
+      - examples
+      - gen
+      - scripts
 
 
 lint:

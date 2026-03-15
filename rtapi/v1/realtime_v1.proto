@@ -6,7 +6,7 @@ import "google/protobuf/timestamp.proto";
 import "telemetry/v1/telemetry.proto";
 
 option csharp_namespace = "Nevr.Protobuf";
-option go_package = "github.com/echotools/nevr-common/v4/gen/go/rtapi/v1;rtapiv1";
+option go_package = "buf.build/gen/go/echotools/nevr-api/protocolbuffers/go/rtapi/v1;rtapiv1";
 option java_multiple_files = true;
 option java_outer_classname = "NevrRealtime";
 option java_package = "com.github.echotools.nevr.rtapi.v1";
