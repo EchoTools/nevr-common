@@ -1,0 +1,14 @@
+name: buf
+on:
+  push:
+    branches: [main]
+  pull_request:
+jobs:
+  buf:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: bufbuild/buf-setup-action@v1
+      - run: buf lint
+      - run: buf build
+      # buf push only on main (will be added when BSR credentials are configured)
