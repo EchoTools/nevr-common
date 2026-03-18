@@ -516,15 +516,13 @@ message SNSLobbySessionFailureV4Message {
 //   +...   client_sequence_id   (8B LE)
 //   +...   client keys          (mac_key + enc_key + random_key, sizes from client_encoder_flags)
 //
-// Note: user_slot and flags32 are protobuf-only; they do not appear in the binary wire format.
 message SNSLobbySessionSuccessV5Message {
   fixed64 game_mode            = 1;
   string  lobby_id             = 2;
   string  group_id             = 3;
   string  endpoint             = 4;
   int32   team_index           = 5;
-  uint32  user_slot            = 6;  // protobuf-only, not in binary wire format
-  uint32  flags32              = 7;  // protobuf-only, not in binary wire format
+  reserved 6, 7;  // removed: user_slot, flags32 (did not exist in game binary)
   uint32  session_flags        = 8;
   uint64  server_encoder_flags = 9;
   uint64  client_encoder_flags = 10;
