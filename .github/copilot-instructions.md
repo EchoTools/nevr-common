@@ -19,7 +19,6 @@ apigame/v1/       # EchoVR engine HTTP API types
 rtapi/v1/         # Real-time WebSocket API
 spatial/v1/       # 3D primitives: Vec3, Quat, Pose
 archive/          # Deprecated protos (excluded from buf module)
-common/           # C++ utilities (pending move to nevr-runtime)
 ```
 
 ## Key Patterns

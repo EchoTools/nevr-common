@@ -63,7 +63,6 @@ spatial/v1/     # 3D spatial primitives
 telemetry/v1/   # Session capture format (v1)
 telemetry/v2/   # Optimized capture format (v2)
 archive/        # Deprecated protos (excluded from module)
-common/         # C++ utilities (pending move to nevr-runtime)
 ```
 
 ## Consumers

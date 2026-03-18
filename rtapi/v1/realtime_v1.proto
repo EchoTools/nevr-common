@@ -498,14 +498,33 @@ message SNSLobbySessionFailureV4Message {
 
 // LobbySessionSuccessv5: server to client indicating that a
 // request to create/join/find a game server session succeeded.
+//
+// Binary wire format (0x48-byte fixed header + variable key data):
+//   +0x00  game_mode            (8B LE)
+//   +0x08  lobby_id             (16B GUID: Data1 LE, Data2 LE, Data3 LE, Data4 raw)
+//   +0x18  group_id             (16B GUID)
+//   +0x28  endpoint.internal_ip (4B network order)
+//   +0x2C  endpoint.external_ip (4B network order)
+//   +0x30  endpoint.port        (2B big-endian)
+//   +0x32  team_index           (2B LE uint16)
+//   +0x34  session_flags        (1B uint8)
+//   +0x35  padding              (3B zeroed)
+//   +0x38  server_encoder_flags (8B LE)
+//   +0x40  client_encoder_flags (8B LE)
+//   +0x48  server_sequence_id   (8B LE)
+//   +0x50  server keys          (mac_key + enc_key + random_key, sizes from server_encoder_flags)
+//   +...   client_sequence_id   (8B LE)
+//   +...   client keys          (mac_key + enc_key + random_key, sizes from client_encoder_flags)
+//
+// Note: user_slot and flags32 are protobuf-only; they do not appear in the binary wire format.
 message SNSLobbySessionSuccessV5Message {
   fixed64 game_mode            = 1;
   string  lobby_id             = 2;
   string  group_id             = 3;
   string  endpoint             = 4;
   int32   team_index           = 5;
-  uint32  user_slot            = 6;
-  uint32  flags32              = 7;
+  uint32  user_slot            = 6;  // protobuf-only, not in binary wire format
+  uint32  flags32              = 7;  // protobuf-only, not in binary wire format
   uint32  session_flags        = 8;
   uint64  server_encoder_flags = 9;
   uint64  client_encoder_flags = 10;

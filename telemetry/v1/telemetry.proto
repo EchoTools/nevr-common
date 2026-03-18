@@ -1,8 +1,7 @@
 /**
-   * The EchoTools NEVR Telemetry.
-   *
-
-*/
+ * EchoTools NEVR Telemetry v1.
+ * Session capture format: header, frames, and events.
+ */
 syntax = "proto3";
 
 package telemetry.v1;
