@@ -116,6 +116,18 @@ message Envelope {
     SNSUserServerProfileUpdateSuccessMessage user_server_profile_update_success = 52;
     // Game server requests to save a player's loadout.
     GameServerSaveLoadoutMessage game_server_save_loadout = 53;
+
+    // Early quit penalty system messages.
+
+    // Remove ("smite") a player from lobby. HOST_ONLY: relayed to
+    // game engine via BroadcasterReceiveLocalEvent.
+    SNSLobbySmiteEntrantMessage lobby_smite_entrant = 54;
+    // Early quit penalty tier configuration (penalty levels, steady player levels).
+    SNSEarlyQuitConfigMessage early_quit_config = 55;
+    // Early quit feature flag bitfield (enable/disable system features).
+    SNSEarlyQuitFeatureFlagsMessage early_quit_feature_flags = 56;
+    // Notify a player of their early quit penalty state change.
+    SNSEarlyQuitUpdateNotificationMessage early_quit_update_notification = 57;
   }
 }
 
@@ -664,4 +676,90 @@ message SNSUserServerProfileUpdateRequestMessage {
 // their UserServerProfileUpdateRequest request succeeded.
 message SNSUserServerProfileUpdateSuccessMessage {
   XPlatformID user_id = 1;
+}
+
+// ============================================================================
+// Early Quit Penalty System Messages
+// ============================================================================
+
+// Remove ("smite") a player from a lobby session. Sent from service to game
+// server, which re-encodes as a 0x10-byte binary message and injects via
+// BroadcasterReceiveLocalEvent. HOST_ONLY (handler flags 0x04).
+//
+// Binary wire format (game engine):
+//   +0x00  uint64  player_id
+//   +0x08  uint64  reserved (zero)
+message SNSLobbySmiteEntrantMessage {
+  // The entrant to remove from the lobby, as a UUID string.
+  string entrant_id = 1;
+  // The lobby session the entrant should be removed from.
+  string lobby_session_id = 2;
+}
+
+// Early quit penalty tier configuration. Sent from service to game server on
+// player login, which re-encodes as a 0x40-byte binary header + zlib-compressed
+// JSON payload and injects via BroadcasterReceiveLocalEvent.
+//
+// Binary wire format (game engine):
+//   +0x00  uint32  config_version
+//   +0x04  uint32  num_penalty_levels
+//   +0x08  uint32  num_steady_levels
+//   +0x0C  uint32  flags
+//   +0x10  uint64  timestamp
+//   +0x18  uint64  data_offset
+//   +0x20  uint32  data_length
+//   +0x24  uint32  checksum
+//   +0x28  [24]    reserved
+//   +0x40  []byte  zlib-compressed JSON {"penalty_levels":[...],"steady_player_levels":[...]}
+message SNSEarlyQuitConfigMessage {
+  uint32 config_version = 1;
+  repeated EarlyQuitPenaltyLevel penalty_levels = 2;
+  repeated EarlyQuitSteadyPlayerLevel steady_player_levels = 3;
+  uint32 flags = 4;
+}
+
+// A single penalty tier in the early quit system.
+message EarlyQuitPenaltyLevel {
+  int32 penalty_level = 1;
+  int32 min_earlyquits = 2;
+  int32 max_earlyquits = 3;
+  int32 mm_lockout_sec = 4;
+  int32 spawnlock = 5;
+  int32 autoreport = 6;
+  int32 cnvpe_reactivated = 7;
+}
+
+// A single steady player tier in the early quit system.
+message EarlyQuitSteadyPlayerLevel {
+  int32 steady_player_level = 1;
+  int32 min_num_matches = 2;
+  float min_steady_ratio = 3;
+}
+
+// Early quit feature flags. Sent from service to game server on player login.
+// Re-encoded as a 0x08-byte binary struct.
+//
+// Binary wire format (game engine):
+//   +0x00  uint32  flags (bitfield: bit0=enabled, bit1=steady_tracking,
+//                         bit2=penalty_enforcement, bit3=auto_report)
+//   +0x04  uint32  reserved
+message SNSEarlyQuitFeatureFlagsMessage {
+  uint32 flags = 1;
+}
+
+// Notify a player of their early quit penalty state. Sent from service to game
+// server when a penalty is applied or expires. Re-encoded as a 0x20-byte binary
+// struct.
+//
+// Binary wire format (game engine):
+//   +0x00  uint64  player_id
+//   +0x08  int32   num_early_quits
+//   +0x0C  int32   penalty_level
+//   +0x10  uint64  penalty_expiry (unix seconds)
+//   +0x18  uint64  reserved
+message SNSEarlyQuitUpdateNotificationMessage {
+  string entrant_id = 1;
+  int32 num_early_quits = 2;
+  int32 penalty_level = 3;
+  uint64 penalty_expiry = 4;
 }
