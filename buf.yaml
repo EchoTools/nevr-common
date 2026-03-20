@@ -5,11 +5,6 @@ modules:
     name: buf.build/echotools/nevr-api
     excludes:
       - archive
-      - common
-      - examples
-      - gen
-      - scripts
-
 
 lint:
   use:
