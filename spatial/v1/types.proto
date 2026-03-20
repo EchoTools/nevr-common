@@ -6,8 +6,8 @@ syntax = "proto3";
 
 package spatial.v1;
 
-option go_package = "buf.build/gen/go/echotools/nevr-api/protocolbuffers/go/spatial/v1;spatialv1";
 option csharp_namespace = "Nevr.Spatial.V1";
+option go_package = "buf.build/gen/go/echotools/nevr-api/protocolbuffers/go/spatial/v1;spatialv1";
 option java_multiple_files = true;
 option java_outer_classname = "SpatialProto";
 option java_package = "com.echotools.nevr.spatial.v1";

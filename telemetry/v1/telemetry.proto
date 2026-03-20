@@ -9,8 +9,7 @@ package telemetry.v1;
 import "engine/v1/engine_http.proto";
 import "google/protobuf/timestamp.proto";
 
-option csharp_namespace = "Nevr.Telemetry.Protobuf";
-// --- Language-specific options ---
+option csharp_namespace = "Nevr.Telemetry.V1";
 option go_package = "buf.build/gen/go/echotools/nevr-api/protocolbuffers/go/telemetry/v1;telemetryv1";
 option java_multiple_files = true;
 option java_outer_classname = "NevrTelemetry";
@@ -294,10 +293,10 @@ message PlayerShotTaken {
 message GenericEvent {
   // Event type identifier (e.g., "custom_debug", "experimental_metric")
   string event_type = 1;
-  
+
   // Arbitrary key-value data
   map<string, string> data = 2;
-  
+
   // Optional raw payload for non-structured data
   string payload = 3;
 }
