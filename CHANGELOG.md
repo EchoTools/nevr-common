@@ -2,6 +2,30 @@
 
 All notable changes to this project will be documented in this file.
 
+## [Unreleased]
+
+### Added
+
+- `telemetry/v2` layered capture format with game-agnostic envelope, `EchoArenaHeader`/`EchoArenaFrame` payloads, `CaptureFooter` seek indexes, and `EventType` enum
+- `spatial/v1` package with `Vec3`, `Quat`, `Pose` primitives
+- CI: `buf breaking` check on pull requests
+- CI: `buf push` for BSR publishing on merge to main
+- CI: `buf format` check
+
+### Changed
+
+- Renamed `apigame/v1` → `engine/v1` (domain: EchoVR engine HTTP API)
+- Renamed `rtapi/v1` → `gameservice/v1` (domain: EchoVR ↔ game service protocol)
+- Removed version suffixes from filenames per AIP-191 (`engine_http_v1.proto` → `engine_http.proto`, etc.)
+- Normalized `csharp_namespace` across all packages to `Nevr.<Package>.<Version>` pattern
+- Normalized `java_package` across all packages to `com.echotools.nevr.<package>.<version>` pattern
+- Fixed `SNSLobbyFindSessionRequestv11Message` → `SNSLobbyFindSessionRequestV11Message` (casing consistency)
+
+### Fixed
+
+- Applied `buf format` canonical formatting
+- Removed stale excludes from `buf.yaml`
+
 ## [1.0.0] - 2026-03-15
 
 ### Changed
