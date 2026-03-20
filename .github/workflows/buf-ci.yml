@@ -7,8 +7,23 @@ jobs:
   buf:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
-      - uses: bufbuild/buf-setup-action@v1
+      - uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # v4.3.1
+        with:
+          fetch-depth: 0
+      - uses: bufbuild/buf-setup-action@a47c93e0b1648d5651a065437926377d060baa99 # v1.50.0
+      - run: buf format --diff --exit-code
       - run: buf lint
       - run: buf build
-      # buf push only on main (will be added when BSR credentials are configured)
+      - name: Check breaking changes
+        if: github.event_name == 'pull_request'
+        run: buf breaking --against '.git#branch=main'
+      - name: Push to BSR
+        if: github.ref == 'refs/heads/main' && github.event_name == 'push'
+        run: |
+          if [ -n "$BUF_TOKEN" ]; then
+            buf push
+          else
+            echo "BUF_TOKEN not configured, skipping BSR push"
+          fi
+        env:
+          BUF_TOKEN: ${{ secrets.BUF_TOKEN }}
