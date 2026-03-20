@@ -4,13 +4,13 @@
  */
 syntax = "proto3";
 
-package apigame.v1;
+package engine.v1;
 
-option csharp_namespace = "Nevr.Engine.Http.V1";
-option go_package = "buf.build/gen/go/echotools/nevr-api/protocolbuffers/go/apigame/v1;apigamev1";
+option csharp_namespace = "Nevr.Engine.V1";
+option go_package = "buf.build/gen/go/echotools/nevr-api/protocolbuffers/go/engine/v1;enginev1";
 option java_multiple_files = true;
 option java_outer_classname = "EngineHttpProto";
-option java_package = "com.github.echotools.nevr.engine.http.v1";
+option java_package = "com.echotools.nevr.engine.v1";
 
 // Represents the disc's physics properties.
 message Disc {

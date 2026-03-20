@@ -1,15 +1,15 @@
 syntax = "proto3";
 
-package rtapi.v1;
+package gameservice.v1;
 
 import "google/protobuf/timestamp.proto";
 import "telemetry/v1/telemetry.proto";
 
-option csharp_namespace = "Nevr.Protobuf";
-option go_package = "buf.build/gen/go/echotools/nevr-api/protocolbuffers/go/rtapi/v1;rtapiv1";
+option csharp_namespace = "Nevr.Gameservice.V1";
+option go_package = "buf.build/gen/go/echotools/nevr-api/protocolbuffers/go/gameservice/v1;gameservicev1";
 option java_multiple_files = true;
-option java_outer_classname = "NevrRealtime";
-option java_package = "com.github.echotools.nevr.rtapi.v1";
+option java_outer_classname = "GameserviceProto";
+option java_package = "com.echotools.nevr.gameservice.v1";
 
 message Envelope {
   string cid = 1;
@@ -56,7 +56,7 @@ message Envelope {
     // Provide information on servers available in different regions.
     SNSLobbyCreateSessionRequestV9Message lobby_create_session_request_v9 = 25;
     // Request to find an existing game session.
-    SNSLobbyFindSessionRequestv11Message lobby_find_session_request_v11 = 26;
+    SNSLobbyFindSessionRequestV11Message lobby_find_session_request_v11 = 26;
     // Request to join a specified game session.
     SNSLobbyJoinSessionRequestV7Message lobby_join_session_request_v7 = 27;
     // Provide the status of a matchmaking operation.
@@ -421,7 +421,7 @@ message SNSLobbyCreateSessionRequestV9Message {
 // LobbyFindSessionRequestv11: client to server requesting
 // finding of an existing game session that matches the message's underlying
 // arguments.
-message SNSLobbyFindSessionRequestv11Message {
+message SNSLobbyFindSessionRequestV11Message {
   SymbolHash           version_lock     = 1;
   SymbolHash           mode             = 2;
   SymbolHash           level            = 3;
@@ -522,7 +522,6 @@ message SNSLobbySessionSuccessV5Message {
   string  group_id             = 3;
   string  endpoint             = 4;
   int32   team_index           = 5;
-  reserved 6, 7;  // removed: user_slot, flags32 (did not exist in game binary)
   uint32  session_flags        = 8;
   uint64  server_encoder_flags = 9;
   uint64  client_encoder_flags = 10;
